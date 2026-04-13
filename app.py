@@ -18,12 +18,6 @@ from src.airspeed_calibration import analyze_flight_data
 from src.fuel_prices import scrape_airnav_to_json
 
 app = Flask(__name__)
-app.config["SERVER_NAME"] = "n890gf.com"
-
-
-@app.route("/", subdomain="tracker")
-def tracker():
-    return "Tracker app"
 
 
 DB_PATH = "src/maintenance.db"
