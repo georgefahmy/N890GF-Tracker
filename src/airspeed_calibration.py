@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
@@ -113,30 +112,6 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         raise ValueError(
             f"Not enough data points between {start_time}s and {end_time}s. Minimum 10 points required."
         )
-
-    if show_plot:
-        trk_rad = np.radians(maneuver_df["gps_trk"])
-        v_gx = maneuver_df["gps_gs"] * np.sin(trk_rad)
-        v_gy = maneuver_df["gps_gs"] * np.cos(trk_rad)
-
-        x_pos = np.cumsum(v_gx)
-        y_pos = np.cumsum(v_gy)
-
-        plt.figure(figsize=(8, 8))
-        plt.plot(x_pos, y_pos, label="Ground Track", color="blue", linewidth=2)
-
-        plt.plot(x_pos.iloc[0], y_pos.iloc[0], "go", markersize=8, label="Start")
-        plt.plot(x_pos.iloc[-1], y_pos.iloc[-1], "ro", markersize=8, label="End")
-
-        plt.title(
-            f"Selected Maneuver Ground Track (Time: {start_time}s to {end_time}s)"
-        )
-        plt.xlabel("Relative Easting")
-        plt.ylabel("Relative Northing")
-        plt.axis("equal")
-        plt.grid(True)
-        plt.legend()
-        plt.show()
 
     maneuver_df["sigma"] = calculate_density_ratio(
         maneuver_df["press_alt"], (maneuver_df["oat"] - 32.0) * 5.0 / 9.0

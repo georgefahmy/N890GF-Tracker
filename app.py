@@ -7,19 +7,16 @@ import threading
 import time
 from datetime import datetime, timedelta
 
-import matplotlib
 import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from src.airnav_route import fetch_route
-from src.analysis import analyze_flight_data
-from src.fuel_prices import scrape_airnav_to_json
-
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 
-# Force matplotlib to not use any Xwindows backend
-matplotlib.use("Agg")
+from src.airnav_route import fetch_route
+from src.airspeed_calibration import analyze_flight_data
+from src.fuel_prices import scrape_airnav_to_json
+
 app = Flask(__name__)
 app.config["SERVER_NAME"] = "n890gf.com"
 
