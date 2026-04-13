@@ -40,4 +40,3 @@ def download_dynon_databases_only(
             # print(f"Saved {file}")
     except Exception:
         pass
-
