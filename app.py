@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 
 DB_PATH = "src/maintenance.db"
-
+DEBUG = False
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
 os.makedirs(SAVE_DIR, exist_ok=True)
@@ -1179,4 +1179,4 @@ def api_airspeed_calibration():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=DEBUG)
