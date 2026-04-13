@@ -16,12 +16,13 @@ from flask import Flask, jsonify, redirect, render_template, request, url_for
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
 from src.fuel_prices import scrape_airnav_to_json
+from src.sw_db_updates import download_dynon_databases_only
 
 app = Flask(__name__)
 
 
 DB_PATH = "src/maintenance.db"
-DEBUG = False
+DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
 os.makedirs(SAVE_DIR, exist_ok=True)
@@ -863,6 +864,48 @@ def route_advisor():
     )
 
     return jsonify(result)
+
+
+# --- API endpoint for Dynon database updates ---
+@app.route("/api/database_updates", methods=["POST"])
+def api_database_updates():
+    """
+    Trigger download of Dynon aviation and obstacle databases.
+    """
+    try:
+        data = request.get_json(silent=True) or request.form
+        download_path = data.get("download_path", "").strip()
+        # Expand ~ to user home directory
+        download_path = os.path.expanduser(download_path)
+        # If still empty, default to Downloads
+        if not download_path:
+            download_path = os.path.expanduser("~/Downloads/")
+
+        if not download_path:
+            return jsonify({"error": "Download path is required"}), 400
+
+        # Ensure directory exists
+        try:
+            os.makedirs(download_path, exist_ok=True)
+        except Exception as e:
+            return jsonify({"error": f"Invalid path: {e}"}), 400
+
+        database_url = "https://dynonavionics.com/us-aviation-obstacle-data.php"
+
+        # Run download in background thread so UI doesn't hang
+        def run_download():
+            try:
+                download_dynon_databases_only(database_url, download_path)
+            except Exception as e:
+                print("Database download error:", e)
+
+        threading.Thread(target=run_download, daemon=True).start()
+
+        return jsonify({"status": "Download started"})
+
+    except Exception as e:
+        print("Database update API error:", e)
+        return jsonify({"error": str(e)}), 500
 
 
 # --- Proxy endpoint for posting a route string to ForeFlight performance API ---
