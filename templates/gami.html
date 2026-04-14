@@ -220,6 +220,38 @@ function renderGami(data) {
     const spread = Math.max(...values) - Math.min(...values);
 
     // ---- GAMI Spread Calculation ----
+
+    // ---- Peak EGT Calculation ----
+    let peakEgtSummary = "N/A";
+
+    if (timeWindow && timeWindow.start != null && timeWindow.end != null) {
+        const maskPeak = time.map(t =>
+            t >= timeWindow.start && t <= timeWindow.end
+        );
+
+        const peakEgts = [];
+
+        egtTraces.forEach((t) => {
+            let maxY = null;
+
+            for (let j = 0; j < t.y.length; j++) {
+                if (!maskPeak[j]) continue;
+
+                if (maxY === null || t.y[j] > maxY) {
+                    maxY = t.y[j];
+                }
+            }
+
+            if (maxY !== null) {
+                peakEgts.push(`${t.name}: ${maxY.toFixed(1)}`);
+            }
+        });
+
+        if (peakEgts.length) {
+            peakEgtSummary = peakEgts.join('<br>');
+        }
+    }
+
     let gamiSpreadText = "N/A";
 
     // compute GAMI spread ONLY when time window exists
@@ -259,8 +291,10 @@ function renderGami(data) {
     }
 
     document.getElementById("metrics").innerHTML = `
-        <b>EGT Spread:</b> ${spread.toFixed(1)} °F<br>
-        <b>GAMI Spread (ΔFF):</b> ${gamiSpreadText}
+        <b>EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
+        <b>GAMI Spread (ΔFF):</b> ${gamiSpreadText}<br><br>
+        <b>Peak EGTs:</b><br>
+        ${peakEgtSummary}
     `;
 
     // TIME SERIES

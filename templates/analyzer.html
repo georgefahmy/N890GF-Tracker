@@ -244,6 +244,7 @@ let plotFilters = {}; // { plotId: [filters] }
 let xyFilters = [];
 let xyOverlay = false;
 let followAircraft = false;
+const STORAGE_KEY = 'analyzer_selected_flight';
 
 function toggleFollowAircraft(state) {
     followAircraft = state;
@@ -317,6 +318,16 @@ document.addEventListener('DOMContentLoaded', function() {
             sortedFiles.forEach(f => {
                 select.options.add(new Option(f, f));
             });
+
+            // Restore previously selected flight
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved && sortedFiles.includes(saved)) {
+                select.value = saved;
+
+                const formData = new FormData();
+                formData.append('saved_filename', saved);
+                loadSignals(formData);
+            }
         });
 });
 
@@ -335,6 +346,9 @@ function loadSignals(formData) {
         }
 
         currentSavedFilename = data.saved_filename;
+        if (data.saved_filename) {
+            localStorage.setItem(STORAGE_KEY, data.saved_filename);
+        }
         masterSignalsList = data.signals;
 
         // Hide placeholders, show relevant UI
@@ -361,6 +375,7 @@ function loadSignals(formData) {
 document.getElementById('csvFile').addEventListener('change', function(e) {
     if (e.target.files.length === 0) return;
     document.getElementById('savedFlights').value = ""; // Reset dropdown
+    localStorage.removeItem(STORAGE_KEY);
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
     loadSignals(formData);
@@ -369,6 +384,7 @@ document.getElementById('csvFile').addEventListener('change', function(e) {
 // 4. Handle Saved Flight Selection
 document.getElementById('savedFlights').addEventListener('change', function(e) {
     if (!e.target.value) return;
+    localStorage.setItem(STORAGE_KEY, e.target.value);
     document.getElementById('csvFile').value = ""; // Reset file input
     const formData = new FormData();
     formData.append('saved_filename', e.target.value);
