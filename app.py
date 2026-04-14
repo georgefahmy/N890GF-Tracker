@@ -353,7 +353,7 @@ def process_flights(df):
         + df["CHT 4 (deg F)"]
     ) / 4
     df["CHT_Delta_T"] = df["AVG_CHT"] - df["OAT (deg F)"]
-    df["OIL_Delta_T"] = df["Oil Temp (deg F)"] - df["OAT (deg F)"]
+    df["OIL_Delta_T"] = df["OIL TEMPERATURE (deg F)"] - df["OAT (deg F)"]
 
     # --- Compute Fuel Flow Integral (gallons) per flight ---
     # Ensure Fuel Flow 1 is numeric
@@ -467,8 +467,19 @@ def index():
                     continue
             return datetime.min
 
+        def hobbs_val(x):
+            try:
+                return float(x.get("hobbs", 0) or 0)
+            except Exception:
+                return 0.0
+
         sorted_logs = sorted(
-            logs_list, key=lambda x: parse_to_datetime(x["date"]), reverse=True
+            logs_list,
+            key=lambda x: (
+                parse_to_datetime(x["date"]),
+                hobbs_val(x),
+            ),
+            reverse=True,
         )
         for log in sorted_logs:
             dt = parse_to_datetime(log["date"])
@@ -486,9 +497,41 @@ def index():
     cursor.execute("SELECT * FROM fuel_tracker")
     fuel_logs = sort_and_format_logs([dict(row) for row in cursor.fetchall()])
 
-    cursor.execute("SELECT hobbs FROM flight_log ORDER BY hobbs DESC LIMIT 1")
-    hobbs_res = cursor.fetchone()
-    total_hours = hobbs_res["hobbs"] if hobbs_res and hobbs_res["hobbs"] else 0.0
+    # --- Compute Hobbs delta between fuel-ups ---
+    def safe_hobbs(x):
+        try:
+            return float(x.get("hobbs", 0) or 0)
+        except Exception:
+            return 0.0
+
+    # Sort ascending for delta calculation
+    fuel_logs_sorted = sorted(fuel_logs, key=lambda x: safe_hobbs(x))
+
+    prev = None
+    for f in fuel_logs_sorted:
+        curr = safe_hobbs(f)
+        if prev is None:
+            f["delta"] = None
+        else:
+            delta = round(curr - prev, 1)
+            f["delta"] = delta if delta >= 0 else 0.0
+        prev = curr
+
+    # --- Get latest Hobbs and Tach ---
+    cursor.execute("SELECT hobbs, tach FROM flight_log ORDER BY hobbs DESC LIMIT 1")
+    latest_res = cursor.fetchone()
+
+    total_hobbs = (
+        validate_float(latest_res["hobbs"])
+        if latest_res and latest_res["hobbs"]
+        else 0.0
+    )
+    total_tach = (
+        validate_float(latest_res["tach"]) if latest_res and latest_res["tach"] else 0.0
+    )
+
+    # Keep legacy total_hours for compatibility
+    total_hours = total_hobbs
 
     cursor.execute("SELECT SUM(landings) as total_ldgs FROM flight_log")
     l_res = cursor.fetchone()
@@ -532,6 +575,8 @@ def index():
         mx_logs=mx_logs,
         fuel_logs=fuel_logs,
         total_hours=total_hours,
+        total_hobbs=total_hobbs,
+        total_tach=total_tach,
         total_landings=total_landings,
         overdue_items=overdue_items,
         overdue_count=len(overdue_items),
@@ -597,21 +642,21 @@ def add_mx():
 
 @app.route("/add_fuel", methods=["POST"])
 def add_fuel():
-    hours, gallons, price = (
-        validate_float(request.form.get("hours", 0)),
+    hobbs, gallons, price = (
+        validate_float(request.form.get("hobbs", 0)),
         validate_float(request.form.get("gallons", 0)),
         validate_float(request.form.get("price", 0)),
     )
     conn = get_db_connection()
     conn.execute(
-        "INSERT INTO fuel_tracker (date, hours, gallons, price_per_gallon, total_cost, gal_per_hour) VALUES (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO fuel_tracker (date, hobbs, gallons, price_per_gallon, total_cost, gal_per_hour) VALUES (?, ?, ?, ?, ?, ?)",
         (
             parse_date_safe(request.form.get("date")),
-            hours,
+            hobbs,
             gallons,
             price,
             round(gallons * price, 2),
-            round(gallons / hours, 2) if hours > 0 else 0,
+            round(gallons / hobbs, 2) if hobbs > 0 else 0,
         ),
     )
     conn.commit()
@@ -834,6 +879,16 @@ def api_get_signals():
             "Thermocouple 13 (deg C)",
             "Thermocouple 14 (deg F)",
             "Thermocouple 14 (deg C)",
+            "Fuel Flow 1 (gal/hr)",
+            "Fuel Flow 2 (gal/hr)",
+            "GP Input 3",
+            "GP Input 7",
+            "GP Input 8",
+            "GP Input 13",
+            "RPM L",
+            "RPM R",
+            "Oil Pressure (psi)",
+            "Oil Temp (deg F)",
         ]
         signals = sorted([col for col in numeric_cols if col not in excluded])
 
