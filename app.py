@@ -852,6 +852,7 @@ def api_get_signals():
         numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
         excluded = [
             "Unnamed: 103",
+            "Unnamed: 0",
             "Engine Run",
             "id",
             "AP Yaw Force",
