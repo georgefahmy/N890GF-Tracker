@@ -98,7 +98,7 @@ function setTempUnit(u) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('/api/list_files')
+    fetch('/api/saved_flights')
         .then(r => r.json())
         .then(data => {
             const sel = document.getElementById('savedFlights');

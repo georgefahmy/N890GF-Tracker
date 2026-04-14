@@ -795,15 +795,6 @@ def api_saved_flights():
     return jsonify({"files": files})
 
 
-# --- Compatibility endpoint for analyzer/gami UI for listing saved flights ---
-@app.route("/api/list_files", methods=["GET"])
-def api_list_files():
-    """Compatibility endpoint used by analyzer/gami UI for listing saved flights."""
-    files = [f for f in os.listdir(SAVE_DIR) if f.endswith(".csv")]
-    files.sort(key=lambda x: os.path.getmtime(os.path.join(SAVE_DIR, x)), reverse=True)
-    return jsonify({"files": files})
-
-
 @app.route("/api/get_signals", methods=["POST"])
 def api_get_signals():
     """Parses a new CSV or loads an existing one to populate the UI dropdowns."""
