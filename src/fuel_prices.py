@@ -357,7 +357,7 @@ def scrape_airnav_to_json(input_query):
     if exists:
         last_updated = datetime.fromtimestamp(os.path.getmtime(filename))
         print(f"Data last updated: {last_updated}")
-        if (datetime.now() - last_updated) < timedelta(days=3):
+        if (datetime.now() - last_updated) < timedelta(days=1):
             with open(filename, "r") as fp:
                 parsed_data = json.load(fp)
                 options, output = find_best_100ll_options(parsed_data)
