@@ -654,6 +654,15 @@ def index():
     )
 
 
+@app.route("/update_server", methods=["POST"])
+def update_server():
+    if request.method == "POST":
+        subprocess.Popen(CWD_PATH + "deploy.sh")
+        return "Deployment started", 200
+    else:
+        abort(400)
+
+
 @app.route("/add_flight", methods=["POST"])
 def add_flight():
     conn = get_db_connection()
