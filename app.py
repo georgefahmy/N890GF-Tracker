@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask import Flask, abort, jsonify, redirect, render_template, request, url_for
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
@@ -451,6 +451,15 @@ def process_flights(df):
     # Defragment DataFrame to improve performance after many column insertions
     df = df.copy()
     return df
+
+
+@app.route("/update_server", methods=["POST"])
+def webhook():
+    if request.method == "POST":
+        subprocess.Popen(CWD_PATH + "deploy.sh")
+        return "Deployment started", 200
+    else:
+        abort(400)
 
 
 @app.before_request
