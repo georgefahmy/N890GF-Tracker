@@ -694,6 +694,49 @@ function triggerAnalysis(plotId) {
 
         Plotly.newPlot(graphDiv, traces, layout, {responsive: true});
 
+        graphDiv.on('plotly_hover', function(eventdata) {
+            if (!eventdata.points || eventdata.points.length === 0) return;
+
+            const pt = eventdata.points[0];
+
+            // DIRECT INDEX MATCH (this is the fix)
+            if (pt.pointIndex !== undefined && window._mapLat && window._mapLon) {
+                const idx = pt.pointIndex;
+
+                const lat = window._mapLat[idx];
+                const lon = window._mapLon[idx];
+
+                const mapDiv = document.getElementById('mapGraph');
+                if (!mapDiv) return;
+
+                let aircraftIndex = window._mapMarkerTraceIndex || 0;
+
+                try {
+                    Plotly.restyle('mapGraph', {
+                        lat: [[lat]],
+                        lon: [[lon]]
+                    }, [aircraftIndex]);
+                } catch (e) {
+                    console.error("Direct marker move failed:", e);
+                }
+
+                // Follow mode
+                if (followAircraft) {
+                    Plotly.relayout('mapGraph', {
+                        'mapbox.center.lat': lat,
+                        'mapbox.center.lon': lon
+                    });
+                }
+
+                return;
+            }
+
+            // Fallback (time-based)
+            const xVal = pt.x;
+            if (xVal !== undefined) {
+                syncAircraftToTime(parseFloat(xVal));
+            }
+        });
 
         // 2. Sync Relayout (Zoom / Pan)
         graphDiv.on('plotly_relayout', function(eventdata) {
@@ -1209,6 +1252,20 @@ function renderMap(data) {
         };
     }
 
+    // Invisible interaction layer (ensures hover always triggers)
+    const interactionTrace = {
+        type: 'scattermapbox',
+        mode: 'markers',
+        lat: lat,
+        lon: lon,
+        marker: {
+            size: 20,
+            color: 'rgba(0,0,0,0)',
+        },
+        hoverinfo: 'none',
+        showlegend: false
+    };
+
     // Highlight calibration segment, if present
     let highlightTrace = null;
     var startTrace = null;
@@ -1304,18 +1361,21 @@ function renderMap(data) {
     // Base flight path
     if (pathLineTrace) traces.push(pathLineTrace);
 
-    // Heat overlay (only if valid)
+    // Heat overlay
     if (heatTrace) traces.push(heatTrace);
 
-    // Aircraft marker
-    if (markerTrace) traces.push(markerTrace);
+    // Invisible interaction layer (must be above visuals)
+    if (interactionTrace) traces.push(interactionTrace);
 
     // Calibration highlight
     if (highlightTrace) traces.push(highlightTrace);
 
-    // Start / End markers (optional)
+    // Start / End markers
     if (typeof startTrace !== 'undefined' && startTrace) traces.push(startTrace);
     if (typeof endTrace !== 'undefined' && endTrace) traces.push(endTrace);
+
+    // Aircraft marker ALWAYS LAST (on top)
+    if (markerTrace) traces.push(markerTrace);
 
     // --- STORE MARKER TRACE INDEX FOR LIVE SYNC ---
     window._mapMarkerTraceIndex = traces.findIndex(
@@ -1331,6 +1391,38 @@ function renderMap(data) {
 
     // --- MAP HOVER SYNC (cursor -> aircraft position) ---
     const mapDiv = document.getElementById('mapGraph');
+
+    if (mapDiv) {
+        mapDiv.on('plotly_hover', function(eventdata) {
+            try {
+                if (!eventdata.points || eventdata.points.length === 0) return;
+
+                const pt = eventdata.points[0];
+                if (pt.lat === undefined || pt.lon === undefined) return;
+
+                let bestIndex = 0;
+                let bestDist = Infinity;
+
+                for (let i = 0; i < window._mapLat.length; i++) {
+                    const dLat = window._mapLat[i] - pt.lat;
+                    const dLon = window._mapLon[i] - pt.lon;
+                    const dist = dLat * dLat + dLon * dLon;
+
+                    if (dist < bestDist) {
+                        bestDist = dist;
+                        bestIndex = i;
+                    }
+                }
+
+                const t = window._mapTime[bestIndex];
+                if (t !== undefined) {
+                    syncAircraftToTime(t);
+                }
+            } catch (e) {
+                console.error("Map hover sync error:", e);
+            }
+        });
+    }
 
 }
 
