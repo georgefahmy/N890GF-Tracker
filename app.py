@@ -473,7 +473,6 @@ def redirect_www():
 def index():
     conn = get_db_connection()
     cursor = conn.cursor()
-    git_push_data()
 
     def sort_and_format_logs(logs_list):
         def parse_to_datetime(d):
