@@ -453,14 +453,13 @@ def process_flights(df):
     return df
 
 
-@app.route("/update_server", methods=["POST"])
-@app.route("/update_server/", methods=["POST"])
+@app.route("/update_server", methods=["GET", "POST"])
+@app.route("/update_server/", methods=["GET", "POST"])
 def update_server():
     if request.method == "POST":
         subprocess.Popen("/home/georgefahmy/Documents/n890gf_tracker/deploy.sh")
         return "Deployment started", 200
-    else:
-        abort(400)
+    return "GET received (This is why you got a 405 before)", 200
 
 
 @app.before_request
