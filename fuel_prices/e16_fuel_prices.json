@@ -41,12 +41,12 @@
         "fbos": [
             {
                 "fbo_name": "Watsonville Municipal Airport",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$5.45"
+                            "price": "$6.85"
                         },
                         {
                             "service": "FS",
@@ -56,13 +56,13 @@
                     "G100UL": [
                         {
                             "service": "SS",
-                            "price": "$5.75"
+                            "price": "$6.25"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "SS",
-                            "price": "$4.95"
+                            "price": "$6.80"
                         },
                         {
                             "service": "FS",
@@ -83,7 +83,7 @@
         "fbos": [
             {
                 "fbo_name": "Hollister Jet Center, Inc",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -151,12 +151,12 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
                             "service": "FS",
-                            "price": "$13.31"
+                            "price": "$13.24"
                         }
                     ],
                     "Jet A": [
@@ -169,7 +169,7 @@
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "10-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -203,7 +203,7 @@
         "fbos": [
             {
                 "fbo_name": "Jet West GateOne",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -218,11 +218,11 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.17"
+                            "price": "$8.10"
                         },
                         {
                             "service": "SS",
-                            "price": "$8.17"
+                            "price": "$8.10"
                         }
                     ]
                 }
@@ -239,18 +239,18 @@
         "fbos": [
             {
                 "fbo_name": "City of Marina (FBO)",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$5.99"
+                            "price": "$6.64"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "SS",
-                            "price": "$6.10"
+                            "price": "$7.20"
                         }
                     ]
                 }
@@ -267,12 +267,12 @@
         "fbos": [
             {
                 "fbo_name": "Avports Moffett Field",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$10.67"
+                            "price": "$10.60"
                         }
                     ]
                 }
@@ -357,7 +357,7 @@
         "fbos": [
             {
                 "fbo_name": "Rossi Aircraft",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -451,7 +451,7 @@
         "fbos": [
             {
                 "fbo_name": "Five Rivers Aviation",
-                "last_updated": "09-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -472,13 +472,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.15"
-                        }
-                    ],
-                    "Mogas": [
-                        {
-                            "service": "FS",
-                            "price": "$7.75"
+                            "price": "$8.07"
                         }
                     ]
                 }
@@ -495,31 +489,31 @@
         "fbos": [
             {
                 "fbo_name": "APP Jet Center Hayward",
-                "last_updated": "09-Apr",
+                "last_updated": "13-Apr",
                 "prices": {
                     "100LL": [
                         {
                             "service": "FS",
-                            "price": "$9.29"
+                            "price": "$8.19"
                         }
                     ],
                     "UL94": [
                         {
                             "service": "SS",
-                            "price": "$10.00"
+                            "price": "$8.99"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.22"
+                            "price": "$7.89"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "Signature Aviation (formerly Meridian Hayward)",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -547,7 +541,7 @@
         "fbos": [
             {
                 "fbo_name": "Modesto Jet Center",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -562,7 +556,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.35"
+                            "price": "$8.27"
                         }
                     ]
                 }
@@ -579,7 +573,7 @@
         "fbos": [
             {
                 "fbo_name": "Contra Costa County (FBO)",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -601,7 +595,7 @@
         "fbos": [
             {
                 "fbo_name": "KaiserAir, Inc.",
-                "last_updated": "12-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -612,14 +606,14 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.22"
+                            "price": "$8.14"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "10-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -630,7 +624,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.532"
+                            "price": "$8.533"
                         }
                     ],
                     "SAF": [
@@ -653,7 +647,7 @@
         "fbos": [
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "10-Apr",
+                "last_updated": "15-Apr",
                 "prices": {
                     "100LL": [
                         {
