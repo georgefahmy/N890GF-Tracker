@@ -454,7 +454,7 @@ def process_flights(df):
 
 
 @app.route("/update_server", methods=["POST"])
-def webhook():
+def update_server():
     if request.method == "POST":
         subprocess.Popen(CWD_PATH + "deploy.sh")
         return "Deployment started", 200
