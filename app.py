@@ -3,6 +3,7 @@ import json
 import os
 import re
 import sqlite3
+import subprocess
 import threading
 import time
 from datetime import datetime, timedelta
@@ -21,7 +22,8 @@ from src.sw_db_updates import download_dynon_databases_only
 app = Flask(__name__)
 
 
-DB_PATH = "src/maintenance.db"
+CWD_PATH = os.path.abspath(os.path.dirname(__file__))
+DB_PATH = CWD_PATH + "/src/maintenance.db"
 
 DEBUG = True
 # --- Directory for saving processed dataframes ---
@@ -50,6 +52,12 @@ def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
+
+
+def git_push_data():
+    subprocess.run(["git", "add", "src/maintenance.db"], cwd=CWD_PATH)
+    subprocess.run(["git", "commit", "-m", "Auto-update databse"], cwd=CWD_PATH)
+    subprocess.run(["git", "push", "origin", "main"], cwd=CWD_PATH)
 
 
 def validate_float(value, default=0.0):
@@ -656,6 +664,7 @@ def add_flight():
     recompute_flight_history(conn)
     check_auto_maintenance(conn)
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -675,6 +684,7 @@ def add_mx():
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -699,6 +709,7 @@ def add_fuel():
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -738,6 +749,7 @@ def edit_flight(id):
     recompute_flight_history(conn)
     check_auto_maintenance(conn)
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -758,6 +770,7 @@ def edit_mx(id):
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -783,6 +796,7 @@ def edit_fuel(id):
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -793,6 +807,7 @@ def delete_flight(id):
     conn.commit()
     recompute_flight_history(conn)
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -802,6 +817,7 @@ def delete_maintenance(id):
     conn.execute("DELETE FROM maintenance_entries WHERE id = ?", (id,))
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -811,6 +827,7 @@ def delete_fuel(id):
     conn.execute("DELETE FROM fuel_tracker WHERE id = ?", (id,))
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
