@@ -244,7 +244,29 @@ let plotFilters = {}; // { plotId: [filters] }
 let xyFilters = [];
 let xyOverlay = false;
 let followAircraft = false;
+let lastMapRenderData = null;
 const STORAGE_KEY = 'analyzer_selected_flight';
+
+// Calibration highlight globals
+let calStartTimeGlobal = null;
+let calEndTimeGlobal = null;
+
+let mapColorMode = 'altitude';
+
+// --- MAP COLOR SCALE CONFIG (easy tuning point) ---
+const COLOR_SCALES = {
+    altitude: 'Rainbow',
+    airspeed: 'Jet',
+    groundspeed: 'Blackbody',
+    vertical_speed: 'RdYlBu'
+};
+
+const COLOR_LABELS = {
+    altitude: 'GPS Alt (ft)',
+    airspeed: 'TAS (kt)',
+    groundspeed: 'GS (kt)',
+    vertical_speed: 'VS (fpm)'
+};
 
 function toggleFollowAircraft(state) {
     followAircraft = state;
@@ -672,46 +694,6 @@ function triggerAnalysis(plotId) {
 
         Plotly.newPlot(graphDiv, traces, layout, {responsive: true});
 
-        // --- GLOBAL SYNC LOGIC (HOVER & ZOOM) ---
-
-        // 1. Sync Hover events
-        graphDiv.on('plotly_hover', function(eventdata) {
-            if (window._isHoverSyncing) return;
-            window._isHoverSyncing = true;
-
-            if (!eventdata.points || eventdata.points.length === 0) {
-                window._isHoverSyncing = false;
-                return;
-            }
-
-            const xVal = eventdata.points[0].x;
-
-            // Sync Map Aircraft
-            syncAircraftToTime(xVal);
-
-            // Sync all other visible plots
-            document.querySelectorAll('[id^="flightGraph-"]').forEach(plot => {
-                if (plot.id !== graphDiv.id && !plot.classList.contains('d-none') && plot.data) {
-                    Plotly.Fx.hover(plot.id, {xval: xVal});
-                }
-            });
-
-            window._isHoverSyncing = false;
-        });
-
-        // Clear hovers
-        graphDiv.on('plotly_unhover', function() {
-            if (window._isHoverSyncing) return;
-            window._isHoverSyncing = true;
-
-            document.querySelectorAll('[id^="flightGraph-"]').forEach(plot => {
-                if (plot.id !== graphDiv.id && !plot.classList.contains('d-none') && plot.data) {
-                    Plotly.Fx.hover(plot.id, []);
-                }
-            });
-
-            window._isHoverSyncing = false;
-        });
 
         // 2. Sync Relayout (Zoom / Pan)
         graphDiv.on('plotly_relayout', function(eventdata) {
@@ -977,6 +959,10 @@ function submitAirspeedCalibration() {
         return;
     }
 
+    // Store calibration range globally for map highlight
+    calStartTimeGlobal = start;
+    calEndTimeGlobal = end;
+
     resultBox.innerText = "Running calibration analysis...";
 
     const formData = new FormData();
@@ -1021,6 +1007,10 @@ function submitAirspeedCalibration() {
 
             block.innerHTML = `
                 <h6 class="text-primary mb-2">Airspeed Calibration</h6>
+                <div class="row mb-2">
+                    <div class="col-md-6"><strong>Start Time:</strong><br>${formatMMSS(calStartTimeGlobal)}</div>
+                    <div class="col-md-6"><strong>End Time:</strong><br>${formatMMSS(calEndTimeGlobal)}</div>
+                </div>
                 <div class="row">
                     <div class="col-md-3"><strong>CAS Correction:</strong><br>${parsed['CAS Correction'] || 'N/A'}</div>
                     <div class="col-md-3"><strong>Airspeed Error:</strong><br>${parsed['Airspeed Error'] || 'N/A'}</div>
@@ -1031,11 +1021,21 @@ function submitAirspeedCalibration() {
 
             statsList.appendChild(block);
         }
+        if (lastMapRenderData) {
+            renderMap(lastMapRenderData);
+        }
     })
     .catch(err => {
         console.error(err);
         resultBox.innerText = "Network error during calibration.";
     });
+}
+
+function formatMMSS(seconds) {
+    if (seconds === null || seconds === undefined || isNaN(seconds)) return "--:--";
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
 }
 
 function computeHeading(lat1, lon1, lat2, lon2) {
@@ -1050,6 +1050,7 @@ function computeHeading(lat1, lon1, lat2, lon2) {
     let brng = Math.atan2(y, x) * toDeg;
     return (brng + 360) % 360;
 }
+
 function computeDistance(lat1, lon1, lat2, lon2) {
     const R = 6371000;
     const toRad = Math.PI / 180;
@@ -1064,9 +1065,9 @@ function computeDistance(lat1, lon1, lat2, lon2) {
 
 function renderMap(data) {
     if (!data) return;
-
     let lat = null;
     let lon = null;
+    lastMapRenderData = data;
 
     if (data.plot_data) {
         const keys = Object.keys(data.plot_data);
@@ -1086,44 +1087,192 @@ function renderMap(data) {
 
     if (!lat || !lon) return;
 
-    lat = lat.map(v => parseFloat(v)).filter(v => !isNaN(v));
-    lon = lon.map(v => parseFloat(v)).filter(v => !isNaN(v));
+    // --- SAFE PARSE + ALIGN LAT/LON/ALT BY INDEX (CRITICAL FIX) ---
 
-    if (lat.length === 0 || lon.length === 0) return;
+    const latRaw = lat.map(v => parseFloat(v));
+    const lonRaw = lon.map(v => parseFloat(v));
 
-    // STORE FOR SYNC
-    window._mapLat = lat;
-    window._mapLon = lon;
-    window._mapTime = data.plot_data?.x || null;
+    // --- GLOBAL MAP STATE (needed for hover + sync) ---
+    window._mapLat = latRaw;
+    window._mapLon = lonRaw;
+    window._mapTime = data.plot_data?.time || data.plot_data?.session_time || data.time || null;
 
-    let alt = null;
+    let altRaw = null;
 
     if (data.plot_data) {
         const keys = Object.keys(data.plot_data);
         const altKey = keys.find(k => k.toLowerCase().includes("alt"));
-        if (altKey) alt = data.plot_data[altKey];
+        if (altKey) altRaw = data.plot_data[altKey];
     }
 
-    if (!alt && data.alt) alt = data.alt;
-    if (alt) {
-        alt = alt.map(v => parseFloat(v)).filter(v => !isNaN(v));
-        window._mapAlt = alt;
-    } else {
-        window._mapAlt = null;
+    if (!altRaw && data.alt) altRaw = data.alt;
+
+    if (altRaw) {
+        altRaw = altRaw.map(v => parseFloat(v));
     }
+
+    // --- ALIGN ALTITUDE TO LAT/LON INDEX (CRITICAL FIX) ---
+    const cleanAlt = [];
+
+    for (let i = 0; i < latRaw.length; i++) {
+        const a = altRaw ? altRaw[i] : null;
+
+        if (a === undefined || a === null || isNaN(a)) {
+            cleanAlt.push(null);
+        } else {
+            cleanAlt.push(a);
+        }
+    }
+
+    // Ensure altitude always matches lat length for heatmap modes
+    window._mapAlt = cleanAlt;
+
+    // --- MULTI-MODE MAP SIGNAL STORAGE ---
+    window._mapAirspeed = data.plot_data?.airspeed || null;
+    window._mapGroundspeed = data.plot_data?.groundspeed || null;
+    window._mapVerticalSpeed = data.plot_data?.vertical_speed || null;
+
+    // --- COLOR MODE RESOLVER ---
+    const getColorValues = () => {
+        if (mapColorMode === 'altitude') return window._mapAlt;
+        if (mapColorMode === 'airspeed') return window._mapAirspeed;
+        if (mapColorMode === 'groundspeed') return window._mapGroundspeed;
+        if (mapColorMode === 'vertical_speed') return window._mapVerticalSpeed;
+        return window._mapAlt;
+    };
 
     const metricsDiv = document.getElementById('mapMetrics');
-    if (metricsDiv) metricsDiv.innerHTML = '';
+    if (metricsDiv) {
+        metricsDiv.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="small text-muted">Color Mode</div>
+                <select id="mapColorModeSelect" class="form-select form-select-sm w-auto">
+                    <option value="altitude">Altitude</option>
+                    <option value="airspeed">Airspeed</option>
+                    <option value="groundspeed">Ground Speed</option>
+                    <option value="vertical_speed">Vertical Speed</option>
+                </select>
+            </div>
+        `;
 
-    const pathTrace = {
+        const sel = document.getElementById('mapColorModeSelect');
+        if (sel) {
+            sel.value = mapColorMode;
+            sel.onchange = () => {
+                mapColorMode = sel.value;
+                renderMap(data);
+            };
+        }
+    }
+
+    // --- COLOR MODE RESOLVER (safe fallback system) ---
+    // (overridden above)
+
+    // --- Dual-layer heatmap (Option 2: aviation-style) ---
+
+    // 1) Base flight path line (thin gray)
+    const pathLineTrace = {
         type: 'scattermapbox',
         mode: 'lines',
         lat: lat,
         lon: lon,
-        line: { width: 3 },
+        line: { width: 3, color: '#b0b0b0' },
         name: 'Flight Path',
         showlegend: false
     };
+
+    // 2) Heatmap overlay using colored points (altitude-based)
+    let heatTrace = null;
+
+    const colorValues = getColorValues();
+
+    if (colorValues && colorValues.length === lat.length) {
+        heatTrace = {
+            type: 'scattermapbox',
+            mode: 'markers',
+            lat: lat,
+            lon: lon,
+            marker: {
+                size: 5,
+                color: (colorValues || []).map(v => parseFloat(v)),
+                colorscale: COLOR_SCALES[mapColorMode] || 'Turbo',
+                showscale: true,
+                colorbar: {
+                    title: {
+                        text: COLOR_LABELS[mapColorMode] || 'Value'
+                    }
+                }
+            },
+            hoverinfo: 'skip',
+            name: 'Altitude Heat',
+            showlegend: false
+        };
+    }
+
+    // Highlight calibration segment, if present
+    let highlightTrace = null;
+    var startTrace = null;
+    var endTrace = null;
+
+    if (calStartTimeGlobal !== null && calEndTimeGlobal !== null && window._mapTime) {
+        const highlightLat = [];
+        const highlightLon = [];
+
+        for (let i = 0; i < window._mapTime.length; i++) {
+            const t = window._mapTime[i];
+            if (t >= calStartTimeGlobal && t <= calEndTimeGlobal) {
+                highlightLat.push(lat[i]);
+                highlightLon.push(lon[i]);
+            }
+        }
+
+        if (highlightLat.length > 1) {
+            highlightTrace = {
+                type: 'scattermapbox',
+                mode: 'lines',
+                lat: highlightLat,
+                lon: highlightLon,
+                line: { width: 4, color: '#66b2ff' },
+                name: 'Calibration Segment',
+                showlegend: false
+            };
+
+            // Compute headings for start and end arrows
+            const startHeading = computeHeading(
+                highlightLat[0],
+                highlightLon[0],
+                highlightLat[1],
+                highlightLon[1]
+            );
+
+            const endHeading = computeHeading(
+                highlightLat[highlightLat.length - 2],
+                highlightLon[highlightLon.length - 2],
+                highlightLat[highlightLat.length - 1],
+                highlightLon[highlightLon.length - 1]
+            );
+
+            startTrace = {
+                type: 'scattermapbox',
+                mode: 'markers',
+                lat: [highlightLat[0]],
+                lon: [highlightLon[0]],
+                marker: { size: 12, color: 'lightgreen' },
+                name: 'Start',
+                showlegend: false
+            };
+
+            endTrace = {
+                type: 'scattermapbox',
+                mode: 'markers',
+                lat: [highlightLat[highlightLat.length - 1]],
+                lon: [highlightLon[highlightLon.length - 1]],
+                marker: { size: 12, color: 'purple' },
+                name: 'End',
+                showlegend: false
+            };
+        }
+    }
 
     const markerTrace = {
         type: 'scattermapbox',
@@ -1132,6 +1281,7 @@ function renderMap(data) {
         lon: [lon[0]],
         marker: { size: 10, color: 'red' },
         name: 'Aircraft',
+        meta: { role: 'aircraft_marker' },
         showlegend: false
     };
 
@@ -1148,12 +1298,46 @@ function renderMap(data) {
         showlegend: false
     };
 
-    Plotly.newPlot('mapGraph', [pathTrace, markerTrace], layout, { responsive: true });
+    // --- SAFE TRACE BUILD (prevents Plotly null crashes) ---
+    const traces = [];
+
+    // Base flight path
+    if (pathLineTrace) traces.push(pathLineTrace);
+
+    // Heat overlay (only if valid)
+    if (heatTrace) traces.push(heatTrace);
+
+    // Aircraft marker
+    if (markerTrace) traces.push(markerTrace);
+
+    // Calibration highlight
+    if (highlightTrace) traces.push(highlightTrace);
+
+    // Start / End markers (optional)
+    if (typeof startTrace !== 'undefined' && startTrace) traces.push(startTrace);
+    if (typeof endTrace !== 'undefined' && endTrace) traces.push(endTrace);
+
+    // --- STORE MARKER TRACE INDEX FOR LIVE SYNC ---
+    window._mapMarkerTraceIndex = traces.findIndex(
+        t => t && t.meta && t.meta.role === 'aircraft_marker'
+    );
+    if (window._mapMarkerTraceIndex === -1) {
+        window._mapMarkerTraceIndex = traces.length - 1;
+    }
+    if (window._mapMarkerTraceIndex < 0) window._mapMarkerTraceIndex = 0;
+
+
+    Plotly.newPlot('mapGraph', traces, layout, { responsive: true });
+
+    // --- MAP HOVER SYNC (cursor -> aircraft position) ---
+    const mapDiv = document.getElementById('mapGraph');
+
 }
 
 function syncAircraftToTime(t) {
     if (!window._mapTime || !window._mapLat || !window._mapLon) return;
 
+    // Find closest index in time array
     let bestIndex = 0;
     let bestDiff = Infinity;
 
@@ -1165,15 +1349,43 @@ function syncAircraftToTime(t) {
         }
     }
 
-    Plotly.restyle('mapGraph', {
-        lat: [[window._mapLat[bestIndex]]],
-        lon: [[window._mapLon[bestIndex]]]
-    }, [1]);
+    const mapDiv = document.getElementById('mapGraph');
+    if (!mapDiv) return;
 
+    // Resolve aircraft marker trace index (fallback-safe)
+    let aircraftIndex = window._mapMarkerTraceIndex;
+
+    if (mapDiv.data && mapDiv.data.length) {
+        const idx = mapDiv.data.findIndex(t =>
+            t && t.meta && t.meta.role === 'aircraft_marker'
+        );
+        if (idx !== -1) aircraftIndex = idx;
+    }
+
+    if (aircraftIndex === undefined || aircraftIndex === null || aircraftIndex < 0) {
+        aircraftIndex = window._mapMarkerTraceIndex || 0;
+    }
+
+    const lat = window._mapLat[bestIndex];
+    const lon = window._mapLon[bestIndex];
+
+    // Directly update ONLY the aircraft marker trace (stable + no full redraw)
+    try {
+        Plotly.restyle('mapGraph', {
+            lat: [[lat]],
+            lon: [[lon]]
+        }, [aircraftIndex]);
+
+        Plotly.redraw('mapGraph');
+    } catch (e) {
+        console.error("Aircraft marker update failed:", e);
+    }
+
+    // Follow mode (map recenter)
     if (followAircraft) {
         Plotly.relayout('mapGraph', {
-            'mapbox.center.lat': window._mapLat[bestIndex],
-            'mapbox.center.lon': window._mapLon[bestIndex]
+            'mapbox.center.lat': lat,
+            'mapbox.center.lon': lon
         });
     }
 }

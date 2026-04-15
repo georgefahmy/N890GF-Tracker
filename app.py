@@ -1125,9 +1125,13 @@ def api_analyze_flight():
         lon_col = next(
             (c for c in flight_data.columns if "longitude" in c.lower()), None
         )
+        alt_col = next(
+            (c for c in flight_data.columns if "altitude" in c.lower()), None
+        )
 
         lat_data = []
         lon_data = []
+        alt_data = []
 
         if lat_col and lon_col:
             lat_data = (
@@ -1142,6 +1146,63 @@ def api_analyze_flight():
                 .dropna()
                 .tolist()
             )
+        if alt_col:
+            alt_data = (
+                pd.to_numeric(flight_data[alt_col], errors="coerce")
+                .replace([np.inf, -np.inf], np.nan)
+                .dropna()
+                .tolist()
+            )
+
+        # --- ALIGNED MULTI-MODE SIGNALS (for heatmap modes) ---
+
+        def safe_numeric(series):
+            return (
+                pd.to_numeric(series, errors="coerce")
+                .replace([np.inf, -np.inf], np.nan)
+                .fillna(0)
+                .tolist()
+            )
+
+        # Primary signals aligned to same dataframe index (IMPORTANT for heatmap consistency)
+        airspeed_data = safe_numeric(
+            flight_data.get("True Airspeed (knots)", pd.Series([0] * len(flight_data)))
+        )
+        groundspeed_data = safe_numeric(
+            flight_data.get("Ground Speed (knots)", pd.Series([0] * len(flight_data)))
+        )
+
+        # --- Vertical speed (use native Dynon data if available) ---
+        if "Vertical Speed (ft/min)" in flight_data.columns:
+            vertical_speed = (
+                pd.to_numeric(flight_data["Vertical Speed (ft/min)"], errors="coerce")
+                .replace([np.inf, -np.inf], np.nan)
+                .fillna(0)
+                .tolist()
+            )
+        else:
+            # fallback: compute from altitude if missing
+            altitude_series = pd.to_numeric(
+                flight_data.get("Pressure Altitude (ft)", 0),
+                errors="coerce",
+            ).fillna(0)
+
+            try:
+                dt = (
+                    pd.to_numeric(flight_data["Session Time"], errors="coerce")
+                    .diff()
+                    .fillna(0)
+                )
+
+                vs_fpm = (
+                    altitude_series.diff().fillna(0) / dt.replace(0, np.nan)
+                ) * 60.0
+                vs_fpm = vs_fpm.replace([np.inf, -np.inf], 0).fillna(0)
+
+                vertical_speed = vs_fpm.tolist()
+
+            except Exception:
+                vertical_speed = [0] * len(flight_data)
 
         plot_data = {
             "x": x_data,
@@ -1151,6 +1212,10 @@ def api_analyze_flight():
             "right_name": right_signal,
             "latitude": lat_data,
             "longitude": lon_data,
+            "altitude": alt_data,
+            "airspeed": airspeed_data,
+            "groundspeed": groundspeed_data,
+            "vertical_speed": vertical_speed,
         }
 
         # --- Generate Summary Stats ---
