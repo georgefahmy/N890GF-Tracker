@@ -156,8 +156,8 @@
 
     <h5 class="mb-3 text-secondary d-none" id="plotHeader">Flight Graphs</h5>
 
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row align-items-stretch">
+        <div class="col-md-8 h-100 d-flex flex-column">
             <div id="plotsContainer">
                 </div>
             <div class="text-center mt-4">
@@ -168,7 +168,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card p-2 shadow-sm mb-4">
+            <div class="card p-2 shadow-sm mb-4" style="position: sticky; top: 70px; z-index: 1000; align-self: flex-start;">
                 <div class="d-flex justify-content-between align-items-center px-2">
                     <h6 class="text-secondary text-center mb-0">Flight Map</h6>
 
@@ -182,10 +182,8 @@
                         </label>
                     </div>
                 </div>
-
-                <div id="mapGraph" style="height:420px;"></div>
+                <div id="mapGraph" style="height:500px;"></div>
                 <div id="mapMetrics" class="small text-muted px-2 pb-1"></div>
-
             </div>
         </div>
     </div>
@@ -257,7 +255,7 @@ let mapColorMode = 'altitude';
 const COLOR_SCALES = {
     altitude: 'Rainbow',
     airspeed: 'Jet',
-    groundspeed: 'Blackbody',
+    groundspeed: 'Rainbow',
     vertical_speed: 'RdYlBu'
 };
 
@@ -1138,7 +1136,11 @@ function renderMap(data) {
     // --- GLOBAL MAP STATE (needed for hover + sync) ---
     window._mapLat = latRaw;
     window._mapLon = lonRaw;
-    window._mapTime = data.plot_data?.time || data.plot_data?.session_time || data.time || null;
+    window._mapTime = (data.plot_data?.time || data.plot_data?.session_time || data.time || null);
+
+    if (window._mapTime && Array.isArray(window._mapTime)) {
+        window._mapTime = window._mapTime.map(v => parseFloat(v));
+    }
 
     let altRaw = null;
 
@@ -1213,7 +1215,18 @@ function renderMap(data) {
 
     // --- Dual-layer heatmap (Option 2: aviation-style) ---
 
-    // 1) Base flight path line (thin gray)
+    // 1) Base black outline (slightly thicker)
+    const pathLineBaseTrace = {
+        type: 'scattermapbox',
+        mode: 'lines',
+        lat: lat,
+        lon: lon,
+        line: { width: 5, color: '#000000' },
+        name: 'Flight Path Outline',
+        showlegend: false
+    };
+
+    // 2) Top visible flight path (main line)
     const pathLineTrace = {
         type: 'scattermapbox',
         mode: 'lines',
@@ -1236,14 +1249,22 @@ function renderMap(data) {
             lat: lat,
             lon: lon,
             marker: {
-                size: 5,
+                size: 4,
                 color: (colorValues || []).map(v => parseFloat(v)),
                 colorscale: COLOR_SCALES[mapColorMode] || 'Turbo',
+                reversescale: mapColorMode === 'altitude',
                 showscale: true,
+                cmin:
+                mapColorMode === 'altitude' ? 0 : (mapColorMode === 'airspeed' ? 50 : (mapColorMode === 'groundspeed' ? 0 : undefined)),
+                cmax: mapColorMode === 'altitude' ? 14000 : (mapColorMode === 'airspeed' ? 200 : (mapColorMode === 'groundspeed' ? 250 : undefined)),
                 colorbar: {
                     title: {
                         text: COLOR_LABELS[mapColorMode] || 'Value'
-                    }
+                    },
+                    orientation: 'h',
+                    x: 0.5,
+                    xanchor: 'center',
+                    y: -0.25
                 }
             },
             hoverinfo: 'skip',
@@ -1276,8 +1297,21 @@ function renderMap(data) {
         const highlightLon = [];
 
         for (let i = 0; i < window._mapTime.length; i++) {
-            const t = window._mapTime[i];
-            if (t >= calStartTimeGlobal && t <= calEndTimeGlobal) {
+            const t = Number(window._mapTime[i]);
+
+            if (isNaN(t)) continue;
+
+            let start = calStartTimeGlobal;
+            let end = calEndTimeGlobal;
+
+            // safety swap if user reversed inputs
+            if (start > end) {
+                const tmp = start;
+                start = end;
+                end = tmp;
+            }
+
+            if (t >= start && t <= end) {
                 highlightLat.push(lat[i]);
                 highlightLon.push(lon[i]);
             }
@@ -1358,7 +1392,8 @@ function renderMap(data) {
     // --- SAFE TRACE BUILD (prevents Plotly null crashes) ---
     const traces = [];
 
-    // Base flight path
+    // Base flight path with outline effect
+    if (pathLineBaseTrace) traces.push(pathLineBaseTrace);
     if (pathLineTrace) traces.push(pathLineTrace);
 
     // Heat overlay
