@@ -457,8 +457,17 @@ def process_flights(df):
 @app.route("/update_server/", methods=["GET", "POST"])
 def update_server():
     if request.method == "POST":
-        subprocess.Popen("/home/georgefahmy/Documents/n890gf_tracker/deploy.sh")
-        return "Deployment started", 200
+        script_path = "/home/georgefahmy/Documents/n890gf_tracker/deploy.sh"
+        try:
+            result = subprocess.run(
+                [script_path], capture_output=True, text=True, shell=True
+            )
+            if result.returncode == 0:
+                return f"Deployment started - {result.stdout}", 200
+            else:
+                return f"Error - {result.stderr}", 500
+        except Exception as e:
+            return f"Server Error: {str(e)}", 500
     return "GET received (This is why you got a 405 before)", 200
 
 
