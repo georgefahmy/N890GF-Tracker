@@ -22,6 +22,8 @@ app = Flask(__name__)
 
 
 DB_PATH = "src/maintenance.db"
+DB_PATH = os.path.abspath(os.path.dirname(__file__)) + "/app.db"
+
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
