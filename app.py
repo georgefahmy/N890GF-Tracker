@@ -490,7 +490,6 @@ def redirect_www():
 def index():
     conn = get_db_connection()
     cursor = conn.cursor()
-    git_push_data()
 
     def sort_and_format_logs(logs_list):
         def parse_to_datetime(d):
@@ -691,6 +690,7 @@ def add_flight():
     recompute_flight_history(conn)
     check_auto_maintenance(conn)
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -710,6 +710,7 @@ def add_mx():
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -734,6 +735,7 @@ def add_fuel():
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -744,6 +746,7 @@ def api_fuel_prices():
         return jsonify({"error": "No airport provided"}), 400
     try:
         options, _ = scrape_airnav_to_json(airport)
+        git_push_data()
         return (
             jsonify({"options": options})
             if options
@@ -773,6 +776,7 @@ def edit_flight(id):
     recompute_flight_history(conn)
     check_auto_maintenance(conn)
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -793,6 +797,7 @@ def edit_mx(id):
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -818,6 +823,7 @@ def edit_fuel(id):
     )
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -828,6 +834,7 @@ def delete_flight(id):
     conn.commit()
     recompute_flight_history(conn)
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -837,6 +844,7 @@ def delete_maintenance(id):
     conn.execute("DELETE FROM maintenance_entries WHERE id = ?", (id,))
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -846,6 +854,7 @@ def delete_fuel(id):
     conn.execute("DELETE FROM fuel_tracker WHERE id = ?", (id,))
     conn.commit()
     conn.close()
+    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -912,6 +921,7 @@ def api_get_signals():
                 base_name, ext = os.path.splitext(safe_name)
                 filepath = os.path.join(SAVE_DIR, f"{safe_name}.csv")
                 flight_data.to_csv(filepath, index=False)
+            git_push_data()
             df = flight_data
         numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
         excluded = [
