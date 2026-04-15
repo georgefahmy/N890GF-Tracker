@@ -60,9 +60,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">✈️ N890GF Tracker</a>
-        <div class="d-flex text-white gap-3 align-items-center">
+        <div class="d-flex text-white gap-3 align-items-center flex-wrap">
             <span>Total Airframe: <strong>{{ "%.1f"|format(total_hours) }} hrs</strong></span>
             <span>Total Landings: <strong>{{ total_landings }}</strong></span>
+            <span class="vr mx-2"></span>
+            <span>Total Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong></span>
+            <span>Avg Fuel $/hr: <strong>${{ "%.2f"|format(avg_fuel_cost_per_hour) }}</strong></span>
+            <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
         </div>
     </div>
 </nav>
@@ -74,12 +78,9 @@
             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#mxModal">Add Maintenance</button>
             <div class="d-flex gap-2">
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fuelModal">Fuel Tracker</button>
-                <div class="input-group" style="width: 380px;">
-                    <input type="text" id="searchAirportCode" class="form-control text-uppercase" placeholder="e.g. KOSH" aria-label="Airport Code">
-                    <button type="button" id="checkPricesBtn" class="btn btn-outline-success">
-                        Check Prices
-                    </button>
-                </div>
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#pricesResultModal">
+                    Check Fuel Prices
+                </button>
             </div>
             <div class="d-flex gap-2">
                 <a href="/analyzer" class="btn btn-outline-primary">Flight Analyzer</a>
@@ -255,8 +256,8 @@
                             <th>Date</th>
                             <th>Item</th>
                             <th>Category</th>
+                            <th>Hobbs</th>
                             <th>Tach</th>
-                            <th>Airframe</th>
                             <th>Notes</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -267,8 +268,8 @@
                             <td class="text-nowrap">{{ mx.display_date }}</td>
                             <td>{{ mx.recurrent_item }}</td>
                             <td><span class="badge bg-secondary">{{ mx.category }}</span></td>
-                            <td>{{ mx.tach_time }}</td>
                             <td>{{ mx.airframe_time }}</td>
+                            <td>{{ mx.tach_time }}</td>
                             <td>{{ mx.notes }}</td>
                             <td class="text-center action-btns">
                                 <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editMxModal{{ mx.id }}">Edit</button>
@@ -595,11 +596,16 @@
 
 <!-- Fuel Prices Result Modal -->
 <div class="modal fade" id="pricesResultModal" tabindex="-1">
-    <div class="modal-dialog modal-xl" style="max-width: 95%;">
+    <div class="modal-dialog modal-xl" style="max-width: 75%;">
         <div class="modal-content">
             <div class="modal-header bg-info text-dark d-flex align-items-center">
                 <h5 class="modal-title mb-0">Nearby 100LL Prices</h5>
-
+                <div class="ms-3 input-group input-group-sm" style="width: 250px;">
+                    <input type="text" id="searchAirportCode" class="form-control text-uppercase" placeholder="e.g. KOSH">
+                    <button type="button" id="checkPricesBtn" class="btn btn-outline-dark">
+                        Search
+                    </button>
+                </div>
                 <div class="ms-auto d-flex align-items-center gap-2">
                     <label class="small mb-0">Limit</label>
                     <select id="priceLimitSelect" class="form-select form-select-sm" style="width: 90px;">
@@ -791,14 +797,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     <strong>${opt.airport}</strong><br>
                     <small class="text-muted">${opt.name}</small>
                 </td>
-                <td class="text-success fw-bold">$${opt.price.toFixed(2)}</td>
+                <td class="text-success fw-bold">$
+                    ${opt.price.toFixed(2)}
+                </td>
                 <td style="white-space: nowrap; min-width: 150px;">
                     ${distanceStr}<br>
-                    <small class="text-muted">(${opt.used_to_return.toFixed(1)} gal)</small>
+                    <small class="text-muted">
+                        (${opt.used_to_return.toFixed(1)} gal)
+                    </small>
                 </td>
                 <td>
                     $${(opt.price * totalGallons+(opt.price * opt.used_to_return)).toFixed(2)}<br>
-                    <small class="text-muted">(${totalGallons.toFixed(1)} gal)</small>
+                    <small class="text-muted">
+                        (${totalGallons.toFixed(1)} gal)
+                    </small>
                 </td>
                 <td>${opt.date}</td>
             `;
@@ -822,8 +834,15 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        const resultModal = new bootstrap.Modal(document.getElementById('pricesResultModal'));
-        resultModal.show();
+        const modalEl = document.getElementById('pricesResultModal');
+        let resultModal = bootstrap.Modal.getInstance(modalEl);
+        if (!resultModal) {
+            resultModal = new bootstrap.Modal(modalEl);
+        }
+        // Only show if not already visible
+        if (!modalEl.classList.contains('show')) {
+            resultModal.show();
+        }
 
         document.getElementById('pricesLoader').classList.remove('d-none');
         document.getElementById('pricesTable').classList.add('d-none');
@@ -856,6 +875,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('checkPricesBtn').addEventListener('click', function() {
         loadFuelPrices();
+    });
+
+    document.getElementById('searchAirportCode').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            loadFuelPrices();
+        }
     });
 
     document.getElementById('priceLimitSelect').addEventListener('change', function () {

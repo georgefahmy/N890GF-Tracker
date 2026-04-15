@@ -533,9 +533,43 @@ def index():
     # Keep legacy total_hours for compatibility
     total_hours = total_hobbs
 
+    # --- Get latest Hobbs from fuel tracker ---
+    cursor.execute("SELECT hobbs FROM fuel_tracker ORDER BY hobbs DESC LIMIT 1")
+    fuel_hobbs_row = cursor.fetchone()
+
+    latest_fuel_hobbs = (
+        validate_float(fuel_hobbs_row["hobbs"])
+        if fuel_hobbs_row and fuel_hobbs_row["hobbs"]
+        else 0.0
+    )
+
     cursor.execute("SELECT SUM(landings) as total_ldgs FROM flight_log")
     l_res = cursor.fetchone()
     total_landings = l_res["total_ldgs"] if l_res and l_res["total_ldgs"] else 0
+
+    # --- Fuel Cost Metrics ---
+    total_fuel_cost = 0.0
+    total_gallons = 0.0
+
+    for f in fuel_logs:
+        try:
+            gallons = float(f.get("gallons", 0) or 0)
+            price = float(f.get("price_per_gallon", 0) or 0)
+            total_gallons += gallons
+            total_fuel_cost += gallons * price
+        except Exception:
+            continue
+
+    total_fuel_cost = round(total_fuel_cost, 2)
+    total_gallons = round(total_gallons, 2)
+
+    avg_gph = (
+        round(total_gallons / latest_fuel_hobbs, 2) if latest_fuel_hobbs > 0 else 0.0
+    )
+
+    avg_fuel_cost_per_hour = (
+        round(total_fuel_cost / total_hours, 2) if total_hours > 0 else 0.0
+    )
 
     overdue_items = calculate_overdue(conn)
     nav_status = get_nav_database_status(conn)
@@ -596,6 +630,9 @@ def index():
         cond_status_class=upcoming_mx["cond_status_class"],
         oil_due=upcoming_mx["oil_due"],
         oil_status_class=upcoming_mx["oil_status_class"],
+        total_fuel_cost=total_fuel_cost,
+        avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
+        avg_gph=avg_gph,
     )
 
 
