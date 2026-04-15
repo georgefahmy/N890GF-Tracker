@@ -456,7 +456,7 @@ def process_flights(df):
 @app.route("/update_server", methods=["POST"])
 def update_server():
     if request.method == "POST":
-        subprocess.Popen(CWD_PATH + "deploy.sh")
+        subprocess.Popen("/home/georgefahmy/Documents/n890gf_tracker/deploy.sh")
         return "Deployment started", 200
     else:
         abort(400)
