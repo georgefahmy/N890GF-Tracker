@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, abort, jsonify, redirect, render_template, request, url_for
+from flask import Flask, jsonify, redirect, render_template, request, url_for
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
@@ -55,7 +55,7 @@ def get_db_connection():
 
 
 def git_push_data():
-    subprocess.run(["git", "add", "src/maintenance.db"], cwd=CWD_PATH)
+    subprocess.run(["git", "add", "."], cwd=CWD_PATH)
     subprocess.run(["git", "commit", "-m", "Auto-update databse"], cwd=CWD_PATH)
     subprocess.run(["git", "push", "origin", "main"], cwd=CWD_PATH)
 
@@ -473,6 +473,7 @@ def redirect_www():
 def index():
     conn = get_db_connection()
     cursor = conn.cursor()
+    git_push_data()
 
     def sort_and_format_logs(logs_list):
         def parse_to_datetime(d):
@@ -673,7 +674,6 @@ def add_flight():
     recompute_flight_history(conn)
     check_auto_maintenance(conn)
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -693,7 +693,6 @@ def add_mx():
     )
     conn.commit()
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -718,7 +717,6 @@ def add_fuel():
     )
     conn.commit()
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -758,7 +756,6 @@ def edit_flight(id):
     recompute_flight_history(conn)
     check_auto_maintenance(conn)
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -779,7 +776,6 @@ def edit_mx(id):
     )
     conn.commit()
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -805,7 +801,6 @@ def edit_fuel(id):
     )
     conn.commit()
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -816,7 +811,6 @@ def delete_flight(id):
     conn.commit()
     recompute_flight_history(conn)
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -826,7 +820,6 @@ def delete_maintenance(id):
     conn.execute("DELETE FROM maintenance_entries WHERE id = ?", (id,))
     conn.commit()
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
@@ -836,7 +829,6 @@ def delete_fuel(id):
     conn.execute("DELETE FROM fuel_tracker WHERE id = ?", (id,))
     conn.commit()
     conn.close()
-    git_push_data()
     return redirect(url_for("index"))
 
 
