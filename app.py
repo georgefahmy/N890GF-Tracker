@@ -55,9 +55,17 @@ def get_db_connection():
 
 
 def git_push_data():
-    subprocess.run(["git", "add", "."], cwd=CWD_PATH)
-    subprocess.run(["git", "commit", "-m", "Auto-update databse"], cwd=CWD_PATH)
-    subprocess.run(["git", "push", "origin", "main"], cwd=CWD_PATH)
+    script_path = "/home/georgefahmy/Documents/n890gf_tracker/push.sh"
+    try:
+        result = subprocess.run(
+            [script_path], capture_output=True, text=True, shell=True
+        )
+        if result.returncode == 0:
+            return f"Push started - {result.stdout}", 200
+        else:
+            return f"Error - {result.stderr}", 500
+    except Exception as e:
+        return f"Server Error: {str(e)}", 500
 
 
 def validate_float(value, default=0.0):
