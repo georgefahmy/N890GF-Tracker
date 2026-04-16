@@ -182,6 +182,33 @@ def calculate_overdue(conn):
     return overdue_items
 
 
+def compute_nav_status(nav_date, date_aviation, date_obstacle, today):
+    """
+    Computes aviation and obstacle database status with early update grace window.
+    """
+    # Aviation cycle
+    aviation_cycle_end = date_aviation + timedelta(days=28)
+    aviation_grace_start = date_aviation - timedelta(days=3)
+
+    # Obstacle cycle
+    obstacle_cycle_end = date_obstacle + timedelta(days=56)
+    obstacle_grace_start = date_obstacle - timedelta(days=3)
+
+    aviation_status = (
+        "Current"
+        if (today < aviation_cycle_end and nav_date >= aviation_grace_start)
+        else "Overdue"
+    )
+
+    obstacle_status = (
+        "Current"
+        if (today < obstacle_cycle_end and nav_date >= obstacle_grace_start)
+        else "Overdue"
+    )
+
+    return aviation_status, obstacle_status
+
+
 def _get_nav_database_status_live(conn):
     url = "https://dynonavionics.com/us-aviation-obstacle-data.php"
     aviation_status, obstacle_status = "--", "--"
@@ -233,37 +260,11 @@ def _get_nav_database_status_live(conn):
                     nav_date = datetime.strptime(
                         parse_date_safe(nav_entry[0]), "%Y-%m-%d"
                     ).date()
-
-                    # Define current cycles
-                    aviation_cycle_start = date_aviation
-                    aviation_cycle_end = date_aviation + timedelta(days=28)
-
-                    obstacle_cycle_start = date_obstacle
-                    obstacle_cycle_end = date_obstacle + timedelta(days=56)
-
-                    # Allow early updates (grace window before cycle start)
-                    aviation_grace_start = aviation_cycle_start - timedelta(days=3)
-                    obstacle_grace_start = obstacle_cycle_start - timedelta(days=3)
-
-                    # Treat as current if:
-                    # 1. We have not passed the end of the current cycle
-                    # 2. The update happened within the grace window or current cycle
-                    aviation_status = (
-                        "Current"
-                        if (
-                            today < aviation_cycle_end
-                            and nav_date >= aviation_grace_start
-                        )
-                        else "Overdue"
-                    )
-
-                    obstacle_status = (
-                        "Current"
-                        if (
-                            today < obstacle_cycle_end
-                            and nav_date >= obstacle_grace_start
-                        )
-                        else "Overdue"
+                    aviation_status, obstacle_status = compute_nav_status(
+                        nav_date,
+                        date_aviation,
+                        date_obstacle,
+                        today,
                     )
                 else:
                     aviation_status = obstacle_status = "Overdue"
@@ -734,6 +735,12 @@ def add_mx():
         ),
     )
     conn.commit()
+    recompute_flight_history(conn)
+    check_auto_maintenance(conn)
+
+    global NAV_CACHE
+    NAV_CACHE = {"data": None, "timestamp": 0}
+
     conn.close()
     git_push_data()
     return redirect(url_for("index"))
@@ -821,6 +828,12 @@ def edit_mx(id):
         ),
     )
     conn.commit()
+    recompute_flight_history(conn)
+    check_auto_maintenance(conn)
+
+    global NAV_CACHE
+    NAV_CACHE = {"data": None, "timestamp": 0}
+
     conn.close()
     git_push_data()
     return redirect(url_for("index"))
@@ -868,6 +881,12 @@ def delete_maintenance(id):
     conn = get_db_connection()
     conn.execute("DELETE FROM maintenance_entries WHERE id = ?", (id,))
     conn.commit()
+    recompute_flight_history(conn)
+    check_auto_maintenance(conn)
+
+    global NAV_CACHE
+    NAV_CACHE = {"data": None, "timestamp": 0}
+
     conn.close()
     git_push_data()
     return redirect(url_for("index"))
