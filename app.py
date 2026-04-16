@@ -465,8 +465,11 @@ def update_server():
     if request.method == "POST":
         script_path = "/home/georgefahmy/Documents/n890gf_tracker/deploy.sh"
         try:
-            result = subprocess.run(
-                [script_path], capture_output=True, text=True, shell=True
+            # result = subprocess.run(
+            #     [script_path], capture_output=True, text=True, shell=True
+            # )
+            result = subprocess.Popen(
+                ["/bin/bash", script_path], start_new_session=True
             )
             if result.returncode == 0:
                 return f"Deployment started - {result.stdout}", 200
