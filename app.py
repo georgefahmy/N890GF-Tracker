@@ -471,7 +471,7 @@ def update_server():
             if result.returncode == 0:
                 return f"Deployment started - {result.stdout}", 200
             else:
-                return f"Error - {result.stderr}", 500
+                return f"Error - {result}", 500
         except Exception as e:
             return f"Server Error: {str(e)}", 500
     return "GET received (This is why you got a 405 before)", 200
