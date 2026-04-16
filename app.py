@@ -848,7 +848,7 @@ def edit_fuel(id):
     )
     conn = get_db_connection()
     conn.execute(
-        "UPDATE fuel_tracker SET date =?, hours =?, gallons =?, price_per_gallon =?, total_cost =?, gal_per_hour =? WHERE id = ?",
+        "UPDATE fuel_tracker SET date =?, hobbs =?, gallons =?, price_per_gallon =?, total_cost =?, gal_per_hour =? WHERE id = ?",
         (
             parse_date_safe(request.form.get("date")),
             hours,
