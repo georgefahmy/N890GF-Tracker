@@ -229,16 +229,41 @@ def _get_nav_database_status_live(conn):
                     "SELECT date FROM maintenance_entries WHERE recurrent_item='Nav Data Update' ORDER BY date DESC LIMIT 1"
                 )
                 nav_entry = cursor.fetchone()
-
                 if nav_entry and nav_entry[0] and date_aviation and date_obstacle:
                     nav_date = datetime.strptime(
                         parse_date_safe(nav_entry[0]), "%Y-%m-%d"
                     ).date()
+
+                    # Define current cycles
+                    aviation_cycle_start = date_aviation
+                    aviation_cycle_end = date_aviation + timedelta(days=28)
+
+                    obstacle_cycle_start = date_obstacle
+                    obstacle_cycle_end = date_obstacle + timedelta(days=56)
+
+                    # Allow early updates (grace window before cycle start)
+                    aviation_grace_start = aviation_cycle_start - timedelta(days=3)
+                    obstacle_grace_start = obstacle_cycle_start - timedelta(days=3)
+
+                    # Treat as current if:
+                    # 1. We have not passed the end of the current cycle
+                    # 2. The update happened within the grace window or current cycle
                     aviation_status = (
-                        "Current" if nav_date >= date_aviation else "Overdue"
+                        "Current"
+                        if (
+                            today < aviation_cycle_end
+                            and nav_date >= aviation_grace_start
+                        )
+                        else "Overdue"
                     )
+
                     obstacle_status = (
-                        "Current" if nav_date >= date_obstacle else "Overdue"
+                        "Current"
+                        if (
+                            today < obstacle_cycle_end
+                            and nav_date >= obstacle_grace_start
+                        )
+                        else "Overdue"
                     )
                 else:
                     aviation_status = obstacle_status = "Overdue"
