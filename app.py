@@ -57,9 +57,10 @@ def get_db_connection():
 def git_push_data():
     script_path = "/home/georgefahmy/Documents/n890gf_tracker/push.sh"
     try:
-        result = subprocess.run(
-            [script_path], capture_output=True, text=True, shell=True
-        )
+        # result = subprocess.run(
+        #     [script_path], capture_output=True, text=True, shell=True
+        # )
+        result = subprocess.Popen(["/bin/bash", script_path], start_new_session=True)
         if result.returncode == 0:
             return f"Push started - {result.stdout}", 200
         else:
