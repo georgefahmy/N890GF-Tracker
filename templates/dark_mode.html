@@ -189,6 +189,55 @@ body.dark-mode .table-bordered th {
 body.dark-mode .table-responsive {
     background-color: #1e1e1e !important;
 }
+
+/* ============================= */
+/* FORM SELECT ARROW DARK MODE FIX */
+/* ============================= */
+
+body.dark-mode .form-select {
+    background-color: #2b2b2b !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+
+    /* Replace Bootstrap default arrow with white SVG arrow */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+
+    background-repeat: no-repeat !important;
+    background-position: right 0.75rem center !important;
+    background-size: 16px 12px !important;
+}
+
+/* Ensure dropdown options remain readable */
+body.dark-mode .form-select option {
+    background-color: #2b2b2b !important;
+    color: #ffffff !important;
+}
+
+/* Focus state consistency */
+body.dark-mode .form-select:focus {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25) !important;
+}
+
+/* ============================= */
+/* PLACEHOLDER TEXT DARK MODE FIX */
+/* ============================= */
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder,
+body.dark-mode .form-control::placeholder {
+    color: #ffffff !important;
+    opacity: 0.7 !important;
+}
+
+/* Safari / older browser support */
+body.dark-mode input::-webkit-input-placeholder,
+body.dark-mode textarea::-webkit-input-placeholder {
+    color: #ffffff !important;
+    opacity: 0.7 !important;
+}
 </style>
 
 <script>

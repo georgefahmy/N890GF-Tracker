@@ -1,0 +1,125 @@
+
+
+<!-- 3D Aircraft Model Module (Three.js) -->
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+// Expose globals used by analyzer.html
+let scene, camera, renderer;
+let animationFrameId = null;
+
+async function init3DViewer() {
+    const container = document.getElementById('attitude3DContainer');
+    if (!container) return;
+
+    // Clear placeholder text
+    container.innerHTML = '';
+    container.style.display = 'block';
+
+    // Scene
+    scene = new THREE.Scene();
+    window.scene = scene;
+
+    // Camera
+    camera = new THREE.PerspectiveCamera(
+        60,
+        container.clientWidth / container.clientHeight,
+        0.01,
+        10000
+    );
+    camera.position.set(0, 2, 5);
+    window.camera = camera;
+
+    // Renderer
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    window.renderer = renderer;
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    // Resize handling
+    window.addEventListener('resize', () => {
+        if (!container || !renderer || !camera) return;
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    });
+
+    // Lights
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(5, 5, 5);
+    scene.add(light);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambient);
+
+    // Load model
+    const loader = new GLTFLoader();
+    loader.load('/static/models/rv7.glb', function(gltf) {
+        const model = gltf.scene;
+
+        scene.add(model);
+        window.aircraftModel = model;
+
+        // Fix clipping / faces
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.frustumCulled = false;
+                if (child.material) child.material.side = THREE.DoubleSide;
+            }
+        });
+
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+
+        model.position.sub(center);
+
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const safeDim = maxDim > 0 ? maxDim : 1;
+
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(safeDim / Math.tan(fov / 2));
+
+        camera.position.set(0, safeDim * 0.4, cameraZ * 2.2);
+        camera.lookAt(0, 0, 0);
+
+        camera.near = 0.1;
+        camera.far = 50000;
+        camera.updateProjectionMatrix();
+
+        const scaleFactor = 4;
+        model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+
+    }, undefined, function(error) {
+        console.error('Model load error:', error);
+        container.innerHTML = `<div class=\"text-danger small text-center p-2\">Model Load Error</div>`;
+    });
+
+    const axesHelper = new THREE.AxesHelper(5);
+    scene.add(axesHelper);
+
+    function animate() {
+        animationFrameId = requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+
+    animate();
+}
+
+window.init3DViewer = init3DViewer;
+console.log("3D viewer module loaded");
+</script>
