@@ -1397,6 +1397,8 @@ def api_airspeed_calibration():
                 "Ground Track (deg)": "gps_trk",
                 "OAT (deg F)": "oat",
                 "Barometer Setting (inHg)": "baro",
+                "Wind Speed (knots)": "Wind Speed (knots)",
+                "Wind Direction (deg)": "Wind Direction (deg)",
             }
         )
 
