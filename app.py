@@ -1294,6 +1294,21 @@ def api_analyze_flight():
             except Exception:
                 vertical_speed = [0] * len(flight_data)
 
+        # --- Extract Aircraft Attitude Data ---
+        def extract_attitude(col_name):
+            if col_name in flight_data.columns:
+                return (
+                    pd.to_numeric(flight_data[col_name], errors="coerce")
+                    .replace([np.inf, -np.inf], np.nan)
+                    .fillna(0)
+                    .tolist()
+                )
+            return []
+
+        pitch_data = extract_attitude("Pitch (deg)")
+        roll_data = extract_attitude("Roll (deg)")
+        heading_data = extract_attitude("Magnetic Heading (deg)")
+
         plot_data = {
             "x": x_data,
             "left_traces": extract_traces(left_signal),
@@ -1306,6 +1321,9 @@ def api_analyze_flight():
             "airspeed": airspeed_data,
             "groundspeed": groundspeed_data,
             "vertical_speed": vertical_speed,
+            "pitch": pitch_data,
+            "roll": roll_data,
+            "heading": heading_data,
         }
 
         # --- Generate Summary Stats ---
