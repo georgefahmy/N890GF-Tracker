@@ -228,10 +228,9 @@
 
                     <!-- MAP -->
                     <div class="card p-2 shadow-sm">
-                        <div class="d-flex justify-content-between align-items-center px-2">
+                        <div class="d-flex justify-content-between align-items-center px-2 m-">
                             <h6 class="text-secondary text-center mb-8">Flight Map</h6>
                             <div class="d-flex justify-content-between align-items-center">
-                                <!-- <div class="small text-muted">Color Mode</div> -->
                                 <select id="mapColorModeSelect" class="form-select form-select-sm">
                                     <option value="altitude">Altitude</option>
                                     <option value="airspeed">Airspeed</option>
@@ -243,13 +242,18 @@
                                 <input class="form-check-input"
                                     type="checkbox"
                                     id="followAircraftToggle"
+                                    checked
                                     onchange="toggleFollowAircraft(this.checked)">
                                 <label class="form-check-label small" for="followAircraftToggle">
                                     Follow
                                 </label>
                             </div>
                         </div>
-                        <div id="mapGraph" style="height:500px;"></div>
+                        <div id="mapGraph" style="height:450px;"></div>
+                        <div class="px-2 pt-2">
+                            <div class="small text-muted">Playback</div>
+                            <input type="range" id="mapScrubber" class="form-range" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
+                        </div>
                         <div id="mapMetrics" class="small text-muted px-2 pb-1"></div>
                     </div>
 
@@ -313,7 +317,7 @@ let plotIdCounter = 0;
 let plotFilters = {}; // { plotId: [filters] }
 let xyFilters = [];
 let xyOverlay = false;
-let followAircraft = false;
+let followAircraft = true;
 let lastMapRenderData = null;
 const STORAGE_KEY = 'analyzer_selected_flight';
 
@@ -855,9 +859,6 @@ function triggerAnalysis(plotId) {
             const headingVal = headingArr[idx] || 0;
             // Call the 3D module's update
             window.updateAircraft3D(
-                window._mapLat?.[idx] || 0,
-                window._mapLon?.[idx] || 0,
-                window._mapAlt?.[idx] || 0,
                 pitchVal,
                 rollVal,
                 headingVal
@@ -885,6 +886,7 @@ function triggerAnalysis(plotId) {
                     console.error("Direct marker move failed:", e);
                 }
 
+                // update3DPosition(idx);
                 // Follow mode
                 if (followAircraft) {
                     Plotly.relayout('mapGraph', {
@@ -892,7 +894,6 @@ function triggerAnalysis(plotId) {
                         'mapbox.center.lon': lon
                     });
                 }
-                update3DPosition(idx);
                 return;
             }
 
@@ -1341,6 +1342,7 @@ function renderMap(data) {
     // --- GLOBAL MAP STATE (needed for hover + sync) ---
     window._mapLat = latRaw;
     window._mapLon = lonRaw;
+    window._mapLength = latRaw.length;
     window._mapTime = (data.plot_data?.time || data.plot_data?.session_time || data.time || null);
 
     if (window._mapTime && Array.isArray(window._mapTime)) {
@@ -1649,40 +1651,13 @@ function renderMap(data) {
     // --- MAP HOVER SYNC (cursor -> aircraft position) ---
     const mapDiv = document.getElementById('mapGraph');
 
-    if (mapDiv) {
-        mapDiv.on('plotly_hover', function(eventdata) {
-            try {
-                if (!eventdata.points || eventdata.points.length === 0) return;
-
-                const pt = eventdata.points[0];
-                if (pt.lat === undefined || pt.lon === undefined) return;
-
-                let bestIndex = 0;
-                let bestDist = Infinity;
-
-                for (let i = 0; i < window._mapLat.length; i++) {
-                    const dLat = window._mapLat[i] - pt.lat;
-                    const dLon = window._mapLon[i] - pt.lon;
-                    const dist = dLat * dLat + dLon * dLon;
-
-                    if (dist < bestDist) {
-                        bestDist = dist;
-                        bestIndex = i;
-                    }
-                }
-
-                const t = window._mapTime[bestIndex];
-                if (t !== undefined) {
-                    syncAircraftToTime(t);
-                }
-            } catch (e) {
-                console.error("Map hover sync error:", e);
-            }
-        });
+    // Set up scrubber max and value
+    const scrubber = document.getElementById('mapScrubber');
+    if (scrubber && window._mapLength) {
+        scrubber.max = window._mapLength - 1;
+        scrubber.value = 0;
     }
-
 }
-// update3DPosition now handled by 3d_model.js
 
 function syncAircraftToTime(t) {
     if (!window._mapTime || !window._mapLat || !window._mapLon) return;
@@ -1732,6 +1707,58 @@ function syncAircraftToTime(t) {
     }
 
     // Follow mode (map recenter)
+    if (followAircraft) {
+        Plotly.relayout('mapGraph', {
+            'mapbox.center.lat': lat,
+            'mapbox.center.lon': lon
+        });
+    }
+
+    // Update the map scrubber position
+    const scrubber = document.getElementById('mapScrubber');
+    if (scrubber) {
+        scrubber.value = bestIndex;
+    }
+}
+
+function scrubMap(idx) {
+    idx = parseInt(idx);
+
+    if (!window._mapLat || !window._mapLon) return;
+
+    const lat = window._mapLat[idx];
+    const lon = window._mapLon[idx];
+
+    const mapDiv = document.getElementById('mapGraph');
+    if (!mapDiv) return;
+
+    let aircraftIndex = window._mapMarkerTraceIndex || 0;
+
+    try {
+        Plotly.restyle('mapGraph', {
+            lat: [[lat]],
+            lon: [[lon]]
+        }, [aircraftIndex]);
+    } catch (e) {
+        console.error("Scrubber update failed:", e);
+    }
+
+    // Also sync 3D + attitude if available
+    if (window.currentPlotData) {
+        const pitch = window.currentPlotData.pitch?.[idx] || 0;
+        const roll = window.currentPlotData.roll?.[idx] || 0;
+        const heading = window.currentPlotData.heading?.[idx] || 0;
+
+        document.getElementById('attPitch').innerText = pitch.toFixed(1) + ' °';
+        document.getElementById('attRoll').innerText = roll.toFixed(1) + ' °';
+        document.getElementById('attHeading').innerText = heading.toFixed(1) + ' °';
+
+        if (window.updateAircraft3D) {
+            window.updateAircraft3D(pitch, roll, heading);
+        }
+    }
+
+    // Follow mode
     if (followAircraft) {
         Plotly.relayout('mapGraph', {
             'mapbox.center.lat': lat,
