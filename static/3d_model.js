@@ -1,6 +1,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+import * as Cesium from 'https://cdn.jsdelivr.net/npm/cesium@1.118/Build/Cesium/Cesium.js';
 // All logic is now wrapped in DOMContentLoaded for safe initialization.
 document.addEventListener('DOMContentLoaded', function() {
     let scene, camera, renderer;
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let isInspectMode = false;
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
+
+    let cesiumViewer = null;
+    let cesiumEntity = null;
 
     function latLonToXYZ(lat, lon, alt) {
         const scale = 5000;
@@ -28,8 +32,35 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
+    async function initCesiumWorld(container) {
+        const cesiumContainer = document.createElement('div');
+        cesiumContainer.style.position = 'absolute';
+        cesiumContainer.style.top = '0';
+        cesiumContainer.style.left = '0';
+        cesiumContainer.style.width = '100%';
+        cesiumContainer.style.height = '100%';
+        cesiumContainer.style.zIndex = '0';
+
+        container.appendChild(cesiumContainer);
+
+        cesiumViewer = new Cesium.Viewer(cesiumContainer, {
+            terrainProvider: await Cesium.createWorldTerrainAsync(),
+            animation: false,
+            timeline: false,
+            baseLayerPicker: true,
+            geocoder: false,
+            sceneMode: Cesium.SceneMode.SCENE3D
+        });
+
+        cesiumEntity = cesiumViewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(0, 0, 0),
+            point: { pixelSize: 10, color: Cesium.Color.RED }
+        });
+    }
+
     function init3DViewer() {
         const container = document.getElementById('attitude3DContainer');
+        initCesiumWorld(container).catch(console.error);
         if (!container) return;
         container.innerHTML = '';
         container.style.display = 'block';
@@ -154,6 +185,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // --- POSITION UPDATE ---
                 const pos = latLonToXYZ(lat, lon, alt);
+
+                // Sync Cesium world position (NO orientation changes)
+                if (cesiumViewer && cesiumEntity) {
+                    cesiumEntity.position = Cesium.Cartesian3.fromDegrees(lat, lon, alt || 0);
+                }
+
                 window.aircraftModel.position.set(pos.x, pos.y, pos.z);
 
                 // --- ROTATION UPDATE ---
