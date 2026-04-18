@@ -323,9 +323,10 @@ let calEndTimeGlobal = null;
 
 let mapColorMode = 'altitude';
 
-// --- 3D Viewer Globals ---
-let scene, camera, renderer;
-let animationFrameId = null;
+// --- 3D WORLD DATA ---
+window._worldX = [];
+window._worldY = [];
+window._worldZ = [];
 
 // --- MAP COLOR SCALE CONFIG (easy tuning point) ---
 const COLOR_SCALES = {
@@ -847,24 +848,21 @@ function triggerAnalysis(plotId) {
                     (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
             }
 
-            // --- Drive 3D Model Rotation (placeholder) ---
-            if (window.aircraftModel && idx !== undefined) {
-                const pitchVal = pitchArr[idx] || 0;
-                const rollVal = rollArr[idx] || 0;
-                const headingVal = headingArr[idx] || 0;
-
-                // Convert degrees to radians
-                const toRad = Math.PI / 180;
-
-                try {
-                    // Standard aircraft axis mapping
-                    window.aircraftModel.rotation.x = (pitchVal + 5) * toRad;   // Pitch
-                    window.aircraftModel.rotation.z = -rollVal * toRad;    // Roll
-                    window.aircraftModel.rotation.y = -headingVal * toRad; // Heading (yaw)
-                } catch (e) {
-                    console.warn("Model rotation update failed:", e);
-                }
-            }
+        // --- Drive 3D Model Rotation (placeholder) ---
+        if (window.updateAircraft3D && idx !== undefined) {
+            const pitchVal = pitchArr[idx] || 0;
+            const rollVal = rollArr[idx] || 0;
+            const headingVal = headingArr[idx] || 0;
+            // Call the 3D module's update
+            window.updateAircraft3D(
+                window._mapLat?.[idx] || 0,
+                window._mapLon?.[idx] || 0,
+                window._mapAlt?.[idx] || 0,
+                pitchVal,
+                rollVal,
+                headingVal
+            );
+        }
 
             // DIRECT INDEX MATCH (this is the fix)
             if (pt.pointIndex !== undefined && window._mapLat && window._mapLon) {
@@ -894,7 +892,7 @@ function triggerAnalysis(plotId) {
                         'mapbox.center.lon': lon
                     });
                 }
-
+                update3DPosition(idx);
                 return;
             }
 
@@ -998,7 +996,7 @@ function triggerAnalysis(plotId) {
             (heading[idx] !== undefined ? Number(heading[idx]).toFixed(1) : '--') + ' °';
 
         // --- ALWAYS initialize 3D viewer if not already initialized ---
-        if (!window.aircraftModel && window.init3DViewer) {
+        if (window.init3DViewer) {
             window.init3DViewer();
         }
     })
@@ -1378,6 +1376,28 @@ function renderMap(data) {
 
     // Ensure altitude always matches lat length for heatmap modes
     window._mapAlt = cleanAlt;
+    // --- CONVERT LAT/LON/ALT TO 3D WORLD ---
+    const originLat = latRaw[0];
+    const originLon = lonRaw[0];
+
+    const scale = 111320; // meters per degree approx
+
+    window._worldX = [];
+    window._worldY = [];
+    window._worldZ = [];
+
+    for (let i = 0; i < latRaw.length; i++) {
+        const dLat = (latRaw[i] - originLat);
+        const dLon = (lonRaw[i] - originLon);
+
+        const x = dLon * scale * Math.cos(originLat * Math.PI / 180);
+        const z = dLat * scale;
+        const y = cleanAlt[i] || 0;
+
+        window._worldX.push(x);
+        window._worldY.push(y);
+        window._worldZ.push(z);
+    }
     window._mapAirspeed = data.plot_data?.airspeed || null;
     window._mapGroundspeed = data.plot_data?.groundspeed || null;
     window._mapVerticalSpeed = data.plot_data?.vertical_speed || null;
@@ -1662,6 +1682,7 @@ function renderMap(data) {
     }
 
 }
+// update3DPosition now handled by 3d_model.js
 
 function syncAircraftToTime(t) {
     if (!window._mapTime || !window._mapLat || !window._mapLon) return;
@@ -1735,6 +1756,15 @@ function togglePlotFilters(plotId) {
     if (btn) btn.innerText = isHidden ? 'Show Filters' : 'Hide Filters';
 }
 </script>
-{% include '3d_model.html' %}
+<!-- Import map for Three.js (fixes "Failed to resolve module specifier 'three'") -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="{{ url_for('static', filename='3d_model.js') }}"></script>
 </body>
 </html>
