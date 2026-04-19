@@ -1339,11 +1339,11 @@ function renderMap(data) {
 
     const latRaw = lat.map(v => parseFloat(v));
     const lonRaw = lon.map(v => parseFloat(v));
-    console.log("DEBUG LAT/LON:");
-    console.log("latRaw length:", latRaw.length);
-    console.log("lonRaw length:", lonRaw.length);
-    console.log("latRaw sample:", latRaw.slice(0, 10));
-    console.log("lonRaw sample:", lonRaw.slice(0, 10));
+    // console.log("DEBUG LAT/LON:");
+    // console.log("latRaw length:", latRaw.length);
+    // console.log("lonRaw length:", lonRaw.length);
+    // console.log("latRaw sample:", latRaw.slice(0, 10));
+    // console.log("lonRaw sample:", lonRaw.slice(0, 10));
 
     // --- GLOBAL MAP STATE (needed for hover + sync) ---
     window._mapLat = latRaw;
@@ -1372,11 +1372,11 @@ function renderMap(data) {
         }
         altRaw = altRaw.map(v => parseFloat(v));
     }
-    console.log("DEBUG ALT RAW:");
-    console.log("altRaw type:", typeof altRaw);
-    console.log("altRaw isArray:", Array.isArray(altRaw));
-    console.log("altRaw length:", altRaw ? altRaw.length : null);
-    console.log("altRaw sample:", altRaw ? altRaw.slice(0, 10) : null);
+    // console.log("DEBUG ALT RAW:");
+    // console.log("altRaw type:", typeof altRaw);
+    // console.log("altRaw isArray:", Array.isArray(altRaw));
+    // console.log("altRaw length:", altRaw ? altRaw.length : null);
+    // console.log("altRaw sample:", altRaw ? altRaw.slice(0, 10) : null);
 
     // --- ALIGN ALTITUDE TO LAT/LON INDEX (CRITICAL FIX) ---
     const cleanAlt = [];
@@ -1390,11 +1390,11 @@ function renderMap(data) {
             cleanAlt.push(a);
         }
     }
-    console.log("DEBUG CLEAN ALT:");
-    console.log("cleanAlt length:", cleanAlt.length);
-    console.log("cleanAlt sample:", cleanAlt.slice(0, 10));
-    console.log("cleanAlt min:", Math.min(...cleanAlt.filter(v => !isNaN(v))));
-    console.log("cleanAlt max:", Math.max(...cleanAlt.filter(v => !isNaN(v))));
+    // console.log("DEBUG CLEAN ALT:");
+    // console.log("cleanAlt length:", cleanAlt.length);
+    // console.log("cleanAlt sample:", cleanAlt.slice(0, 10));
+    // console.log("cleanAlt min:", Math.min(...cleanAlt.filter(v => !isNaN(v))));
+    // console.log("cleanAlt max:", Math.max(...cleanAlt.filter(v => !isNaN(v))));
 
     // Ensure altitude always matches lat length for heatmap modes
     window._mapAlt = cleanAlt;
@@ -1487,10 +1487,10 @@ function renderMap(data) {
     let heatTrace = null;
 
     const colorValues = getColorValues();
-    console.log("DEBUG COLOR VALUES:");
-    console.log("mapColorMode:", mapColorMode);
-    console.log("colorValues length:", colorValues ? colorValues.length : null);
-    console.log("colorValues sample:", colorValues ? colorValues.slice(0, 10) : null);
+    // console.log("DEBUG COLOR VALUES:");
+    // console.log("mapColorMode:", mapColorMode);
+    // console.log("colorValues length:", colorValues ? colorValues.length : null);
+    // console.log("colorValues sample:", colorValues ? colorValues.slice(0, 10) : null);
 
     if (!colorValues || !colorValues.length) {
         mapColorMode = 'altitude';
