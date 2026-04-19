@@ -23,7 +23,8 @@ app = Flask(__name__)
 
 
 CWD_PATH = os.path.abspath(os.path.dirname(__file__))
-DB_PATH = CWD_PATH + "/src/maintenance.db"
+# DB_PATH = CWD_PATH + "/src/maintenance.db"
+DB_PATH = CWD_PATH + "../maintenance.db"
 
 DEBUG = True
 # --- Directory for saving processed dataframes ---
