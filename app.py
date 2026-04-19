@@ -7,12 +7,14 @@ import subprocess
 import threading
 import time
 from datetime import datetime, timedelta
+from functools import wraps
 
 import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask import Flask, jsonify, redirect, render_template, request, session, url_for
+from werkzeug.security import check_password_hash
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
@@ -20,7 +22,7 @@ from src.fuel_prices import scrape_airnav_to_json
 from src.sw_db_updates import download_dynon_databases_only
 
 app = Flask(__name__)
-
+app.secret_key = "hashkeysecret"
 
 CWD_PATH = os.path.abspath(os.path.dirname(__file__))
 # DB_PATH = CWD_PATH + "/src/maintenance.db"
@@ -54,6 +56,16 @@ def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "user_id" not in session:
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+
+    return decorated_function
 
 
 def git_push_data():
@@ -514,7 +526,38 @@ def redirect_www():
         return redirect("http://n890gf.local:5001" + request.path)
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if "user_id" in session:
+        return redirect(url_for("index"))
+
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        conn = get_db_connection()
+        user = conn.execute(
+            "SELECT * FROM users WHERE username = ?", (username,)
+        ).fetchone()
+        conn.close()
+
+        if user and check_password_hash(user["password_hash"], password):
+            session["user_id"] = user["id"]
+            return redirect(url_for("index"))
+        else:
+            return render_template("login.html", error="Invalid credentials")
+
+    return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+
 @app.route("/")
+@login_required
 def index():
     conn = get_db_connection()
     cursor = conn.cursor()
