@@ -101,14 +101,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!window.aircraftModel) return;
 
                 const toRad = Math.PI / 180;
-                // const toRad = 1;
 
-                const pitch = (pitchDeg || 0) * toRad;
+                const pitch = -(pitchDeg || 0) * 1.5 * toRad;
                 const roll = (rollDeg || 0) * toRad;
-                const yaw = -(headingDeg + 180 || 0) * toRad;
+                const yaw = -(headingDeg || 0) * toRad;
 
-                // Directly set rotations (X = pitch, Y = yaw, Z = roll)
-                window.aircraftModel.rotation.set(pitch, yaw, roll);
+                // Build quaternion using proper aviation rotation order: yaw → pitch → roll
+                const q = new THREE.Quaternion();
+
+                const qYaw = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), yaw);
+                const qPitch = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), pitch);
+                const qRoll = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), roll);
+
+                // Apply in correct order: yaw, then pitch, then roll
+                q.multiply(qYaw).multiply(qPitch).multiply(qRoll);
+
+                window.aircraftModel.quaternion.copy(q);
 
                 // Keep camera fixed in world space
                 // Only ensure it is looking at the model origin
