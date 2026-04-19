@@ -144,6 +144,25 @@ def parse_date_safe(value):
     return datetime.today().strftime("%Y-%m-%d")
 
 
+def sanitize_for_json(obj):
+    """
+    Recursively replace NaN / inf / None values with 0 for safe JSON serialization.
+    """
+    import math
+
+    if isinstance(obj, dict):
+        return {k: sanitize_for_json(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [sanitize_for_json(v) for v in obj]
+    if isinstance(obj, float):
+        if math.isnan(obj) or math.isinf(obj):
+            return 0
+        return obj
+    if obj is None:
+        return 0
+    return obj
+
+
 def recompute_flight_history(conn):
     cur = conn.execute(
         "SELECT id, hobbs, tach FROM flight_log ORDER BY date ASC, id ASC"
@@ -535,7 +554,7 @@ def process_flights(df):
     df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None))
     df.drop(columns=["_orig_flight_num"], inplace=True)
     # Fill any null or NaN values in the DataFrame with 0 to ensure consistent datatypes
-    # df.fillna("0", inplace=True)
+    df.fillna(0, inplace=True)
     # Defragment DataFrame to improve performance after many column insertions
     df = df.copy()
     return df
@@ -1420,8 +1439,8 @@ def api_analyze_flight():
                 print("Filter parsing error:", e)
 
         # Sanitize data for JSON
-        flight_data = flight_data.replace([np.inf, -np.inf], np.nan)
-        flight_data = flight_data.fillna("")
+        flight_data = flight_data.replace([np.inf, -np.inf], 0)
+        flight_data = flight_data.fillna(0)
         x_data = flight_data["Session Time"].tolist()
 
         def extract_traces(sig):
@@ -1658,7 +1677,11 @@ def api_analyze_flight():
 
         rawData = flight_data.to_dict(orient="records")
 
-        return jsonify({"plot_data": plot_data, "stats": stats, "rawData": rawData})
+        safe_response = sanitize_for_json(
+            {"plot_data": plot_data, "stats": stats, "rawData": rawData}
+        )
+
+        return jsonify(safe_response)
 
     except Exception as e:
         print(f"Analysis Error: {e}")
