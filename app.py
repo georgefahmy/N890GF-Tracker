@@ -1350,6 +1350,10 @@ def api_analyze_flight():
                     avg_mpg = round(valid_mpg.mean(), 1)
             except Exception:
                 pass
+        if "Distance Traveled" in flight_data.columns:
+            distance_traveled = safe_numeric(
+                flight_data.get("Distance Traveled", pd.Series([0] * len(flight_data)))
+            )
 
         def safe_max(col):
             if col in flight_data.columns:
@@ -1367,6 +1371,7 @@ def api_analyze_flight():
             ),
             "avg_fuel_flow": round(avg_flow, 2),
             "avg_mpg": avg_mpg,
+            "distance_traveled": distance_traveled[-1] / 5280,
         }
 
         rawData = flight_data.to_dict(orient="records")

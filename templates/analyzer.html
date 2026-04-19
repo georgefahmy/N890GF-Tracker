@@ -957,6 +957,7 @@ function triggerAnalysis(plotId) {
             <div class="col-sm-4 mb-3"><strong>Total Fuel:</strong><br>${data.stats.total_fuel} gal</div>
             <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${data.stats.avg_fuel_flow} gal/hr</div>
             <div class="col-sm-4 mb-3"><strong>Avg MPG:</strong><br><span class="text-success fw-bold">${data.stats.avg_mpg} nm/gal</span></div>
+            <div class="col-sm-4 mb-3"><strong>Distance Traveled:</strong><br>${data.stats.distance_traveled.toFixed(1)} mi</div>
             <div class="col-sm-4 mb-3"><strong>Max RPM:</strong><br>
                 <span style="
                     ${data.stats.max_rpm > 2750 ? 'color: red; font-weight: bold;' :
