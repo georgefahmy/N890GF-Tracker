@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scene.add(gridHelper);
 
         // Optional horizon plane (subtle visual reference)
-        const planeGeometry = new THREE.PlaneGeometry(200, 200);
+        const planeGeometry = new THREE.PlaneGeometry(200000, 2000000);
         const planeMaterial = new THREE.MeshBasicMaterial({
             color: 0x444444,
             side: THREE.DoubleSide,

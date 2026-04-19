@@ -1215,9 +1215,19 @@ def api_analyze_flight():
         lon_col = next(
             (c for c in flight_data.columns if "longitude" in c.lower()), None
         )
-        alt_col = next(
-            (c for c in flight_data.columns if "altitude" in c.lower()), None
-        )
+        # --- Explicitly use GPS Altitude (feet) if available ---
+        if "GPS Altitude (feet)" in flight_data.columns:
+            alt_col = "GPS Altitude (feet)"
+        else:
+            # Fallbacks if exact name not present
+            alt_candidates = [c for c in flight_data.columns if "altitude" in c.lower()]
+            alt_col = next(
+                (c for c in alt_candidates if "gps" in c.lower()),
+                next(
+                    (c for c in alt_candidates if "pressure" in c.lower()),
+                    alt_candidates[0] if alt_candidates else None,
+                ),
+            )
 
         lat_data = []
         lon_data = []
@@ -1227,23 +1237,51 @@ def api_analyze_flight():
             lat_data = (
                 pd.to_numeric(flight_data[lat_col], errors="coerce")
                 .replace([np.inf, -np.inf], np.nan)
-                .dropna()
+                .fillna(0)
                 .tolist()
             )
             lon_data = (
                 pd.to_numeric(flight_data[lon_col], errors="coerce")
                 .replace([np.inf, -np.inf], np.nan)
-                .dropna()
+                .fillna(0)
                 .tolist()
             )
+
         if alt_col:
             alt_data = (
                 pd.to_numeric(flight_data[alt_col], errors="coerce")
                 .replace([np.inf, -np.inf], np.nan)
-                .dropna()
                 .tolist()
             )
 
+        # --- Safe origins ---
+        lat_origin = lat_data[0] if len(lat_data) > 0 else 0
+        long_origin = lon_data[0] if len(lon_data) > 0 else 0
+        alt_origin = alt_data[0] if len(alt_data) > 0 else 0
+
+        # --- Convert lat/lon to meters relative to origin (WGS84 approx) ---
+        # 1 degree latitude ≈ 111,320 meters
+        # longitude scales by latitude
+
+        if len(lat_data) > 0:
+            lat_array = np.array(lat_data)
+            lon_array = np.array(lon_data)
+
+            # Latitude in meters
+            relative_lat = ((lat_array - lat_origin) * 111320.0).tolist()
+
+            # Longitude in meters (scaled by cosine of origin latitude)
+            relative_long = (
+                (lon_array - long_origin) * 111320.0 * np.cos(np.radians(lat_origin))
+            ).tolist()
+        else:
+            relative_lat = []
+            relative_long = []
+
+        # Altitude remains unchanged (already handled separately as feet)
+        relative_alt = (
+            (np.array(alt_data) - alt_origin).tolist() if len(alt_data) > 0 else []
+        )
         # --- ALIGNED MULTI-MODE SIGNALS (for heatmap modes) ---
 
         def safe_numeric(series):
@@ -1318,6 +1356,12 @@ def api_analyze_flight():
             "latitude": lat_data,
             "longitude": lon_data,
             "altitude": alt_data,
+            "lat_origin": lat_origin,
+            "long_origin": long_origin,
+            "alt_origin": alt_origin,
+            "relative_lat": relative_lat,
+            "relative_long": relative_long,
+            "relative_alt": relative_alt,
             "airspeed": airspeed_data,
             "groundspeed": groundspeed_data,
             "vertical_speed": vertical_speed,
@@ -1325,7 +1369,6 @@ def api_analyze_flight():
             "roll": roll_data,
             "heading": heading_data,
         }
-
         # --- Generate Summary Stats ---
         numeric_times = pd.to_numeric(flight_data["Session Time"], errors="coerce")
         duration = (

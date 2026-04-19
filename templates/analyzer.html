@@ -1339,6 +1339,11 @@ function renderMap(data) {
 
     const latRaw = lat.map(v => parseFloat(v));
     const lonRaw = lon.map(v => parseFloat(v));
+    console.log("DEBUG LAT/LON:");
+    console.log("latRaw length:", latRaw.length);
+    console.log("lonRaw length:", lonRaw.length);
+    console.log("latRaw sample:", latRaw.slice(0, 10));
+    console.log("lonRaw sample:", lonRaw.slice(0, 10));
 
     // --- GLOBAL MAP STATE (needed for hover + sync) ---
     window._mapLat = latRaw;
@@ -1354,21 +1359,30 @@ function renderMap(data) {
 
     if (data.plot_data) {
         const keys = Object.keys(data.plot_data);
-        const altKey = keys.find(k => k.toLowerCase().includes("alt"));
+        const altKey = keys.find(k => k.toLowerCase().includes("altitude"));
         if (altKey) altRaw = data.plot_data[altKey];
     }
 
     if (!altRaw && data.alt) altRaw = data.alt;
 
     if (altRaw) {
+        if (!Array.isArray(altRaw)) {
+            // Handle case where backend sends single value or object
+            altRaw = Object.values(altRaw);
+        }
         altRaw = altRaw.map(v => parseFloat(v));
     }
+    console.log("DEBUG ALT RAW:");
+    console.log("altRaw type:", typeof altRaw);
+    console.log("altRaw isArray:", Array.isArray(altRaw));
+    console.log("altRaw length:", altRaw ? altRaw.length : null);
+    console.log("altRaw sample:", altRaw ? altRaw.slice(0, 10) : null);
 
     // --- ALIGN ALTITUDE TO LAT/LON INDEX (CRITICAL FIX) ---
     const cleanAlt = [];
 
     for (let i = 0; i < latRaw.length; i++) {
-        const a = altRaw ? altRaw[i] : null;
+        const a = (altRaw && Array.isArray(altRaw)) ? altRaw[i] : null;
 
         if (a === undefined || a === null || isNaN(a)) {
             cleanAlt.push(null);
@@ -1376,6 +1390,11 @@ function renderMap(data) {
             cleanAlt.push(a);
         }
     }
+    console.log("DEBUG CLEAN ALT:");
+    console.log("cleanAlt length:", cleanAlt.length);
+    console.log("cleanAlt sample:", cleanAlt.slice(0, 10));
+    console.log("cleanAlt min:", Math.min(...cleanAlt.filter(v => !isNaN(v))));
+    console.log("cleanAlt max:", Math.max(...cleanAlt.filter(v => !isNaN(v))));
 
     // Ensure altitude always matches lat length for heatmap modes
     window._mapAlt = cleanAlt;
@@ -1408,9 +1427,11 @@ function renderMap(data) {
     // --- COLOR MODE RESOLVER ---
     const getColorValues = () => {
         if (mapColorMode === 'altitude') return window._mapAlt;
-        if (mapColorMode === 'airspeed') return window._mapAirspeed;
-        if (mapColorMode === 'groundspeed') return window._mapGroundspeed;
-        if (mapColorMode === 'vertical_speed') return window._mapVerticalSpeed;
+        if (mapColorMode === 'airspeed' && window._mapAirspeed) return window._mapAirspeed;
+        if (mapColorMode === 'groundspeed' && window._mapGroundspeed) return window._mapGroundspeed;
+        if (mapColorMode === 'vertical_speed' && window._mapVerticalSpeed) return window._mapVerticalSpeed;
+
+        // fallback
         return window._mapAlt;
     };
 
@@ -1466,8 +1487,47 @@ function renderMap(data) {
     let heatTrace = null;
 
     const colorValues = getColorValues();
+    console.log("DEBUG COLOR VALUES:");
+    console.log("mapColorMode:", mapColorMode);
+    console.log("colorValues length:", colorValues ? colorValues.length : null);
+    console.log("colorValues sample:", colorValues ? colorValues.slice(0, 10) : null);
+
+    if (!colorValues || !colorValues.length) {
+        mapColorMode = 'altitude';
+    }
 
     if (colorValues && colorValues.length === lat.length) {
+        // SAFER color mapping to prevent NaN/black rendering
+        const safeColors = (colorValues || []).map(v => {
+            const num = parseFloat(v);
+            return isNaN(num) ? NaN : num;
+        });
+
+        // Fallback to altitude if selected mode is invalid or empty
+        let validVals = safeColors.filter(v => !isNaN(v));
+        if (!validVals.length && window._mapAlt) {
+            validVals = window._mapAlt.filter(v => !isNaN(v));
+        }
+
+        // Final safety fallback to avoid black map
+        let cmin, cmax;
+
+        if (mapColorMode === 'altitude' && window._mapAlt && window._mapAlt.length) {
+            const altVals = window._mapAlt.filter(v => !isNaN(v));
+
+            cmin = altVals.length ? Math.min(...altVals) : 0;
+            cmax = altVals.length ? Math.max(...altVals) : 15000;
+
+            // Hard clamp fallback if data is flat or broken
+            if (cmin === cmax) {
+                cmin = 0;
+                cmax = 15000;
+            }
+        } else {
+            cmin = validVals.length ? Math.min(...validVals) : 0;
+            cmax = validVals.length ? Math.max(...validVals) : 1;
+        }
+
         heatTrace = {
             type: 'scattermapbox',
             mode: 'markers',
@@ -1475,13 +1535,14 @@ function renderMap(data) {
             lon: lon,
             marker: {
                 size: 4,
-                color: (colorValues || []).map(v => parseFloat(v)),
+                color: (mapColorMode === 'altitude')
+                    ? window._mapAlt.map(v => isNaN(v) ? NaN : v)
+                    : safeColors,
                 colorscale: COLOR_SCALES[mapColorMode] || 'Turbo',
                 reversescale: mapColorMode === 'altitude',
                 showscale: true,
-                cmin:
-                mapColorMode === 'altitude' ? 0 : (mapColorMode === 'airspeed' ? 50 : (mapColorMode === 'groundspeed' ? 0 : undefined)),
-                cmax: mapColorMode === 'altitude' ? 14000 : (mapColorMode === 'airspeed' ? 200 : (mapColorMode === 'groundspeed' ? 250 : undefined)),
+                cmin: (mapColorMode === 'altitude') ? 0 : cmin,
+                cmax: (mapColorMode === 'altitude') ? 15000 : cmax,
                 colorbar: {
                     title: {
                         text: COLOR_LABELS[mapColorMode] || 'Value'
