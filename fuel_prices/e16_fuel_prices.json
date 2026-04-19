@@ -41,7 +41,7 @@
         "fbos": [
             {
                 "fbo_name": "Watsonville Municipal Airport",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -83,7 +83,7 @@
         "fbos": [
             {
                 "fbo_name": "Hollister Jet Center, Inc",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -119,7 +119,7 @@
         "fbos": [
             {
                 "fbo_name": "Santa Clara County",
-                "last_updated": "08-Apr",
+                "last_updated": "17-Apr",
                 "prices": {
                     "G100UL": [
                         {
@@ -130,11 +130,11 @@
                     "UL94": [
                         {
                             "service": "SS",
-                            "price": "$7.94"
+                            "price": "$7.96"
                         },
                         {
                             "service": "FS",
-                            "price": "$8.24"
+                            "price": "$8.26"
                         }
                     ]
                 }
@@ -151,7 +151,7 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -162,7 +162,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$12.50"
+                            "price": "$12.42"
                         }
                     ]
                 }
@@ -180,13 +180,13 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$11.845"
+                            "price": "$11.85"
                         }
                     ],
                     "SAF": [
                         {
                             "service": "FS",
-                            "price": "$13.69"
+                            "price": "$13.81"
                         }
                     ]
                 }
@@ -203,7 +203,7 @@
         "fbos": [
             {
                 "fbo_name": "Jet West GateOne",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -239,7 +239,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Marina (FBO)",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -267,7 +267,7 @@
         "fbos": [
             {
                 "fbo_name": "Avports Moffett Field",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "Jet A": [
                         {
@@ -289,7 +289,7 @@
         "fbos": [
             {
                 "fbo_name": "Del Monte Aviation",
-                "last_updated": "08-Apr",
+                "last_updated": "17-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -357,7 +357,7 @@
         "fbos": [
             {
                 "fbo_name": "Rossi Aircraft",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -395,7 +395,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Los Banos (FBO)",
-                "last_updated": "06-Apr",
+                "last_updated": "17-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -513,7 +513,7 @@
             },
             {
                 "fbo_name": "Signature Aviation (formerly Meridian Hayward)",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -541,7 +541,7 @@
         "fbos": [
             {
                 "fbo_name": "Modesto Jet Center",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -573,7 +573,7 @@
         "fbos": [
             {
                 "fbo_name": "Contra Costa County (FBO)",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -595,7 +595,7 @@
         "fbos": [
             {
                 "fbo_name": "KaiserAir, Inc.",
-                "last_updated": "16-Apr",
+                "last_updated": "19-Apr",
                 "prices": {
                     "100LL": [
                         {

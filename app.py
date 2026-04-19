@@ -1,13 +1,16 @@
 import calendar
 import json
+import logging
 import os
 import re
+import secrets
 import sqlite3
 import subprocess
 import threading
 import time
 from datetime import datetime, timedelta
 from functools import wraps
+from logging.handlers import RotatingFileHandler
 
 import numpy as np
 import pandas as pd
@@ -21,13 +24,44 @@ from src.airspeed_calibration import analyze_flight_data
 from src.fuel_prices import scrape_airnav_to_json
 from src.sw_db_updates import download_dynon_databases_only
 
-app = Flask(__name__)
-app.secret_key = "hashkeysecret"
-
 CWD_PATH = os.path.abspath(os.path.dirname(__file__))
+
+app = Flask(__name__)
+app.secret_key = secrets.token_hex(32)
+
+# --- Login attempt logging (split logs) ---
+LOG_DIR = os.path.join(CWD_PATH if "CWD_PATH" in globals() else os.getcwd(), "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+log_formatter = logging.Formatter(
+    "%(asctime)s | %(levelname)s | ip=%(ip)s | user=%(user)s | status=%(status)s | ua=%(ua)s | msg=%(message)s"
+)
+
+
+def _create_logger(name, filename):
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    if not logger.handlers:
+        handler = RotatingFileHandler(
+            os.path.join(LOG_DIR, filename), maxBytes=5 * 1024 * 1024, backupCount=5
+        )
+        handler.setFormatter(log_formatter)
+        logger.addHandler(handler)
+
+    return logger
+
+
+login_success_logger = _create_logger("login_success", "login_success.log")
+login_failure_logger = _create_logger("login_failure", "login_failure.log")
+login_security_logger = _create_logger("login_security", "login_security.log")
+
+app.config["SESSION_PERMANENT"] = False
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
+
 # DB_PATH = CWD_PATH + "/src/maintenance.db"
 DB_PATH = CWD_PATH + "/../maintenance.db"
-print(DB_PATH)
 
 DEBUG = True
 # --- Directory for saving processed dataframes ---
@@ -50,6 +84,14 @@ MAINTENANCE_RULES = {
 NAV_CACHE = {"data": None, "timestamp": 0}
 NAV_CACHE_TTL = 6 * 60 * 60
 NAV_CACHE_LOCK = threading.Lock()
+
+# --- Login Rate Limiting (simple in-memory) ---
+LOGIN_ATTEMPTS = {}
+LOGIN_LOCK = threading.Lock()
+MAX_ATTEMPTS = 3
+BLOCK_WINDOW_SECONDS = 300  # 5 minutes
+BAN_THRESHOLD = 3  # number of times hitting rate limit before ban
+BAN_DURATION_SECONDS = 3600  # 1 hour
 
 
 def get_db_connection():
@@ -532,7 +574,113 @@ def login():
         return redirect(url_for("index"))
 
     if request.method == "POST":
+        ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+        user_agent = request.headers.get("User-Agent", "")
+        now = time.time()
+        # Extract username before ban check
         username = request.form.get("username")
+        log_user = username or "-"
+
+        # --- Check ban list (DB-backed) ---
+        conn = get_db_connection()
+        ban_row = conn.execute(
+            "SELECT ban_time FROM banned_ips WHERE ip = ? AND username = ?",
+            (ip, username),
+        ).fetchone()
+
+        if ban_row:
+            ban_time = ban_row["ban_time"]
+            if now - ban_time < BAN_DURATION_SECONDS:
+                login_security_logger.warning(
+                    "banned_ip_attempt",
+                    extra={
+                        "ip": ip,
+                        "user": log_user,
+                        "status": "banned",
+                        "ua": user_agent,
+                    },
+                )
+                conn.close()
+                return render_template(
+                    "login.html",
+                    error="Too many attempts. You are temporarily banned.",
+                )
+            else:
+                conn.execute(
+                    "DELETE FROM banned_ips WHERE ip = ? AND username = ?",
+                    (ip, username),
+                )
+                conn.commit()
+        conn.close()
+
+        # --- Rate limit check ---
+        with LOGIN_LOCK:
+            attempts = LOGIN_ATTEMPTS.get(ip, [])
+            # remove old attempts
+            attempts = [t for t in attempts if now - t < BLOCK_WINDOW_SECONDS]
+            LOGIN_ATTEMPTS[ip] = attempts
+
+            if len(attempts) >= MAX_ATTEMPTS:
+                conn = get_db_connection()
+
+                row = conn.execute(
+                    "SELECT count FROM banned_ips WHERE ip = ? AND username = ?",
+                    (ip, username),
+                ).fetchone()
+
+                if row:
+                    new_count = row["count"] + 1
+                    conn.execute(
+                        "UPDATE banned_ips SET count = ? WHERE ip = ? AND username = ?",
+                        (new_count, ip, username),
+                    )
+                else:
+                    new_count = 1
+                    conn.execute(
+                        "INSERT INTO banned_ips (ip, username, ban_time, count) VALUES (?, ?, ?, ?)",
+                        (ip, username, 0, new_count),
+                    )
+
+                conn.commit()
+
+                # ban if threshold exceeded
+                if new_count >= BAN_THRESHOLD:
+                    conn.execute(
+                        "UPDATE banned_ips SET ban_time = ? WHERE ip = ? AND username = ?",
+                        (now, ip, username),
+                    )
+                    conn.commit()
+                    conn.close()
+
+                    login_security_logger.warning(
+                        "ip_banned",
+                        extra={
+                            "ip": ip,
+                            "user": log_user,
+                            "status": "banned",
+                            "ua": user_agent,
+                        },
+                    )
+                    return render_template(
+                        "login.html",
+                        error="Too many attempts. You are temporarily banned.",
+                    )
+
+                conn.close()
+
+                login_security_logger.warning(
+                    "rate_limited",
+                    extra={
+                        "ip": ip,
+                        "user": log_user,
+                        "status": "blocked",
+                        "ua": user_agent,
+                    },
+                )
+                return render_template(
+                    "login.html", error="Too many attempts. Try again later."
+                )
+
         password = request.form.get("password")
 
         conn = get_db_connection()
@@ -542,9 +690,44 @@ def login():
         conn.close()
 
         if user and check_password_hash(user["password_hash"], password):
+            # reset attempts on success
+            with LOGIN_LOCK:
+                LOGIN_ATTEMPTS.pop(ip, None)
+            conn = get_db_connection()
+            conn.execute(
+                "DELETE FROM banned_ips WHERE ip = ? AND username = ?", (ip, username)
+            )
+            conn.commit()
+            conn.close()
+            remember = request.form.get("remember") == "on"
+
             session["user_id"] = user["id"]
+            session.permanent = remember  # this is the key
+
+            login_success_logger.info(
+                "login_success",
+                extra={
+                    "ip": ip,
+                    "user": log_user,
+                    "status": "success",
+                    "ua": user_agent,
+                },
+            )
             return redirect(url_for("index"))
         else:
+            # record failed attempt
+            with LOGIN_LOCK:
+                LOGIN_ATTEMPTS.setdefault(ip, []).append(time.time())
+
+            login_failure_logger.info(
+                "login_failure",
+                extra={
+                    "ip": ip,
+                    "user": log_user,
+                    "status": "failure",
+                    "ua": user_agent,
+                },
+            )
             return render_template("login.html", error="Invalid credentials")
 
     return render_template("login.html")
@@ -743,6 +926,7 @@ def index():
 
 
 @app.route("/add_flight", methods=["POST"])
+@login_required
 def add_flight():
     conn = get_db_connection()
     conn.execute(
@@ -766,6 +950,7 @@ def add_flight():
 
 
 @app.route("/add_mx", methods=["POST"])
+@login_required
 def add_mx():
     conn = get_db_connection()
     conn.execute(
@@ -792,6 +977,7 @@ def add_mx():
 
 
 @app.route("/add_fuel", methods=["POST"])
+@login_required
 def add_fuel():
     hobbs, gallons, price = (
         validate_float(request.form.get("hobbs", 0)),
@@ -817,6 +1003,7 @@ def add_fuel():
 
 
 @app.route("/api/fuel_prices", methods=["GET"])
+@login_required
 def api_fuel_prices():
     airport = request.args.get("airport", "").strip()
     if not airport:
@@ -834,6 +1021,7 @@ def api_fuel_prices():
 
 
 @app.route("/edit_flight/<int:id>", methods=["POST"])
+@login_required
 def edit_flight(id):
     conn = get_db_connection()
     conn.execute(
@@ -858,6 +1046,7 @@ def edit_flight(id):
 
 
 @app.route("/edit_mx/<int:id>", methods=["POST"])
+@login_required
 def edit_mx(id):
     conn = get_db_connection()
     conn.execute(
@@ -885,6 +1074,7 @@ def edit_mx(id):
 
 
 @app.route("/edit_fuel/<int:id>", methods=["POST"])
+@login_required
 def edit_fuel(id):
     hours, gallons, price = (
         validate_float(request.form.get("hours", 0)),
@@ -911,6 +1101,7 @@ def edit_fuel(id):
 
 
 @app.route("/delete_flight/<int:id>")
+@login_required
 def delete_flight(id):
     conn = get_db_connection()
     conn.execute("DELETE FROM flight_log WHERE id = ?", (id,))
@@ -922,6 +1113,7 @@ def delete_flight(id):
 
 
 @app.route("/delete_maintenance/<int:id>")
+@login_required
 def delete_maintenance(id):
     conn = get_db_connection()
     conn.execute("DELETE FROM maintenance_entries WHERE id = ?", (id,))
@@ -938,6 +1130,7 @@ def delete_maintenance(id):
 
 
 @app.route("/delete_fuel/<int:id>")
+@login_required
 def delete_fuel(id):
     conn = get_db_connection()
     conn.execute("DELETE FROM fuel_tracker WHERE id = ?", (id,))
@@ -1087,6 +1280,7 @@ def route_advisor():
 
 # --- API endpoint for Dynon database updates ---
 @app.route("/api/database_updates", methods=["POST"])
+@login_required
 def api_database_updates():
     """
     Trigger download of Dynon aviation and obstacle databases.
