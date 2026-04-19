@@ -156,12 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
         horizonPlane.position.y = 0;
         scene.add(horizonPlane);
 
-        // Optional origin marker (small sphere at 0,0,0)
-        const originGeometry = new THREE.SphereGeometry(0.5, 16, 16);
-        const originMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        const originMarker = new THREE.Mesh(originGeometry, originMaterial);
-        originMarker.position.set(0, 0, 0);
-        scene.add(originMarker);
         function animate() {
             animationFrameId = requestAnimationFrame(animate);
             if (controls) controls.update();

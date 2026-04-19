@@ -249,10 +249,21 @@
                                 </label>
                             </div>
                         </div>
-                        <div id="mapGraph" style="height:450px;"></div>
+                        <div id="mapGraph" style="height:400px;"></div>
                         <div class="px-2 pt-2">
                             <div class="small text-muted">Playback</div>
                             <input type="range" id="mapScrubber" class="form-range" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
+                        </div>
+                        <div class="px-2 pb-2 d-flex flex-wrap gap-2 align-items-center">
+                            <button class="btn btn-sm btn-primary" id="playPauseBtn" onclick="togglePlayback()">▶ Play</button>
+
+                            <select class="form-select form-select-sm w-auto" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                                <option value="1">1x</option>
+                                <option value="2">2x</option>
+                                <option value="5">5x</option>
+                                <option value="10">10x</option>
+                                <option value="30">30x</option>
+                            </select>
                         </div>
                         <div id="mapMetrics" class="small text-muted px-2 pb-1"></div>
                     </div>
@@ -326,6 +337,9 @@ let calStartTimeGlobal = null;
 let calEndTimeGlobal = null;
 
 let mapColorMode = 'altitude';
+let playbackTimer = null;
+let playbackIndex = 0;
+let playbackSpeed = 1;
 
 // --- 3D WORLD DATA ---
 window._worldX = [];
@@ -1651,12 +1665,13 @@ function renderMap(data) {
         }
     }
 
+    // aircraft marker
     const markerTrace = {
         type: 'scattermapbox',
         mode: 'markers',
         lat: [lat[0]],
         lon: [lon[0]],
-        marker: { size: 10, color: 'red' },
+        marker: { size: 10, color: 'black' },
         name: 'Aircraft',
         meta: { role: 'aircraft_marker' },
         showlegend: false
@@ -1826,6 +1841,79 @@ function scrubMap(idx) {
             'mapbox.center.lat': lat,
             'mapbox.center.lon': lon
         });
+    }
+}
+function togglePlayback() {
+    const btn = document.getElementById('playPauseBtn');
+    const scrubber = document.getElementById('mapScrubber');
+
+    if (playbackTimer) {
+        clearInterval(playbackTimer);
+        playbackTimer = null;
+        btn.innerText = '▶ Play';
+        return;
+    }
+
+    playbackIndex = parseInt(scrubber.value) || 0;
+    btn.innerText = '⏸ Pause';
+
+    const baseInterval = 150;
+
+    playbackTimer = setInterval(() => {
+        if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
+            clearInterval(playbackTimer);
+            playbackTimer = null;
+            btn.innerText = '▶ Play';
+            return;
+        }
+
+        playbackIndex += playbackSpeed;
+
+        if (playbackIndex >= window._mapLat.length) {
+            playbackIndex = window._mapLat.length - 1;
+        }
+
+        // 🔥 KEEP SLIDER IN SYNC
+        const scrubber = document.getElementById('mapScrubber');
+        if (scrubber) scrubber.value = playbackIndex;
+
+        scrubMap(playbackIndex);
+
+    }, baseInterval / playbackSpeed);
+}
+
+function setPlaybackSpeed(val) {
+    playbackSpeed = parseInt(val);
+
+    if (playbackTimer) {
+        clearInterval(playbackTimer);
+
+        const scrubber = document.getElementById('mapScrubber');
+        playbackIndex = parseInt(scrubber.value) || playbackIndex || 0;
+
+        const baseInterval = 150;
+
+        playbackTimer = setInterval(() => {
+            if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
+                clearInterval(playbackTimer);
+                playbackTimer = null;
+                document.getElementById('playPauseBtn').innerText = '▶ Play';
+                return;
+            }
+
+            playbackIndex += playbackSpeed;
+
+            if (playbackIndex >= window._mapLat.length) {
+                playbackIndex = window._mapLat.length - 1;
+            }
+
+            // 🔥 KEEP SLIDER IN SYNC
+            const scrubber = document.getElementById('mapScrubber');
+            if (scrubber) scrubber.value = playbackIndex;
+
+            scrubMap(playbackIndex);
+
+        }, baseInterval / playbackSpeed);
     }
 }
 
