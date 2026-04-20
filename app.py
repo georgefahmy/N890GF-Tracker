@@ -1191,7 +1191,12 @@ def delete_fuel(id):
 
 @app.route("/analyzer")
 def analyzer():
-    return render_template("analyzer.html")
+    user_agent = request.headers.get("User-Agent", "").lower()
+    is_mobile = any(x in user_agent for x in ["iphone", "android", "mobile"])
+
+    template = "mobile_analyzer.html" if is_mobile else "analyzer.html"
+
+    return render_template(template)
 
 
 # --- GAMI Spread Page Route ---
