@@ -113,10 +113,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 select.options.add(new Option(f, f));
             });
 
-            // Restore previously selected flight
-            const saved = localStorage.getItem(STORAGE_KEY);
+            // Restore previously selected flight from URL first, then LocalStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlFlight = urlParams.get('flight');
+            const saved = urlFlight || localStorage.getItem(STORAGE_KEY);
+
             if (saved && sortedFiles.includes(saved)) {
                 select.value = saved;
+
+                // If it loaded from LocalStorage, push it to the URL so the link is immediately shareable
+                if (!urlFlight) {
+                    const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(saved);
+                    window.history.replaceState({ path: newUrl }, '', newUrl);
+                }
 
                 const formData = new FormData();
                 formData.append('saved_filename', saved);
@@ -168,6 +177,10 @@ function loadSignals(formData) {
 // 3. Handle File Upload
 document.getElementById('csvFile').addEventListener('change', function(e) {
     if (e.target.files.length === 0) return;
+
+    // Clear the URL parameter since we are uploading a new, unsaved file
+    window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
+
     document.getElementById('savedFlights').value = ""; // Reset dropdown
     localStorage.removeItem(STORAGE_KEY);
     const formData = new FormData();
@@ -177,7 +190,16 @@ document.getElementById('csvFile').addEventListener('change', function(e) {
 
 // 4. Handle Saved Flight Selection
 document.getElementById('savedFlights').addEventListener('change', function(e) {
-    if (!e.target.value) return;
+    if (!e.target.value) {
+        // Clear URL if empty selection
+        window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
+        return;
+    }
+
+    // Update the URL dynamically
+    const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(e.target.value);
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
     localStorage.setItem(STORAGE_KEY, e.target.value);
     document.getElementById('csvFile').value = ""; // Reset file input
     const formData = new FormData();
