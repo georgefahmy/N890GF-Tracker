@@ -27,6 +27,7 @@ CWD_PATH = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
+app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 
 # --- Login attempt logging (split logs) ---
 LOG_DIR = os.path.join(CWD_PATH if "CWD_PATH" in globals() else os.getcwd(), "logs")
@@ -436,6 +437,27 @@ def process_flights(df):
     """
     Groups data into flights and marks if the engine was run.
     """
+    # --- FORCE CORE NUMERIC TYPES (prevent string math issues) ---
+    core_numeric_cols = [
+        "Session Time",
+        "System Time",
+        "RPM L",
+        "RPM R",
+        "RPM",
+        "CHT 1 (deg F)",
+        "CHT 2 (deg F)",
+        "CHT 3 (deg F)",
+        "CHT 4 (deg F)",
+        "OAT (deg F)",
+        "OIL TEMPERATURE (deg F)",
+        "Fuel Flow 1 (gal/hr)",
+        "Total Fuel Flow (gal/hr)",
+        "Ground Speed (knots)",
+    ]
+
+    for col in core_numeric_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
     # Remove rows where System Time is NaN or blank
     df = df[df["System Time"].notna() & (df["System Time"] != "")]
     # Remove rows where GPS Date & Time is NaN or blank
@@ -552,8 +574,17 @@ def process_flights(df):
     }
     df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None))
     df.drop(columns=["_orig_flight_num"], inplace=True)
-    # Fill any null or NaN values in the DataFrame with 0 to ensure consistent datatypes
-    df.fillna(0, inplace=True)
+    # Fill NaNs safely by dtype:
+    # - numeric columns → 0
+    # - string/object columns → ""
+    num_cols = df.select_dtypes(include=[np.number]).columns
+    obj_cols = df.select_dtypes(include=["object"]).columns
+
+    if len(num_cols) > 0:
+        df[num_cols] = df[num_cols].fillna(0)
+
+    if len(obj_cols) > 0:
+        df[obj_cols] = df[obj_cols].fillna("")
     # Defragment DataFrame to improve performance after many column insertions
     df = df.copy()
     return df
@@ -1188,6 +1219,7 @@ def api_get_signals():
             if not os.path.exists(filepath):
                 return jsonify({"error": "Saved file not found."}), 404
             df = pd.read_csv(filepath, low_memory=False)
+            df = process_flights(df)
 
         else:
             if "file" not in request.files:
