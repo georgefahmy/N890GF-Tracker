@@ -713,6 +713,19 @@
     </div>
 </div>
 
+<!-- Copy Success Toast -->
+<div class="toast position-fixed bottom-0 end-0 m-3 text-bg-dark border-0"
+     id="copyToast" role="alert" aria-live="assertive" aria-atomic="true"
+     style="z-index: 20000;">
+    <div class="d-flex">
+        <div class="toast-body">
+            Copied to clipboard!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                data-bs-dismiss="toast"></button>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -898,40 +911,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // ====== ROUTE ADVISOR LOGIC ======
-    // ====== FOREFLIGHT INTEGRATION ======
-    async function postRouteToForeFlight(routeString) {
-        if (!routeString) return;
-
-        const cleanRoute = routeString
-            .replace(/➔/g, " ")
-            .replace(/→/g, " ")
-            .replace(/\s+/g, " ")
-            .trim();
-
-        // Extract departure and destination from route
-        const routeParts = cleanRoute.split(" ").filter(p => p.length > 0);
-        const departureAirport = routeParts.length > 0 ? routeParts[0] : "";
-        const destinationAirport = routeParts.length > 1 ? routeParts[routeParts.length - 1] : "";
-
-        try {
-            const response = await fetch("https://plan.foreflight.com/map/api/performance/flight", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    routeString: cleanRoute,
-                    departureAirport: departureAirport,
-                    destinationAirport: destinationAirport
-                })
-            });
-
-            return await response.json().catch(() => ({}));
-        } catch (err) {
-            console.error("Failed to post route to ForeFlight:", err);
-            return null;
-        }
-    }
     let routeMap = null;
     let routeLine = null;
     let routeMarkers = [];
@@ -987,11 +966,16 @@ document.addEventListener("DOMContentLoaded", function() {
             const routeStr = data.route_string || "";
 
             let html = `<strong>Route:</strong><br>
-<a href="https://plan.foreflight.com" target="_blank" rel="noopener noreferrer"
-   onclick="postRouteToForeFlight(\`${routeStr.replace(/`/g, "\\`")}\`)">
-    ${routeStr}
-</a>
-<br><hr>`;
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <a href="https://plan.foreflight.com/map" target="_blank" rel="noopener noreferrer">
+                    ${routeStr}
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                    onclick="copyRouteToast(\`${routeStr.replace(/`/g, '\\`')}\`)">
+                    Copy
+                </button>
+            </div>
+            <br><hr>`;
 
             if (data.route_data && data.route_data.length > 0) {
                 html += `
@@ -1039,12 +1023,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             resultBox.innerHTML = html;
-            // Send route to ForeFlight backend integration
-            if (data.route_string) {
-                postRouteToForeFlight(data.route_string)
-                    .then(resp => console.log("ForeFlight response:", resp))
-                    .catch(err => console.error("ForeFlight error:", err));
-            }
 
             // Build route coordinates if available
             if (routeMap && data.route_data) {
@@ -1144,5 +1122,27 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<script>
+// Add copyRouteToast to window inside DOMContentLoaded
+document.addEventListener("DOMContentLoaded", function() {
+    window.copyRouteToast = function(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                const toastEl = document.getElementById("copyToast");
+                // Set toast text back to success in case it was set to error previously
+                toastEl.querySelector(".toast-body").innerText = "Copied to clipboard!";
+                const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
+                toast.show();
+            })
+            .catch(err => {
+                const toastEl = document.getElementById("copyToast");
+                toastEl.querySelector(".toast-body").innerText = "Copy failed";
+                const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
+                toast.show();
+                console.error(err);
+            });
+    };
+});
+</script>
 </body>
 </html>
