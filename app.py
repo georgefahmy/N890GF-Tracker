@@ -3,7 +3,6 @@ import json
 import logging
 import os
 import re
-import secrets
 import sqlite3
 import subprocess
 import threading
@@ -27,7 +26,7 @@ from src.sw_db_updates import download_dynon_databases_only
 CWD_PATH = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(32)
+app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 
 # --- Login attempt logging (split logs) ---
 LOG_DIR = os.path.join(CWD_PATH if "CWD_PATH" in globals() else os.getcwd(), "logs")
