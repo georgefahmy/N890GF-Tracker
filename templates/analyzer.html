@@ -322,14 +322,8 @@
 
 <script src="{{ url_for('static', filename='analyzer.js') }}"></script>
 <!-- Import map for Three.js (fixes "Failed to resolve module specifier 'three'") -->
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module" src="{{ url_for('static', filename='3d_model.js') }}"></script>
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Cesium.js"></script>
+<script src="{{ url_for('static', filename='3d_model.js') }}"></script>
 </body>
 </html>

@@ -574,18 +574,18 @@ function triggerAnalysis(plotId) {
             const headingVal = headingArr[idx] || 0;
 
             // Grab position from global world arrays
-            const posX = window._worldX ? window._worldX[idx] : 0;
-            const posY = window._worldY ? window._worldY[idx] : 0;
-            const posZ = window._worldZ ? window._worldZ[idx] : 0;
+            const lat = window._mapLat ? window._mapLat[idx] : 0;
+            const lon = window._mapLon ? window._mapLon[idx] : 0;
+            const alt = window._mapAlt ? window._mapAlt[idx] : 0;
 
-            // Call the 3D module's update with xyz coordinates
+            // Call the 3D module's update with GPS coordinates
             window.updateAircraft3D(
                 pitchVal,
                 rollVal,
                 headingVal,
-                posX,
-                posY,
-                posZ
+                lat,
+                lon,
+                alt
             );
         }
 
@@ -1535,18 +1535,19 @@ function scrubMap(idx) {
         const pitch = window.currentPlotData.pitch?.[idx] || 0;
         const roll = window.currentPlotData.roll?.[idx] || 0;
         const heading = window.currentPlotData.heading?.[idx] || 0;
+        const magVar = window.currentPlotData.mag_variance?.[idx] || -13;
+        const trueHeading = heading - magVar
 
         document.getElementById('attPitch').innerText = pitch.toFixed(1) + ' °';
         document.getElementById('attRoll').innerText = roll.toFixed(1) + ' °';
         document.getElementById('attHeading').innerText = heading.toFixed(1) + ' °';
 
         if (window.updateAircraft3D) {
-            // Grab position from global world arrays
-            const posX = window._worldX ? window._worldX[idx] : 0;
-            const posY = window._worldY ? window._worldY[idx] : 0;
-            const posZ = window._worldZ ? window._worldZ[idx] : 0;
+            const lat = window._mapLat ? window._mapLat[idx] : 0;
+            const lon = window._mapLon ? window._mapLon[idx] : 0;
+            const alt = window._mapAlt ? window._mapAlt[idx] : 0; // Assuming alt is in feet
 
-            window.updateAircraft3D(pitch, roll, heading, posX, posY, posZ);
+            window.updateAircraft3D(pitch, roll, trueHeading, lat, lon, alt);
         }
     }
 
@@ -1560,78 +1561,100 @@ function scrubMap(idx) {
 }
 function togglePlayback() {
     const btn = document.getElementById('playPauseBtn');
-    const scrubber = document.getElementById('mapScrubber');
-
     if (playbackTimer) {
         clearInterval(playbackTimer);
         playbackTimer = null;
-        btn.innerText = '▶ Play';
-        return;
-    }
-
-    playbackIndex = parseInt(scrubber.value) || 0;
-    btn.innerText = '⏸ Pause';
-
-    const baseInterval = 150;
-
-    playbackTimer = setInterval(() => {
-        if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
-            clearInterval(playbackTimer);
-            playbackTimer = null;
-            btn.innerText = '▶ Play';
-            return;
-        }
-
-        playbackIndex += playbackSpeed;
-
-        if (playbackIndex >= window._mapLat.length) {
-            playbackIndex = window._mapLat.length - 1;
-        }
-
-        // 🔥 KEEP SLIDER IN SYNC
+        if (btn) btn.innerText = '▶ Play';
+    } else {
+        if (btn) btn.innerText = '⏸ Pause';
         const scrubber = document.getElementById('mapScrubber');
-        if (scrubber) scrubber.value = playbackIndex;
+        playbackIndex = parseInt(scrubber.value) || 0;
 
-        scrubMap(playbackIndex);
-
-    }, baseInterval / playbackSpeed);
-}
-
-function setPlaybackSpeed(val) {
-    playbackSpeed = parseInt(val);
-
-    if (playbackTimer) {
-        clearInterval(playbackTimer);
-
-        const scrubber = document.getElementById('mapScrubber');
-        playbackIndex = parseInt(scrubber.value) || playbackIndex || 0;
-
-        const baseInterval = 150;
+        // 1000ms = 1 second, matching your 1Hz data rate
+        const baseInterval = 1000;
 
         playbackTimer = setInterval(() => {
             if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
                 clearInterval(playbackTimer);
                 playbackTimer = null;
-                document.getElementById('playPauseBtn').innerText = '▶ Play';
+                if (btn) btn.innerText = '▶ Play';
                 return;
             }
 
-            playbackIndex += playbackSpeed;
+            // In real-time 1Hz, we move forward exactly 1 index per second
+            // Multiplied by playbackSpeed (e.g., 2x speed moves 2 indices per second)
+            playbackIndex += 1;
 
             if (playbackIndex >= window._mapLat.length) {
                 playbackIndex = window._mapLat.length - 1;
             }
 
-            // 🔥 KEEP SLIDER IN SYNC
-            const scrubber = document.getElementById('mapScrubber');
             if (scrubber) scrubber.value = playbackIndex;
-
             scrubMap(playbackIndex);
 
-        }, baseInterval / playbackSpeed);
+        }, baseInterval / playbackSpeed); // Adjusted by speed (1000ms at 1x, 500ms at 2x)
     }
 }
 
+// analyzer.js additions
+let interpolationTick = 0;
+const FPS = 30;
+
+function setPlaybackSpeed(val) {
+    playbackSpeed = parseInt(val);
+    if (!playbackTimer) return;
+
+    clearInterval(playbackTimer);
+
+    // Run the timer at 30 Frames Per Second
+    playbackTimer = setInterval(() => {
+        if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
+            clearInterval(playbackTimer);
+            return;
+        }
+
+        // 1. Calculate how far we are between the current second and the next
+        // interpolationTick goes from 0 to FPS (30)
+        let t = interpolationTick / FPS;
+
+        // 2. Linear Interpolation (lerp) function
+        const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
+
+        // 3. Interpolate all values
+        const currentLat = lerp(window._mapLat[playbackIndex], window._mapLat[playbackIndex + 1], t);
+        const currentLon = lerp(window._mapLon[playbackIndex], window._mapLon[playbackIndex + 1], t);
+        const currentAlt = lerp(window._mapAlt[playbackIndex], window._mapAlt[playbackIndex + 1], t);
+
+        // Use a circular lerp for heading to avoid the 359 -> 0 degree "flip" jitter
+        const lerpAngle = (a, b, t) => {
+            let d = b - a;
+            if (d > 180) d -= 360;
+            if (d < -180) d += 360;
+            return a + d * t;
+        };
+
+        const currentHeading = lerpAngle(window._worldZ[playbackIndex], window._worldZ[playbackIndex + 1], t);
+        const currentPitch = lerp(window._worldX[playbackIndex], window._worldX[playbackIndex + 1], t);
+        const currentRoll = lerp(window._worldY[playbackIndex], window._worldY[playbackIndex + 1], t);
+
+        // 4. Send the SMOOTH data to the 3D model
+        if (window.updateAircraft3D) {
+            window.updateAircraft3D(currentPitch, currentRoll, currentHeading, currentLat, currentLon, currentAlt);
+        }
+
+        // 5. Advance the clock
+        interpolationTick++;
+        if (interpolationTick >= FPS) {
+            interpolationTick = 0;
+            playbackIndex++; // Move to the next second of log data
+
+            // Sync the scrubber UI only once per second to save performance
+            const scrubber = document.getElementById('mapScrubber');
+            if (scrubber) scrubber.value = playbackIndex;
+        }
+
+    }, 1000 / (FPS * playbackSpeed));
+}
 function toggleXYFilters() {
     const section = document.getElementById('xy-filter-section');
     if (!section) return;
