@@ -41,7 +41,7 @@
         "fbos": [
             {
                 "fbo_name": "Watsonville Municipal Airport",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -83,7 +83,7 @@
         "fbos": [
             {
                 "fbo_name": "Hollister Jet Center, Inc",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -151,12 +151,12 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
                             "service": "FS",
-                            "price": "$13.24"
+                            "price": "$13.25"
                         }
                     ],
                     "Jet A": [
@@ -169,7 +169,7 @@
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "17-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -203,7 +203,7 @@
         "fbos": [
             {
                 "fbo_name": "Jet West GateOne",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -239,7 +239,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Marina (FBO)",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -267,7 +267,7 @@
         "fbos": [
             {
                 "fbo_name": "Avports Moffett Field",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "Jet A": [
                         {
@@ -357,7 +357,7 @@
         "fbos": [
             {
                 "fbo_name": "Rossi Aircraft",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -423,18 +423,18 @@
         "fbos": [
             {
                 "fbo_name": "Tracy Municipal Airport",
-                "last_updated": "01-Apr",
+                "last_updated": "20-Apr",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$5.78"
+                            "price": "$5.91"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "SS",
-                            "price": "$6.50"
+                            "price": "$5.12"
                         }
                     ]
                 }
@@ -451,7 +451,7 @@
         "fbos": [
             {
                 "fbo_name": "Five Rivers Aviation",
-                "last_updated": "15-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -506,14 +506,14 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$7.89"
+                            "price": "$7.99"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "Signature Aviation (formerly Meridian Hayward)",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -541,7 +541,7 @@
         "fbos": [
             {
                 "fbo_name": "Modesto Jet Center",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -556,7 +556,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.27"
+                            "price": "$8.39"
                         }
                     ]
                 }
@@ -573,7 +573,7 @@
         "fbos": [
             {
                 "fbo_name": "Contra Costa County (FBO)",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -595,7 +595,7 @@
         "fbos": [
             {
                 "fbo_name": "KaiserAir, Inc.",
-                "last_updated": "19-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -613,7 +613,7 @@
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "17-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -647,7 +647,7 @@
         "fbos": [
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "17-Apr",
+                "last_updated": "21-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -681,12 +681,12 @@
         "fbos": [
             {
                 "fbo_name": "Turlock Municipal Airport",
-                "last_updated": "02-Apr",
+                "last_updated": "20-Apr",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$5.45"
+                            "price": "$6.29"
                         }
                     ]
                 }
