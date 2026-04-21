@@ -1547,35 +1547,6 @@ def api_analyze_flight():
                 .replace([np.inf, -np.inf], np.nan)
                 .tolist()
             )
-
-        # --- Safe origins ---
-        lat_origin = lat_data[0] if len(lat_data) > 0 else 0
-        long_origin = lon_data[0] if len(lon_data) > 0 else 0
-        alt_origin = alt_data[0] if len(alt_data) > 0 else 0
-
-        # --- Convert lat/lon to meters relative to origin (WGS84 approx) ---
-        # 1 degree latitude ≈ 111,320 meters
-        # longitude scales by latitude
-
-        if len(lat_data) > 0:
-            lat_array = np.array(lat_data)
-            lon_array = np.array(lon_data)
-
-            # Latitude in meters
-            relative_lat = ((lat_array - lat_origin) * 111320.0).tolist()
-
-            # Longitude in meters (scaled by cosine of origin latitude)
-            relative_long = (
-                (lon_array - long_origin) * 111320.0 * np.cos(np.radians(lat_origin))
-            ).tolist()
-        else:
-            relative_lat = []
-            relative_long = []
-
-        # Altitude remains unchanged (already handled separately as feet)
-        relative_alt = (
-            (np.array(alt_data) - alt_origin).tolist() if len(alt_data) > 0 else []
-        )
         # --- ALIGNED MULTI-MODE SIGNALS (for heatmap modes) ---
 
         def safe_numeric(series):
@@ -1650,12 +1621,6 @@ def api_analyze_flight():
             "latitude": lat_data,
             "longitude": lon_data,
             "altitude": alt_data,
-            "lat_origin": lat_origin,
-            "long_origin": long_origin,
-            "alt_origin": alt_origin,
-            "relative_lat": relative_lat,
-            "relative_long": relative_long,
-            "relative_alt": relative_alt,
             "airspeed": airspeed_data,
             "groundspeed": groundspeed_data,
             "vertical_speed": vertical_speed,
