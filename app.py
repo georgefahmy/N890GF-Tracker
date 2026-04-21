@@ -1613,13 +1613,6 @@ def api_analyze_flight():
         heading_data = extract_attitude("Magnetic Heading (deg)")
         magnetic_variance = extract_attitude("Mag Var (deg)")
 
-        def interp(data):
-            idx = pd.date_range(start="2026-01-01", periods=len(data), freq="s")
-            df = pd.DataFrame(data, index=idx, columns=["value"])
-            new_df = df.resample("33.333ms").asfreq().interpolate(method="time")
-            return_list = pd.to_numeric(new_df["value"], errors="coerce").tolist()
-            return return_list
-
         plot_data = {
             "x": x_data,
             "left_traces": extract_traces(left_signal),
@@ -1635,6 +1628,7 @@ def api_analyze_flight():
             "pitch": pitch_data,
             "roll": roll_data,
             "heading": heading_data,
+            "mag_variance": magnetic_variance,
         }
 
         # --- Generate Summary Stats ---

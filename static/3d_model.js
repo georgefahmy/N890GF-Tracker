@@ -48,8 +48,24 @@ document.addEventListener('DOMContentLoaded', function() {
     window.updateAircraft3D = function(pitchDeg, rollDeg, headingDeg, lat, lon, altFt) {
         if (!viewer || !aircraftEntity) return;
 
+        // const altMeters = (altFt || 0) * 0.3048;
+        let groundHeight = 0;
+        const cartographic = Cesium.Cartographic.fromDegrees(lon, lat);
+
+        try {
+            const terrainHeights = Cesium.sampleTerrainMostDetailed(viewer.terrainProvider, [cartographic]);
+            groundHeight = terrainHeights[0].height || 0;
+        } catch (e) {
+            console.log(e)
+            groundHeight = 0;
+        }
+
+        // 2. Clamp Logic: Max of ground or (altMeters)
         const altMeters = (altFt || 0) * 0.3048;
-        const position = Cesium.Cartesian3.fromDegrees(lon, lat, altMeters-40);
+        const finalHeight = Math.max(groundHeight, altMeters-30);
+
+        const position = Cesium.Cartesian3.fromDegrees(lon, lat, finalHeight);
+        // const position = Cesium.Cartesian3.fromDegrees(lon, lat, altMeters-30);
 
         const hpr = new Cesium.HeadingPitchRoll(
             Cesium.Math.toRadians(headingDeg || 0),
