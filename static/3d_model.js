@@ -97,65 +97,112 @@ document.addEventListener('DOMContentLoaded', function() {
             model.position.set(0, 0, 0);
 
             // Simplify updateAircraft3D to only handle rotation
-            window.updateAircraft3D = function(pitchDeg, rollDeg, headingDeg) {
+            // Updated updateAircraft3D to handle both rotation and position
+            window.updateAircraft3D = function(pitchDeg, rollDeg, headingDeg, x, y, z) {
                 if (!window.aircraftModel) return;
 
                 const toRad = Math.PI / 180;
 
-                const pitch = -(pitchDeg || 0) * 1.5 * toRad;
+                const pitch = (pitchDeg || 0) * 1.5 * toRad;
                 const roll = (rollDeg || 0) * toRad;
-                const yaw = -(headingDeg || 0) * toRad;
+                const yaw = -(headingDeg +180|| 0) * toRad;
 
                 // Build quaternion using proper aviation rotation order: yaw → pitch → roll
                 const q = new THREE.Quaternion();
-
                 const qYaw = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), yaw);
-                const qPitch = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), pitch);
+                const qPitch = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(-1, 0, 0), pitch);
                 const qRoll = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), roll);
 
                 // Apply in correct order: yaw, then pitch, then roll
                 q.multiply(qYaw).multiply(qPitch).multiply(qRoll);
-
                 window.aircraftModel.quaternion.copy(q);
 
-                // Keep camera fixed in world space
-                // Only ensure it is looking at the model origin
+                // --- NEW POSITION LOGIC ---
+                // Default to 0 if coordinates aren't provided yet
+                const targetX = x || 0;
+
+                // Note: If altitude is in feet and X/Z are in meters, you may want to multiply Y by 0.3048
+                const targetY = y * 0.3048 || 0;
+                const targetZ = -z || 0;
+
+                const newPos = new THREE.Vector3(targetX, targetY, targetZ);
+                const oldPos = window.aircraftModel.position.clone();
+
+                // Calculate how much the aircraft moved this frame
+                const delta = new THREE.Vector3().subVectors(newPos, oldPos);
+
+                // Move the aircraft
+                window.aircraftModel.position.copy(newPos);
+
+                // Move the camera by the exact same amount so it follows the plane smoothly
+                camera.position.add(delta);
+
+                // --- IMPROVED "SLIDING" GRID LOGIC ---
+                if (window.gridHelper && window.gridDots) {
+                    const distThreshold = 5000; // Only reset grid position if we move 2km from its current center
+
+                    const dx = targetX - window.gridHelper.position.x;
+                    const dz = targetZ - window.gridHelper.position.z;
+
+                    // If the plane moves too far from the current grid center, jump the grid forward
+                    if (Math.abs(dx) > distThreshold || Math.abs(dz) > distThreshold) {
+                        const snapX = Math.round(targetX / 100) * 100;
+                        const snapZ = Math.round(targetZ / 100) * 100;
+
+                        window.gridHelper.position.set(snapX, -1, snapZ);
+                        window.gridDots.position.set(snapX, -1, snapZ);
+                    }
+                }
+
+                // Keep camera orbit controls centered on the aircraft
                 if (controls) {
-                    controls.target.set(0, 0, 0);
+                    controls.target.copy(newPos);
                     controls.update();
                 } else {
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(newPos);
                 }
             };
         }, undefined, function(error) {
             console.error('Model load error:', error);
             container.innerHTML = `<div class="text-danger small text-center p-2">Model Load Error</div>`;
         });
-        // --- INERTIAL FRAME MARKERS ---
 
         // World axes (larger and more visible)
         const axesHelper = new THREE.AxesHelper(50);
         scene.add(axesHelper);
 
         // Ground grid (acts as inertial reference plane)
-        const gridHelper = new THREE.GridHelper(200, 50);
-        gridHelper.position.set(0, -10, 0);
-        scene.add(gridHelper);
+        window.gridHelper = new THREE.GridHelper(50000, 200);
+        window.gridHelper.position.set(0, -1, 0);
+        scene.add(window.gridHelper);
 
-        // Optional horizon plane (subtle visual reference)
-        const planeGeometry = new THREE.PlaneGeometry(200000, 2000000);
-        const planeMaterial = new THREE.MeshBasicMaterial({
-            color: 0x444444,
-            side: THREE.DoubleSide,
-            transparent: true,
-            opacity: 0.15
-        });
+        // --- NEW CODE: Add red dots every 100 meters ---
+        const dotGeometry = new THREE.BufferGeometry();
+        const dotMaterial = new THREE.PointsMaterial({ size: 100, color: 0xff0000 });
+        const dotPositions = [];
 
-        const horizonPlane = new THREE.Mesh(planeGeometry, planeMaterial);
-        horizonPlane.rotation.x = -Math.PI / 2;
-        horizonPlane.position.y = 0;
-        scene.add(horizonPlane);
 
+        const gridExtent = 100000;
+        const step = 1000;
+        const halfExtent = gridExtent / 2;
+
+        // Loop through the X and Z axes at 100-unit intervals
+        for (let x = -halfExtent; x <= halfExtent; x += step) {
+            for (let z = -halfExtent; z <= halfExtent; z += step) {
+                // Push X, Y, Z coordinates into the array.
+                // Y is 0 here, but we will offset the whole Points object to match the grid below.
+                dotPositions.push(x, 0, z);
+            }
+        }
+
+        // Attach the coordinates to the geometry
+        dotGeometry.setAttribute('position', new THREE.Float32BufferAttribute(dotPositions, 3));
+
+        // Create the Points object and match the gridHelper's Y-offset
+        window.gridDots = new THREE.Points(dotGeometry, dotMaterial);
+        window.gridDots.position.set(0, -1, 0);
+        scene.add(window.gridDots);
+        // -----------------------------------------------
         function animate() {
             animationFrameId = requestAnimationFrame(animate);
             if (controls) controls.update();

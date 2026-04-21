@@ -567,16 +567,25 @@ function triggerAnalysis(plotId) {
                     (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
             }
 
-        // --- Drive 3D Model Rotation (placeholder) ---
+        // --- Drive 3D Model Rotation and Position ---
         if (window.updateAircraft3D && idx !== undefined) {
             const pitchVal = pitchArr[idx] || 0;
             const rollVal = rollArr[idx] || 0;
             const headingVal = headingArr[idx] || 0;
-            // Call the 3D module's update
+
+            // Grab position from global world arrays
+            const posX = window._worldX ? window._worldX[idx] : 0;
+            const posY = window._worldY ? window._worldY[idx] : 0;
+            const posZ = window._worldZ ? window._worldZ[idx] : 0;
+
+            // Call the 3D module's update with xyz coordinates
             window.updateAircraft3D(
                 pitchVal,
                 rollVal,
-                headingVal
+                headingVal,
+                posX,
+                posY,
+                posZ
             );
         }
 
@@ -1532,7 +1541,12 @@ function scrubMap(idx) {
         document.getElementById('attHeading').innerText = heading.toFixed(1) + ' °';
 
         if (window.updateAircraft3D) {
-            window.updateAircraft3D(pitch, roll, heading);
+            // Grab position from global world arrays
+            const posX = window._worldX ? window._worldX[idx] : 0;
+            const posY = window._worldY ? window._worldY[idx] : 0;
+            const posZ = window._worldZ ? window._worldZ[idx] : 0;
+
+            window.updateAircraft3D(pitch, roll, heading, posX, posY, posZ);
         }
     }
 
