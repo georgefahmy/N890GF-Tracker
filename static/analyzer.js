@@ -573,7 +573,7 @@ function triggerAnalysis(plotId) {
             const rollVal = rollArr[idx] || 0;
             const headingVal = headingArr[idx] || 0;
             const magVar = window.currentPlotData.mag_variance?.[idx] || -13;
-            const trueHeading = heading - magVar
+            const trueHeading = headingVal - magVar
 
             // Grab position from global world arrays
             const lat = window._mapLat ? window._mapLat[idx] : 0;
@@ -1634,14 +1634,15 @@ function setPlaybackSpeed(val) {
             if (d < -180) d += 360;
             return a + d * t;
         };
-
-        const currentHeading = lerpAngle(window._worldZ[playbackIndex], window._worldZ[playbackIndex + 1], t);
-        const currentPitch = lerp(window._worldX[playbackIndex], window._worldX[playbackIndex + 1], t);
-        const currentRoll = lerp(window._worldY[playbackIndex], window._worldY[playbackIndex + 1], t);
+        const magVar = window.currentPlotData.mag_variance?.[playbackIndex] || -13;
+        const currentHeading = lerpAngle(window.currentPlotData?.heading[playbackIndex], window.currentPlotData?.heading[playbackIndex + 1], t);
+        const trueHeading = currentHeading - magVar
+        const currentPitch = lerp(window.currentPlotData?.pitch[playbackIndex],window.currentPlotData?.pitch[playbackIndex + 1], t);
+        const currentRoll = lerp(window.currentPlotData?.roll[playbackIndex],window.currentPlotData?.roll[playbackIndex + 1], t);
 
         // 4. Send the SMOOTH data to the 3D model
         if (window.updateAircraft3D) {
-            window.updateAircraft3D(currentPitch, currentRoll, currentHeading, currentLat, currentLon, currentAlt);
+            window.updateAircraft3D(currentPitch, currentRoll, trueHeading, currentLat, currentLon, currentAlt);
         }
 
         // 5. Advance the clock
