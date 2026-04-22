@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 2. Clamp Logic: Max of ground or (altMeters)
         const altMeters = (altFt || 0) * 0.3048;
-        const finalHeight = Math.max(groundHeight, altMeters-40);
+        const finalHeight = Math.max(groundHeight, altMeters-35);
 
         const position = Cesium.Cartesian3.fromDegrees(lon, lat, finalHeight);
         // const position = Cesium.Cartesian3.fromDegrees(lon, lat, altMeters-30);
