@@ -18,8 +18,7 @@ let SIGNAL_BANDS = {
         },
         {
             "min": 200,
-            "color": "#ff0000",
-            "max": 230
+            "color": "#ff0000"
         }
     ],
     "True Airspeed (knots)": [
@@ -40,8 +39,7 @@ let SIGNAL_BANDS = {
         },
         {
             "min": 200,
-            "color": "#ff0000",
-            "max": 230
+            "color": "#ff0000"
         }
     ],
     "RPM": [
@@ -57,8 +55,7 @@ let SIGNAL_BANDS = {
         },
         {
             "min": 2700,
-            "color": "#ff0000",
-            "max": 2800
+            "color": "#ff0000"
         }
     ],
     "Manifold Pressure (inHg)": [
@@ -81,8 +78,7 @@ let SIGNAL_BANDS = {
         },
         {
             "min": 35,
-            "color": "#ffff00",
-            "max": 40
+            "color": "#ffff00"
         }
     ],
     "OIL PRESSURE (PSI)": [
@@ -108,8 +104,7 @@ let SIGNAL_BANDS = {
         },
         {
             "min": 115,
-            "color": "#ff0000",
-            "max": 130
+            "color": "#ff0000"
         }
     ],
     "OIL TEMPERATURE (deg F)": [
@@ -135,8 +130,7 @@ let SIGNAL_BANDS = {
         },
         {
             "min": 240,
-            "color": "#ff0000",
-            "max": 260
+            "color": "#ff0000"
         }
     ],
     "CHT": [
@@ -177,7 +171,6 @@ let SIGNAL_BANDS = {
         },
         {
             "min": 1650,
-            "max": 1800,
             "color": "#ff0000"
         }
     ],
@@ -226,8 +219,7 @@ let SIGNAL_BANDS = {
         },
         {
             "color": "#ff0000",
-            "min": 15,
-            "max": 18
+            "min": 15
         }
     ]
 };

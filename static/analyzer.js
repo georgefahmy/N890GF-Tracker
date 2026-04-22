@@ -51,7 +51,6 @@ function toggleXYTab() {
 }
 
 function generateBandShapes(signalName, yAxisRef) {
-    // Strip out unit attachments if your dropdowns append them (e.g., "CHT (deg F)" -> "CHT")
     const cleanSignal = signalName;
     const bands = SIGNAL_BANDS[cleanSignal];
 
@@ -59,17 +58,18 @@ function generateBandShapes(signalName, yAxisRef) {
 
     return bands.map(band => ({
         type: 'rect',
-        xref: 'paper',   // 'paper' spans the entire width of the plot window (0 to 1)
+        xref: 'paper',
         x0: 0,
         x1: 1,
-        yref: yAxisRef,  // 'y' for left axis, 'y2' for right axis
-        y0: band.min,
-        y1: band.max,
+        yref: yAxisRef,
+        // Default to extreme bounds if the user left the input blank
+        y0: band.min !== undefined && band.min !== null ? band.min : -999999,
+        y1: band.max !== undefined && band.max !== null ? band.max : 999999,
         fillcolor: band.color,
-        opacity: 0.15,   // Faded look so it doesn't overpower the traces
-        layer: 'below',  // Draw behind the traces
+        opacity: 0.15,
+        layer: 'below',
         line: { width: 0 },
-        name: 'band'     // We tag this to prevent accidental deletion later
+        name: 'band'
     }));
 }
 
@@ -546,9 +546,18 @@ function triggerAnalysis(plotId) {
         // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis
         const colorsLeft = ['#0d6efd', '#0dcaf0', '#198754', '#20c997'];
         const colorsRight = ['#dc3545', '#fd7e14', '#ffc107', '#d63384'];
-
+        // --- NEW: Track exact data limits to prevent shapes from squishing the chart ---
+        let leftMin = Infinity, leftMax = -Infinity;
+        let rightMin = Infinity, rightMax = -Infinity;
         // Map Left Traces
         data.plot_data.left_traces.forEach((traceData, idx) => {
+            traceData.y.forEach(v => {
+                const val = parseFloat(v);
+                if (!isNaN(val)) {
+                    if (val < leftMin) leftMin = val;
+                    if (val > leftMax) leftMax = val;
+                }
+            });
             traces.push({
                 x: data.plot_data.x, y: traceData.y, name: traceData.name,
                 type: 'scatter', mode: 'lines',
@@ -558,6 +567,13 @@ function triggerAnalysis(plotId) {
 
         // Map Right Traces
         data.plot_data.right_traces.forEach((traceData, idx) => {
+            traceData.y.forEach(v => {
+                const val = parseFloat(v);
+                if (!isNaN(val)) {
+                    if (val < rightMin) rightMin = val;
+                    if (val > rightMax) rightMax = val;
+                }
+            });
             traces.push({
                 x: data.plot_data.x, y: traceData.y, name: traceData.name,
                 type: 'scatter', mode: 'lines',
@@ -565,6 +581,17 @@ function triggerAnalysis(plotId) {
                 yaxis: 'y2'
             });
         });
+
+        // Helper to add a 5% margin to the bounds so the lines don't hug the edges
+        const padRange = (min, max) => {
+            if (min === Infinity || max === -Infinity) return [0, 100]; // Safe fallback
+            if (min === max) return [min - 10, max + 10]; // Flatline trace fallback
+            const diff = max - min;
+            return [min - (diff * 0.05), max + (diff * 0.05)];
+        };
+
+        const leftRange = padRange(leftMin, leftMax);
+        const rightRange = padRange(rightMin, rightMax);
 
         const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
         const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
@@ -598,6 +625,8 @@ function triggerAnalysis(plotId) {
                 gridcolor: '#f0f0f0',
                 // If split, top plot takes 55% to 100%. Otherwise, full height.
                 domain: isSplit ? [0.55, 1] : [0, 1],
+                range: leftRange,      // Assign strict data boundaries
+                autorange: false
             },
             yaxis2: {
                 title: data.plot_data.right_name,
@@ -609,7 +638,9 @@ function triggerAnalysis(plotId) {
                 overlaying: isSplit ? undefined : 'y',
                 side: isSplit ? 'left' : 'right',
                 gridcolor: isSplit ? '#f0f0f0' : 'transparent',
-                anchor: 'x' // Ensures it stays bound to the main time axis
+                anchor: 'x', // Ensures it stays bound to the main time axis
+                range: rightRange,     // Assign strict data boundaries
+                autorange: false
             },
             shapes: plotShapes,
             hovermode: 'x unified',
@@ -618,7 +649,7 @@ function triggerAnalysis(plotId) {
             template: 'plotly_dark'
         };
 
-        Plotly.newPlot(graphDiv, traces, layout, {responsive: true});
+        Plotly.newPlot(graphDiv, traces, layout, {responsive: true, doubleClick: 'reset'});
 
         if (window._crosshairX !== null && window._crosshairX !== undefined) {
             updateCrosshairs(window._crosshairX);
