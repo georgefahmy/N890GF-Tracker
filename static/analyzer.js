@@ -261,6 +261,10 @@ function addPlot() {
                 </div>
                 <div class="col-md-auto mt-2 mt-md-0 d-flex justify-content-end align-items-end flex-nowrap gap-2">
                     <div class="form-check form-switch mb-1 me-2">
+                        <input class="form-check-input" type="checkbox" id="showBands-${plotId}" checked onchange="triggerAnalysis(${plotId})">
+                        <label class="form-check-label small text-muted" for="showBands-${plotId}">Bands</label>
+                    </div>
+                    <div class="form-check form-switch mb-1 me-2">
                         <input class="form-check-input" type="checkbox" id="splitAxis-${plotId}" onchange="triggerAnalysis(${plotId})">
                         <label class="form-check-label small text-muted" for="splitAxis-${plotId}">Split</label>
                     </div>
@@ -563,12 +567,16 @@ function triggerAnalysis(plotId) {
         });
 
         const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
-        // 1. Generate shapes for whichever signals are currently selected
-        const leftShapes = generateBandShapes(leftSignal, 'y');
+        const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
 
-        // Note: Drawing bands for both axes simultaneously can get visually messy if they overlap.
-        // If you only want bands on the left axis, just leave rightShapes empty [].
-        const rightShapes = generateBandShapes(rightSignal, 'y2');
+        let plotShapes = [];
+
+        // Only generate and apply shapes if the toggle is checked
+        if (showBands) {
+            const leftShapes = generateBandShapes(leftSignal, 'y');
+            const rightShapes = generateBandShapes(rightSignal, 'y2');
+            plotShapes = [...leftShapes, ...rightShapes];
+        }
 
         const layout = {
             title: false,
@@ -603,7 +611,7 @@ function triggerAnalysis(plotId) {
                 gridcolor: isSplit ? '#f0f0f0' : 'transparent',
                 anchor: 'x' // Ensures it stays bound to the main time axis
             },
-            shapes: [...leftShapes, ...rightShapes], // Uncomment if using bands
+            shapes: plotShapes,
             hovermode: 'x unified',
             margin: { l: 60, r: 60, t: 20, b: 40 },
             legend: { orientation: "h", y: -0.15 },
