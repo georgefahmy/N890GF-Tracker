@@ -50,6 +50,29 @@ function toggleXYTab() {
     populateXYDropdowns();
 }
 
+function generateBandShapes(signalName, yAxisRef) {
+    // Strip out unit attachments if your dropdowns append them (e.g., "CHT (deg F)" -> "CHT")
+    const cleanSignal = signalName;
+    const bands = SIGNAL_BANDS[cleanSignal];
+
+    if (!bands) return [];
+
+    return bands.map(band => ({
+        type: 'rect',
+        xref: 'paper',   // 'paper' spans the entire width of the plot window (0 to 1)
+        x0: 0,
+        x1: 1,
+        yref: yAxisRef,  // 'y' for left axis, 'y2' for right axis
+        y0: band.min,
+        y1: band.max,
+        fillcolor: band.color,
+        opacity: 0.15,   // Faded look so it doesn't overpower the traces
+        layer: 'below',  // Draw behind the traces
+        line: { width: 0 },
+        name: 'band'     // We tag this to prevent accidental deletion later
+    }));
+}
+
 function populateXYDropdowns() {
     const xSelect = document.getElementById('xyXSelect');
     const ySelect = document.getElementById('xyYSelect');
@@ -236,12 +259,15 @@ function addPlot() {
                     <label class="form-label text-danger fw-bold mb-1 small">Right Axis Signal</label>
                     <select class="form-select border-danger right-signal-select" data-plot-id="${plotId}"></select>
                 </div>
-                <div class="col-md-auto mt-2 mt-md-0 d-flex justify-content-end flex-nowrap gap-1">
-                    <label class="form-label text-primary fw-bold mb-1 small"> </label>
-                    <button class="btn btn-outline-secondary btn-sm text-nowrap" id="filter-btn-${plotId}" onclick="togglePlotFilters(${plotId})">
+                <div class="col-md-auto mt-2 mt-md-0 d-flex justify-content-end align-items-end flex-nowrap gap-2">
+                    <div class="form-check form-switch mb-1 me-2">
+                        <input class="form-check-input" type="checkbox" id="splitAxis-${plotId}" onchange="triggerAnalysis(${plotId})">
+                        <label class="form-check-label small text-muted" for="splitAxis-${plotId}">Split</label>
+                    </div>
+                    <button class="btn btn-outline-secondary btn-sm text-nowrap mb-1" id="filter-btn-${plotId}" onclick="togglePlotFilters(${plotId})">
                         Show Filters
                     </button>
-                    ${plotId > 0 ? `<button class="btn btn-outline-secondary btn-sm text-nowrap" onclick="removePlot(${plotId})">
+                    ${plotId > 0 ? `<button class="btn btn-outline-secondary btn-sm text-nowrap mb-1" onclick="removePlot(${plotId})">
                         ✖
                     </button>` : ''}
                 </div>
@@ -406,49 +432,71 @@ function populateDropdownsForPlot(plotId) {
     }
 }
 
-// --- GLOBAL CROSSHAIR SYNC ---
-function updateCrosshairs(xVal) {
-    window._crosshairX = xVal;
+// // --- GLOBAL CROSSHAIR SYNC ---
+// function updateCrosshairs(xVal, sourceDivId) {
+//     window._crosshairX = xVal;
 
+//     const plots = document.querySelectorAll('[id^="flightGraph-"]');
+
+//     plots.forEach(div => {
+//         if (!div || !div.layout) return;
+
+//         // SKIP the plot we are currently hovering on
+//         if (sourceDivId && div.id === sourceDivId) return;
+
+//         // Preserve your colored signal bands (if you added them), but remove the old crosshair
+//         const existingBands = div.layout.shapes ? div.layout.shapes.filter(s => s.name === 'band') : [];
+
+//         const layoutUpdate = {
+//             shapes: [
+//                 ...existingBands,
+//                 {
+//                     type: 'line',
+//                     x0: xVal,
+//                     x1: xVal,
+//                     y0: 0,
+//                     y1: 1,
+//                     xref: 'x',
+//                     yref: 'paper',
+//                     line: {
+//                         color: 'rgba(0,0,0,0.35)',
+//                         width: 1,
+//                         dash: 'dot'
+//                     },
+//                     name: 'crosshair'
+//                 }
+//             ]
+//         };
+
+//         Plotly.relayout(div, layoutUpdate);
+//     });
+// }
+
+// --- GLOBAL TOOLTIP & CROSSHAIR SYNC ---
+function syncTooltips(xVal, sourceDivId) {
     const plots = document.querySelectorAll('[id^="flightGraph-"]');
 
     plots.forEach(div => {
-        if (!div) return;
+        // Skip the plot we are currently hovering on, and any hidden/empty plots
+        if (!div || !div.data || div.id === sourceDivId) return;
 
-        const layoutUpdate = {
-            shapes: [
-                {
-                    type: 'line',
-                    x0: xVal,
-                    x1: xVal,
-                    y0: 0,
-                    y1: 1,
-                    xref: 'x',
-                    yref: 'paper',
-                    line: {
-                        color: 'rgba(0,0,0,0.35)',
-                        width: 1,
-                        dash: 'dot'
-                    }
-                }
-            ]
-        };
-
-        Plotly.relayout(div, layoutUpdate);
+        try {
+            // Explicitly target both top (xy) and bottom (xy2) subplots
+            Plotly.Fx.hover(div, { xval: xVal }, ['xy', 'xy2']);
+        } catch (e) {
+            console.error("Hover sync failed on", div.id, e);
+        }
     });
 }
 
-// --- GLOBAL TOOLTIP SYNC (CROSS-PLOT HOVER) ---
-function updateTooltips(xVal) {
+function clearTooltips(sourceDivId) {
     const plots = document.querySelectorAll('[id^="flightGraph-"]');
 
     plots.forEach(div => {
-        try {
-            if (!div || !div.data) return;
+        if (!div || !div.data || div.id === sourceDivId) return;
 
-            Plotly.Fx.hover(div, {
-                xval: xVal
-            }, ['xy']);
+        try {
+            Plotly.Fx.unhover(div);
         } catch (e) {
             // ignore
         }
@@ -514,30 +562,53 @@ function triggerAnalysis(plotId) {
             });
         });
 
+        const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
+        // 1. Generate shapes for whichever signals are currently selected
+        const leftShapes = generateBandShapes(leftSignal, 'y');
+
+        // Note: Drawing bands for both axes simultaneously can get visually messy if they overlap.
+        // If you only want bands on the left axis, just leave rightShapes empty [].
+        const rightShapes = generateBandShapes(rightSignal, 'y2');
+
         const layout = {
             title: false,
-            xaxis: { title: 'Session Time (seconds)', gridcolor: '#f0f0f0' },
+            xaxis: {
+                title: 'Session Time (seconds)',
+                gridcolor: '#f0f0f0',
+                // Add native spikelines to ensure the vertical line ALWAYS draws
+                showspikes: true,
+                spikemode: 'across',
+                spikedash: 'dot',
+                spikethickness: 1,
+                spikecolor: '#888',
+                anchor: isSplit ? 'free' : 'y',
+                position: 0
+            },
             yaxis: {
                 title: data.plot_data.left_name,
                 titlefont: { color: '#0d6efd' }, tickfont: { color: '#0d6efd' },
-                gridcolor: '#f0f0f0'
+                gridcolor: '#f0f0f0',
+                // If split, top plot takes 55% to 100%. Otherwise, full height.
+                domain: isSplit ? [0.55, 1] : [0, 1],
             },
             yaxis2: {
                 title: data.plot_data.right_name,
                 titlefont: { color: '#dc3545' }, tickfont: { color: '#dc3545' },
-                overlaying: 'y', side: 'right',
-                gridcolor: 'transparent'
+
+                // If split: bottom plot takes 0% to 45%. Side is left, no overlaying.
+                // If combined: overlapping 'y', side is right.
+                domain: isSplit ? [0, 0.45] : [0, 1],
+                overlaying: isSplit ? undefined : 'y',
+                side: isSplit ? 'left' : 'right',
+                gridcolor: isSplit ? '#f0f0f0' : 'transparent',
+                anchor: 'x' // Ensures it stays bound to the main time axis
             },
+            shapes: [...leftShapes, ...rightShapes], // Uncomment if using bands
             hovermode: 'x unified',
             margin: { l: 60, r: 60, t: 20, b: 40 },
             legend: { orientation: "h", y: -0.15 },
             template: 'plotly_dark'
         };
-
-        // const isTemp = (sig) => /CHT|EGT|Temp|OAT/i.test(sig);
-        // if (isTemp(leftSignal) && isTemp(rightSignal)) {
-        //     layout.yaxis2.matches = 'y';
-        // }
 
         Plotly.newPlot(graphDiv, traces, layout, {responsive: true});
 
@@ -546,11 +617,14 @@ function triggerAnalysis(plotId) {
         }
 
         graphDiv.on('plotly_hover', function(eventdata) {
-            if (!eventdata.points || eventdata.points.length === 0) return;
+            // CRITICAL FIX: If this event was triggered by our code (no mouse event), ignore it.
+            // This prevents the infinite loop that breaks the tooltips.
+            if (!eventdata || !eventdata.event) return;
 
+            if (!eventdata.points || eventdata.points.length === 0) return;
             const pt = eventdata.points[0];
-            // --- Sync Aircraft Attitude to Cursor ---
             const idx = pt.pointIndex;
+            const xVal = pt.x;
 
             const pitchArr = window.currentPlotData?.pitch || [];
             const rollArr = window.currentPlotData?.roll || [];
@@ -567,81 +641,60 @@ function triggerAnalysis(plotId) {
                     (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
             }
 
-        // --- Drive 3D Model Rotation and Position ---
-        if (window.updateAircraft3D && idx !== undefined) {
-            const pitchVal = pitchArr[idx] || 0;
-            const rollVal = rollArr[idx] || 0;
-            const headingVal = headingArr[idx] || 0;
-            const magVar = window.currentPlotData.mag_variance?.[idx] || -13;
-            const trueHeading = headingVal - magVar
+            // --- Drive 3D Model Rotation and Position ---
+            if (window.updateAircraft3D && idx !== undefined) {
+                const pitchVal = pitchArr[idx] || 0;
+                const rollVal = rollArr[idx] || 0;
+                const headingVal = headingArr[idx] || 0;
+                const magVar = window.currentPlotData.mag_variance?.[idx] || -13;
+                const trueHeading = headingVal - magVar;
 
-            // Grab position from global world arrays
-            const lat = window._mapLat ? window._mapLat[idx] : 0;
-            const lon = window._mapLon ? window._mapLon[idx] : 0;
-            const alt = window._mapAlt ? window._mapAlt[idx] : 0;
+                const lat = window._mapLat ? window._mapLat[idx] : 0;
+                const lon = window._mapLon ? window._mapLon[idx] : 0;
+                const alt = window._mapAlt ? window._mapAlt[idx] : 0;
 
-            // Call the 3D module's update with GPS coordinates
-            window.updateAircraft3D(
-                pitchVal,
-                rollVal,
-                trueHeading,
-                lat,
-                lon,
-                alt
-            );
-        }
+                window.updateAircraft3D(pitchVal, rollVal, trueHeading, lat, lon, alt);
+            }
 
-            // DIRECT INDEX MATCH (this is the fix)
+            // DIRECT INDEX MATCH
             if (pt.pointIndex !== undefined && window._mapLat && window._mapLon) {
-                const idx = pt.pointIndex;
-
-                const lat = window._mapLat[idx];
-                const lon = window._mapLon[idx];
+                const mapLat = window._mapLat[idx];
+                const mapLon = window._mapLon[idx];
 
                 const mapDiv = document.getElementById('mapGraph');
-                if (!mapDiv) return;
+                if (mapDiv) {
+                    let aircraftIndex = window._mapMarkerTraceIndex || 0;
+                    try {
+                        Plotly.restyle('mapGraph', {
+                            lat: [[mapLat]],
+                            lon: [[mapLon]]
+                        }, [aircraftIndex]);
+                    } catch (e) {
+                        console.error("Direct marker move failed:", e);
+                    }
 
-                let aircraftIndex = window._mapMarkerTraceIndex || 0;
-
-                try {
-                    Plotly.restyle('mapGraph', {
-                        lat: [[lat]],
-                        lon: [[lon]]
-                    }, [aircraftIndex]);
-                } catch (e) {
-                    console.error("Direct marker move failed:", e);
+                    if (followAircraft) {
+                        Plotly.relayout('mapGraph', {
+                            'mapbox.center.lat': mapLat,
+                            'mapbox.center.lon': mapLon
+                        });
+                    }
                 }
-
-                // update3DPosition(idx);
-                // Follow mode
-                if (followAircraft) {
-                    Plotly.relayout('mapGraph', {
-                        'mapbox.center.lat': lat,
-                        'mapbox.center.lon': lon
-                    });
-                }
-                return;
             }
 
-            // Fallback (time-based)
-            const xVal = pt.x;
-
+            // Sync other plots using the new clean logic
             if (xVal !== undefined) {
                 const t = parseFloat(xVal);
-
-                if (!window._crosshairLock) {
-                    window._crosshairLock = true;
-
-                    updateCrosshairs(t);
-                    updateTooltips(t);
-
-                    window._crosshairLock = false;
-                }
-
+                syncTooltips(xVal);
                 syncAircraftToTime(t);
-
-                updateTooltips(t);
             }
+        });
+
+        graphDiv.on('plotly_unhover', function(eventdata) {
+            // CRITICAL FIX: Ignore programmatic unhovers
+            if (eventdata && !eventdata.event) return;
+
+            clearTooltips(graphDiv.id);
         });
 
         // 2. Sync Relayout (Zoom / Pan)
