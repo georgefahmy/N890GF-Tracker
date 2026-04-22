@@ -572,6 +572,8 @@ function triggerAnalysis(plotId) {
             const pitchVal = pitchArr[idx] || 0;
             const rollVal = rollArr[idx] || 0;
             const headingVal = headingArr[idx] || 0;
+            const magVar = window.currentPlotData.mag_variance?.[idx] || -13;
+            const trueHeading = heading - magVar
 
             // Grab position from global world arrays
             const lat = window._mapLat ? window._mapLat[idx] : 0;
@@ -582,7 +584,7 @@ function triggerAnalysis(plotId) {
             window.updateAircraft3D(
                 pitchVal,
                 rollVal,
-                headingVal,
+                trueHeading,
                 lat,
                 lon,
                 alt
