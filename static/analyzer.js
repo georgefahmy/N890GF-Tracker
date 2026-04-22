@@ -19,6 +19,7 @@ let mapColorMode = 'altitude';
 let playbackTimer = null;
 let playbackIndex = 0;
 let playbackSpeed = 1;
+let isScrubbing = false; // <--- ADD THIS LINE
 
 // --- 3D WORLD DATA ---
 window._worldX = [];
@@ -124,6 +125,16 @@ function populateXYDropdowns() {
 
 // 1. Initialize: Fetch saved flights on page load
 document.addEventListener('DOMContentLoaded', function() {
+    // --- ADD THIS BLOCK ---
+    const scrubber = document.getElementById('mapScrubber');
+    if (scrubber) {
+        scrubber.addEventListener('mousedown', () => isScrubbing = true);
+        scrubber.addEventListener('touchstart', () => { isScrubbing = true; }, {passive: true});
+        scrubber.addEventListener('mouseup', () => isScrubbing = false);
+        scrubber.addEventListener('touchend', () => isScrubbing = false);
+        scrubber.addEventListener('change', () => isScrubbing = false); // Failsafe if dropped outside
+    }
+    //
     fetch('/api/saved_flights')
         .then(res => res.json())
         .then(data => {
@@ -1819,6 +1830,9 @@ function syncAircraftToTime(t) {
 function scrubMap(idx) {
     idx = parseInt(idx);
 
+    playbackIndex = idx;
+    interpolationTick = 0;
+
     if (!window._mapLat || !window._mapLon) return;
 
     const lat = window._mapLat[idx];
@@ -1873,36 +1887,16 @@ function togglePlayback() {
         clearInterval(playbackTimer);
         playbackTimer = null;
         if (btn) btn.innerText = '▶ Play';
-        setPlaybackSpeed(playbackSpeed);
     } else {
         if (btn) btn.innerText = '⏸ Pause';
         const scrubber = document.getElementById('mapScrubber');
         playbackIndex = parseInt(scrubber.value) || 0;
 
-        // 1000ms = 1 second, matching your 1Hz data rate
-        const baseInterval = 1000;
+        // Temporarily set this so the speed function knows it is allowed to start
+        playbackTimer = true;
 
-        playbackTimer = setInterval(() => {
-            if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
-                clearInterval(playbackTimer);
-                playbackTimer = null;
-                if (btn) btn.innerText = '▶ Play';
-                return;
-            }
-
-            // In real-time 1Hz, we move forward exactly 1 index per second
-            // Multiplied by playbackSpeed (e.g., 2x speed moves 2 indices per second)
-            playbackIndex += 1;
-
-            if (playbackIndex >= window._mapLat.length) {
-                playbackIndex = window._mapLat.length - 1;
-            }
-
-            if (scrubber) scrubber.value = playbackIndex;
-            setPlaybackSpeed(playbackSpeed);
-            scrubMap(playbackIndex);
-
-        }, baseInterval / playbackSpeed); // Adjusted by speed (1000ms at 1x, 500ms at 2x)
+        // Start the loop!
+        setPlaybackSpeed(playbackSpeed);
     }
 }
 
@@ -1912,40 +1906,56 @@ const FPS = 30;
 
 function setPlaybackSpeed(val) {
     playbackSpeed = parseInt(val);
+
+    // Only run if we are actively playing
     if (!playbackTimer) return;
 
-    clearInterval(playbackTimer);
+    // Clear existing timer if one is already running
+    if (playbackTimer !== true) {
+        clearInterval(playbackTimer);
+    }
 
-    // Run the timer at 30 Frames Per Second
+    // ALWAYS run the timer at a safe ~33ms (30 Frames Per Second)
+    const baseInterval = 1000 / FPS;
+
     playbackTimer = setInterval(() => {
         if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
             clearInterval(playbackTimer);
+            playbackTimer = null;
+            const btn = document.getElementById('playPauseBtn');
+            if (btn) btn.innerText = '▶ Play';
             return;
         }
 
+        // Pause the clock if the user is dragging the slider
+        if (isScrubbing) return;
+
         // 1. Calculate how far we are between the current second and the next
-        // interpolationTick goes from 0 to FPS (30)
         let t = interpolationTick / FPS;
 
         // 2. Linear Interpolation (lerp) function
         const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
+        // Safely determine the next index to prevent array out-of-bounds errors
+        const nextIdx = Math.min(playbackIndex + 1, window._mapLat.length - 1);
+
         // 3. Interpolate all values
-        const currentLat = lerp(window._mapLat[playbackIndex], window._mapLat[playbackIndex + 1], t);
-        const currentLon = lerp(window._mapLon[playbackIndex], window._mapLon[playbackIndex + 1], t);
-        const currentAlt = lerp(window._mapAlt[playbackIndex], window._mapAlt[playbackIndex + 1], t);
-        // Use a circular lerp for heading to avoid the 359 -> 0 degree "flip" jitter
+        const currentLat = lerp(window._mapLat[playbackIndex], window._mapLat[nextIdx], t);
+        const currentLon = lerp(window._mapLon[playbackIndex], window._mapLon[nextIdx], t);
+        const currentAlt = lerp(window._mapAlt[playbackIndex], window._mapAlt[nextIdx], t);
+
         const lerpAngle = (a, b, t) => {
             let d = b - a;
             if (d > 180) d -= 360;
             if (d < -180) d += 360;
             return a + d * t;
         };
-        const magVar = window.currentPlotData.mag_variance?.[playbackIndex] || -13;
-        const currentHeading = lerpAngle(window.currentPlotData?.heading[playbackIndex], window.currentPlotData?.heading[playbackIndex + 1], t);
-        const trueHeading = currentHeading - magVar
-        const currentPitch = lerp(window.currentPlotData?.pitch[playbackIndex],window.currentPlotData?.pitch[playbackIndex + 1], t);
-        const currentRoll = lerp(window.currentPlotData?.roll[playbackIndex],window.currentPlotData?.roll[playbackIndex + 1], t);
+
+        const magVar = window.currentPlotData?.mag_variance?.[playbackIndex] || -13;
+        const currentHeading = lerpAngle(window.currentPlotData?.heading[playbackIndex], window.currentPlotData?.heading[nextIdx], t);
+        const trueHeading = currentHeading - magVar;
+        const currentPitch = lerp(window.currentPlotData?.pitch[playbackIndex], window.currentPlotData?.pitch[nextIdx], t);
+        const currentRoll = lerp(window.currentPlotData?.roll[playbackIndex], window.currentPlotData?.roll[nextIdx], t);
 
         // 4. Send the SMOOTH data to the 3D model
         if (window.updateAircraft3D) {
@@ -1955,20 +1965,45 @@ function setPlaybackSpeed(val) {
         document.getElementById('attRoll').innerText = currentRoll.toFixed(1) + ' °';
         document.getElementById('attHeading').innerText = currentHeading.toFixed(1) + ' °';
 
-        // 5. Advance the clock
-        interpolationTick++;
-        if (interpolationTick >= FPS) {
-            interpolationTick = 0;
-            playbackIndex++; // Move to the next second of log data
+        // 4.5 Smoothly update the 2D Map Marker
+        const mapDiv = document.getElementById('mapGraph');
+        if (mapDiv) {
+            let aircraftIndex = window._mapMarkerTraceIndex || 0;
+            try {
+                Plotly.restyle('mapGraph', {
+                    lat: [[currentLat]],
+                    lon: [[currentLon]]
+                }, [aircraftIndex]);
+            } catch (e) {}
 
-            // Sync the scrubber UI only once per second to save performance
+            // Throttle map camera panning to prevent browser lag (updates every ~5th frame)
+            if (followAircraft && Math.floor(interpolationTick) % 6 === 0) {
+                Plotly.relayout('mapGraph', {
+                    'mapbox.center.lat': currentLat,
+                    'mapbox.center.lon': currentLon
+                });
+            }
+        }
+
+        // 5. Advance the clock by the playback speed multiplier!
+        interpolationTick += playbackSpeed;
+
+        // If we have accrued enough ticks to move forward one (or more) full seconds
+        if (interpolationTick >= FPS) {
+            const secondsToAdvance = Math.floor(interpolationTick / FPS);
+            playbackIndex += secondsToAdvance;
+
+            // Keep the remainder for smooth interpolation on the next frame
+            interpolationTick = interpolationTick % FPS;
+
+            // Sync the scrubber UI
             const scrubber = document.getElementById('mapScrubber');
             if (scrubber) scrubber.value = playbackIndex;
         }
-        // scrubMap(playbackIndex);
 
-    }, 1000 / (FPS * playbackSpeed));
+    }, baseInterval);
 }
+
 function toggleXYFilters() {
     const section = document.getElementById('xy-filter-section');
     if (!section) return;
