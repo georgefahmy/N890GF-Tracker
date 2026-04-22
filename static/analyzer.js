@@ -1567,6 +1567,7 @@ function togglePlayback() {
         clearInterval(playbackTimer);
         playbackTimer = null;
         if (btn) btn.innerText = '▶ Play';
+        setPlaybackSpeed(playbackSpeed);
     } else {
         if (btn) btn.innerText = '⏸ Pause';
         const scrubber = document.getElementById('mapScrubber');
@@ -1593,6 +1594,7 @@ function togglePlayback() {
 
             if (scrubber) scrubber.value = playbackIndex;
             scrubMap(playbackIndex);
+            setPlaybackSpeed(playbackSpeed);
 
         }, baseInterval / playbackSpeed); // Adjusted by speed (1000ms at 1x, 500ms at 2x)
     }
