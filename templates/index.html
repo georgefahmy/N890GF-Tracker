@@ -54,6 +54,16 @@
             background: #6f42c1;
             color: white;
         }
+        .flight-analyzer-btn {
+            background:  #0a9ad3;
+            color: white;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .flight-analyzer-btn:hover {
+            background: #087ead;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -83,7 +93,7 @@
             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#mxModal">Add Maintenance</button>
             <div class="d-flex gap-2">
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fuelModal">Fuel Tracker</button>
-                <a href="/analyzer" class="btn btn-outline-primary">Flight Analyzer</a>
+                <a href="/analyzer" class="btn flight-analyzer-btn">Flight Analyzer</a>
                 <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#pricesResultModal">
                     Check Fuel Prices
                 </button>
