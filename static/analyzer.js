@@ -957,6 +957,220 @@ function renderXYFilters() {
     });
 }
 
+// --- SIGNAL BANDS EDITOR LOGIC ---
+let editingBands = {};
+let currentBandSignal = "";
+
+function populateAvailableSignalsDropdown() {
+    const select = document.getElementById('newBandSignalSelect');
+    if (!select) return;
+
+    select.innerHTML = '';
+
+    if (!masterSignalsList || masterSignalsList.length === 0) {
+        select.options.add(new Option("Load a flight first", ""));
+        select.disabled = true;
+        return;
+    }
+
+    select.disabled = false;
+
+    // Sort them alphabetically to make them easier to find
+    const sortedSignals = [...masterSignalsList].sort();
+    sortedSignals.forEach(sig => {
+        select.options.add(new Option(sig, sig));
+    });
+}
+
+// Helper to convert named colors (like "red") to hex so the HTML color picker works
+function normalizeColor(c) {
+    const map = { "white": "#ffffff", "yellow": "#ffff00", "green": "#00ff00", "red": "#ff0000" };
+    return map[c?.toLowerCase()] || c || "#ffffff";
+}
+
+function openSignalBandsModal() {
+    // 1. Create a deep working copy of the live bands
+    editingBands = JSON.parse(JSON.stringify(SIGNAL_BANDS));
+
+    // Normalize colors for the UI
+    for (let sig in editingBands) {
+        editingBands[sig].forEach(b => {
+            if (b.color) b.color = normalizeColor(b.color);
+        });
+    }
+
+    populateBandSignalSelect();
+    populateAvailableSignalsDropdown(); // <--- ADD THIS LINE
+
+    const el = document.getElementById('signalBandsModal');
+    const modal = new bootstrap.Modal(el);
+    modal.show();
+}
+
+function populateBandSignalSelect() {
+    const select = document.getElementById('bandSignalSelect');
+    select.innerHTML = '';
+    const signals = Object.keys(editingBands).sort();
+
+    signals.forEach(sig => {
+        select.options.add(new Option(sig, sig));
+    });
+
+    if (signals.length > 0) {
+        // Default to the current selection or the first one available
+        if (!signals.includes(currentBandSignal)) {
+            currentBandSignal = signals[0];
+        }
+        select.value = currentBandSignal;
+        renderBands();
+    } else {
+        currentBandSignal = "";
+        document.getElementById('bandRowsContainer').innerHTML = '<div class="text-muted small p-2">No signals found. Add one above.</div>';
+        document.getElementById('currentSignalLabel').innerText = "None Selected";
+    }
+}
+
+function switchBandSignal() {
+    currentBandSignal = document.getElementById('bandSignalSelect').value;
+    renderBands();
+}
+
+function addNewBandSignal() {
+    const select = document.getElementById('newBandSignalSelect');
+    const newSig = select.value;
+
+    if (!newSig) return;
+
+    // Create an empty array for the new signal if it doesn't exist
+    if (!editingBands[newSig]) {
+        editingBands[newSig] = [];
+    }
+
+    currentBandSignal = newSig;
+    populateBandSignalSelect();
+}
+
+function renderBands() {
+    const container = document.getElementById('bandRowsContainer');
+    document.getElementById('currentSignalLabel').innerText = currentBandSignal;
+
+    const bands = editingBands[currentBandSignal] || [];
+    container.innerHTML = '';
+
+    if (bands.length === 0) {
+        container.innerHTML = '<div class="text-muted small text-center my-3">No bands configured for this signal yet.</div>';
+        return;
+    }
+
+    // Inject a row for every configured band
+    bands.forEach((b, idx) => {
+        const row = document.createElement('div');
+        row.className = "row g-2 mb-2 pb-2 border-bottom border-secondary align-items-end";
+        row.innerHTML = `
+            <div class="col-3">
+                <label class="small text-muted mb-1">Min (Leave blank for -∞</label>
+                <input type="number" step="any" class="form-control form-control-sm bg-dark text-light border-secondary"
+                       value="${b.min !== undefined ? b.min : ''}"
+                       onchange="updateBandData(${idx}, 'min', this.value)">
+            </div>
+            <div class="col-3">
+                <label class="small text-muted mb-1">Max (Leave blank for +∞</label>
+                <input type="number" step="any" class="form-control form-control-sm bg-dark text-light border-secondary"
+                       value="${b.max !== undefined ? b.max : ''}"
+                       onchange="updateBandData(${idx}, 'max', this.value)">
+            </div>
+            <div class="col-4">
+                <label class="small text-muted mb-1">Band Color</label>
+                <div class="d-flex gap-1">
+                    <!-- Visual Color Picker -->
+                    <input type="color" class="form-control form-control-sm form-control-color bg-dark border-secondary p-0"
+                           style="width: 35px;" value="${b.color || '#ffffff'}"
+                           onchange="updateBandData(${idx}, 'color', this.value); this.nextElementSibling.value = this.value;">
+                    <!-- Hex Text Input (Synced) -->
+                    <input type="text" class="form-control form-control-sm bg-dark text-light border-secondary font-monospace"
+                           value="${b.color || '#ffffff'}"
+                           onchange="updateBandData(${idx}, 'color', this.value); this.previousElementSibling.value = this.value;">
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-sm btn-outline-danger w-100" onclick="removeBandRow(${idx})">Remove</button>
+            </div>
+        `;
+        container.appendChild(row);
+    });
+}
+
+// Live update the working JSON object when an input changes
+function updateBandData(idx, field, value) {
+    if (!editingBands[currentBandSignal]) return;
+
+    if (field === 'min' || field === 'max') {
+        if (value === "") {
+            // If the user clears the box, delete the limit entirely
+            delete editingBands[currentBandSignal][idx][field];
+        } else {
+            editingBands[currentBandSignal][idx][field] = parseFloat(value);
+        }
+    } else {
+        editingBands[currentBandSignal][idx][field] = value;
+    }
+}
+
+function addBandRow() {
+    if (!currentBandSignal) return;
+    if (!editingBands[currentBandSignal]) editingBands[currentBandSignal] = [];
+
+    // Add a default green band
+    editingBands[currentBandSignal].push({ color: '#00ff00' });
+    renderBands();
+}
+
+function removeBandRow(idx) {
+    if (!editingBands[currentBandSignal]) return;
+    editingBands[currentBandSignal].splice(idx, 1);
+    renderBands();
+}
+
+function saveSignalBands() {
+    const errorDiv = document.getElementById('signalBandsError');
+    errorDiv.classList.add('d-none');
+
+    // Filter out completely empty signals from the final save
+    const cleanedBands = {};
+    for (let sig in editingBands) {
+        if (editingBands[sig].length > 0) {
+            cleanedBands[sig] = editingBands[sig];
+        }
+    }
+
+    // 1. Update the live graph variables
+    SIGNAL_BANDS = cleanedBands;
+    updateAllPlots();
+
+    // 2. Transmit to Python backend to overwrite signal_bands.js
+    fetch('/api/save_signal_bands', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(SIGNAL_BANDS)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            alert("Error saving file to server: " + data.error);
+        } else {
+            const el = document.getElementById('signalBandsModal');
+            const modal = bootstrap.Modal.getInstance(el);
+            if (modal) modal.hide();
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Network error while trying to save bands.");
+    });
+}
+
 function openAirspeedCalModal() {
     const el = document.getElementById('airspeedCalModal');
     if (!el) return;

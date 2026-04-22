@@ -93,14 +93,15 @@
                 <h5 class="text-secondary d-none mb-0" id="plotHeader">Flight Graphs</h5>
 
                 <div class="d-flex gap-2 flex-wrap align-items-center">
+                    <button class="btn btn-outline-info btn-sm" onclick="openSignalBandsModal()">
+                        Edit Signal Bands
+                    </button>
                     <button class="btn btn-outline-secondary btn-sm" onclick="toggleXYTab()">
                         Show XY Plot
                     </button>
-
                     <button class="btn btn-outline-primary btn-sm" onclick="window.location.href='/gami'">
                         GAMI Spread
                     </button>
-
                     <button class="btn btn-outline-secondary btn-sm" onclick="openAirspeedCalModal()">
                         Airspeed Calibration
                     </button>
@@ -314,6 +315,57 @@
 
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SIGNAL BANDS MODAL -->
+<div class="modal fade" id="signalBandsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Signal Bands Configuration</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body bg-light">
+
+        <!-- Top Toolbar: Select or Add Signal -->
+        <div class="row g-2 mb-3 align-items-center">
+            <div class="col-md-5">
+                <label class="small text-muted mb-1 fw-bold">Select Existing Signal</label>
+                <select id="bandSignalSelect" class="form-select form-select-sm border-secondary" onchange="switchBandSignal()"></select>
+            </div>
+            <div class="col-md-2 text-center mt-4"><strong>OR</strong></div>
+            <div class="col-md-5">
+                <label class="small text-muted mb-1 fw-bold">Add Signal</label>
+                <div class="d-flex gap-2">
+                    <select id="newBandSignalSelect" class="form-select form-select-sm border-secondary"></select>
+                    <button class="btn btn-sm btn-outline-success text-nowrap" onclick="addNewBandSignal()">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bands Editor Container -->
+        <div class="card text-light border-secondary shadow-sm">
+            <div class="card-header border-secondary d-flex justify-content-between align-items-center p-2">
+                <h6 class="mb-0 mx-2 text-info" id="currentSignalLabel">Select a signal</h6>
+                <button class="btn btn-sm btn-primary fw-bold" onclick="addBandRow()">+ Add Band</button>
+            </div>
+            <div class="card-body p-2" id="bandRowsContainer">
+                <!-- Dynamic band rows will be injected here via JS -->
+            </div>
+        </div>
+
+        <div id="signalBandsError" class="text-danger small mt-2 d-none fw-bold"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="saveSignalBands()">Save & Apply</button>
       </div>
 
     </div>

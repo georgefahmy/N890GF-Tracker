@@ -1692,6 +1692,28 @@ def api_analyze_flight():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/save_signal_bands", methods=["POST"])
+def save_signal_bands():
+    try:
+        new_bands_data = request.json
+
+        # Path to your signal_bands.js file (adjust if necessary)
+        filepath = os.path.join(app.root_path, "static", "signal_bands.js")
+
+        # We must wrap the raw JSON object inside the JS variable declaration
+        # exactly how it was formatted originally
+        js_content = f"// --- BAND CONFIGURATION (Global State) ---\nlet SIGNAL_BANDS = {json.dumps(new_bands_data, indent=4)};\n"
+
+        # Write the file directly
+        with open(filepath, "w") as f:
+            f.write(js_content)
+
+        return jsonify({"success": True, "message": "Bands saved successfully."})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/api/airspeed_calibration", methods=["POST"])
 def api_airspeed_calibration():
     saved_filename = request.form.get("saved_filename")
