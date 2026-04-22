@@ -195,12 +195,12 @@
 
                     <!-- Aircraft Attitude / 3D Model -->
                     <div class="card p-3 shadow-sm h-100 d-none" id="aircraftDataCard">
-                        <h5 class="text-primary mb-2">Aircraft Attitude</h5>
-                        <hr class="mt-0 mb-3">
+                        <h6 class="text-primary mb-2">Aircraft Attitude</h6>
+                        <hr class="mt-0 mb-2">
 
                         <div id="attitude3DContainer"
                              class="border rounded d-flex align-items-center justify-content-center mb-3"
-                             style="height: 200px;">
+                             style="height: 300px;">
                             <span class="text-muted small">
                                 3D Model Placeholder (load .glb / .gltf file here)
                             </span>
@@ -228,8 +228,18 @@
 
                     <!-- MAP -->
                     <div class="card p-2 shadow-sm">
-                        <div class="d-flex justify-content-between align-items-center px-2 m-">
-                            <h6 class="text-secondary text-center mb-8">Flight Map</h6>
+                        <div class="d-flex justify-content-between align-items-center px-2 mb-1">
+                            <div class="px-2 pb-2 d-flex flex-wrap gap-2 align-items-center">
+                                <button class="btn btn-sm btn-primary" id="playPauseBtn" onclick="togglePlayback()">▶ Play</button>
+
+                                <select class="form-select form-select-sm w-auto" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                                    <option value="1">1x</option>
+                                    <option value="2">2x</option>
+                                    <option value="5">5x</option>
+                                    <option value="10">10x</option>
+                                    <option value="30">30x</option>
+                                </select>
+                            </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <select id="mapColorModeSelect" class="form-select form-select-sm">
                                     <option value="altitude">Altitude</option>
@@ -249,22 +259,12 @@
                                 </label>
                             </div>
                         </div>
-                        <div id="mapGraph" style="height:400px;"></div>
+                        <div id="mapGraph" style="height: 350px;"></div>
                         <div class="px-2 pt-2">
                             <div class="small text-muted">Playback</div>
                             <input type="range" id="mapScrubber" class="form-range" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
                         </div>
-                        <div class="px-2 pb-2 d-flex flex-wrap gap-2 align-items-center">
-                            <button class="btn btn-sm btn-primary" id="playPauseBtn" onclick="togglePlayback()">▶ Play</button>
 
-                            <select class="form-select form-select-sm w-auto" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
-                                <option value="1">1x</option>
-                                <option value="2">2x</option>
-                                <option value="5">5x</option>
-                                <option value="10">10x</option>
-                                <option value="30">30x</option>
-                            </select>
-                        </div>
                         <div id="mapMetrics" class="small text-muted px-2 pb-1"></div>
                     </div>
 

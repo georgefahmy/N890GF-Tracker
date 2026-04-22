@@ -1593,8 +1593,8 @@ function togglePlayback() {
             }
 
             if (scrubber) scrubber.value = playbackIndex;
-            scrubMap(playbackIndex);
             setPlaybackSpeed(playbackSpeed);
+            scrubMap(playbackIndex);
 
         }, baseInterval / playbackSpeed); // Adjusted by speed (1000ms at 1x, 500ms at 2x)
     }
@@ -1628,7 +1628,6 @@ function setPlaybackSpeed(val) {
         const currentLat = lerp(window._mapLat[playbackIndex], window._mapLat[playbackIndex + 1], t);
         const currentLon = lerp(window._mapLon[playbackIndex], window._mapLon[playbackIndex + 1], t);
         const currentAlt = lerp(window._mapAlt[playbackIndex], window._mapAlt[playbackIndex + 1], t);
-
         // Use a circular lerp for heading to avoid the 359 -> 0 degree "flip" jitter
         const lerpAngle = (a, b, t) => {
             let d = b - a;
@@ -1646,6 +1645,9 @@ function setPlaybackSpeed(val) {
         if (window.updateAircraft3D) {
             window.updateAircraft3D(currentPitch, currentRoll, trueHeading, currentLat, currentLon, currentAlt);
         }
+        document.getElementById('attPitch').innerText = currentPitch.toFixed(1) + ' °';
+        document.getElementById('attRoll').innerText = currentRoll.toFixed(1) + ' °';
+        document.getElementById('attHeading').innerText = currentHeading.toFixed(1) + ' °';
 
         // 5. Advance the clock
         interpolationTick++;
@@ -1657,6 +1659,7 @@ function setPlaybackSpeed(val) {
             const scrubber = document.getElementById('mapScrubber');
             if (scrubber) scrubber.value = playbackIndex;
         }
+        // scrubMap(playbackIndex);
 
     }, 1000 / (FPS * playbackSpeed));
 }
