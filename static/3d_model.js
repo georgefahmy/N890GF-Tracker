@@ -48,16 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
     window.updateAircraft3D = function(pitchDeg, rollDeg, headingDeg, lat, lon, altFt) {
         if (!viewer || !aircraftEntity) return;
 
-        // const altMeters = (altFt || 0) * 0.3048;
         let groundHeight = 0;
         const cartographic = Cesium.Cartographic.fromDegrees(lon, lat);
 
-        try {
-            const terrainHeights = Cesium.sampleTerrainMostDetailed(viewer.terrainProvider, [cartographic]);
-            groundHeight = terrainHeights[0].height || 0;
-        } catch (e) {
-            console.log(e)
-            groundHeight = 0;
+        // Synchronously read the terrain height currently loaded in the viewer's memory
+        if (viewer.scene && viewer.scene.globe) {
+            const h = viewer.scene.globe.getHeight(cartographic);
+            groundHeight = h !== undefined ? h : 0;
         }
 
         // 2. Clamp Logic: Max of ground or (altMeters)
