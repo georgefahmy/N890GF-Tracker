@@ -409,3 +409,22 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     };
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const exportBtn = document.getElementById('dynamicExportBtn');
+    const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('shown.bs.tab', function (event) {
+            const targetId = event.target.id; // e.g., 'flight-tab'
+
+            if (targetId === 'flight-tab') {
+                exportBtn.href = '/export/flights';
+            } else if (targetId === 'mx-tab') {
+                exportBtn.href = '/export/mx';
+            } else if (targetId === 'fuel-tab') {
+                exportBtn.href = '/export/fuel';
+            }
+        });
+    });
+});
