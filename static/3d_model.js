@@ -18,12 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
         viewer = new Cesium.Viewer(container, {
             terrain: Cesium.Terrain.fromWorldTerrain(),
             baseLayerPicker: false, timeline: false, animation: false,
-            infoBox: false, selectionIndicator: false
+            infoBox: false, selectionIndicator: false,
+            fullscreenElement: container
         });
 
         aircraftEntity = viewer.entities.add({
             name: 'Aircraft',
-            model: { uri: '/static/models/rv7.glb', minimumPixelSize: 1 },
+            model: { uri: '/static/models/N890GF.glb', minimumPixelSize: 1 },
             // THE CAMERA FIX: Offset the camera 40m back and 10m up
             viewFrom: new Cesium.Cartesian3(-40.0, 0.0, 10.0),
             // The position is now a MATH FUNCTION, not a static point
