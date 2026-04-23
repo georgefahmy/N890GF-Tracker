@@ -23,6 +23,32 @@
             box-sizing: border-box;
             z-index: 1000;
         }
+        /* Apply transition to the flex properties for both columns */
+        [name="leftColumn"], [name="rightColumn"] {
+            transition: flex 0.4s ease-in-out, max-width 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            overflow: hidden; /* Prevents content from 'popping' out during shrink */
+        }
+
+        /* When Collapsed: Right column disappears, Left column fills space */
+        .sidebar-collapsed [name="rightColumn"] {
+            flex: 0 0 0% !important;
+            max-width: 0% !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sidebar-collapsed [name="leftColumn"] {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* Ensure the sticky container inside the right column doesn't create phantom width */
+        .sidebar-collapsed .right-sticky-col {
+            width: 0;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -32,6 +58,9 @@
         <a class="navbar-brand" href="/">← Back to Dashboard</a>
         <span class="navbar-text text-white">✈️ Flight Data Analyzer</span>
     </div>
+    <button id="sidebarToggle" class="btn btn-sm btn-outline-light ms-2" onclick="toggleSidebar()">
+     🗺️
+    </button>
     <button id="themeToggle" class="btn btn-sm btn-outline-light ms-2">
     🌙
     </button>

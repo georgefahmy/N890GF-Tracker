@@ -2019,3 +2019,19 @@ function togglePlotFilters(plotId) {
     const isHidden = section.classList.toggle('d-none');
     if (btn) btn.innerText = isHidden ? 'Show Filters' : 'Hide Filters';
 }
+
+function toggleSidebar() {
+    document.body.classList.toggle('sidebar-collapsed');
+
+    // Fire resize events multiple times during the transition
+    // for a "live" resizing effect, or once at the end.
+    const resizeInterval = setInterval(() => {
+        window.dispatchEvent(new Event('resize'));
+    }, 50);
+
+    // Stop resizing once the 400ms transition is complete
+    setTimeout(() => {
+        clearInterval(resizeInterval);
+        window.dispatchEvent(new Event('resize'));
+    }, 450);
+}
