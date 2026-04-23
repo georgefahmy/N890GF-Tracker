@@ -1235,7 +1235,6 @@ def api_get_signals():
             if not os.path.exists(filepath):
                 return jsonify({"error": "Saved file not found."}), 404
             df = pd.read_csv(filepath, low_memory=False)
-            df = process_flights(df)
 
         else:
             if "file" not in request.files:
