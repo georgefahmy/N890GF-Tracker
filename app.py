@@ -1,4 +1,5 @@
 import calendar
+import csv
 import json
 import logging
 import os
@@ -9,13 +10,23 @@ import threading
 import time
 from datetime import datetime, timedelta
 from functools import wraps
+from io import StringIO
 from logging.handlers import RotatingFileHandler
 
 import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, jsonify, redirect, render_template, request, session, url_for
+from flask import (
+    Flask,
+    jsonify,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from werkzeug.security import check_password_hash
 
 from src.airnav_route import fetch_route
@@ -1814,6 +1825,137 @@ def api_airspeed_calibration():
     except Exception as e:
         print("Airspeed calibration error:", e)
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/export/flights")
+@login_required
+def export_flights():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    # Query all columns from flight_log
+    cursor.execute("SELECT * FROM flight_log ORDER BY date DESC, id DESC")
+    rows = cursor.fetchall()
+    conn.close()
+
+    si = StringIO()
+    cw = csv.writer(si)
+
+    # Define headers based on your DB schema
+    cw.writerow(
+        [
+            "ID",
+            "Date",
+            "Takeoff",
+            "Landing",
+            "Hobbs",
+            "Tach",
+            "Landings",
+            "Notes",
+            "Hobbs Delta",
+            "Tach Delta",
+        ]
+    )
+
+    for r in rows:
+        cw.writerow(
+            [
+                r["id"],
+                r["date"],
+                r["takeoff_airport"],
+                r["landing_airport"],
+                r["hobbs"],
+                r["tach"],
+                r["landings"],
+                r["notes"],
+                r["hobbs_delta"],
+                r["tach_delta"],
+            ]
+        )
+
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=Flight_Logs.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
+
+
+@app.route("/export/mx")
+@login_required
+def export_mx():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM maintenance_entries ORDER BY date DESC, id DESC")
+    rows = cursor.fetchall()
+    conn.close()
+
+    si = StringIO()
+    cw = csv.writer(si)
+
+    # Headers for maintenance
+    cw.writerow(
+        [
+            "ID",
+            "Date",
+            "Tach Time",
+            "Airframe Time",
+            "Recurrent Item",
+            "Category",
+            "Notes",
+        ]
+    )
+
+    for r in rows:
+        cw.writerow(
+            [
+                r["id"],
+                r["date"],
+                r["tach_time"],
+                r["airframe_time"],
+                r["recurrent_item"],
+                r["category"],
+                r["notes"],
+            ]
+        )
+
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=Maintenance_Logs.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
+
+
+@app.route("/export/fuel")
+@login_required
+def export_fuel():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM fuel_tracker ORDER BY date DESC, id DESC")
+    rows = cursor.fetchall()
+    conn.close()
+
+    si = StringIO()
+    cw = csv.writer(si)
+
+    # Headers for fuel
+    cw.writerow(
+        ["ID", "Date", "Hobbs", "Gallons", "Price Per Gallon", "Total Cost", "GPH"]
+    )
+
+    for r in rows:
+        cw.writerow(
+            [
+                r["id"],
+                r["date"],
+                r["hobbs"],
+                r["gallons"],
+                r["price_per_gallon"],
+                r["total_cost"],
+                r["gal_per_hour"],
+            ]
+        )
+
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=Fuel_Logs.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 
 if __name__ == "__main__":
