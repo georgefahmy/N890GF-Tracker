@@ -35,7 +35,7 @@ from src.fuel_prices import scrape_airnav_to_json
 from src.sw_db_updates import download_dynon_databases_only
 
 CWD_PATH = os.path.abspath(os.path.dirname(__file__))
-
+print(CWD_PATH)
 app = Flask(__name__)
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
@@ -74,6 +74,7 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
 
 # DB_PATH = CWD_PATH + "/src/maintenance.db"
 DB_PATH = CWD_PATH + "/../maintenance.db"
+print(DB_PATH)
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
@@ -804,7 +805,6 @@ def logout():
 def index():
     conn = get_db_connection()
     cursor = conn.cursor()
-    login_success_logger.info(f"{DB_PATH}")
 
     def sort_and_format_logs(logs_list):
         def parse_to_datetime(d):
