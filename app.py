@@ -74,7 +74,6 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
 
 # DB_PATH = CWD_PATH + "/src/maintenance.db"
 DB_PATH = CWD_PATH + "/../maintenance.db"
-login_success_logger.info(f"{DB_PATH}")
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
@@ -805,6 +804,7 @@ def logout():
 def index():
     conn = get_db_connection()
     cursor = conn.cursor()
+    login_success_logger.info(f"{DB_PATH}")
 
     def sort_and_format_logs(logs_list):
         def parse_to_datetime(d):
