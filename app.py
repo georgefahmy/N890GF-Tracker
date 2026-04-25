@@ -68,12 +68,13 @@ login_success_logger = _create_logger("login_success", "login_success.log")
 login_failure_logger = _create_logger("login_failure", "login_failure.log")
 login_security_logger = _create_logger("login_security", "login_security.log")
 
+
 app.config["SESSION_PERMANENT"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
 
 # DB_PATH = CWD_PATH + "/src/maintenance.db"
 DB_PATH = CWD_PATH + "/../maintenance.db"
-
+login_success_logger.info(f"{DB_PATH}")
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
