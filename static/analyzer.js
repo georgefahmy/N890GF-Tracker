@@ -521,330 +521,664 @@ function clearTooltips(sourceDivId) {
     });
 }
 
-// 7. Core Analysis & Plotting Function
-function triggerAnalysis(plotId) {
+async function triggerAnalysis(plotId) {
     if (!AppState.file.currentName) return;
-
-    const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value;
-    const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value;
-    const tempUnit = document.getElementById('unitF').checked ? 'F' : 'C';
 
     const loader = document.getElementById(`loader-${plotId}`);
     loader.classList.remove('d-none');
 
-    const formData = new FormData();
-    formData.append('saved_filename', AppState.file.currentName);
-    formData.append('left_signal', leftSignal);
-    formData.append('right_signal', rightSignal);
-    formData.append('temp_unit', tempUnit);
-    const filters = AppState.ui.filters[plotId] || [];
-    formData.append('filters', JSON.stringify(filters));
+    try {
+        const formData = new FormData();
+        formData.append('saved_filename', AppState.file.currentName);
+        formData.append('left_signal', document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value);
+        formData.append('right_signal', document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value);
+        formData.append('temp_unit', document.getElementById('unitF').checked ? 'F' : 'C');
+        formData.append('filters', JSON.stringify(AppState.ui.filters[plotId] || []));
 
-    fetch('/api/analyze_flight', { method: 'POST', body: formData })
-    .then(response => response.json())
-    .then(data => {
+        const response = await fetch('/api/analyze_flight', { method: 'POST', body: formData });
+        const data = await response.json();
+
         loader.classList.add('d-none');
-        const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+        if (data.error) return alert("Error: " + data.error);
 
-        // Store plot data globally for cursor sync
+        // 1. Store data
         AppState.currentPlotData = data.plot_data;
 
-        if (data.error) {
-            alert("Error: " + data.error);
-            return;
-        }
+        // 2. Specialized Plot Update (Fast)
+        renderPlotlyChart(plotId, data);
 
-        // --- Render Plotly Chart ---
-        const traces = [];
+        // 3. UI/Map Update (Only update if global stats aren't populated yet)
+        // or if you want them to refresh.
+        updateGlobalUI(data);
 
-        // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis
-        const colorsLeft = ['#0d6efd', '#0dcaf0', '#198754', '#20c997'];
-        const colorsRight = ['#dc3545', '#fd7e14', '#ffc107', '#d63384'];
-        // --- NEW: Track exact data limits to prevent shapes from squishing the chart ---
-        let leftMin = Infinity, leftMax = -Infinity;
-        let rightMin = Infinity, rightMax = -Infinity;
-
-        // Map Left Traces
-        data.plot_data.left_traces.forEach((traceData, idx) => {
-            traceData.y.forEach(v => {
-                const val = parseFloat(v);
-                if (!isNaN(val)) {
-                    if (val < leftMin) leftMin = val;
-                    if (val > leftMax) leftMax = val;
-                }
-            });
-            traces.push({
-                x: data.plot_data.x, y: traceData.y, name: traceData.name,
-                type: 'scattergl', mode: 'lines',
-                line: { color: colorsLeft[idx % colorsLeft.length] }
-            });
-        });
-
-        // Map Right Traces
-        data.plot_data.right_traces.forEach((traceData, idx) => {
-            traceData.y.forEach(v => {
-                const val = parseFloat(v);
-                if (!isNaN(val)) {
-                    if (val < rightMin) rightMin = val;
-                    if (val > rightMax) rightMax = val;
-                }
-            });
-            traces.push({
-                x: data.plot_data.x, y: traceData.y, name: traceData.name,
-                type: 'scattergl', mode: 'lines',
-                line: { color: colorsRight[idx % colorsRight.length] },
-                yaxis: 'y2'
-            });
-        });
-
-        // Helper to add a 5% margin to the bounds so the lines don't hug the edges
-        const padRange = (min, max) => {
-            if (min === Infinity || max === -Infinity) return [0, 100]; // Safe fallback
-            if (min === max) return [min - 10, max + 10]; // Flatline trace fallback
-            const diff = max - min;
-            return [min - (diff * 0.05), max + (diff * 0.05)];
-        };
-
-        const leftRange = padRange(leftMin, leftMax);
-        const rightRange = padRange(rightMin, rightMax);
-
-        const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
-        const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
-
-        let plotShapes = [];
-
-        // Only generate and apply shapes if the toggle is checked
-        if (showBands) {
-            const leftShapes = generateBandShapes(leftSignal, 'y');
-            const rightShapes = generateBandShapes(rightSignal, 'y2');
-            plotShapes = [...leftShapes, ...rightShapes];
-        }
-
-        const layout = {
-            title: false,
-            xaxis: {
-                title: 'Session Time (seconds)',
-                gridcolor: '#f0f0f0',
-                // Add native spikelines to ensure the vertical line ALWAYS draws
-                showspikes: true,
-                spikemode: 'across',
-                spikedash: 'dot',
-                spikethickness: 1,
-                spikecolor: '#888',
-                anchor: isSplit ? 'free' : 'y',
-                position: 0
-            },
-            yaxis: {
-                title: data.plot_data.left_name,
-                titlefont: { color: '#0d6efd' }, tickfont: { color: '#0d6efd' },
-                gridcolor: '#f0f0f0',
-                // If split, top plot takes 55% to 100%. Otherwise, full height.
-                domain: isSplit ? [0.55, 1] : [0, 1],
-                range: leftRange,      // Assign strict data boundaries
-                autorange: false
-            },
-            yaxis2: {
-                title: data.plot_data.right_name,
-                titlefont: { color: '#dc3545' }, tickfont: { color: '#dc3545' },
-
-                // If split: bottom plot takes 0% to 45%. Side is left, no overlaying.
-                // If combined: overlapping 'y', side is right.
-                domain: isSplit ? [0, 0.45] : [0, 1],
-                overlaying: isSplit ? undefined : 'y',
-                side: isSplit ? 'left' : 'right',
-                gridcolor: isSplit ? '#f0f0f0' : 'transparent',
-                anchor: 'x', // Ensures it stays bound to the main time axis
-                range: rightRange,     // Assign strict data boundaries
-                autorange: false
-            },
-            shapes: plotShapes,
-            hovermode: 'x unified',
-            margin: { l: 60, r: 60, t: 20, b: 40 },
-            legend: { orientation: "h", y: -0.15 },
-            template: 'plotly_dark'
-        };
-
-        Plotly.newPlot(graphDiv, traces, layout, {responsive: true, doubleClick: 'reset'});
-
-        if (window._crosshairX !== null && window._crosshairX !== undefined) {
-            updateCrosshairs(window._crosshairX);
-        }
-
-        graphDiv.on('plotly_hover', function(eventdata) {
-            // CRITICAL FIX: If this event was triggered by our code (no mouse event), ignore it.
-            // This prevents the infinite loop that breaks the tooltips.
-            if (!eventdata || !eventdata.event) return;
-
-            if (!eventdata.points || eventdata.points.length === 0) return;
-            const pt = eventdata.points[0];
-            const idx = pt.pointIndex;
-            const xVal = pt.x;
-
-            const pitchArr = AppState.currentPlotData?.pitch || [];
-            const rollArr = AppState.currentPlotData?.roll || [];
-            const headingArr = AppState.currentPlotData?.heading || [];
-
-            if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
-                document.getElementById('attPitch').innerText =
-                    (pitchArr[idx] !== undefined ? Number(pitchArr[idx]).toFixed(1) : '--') + ' °';
-
-                document.getElementById('attRoll').innerText =
-                    (rollArr[idx] !== undefined ? Number(rollArr[idx]).toFixed(1) : '--') + ' °';
-
-                document.getElementById('attHeading').innerText =
-                    (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
-            }
-
-            // --- Drive 3D Model Rotation and Position ---
-            if (window.updateAircraft3D && idx !== undefined) {
-                const pitchVal = pitchArr[idx] || 0;
-                const rollVal = rollArr[idx] || 0;
-                const headingVal = headingArr[idx] || 0;
-                const magVar = AppState.currentPlotData.mag_variance?.[idx] || -13;
-                const trueHeading = headingVal - magVar;
-
-                const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
-                const lon = AppState.map.data.lon ? AppState.map.data.lon[idx] : 0;
-                const alt = AppState.map.data.alt ? AppState.map.data.alt[idx] : 0;
-
-                window.updateAircraft3D(pitchVal, rollVal, trueHeading, lat, lon, alt);
-            }
-
-            // DIRECT INDEX MATCH
-            if (pt.pointIndex !== undefined && AppState.map.data.lat && AppState.map.data.lon) {
-                const mapLat = AppState.map.data.lat[idx];
-                const mapLon = AppState.map.data.lon[idx];
-
-                const mapDiv = document.getElementById('mapGraph');
-                if (mapDiv) {
-                    let aircraftIndex = window._mapMarkerTraceIndex || 0;
-                    try {
-                        Plotly.restyle('mapGraph', {
-                            lat: [[mapLat]],
-                            lon: [[mapLon]]
-                        }, [aircraftIndex]);
-                    } catch (e) {
-                        console.error("Direct marker move failed:", e);
-                    }
-
-                    if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
-                        AppState.map.isMapPanning = true;
-                        Plotly.relayout('mapGraph', {
-                            'mapbox.center.lat': mapLat,
-                            'mapbox.center.lon': mapLon
-                        });
-
-                        // Unlock after 100ms
-                        setTimeout(() => { AppState.map.isMapPanning = false; }, 100);
-                    }
-                }
-            }
-
-            // Sync other plots using the new clean logic
-            if (xVal !== undefined) {
-                const t = parseFloat(xVal);
-                syncTooltips(xVal);
-                syncAircraftToTime(t);
-            }
-        });
-
-        graphDiv.on('plotly_unhover', function(eventdata) {
-            // CRITICAL FIX: Ignore programmatic unhovers
-            if (eventdata && !eventdata.event) return;
-
-            clearTooltips(graphDiv.id);
-        });
-
-        // 2. Sync Relayout (Zoom / Pan)
-        graphDiv.on('plotly_relayout', function(eventdata) {
-            if (window._isZoomSyncing) return;
-            window._isZoomSyncing = true;
-
-            let update = null;
-            if (eventdata['xaxis.range[0]'] !== undefined) {
-                update = {
-                    'xaxis.range[0]': eventdata['xaxis.range[0]'],
-                    'xaxis.range[1]': eventdata['xaxis.range[1]']
-                };
-            } else if (eventdata['xaxis.autorange'] !== undefined) {
-                update = { 'xaxis.autorange': true };
-            }
-
-            if (update) {
-                const promises = [];
-                document.querySelectorAll('[id^="flightGraph-"]').forEach(plot => {
-                    if (plot.id !== graphDiv.id && !plot.classList.contains('d-none') && plot.data) {
-                        promises.push(Plotly.relayout(plot.id, update));
-                    }
-                });
-                // Release lock when all plots finish updating
-                Promise.all(promises).then(() => { window._isZoomSyncing = false; });
-            } else {
-                window._isZoomSyncing = false;
-            }
-        });
-
-        // --- Render Map (Flight Path) ---
-        renderMap(data);
-
-        // --- Update Summary Stats ---
-        document.getElementById('statFlightId').innerText = `Flight: ${data.stats.flight_id}`;
-        document.getElementById('statsList').innerHTML = `
-            <div class="col-sm-4 mb-3"><strong>Duration:</strong><br>${data.stats.duration_min} min</div>
-            <div class="col-sm-4 mb-3"><strong>Total Fuel:</strong><br>${data.stats.total_fuel} gal</div>
-            <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${data.stats.avg_fuel_flow} gal/hr</div>
-            <div class="col-sm-4 mb-3"><strong>Avg MPG:</strong><br><span class="text-success fw-bold">${data.stats.avg_mpg} nm/gal</span></div>
-            <div class="col-sm-4 mb-3"><strong>Distance Traveled:</strong><br>${data.stats.distance_traveled.toFixed(1)} mi</div>
-            <div class="col-sm-4 mb-3"><strong>Max RPM:</strong><br>
-                <span style="
-                    ${data.stats.max_rpm > 2750 ? 'color: red; font-weight: bold;' :
-                      data.stats.max_rpm >= 2700 ? 'color: orange;' :
-                      'color: green;'}
-                ">
-                    ${data.stats.max_rpm}
-                </span>
-            </div>
-            <div class="col-sm-4 mb-3"><strong>Max CHT:</strong><br>
-                <span style="
-                    ${data.stats.max_cht > 450 ? 'color: red; font-weight: bold;' :
-                      data.stats.max_cht > 420 ? 'color: orange;' :
-                      data.stats.max_cht < 400 ? 'color: green;' : ''}
-                ">
-                    ${data.stats.max_cht} °F
-                </span>
-            </div>
-        `;
-
-        // Always show the aircraft card once analysis runs
-        document.getElementById('aircraftDataCard').classList.remove('d-none');
-        document.getElementById('aircraftDataPlaceholder').classList.add('d-none');
-
-        const pitch = data.plot_data?.pitch || [];
-        const roll = data.plot_data?.roll || [];
-        const heading = data.plot_data?.heading || [];
-
-        const idx = Math.max(0, pitch.length - 1);
-
-        document.getElementById('attPitch').innerText =
-            (pitch[idx] !== undefined ? Number(pitch[idx]).toFixed(1) : '--') + ' °';
-
-        document.getElementById('attRoll').innerText =
-            (roll[idx] !== undefined ? Number(roll[idx]).toFixed(1) : '--') + ' °';
-
-        document.getElementById('attHeading').innerText =
-            (heading[idx] !== undefined ? Number(heading[idx]).toFixed(1) : '--') + ' °';
-
-        // --- ALWAYS initialize 3D viewer if not already initialized ---
-        if (window.init3DViewer) {
-            window.init3DViewer();
-        }
-    })
-    .catch(err => {
-        alert(err);
+    } catch (err) {
         console.error(err);
         loader.classList.add('d-none');
+    }
+}
+
+function renderPlotlyChart(plotId, data) {
+    const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+    const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
+    const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
+    const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value;
+    const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value;
+
+    AppState.currentPlotData = data.plot_data;
+
+    const traces = [];
+    // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis
+    const colorsLeft = ['#0d6efd', '#0dcaf0', '#198754', '#20c997'];
+    const colorsRight = ['#dc3545', '#fd7e14', '#ffc107', '#d63384'];
+    // --- NEW: Track exact data limits to prevent shapes from squishing the chart ---
+    let leftMin = Infinity, leftMax = -Infinity;
+    let rightMin = Infinity, rightMax = -Infinity;
+
+    // Map Left Traces
+    data.plot_data.left_traces.forEach((traceData, idx) => {
+        traceData.y.forEach(v => {
+            const val = parseFloat(v);
+            if (!isNaN(val)) {
+                if (val < leftMin) leftMin = val;
+                if (val > leftMax) leftMax = val;
+            }
+        });
+        traces.push({
+            x: data.plot_data.x, y: traceData.y, name: traceData.name,
+            type: 'scattergl', mode: 'lines',
+            line: { color: colorsLeft[idx % colorsLeft.length] }
+        });
+    });
+
+    // Map Right Traces
+    data.plot_data.right_traces.forEach((traceData, idx) => {
+        traceData.y.forEach(v => {
+            const val = parseFloat(v);
+            if (!isNaN(val)) {
+                if (val < rightMin) rightMin = val;
+                if (val > rightMax) rightMax = val;
+            }
+        });
+        traces.push({
+            x: data.plot_data.x, y: traceData.y, name: traceData.name,
+            type: 'scattergl', mode: 'lines',
+            line: { color: colorsRight[idx % colorsRight.length] },
+            yaxis: 'y2'
+        });
+    });
+
+    // Helper to add a 5% margin to the bounds so the lines don't hug the edges
+    const padRange = (min, max) => {
+        if (min === Infinity || max === -Infinity) return [0, 100]; // Safe fallback
+        if (min === max) return [min - 10, max + 10]; // Flatline trace fallback
+        const diff = max - min;
+        return [min - (diff * 0.05), max + (diff * 0.05)];
+    };
+
+    const leftRange = padRange(leftMin, leftMax);
+    const rightRange = padRange(rightMin, rightMax);
+
+    // const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
+    // const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
+
+    let plotShapes = [];
+
+    // Only generate and apply shapes if the toggle is checked
+    if (showBands) {
+        const leftShapes = generateBandShapes(leftSignal, 'y');
+        const rightShapes = generateBandShapes(rightSignal, 'y2');
+        plotShapes = [...leftShapes, ...rightShapes];
+    }
+
+    const layout = {
+        title: false,
+        xaxis: {
+            title: 'Session Time (seconds)',
+            gridcolor: '#f0f0f0',
+            // Add native spikelines to ensure the vertical line ALWAYS draws
+            showspikes: true,
+            spikemode: 'across',
+            spikedash: 'dot',
+            spikethickness: 1,
+            spikecolor: '#888',
+            anchor: isSplit ? 'free' : 'y',
+            position: 0
+        },
+        yaxis: {
+            title: data.plot_data.left_name,
+            titlefont: { color: '#0d6efd' }, tickfont: { color: '#0d6efd' },
+            gridcolor: '#f0f0f0',
+            // If split, top plot takes 55% to 100%. Otherwise, full height.
+            domain: isSplit ? [0.55, 1] : [0, 1],
+            range: leftRange,      // Assign strict data boundaries
+            autorange: false
+        },
+        yaxis2: {
+            title: data.plot_data.right_name,
+            titlefont: { color: '#dc3545' }, tickfont: { color: '#dc3545' },
+
+            // If split: bottom plot takes 0% to 45%. Side is left, no overlaying.
+            // If combined: overlapping 'y', side is right.
+            domain: isSplit ? [0, 0.45] : [0, 1],
+            overlaying: isSplit ? undefined : 'y',
+            side: isSplit ? 'left' : 'right',
+            gridcolor: isSplit ? '#f0f0f0' : 'transparent',
+            anchor: 'x', // Ensures it stays bound to the main time axis
+            range: rightRange,     // Assign strict data boundaries
+            autorange: false
+        },
+        shapes: plotShapes,
+        hovermode: 'x unified',
+        margin: { l: 60, r: 60, t: 20, b: 40 },
+        legend: { orientation: "h", y: -0.15 },
+        template: 'plotly_dark'
+    };
+
+    // Use .react() for much faster updates than .newPlot()
+    Plotly.react(graphDiv, traces, layout, {responsive: true, doubleClick: 'reset'});
+
+    if (window._crosshairX !== null && window._crosshairX !== undefined) {
+        updateCrosshairs(window._crosshairX);
+    }
+
+    graphDiv.on('plotly_hover', function(eventdata) {
+        // CRITICAL FIX: If this event was triggered by our code (no mouse event), ignore it.
+        // This prevents the infinite loop that breaks the tooltips.
+        if (!eventdata || !eventdata.event) return;
+
+        if (!eventdata.points || eventdata.points.length === 0) return;
+        const pt = eventdata.points[0];
+        const idx = pt.pointIndex;
+        const xVal = pt.x;
+
+        const pitchArr = AppState.currentPlotData?.pitch || [];
+        const rollArr = AppState.currentPlotData?.roll || [];
+        const headingArr = AppState.currentPlotData?.heading || [];
+
+        if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
+            document.getElementById('attPitch').innerText =
+                (pitchArr[idx] !== undefined ? Number(pitchArr[idx]).toFixed(1) : '--') + ' °';
+
+            document.getElementById('attRoll').innerText =
+                (rollArr[idx] !== undefined ? Number(rollArr[idx]).toFixed(1) : '--') + ' °';
+
+            document.getElementById('attHeading').innerText =
+                (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
+        }
+
+        // --- Drive 3D Model Rotation and Position ---
+        if (window.updateAircraft3D && idx !== undefined) {
+            const pitchVal = pitchArr[idx] || 0;
+            const rollVal = rollArr[idx] || 0;
+            const headingVal = headingArr[idx] || 0;
+            const magVar = AppState.currentPlotData.mag_variance?.[idx] || -13;
+            const trueHeading = headingVal - magVar;
+
+            const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
+            const lon = AppState.map.data.lon ? AppState.map.data.lon[idx] : 0;
+            const alt = AppState.map.data.alt ? AppState.map.data.alt[idx] : 0;
+
+            window.updateAircraft3D(pitchVal, rollVal, trueHeading, lat, lon, alt);
+        }
+
+        // DIRECT INDEX MATCH
+        if (pt.pointIndex !== undefined && AppState.map.data.lat && AppState.map.data.lon) {
+            const mapLat = AppState.map.data.lat[idx];
+            const mapLon = AppState.map.data.lon[idx];
+
+            const mapDiv = document.getElementById('mapGraph');
+            if (mapDiv) {
+                let aircraftIndex = window._mapMarkerTraceIndex || 0;
+                try {
+                    Plotly.restyle('mapGraph', {
+                        lat: [[mapLat]],
+                        lon: [[mapLon]]
+                    }, [aircraftIndex]);
+                } catch (e) {
+                    console.error("Direct marker move failed:", e);
+                }
+
+                if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
+                    AppState.map.isMapPanning = true;
+                    Plotly.relayout('mapGraph', {
+                        'mapbox.center.lat': mapLat,
+                        'mapbox.center.lon': mapLon
+                    });
+
+                    // Unlock after 100ms
+                    setTimeout(() => { AppState.map.isMapPanning = false; }, 100);
+                }
+            }
+        }
+
+        // Sync other plots using the new clean logic
+        if (xVal !== undefined) {
+            const t = parseFloat(xVal);
+            syncTooltips(xVal);
+            syncAircraftToTime(t);
+        }
+    });
+    graphDiv.on('plotly_unhover', function(eventdata) {
+        // CRITICAL FIX: Ignore programmatic unhovers
+        if (eventdata && !eventdata.event) return;
+
+        clearTooltips(graphDiv.id);
+    });
+
+    // 2. Sync Relayout (Zoom / Pan)
+    graphDiv.on('plotly_relayout', function(eventdata) {
+        if (window._isZoomSyncing) return;
+        window._isZoomSyncing = true;
+
+        let update = null;
+        if (eventdata['xaxis.range[0]'] !== undefined) {
+            update = {
+                'xaxis.range[0]': eventdata['xaxis.range[0]'],
+                'xaxis.range[1]': eventdata['xaxis.range[1]']
+            };
+        } else if (eventdata['xaxis.autorange'] !== undefined) {
+            update = { 'xaxis.autorange': true };
+        }
+
+        if (update) {
+            const promises = [];
+            document.querySelectorAll('[id^="flightGraph-"]').forEach(plot => {
+                if (plot.id !== graphDiv.id && !plot.classList.contains('d-none') && plot.data) {
+                    promises.push(Plotly.relayout(plot.id, update));
+                }
+            });
+            // Release lock when all plots finish updating
+            Promise.all(promises).then(() => { window._isZoomSyncing = false; });
+        } else {
+            window._isZoomSyncing = false;
+        }
     });
 }
+
+function updateGlobalUI(data) {
+    // Render Map
+    renderMap(data);
+
+    // Update Text Stats
+    document.getElementById('statFlightId').innerText = `Flight: ${data.stats.flight_id}`;
+    document.getElementById('statsList').innerHTML = `
+        <div class="col-sm-4 mb-3"><strong>Duration:</strong><br>${data.stats.duration_min} min</div>
+        <div class="col-sm-4 mb-3"><strong>Total Fuel:</strong><br>${data.stats.total_fuel} gal</div>
+        <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${data.stats.avg_fuel_flow} gal/hr</div>
+        <div class="col-sm-4 mb-3"><strong>Avg MPG:</strong><br><span class="text-success fw-bold">${data.stats.avg_mpg} nm/gal</span></div>
+        <div class="col-sm-4 mb-3"><strong>Distance Traveled:</strong><br>${data.stats.distance_traveled.toFixed(1)} mi</div>
+        <div class="col-sm-4 mb-3"><strong>Max RPM:</strong><br>
+            <span style="
+                ${data.stats.max_rpm > 2750 ? 'color: red; font-weight: bold;' :
+                    data.stats.max_rpm >= 2700 ? 'color: orange;' :
+                    'color: green;'}
+            ">
+                ${data.stats.max_rpm}
+            </span>
+        </div>
+        <div class="col-sm-4 mb-3"><strong>Max CHT:</strong><br>
+            <span style="
+                ${data.stats.max_cht > 450 ? 'color: red; font-weight: bold;' :
+                    data.stats.max_cht > 420 ? 'color: orange;' :
+                    data.stats.max_cht < 400 ? 'color: green;' : ''}
+            ">
+                ${data.stats.max_cht} °F
+            </span>
+        </div>
+    `;
+
+    // Always show the aircraft card once analysis runs
+    document.getElementById('aircraftDataCard').classList.remove('d-none');
+    document.getElementById('aircraftDataPlaceholder').classList.add('d-none');
+
+    const pitch = data.plot_data?.pitch || [];
+    const roll = data.plot_data?.roll || [];
+    const heading = data.plot_data?.heading || [];
+
+    const idx = Math.max(0, pitch.length - 1);
+
+    document.getElementById('attPitch').innerText =
+        (pitch[idx] !== undefined ? Number(pitch[idx]).toFixed(1) : '--') + ' °';
+
+    document.getElementById('attRoll').innerText =
+        (roll[idx] !== undefined ? Number(roll[idx]).toFixed(1) : '--') + ' °';
+
+    document.getElementById('attHeading').innerText =
+        (heading[idx] !== undefined ? Number(heading[idx]).toFixed(1) : '--') + ' °';
+
+    // --- ALWAYS initialize 3D viewer if not already initialized ---
+    if (window.init3DViewer) {
+        window.init3DViewer();
+    }
+
+    document.getElementById('aircraftDataCard').classList.remove('d-none');
+}
+
+// 7. Core Analysis & Plotting Function
+// function triggerAnalysis(plotId) {
+//     if (!AppState.file.currentName) return;
+
+//     const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value;
+//     const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value;
+//     const tempUnit = document.getElementById('unitF').checked ? 'F' : 'C';
+
+//     const loader = document.getElementById(`loader-${plotId}`);
+//     loader.classList.remove('d-none');
+
+//     const formData = new FormData();
+//     formData.append('saved_filename', AppState.file.currentName);
+//     formData.append('left_signal', leftSignal);
+//     formData.append('right_signal', rightSignal);
+//     formData.append('temp_unit', tempUnit);
+//     const filters = AppState.ui.filters[plotId] || [];
+//     formData.append('filters', JSON.stringify(filters));
+
+//     fetch('/api/analyze_flight', { method: 'POST', body: formData })
+//     .then(response => response.json())
+//     .then(data => {
+//         loader.classList.add('d-none');
+//         const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+
+//         // Store plot data globally for cursor sync
+//         AppState.currentPlotData = data.plot_data;
+
+//         if (data.error) {
+//             alert("Error: " + data.error);
+//             return;
+//         }
+
+//         // --- Render Plotly Chart ---
+//         const traces = [];
+
+//         // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis
+//         const colorsLeft = ['#0d6efd', '#0dcaf0', '#198754', '#20c997'];
+//         const colorsRight = ['#dc3545', '#fd7e14', '#ffc107', '#d63384'];
+//         // --- NEW: Track exact data limits to prevent shapes from squishing the chart ---
+//         let leftMin = Infinity, leftMax = -Infinity;
+//         let rightMin = Infinity, rightMax = -Infinity;
+
+//         // Map Left Traces
+//         data.plot_data.left_traces.forEach((traceData, idx) => {
+//             traceData.y.forEach(v => {
+//                 const val = parseFloat(v);
+//                 if (!isNaN(val)) {
+//                     if (val < leftMin) leftMin = val;
+//                     if (val > leftMax) leftMax = val;
+//                 }
+//             });
+//             traces.push({
+//                 x: data.plot_data.x, y: traceData.y, name: traceData.name,
+//                 type: 'scattergl', mode: 'lines',
+//                 line: { color: colorsLeft[idx % colorsLeft.length] }
+//             });
+//         });
+
+//         // Map Right Traces
+//         data.plot_data.right_traces.forEach((traceData, idx) => {
+//             traceData.y.forEach(v => {
+//                 const val = parseFloat(v);
+//                 if (!isNaN(val)) {
+//                     if (val < rightMin) rightMin = val;
+//                     if (val > rightMax) rightMax = val;
+//                 }
+//             });
+//             traces.push({
+//                 x: data.plot_data.x, y: traceData.y, name: traceData.name,
+//                 type: 'scattergl', mode: 'lines',
+//                 line: { color: colorsRight[idx % colorsRight.length] },
+//                 yaxis: 'y2'
+//             });
+//         });
+
+//         // Helper to add a 5% margin to the bounds so the lines don't hug the edges
+//         const padRange = (min, max) => {
+//             if (min === Infinity || max === -Infinity) return [0, 100]; // Safe fallback
+//             if (min === max) return [min - 10, max + 10]; // Flatline trace fallback
+//             const diff = max - min;
+//             return [min - (diff * 0.05), max + (diff * 0.05)];
+//         };
+
+//         const leftRange = padRange(leftMin, leftMax);
+//         const rightRange = padRange(rightMin, rightMax);
+
+//         // const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
+//         const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
+
+//         let plotShapes = [];
+
+//         // Only generate and apply shapes if the toggle is checked
+//         if (showBands) {
+//             const leftShapes = generateBandShapes(leftSignal, 'y');
+//             const rightShapes = generateBandShapes(rightSignal, 'y2');
+//             plotShapes = [...leftShapes, ...rightShapes];
+//         }
+
+//         const layout = {
+//             title: false,
+//             xaxis: {
+//                 title: 'Session Time (seconds)',
+//                 gridcolor: '#f0f0f0',
+//                 // Add native spikelines to ensure the vertical line ALWAYS draws
+//                 showspikes: true,
+//                 spikemode: 'across',
+//                 spikedash: 'dot',
+//                 spikethickness: 1,
+//                 spikecolor: '#888',
+//                 anchor: isSplit ? 'free' : 'y',
+//                 position: 0
+//             },
+//             yaxis: {
+//                 title: data.plot_data.left_name,
+//                 titlefont: { color: '#0d6efd' }, tickfont: { color: '#0d6efd' },
+//                 gridcolor: '#f0f0f0',
+//                 // If split, top plot takes 55% to 100%. Otherwise, full height.
+//                 domain: isSplit ? [0.55, 1] : [0, 1],
+//                 range: leftRange,      // Assign strict data boundaries
+//                 autorange: false
+//             },
+//             yaxis2: {
+//                 title: data.plot_data.right_name,
+//                 titlefont: { color: '#dc3545' }, tickfont: { color: '#dc3545' },
+
+//                 // If split: bottom plot takes 0% to 45%. Side is left, no overlaying.
+//                 // If combined: overlapping 'y', side is right.
+//                 domain: isSplit ? [0, 0.45] : [0, 1],
+//                 overlaying: isSplit ? undefined : 'y',
+//                 side: isSplit ? 'left' : 'right',
+//                 gridcolor: isSplit ? '#f0f0f0' : 'transparent',
+//                 anchor: 'x', // Ensures it stays bound to the main time axis
+//                 range: rightRange,     // Assign strict data boundaries
+//                 autorange: false
+//             },
+//             shapes: plotShapes,
+//             hovermode: 'x unified',
+//             margin: { l: 60, r: 60, t: 20, b: 40 },
+//             legend: { orientation: "h", y: -0.15 },
+//             template: 'plotly_dark'
+//         };
+
+//         Plotly.newPlot(graphDiv, traces, layout, {responsive: true, doubleClick: 'reset'});
+
+//         if (window._crosshairX !== null && window._crosshairX !== undefined) {
+//             updateCrosshairs(window._crosshairX);
+//         }
+
+//         graphDiv.on('plotly_hover', function(eventdata) {
+//             // CRITICAL FIX: If this event was triggered by our code (no mouse event), ignore it.
+//             // This prevents the infinite loop that breaks the tooltips.
+//             if (!eventdata || !eventdata.event) return;
+
+//             if (!eventdata.points || eventdata.points.length === 0) return;
+//             const pt = eventdata.points[0];
+//             const idx = pt.pointIndex;
+//             const xVal = pt.x;
+
+//             const pitchArr = AppState.currentPlotData?.pitch || [];
+//             const rollArr = AppState.currentPlotData?.roll || [];
+//             const headingArr = AppState.currentPlotData?.heading || [];
+
+//             if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
+//                 document.getElementById('attPitch').innerText =
+//                     (pitchArr[idx] !== undefined ? Number(pitchArr[idx]).toFixed(1) : '--') + ' °';
+
+//                 document.getElementById('attRoll').innerText =
+//                     (rollArr[idx] !== undefined ? Number(rollArr[idx]).toFixed(1) : '--') + ' °';
+
+//                 document.getElementById('attHeading').innerText =
+//                     (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
+//             }
+
+//             // --- Drive 3D Model Rotation and Position ---
+//             if (window.updateAircraft3D && idx !== undefined) {
+//                 const pitchVal = pitchArr[idx] || 0;
+//                 const rollVal = rollArr[idx] || 0;
+//                 const headingVal = headingArr[idx] || 0;
+//                 const magVar = AppState.currentPlotData.mag_variance?.[idx] || -13;
+//                 const trueHeading = headingVal - magVar;
+
+//                 const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
+//                 const lon = AppState.map.data.lon ? AppState.map.data.lon[idx] : 0;
+//                 const alt = AppState.map.data.alt ? AppState.map.data.alt[idx] : 0;
+
+//                 window.updateAircraft3D(pitchVal, rollVal, trueHeading, lat, lon, alt);
+//             }
+
+//             // DIRECT INDEX MATCH
+//             if (pt.pointIndex !== undefined && AppState.map.data.lat && AppState.map.data.lon) {
+//                 const mapLat = AppState.map.data.lat[idx];
+//                 const mapLon = AppState.map.data.lon[idx];
+
+//                 const mapDiv = document.getElementById('mapGraph');
+//                 if (mapDiv) {
+//                     let aircraftIndex = window._mapMarkerTraceIndex || 0;
+//                     try {
+//                         Plotly.restyle('mapGraph', {
+//                             lat: [[mapLat]],
+//                             lon: [[mapLon]]
+//                         }, [aircraftIndex]);
+//                     } catch (e) {
+//                         console.error("Direct marker move failed:", e);
+//                     }
+
+//                     if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
+//                         AppState.map.isMapPanning = true;
+//                         Plotly.relayout('mapGraph', {
+//                             'mapbox.center.lat': mapLat,
+//                             'mapbox.center.lon': mapLon
+//                         });
+
+//                         // Unlock after 100ms
+//                         setTimeout(() => { AppState.map.isMapPanning = false; }, 100);
+//                     }
+//                 }
+//             }
+
+//             // Sync other plots using the new clean logic
+//             if (xVal !== undefined) {
+//                 const t = parseFloat(xVal);
+//                 syncTooltips(xVal);
+//                 syncAircraftToTime(t);
+//             }
+//         });
+
+//         graphDiv.on('plotly_unhover', function(eventdata) {
+//             // CRITICAL FIX: Ignore programmatic unhovers
+//             if (eventdata && !eventdata.event) return;
+
+//             clearTooltips(graphDiv.id);
+//         });
+
+//         // 2. Sync Relayout (Zoom / Pan)
+//         graphDiv.on('plotly_relayout', function(eventdata) {
+//             if (window._isZoomSyncing) return;
+//             window._isZoomSyncing = true;
+
+//             let update = null;
+//             if (eventdata['xaxis.range[0]'] !== undefined) {
+//                 update = {
+//                     'xaxis.range[0]': eventdata['xaxis.range[0]'],
+//                     'xaxis.range[1]': eventdata['xaxis.range[1]']
+//                 };
+//             } else if (eventdata['xaxis.autorange'] !== undefined) {
+//                 update = { 'xaxis.autorange': true };
+//             }
+
+//             if (update) {
+//                 const promises = [];
+//                 document.querySelectorAll('[id^="flightGraph-"]').forEach(plot => {
+//                     if (plot.id !== graphDiv.id && !plot.classList.contains('d-none') && plot.data) {
+//                         promises.push(Plotly.relayout(plot.id, update));
+//                     }
+//                 });
+//                 // Release lock when all plots finish updating
+//                 Promise.all(promises).then(() => { window._isZoomSyncing = false; });
+//             } else {
+//                 window._isZoomSyncing = false;
+//             }
+//         });
+
+//         // --- Render Map (Flight Path) ---
+//         renderMap(data);
+
+//         // --- Update Summary Stats ---
+//         document.getElementById('statFlightId').innerText = `Flight: ${data.stats.flight_id}`;
+        // document.getElementById('statsList').innerHTML = `
+        //     <div class="col-sm-4 mb-3"><strong>Duration:</strong><br>${data.stats.duration_min} min</div>
+        //     <div class="col-sm-4 mb-3"><strong>Total Fuel:</strong><br>${data.stats.total_fuel} gal</div>
+        //     <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${data.stats.avg_fuel_flow} gal/hr</div>
+        //     <div class="col-sm-4 mb-3"><strong>Avg MPG:</strong><br><span class="text-success fw-bold">${data.stats.avg_mpg} nm/gal</span></div>
+        //     <div class="col-sm-4 mb-3"><strong>Distance Traveled:</strong><br>${data.stats.distance_traveled.toFixed(1)} mi</div>
+        //     <div class="col-sm-4 mb-3"><strong>Max RPM:</strong><br>
+        //         <span style="
+        //             ${data.stats.max_rpm > 2750 ? 'color: red; font-weight: bold;' :
+        //               data.stats.max_rpm >= 2700 ? 'color: orange;' :
+        //               'color: green;'}
+        //         ">
+        //             ${data.stats.max_rpm}
+        //         </span>
+        //     </div>
+        //     <div class="col-sm-4 mb-3"><strong>Max CHT:</strong><br>
+        //         <span style="
+        //             ${data.stats.max_cht > 450 ? 'color: red; font-weight: bold;' :
+        //               data.stats.max_cht > 420 ? 'color: orange;' :
+        //               data.stats.max_cht < 400 ? 'color: green;' : ''}
+        //         ">
+        //             ${data.stats.max_cht} °F
+        //         </span>
+        //     </div>
+        // `;
+
+        // // Always show the aircraft card once analysis runs
+        // document.getElementById('aircraftDataCard').classList.remove('d-none');
+        // document.getElementById('aircraftDataPlaceholder').classList.add('d-none');
+
+        // const pitch = data.plot_data?.pitch || [];
+        // const roll = data.plot_data?.roll || [];
+        // const heading = data.plot_data?.heading || [];
+
+        // const idx = Math.max(0, pitch.length - 1);
+
+        // document.getElementById('attPitch').innerText =
+        //     (pitch[idx] !== undefined ? Number(pitch[idx]).toFixed(1) : '--') + ' °';
+
+        // document.getElementById('attRoll').innerText =
+        //     (roll[idx] !== undefined ? Number(roll[idx]).toFixed(1) : '--') + ' °';
+
+        // document.getElementById('attHeading').innerText =
+        //     (heading[idx] !== undefined ? Number(heading[idx]).toFixed(1) : '--') + ' °';
+
+        // // --- ALWAYS initialize 3D viewer if not already initialized ---
+        // if (window.init3DViewer) {
+        //     window.init3DViewer();
+        // }
+//     })
+//     .catch(err => {
+//         alert(err);
+//         console.error(err);
+//         loader.classList.add('d-none');
+//     });
+// }
+
 function renderPlotFilters(plotId) {
     const card = document.getElementById(`plotCard-${plotId}`);
     if (!card) return;
@@ -1479,7 +1813,9 @@ function renderMap(data) {
             sel.value = AppState.map.colorMode;
             sel.onchange = () => {
                 AppState.map.colorMode = sel.value;
-                renderMap(data);
+                if (AppState.map.lastRenderData) {
+                    renderMap(AppState.map.lastRenderData);
+                }
             };
         }
     }

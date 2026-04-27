@@ -44,25 +44,61 @@
         }
 
         .route-advisor-btn {
-            color: #6f42c1;
+            background: #6f42c1;
             border: 1px solid #6f42c1;
-            background: transparent;
+            color: white;
+            /* background: transparent; */
             transition: all 0.2s ease-in-out;
         }
 
         .route-advisor-btn:hover {
-            background: #6f42c1;
+            background: #533290;
+            color: white;
+        }
+        .fuel-prices-btn {
+            background: #d34d0b;
+            color: white;
+            border: 1px solid #de6738;
+            transition: all 0.2s ease-in-out;
+        }
+        .fuel-prices-btn:hover {
+            background: #9e3b0a;
             color: white;
         }
         .flight-analyzer-btn {
-            background:  #0a9ad3;
-            color: white;
+            /* background:  #0a9ad3; */
+            background: transparent;
+            color: #0a9ad3;
+            border: 1px solid #0a9ad3;
             transition: all 0.2s ease-in-out;
         }
 
         .flight-analyzer-btn:hover {
             background: #087ead;
             color: white;
+        }
+
+        /* Ensure the ForeFlight button is visible on mobile only */
+        .ff-mobile-btn {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .ff-mobile-btn {
+                display: inline-block;
+                width: 100%; /* Make it big and tappable */
+                margin-top: 10px;
+            }
+
+            /* Adjust body padding for mobile sticky bar */
+            body {
+                padding-top: 70px;
+            }
+
+            /* Make table fonts slightly smaller for mobile fit */
+            .table {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -71,45 +107,50 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">✈️ N890GF Tracker</a>
-        <div class="d-flex text-white gap-3 align-items-center flex-wrap">
-            <span>Total Airframe: <strong>{{ "%.1f"|format(total_hours) }} hrs</strong></span>
-            <span>Total Landings: <strong>{{ total_landings }}</strong></span>
-            <span class="vr mx-2"></span>
-            <span>Total Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong></span>
-            <span>Avg Fuel $/hr: <strong>${{ "%.2f"|format(avg_fuel_cost_per_hour) }}</strong></span>
-            <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
-            <button id="themeToggle" class="btn btn-sm btn-outline-light ms-2">
-                🌙
-            </button>
-            <a href="/logout" class="btn btn-sm btn-outline-light ms-2">Logout</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ms-auto text-white gap-lg-3 align-items-lg-center py-2 py-lg-0">
+                <span>Airframe: <strong>{{ "%.1f"|format(total_hours) }}h</strong></span>
+                <span>Landings: <strong>{{ total_landings }}</strong></span>
+                <span class="d-none d-lg-inline">|</span>
+                <span>Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong></span>
+                <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
+                <div class="d-flex gap-2 mt-2 mt-lg-0">
+                    <button id="themeToggle" class="btn btn-sm btn-outline-light">🌙</button>
+                    <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <div class="sticky-action-bar d-flex justify-content-center align-items-center">
-        <div class="d-flex gap-2 flex-wrap justify-content-center">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#flightModal">Log Flight</button>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#mxModal">Add Maintenance</button>
-            <div class="d-flex gap-2">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fuelModal">Fuel Tracker</button>
-                <a href="/analyzer" class="btn flight-analyzer-btn">Flight Analyzer</a>
-                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#pricesResultModal">
-                    Check Fuel Prices
-                </button>
-                <button class="btn route-advisor-btn" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal">
-                    Route Advisor
-                </button>
-                <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">
-                    Database Updates
-                </button>
+    <div class="sticky-action-bar">
+        <div class="container">
+            <div class="row g-2 justify-content-center">
+                <div class="col-6 col-md-auto">
+                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#flightModal">Log Flight</button>
+                </div>
+                <div class="col-6 col-md-auto">
+                    <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#mxModal">Log Mx</button>
+                </div>
+
+                <div class="col-12 col-md-auto d-flex gap-2 flex-wrap justify-content-center">
+                    <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelModal">Log Fuel</button>
+
+                    <button class="btn fuel-prices-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#pricesResultModal">Check $$</button>
+                    <button class="btn route-advisor-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal">Routes</button>
+                    <a href="/analyzer" class="btn flight-analyzer-btn flex-grow-1 flex-md-grow-0">Analyzer</a>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Status Cards (5 Equal Columns) -->
     <div class="row mb-4 g-3">
-        <div class="col">
+        <div class="col-6 col-lg">
             <!-- Dynamic styling for the Overdue Card -->
             <div class="card text-center p-3 h-100 d-flex flex-column justify-content-center {{ 'border-danger' if overdue_count > 0 else 'border-success' }}">
                 <h6 class="text-muted mb-2">Overdue Items</h6>
@@ -124,25 +165,25 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col">
+        <div class="col-6 col-lg">
             <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
                 <h6 class="text-muted mb-2">Condition Inspection</h6>
                 <span class="{{ cond_status_class }}">{{ cond_due }}</span>
             </div>
         </div>
-        <div class="col">
+        <div class="col-6 col-lg">
             <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
                 <h6 class="text-muted mb-2">Oil Change Due</h6>
                 <span class="{{ oil_status_class }}">{{ oil_due }}</span>
             </div>
         </div>
-        <div class="col">
+        <div class="col-6 col-lg">
             <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
                 <h6 class="text-muted mb-2">Aviation Database</h6>
                 <span class="{{ aviation_status_class }}">{{ aviation_db_text }}</span>
             </div>
         </div>
-        <div class="col">
+        <div class="col-6 col-lg">
             <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
                 <h6 class="text-muted mb-2">Obstacle Database</h6>
                 <span class="{{ obstacle_status_class }}">{{ obstacle_db_text }}</span>
@@ -667,37 +708,35 @@
 
 
 <!-- Route Advisor Modal -->
-<div class="modal fade" id="routeAdvisorModal" tabindex="-1" aria-labelledby="routeAdvisorModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+<div class="modal fade" id="routeAdvisorModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
         <div class="modal-content">
             <form id="routeAdvisorForm">
                 <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title" id="routeAdvisorModalLabel">Route Advisor</h5>
+                    <h5 class="modal-title">Route Advisor</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-                    <div class="row g-2 mb-3">
-                        <div class="col-md-4">
-                            <label class="form-label">Origin Airport</label>
-                            <input type="text" name="origin" class="form-control text-uppercase" placeholder="e.g. KJFK" required>
+                    <div class="row g-3 mb-3">
+                        <div class="col-12 col-md-4">
+                            <label class="form-label fw-bold">Origin</label>
+                            <input type="text" name="origin" class="form-control form-control-lg text-uppercase" placeholder="KJFK" required autocapitalize="characters">
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Destination Airport</label>
-                            <input type="text" name="destination" class="form-control text-uppercase" placeholder="e.g. KLAX" required>
+                        <div class="col-12 col-md-4">
+                            <label class="form-label fw-bold">Destination</label>
+                            <input type="text" name="destination" class="form-control form-control-lg text-uppercase" placeholder="KLAX" required autocapitalize="characters">
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Max Leg Range (NM)</label>
-                            <input type="number" name="range_nm" class="form-control" placeholder="e.g. 600" min="0">
+                        <div class="col-12 col-md-4">
+                            <label class="form-label fw-bold">Range (NM)</label>
+                            <input type="number" name="range_nm" class="form-control form-control-lg" placeholder="600" inputmode="decimal">
                         </div>
                     </div>
-                    <div id="routeMap" class="d-none" style="height: 300px; width: 100%; border-radius: 8px; margin-top: 10px;"></div>
+                    <div id="routeMap" class="d-none border" style="height: 350px; width: 100%; border-radius: 8px;"></div>
                     <div id="routeResult" class="alert alert-info d-none mt-3"></div>
                 </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="modal-footer flex-column flex-sm-row">
+                    <button type="submit" class="btn btn-primary btn-lg w-100 w-sm-auto">Generate Route</button>
+                    <button type="button" class="btn btn-secondary w-100 w-sm-auto mt-2 mt-sm-0" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>
