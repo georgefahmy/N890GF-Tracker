@@ -233,6 +233,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const routeStr = data.route_string || "";
             window.currentRouteData = data.route_data;
+            const encodedRoute = encodeURIComponent(routeStr);
+            const foreFlightDeepLink = `foreflight://open?event=addFlightPlan&plan=${encodedRoute}`;
 
             let html = `<strong>Route:</strong><br>
             <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
@@ -247,6 +249,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 <button type="button" class="btn btn-sm btn-info text-white" onclick="downloadForeFlightFPL()">
                     ⬇ ForeFlight (.fpl)
                 </button>
+                <a href="${foreFlightDeepLink}" class="btn btn-sm btn-dark d-md-none">
+                    ✈️ Open in ForeFlight
+                </a>
             </div>
             <br><hr>`;
 
