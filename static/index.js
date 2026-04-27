@@ -246,9 +246,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 <button type="button" class="btn btn-sm btn-primary" onclick="downloadDynonGPX()">
                     ⬇ Dynon GPX
                 </button>
-                <button type="button" class="btn btn-sm btn-info text-white" onclick="downloadForeFlightFPL()">
-                    ⬇ ForeFlight (.fpl)
-                </button>
                 <a href="${foreFlightDeepLink}" class="btn btn-sm btn-dark d-md-none">
                     ✈️ Open in ForeFlight
                 </a>
@@ -438,53 +435,6 @@ document.addEventListener("DOMContentLoaded", function() {
         gpx += `</gpx>`;
 
         window.downloadExportFile('Dynon_Route.gpx', gpx, 'application/gpx+xml');
-    };
-
-    // 2. ForeFlight / Garmin FPL Generator
-    window.downloadForeFlightFPL = function() {
-        if (!window.currentRouteData || window.currentRouteData.length === 0) return;
-
-        let fpl = `<?xml version="1.0" encoding="utf-8"?>\n`;
-        fpl += `<flight-plan xmlns="http://www8.garmin.com/xmlschemas/FlightPlan/v1">\n`;
-
-        // Waypoint definitions table
-        fpl += `  <waypoint-table>\n`;
-        window.currentRouteData.forEach(stop => {
-            const lat = stop.lat || stop.latitude || stop.lat_deg;
-            const lon = stop.lon || stop.lng || stop.longitude;
-            const code = stop.airport_code || stop.identifier || "WPT";
-
-            if (lat !== undefined && lon !== undefined) {
-                fpl += `    <waypoint>\n`;
-                fpl += `      <identifier>${code}</identifier>\n`;
-                fpl += `      <type>USER WAYPOINT</type>\n`;
-                fpl += `      <lat>${lat}</lat>\n`;
-                fpl += `      <lon>${lon}</lon>\n`;
-                fpl += `    </waypoint>\n`;
-            }
-        });
-        fpl += `  </waypoint-table>\n`;
-
-        // Route sequence
-        fpl += `  <route>\n`;
-        fpl += `    <route-name>Generated Route</route-name>\n`;
-        fpl += `    <flight-plan-index>1</flight-plan-index>\n`;
-        window.currentRouteData.forEach(stop => {
-            const lat = stop.lat || stop.latitude || stop.lat_deg;
-            const lon = stop.lon || stop.lng || stop.longitude;
-            const code = stop.airport_code || stop.identifier || "WPT";
-
-            if (lat !== undefined && lon !== undefined) {
-                fpl += `    <route-point>\n`;
-                fpl += `      <waypoint-identifier>${code}</waypoint-identifier>\n`;
-                fpl += `      <waypoint-type>USER WAYPOINT</waypoint-type>\n`;
-                fpl += `    </route-point>\n`;
-            }
-        });
-        fpl += `  </route>\n`;
-        fpl += `</flight-plan>`;
-
-        window.downloadExportFile('ForeFlight_Route.fpl', fpl, 'application/xml');
     };
 });
 
