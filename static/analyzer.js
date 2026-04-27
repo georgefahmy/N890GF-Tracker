@@ -1,26 +1,59 @@
+// Centralized Application State
+const AppState = {
+    file: {
+        currentName: "",
+        signalsList: [],
+    },
+    ui: {
+        plotCounter: 0,
+        filters: {},      // { plotId: [filters] }
+        xyFilters: [],
+        xyOverlay: false
+    },
+    map: {
+        followAircraft: true,
+        colorMode: 'altitude',
+        isMapPanning: false,
+        lastRenderData: null,
+        markerTraceIndex: 0,
+        data: {
+            lat: null, // Float32Array
+            lon: null,
+            alt: null,
+            length: 0
+        }
+    },
+    playback: {
+        timer: null,
+        index: 0,
+        speed: 1,
+        isScrubbing: false,
+        tick: 0,
+        fps: 30
+    },
+    calibration: {
+        start: null,
+        end: null
+    },
+    currentPlotData: null
+};
 
+function resetApp() {
+    if (AppState.playback.timer && AppState.playback.timer !== true) {
+        clearInterval(AppState.playback.timer);
+    }
+    AppState.file.currentName = "";
+    AppState.file.signalsList = [];
+    AppState.ui.filters = {};
+    AppState.ui.plotCounter = 0;
+    AppState.map.data = { lat: null, lon: null, alt: null, length: 0 };
+    AppState.playback = { timer: null, index: 0, speed: 1, isScrubbing: false, tick: 0 };
 
-// Global State
-let currentSavedFilename = "";
-let masterSignalsList = [];
-let plotIdCounter = 0;
-let plotFilters = {}; // { plotId: [filters] }
-let xyFilters = [];
-let xyOverlay = false;
-let followAircraft = true;
-let lastMapRenderData = null;
-let isMapPanning = false;
+    const container = document.getElementById('plots-container');
+    if (container) container.innerHTML = '';
+}
+
 const STORAGE_KEY = 'analyzer_selected_flight';
-
-// Calibration highlight globals
-let calStartTimeGlobal = null;
-let calEndTimeGlobal = null;
-
-let mapColorMode = 'altitude';
-let playbackTimer = null;
-let playbackIndex = 0;
-let playbackSpeed = 1;
-let isScrubbing = false; // <--- ADD THIS LINE
 
 // --- 3D WORLD DATA ---
 window._worldX = [];
@@ -43,7 +76,7 @@ const COLOR_LABELS = {
 };
 
 function toggleFollowAircraft(state) {
-    followAircraft = state;
+    AppState.map.followAircraft = state;
 }
 
 function toggleXYTab() {
@@ -79,13 +112,13 @@ function populateXYDropdowns() {
     const xSelect = document.getElementById('xyXSelect');
     const ySelect = document.getElementById('xyYSelect');
 
-    if (!xSelect || masterSignalsList.length === 0) return;
+    if (!xSelect || AppState.file.signalList.length === 0) return;
 
     const unitF = document.getElementById('unitF').checked;
     const hideString = unitF ? "(deg C)" : "(deg F)";
 
     // Apply same filtering logic as main plots
-    const filteredSignals = masterSignalsList.filter(sig => {
+    const filteredSignals = AppState.file.signalList.filter(sig => {
         if (sig === "CHT" || sig === "EGT") return true;
         return !sig.includes(hideString);
     });
@@ -129,11 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- ADD THIS BLOCK ---
     const scrubber = document.getElementById('mapScrubber');
     if (scrubber) {
-        scrubber.addEventListener('mousedown', () => isScrubbing = true);
-        scrubber.addEventListener('touchstart', () => { isScrubbing = true; }, {passive: true});
-        scrubber.addEventListener('mouseup', () => isScrubbing = false);
-        scrubber.addEventListener('touchend', () => isScrubbing = false);
-        scrubber.addEventListener('change', () => isScrubbing = false); // Failsafe if dropped outside
+        scrubber.addEventListener('mousedown', () => AppState.playback.isScrubbing = true);
+        scrubber.addEventListener('touchstart', () => { AppState.playback.isScrubbing = true; }, {passive: true});
+        scrubber.addEventListener('mouseup', () => AppState.playback.isScrubbing = false);
+        scrubber.addEventListener('touchend', () => AppState.playback.isScrubbing = false);
+        scrubber.addEventListener('change', () => AppState.playback.isScrubbing = false); // Failsafe if dropped outside
     }
     //
     fetch('/api/saved_flights')
@@ -183,11 +216,11 @@ function loadSignals(formData) {
             return;
         }
 
-        currentSavedFilename = data.saved_filename;
+        AppState.file.currentName = data.saved_filename;
         if (data.saved_filename) {
             localStorage.setItem(STORAGE_KEY, data.saved_filename);
         }
-        masterSignalsList = data.signals;
+        AppState.file.signalList = data.signals;
 
         // Hide placeholders, show relevant UI
         document.getElementById('statsPlaceholder').classList.add('d-none');
@@ -196,7 +229,7 @@ function loadSignals(formData) {
         document.getElementById('addPlotBtn').classList.remove('d-none');
 
         // If no plots exist, create the first one
-        if (plotIdCounter === 0) {
+        if (AppState.ui.plotCounter === 0) {
             addPlot();
         } else {
             // If plots already exist, update their dropdowns and re-trigger analysis
@@ -256,7 +289,7 @@ document.querySelectorAll('input[name="tempUnit"]').forEach(radio => {
 
 // 6. Plot Management Functions
 function addPlot() {
-    const plotId = plotIdCounter++;
+    const plotId = AppState.ui.plotCounter++;
     const container = document.getElementById('plotsContainer');
 
     const card = document.createElement('div');
@@ -355,7 +388,7 @@ function addPlot() {
     const unitF = document.getElementById('unitF').checked;
     const hideString = unitF ? "(deg C)" : "(deg F)";
 
-    const filteredSignals = masterSignalsList.filter(sig => {
+    const filteredSignals = AppState.file.signalList.filter(sig => {
         if (sig === "CHT" || sig === "EGT") return true;
         return !sig.includes(hideString);
     });
@@ -370,8 +403,8 @@ function addPlot() {
 
         if (isNaN(value)) return;
 
-        if (!plotFilters[plotId]) plotFilters[plotId] = [];
-        plotFilters[plotId].push({ signal, op, value });
+        if (!AppState.ui.filters[plotId]) AppState.ui.filters[plotId] = [];
+        AppState.ui.filters[plotId].push({ signal, op, value });
 
         renderPlotFilters(plotId);
         triggerAnalysis(plotId);
@@ -379,7 +412,7 @@ function addPlot() {
 
     // Clear Filters
     cardEl.querySelector('.clear-filter-btn').onclick = () => {
-        plotFilters[plotId] = [];
+        AppState.ui.filters[plotId] = [];
         renderPlotFilters(plotId);
         triggerAnalysis(plotId);
     };
@@ -390,7 +423,7 @@ function addPlot() {
 
     // Populate dropdowns and trigger the initial graph render
     populateDropdownsForPlot(plotId);
-    if (currentSavedFilename) triggerAnalysis(plotId);
+    if (AppState.file.currentName) triggerAnalysis(plotId);
     renderPlotFilters(plotId);
 }
 
@@ -399,8 +432,8 @@ function removePlot(plotId) {
     if (card) card.remove();
 
     // Clean up memory
-    if (plotFilters[plotId]) {
-        delete plotFilters[plotId];
+    if (AppState.ui.filters[plotId]) {
+        delete AppState.ui.filters[plotId];
     }
 }
 
@@ -413,7 +446,7 @@ function updateAllPlots() {
 }
 
 function populateDropdownsForPlot(plotId) {
-    if (masterSignalsList.length === 0) return;
+    if (AppState.file.signalList.length === 0) return;
 
     const unitF = document.getElementById('unitF').checked;
     const hideString = unitF ? "(deg C)" : "(deg F)";
@@ -427,7 +460,7 @@ function populateDropdownsForPlot(plotId) {
     let optionsHtml = '';
 
     // Filter out the wrong temperature unit
-    const filteredSignals = masterSignalsList.filter(sig => {
+    const filteredSignals = AppState.file.signalList.filter(sig => {
         if (sig === "CHT" || sig === "EGT") return true;
         return !sig.includes(hideString);
     });
@@ -490,7 +523,7 @@ function clearTooltips(sourceDivId) {
 
 // 7. Core Analysis & Plotting Function
 function triggerAnalysis(plotId) {
-    if (!currentSavedFilename) return;
+    if (!AppState.file.currentName) return;
 
     const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value;
     const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value;
@@ -500,11 +533,11 @@ function triggerAnalysis(plotId) {
     loader.classList.remove('d-none');
 
     const formData = new FormData();
-    formData.append('saved_filename', currentSavedFilename);
+    formData.append('saved_filename', AppState.file.currentName);
     formData.append('left_signal', leftSignal);
     formData.append('right_signal', rightSignal);
     formData.append('temp_unit', tempUnit);
-    const filters = plotFilters[plotId] || [];
+    const filters = AppState.ui.filters[plotId] || [];
     formData.append('filters', JSON.stringify(filters));
 
     fetch('/api/analyze_flight', { method: 'POST', body: formData })
@@ -694,15 +727,15 @@ function triggerAnalysis(plotId) {
                         console.error("Direct marker move failed:", e);
                     }
 
-                    if (followAircraft && !isMapPanning) {
-                        isMapPanning = true;
+                    if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
+                        AppState.map.isMapPanning = true;
                         Plotly.relayout('mapGraph', {
                             'mapbox.center.lat': mapLat,
                             'mapbox.center.lon': mapLon
                         });
 
                         // Unlock after 100ms
-                        setTimeout(() => { isMapPanning = false; }, 100);
+                        setTimeout(() => { AppState.map.isMapPanning = false; }, 100);
                     }
                 }
             }
@@ -819,7 +852,7 @@ function renderPlotFilters(plotId) {
     const list = card.querySelector('.filter-list');
     list.innerHTML = '';
 
-    const filters = plotFilters[plotId] || [];
+    const filters = AppState.ui.filters[plotId] || [];
 
     filters.forEach((f, idx) => {
         const li = document.createElement('li');
@@ -833,13 +866,13 @@ function renderPlotFilters(plotId) {
 }
 
 function removePlotFilter(plotId, index) {
-    plotFilters[plotId].splice(index, 1);
+    AppState.ui.filters[plotId].splice(index, 1);
     renderPlotFilters(plotId);
     triggerAnalysis(plotId);
 }
 
 function plotXY() {
-    if (!currentSavedFilename) return;
+    if (!AppState.file.currentName) return;
 
     const xSignal = document.getElementById('xyXSelect').value;
     const ySignal = document.getElementById('xyYSelect').value;
@@ -849,7 +882,7 @@ function plotXY() {
 
     const requestData = (filters) => {
         const formData = new FormData();
-        formData.append('saved_filename', currentSavedFilename);
+        formData.append('saved_filename', AppState.file.currentName);
         formData.append('left_signal', xSignal);
         formData.append('right_signal', ySignal);
         formData.append('temp_unit', tempUnit);
@@ -911,7 +944,7 @@ function plotXY() {
     };
 
     if (!overlay) {
-        requestData(xyFilters)
+        requestData(AppState.ui.xyFilters)
             .then(data => {
                 if (data.error) return alert(data.error);
                 renderPlot(null, data);
@@ -919,7 +952,7 @@ function plotXY() {
     } else {
         Promise.all([
             requestData([]),
-            requestData(xyFilters)
+            requestData(AppState.ui.xyFilters)
         ]).then(([rawData, filteredData]) => {
             if (rawData.error || filteredData.error) {
                 alert("Error generating overlay plot.");
@@ -948,19 +981,19 @@ function addXYFilter() {
 
     if (isNaN(value)) return;
 
-    xyFilters.push({ signal, op, value });
+    AppState.ui.xyFilters.push({ signal, op, value });
     renderXYFilters();
     plotXY();
 }
 
 function removeXYFilter(index) {
-    xyFilters.splice(index, 1);
+    AppState.ui.xyFilters.splice(index, 1);
     renderXYFilters();
     plotXY();
 }
 
 function clearXYFilters() {
-    xyFilters = [];
+    AppState.ui.xyFilters = [];
     renderXYFilters();
     plotXY();
 }
@@ -971,7 +1004,7 @@ function renderXYFilters() {
 
     list.innerHTML = '';
 
-    xyFilters.forEach((f, idx) => {
+    AppState.ui.xyFilters.forEach((f, idx) => {
         const li = document.createElement('li');
         li.className = "list-group-item d-flex justify-content-between align-items-center p-1";
         li.innerHTML = `
@@ -992,7 +1025,7 @@ function populateAvailableSignalsDropdown() {
 
     select.innerHTML = '';
 
-    if (!masterSignalsList || masterSignalsList.length === 0) {
+    if (!AppState.file.signalList || AppState.file.signalList.length === 0) {
         select.options.add(new Option("Load a flight first", ""));
         select.disabled = true;
         return;
@@ -1001,7 +1034,7 @@ function populateAvailableSignalsDropdown() {
     select.disabled = false;
 
     // Sort them alphabetically to make them easier to find
-    const sortedSignals = [...masterSignalsList].sort();
+    const sortedSignals = [...AppState.file.signalList].sort();
     sortedSignals.forEach(sig => {
         select.options.add(new Option(sig, sig));
     });
@@ -1221,19 +1254,19 @@ function submitAirspeedCalibration() {
         return;
     }
 
-    if (!currentSavedFilename) {
+    if (!AppState.file.currentName) {
         resultBox.innerText = "No flight loaded.";
         return;
     }
 
     // Store calibration range globally for map highlight
-    calStartTimeGlobal = start;
-    calEndTimeGlobal = end;
+    AppState.calibration.start = start;
+    AppState.calibration.end = end;
 
     resultBox.innerText = "Running calibration analysis...";
 
     const formData = new FormData();
-    formData.append('saved_filename', currentSavedFilename);
+    formData.append('saved_filename', AppState.file.currentName);
     formData.append('start_time', start);
     formData.append('end_time', end);
 
@@ -1275,8 +1308,8 @@ function submitAirspeedCalibration() {
             block.innerHTML = `
                 <h6 class="text-primary mb-2">Airspeed Calibration</h6>
                 <div class="row mb-2">
-                    <div class="col-md-6"><strong>Start Time:</strong><br>${formatMMSS(calStartTimeGlobal)}</div>
-                    <div class="col-md-6"><strong>End Time:</strong><br>${formatMMSS(calEndTimeGlobal)}</div>
+                    <div class="col-md-6"><strong>Start Time:</strong><br>${formatMMSS(AppState.calibration.start)}</div>
+                    <div class="col-md-6"><strong>End Time:</strong><br>${formatMMSS(AppState.calibration.end)}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-4"><strong>CAS Correction:</strong><br>${parsed['CAS Correction'] || 'N/A'}</div>
@@ -1287,8 +1320,8 @@ function submitAirspeedCalibration() {
 
             statsList.appendChild(block);
         }
-        if (lastMapRenderData) {
-            renderMap(lastMapRenderData);
+        if (AppState.map.lastRenderData) {
+            renderMap(AppState.map.lastRenderData);
         }
     })
     .catch(err => {
@@ -1333,7 +1366,7 @@ function renderMap(data) {
     if (!data) return;
     let lat = null;
     let lon = null;
-    lastMapRenderData = data;
+    AppState.map.lastRenderData = data;
 
     if (data.plot_data) {
         const keys = Object.keys(data.plot_data);
@@ -1418,10 +1451,10 @@ function renderMap(data) {
 
     // --- COLOR MODE RESOLVER ---
     const getColorValues = () => {
-        if (mapColorMode === 'altitude') return window._mapAlt;
-        if (mapColorMode === 'airspeed' && window._mapAirspeed) return window._mapAirspeed;
-        if (mapColorMode === 'groundspeed' && window._mapGroundspeed) return window._mapGroundspeed;
-        if (mapColorMode === 'vertical_speed' && window._mapVerticalSpeed) return window._mapVerticalSpeed;
+        if (AppState.map.colorMode === 'altitude') return window._mapAlt;
+        if (AppState.map.colorMode === 'airspeed' && window._mapAirspeed) return window._mapAirspeed;
+        if (AppState.map.colorMode === 'groundspeed' && window._mapGroundspeed) return window._mapGroundspeed;
+        if (AppState.map.colorMode === 'vertical_speed' && window._mapVerticalSpeed) return window._mapVerticalSpeed;
 
         // fallback
         return window._mapAlt;
@@ -1443,9 +1476,9 @@ function renderMap(data) {
 
         const sel = document.getElementById('mapColorModeSelect');
         if (sel) {
-            sel.value = mapColorMode;
+            sel.value = AppState.map.colorMode;
             sel.onchange = () => {
-                mapColorMode = sel.value;
+                AppState.map.colorMode = sel.value;
                 renderMap(data);
             };
         }
@@ -1485,7 +1518,7 @@ function renderMap(data) {
     // console.log("colorValues sample:", colorValues ? colorValues.slice(0, 10) : null);
 
     if (!colorValues || !colorValues.length) {
-        mapColorMode = 'altitude';
+        AppState.map.colorMode = 'altitude';
     }
 
     if (colorValues && colorValues.length === lat.length) {
@@ -1504,7 +1537,7 @@ function renderMap(data) {
         // Final safety fallback to avoid black map
         let cmin, cmax;
 
-        if (mapColorMode === 'altitude' && window._mapAlt && window._mapAlt.length) {
+        if (AppState.map.colorMode === 'altitude' && window._mapAlt && window._mapAlt.length) {
             const altVals = window._mapAlt.filter(v => !isNaN(v));
 
             cmin = altVals.length ? Math.min(...altVals) : 0;
@@ -1527,17 +1560,17 @@ function renderMap(data) {
             lon: lon,
             marker: {
                 size: 4,
-                color: (mapColorMode === 'altitude')
+                color: (AppState.map.colorMode === 'altitude')
                     ? window._mapAlt.map(v => isNaN(v) ? NaN : v)
                     : safeColors,
-                colorscale: COLOR_SCALES[mapColorMode] || 'Turbo',
-                reversescale: mapColorMode === 'altitude',
+                colorscale: COLOR_SCALES[AppState.map.colorMode] || 'Turbo',
+                reversescale: AppState.map.colorMode === 'altitude',
                 showscale: true,
-                cmin: (mapColorMode === 'altitude') ? 0 : cmin,
-                cmax: (mapColorMode === 'altitude') ? 15000 : cmax,
+                cmin: (AppState.map.colorMode === 'altitude') ? 0 : cmin,
+                cmax: (AppState.map.colorMode === 'altitude') ? 15000 : cmax,
                 colorbar: {
                     title: {
-                        text: COLOR_LABELS[mapColorMode] || 'Value'
+                        text: COLOR_LABELS[AppState.map.colorMode] || 'Value'
                     },
                     orientation: 'h',
                     x: 0.5,
@@ -1570,7 +1603,7 @@ function renderMap(data) {
     var startTrace = null;
     var endTrace = null;
 
-    if (calStartTimeGlobal !== null && calEndTimeGlobal !== null && window._mapTime) {
+    if (AppState.calibration.start !== null && AppState.calibration.end !== null && window._mapTime) {
         const highlightLat = [];
         const highlightLon = [];
 
@@ -1579,8 +1612,8 @@ function renderMap(data) {
 
             if (isNaN(t)) continue;
 
-            let start = calStartTimeGlobal;
-            let end = calEndTimeGlobal;
+            let start = AppState.calibration.start;
+            let end = AppState.calibration.end;
 
             // safety swap if user reversed inputs
             if (start > end) {
@@ -1762,7 +1795,7 @@ function syncAircraftToTime(t) {
     }
 
     // Follow mode (map recenter)
-    if (followAircraft) {
+    if (AppState.map.followAircraft) {
         Plotly.relayout('mapGraph', {
             'mapbox.center.lat': lat,
             'mapbox.center.lon': lon
@@ -1779,7 +1812,7 @@ function syncAircraftToTime(t) {
 function scrubMap(idx) {
     idx = parseInt(idx);
 
-    playbackIndex = idx;
+    AppState.playback.index = idx;
     interpolationTick = 0;
 
     if (!window._mapLat || !window._mapLon) return;
@@ -1823,7 +1856,7 @@ function scrubMap(idx) {
     }
 
     // Follow mode
-    if (followAircraft) {
+    if (AppState.map.followAircraft) {
         Plotly.relayout('mapGraph', {
             'mapbox.center.lat': lat,
             'mapbox.center.lon': lon
@@ -1832,66 +1865,65 @@ function scrubMap(idx) {
 }
 function togglePlayback() {
     const btn = document.getElementById('playPauseBtn');
-    if (playbackTimer) {
-        clearInterval(playbackTimer);
-        playbackTimer = null;
+    if (AppState.playback.timer) {
+        clearInterval(AppState.playback.timer);
+        AppState.playback.timer = null;
         if (btn) btn.innerText = '▶ Play';
     } else {
         if (btn) btn.innerText = '⏸ Pause';
         const scrubber = document.getElementById('mapScrubber');
-        playbackIndex = parseInt(scrubber.value) || 0;
+        AppState.playback.index = parseInt(scrubber.value) || 0;
 
         // Temporarily set this so the speed function knows it is allowed to start
-        playbackTimer = true;
+        AppState.playback.timer = true;
 
         // Start the loop!
-        setPlaybackSpeed(playbackSpeed);
+        setPlaybackSpeed(AppState.playback.speed);
     }
 }
 
 // analyzer.js additions
 let interpolationTick = 0;
-const FPS = 30;
 
 function setPlaybackSpeed(val) {
-    playbackSpeed = parseInt(val);
+    AppState.playback.speed = parseInt(val);
 
     // Only run if we are actively playing
-    if (!playbackTimer) return;
+    if (!AppState.playback.timer) return;
 
     // Clear existing timer if one is already running
-    if (playbackTimer !== true) {
-        clearInterval(playbackTimer);
+    if (AppState.playback.timer !== true) {
+        clearInterval(AppState.playback.timer);
     }
 
     // ALWAYS run the timer at a safe ~33ms (30 Frames Per Second)
-    const baseInterval = 1000 / FPS;
+    const baseInterval = 1000 / AppState.playback.fps;
 
-    playbackTimer = setInterval(() => {
-        if (!window._mapLat || playbackIndex >= window._mapLat.length - 1) {
-            clearInterval(playbackTimer);
-            playbackTimer = null;
+    AppState.playback.timer = setInterval(() => {
+        if (!window._mapLat || AppState.playback.index >= window._mapLat.length - 1) {
+            clearInterval(AppState.playback.timer);
+            AppState.playback.timer = null;
             const btn = document.getElementById('playPauseBtn');
             if (btn) btn.innerText = '▶ Play';
             return;
         }
 
         // Pause the clock if the user is dragging the slider
-        if (isScrubbing) return;
+        if (AppState.playback.isScrubbing) return;
 
         // 1. Calculate how far we are between the current second and the next
-        let t = interpolationTick / FPS;
+        let t = interpolationTick / AppState.playback.fps;
 
         // 2. Linear Interpolation (lerp) function
         const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
         // Safely determine the next index to prevent array out-of-bounds errors
-        const nextIdx = Math.min(playbackIndex + 1, window._mapLat.length - 1);
+        const nextIdx = Math.min(AppState.playback.index + 1, window._mapLat.length - 1);
 
         // 3. Interpolate all values
-        const currentLat = lerp(window._mapLat[playbackIndex], window._mapLat[nextIdx], t);
-        const currentLon = lerp(window._mapLon[playbackIndex], window._mapLon[nextIdx], t);
-        const currentAlt = lerp(window._mapAlt[playbackIndex], window._mapAlt[nextIdx], t);
+        const currentLat = lerp(window._mapLat[AppState.playback.index], window._mapLat[nextIdx], t);
+        const currentLon = lerp(window._mapLon[AppState.playback.index], window._mapLon[nextIdx], t);
+        const currentAlt = lerp(window._mapAlt[AppState.playback.index], window._mapAlt[nextIdx], t);
 
         const lerpAngle = (a, b, t) => {
             let d = b - a;
@@ -1900,11 +1932,11 @@ function setPlaybackSpeed(val) {
             return a + d * t;
         };
 
-        const magVar = window.currentPlotData?.mag_variance?.[playbackIndex] || -13;
-        const currentHeading = lerpAngle(window.currentPlotData?.heading[playbackIndex], window.currentPlotData?.heading[nextIdx], t);
+        const magVar = window.currentPlotData?.mag_variance?.[AppState.playback.index] || -13;
+        const currentHeading = lerpAngle(window.currentPlotData?.heading[AppState.playback.index], window.currentPlotData?.heading[nextIdx], t);
         const trueHeading = currentHeading - magVar;
-        const currentPitch = lerp(window.currentPlotData?.pitch[playbackIndex], window.currentPlotData?.pitch[nextIdx], t);
-        const currentRoll = lerp(window.currentPlotData?.roll[playbackIndex], window.currentPlotData?.roll[nextIdx], t);
+        const currentPitch = lerp(window.currentPlotData?.pitch[AppState.playback.index], window.currentPlotData?.pitch[nextIdx], t);
+        const currentRoll = lerp(window.currentPlotData?.roll[AppState.playback.index], window.currentPlotData?.roll[nextIdx], t);
 
         // 4. Send the SMOOTH data to the 3D model
         if (window.updateAircraft3D) {
@@ -1926,7 +1958,7 @@ function setPlaybackSpeed(val) {
             } catch (e) {}
 
             // Throttle map camera panning to prevent browser lag (updates every ~5th frame)
-            if (followAircraft && Math.floor(interpolationTick) % 6 === 0) {
+            if (AppState.map.followAircraft && Math.floor(interpolationTick) % 6 === 0) {
                 Plotly.relayout('mapGraph', {
                     'mapbox.center.lat': currentLat,
                     'mapbox.center.lon': currentLon
@@ -1935,19 +1967,19 @@ function setPlaybackSpeed(val) {
         }
 
         // 5. Advance the clock by the playback speed multiplier!
-        interpolationTick += playbackSpeed;
+        interpolationTick += AppState.playback.speed;
 
         // If we have accrued enough ticks to move forward one (or more) full seconds
-        if (interpolationTick >= FPS) {
-            const secondsToAdvance = Math.floor(interpolationTick / FPS);
-            playbackIndex += secondsToAdvance;
+        if (interpolationTick >= AppState.playback.fps) {
+            const secondsToAdvance = Math.floor(interpolationTick / AppState.playback.fps);
+            AppState.playback.index += secondsToAdvance;
 
             // Keep the remainder for smooth interpolation on the next frame
-            interpolationTick = interpolationTick % FPS;
+            interpolationTick = interpolationTick % AppState.playback.fps;
 
             // Sync the scrubber UI
             const scrubber = document.getElementById('mapScrubber');
-            if (scrubber) scrubber.value = playbackIndex;
+            if (scrubber) scrubber.value = AppState.playback.index;
         }
 
     }, baseInterval);
