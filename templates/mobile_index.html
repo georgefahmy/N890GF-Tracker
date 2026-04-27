@@ -625,6 +625,43 @@
         </div>
     </div>
 </div>
+<!-- Route Advisor Modal -->
+<div class="modal fade" id="routeAdvisorModal" tabindex="-1" aria-labelledby="routeAdvisorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form id="routeAdvisorForm">
+                <div class="modal-header bg-secondary text-white">
+                    <h5 class="modal-title" id="routeAdvisorModalLabel">Route Advisor</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Origin Airport</label>
+                            <input type="text" name="origin" class="form-control text-uppercase" placeholder="e.g. KJFK" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Destination Airport</label>
+                            <input type="text" name="destination" class="form-control text-uppercase" placeholder="e.g. KLAX" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Max Leg Range (NM)</label>
+                            <input type="number" name="range_nm" class="form-control" placeholder="e.g. 600" min="0">
+                        </div>
+                    </div>
+                    <div id="routeMap" class="d-none" style="height: 300px; width: 100%; border-radius: 8px; margin-top: 10px;"></div>
+                    <div id="routeResult" class="alert alert-info d-none mt-3"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

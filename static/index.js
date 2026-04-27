@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let html = `<strong>Route:</strong><br>
             <div class="d-flex align-items-center gap-2 flex-wrap">
-                <a href="https://plan.foreflight.com/map" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.skyvector.com/?fpl=${encodeURIComponent(routeStr)}" target="_blank" rel="noopener noreferrer">
                     ${routeStr}
                 </a>
                 <button type="button" class="btn btn-sm btn-outline-secondary"
