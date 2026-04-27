@@ -220,6 +220,10 @@ document.getElementById('csvFile').addEventListener('change', function(e) {
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
     loadSignals(formData);
+    if (!urlFlight) {
+        const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(saved);
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
 });
 
 // 4. Handle Saved Flight Selection
@@ -446,46 +450,6 @@ function populateDropdownsForPlot(plotId) {
         rightSelect.value = filteredSignals.length > 1 ? filteredSignals[1] : filteredSignals[0];
     }
 }
-
-// // --- GLOBAL CROSSHAIR SYNC ---
-// function updateCrosshairs(xVal, sourceDivId) {
-//     window._crosshairX = xVal;
-
-//     const plots = document.querySelectorAll('[id^="flightGraph-"]');
-
-//     plots.forEach(div => {
-//         if (!div || !div.layout) return;
-
-//         // SKIP the plot we are currently hovering on
-//         if (sourceDivId && div.id === sourceDivId) return;
-
-//         // Preserve your colored signal bands (if you added them), but remove the old crosshair
-//         const existingBands = div.layout.shapes ? div.layout.shapes.filter(s => s.name === 'band') : [];
-
-//         const layoutUpdate = {
-//             shapes: [
-//                 ...existingBands,
-//                 {
-//                     type: 'line',
-//                     x0: xVal,
-//                     x1: xVal,
-//                     y0: 0,
-//                     y1: 1,
-//                     xref: 'x',
-//                     yref: 'paper',
-//                     line: {
-//                         color: 'rgba(0,0,0,0.35)',
-//                         width: 1,
-//                         dash: 'dot'
-//                     },
-//                     name: 'crosshair'
-//                 }
-//             ]
-//         };
-
-//         Plotly.relayout(div, layoutUpdate);
-//     });
-// }
 
 // --- GLOBAL TOOLTIP & CROSSHAIR SYNC ---
 function syncTooltips(xVal, sourceDivId) {
