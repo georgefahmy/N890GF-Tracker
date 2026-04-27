@@ -424,6 +424,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (lat !== undefined && lon !== undefined) {
                 gpx += `    <rtept lat="${lat}" lon="${lon}">\n`;
                 gpx += `      <name>${code}</name>\n`;
+                gpx += `.     <overfly>false</overfly>`
                 gpx += `    </rtept>\n`;
             }
         });
