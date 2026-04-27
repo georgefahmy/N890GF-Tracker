@@ -100,6 +100,26 @@
                 font-size: 0.85rem;
             }
         }
+        /* Force solid background on the modal components */
+        #routeAdvisorModal .modal-content,
+        #routeAdvisorModal .modal-body {
+            background-color: #fff !important; /* Use #1a1a1a if in dark mode */
+        }
+
+        /* Ensure the modal dialog grows correctly */
+        #routeAdvisorModal .modal-dialog {
+            display: flex;
+            align-items: center;
+            min-height: calc(100% - 1rem);
+        }
+
+        /* Fix for mobile fullscreen expansion */
+        @media (max-width: 575.98px) {
+            #routeAdvisorModal .modal-content {
+                height: auto;
+                min-height: 100vh;
+            }
+        }
     </style>
 </head>
 <body>
