@@ -1206,7 +1206,7 @@ def analyzer():
     user_agent = request.headers.get("User-Agent", "").lower()
     is_mobile = any(x in user_agent for x in ["iphone", "android", "mobile"])
 
-    template = "mobile_analyzer.html" if is_mobile else "analyzer.html"
+    template = "analyzer.html" if is_mobile else "analyzer.html"
 
     return render_template(template)
 
