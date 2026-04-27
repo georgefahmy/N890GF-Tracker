@@ -1,0 +1,86 @@
+[
+    {
+        "airport_code": "CKU",
+        "airport_name": "Cordova Municipal Airport Cordova, AK",
+        "distance": {
+            "nm": 8,
+            "direction": "WNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Cordova Air Service",
+                "last_updated": "17-Apr",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$12.00"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$10.00"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "PAVD",
+        "airport_name": "Valdez Pioneer Field Airport Valdez, AK",
+        "distance": {
+            "nm": 45,
+            "direction": "NNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "VSHelicopters",
+                "last_updated": "17-Apr",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "PS",
+                            "price": "$11.00"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$10.30"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "PAGK",
+        "airport_name": "Gulkana Airport Gulkana, AK",
+        "distance": {
+            "nm": 100,
+            "direction": "N"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Gulkana Fuel",
+                "last_updated": "17-Apr",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "AS",
+                            "price": "$7.518"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "AS",
+                            "price": "$7.173"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
