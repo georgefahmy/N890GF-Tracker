@@ -8,10 +8,12 @@ import sqlite3
 import subprocess
 import threading
 import time
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from functools import wraps
 from io import StringIO
 from logging.handlers import RotatingFileHandler
+from xml.dom import minidom
 
 import numpy as np
 import pandas as pd
@@ -19,6 +21,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import (
     Flask,
+    Response,
     jsonify,
     make_response,
     redirect,
@@ -47,6 +50,34 @@ os.makedirs(LOG_DIR, exist_ok=True)
 log_formatter = logging.Formatter(
     "%(asctime)s | %(levelname)s | ip=%(ip)s | user=%(user)s | status=%(status)s | ua=%(ua)s | msg=%(message)s"
 )
+
+# Define the pins based on your vertical_power.py data
+VPX_PINS = [
+    {"id": "Starter", "name": "Starter", "breaker": 10, "sw": "AlwaysOn"},
+    {"id": "EFIS", "name": "EFIS PFD", "breaker": 5, "sw": "AlwaysOn"},
+    {"id": "Alternator", "name": "Alternator Field", "breaker": 5, "sw": "Switch1"},
+    {"id": "A5_1", "name": "Boost pump", "breaker": 5, "sw": "Switch4"},
+    {"id": "A5_2", "name": "SV-INT-2S - BOSE", "breaker": 2, "sw": "Switch3"},
+    {"id": "A5_3", "name": "Garmin G5", "breaker": 2, "sw": "Switch3"},
+    {"id": "A5_4", "name": "E-Mag/P-Mag 1", "breaker": 3, "sw": "Switch9"},
+    {"id": "A5_5", "name": "E-Mag/P-Mag 2", "breaker": 3, "sw": "Switch10"},
+    {"id": "A5_6", "name": "Taxi Light Left", "breaker": 5, "sw": "Switch6"},
+    {"id": "A5_7", "name": "Taxi Light Right", "breaker": 5, "sw": "Switch6"},
+    {"id": "A5_8", "name": "Hobbs meter", "breaker": 2, "sw": "Switch3"},
+    {"id": "A5_9", "name": "SV-XPNDR/SV-ADSB", "breaker": 3, "sw": "Switch3"},
+    {"id": "A5_10", "name": "Nav Light Left", "breaker": 5, "sw": "Switch7"},
+    {"id": "A5_11", "name": "EFIS MFD", "breaker": 5, "sw": "Switch3"},
+    {"id": "A5_12", "name": "Nav Light Right", "breaker": 5, "sw": "Switch7"},
+    {"id": "A10_1", "name": "trim AP Power", "breaker": 5, "sw": "Switch3"},
+    {"id": "A10_2", "name": "Left Landing Lt", "breaker": 7, "sw": "Switch5"},
+    {"id": "A10_3", "name": "Right Landing Lt", "breaker": 7, "sw": "Switch5"},
+    {"id": "A10_4", "name": "Strobe Left", "breaker": 7, "sw": "Switch8"},
+    {"id": "A10_5", "name": "Strobe Right", "breaker": 7, "sw": "Switch8"},
+    {"id": "A10_6", "name": "SV-COM-X25", "breaker": 7, "sw": "Switch3"},
+    {"id": "A15_1", "name": "AP Servos", "breaker": 10, "sw": "Switch3"},
+    {"id": "A15_3", "name": "Eyeball lights", "breaker": 10, "sw": "AlwaysOn"},
+    {"id": "A3_1", "name": "ELT", "breaker": 10, "sw": "AlwaysOn"},
+]
 
 
 def _create_logger(name, filename):
@@ -602,6 +633,35 @@ def process_flights(df):
     return df
 
 
+def parse_vpx_file(filepath):
+    tree = ET.parse(filepath)
+    root = tree.getroot()
+
+    # Extract Header Info
+    config_data = {
+        "user": root.findtext("User"),
+        "tailNumber": root.findtext("TailNumber"),
+        "circuits": [],
+    }
+
+    # Extract Circuit Configurations
+    circuits_node = root.find("CircuitConfigurations")
+    if circuits_node is not None:
+        for circuit in circuits_node.findall("CircuitConfiguration"):
+            config_data["circuits"].append(
+                {
+                    "id": circuit.findtext("Id"),
+                    "name": circuit.findtext("Name") or "",
+                    "breaker": circuit.findtext("BreakerValue"),
+                    "switchId": circuit.findtext("SwitchId"),
+                    "enabled": circuit.findtext("Enabled").lower() == "true",
+                    "fault": circuit.findtext("CurrentFault").lower() == "true",
+                }
+            )
+
+    return config_data
+
+
 @app.route("/update_server", methods=["GET", "POST"])
 @app.route("/update_server/", methods=["GET", "POST"])
 def update_server():
@@ -983,6 +1043,67 @@ def index():
         total_fuel_cost=total_fuel_cost,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
+    )
+
+
+@app.route("/vpx-editor")
+def vpx_editor():
+    # Load from the physical .vpx file
+    vpx_path = "/Users/GFahmy/Documents/RV-7/Vertical Power/config_20230129.vpx"
+    data = parse_vpx_file(vpx_path)
+
+    return render_template(
+        "vpx_editor.html",
+        pins=data["circuits"],
+        user=data["user"],
+        tail=data["tailNumber"],
+    )
+
+
+@app.route("/api/generate-vpx", methods=["POST"])
+def generate_vpx():
+    data = request.json
+    root = ET.Element(
+        "VpxConfiguration",
+        {
+            "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+            "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+        },
+    )
+
+    # Header
+    ET.SubElement(root, "User").text = data.get("user", "George Fahmy")
+    ET.SubElement(root, "TailNumber").text = data.get("tailNumber", "N890GF")
+    ET.SubElement(root, "HardwareVersion").text = "2"
+    ET.SubElement(root, "SoftwareMajor").text = "1"
+    ET.SubElement(root, "SoftwareMinor").text = "6"
+    ET.SubElement(root, "ConfiguratorVersion").text = "1.6.0.0"
+
+    # Circuits
+    circuits_container = ET.SubElement(root, "CircuitConfigurations")
+    for c in data.get("circuits", []):
+        node = ET.SubElement(circuits_container, "CircuitConfiguration")
+        ET.SubElement(node, "Id").text = c["id"]
+        ET.SubElement(node, "BreakerValue").text = str(c["breaker"])
+        ET.SubElement(node, "CurrentFault").text = "false"
+        ET.SubElement(node, "SwitchId").text = c["switchId"]
+        ET.SubElement(node, "Enabled").text = "true" if c["enabled"] else "false"
+        ET.SubElement(node, "Name").text = c["name"]
+
+    # Boilerplate (Add Trim/Flap defaults as in your vertical_power.py)
+    # ... (Omitted for brevity, keep the blocks from your original .py file)
+
+    ET.SubElement(root, "TimeStamp").text = datetime.now().isoformat()
+
+    xml_str = ET.tostring(root, encoding="utf-8")
+    pretty_xml = minidom.parseString(xml_str).toprettyxml(indent="  ")
+
+    return Response(
+        pretty_xml,
+        mimetype="application/xml",
+        headers={
+            "Content-Disposition": f"attachment;filename={data.get('tailNumber')}_VPX.xml"
+        },
     )
 
 
