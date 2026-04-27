@@ -232,15 +232,20 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             const routeStr = data.route_string || "";
+            window.currentRouteData = data.route_data;
 
             let html = `<strong>Route:</strong><br>
-            <div class="d-flex align-items-center gap-2 flex-wrap">
+            <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
                 <a href="https://www.skyvector.com/?fpl=${encodeURIComponent(routeStr)}" target="_blank" rel="noopener noreferrer">
                     ${routeStr}
                 </a>
-                <button type="button" class="btn btn-sm btn-outline-secondary"
-                    onclick="copyRouteToast(\`${routeStr.replace(/`/g, '\\`')}\`)">
-                    Copy
+            </div>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <button type="button" class="btn btn-sm btn-primary" onclick="downloadDynonGPX()">
+                    ⬇ Dynon GPX
+                </button>
+                <button type="button" class="btn btn-sm btn-info text-white" onclick="downloadForeFlightFPL()">
+                    ⬇ ForeFlight (.fpl)
                 </button>
             </div>
             <br><hr>`;
@@ -391,22 +396,89 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Add copyRouteToast to window inside DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function() {
-    window.copyRouteToast = function(text) {
-        navigator.clipboard.writeText(text)
-            .then(() => {
-                const toastEl = document.getElementById("copyToast");
-                // Set toast text back to success in case it was set to error previously
-                toastEl.querySelector(".toast-body").innerText = "Copied to clipboard!";
-                const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
-                toast.show();
-            })
-            .catch(err => {
-                const toastEl = document.getElementById("copyToast");
-                toastEl.querySelector(".toast-body").innerText = "Copy failed";
-                const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
-                toast.show();
-                console.error(err);
-            });
+    window.downloadExportFile = function(filename, content, contentType) {
+        const blob = new Blob([content], { type: contentType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+    // 1. Dynon SkyView GPX Generator
+    window.downloadDynonGPX = function() {
+        if (!window.currentRouteData || window.currentRouteData.length === 0) return;
+
+        let gpx = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+        gpx += `<gpx version="1.1" creator="Dynon SkyView">\n`;
+        gpx += `  <rte>\n`;
+        gpx += `    <name>Generated Route</name>\n`;
+
+        window.currentRouteData.forEach(stop => {
+            const lat = stop.lat || stop.latitude || stop.lat_deg;
+            const lon = stop.lon || stop.lng || stop.longitude;
+            const code = stop.airport_code || stop.identifier || "WPT";
+
+            if (lat !== undefined && lon !== undefined) {
+                gpx += `    <rtept lat="${lat}" lon="${lon}">\n`;
+                gpx += `      <name>${code}</name>\n`;
+                gpx += `    </rtept>\n`;
+            }
+        });
+
+        gpx += `  </rte>\n`;
+        gpx += `</gpx>`;
+
+        window.downloadExportFile('Dynon_Route.gpx', gpx, 'application/gpx+xml');
+    };
+
+    // 2. ForeFlight / Garmin FPL Generator
+    window.downloadForeFlightFPL = function() {
+        if (!window.currentRouteData || window.currentRouteData.length === 0) return;
+
+        let fpl = `<?xml version="1.0" encoding="utf-8"?>\n`;
+        fpl += `<flight-plan xmlns="http://www8.garmin.com/xmlschemas/FlightPlan/v1">\n`;
+
+        // Waypoint definitions table
+        fpl += `  <waypoint-table>\n`;
+        window.currentRouteData.forEach(stop => {
+            const lat = stop.lat || stop.latitude || stop.lat_deg;
+            const lon = stop.lon || stop.lng || stop.longitude;
+            const code = stop.airport_code || stop.identifier || "WPT";
+
+            if (lat !== undefined && lon !== undefined) {
+                fpl += `    <waypoint>\n`;
+                fpl += `      <identifier>${code}</identifier>\n`;
+                fpl += `      <type>USER WAYPOINT</type>\n`;
+                fpl += `      <lat>${lat}</lat>\n`;
+                fpl += `      <lon>${lon}</lon>\n`;
+                fpl += `    </waypoint>\n`;
+            }
+        });
+        fpl += `  </waypoint-table>\n`;
+
+        // Route sequence
+        fpl += `  <route>\n`;
+        fpl += `    <route-name>Generated Route</route-name>\n`;
+        fpl += `    <flight-plan-index>1</flight-plan-index>\n`;
+        window.currentRouteData.forEach(stop => {
+            const lat = stop.lat || stop.latitude || stop.lat_deg;
+            const lon = stop.lon || stop.lng || stop.longitude;
+            const code = stop.airport_code || stop.identifier || "WPT";
+
+            if (lat !== undefined && lon !== undefined) {
+                fpl += `    <route-point>\n`;
+                fpl += `      <waypoint-identifier>${code}</waypoint-identifier>\n`;
+                fpl += `      <waypoint-type>USER WAYPOINT</waypoint-type>\n`;
+                fpl += `    </route-point>\n`;
+            }
+        });
+        fpl += `  </route>\n`;
+        fpl += `</flight-plan>`;
+
+        window.downloadExportFile('ForeFlight_Route.fpl', fpl, 'application/xml');
     };
 });
 
