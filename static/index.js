@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const routeStr = data.route_string || "";
             window.currentRouteData = data.route_data;
             const encodedRoute = encodeURIComponent(routeStr);
-            const foreFlightDeepLink = `foreflight://open?event=addFlightPlan&plan=${encodedRoute}`;
+            const foreFlightDeepLink = `foreflightmobile://maps/search?q=${encodedRoute}`;
 
             let html = `<strong>Route:</strong><br>
             <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
