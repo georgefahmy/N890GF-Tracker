@@ -745,10 +745,11 @@ function renderPlotlyChart(plotId, data) {
                         'mapbox.center.lon': mapLon
                     });
 
-                    // Unlock after 100ms
-                    setTimeout(() => { AppState.map.isMapPanning = false; }, 100);
+                    // Unlock after 50ms
+                    setTimeout(() => { AppState.map.isMapPanning = false; }, 50);
                 }
             }
+            document.getElementById('mapScrubber').value = idx;
         }
 
         // Sync other plots using the new clean logic
