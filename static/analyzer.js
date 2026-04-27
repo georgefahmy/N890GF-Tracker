@@ -547,7 +547,7 @@ function triggerAnalysis(plotId) {
         const graphDiv = document.getElementById(`flightGraph-${plotId}`);
 
         // Store plot data globally for cursor sync
-        window.currentPlotData = data.plot_data;
+        AppState.currentPlotData = data.plot_data;
 
         if (data.error) {
             alert("Error: " + data.error);
@@ -680,9 +680,9 @@ function triggerAnalysis(plotId) {
             const idx = pt.pointIndex;
             const xVal = pt.x;
 
-            const pitchArr = window.currentPlotData?.pitch || [];
-            const rollArr = window.currentPlotData?.roll || [];
-            const headingArr = window.currentPlotData?.heading || [];
+            const pitchArr = AppState.currentPlotData?.pitch || [];
+            const rollArr = AppState.currentPlotData?.roll || [];
+            const headingArr = AppState.currentPlotData?.heading || [];
 
             if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
                 document.getElementById('attPitch').innerText =
@@ -700,20 +700,20 @@ function triggerAnalysis(plotId) {
                 const pitchVal = pitchArr[idx] || 0;
                 const rollVal = rollArr[idx] || 0;
                 const headingVal = headingArr[idx] || 0;
-                const magVar = window.currentPlotData.mag_variance?.[idx] || -13;
+                const magVar = AppState.currentPlotData.mag_variance?.[idx] || -13;
                 const trueHeading = headingVal - magVar;
 
-                const lat = window._mapLat ? window._mapLat[idx] : 0;
-                const lon = window._mapLon ? window._mapLon[idx] : 0;
-                const alt = window._mapAlt ? window._mapAlt[idx] : 0;
+                const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
+                const lon = AppState.map.data.lon ? AppState.map.data.lon[idx] : 0;
+                const alt = AppState.map.data.alt ? AppState.map.data.alt[idx] : 0;
 
                 window.updateAircraft3D(pitchVal, rollVal, trueHeading, lat, lon, alt);
             }
 
             // DIRECT INDEX MATCH
-            if (pt.pointIndex !== undefined && window._mapLat && window._mapLon) {
-                const mapLat = window._mapLat[idx];
-                const mapLon = window._mapLon[idx];
+            if (pt.pointIndex !== undefined && AppState.map.data.lat && AppState.map.data.lon) {
+                const mapLat = AppState.map.data.lat[idx];
+                const mapLon = AppState.map.data.lon[idx];
 
                 const mapDiv = document.getElementById('mapGraph');
                 if (mapDiv) {
@@ -1390,11 +1390,11 @@ function renderMap(data) {
 
     const latRaw = new Float32Array(lat);
     const lonRaw = new Float32Array(lon);
-    window._mapLat = latRaw;
-    window._mapLon = lonRaw;
+    AppState.map.data.lat = latRaw;
+    AppState.map.data.lon = lonRaw;
 
     // --- GLOBAL MAP STATE (needed for hover + sync) ---
-    window._mapLength = latRaw.length;
+    AppState.map.data.length = latRaw.length;
     window._mapTime = (data.plot_data?.time || data.plot_data?.session_time || data.time || null);
 
     if (window._mapTime && Array.isArray(window._mapTime)) {
@@ -1444,20 +1444,20 @@ function renderMap(data) {
         window._worldZ[i] = z;
         cleanAlt[i] = a; // direct index assignment is much faster than .push()
     }
-    window._mapAlt = cleanAlt;
+    AppState.map.data.alt = cleanAlt;
     window._mapAirspeed = data.plot_data?.airspeed || null;
     window._mapGroundspeed = data.plot_data?.groundspeed || null;
     window._mapVerticalSpeed = data.plot_data?.vertical_speed || null;
 
     // --- COLOR MODE RESOLVER ---
     const getColorValues = () => {
-        if (AppState.map.colorMode === 'altitude') return window._mapAlt;
+        if (AppState.map.colorMode === 'altitude') return AppState.map.data.alt;
         if (AppState.map.colorMode === 'airspeed' && window._mapAirspeed) return window._mapAirspeed;
         if (AppState.map.colorMode === 'groundspeed' && window._mapGroundspeed) return window._mapGroundspeed;
         if (AppState.map.colorMode === 'vertical_speed' && window._mapVerticalSpeed) return window._mapVerticalSpeed;
 
         // fallback
-        return window._mapAlt;
+        return AppState.map.data.alt;
     };
 
     const metricsDiv = document.getElementById('mapMetrics');
@@ -1530,15 +1530,15 @@ function renderMap(data) {
 
         // Fallback to altitude if selected mode is invalid or empty
         let validVals = safeColors.filter(v => !isNaN(v));
-        if (!validVals.length && window._mapAlt) {
-            validVals = window._mapAlt.filter(v => !isNaN(v));
+        if (!validVals.length && AppState.map.data.alt) {
+            validVals = AppState.map.data.alt.filter(v => !isNaN(v));
         }
 
         // Final safety fallback to avoid black map
         let cmin, cmax;
 
-        if (AppState.map.colorMode === 'altitude' && window._mapAlt && window._mapAlt.length) {
-            const altVals = window._mapAlt.filter(v => !isNaN(v));
+        if (AppState.map.colorMode === 'altitude' && AppState.map.data.alt && AppState.map.data.alt.length) {
+            const altVals = AppState.map.data.alt.filter(v => !isNaN(v));
 
             cmin = altVals.length ? Math.min(...altVals) : 0;
             cmax = altVals.length ? Math.max(...altVals) : 15000;
@@ -1561,7 +1561,7 @@ function renderMap(data) {
             marker: {
                 size: 4,
                 color: (AppState.map.colorMode === 'altitude')
-                    ? window._mapAlt.map(v => isNaN(v) ? NaN : v)
+                    ? AppState.map.data.alt.map(v => isNaN(v) ? NaN : v)
                     : safeColors,
                 colorscale: COLOR_SCALES[AppState.map.colorMode] || 'Turbo',
                 reversescale: AppState.map.colorMode === 'altitude',
@@ -1741,14 +1741,14 @@ function renderMap(data) {
 
     // Set up scrubber max and value
     const scrubber = document.getElementById('mapScrubber');
-    if (scrubber && window._mapLength) {
-        scrubber.max = window._mapLength - 1;
+    if (scrubber && AppState.map.data.length) {
+        scrubber.max = AppState.map.data.length - 1;
         scrubber.value = 0;
     }
 }
 
 function syncAircraftToTime(t) {
-    if (!window._mapTime || !window._mapLat || !window._mapLon) return;
+    if (!window._mapTime || !AppState.map.data.lat || !AppState.map.data.lon) return;
 
     // Find closest index in time array
     let bestIndex = 0;
@@ -1779,8 +1779,8 @@ function syncAircraftToTime(t) {
         aircraftIndex = window._mapMarkerTraceIndex || 0;
     }
 
-    const lat = window._mapLat[bestIndex];
-    const lon = window._mapLon[bestIndex];
+    const lat = AppState.map.data.lat[bestIndex];
+    const lon = AppState.map.data.lon[bestIndex];
 
     // Directly update ONLY the aircraft marker trace (stable + no full redraw)
     try {
@@ -1815,10 +1815,10 @@ function scrubMap(idx) {
     AppState.playback.index = idx;
     interpolationTick = 0;
 
-    if (!window._mapLat || !window._mapLon) return;
+    if (!AppState.map.data.lat || !AppState.map.data.lon) return;
 
-    const lat = window._mapLat[idx];
-    const lon = window._mapLon[idx];
+    const lat = AppState.map.data.lat[idx];
+    const lon = AppState.map.data.lon[idx];
 
     const mapDiv = document.getElementById('mapGraph');
     if (!mapDiv) return;
@@ -1835,11 +1835,11 @@ function scrubMap(idx) {
     }
 
     // Also sync 3D + attitude if available
-    if (window.currentPlotData) {
-        const pitch = window.currentPlotData.pitch?.[idx] || 0;
-        const roll = window.currentPlotData.roll?.[idx] || 0;
-        const heading = window.currentPlotData.heading?.[idx] || 0;
-        const magVar = window.currentPlotData.mag_variance?.[idx] || -13;
+    if (AppState.currentPlotData) {
+        const pitch = AppState.currentPlotData.pitch?.[idx] || 0;
+        const roll = AppState.currentPlotData.roll?.[idx] || 0;
+        const heading = AppState.currentPlotData.heading?.[idx] || 0;
+        const magVar = AppState.currentPlotData.mag_variance?.[idx] || -13;
         const trueHeading = heading - magVar
 
         document.getElementById('attPitch').innerText = pitch.toFixed(1) + ' °';
@@ -1847,9 +1847,9 @@ function scrubMap(idx) {
         document.getElementById('attHeading').innerText = heading.toFixed(1) + ' °';
 
         if (window.updateAircraft3D) {
-            const lat = window._mapLat ? window._mapLat[idx] : 0;
-            const lon = window._mapLon ? window._mapLon[idx] : 0;
-            const alt = window._mapAlt ? window._mapAlt[idx] : 0; // Assuming alt is in feet
+            const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
+            const lon = AppState.map.data.lon ? AppState.map.data.lon[idx] : 0;
+            const alt = AppState.map.data.alt ? AppState.map.data.alt[idx] : 0; // Assuming alt is in feet
 
             window.updateAircraft3D(pitch, roll, trueHeading, lat, lon, alt);
         }
@@ -1900,7 +1900,7 @@ function setPlaybackSpeed(val) {
     const baseInterval = 1000 / AppState.playback.fps;
 
     AppState.playback.timer = setInterval(() => {
-        if (!window._mapLat || AppState.playback.index >= window._mapLat.length - 1) {
+        if (!AppState.map.data.lat || AppState.playback.index >= AppState.map.data.lat.length - 1) {
             clearInterval(AppState.playback.timer);
             AppState.playback.timer = null;
             const btn = document.getElementById('playPauseBtn');
@@ -1918,12 +1918,12 @@ function setPlaybackSpeed(val) {
         const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
         // Safely determine the next index to prevent array out-of-bounds errors
-        const nextIdx = Math.min(AppState.playback.index + 1, window._mapLat.length - 1);
+        const nextIdx = Math.min(AppState.playback.index + 1, AppState.map.data.lat.length - 1);
 
         // 3. Interpolate all values
-        const currentLat = lerp(window._mapLat[AppState.playback.index], window._mapLat[nextIdx], t);
-        const currentLon = lerp(window._mapLon[AppState.playback.index], window._mapLon[nextIdx], t);
-        const currentAlt = lerp(window._mapAlt[AppState.playback.index], window._mapAlt[nextIdx], t);
+        const currentLat = lerp(AppState.map.data.lat[AppState.playback.index], AppState.map.data.lat[nextIdx], t);
+        const currentLon = lerp(AppState.map.data.lon[AppState.playback.index], AppState.map.data.lon[nextIdx], t);
+        const currentAlt = lerp(AppState.map.data.alt[AppState.playback.index], AppState.map.data.alt[nextIdx], t);
 
         const lerpAngle = (a, b, t) => {
             let d = b - a;
@@ -1932,11 +1932,11 @@ function setPlaybackSpeed(val) {
             return a + d * t;
         };
 
-        const magVar = window.currentPlotData?.mag_variance?.[AppState.playback.index] || -13;
-        const currentHeading = lerpAngle(window.currentPlotData?.heading[AppState.playback.index], window.currentPlotData?.heading[nextIdx], t);
+        const magVar = AppState.currentPlotData?.mag_variance?.[AppState.playback.index] || -13;
+        const currentHeading = lerpAngle(AppState.currentPlotData?.heading[AppState.playback.index], AppState.currentPlotData?.heading[nextIdx], t);
         const trueHeading = currentHeading - magVar;
-        const currentPitch = lerp(window.currentPlotData?.pitch[AppState.playback.index], window.currentPlotData?.pitch[nextIdx], t);
-        const currentRoll = lerp(window.currentPlotData?.roll[AppState.playback.index], window.currentPlotData?.roll[nextIdx], t);
+        const currentPitch = lerp(AppState.currentPlotData?.pitch[AppState.playback.index], AppState.currentPlotData?.pitch[nextIdx], t);
+        const currentRoll = lerp(AppState.currentPlotData?.roll[AppState.playback.index], window.currentPlotData?.roll[nextIdx], t);
 
         // 4. Send the SMOOTH data to the 3D model
         if (window.updateAircraft3D) {
