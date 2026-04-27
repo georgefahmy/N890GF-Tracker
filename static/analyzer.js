@@ -9,6 +9,7 @@ let xyFilters = [];
 let xyOverlay = false;
 let followAircraft = true;
 let lastMapRenderData = null;
+let isMapPanning = false;
 const STORAGE_KEY = 'analyzer_selected_flight';
 
 // Calibration highlight globals
@@ -396,6 +397,11 @@ function addPlot() {
 function removePlot(plotId) {
     const card = document.getElementById(`plotCard-${plotId}`);
     if (card) card.remove();
+
+    // Clean up memory
+    if (plotFilters[plotId]) {
+        delete plotFilters[plotId];
+    }
 }
 
 function updateAllPlots() {
@@ -505,6 +511,7 @@ function triggerAnalysis(plotId) {
     .then(response => response.json())
     .then(data => {
         loader.classList.add('d-none');
+        const graphDiv = document.getElementById(`flightGraph-${plotId}`);
 
         // Store plot data globally for cursor sync
         window.currentPlotData = data.plot_data;
@@ -515,7 +522,6 @@ function triggerAnalysis(plotId) {
         }
 
         // --- Render Plotly Chart ---
-        const graphDiv = document.getElementById(`flightGraph-${plotId}`);
         const traces = [];
 
         // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis
@@ -524,6 +530,7 @@ function triggerAnalysis(plotId) {
         // --- NEW: Track exact data limits to prevent shapes from squishing the chart ---
         let leftMin = Infinity, leftMax = -Infinity;
         let rightMin = Infinity, rightMax = -Infinity;
+
         // Map Left Traces
         data.plot_data.left_traces.forEach((traceData, idx) => {
             traceData.y.forEach(v => {
@@ -535,7 +542,7 @@ function triggerAnalysis(plotId) {
             });
             traces.push({
                 x: data.plot_data.x, y: traceData.y, name: traceData.name,
-                type: 'scatter', mode: 'lines',
+                type: 'scattergl', mode: 'lines',
                 line: { color: colorsLeft[idx % colorsLeft.length] }
             });
         });
@@ -551,7 +558,7 @@ function triggerAnalysis(plotId) {
             });
             traces.push({
                 x: data.plot_data.x, y: traceData.y, name: traceData.name,
-                type: 'scatter', mode: 'lines',
+                type: 'scattergl', mode: 'lines',
                 line: { color: colorsRight[idx % colorsRight.length] },
                 yaxis: 'y2'
             });
@@ -687,11 +694,15 @@ function triggerAnalysis(plotId) {
                         console.error("Direct marker move failed:", e);
                     }
 
-                    if (followAircraft) {
+                    if (followAircraft && !isMapPanning) {
+                        isMapPanning = true;
                         Plotly.relayout('mapGraph', {
                             'mapbox.center.lat': mapLat,
                             'mapbox.center.lon': mapLon
                         });
+
+                        // Unlock after 100ms
+                        setTimeout(() => { isMapPanning = false; }, 100);
                     }
                 }
             }
@@ -859,7 +870,7 @@ function plotXY() {
                 x: rx,
                 y: ry,
                 mode: 'markers',
-                type: 'scatter',
+                type: 'scattergl',
                 name: 'Raw',
                 marker: { size: 3, color: 'rgba(150,150,150,0.5)' }
             });
@@ -883,7 +894,7 @@ function plotXY() {
                 x: data.plot_data.left_traces[0].y,
                 y: data.plot_data.right_traces[0].y,
                 mode: 'markers',
-                type: 'scatter',
+                type: 'scattergl',
                 marker: { size: 4 }
             });
         }
@@ -1344,17 +1355,12 @@ function renderMap(data) {
 
     // --- SAFE PARSE + ALIGN LAT/LON/ALT BY INDEX (CRITICAL FIX) ---
 
-    const latRaw = lat.map(v => parseFloat(v));
-    const lonRaw = lon.map(v => parseFloat(v));
-    // console.log("DEBUG LAT/LON:");
-    // console.log("latRaw length:", latRaw.length);
-    // console.log("lonRaw length:", lonRaw.length);
-    // console.log("latRaw sample:", latRaw.slice(0, 10));
-    // console.log("lonRaw sample:", lonRaw.slice(0, 10));
-
-    // --- GLOBAL MAP STATE (needed for hover + sync) ---
+    const latRaw = new Float32Array(lat);
+    const lonRaw = new Float32Array(lon);
     window._mapLat = latRaw;
     window._mapLon = lonRaw;
+
+    // --- GLOBAL MAP STATE (needed for hover + sync) ---
     window._mapLength = latRaw.length;
     window._mapTime = (data.plot_data?.time || data.plot_data?.session_time || data.time || null);
 
@@ -1379,54 +1385,33 @@ function renderMap(data) {
         }
         altRaw = altRaw.map(v => parseFloat(v));
     }
-    // console.log("DEBUG ALT RAW:");
-    // console.log("altRaw type:", typeof altRaw);
-    // console.log("altRaw isArray:", Array.isArray(altRaw));
-    // console.log("altRaw length:", altRaw ? altRaw.length : null);
-    // console.log("altRaw sample:", altRaw ? altRaw.slice(0, 10) : null);
-
-    // --- ALIGN ALTITUDE TO LAT/LON INDEX (CRITICAL FIX) ---
-    const cleanAlt = [];
-
-    for (let i = 0; i < latRaw.length; i++) {
-        const a = (altRaw && Array.isArray(altRaw)) ? altRaw[i] : null;
-
-        if (a === undefined || a === null || isNaN(a)) {
-            cleanAlt.push(null);
-        } else {
-            cleanAlt.push(a);
-        }
-    }
-    // console.log("DEBUG CLEAN ALT:");
-    // console.log("cleanAlt length:", cleanAlt.length);
-    // console.log("cleanAlt sample:", cleanAlt.slice(0, 10));
-    // console.log("cleanAlt min:", Math.min(...cleanAlt.filter(v => !isNaN(v))));
-    // console.log("cleanAlt max:", Math.max(...cleanAlt.filter(v => !isNaN(v))));
 
     // Ensure altitude always matches lat length for heatmap modes
-    window._mapAlt = cleanAlt;
     // --- CONVERT LAT/LON/ALT TO 3D WORLD ---
     const originLat = latRaw[0];
     const originLon = lonRaw[0];
 
     const scale = 111320; // meters per degree approx
 
-    window._worldX = [];
-    window._worldY = [];
-    window._worldZ = [];
+    const len = latRaw.length;
+    window._worldX = new Float32Array(len);
+    window._worldY = new Float32Array(len);
+    window._worldZ = new Float32Array(len);
+    const cleanAlt = new Float32Array(len);
 
-    for (let i = 0; i < latRaw.length; i++) {
+    for (let i = 0; i < len; i++) {
         const dLat = (latRaw[i] - originLat);
         const dLon = (lonRaw[i] - originLon);
-
+        const a = (altRaw && Array.isArray(altRaw)) ? altRaw[i] : null;
         const x = dLon * scale * Math.cos(originLat * Math.PI / 180);
         const z = dLat * scale;
         const y = cleanAlt[i] || 0;
-
-        window._worldX.push(x);
-        window._worldY.push(y);
-        window._worldZ.push(z);
+        window._worldX[i] = x;
+        window._worldY[i] = y;
+        window._worldZ[i] = z;
+        cleanAlt[i] = a; // direct index assignment is much faster than .push()
     }
+    window._mapAlt = cleanAlt;
     window._mapAirspeed = data.plot_data?.airspeed || null;
     window._mapGroundspeed = data.plot_data?.groundspeed || null;
     window._mapVerticalSpeed = data.plot_data?.vertical_speed || null;
