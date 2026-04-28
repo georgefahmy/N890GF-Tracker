@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import re
+import socket
 import sqlite3
 import subprocess
 import threading
@@ -1048,15 +1049,18 @@ def index():
 
 @app.route("/vpx-editor")
 def vpx_editor():
-    # Load from the physical .vpx file
-    vpx_path = "/Users/GFahmy/Documents/RV-7/Vertical Power/config_20230129.vpx"
-    data = parse_vpx_file(vpx_path)
+    # Define the static connector structure for N890GF
+    # This ensures the template knows exactly which sections to render
+    connectors = {
+        "J8": {"pins": 8, "desc": "High Current Power"},
+        "J10": {"pins": 10, "desc": "Medium Current Power"},
+        "J12": {"pins": 12, "desc": "Medium Current Power"},
+        "J1": {"pins": 25, "desc": "dSub - Inputs/Low Power"},
+        "J2": {"pins": 25, "desc": "dSub - Inputs/Low Power"},
+    }
 
     return render_template(
-        "vpx_editor.html",
-        pins=data["circuits"],
-        user=data["user"],
-        tail=data["tailNumber"],
+        "vpx_editor.html", connectors=connectors, user="", tail="N890GF"
     )
 
 
@@ -1105,6 +1109,24 @@ def generate_vpx():
             "Content-Disposition": f"attachment;filename={data.get('tailNumber')}_VPX.xml"
         },
     )
+
+
+@app.route("/sync-vpx", methods=["POST"])
+def sync_to_hardware():
+    # 1. Get the current UI state (JSON)
+    config_data = request.json
+
+    # 2. Convert JSON/XML to the VP-X Binary Format
+    # (This is where the Wireshark data mapping comes in)
+    binary_payload = config_data
+
+    # 3. Send over Socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect(("192.168.1.50", 50000))
+        s.sendall(binary_payload)
+        response = s.recv(1024)
+
+    return {"status": "success" if response else "no_ack"}
 
 
 @app.route("/add_flight", methods=["POST"])

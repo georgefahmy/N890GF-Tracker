@@ -3,162 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VPX Live Editor | N890GF</title>
+    <title>VPX Live Editor | Connector View</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    {% include 'dark_mode.html' %}
     <style>
-        body { background-color: #f8f9fa; padding-top: 70px; }
-        .upload-zone {
-            border: 2px dashed #dee2e6;
-            border-radius: 12px;
-            transition: all 0.2s ease;
-            cursor: pointer;
+        body { background-color: #f1f3f5; padding-top: 70px; }
+
+        .connector-header {
+            background: #212529;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+            font-family: monospace;
+            display: flex;
+            justify-content: space-between;
         }
-        .upload-zone:hover { border-color: #0d6efd; background: rgba(13, 110, 253, 0.05); }
-        .card { border-radius: 12px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .pin-id { font-size: 0.75rem; color: #6c757d; font-weight: bold; }
+        .connector-body {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 15px;
+            margin-bottom: 2rem;
+        }
+        .pin-row { border-bottom: 1px solid #eee; padding: 8px 0; }
+        .pin-row:last-child { border-bottom: none; }
+        .pin-label { width: 70px; font-weight: bold; color: #0d6efd; text-align: center; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">← Back to Dashboard</a>
-            <a class="navbar-brand" href="/">✈️ N890GF Tracker</a>
+            <h6 class="navbar-text text-white">✈️ VPX Editor</h6>
             <div class="ms-auto">
-                <button class="btn btn-primary btn-sm" onclick="exportXml()">Download Updated .vpx</button>
+                <button class="btn btn-primary btn-sm" onclick="exportXml()">Download .vpx</button>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row justify-content-center mb-5" id="uploadBlock">
-            <div class="col-md-8">
-                <div class="upload-zone p-5 text-center" onclick="document.getElementById('vpxInput').click()">
-                    <i class="bi bi-file-earmark-code fs-1 text-primary"></i>
-                    <h4 class="mt-3">Upload .vpx Configuration</h4>
-                    <p class="text-muted">Drag and drop your file here or click to browse</p>
-                    <input type="file" id="vpxInput" hidden accept=".vpx,.xml" onchange="handleFileUpload(event)">
-                </div>
+    <div class="container" id="editorContent">
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label class="small fw-bold text-muted mb-1">Pilot Name</label>
+                <input type="text" id="vpxUser" class="form-control" placeholder="Enter Pilot Name">
+            </div>
+            <div class="col-md-6">
+                <label class="small fw-bold text-muted mb-1">Tail Number</label>
+                <input type="text" id="vpxTail" class="form-control" placeholder="Enter Tail Number">
             </div>
         </div>
 
-        <div id="editorContent" class="d-none">
-            <div class="row g-4 mb-4">
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <label class="small fw-bold">Pilot Name</label>
-                        <input type="text" id="vpxUser" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <label class="small fw-bold">Tail Number</label>
-                        <input type="text" id="vpxTail" class="form-control">
-                    </div>
-                </div>
+        <div id="connectorGroups">
             </div>
-
-            <div class="row g-3" id="circuitContainer">
-                </div>
-        </div>
     </div>
 
     <script>
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+        // Define the hardware connectors and their pin counts
+        const connectors = [
+            { id: 'J8', name: 'J8 - 8 Pin Power Connector (High Current)', pins: 8 },
+            { id: 'J10', name: 'J10 - 10 Pin Power Connector', pins: 10 },
+            { id: 'J12', name: 'J12 - 12 Pin Power Connector', pins: 12 },
+            { id: 'J1', name: 'J1 - 25 Pin dSub (Inputs/Low Power)', pins: 25 },
+            { id: 'J2', name: 'J2 - 25 Pin dSub (Inputs/Low Power)', pins: 25 }
+        ];
 
-            console.log("File detected:", file.name);
+        // Generate the UI on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('connectorGroups');
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(e.target.result, "text/xml");
+            connectors.forEach(connector => {
+                // 1. Create Connector Wrapper
+                let connectorHtml = `
+                    <div class="connector-wrap" id="group-${connector.id}">
+                        <div class="connector-header">${connector.name}</div>
+                        <div class="connector-body" id="container-${connector.id}">
+                `;
 
-                    // Check if XML is valid
-                    if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
-                        throw new Error("Invalid XML format. Please upload a valid .vpx file.");
-                    }
+                // 2. Loop through the number of pins and create rows
+                for (let i = 1; i <= connector.pins; i++) {
+                    const pinId = `${connector.id}-${i}`;
 
-                    parseAndRender(xmlDoc);
-                } catch (err) {
-                    console.error(err);
-                    alert(err.message);
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function parseAndRender(xml) {
-            console.log("Parsing XML...");
-
-            // 1. Map Header Fields
-            const user = xml.getElementsByTagName("User")[0]?.textContent || "";
-            const tail = xml.getElementsByTagName("TailNumber")[0]?.textContent || "";
-
-            document.getElementById('vpxUser').value = user;
-            document.getElementById('vpxTail').value = tail;
-            if(document.getElementById('navTailDisplay')) {
-                document.getElementById('navTailDisplay').textContent = tail;
-            }
-
-            // 2. Map Circuits
-            const circuits = xml.getElementsByTagName("CircuitConfiguration");
-            const container = document.getElementById('circuitContainer');
-            container.innerHTML = '';
-
-            if (circuits.length === 0) {
-                alert("No circuit configurations found in this file.");
-                return;
-            }
-
-            Array.from(circuits).forEach(c => {
-                const id = c.getElementsByTagName("Id")[0]?.textContent || "Unknown";
-                const name = c.getElementsByTagName("Name")[0]?.textContent || "";
-                const breaker = c.getElementsByTagName("BreakerValue")[0]?.textContent || "0";
-                const swId = c.getElementsByTagName("SwitchId")[0]?.textContent || "AlwaysOff";
-                const enabled = c.getElementsByTagName("Enabled")[0]?.textContent === "true";
-
-                const html = `
-                    <div class="col-md-4 circuit-card" data-id="${id}">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body p-3">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span class="badge bg-secondary-subtle text-secondary border">${id}</span>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" ${enabled ? 'checked' : ''} id="en-${id}">
-                                    </div>
+                    connectorHtml += `
+                        <div class="pin-row row align-items-center">
+                            <div class="col-auto text-nowrap pin-label">${pinId}</div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control form-control-sm fw-bold" id="nm-${pinId}" placeholder="Circuit Name (Blank)">
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group input-group-sm">
+                                    <select class="form-select form-select-sm" id="br-${pinId}">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                    <span class="input-group-text">Amps</span>
                                 </div>
-                                <input type="text" class="form-control form-control-sm mb-2 fw-bold" value="${name}" id="nm-${id}">
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <label class="small text-muted" style="font-size: 10px;">BREAKER</label>
-                                        <div class="input-group input-group-sm">
-                                            <input type="number" class="form-control" value="${breaker}" id="br-${id}">
-                                            <span class="input-group-text">A</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="small text-muted" style="font-size: 10px;">SWITCH</label>
-                                        <select class="form-select form-select-sm" id="sw-${id}">
-                                            <option value="AlwaysOn" ${swId === 'AlwaysOn' ? 'selected' : ''}>Always On</option>
-                                            <option value="Switch3" ${swId === 'Switch3' ? 'selected' : ''}>Avionics</option>
-                                            <option value="Switch4" ${swId === 'Switch4' ? 'selected' : ''}>Boost Pump</option>
-                                            <option value="AlwaysOff" ${swId === 'AlwaysOff' ? 'selected' : ''}>Always Off</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select form-select-sm" id="sw-${pinId}">
+                                    <option value="AlwaysOff" selected>Always Off</option>
+                                    <option value="AlwaysOn">Always On</option>
+                                    <option value="Switch3">Avionics Sw</option>
+                                    <option value="Switch4">Boost Pump Sw</option>
+                                    <option value="Switch5">Landing Light Sw</option>
+                                    <option value="Switch6">Taxi Light Sw</option>
+                                    <option value="Switch7">Nav Light Sw</option>
+                                    <option value="Switch8">Strobe Light Sw</option>
+                                    <option value="Switch9">Mag Left Sw</option>
+                                    <option value="Switch10">Mag Right Sw</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="en-${pinId}">
+                                    <label class="small text-muted">Enabled</label>
                                 </div>
                             </div>
                         </div>
-                    </div>`;
-                container.insertAdjacentHTML('beforeend', html);
-            });
+                    `;
+                }
 
-            // 3. Reveal the Editor
-            document.getElementById('uploadBlock').classList.add('d-none');
-            document.getElementById('editorContent').classList.remove('d-none');
-            console.log("UI Rendered Successfully.");
+                // 3. Close the wrapper and append to main container
+                connectorHtml += `</div></div>`;
+                container.insertAdjacentHTML('beforeend', connectorHtml);
+            });
+        });
+
+        function exportXml() {
+            // Stub for compiling the currently visible fields back into XML
+            alert("This will collect data from all visible pins and export a .vpx file.");
         }
     </script>
 </body>
+</html>
