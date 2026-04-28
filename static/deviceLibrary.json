@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "EFIS 1",
+        "breaker": 5,
+        "switchVal": "AlwaysOn"
+    },
+    {
+        "id": 2,
+        "name": "Comm 1",
+        "breaker": 7,
+        "switchVal": "Avionics Master"
+    },
+    {
+        "id": 3,
+        "name": "Fuel Pump",
+        "breaker": 15,
+        "switchVal": "AlwaysOff"
+    }
+]

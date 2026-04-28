@@ -1049,19 +1049,7 @@ def index():
 
 @app.route("/vpx-editor")
 def vpx_editor():
-    # Define the static connector structure for N890GF
-    # This ensures the template knows exactly which sections to render
-    connectors = {
-        "J8": {"pins": 8, "desc": "High Current Power"},
-        "J10": {"pins": 10, "desc": "Medium Current Power"},
-        "J12": {"pins": 12, "desc": "Medium Current Power"},
-        "J1": {"pins": 25, "desc": "dSub - Inputs/Low Power"},
-        "J2": {"pins": 25, "desc": "dSub - Inputs/Low Power"},
-    }
-
-    return render_template(
-        "vpx_editor.html", connectors=connectors, user="", tail="N890GF"
-    )
+    return render_template("vpx_editor.html", user="", tail="N890GF")
 
 
 @app.route("/api/generate-vpx", methods=["POST"])
@@ -1127,6 +1115,22 @@ def sync_to_hardware():
         response = s.recv(1024)
 
     return {"status": "success" if response else "no_ack"}
+
+
+@app.route("/save-devices", methods=["POST"])
+def save_devices():
+    data = request.json
+    with open("static/deviceLibrary.json", "w") as f:
+        json.dump(data, f, indent=4)
+    return {"status": "success"}
+
+
+@app.route("/save-switches", methods=["POST"])
+def save_switches():
+    data = request.json
+    with open("static/switchLibrary.json", "w") as f:
+        json.dump(data, f, indent=4)
+    return {"status": "success"}
 
 
 @app.route("/add_flight", methods=["POST"])

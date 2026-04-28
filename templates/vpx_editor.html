@@ -3,150 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VPX Live Editor | Connector View</title>
+    <title>VPX Configurator | N890GF</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        body { background-color: #f1f3f5; padding-top: 70px; }
+        :root { --vpx-dark: #1e293b; --vpx-blue: #3b82f6; --vpx-bg: #f8fafc; }
+        body { background-color: var(--vpx-bg); padding-top: 70px; font-family: 'Inter', -apple-system, sans-serif; }
 
+        /* Connector Styling */
         .connector-header {
-            background: #212529;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 8px 8px 0 0;
-            font-weight: bold;
-            font-family: monospace;
-            display: flex;
-            justify-content: space-between;
+            background: var(--vpx-dark); color: white; padding: 14px 20px;
+            border-radius: 12px 12px 0 0; font-family: monospace;
+            display: flex; justify-content: space-between; align-items: center;
         }
         .connector-body {
-            background: white;
-            border: 1px solid #dee2e6;
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            padding: 15px;
-            margin-bottom: 2rem;
+            background: white; border: 1px solid #e2e8f0; border-top: none;
+            border-radius: 0 0 12px 12px; padding: 10px 20px; margin-bottom: 30px;
         }
-        .pin-row { border-bottom: 1px solid #eee; padding: 8px 0; }
-        .pin-row:last-child { border-bottom: none; }
-        .pin-label { width: 70px; font-weight: bold; color: #0d6efd; text-align: center; }
+
+        /* Modern Device Card Styling */
+        .device-card {
+            position: relative; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px;
+            background: white; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .device-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1); border-color: var(--vpx-blue); }
+        .device-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--vpx-blue); opacity: 0; transition: opacity 0.2s; }
+        .device-card:hover::before { opacity: 1; }
+
+        .device-icon-area { width: 32px; height: 32px; border-radius: 8px; background: #eff6ff; color: var(--vpx-blue); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; }
+        .device-card .card-title { font-size: 0.95rem; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+        .device-card .card-meta { font-size: 0.75rem; color: #64748b; line-height: 1.4; }
+
+        /* Switch List Styling */
+        .switch-list-item { font-size: 0.85rem; padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; background: white; border: 1px solid #e2e8f0; transition: all 0.2s; }
+        .switch-list-item:hover { border-color: var(--vpx-blue); background: #f0f7ff; }
+
+        /* Pin Editor Row Styling */
+        .pin-row { border-bottom: 1px solid #f1f5f9; padding: 8px 0; transition: background 0.2s; cursor: pointer; }
+        .pin-row:hover { background-color: #f8fafc; }
+        .pin-row.active-selection { background-color: #f0f7ff; border-left: 4px solid var(--vpx-blue); }
+        .pin-id { font-weight: 700; color: #64748b; min-width: 80px; }
+
+        /* Update the Sidebar Scrolling Logic in your <style> block */
+        .sticky-sidebar {
+            position: sticky;
+            top: 85px;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+            overflow-x: hidden; /* Prevent horizontal scroll for the entire sidebar */
+            padding-right: 5px;
+        }
+
+        /* Add this to ensure cards and list items don't push the width */
+        #deviceLibraryContent, #switchLibraryContent {
+            width: 100%;
+            word-wrap: break-word;
+        }
+
+        .switch-list-item {
+            /* ... existing styles ... */
+            overflow: hidden; /* Ensure long names don't push out */
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">← Back to Dashboard</a>
-            <h6 class="navbar-text text-white">✈️ VPX Editor</h6>
+            <a class="navbar-brand fw-bold" href="/">✈️ VPX Configurator <span class="badge bg-primary ms-2">N890GF</span></a>
             <div class="ms-auto">
-                <button class="btn btn-primary btn-sm" onclick="exportXml()">Download .vpx</button>
+                <button class="btn btn-primary btn-sm rounded-pill px-3" onclick="exportConfig()">Export Config</button>
             </div>
         </div>
     </nav>
 
-    <div class="container" id="editorContent">
-        <div class="row g-3 mb-4">
-            <div class="col-md-6">
-                <label class="small fw-bold text-muted mb-1">Pilot Name</label>
-                <input type="text" id="vpxUser" class="form-control" placeholder="Enter Pilot Name">
+    <div class="container-fluid px-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sticky-sidebar">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="mb-0 fw-bold text-dark">Switch Definitions</h6>
+                            <button class="btn btn-sm btn-link text-primary text-decoration-none fw-bold" onclick="openSwitchModal()">+ Add</button>
+                        </div>
+                        <div id="switchLibraryContent" class="m-0"></div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="mb-0 fw-bold text-dark">Device Library</h6>
+                            <button class="btn btn-sm btn-link text-primary text-decoration-none fw-bold" onclick="openDeviceModal()">+ Add</button>
+                        </div>
+                        <div class="row g-3 m-0" id="deviceLibraryContent"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <label class="small fw-bold text-muted mb-1">Tail Number</label>
-                <input type="text" id="vpxTail" class="form-control" placeholder="Enter Tail Number">
+
+            <div class="col-lg-9">
+                <div id="connectorList"></div>
             </div>
         </div>
-
-        <div id="connectorGroups">
+    </div>
+    <div class="modal fade" id="deviceModal" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h6 class="modal-title fw-bold">Device Editor</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editDeviceId">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control mb-3 rounded-3" id="devName">
+                    <label class="form-label">Breaker Size</label>
+                    <select class="form-select mb-3 rounded-3" id="devBreaker">
+                        <option value="1">1A</option><option value="2">2A</option>
+                        <option value="5">5A</option><option value="10">10A</option>
+                        <option value="15">15A</option>
+                    </select>
+                    <label class="form-label">Default Switch</label>
+                    <select class="form-select rounded-3" id="devSwitch"></select>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-primary w-100 rounded-pill" onclick="saveDevice()">Save to Library</button>
+                </div>
             </div>
+        </div>
     </div>
 
-    <script>
-        // Define the hardware connectors and their pin counts
-        const connectors = [
-            { id: 'J8', name: 'J8 - 8 Pin Power Connector (High Current)', pins: 8 },
-            { id: 'J10', name: 'J10 - 10 Pin Power Connector', pins: 10 },
-            { id: 'J12', name: 'J12 - 12 Pin Power Connector', pins: 12 },
-            { id: 'J1', name: 'J1 - 25 Pin dSub (Inputs/Low Power)', pins: 25 },
-            { id: 'J2', name: 'J2 - 25 Pin dSub (Inputs/Low Power)', pins: 25 }
-        ];
-
-        // Generate the UI on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('connectorGroups');
-
-            connectors.forEach(connector => {
-                // 1. Create Connector Wrapper
-                let connectorHtml = `
-                    <div class="connector-wrap" id="group-${connector.id}">
-                        <div class="connector-header">${connector.name}</div>
-                        <div class="connector-body" id="container-${connector.id}">
-                `;
-
-                // 2. Loop through the number of pins and create rows
-                for (let i = 1; i <= connector.pins; i++) {
-                    const pinId = `${connector.id}-${i}`;
-
-                    connectorHtml += `
-                        <div class="pin-row row align-items-center">
-                            <div class="col-auto text-nowrap pin-label">${pinId}</div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control form-control-sm fw-bold" id="nm-${pinId}" placeholder="Circuit Name (Blank)">
-                            </div>
-                            <div class="col-md-2">
-                                <div class="input-group input-group-sm">
-                                    <select class="form-select form-select-sm" id="br-${pinId}">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                    </select>
-                                    <span class="input-group-text">Amps</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm" id="sw-${pinId}">
-                                    <option value="AlwaysOff" selected>Always Off</option>
-                                    <option value="AlwaysOn">Always On</option>
-                                    <option value="Switch3">Avionics Sw</option>
-                                    <option value="Switch4">Boost Pump Sw</option>
-                                    <option value="Switch5">Landing Light Sw</option>
-                                    <option value="Switch6">Taxi Light Sw</option>
-                                    <option value="Switch7">Nav Light Sw</option>
-                                    <option value="Switch8">Strobe Light Sw</option>
-                                    <option value="Switch9">Mag Left Sw</option>
-                                    <option value="Switch10">Mag Right Sw</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="en-${pinId}">
-                                    <label class="small text-muted">Enabled</label>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-
-                // 3. Close the wrapper and append to main container
-                connectorHtml += `</div></div>`;
-                container.insertAdjacentHTML('beforeend', connectorHtml);
-            });
-        });
-
-        function exportXml() {
-            // Stub for compiling the currently visible fields back into XML
-            alert("This will collect data from all visible pins and export a .vpx file.");
-        }
-    </script>
+    <div class="modal fade" id="switchModal" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h6 class="modal-title fw-bold">Switch Label</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editSwitchId">
+                    <label class="form-label">Label</label>
+                    <input type="text" class="form-control rounded-3" id="swLabel">
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-dark w-100 rounded-pill" onclick="saveSwitch()">Save Switch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/vpx_editor.js"></script>
 </body>
 </html>
