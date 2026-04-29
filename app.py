@@ -1584,6 +1584,11 @@ def api_analyze_flight():
         percent_power = safe_numeric(
             flight_data.get("Percent Power", pd.Series([0] * len(flight_data)))
         )
+        fuel_flow = safe_numeric(
+            flight_data.get(
+                "Total Fuel Flow (gal/hr)", pd.Series([0] * len(flight_data))
+            )
+        )
 
         # --- Vertical speed (use native Dynon data if available) ---
         if "Vertical Speed (ft/min)" in flight_data.columns:
@@ -1652,6 +1657,7 @@ def api_analyze_flight():
             "rpm": rpm,
             "map_data": map_data,
             "percent_power": percent_power,
+            "fuel_flow": fuel_flow,
         }
 
         # --- Generate Summary Stats ---
