@@ -700,6 +700,7 @@ function renderPlotlyChart(plotId, data) {
         const rpm = AppState.currentPlotData.rpm || [];
         const map = AppState.currentPlotData.map_data || [];
         const power =AppState.currentPlotData.percent_power || [];
+        const fuelFlow =AppState.currentPlotData.fuel_flow || [];
 
         if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
             document.getElementById('attPitch').innerText =
@@ -720,6 +721,8 @@ function renderPlotlyChart(plotId, data) {
                 (map[idx] !== undefined ? Number(map[idx]).toFixed(1) : "--");
             document.getElementById('attPower').innerText =
                 (power[idx] !== undefined ? Number(power[idx]).toFixed(1) : "--") + ' %';
+            document.getElementById('attFuelFlow').innerText =
+                (fuelFlow[idx] !== undefined ? Number(fuelFlow[idx]).toFixed(1) : "--") + ' gph';
         }
 
         // --- Drive 3D Model Rotation and Position ---
@@ -2200,6 +2203,7 @@ function scrubMap(idx) {
         const rpm = AppState.currentPlotData.rpm?.[idx] || 0;
         const map = AppState.currentPlotData.map_data?.[idx] || 0;
         const power =AppState.currentPlotData.percent_power?.[idx] || 0;
+        const fuelFlow =AppState.currentPlotData.fuel_flow?.[idx] || 0;
 
         document.getElementById('attPitch').innerText = pitch.toFixed(1) + ' °';
         document.getElementById('attRoll').innerText = roll.toFixed(1) + ' °';
@@ -2210,6 +2214,7 @@ function scrubMap(idx) {
         document.getElementById('attRpm').innerText = rpm.toFixed(1);
         document.getElementById('attMap').innerText = map.toFixed(1);
         document.getElementById('attPower').innerText = power.toFixed(1) + ' %';
+        document.getElementById('attFuelFlow').innerText = fuelFlow.toFixed(1) + ' %';
 
         if (window.updateAircraft3D) {
             const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
@@ -2377,6 +2382,13 @@ function setPlaybackSpeed(val) {
                 t
             )
         );
+        const currentFuelFlow = (
+            lerp(
+                AppState.currentPlotData?.fuel_flow[AppState.playback.index],
+                AppState.currentPlotData?.fuel_flow[nextIdx],
+                t
+            )
+        );
 
         // 4. Send the SMOOTH data to the 3D model
         if (window.updateAircraft3D) {
@@ -2392,6 +2404,7 @@ function setPlaybackSpeed(val) {
         document.getElementById('attRpm').innerText = currentRpm.toFixed(1);
         document.getElementById('attMap').innerText = currentMap.toFixed(1);
         document.getElementById('attPower').innerText = currentPower.toFixed(1) + ' %';
+        document.getElementById('attFuelFlow').innerText = currentFuelFlow.toFixed(1) + ' %';
 
         // 4.5 Smoothly update the 2D Map Marker
         const mapDiv = document.getElementById('mapGraph');
