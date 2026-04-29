@@ -1,26 +1,134 @@
 [
     {
         "id": 1,
-        "name": "EFIS 1",
+        "name": "Skyview PFD",
         "breaker": 5,
         "switchVal": "AlwaysOn"
     },
     {
         "id": 2,
-        "name": "Comm 1",
-        "breaker": 7,
+        "name": "SV-COM-X25",
+        "breaker": 10,
         "switchVal": "Avionics Master"
     },
     {
         "id": 3,
-        "name": "Fuel Pump",
-        "breaker": 7,
-        "switchVal": "AlwaysOff"
+        "name": "Boost Pump",
+        "breaker": 10,
+        "switchVal": "Boost Pump"
     },
     {
         "id": 1777432522694,
         "name": "Skyview MFD",
         "breaker": 5,
         "switchVal": "Avionics Master"
+    },
+    {
+        "id": 1777479136156,
+        "name": "SV-XPNDR-261",
+        "breaker": 5,
+        "switchVal": "Avionics Master"
+    },
+    {
+        "id": 1777479165197,
+        "name": "SV-ADSB-472",
+        "breaker": 5,
+        "switchVal": "Avionics Master"
+    },
+    {
+        "id": 1777479354355,
+        "name": "SV-INTERCOM-2S + Bose",
+        "breaker": 1,
+        "switchVal": "Avionics Master"
+    },
+    {
+        "id": 1777479375707,
+        "name": "Garmin G5",
+        "breaker": 2,
+        "switchVal": "Avionics Master"
+    },
+    {
+        "id": 1777479421578,
+        "name": "Landing Light Left",
+        "breaker": 10,
+        "switchVal": "Landing Lights"
+    },
+    {
+        "id": 1777479430385,
+        "name": "Landing Light Right",
+        "breaker": 10,
+        "switchVal": "Landing Lights"
+    },
+    {
+        "id": 1777479438962,
+        "name": "Taxi Light Left",
+        "breaker": 5,
+        "switchVal": "Taxi Lights"
+    },
+    {
+        "id": 1777479445965,
+        "name": "Taxi Light Right",
+        "breaker": 5,
+        "switchVal": "Taxi Lights"
+    },
+    {
+        "id": 1777479462445,
+        "name": "Nav Light Left",
+        "breaker": 5,
+        "switchVal": "Nav Lights"
+    },
+    {
+        "id": 1777479471619,
+        "name": "Nav Light Right",
+        "breaker": 5,
+        "switchVal": "Nav Lights"
+    },
+    {
+        "id": 1777479483246,
+        "name": "Strobe Light Left",
+        "breaker": 10,
+        "switchVal": "Strobe Lights"
+    },
+    {
+        "id": 1777479491420,
+        "name": "Strobe Light Right",
+        "breaker": 10,
+        "switchVal": "Strobe Lights"
+    },
+    {
+        "id": 1777479540077,
+        "name": "AP Servos",
+        "breaker": 5,
+        "switchVal": "Avionics Master"
+    },
+    {
+        "id": 1777479648150,
+        "name": "PMag Left",
+        "breaker": 5,
+        "switchVal": "Left Mag"
+    },
+    {
+        "id": 1777479656290,
+        "name": "Pmag Right",
+        "breaker": 5,
+        "switchVal": "Right Mag"
+    },
+    {
+        "id": 1777479853083,
+        "name": "Ack E-04 ELT",
+        "breaker": 1,
+        "switchVal": "AlwaysOn"
+    },
+    {
+        "id": 1777479886962,
+        "name": "Flap Motor +",
+        "breaker": 5,
+        "switchVal": "Flap Switch"
+    },
+    {
+        "id": 1777479903426,
+        "name": "Flap Motor -",
+        "breaker": 5,
+        "switchVal": "Flap Switch"
     }
 ]

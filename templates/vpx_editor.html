@@ -9,7 +9,7 @@
     <style>
         :root { --vpx-dark: #1e293b; --vpx-blue: #3b82f6; --vpx-bg: #f8fafc; }
         body { background-color: var(--vpx-bg); padding-top: 70px; font-family: 'Inter', -apple-system, sans-serif; }
-
+        .navbar { position: fixed; top: 0; width: 100%; z-index: 1050; }
         /* Connector Styling */
         .connector-header {
             background: var(--vpx-dark); color: white; padding: 14px 20px;
@@ -90,10 +90,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="/">✈️ VPX Configurator <span class="badge bg-primary ms-2">N890GF</span></a>
-            <div class="ms-auto">
-                <button class="btn btn-primary btn-sm rounded-pill px-3" onclick="exportConfig()">Export Config</button>
-            </div>
+            <a class="navbar-brand" href="/">← Back</a>
+            <span class="navbar-text text-white fw-bold">✈️ VPX Configurator</span>
+            <span class="badge bg-primary ms-2">N890GF</span>
+            <button class="btn btn-primary btn-sm rounded-pill px-3" onclick="exportConfig()">Export Config</button>
         </div>
     </nav>
 
