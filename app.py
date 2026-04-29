@@ -1722,6 +1722,15 @@ def api_analyze_flight():
         groundspeed_data = safe_numeric(
             flight_data.get("Ground Speed (knots)", pd.Series([0] * len(flight_data)))
         )
+        rpm = safe_numeric(flight_data.get("RPM", pd.Series([0] * len(flight_data))))
+        map_data = safe_numeric(
+            flight_data.get(
+                "Manifold Pressure (inHg)", pd.Series([0] * len(flight_data))
+            )
+        )
+        percent_power = safe_numeric(
+            flight_data.get("Percent Power", pd.Series([0] * len(flight_data)))
+        )
 
         # --- Vertical speed (use native Dynon data if available) ---
         if "Vertical Speed (ft/min)" in flight_data.columns:
@@ -1787,6 +1796,9 @@ def api_analyze_flight():
             "roll": roll_data,
             "heading": heading_data,
             "mag_variance": magnetic_variance,
+            "rpm": rpm,
+            "map_data": map_data,
+            "percent_power": percent_power,
         }
 
         # --- Generate Summary Stats ---

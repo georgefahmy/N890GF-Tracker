@@ -235,19 +235,55 @@
                                 3D Model Placeholder (load .glb / .gltf file here)
                             </span>
                         </div>
-
+                        <div class="px-2 pb-2 d-flex flex-sm-row gap-2 align-items-center">
+                            <select class="form-select form-select-sm w-auto" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                                <option value="1">1x</option>
+                                <option value="2">2x</option>
+                                <option value="5">5x</option>
+                                <option value="10">10x</option>
+                                <option value="30">30x</option>
+                            </select>
+                            <button class="btn btn-sm btn-primary" id="playPauseBtn" onclick="togglePlayback()">▶</button>
+                            <input type="range" id="mapScrubber" class="form-range" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
+                        </div>
                         <div class="row text-center">
-                            <div class="col-4">
+                            <div class="col-2">
                                 <div class="small text-muted">Pitch</div>
                                 <div id="attPitch" class="fw-bold">-- °</div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <div class="small text-muted">Roll</div>
                                 <div id="attRoll" class="fw-bold">-- °</div>
                             </div>
-                            <div class="col-4">
-                                <div class="small text-muted">Heading</div>
+                            <div class="col-2">
+                                <div class="small text-muted text-nowrap">Heading</div>
                                 <div id="attHeading" class="fw-bold">-- °</div>
+                            </div>
+                            <div class="col-2">
+                                <div class="small text-muted text-nowrap">Airspeed</div>
+                                <div id="attAirspeed" class="fw-bold">-- kts</div>
+                            </div>
+                            <div class="col-2">
+                                <div class="small text-muted text-nowrap">Altitude</div>
+                                <div id="attAltitude" class="fw-bold">-- ft</div>
+                            </div>
+                            <div class="col-2">
+                                <div class="small text-muted text-nowrap">VS</div>
+                                <div id="attVerticalSpeed" class="fw-bold text-nowrap">-- fpm</div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-2">
+                                <div class="small text-muted text-nowrap">RPM</div>
+                                <div id="attRpm" class="fw-bold">--</div>
+                            </div>
+                            <div class="col-2">
+                                <div class="small text-muted text-nowrap">MAP (inHg)</div>
+                                <div id="attMap" class="fw-bold">--</div>
+                            </div>
+                            <div class="col-2">
+                                <div class="small text-muted text-nowrap">Power</div>
+                                <div id="attPower" class="fw-bold">-- %</div>
                             </div>
                         </div>
                     </div>
@@ -259,17 +295,6 @@
                     <!-- MAP -->
                     <div class="card p-2 shadow-sm">
                         <div class="d-flex justify-content-between align-items-center px-2 mb-1">
-                            <div class="px-2 pb-2 d-flex flex-wrap gap-2 align-items-center">
-                                <button class="btn btn-sm btn-primary" id="playPauseBtn" onclick="togglePlayback()">▶ Play</button>
-
-                                <select class="form-select form-select-sm w-auto" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
-                                    <option value="1">1x</option>
-                                    <option value="2">2x</option>
-                                    <option value="5">5x</option>
-                                    <option value="10">10x</option>
-                                    <option value="30">30x</option>
-                                </select>
-                            </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <select id="mapColorModeSelect" class="form-select form-select-sm">
                                     <option value="altitude">Altitude</option>
@@ -290,11 +315,6 @@
                             </div>
                         </div>
                         <div id="mapGraph" style="height: 350px;"></div>
-                        <div class="px-2 pt-2">
-                            <div class="small text-muted">Playback</div>
-                            <input type="range" id="mapScrubber" class="form-range" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
-                        </div>
-
                         <div id="mapMetrics" class="small text-muted px-2 pb-1"></div>
                     </div>
 
