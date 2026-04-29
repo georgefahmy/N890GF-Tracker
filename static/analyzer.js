@@ -2150,7 +2150,7 @@ function scrubMap(idx) {
     idx = parseInt(idx);
 
     AppState.playback.index = idx;
-    interpolationTick = 0;
+    AppState.playback.tick = 0;
 
     if (!AppState.map.data.lat || !AppState.map.data.lon) return;
 
@@ -2219,9 +2219,6 @@ function togglePlayback() {
     }
 }
 
-// analyzer.js additions
-let interpolationTick = 0;
-
 function setPlaybackSpeed(val) {
     AppState.playback.speed = parseInt(val);
 
@@ -2249,7 +2246,7 @@ function setPlaybackSpeed(val) {
         if (AppState.playback.isScrubbing) return;
 
         // 1. Calculate how far we are between the current second and the next
-        let t = interpolationTick / AppState.playback.fps;
+        let t = AppState.playback.tick / AppState.playback.fps;
 
         // 2. Linear Interpolation (lerp) function
         const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
@@ -2258,9 +2255,27 @@ function setPlaybackSpeed(val) {
         const nextIdx = Math.min(AppState.playback.index + 1, AppState.map.data.lat.length - 1);
 
         // 3. Interpolate all values
-        const currentLat = lerp(AppState.map.data.lat[AppState.playback.index], AppState.map.data.lat[nextIdx], t);
-        const currentLon = lerp(AppState.map.data.lon[AppState.playback.index], AppState.map.data.lon[nextIdx], t);
-        const currentAlt = lerp(AppState.map.data.alt[AppState.playback.index], AppState.map.data.alt[nextIdx], t);
+        const currentLat = (
+            lerp(
+                AppState.map.data.lat[AppState.playback.index],
+                AppState.map.data.lat[nextIdx],
+                t
+            )
+        );
+        const currentLon = (
+            lerp(
+                AppState.map.data.lon[AppState.playback.index],
+                AppState.map.data.lon[nextIdx],
+                t
+            )
+        );
+        const currentAlt = (
+            lerp(
+                AppState.map.data.alt[AppState.playback.index],
+                AppState.map.data.alt[nextIdx],
+                t
+            )
+        );
 
         const lerpAngle = (a, b, t) => {
             let d = b - a;
@@ -2270,10 +2285,28 @@ function setPlaybackSpeed(val) {
         };
 
         const magVar = AppState.currentPlotData?.mag_variance?.[AppState.playback.index] || -13;
-        const currentHeading = lerpAngle(AppState.currentPlotData?.heading[AppState.playback.index], AppState.currentPlotData?.heading[nextIdx], t);
+        const currentHeading = (
+            lerpAngle(
+                AppState.currentPlotData?.heading[AppState.playback.index],
+                AppState.currentPlotData?.heading[nextIdx],
+                t
+            )
+        );
         const trueHeading = currentHeading - magVar;
-        const currentPitch = lerp(AppState.currentPlotData?.pitch[AppState.playback.index], AppState.currentPlotData?.pitch[nextIdx], t);
-        const currentRoll = lerp(AppState.currentPlotData?.roll[AppState.playback.index], window.currentPlotData?.roll[nextIdx], t);
+        const currentPitch = (
+            lerp(
+                AppState.currentPlotData?.pitch[AppState.playback.index],
+                AppState.currentPlotData?.pitch[nextIdx],
+                t
+            )
+        );
+        const currentRoll = (
+            lerp(
+                AppState.currentPlotData?.roll[AppState.playback.index],
+                AppState.currentPlotData?.roll[nextIdx],
+                t
+            )
+        );
 
         // 4. Send the SMOOTH data to the 3D model
         if (window.updateAircraft3D) {
@@ -2295,7 +2328,7 @@ function setPlaybackSpeed(val) {
             } catch (e) {}
 
             // Throttle map camera panning to prevent browser lag (updates every ~5th frame)
-            if (AppState.map.followAircraft && Math.floor(interpolationTick) % 6 === 0) {
+            if (AppState.map.followAircraft && Math.floor(AppState.playback.tick) % 6 === 0) {
                 Plotly.relayout('mapGraph', {
                     'mapbox.center.lat': currentLat,
                     'mapbox.center.lon': currentLon
@@ -2304,15 +2337,15 @@ function setPlaybackSpeed(val) {
         }
 
         // 5. Advance the clock by the playback speed multiplier!
-        interpolationTick += AppState.playback.speed;
+        AppState.playback.tick += AppState.playback.speed;
 
         // If we have accrued enough ticks to move forward one (or more) full seconds
-        if (interpolationTick >= AppState.playback.fps) {
-            const secondsToAdvance = Math.floor(interpolationTick / AppState.playback.fps);
+        if (AppState.playback.tick >= AppState.playback.fps) {
+            const secondsToAdvance = Math.floor(AppState.playback.tick / AppState.playback.fps);
             AppState.playback.index += secondsToAdvance;
 
             // Keep the remainder for smooth interpolation on the next frame
-            interpolationTick = interpolationTick % AppState.playback.fps;
+            AppState.playback.tick = AppState.playback.tick % AppState.playback.fps;
 
             // Sync the scrubber UI
             const scrubber = document.getElementById('mapScrubber');
