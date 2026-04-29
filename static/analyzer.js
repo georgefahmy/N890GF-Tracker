@@ -525,6 +525,7 @@ async function triggerAnalysis(plotId) {
     if (!AppState.file.currentName) return;
 
     const loader = document.getElementById(`loader-${plotId}`);
+    window._isChartUpdating = true;
     loader.classList.remove('d-none');
 
     try {
@@ -555,6 +556,7 @@ async function triggerAnalysis(plotId) {
         console.error(err);
         loader.classList.add('d-none');
     }
+    window._isChartUpdating = false;
 }
 
 function renderPlotlyChart(plotId, data) {
@@ -563,7 +565,13 @@ function renderPlotlyChart(plotId, data) {
     const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
     const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value;
     const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value;
-
+    // Helper to add a 5% margin to the bounds so the lines don't hug the edges
+    const padRange = (min, max) => {
+        if (min === Infinity || max === -Infinity) return [0, 100]; // Safe fallback
+        if (min === max) return [min - 10, max + 10]; // Flatline trace fallback
+        const diff = max - min;
+        return [min - (diff * 0.05), max + (diff * 0.05)];
+    };
     AppState.currentPlotData = data.plot_data;
 
     const traces = [];
@@ -571,18 +579,22 @@ function renderPlotlyChart(plotId, data) {
     const colorsLeft = ['#0d6efd', '#0dcaf0', '#198754', '#20c997'];
     const colorsRight = ['#dc3545', '#fd7e14', '#ffc107', '#d63384'];
     // --- NEW: Track exact data limits to prevent shapes from squishing the chart ---
-    let leftMin = Infinity, leftMax = -Infinity;
-    let rightMin = Infinity, rightMax = -Infinity;
 
     // Map Left Traces
+    let leftMin = Infinity, leftMax = -Infinity;
     data.plot_data.left_traces.forEach((traceData, idx) => {
-        traceData.y.forEach(v => {
-            const val = parseFloat(v);
-            if (!isNaN(val)) {
+        const yData = traceData.y;
+        const len = yData.length;
+        for (let i = 0; i < len; i++) {
+            const val = parseFloat(yData[i]);
+
+            // 'val === val' is a native JS trick. NaN is the only value that does not equal itself.
+            // It is significantly faster than calling the !isNaN() function.
+            if (val === val) {
                 if (val < leftMin) leftMin = val;
                 if (val > leftMax) leftMax = val;
             }
-        });
+        }
         traces.push({
             x: data.plot_data.x, y: traceData.y, name: traceData.name,
             type: 'scattergl', mode: 'lines',
@@ -591,14 +603,20 @@ function renderPlotlyChart(plotId, data) {
     });
 
     // Map Right Traces
+    let rightMin = Infinity, rightMax = -Infinity;
     data.plot_data.right_traces.forEach((traceData, idx) => {
-        traceData.y.forEach(v => {
-            const val = parseFloat(v);
-            if (!isNaN(val)) {
+        const yData = traceData.y;
+        const len = yData.length;
+        for (let i = 0; i < len; i++) {
+            const val = parseFloat(yData[i]);
+
+            // 'val === val' is a native JS trick. NaN is the only value that does not equal itself.
+            // It is significantly faster than calling the !isNaN() function.
+            if (val === val) {
                 if (val < rightMin) rightMin = val;
                 if (val > rightMax) rightMax = val;
             }
-        });
+        }
         traces.push({
             x: data.plot_data.x, y: traceData.y, name: traceData.name,
             type: 'scattergl', mode: 'lines',
@@ -607,14 +625,6 @@ function renderPlotlyChart(plotId, data) {
         });
     });
 
-    // Helper to add a 5% margin to the bounds so the lines don't hug the edges
-    const padRange = (min, max) => {
-        if (min === Infinity || max === -Infinity) return [0, 100]; // Safe fallback
-        if (min === max) return [min - 10, max + 10]; // Flatline trace fallback
-        const diff = max - min;
-        return [min - (diff * 0.05), max + (diff * 0.05)];
-    };
-
     const leftRange = padRange(leftMin, leftMax);
     const rightRange = padRange(rightMin, rightMax);
 
@@ -622,7 +632,48 @@ function renderPlotlyChart(plotId, data) {
     // const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
 
     let plotShapes = [];
+    let layout = {
+            title: false,
+            xaxis: {
+                title: 'Session Time (seconds)',
+                gridcolor: '#f0f0f0',
+                // Add native spikelines to ensure the vertical line ALWAYS draws
+                showspikes: true,
+                spikemode: 'across',
+                spikedash: 'dot',
+                spikethickness: 1,
+                spikecolor: '#888',
+                anchor: isSplit ? 'free' : 'y',
+                position: 0
+            },
+            yaxis: {
+                title: data.plot_data.left_name,
+                titlefont: { color: '#0d6efd' }, tickfont: { color: '#0d6efd' },
+                gridcolor: '#f0f0f0',
+                // If split, top plot takes 55% to 100%. Otherwise, full height.
+                domain: isSplit ? [0.55, 1] : [0, 1],
+                range: leftRange,      // Assign strict data boundaries
+                autorange: false
+            },
+            yaxis2: {
+                title: data.plot_data.right_name,
+                titlefont: { color: '#dc3545' }, tickfont: { color: '#dc3545' },
 
+                // If split: bottom plot takes 0% to 45%. Side is left, no overlaying.
+                // If combined: overlapping 'y', side is right.
+                domain: isSplit ? [0, 0.45] : [0, 1],
+                overlaying: isSplit ? undefined : 'y',
+                side: isSplit ? 'left' : 'right',
+                gridcolor: isSplit ? '#f0f0f0' : 'transparent',
+                anchor: 'x', // Ensures it stays bound to the main time axis
+                range: rightRange,     // Assign strict data boundaries
+                autorange: false
+            },
+            hovermode: 'x unified',
+            margin: { l: 60, r: 60, t: 20, b: 40 },
+            legend: { orientation: "h", y: -0.15 },
+            template: 'plotly_dark'
+        };
     // Only generate and apply shapes if the toggle is checked
     if (showBands) {
         const leftShapes = generateBandShapes(leftSignal, 'y');
@@ -630,52 +681,37 @@ function renderPlotlyChart(plotId, data) {
         plotShapes = [...leftShapes, ...rightShapes];
     }
 
-    const layout = {
-        title: false,
-        xaxis: {
-            title: 'Session Time (seconds)',
-            gridcolor: '#f0f0f0',
-            // Add native spikelines to ensure the vertical line ALWAYS draws
-            showspikes: true,
-            spikemode: 'across',
-            spikedash: 'dot',
-            spikethickness: 1,
-            spikecolor: '#888',
-            anchor: isSplit ? 'free' : 'y',
-            position: 0
-        },
-        yaxis: {
-            title: data.plot_data.left_name,
-            titlefont: { color: '#0d6efd' }, tickfont: { color: '#0d6efd' },
-            gridcolor: '#f0f0f0',
-            // If split, top plot takes 55% to 100%. Otherwise, full height.
-            domain: isSplit ? [0.55, 1] : [0, 1],
-            range: leftRange,      // Assign strict data boundaries
-            autorange: false
-        },
-        yaxis2: {
-            title: data.plot_data.right_name,
-            titlefont: { color: '#dc3545' }, tickfont: { color: '#dc3545' },
-
-            // If split: bottom plot takes 0% to 45%. Side is left, no overlaying.
-            // If combined: overlapping 'y', side is right.
-            domain: isSplit ? [0, 0.45] : [0, 1],
-            overlaying: isSplit ? undefined : 'y',
-            side: isSplit ? 'left' : 'right',
-            gridcolor: isSplit ? '#f0f0f0' : 'transparent',
-            anchor: 'x', // Ensures it stays bound to the main time axis
-            range: rightRange,     // Assign strict data boundaries
-            autorange: false
-        },
-        shapes: plotShapes,
-        hovermode: 'x unified',
-        margin: { l: 60, r: 60, t: 20, b: 40 },
-        legend: { orientation: "h", y: -0.15 },
-        template: 'plotly_dark'
-    };
+    layout.shapes = plotShapes
 
     // Use .react() for much faster updates than .newPlot()
-    Plotly.react(graphDiv, traces, layout, {responsive: true, doubleClick: 'reset'});
+    Plotly.react(graphDiv, traces, layout, {responsive: true, doubleClick: false});
+
+    graphDiv._homeLeftRange = [...leftRange];
+    graphDiv._homeRightRange = [...rightRange];
+    graphDiv._isSplitMode = isSplit;
+
+    // 1. Remove all previous listeners to prevent stacking
+    graphDiv.removeAllListeners('plotly_doubleclick');
+
+    graphDiv.on('plotly_doubleclick', function() {
+        console.log("Resetting chart to:", graphDiv._homeLeftRange, graphDiv._homeRightRange);
+
+        const resetUpdate = {
+            'xaxis.autorange': true,
+            'yaxis.range': graphDiv._homeLeftRange,
+            'yaxis2.range': graphDiv._homeRightRange,
+            'yaxis.autorange': false,
+            'yaxis2.autorange': false
+        };
+
+        // Re-apply split logic if necessary
+        if (graphDiv._isSplitMode) {
+            resetUpdate['yaxis.domain'] = [0.55, 1];
+            resetUpdate['yaxis2.domain'] = [0, 0.45];
+        }
+
+        Plotly.relayout(graphDiv, resetUpdate);
+    });
 
     if (window._crosshairX !== null && window._crosshairX !== undefined) {
         updateCrosshairs(window._crosshairX);
@@ -683,6 +719,8 @@ function renderPlotlyChart(plotId, data) {
 
     graphDiv.on('plotly_hover', function(eventdata) {
         // CRITICAL FIX: If this event was triggered by our code (no mouse event), ignore it.
+        if (window._isChartUpdating) return;
+
         // This prevents the infinite loop that breaks the tooltips.
         if (!eventdata || !eventdata.event) return;
 
@@ -744,34 +782,45 @@ function renderPlotlyChart(plotId, data) {
         }
 
         // DIRECT INDEX MATCH
-        if (pt.pointIndex !== undefined && AppState.map.data.lat && AppState.map.data.lon) {
+        if (pt.pointIndex !== undefined && AppState.map.data?.lat && AppState.map.data?.lon) {
+            const idx = pt.pointIndex;
             const mapLat = AppState.map.data.lat[idx];
             const mapLon = AppState.map.data.lon[idx];
 
+            if (mapLat === undefined || mapLon === undefined) return;
+
             const mapDiv = document.getElementById('mapGraph');
-            if (mapDiv) {
+
+            if (mapDiv && mapDiv.data && mapDiv.data.length > 0) {
                 let aircraftIndex = window._mapMarkerTraceIndex || 0;
-                try {
+
+                if (mapDiv.data[aircraftIndex]) {
+                    // FIX: Append .catch() to handle the asynchronous Mapbox rejection
                     Plotly.restyle('mapGraph', {
                         lat: [[mapLat]],
                         lon: [[mapLon]]
-                    }, [aircraftIndex]);
-                } catch (e) {
-                    console.error("Direct marker move failed:", e);
+                    }, [aircraftIndex]).catch(e => {
+                        console.debug("Async marker update skipped during transition.");
+                    });
                 }
 
                 if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
                     AppState.map.isMapPanning = true;
+
+                    // FIX: Append .catch() here as well
                     Plotly.relayout('mapGraph', {
                         'mapbox.center.lat': mapLat,
                         'mapbox.center.lon': mapLon
+                    }).catch(e => {
+                        console.debug("Async map pan skipped during transition.");
                     });
 
-                    // Unlock after 50ms
                     setTimeout(() => { AppState.map.isMapPanning = false; }, 50);
                 }
             }
-            document.getElementById('mapScrubber').value = idx;
+
+            const scrubber = document.getElementById('mapScrubber');
+            if (scrubber) scrubber.value = idx;
         }
 
         // Sync other plots using the new clean logic
@@ -786,35 +835,6 @@ function renderPlotlyChart(plotId, data) {
         if (eventdata && !eventdata.event) return;
 
         clearTooltips(graphDiv.id);
-    });
-
-    // 2. Sync Relayout (Zoom / Pan)
-    graphDiv.on('plotly_relayout', function(eventdata) {
-        if (window._isZoomSyncing) return;
-        window._isZoomSyncing = true;
-
-        let update = null;
-        if (eventdata['xaxis.range[0]'] !== undefined) {
-            update = {
-                'xaxis.range[0]': eventdata['xaxis.range[0]'],
-                'xaxis.range[1]': eventdata['xaxis.range[1]']
-            };
-        } else if (eventdata['xaxis.autorange'] !== undefined) {
-            update = { 'xaxis.autorange': true };
-        }
-
-        if (update) {
-            const promises = [];
-            document.querySelectorAll('[id^="flightGraph-"]').forEach(plot => {
-                if (plot.id !== graphDiv.id && !plot.classList.contains('d-none') && plot.data) {
-                    promises.push(Plotly.relayout(plot.id, update));
-                }
-            });
-            // Release lock when all plots finish updating
-            Promise.all(promises).then(() => { window._isZoomSyncing = false; });
-        } else {
-            window._isZoomSyncing = false;
-        }
     });
 }
 
