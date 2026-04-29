@@ -1736,6 +1736,7 @@ def api_analyze_flight():
                 "Total Fuel Flow (gal/hr)", pd.Series([0] * len(flight_data))
             )
         )
+        mpg = safe_numeric(flight_data.get("MPG", pd.Series([0] * len(flight_data))))
 
         # --- Vertical speed (use native Dynon data if available) ---
         if "Vertical Speed (ft/min)" in flight_data.columns:
@@ -1805,6 +1806,7 @@ def api_analyze_flight():
             "map_data": map_data,
             "percent_power": percent_power,
             "fuel_flow": fuel_flow,
+            "mpg": mpg,
         }
 
         # --- Generate Summary Stats ---
