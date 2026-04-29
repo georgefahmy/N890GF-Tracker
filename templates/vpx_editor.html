@@ -39,6 +39,24 @@
         .switch-list-item { font-size: 0.85rem; padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; background: white; border: 1px solid #e2e8f0; transition: all 0.2s; }
         .switch-list-item:hover { border-color: var(--vpx-blue); background: #f0f7ff; }
 
+        /* Collapse Header Styling */
+        .collapse-header {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .collapse-header::after {
+            content: '▼';
+            font-size: 0.7em;
+            color: #64748b;
+            transition: transform 0.2s ease-in-out;
+        }
+        .collapse-header.collapsed::after {
+            transform: rotate(-90deg);
+        }
+
         /* Pin Editor Row Styling */
         .pin-row { border-bottom: 1px solid #f1f5f9; padding: 8px 0; transition: background 0.2s; cursor: pointer; }
         .pin-row:hover { background-color: #f8fafc; }
@@ -85,19 +103,27 @@
                 <div class="sticky-sidebar">
                     <div class="mb-4">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="mb-0 fw-bold text-dark">Switch Definitions</h6>
+                            <h6 class="mb-0 fw-bold text-dark collapse-header" data-bs-toggle="collapse" href="#collapseSwitch" role="button" aria-expanded="true" aria-controls="collapseSwitch">
+                                Switch Definitions
+                            </h6>
                             <button class="btn btn-sm btn-link text-primary text-decoration-none fw-bold" onclick="openSwitchModal()">+ Add</button>
                         </div>
-                        <div id="switchLibraryContent" class="m-0"></div>
+                        <div class="collapse show" id="collapseSwitch">
+                            <div id="switchLibraryContent" class="m-0"></div>
+                        </div>
                     </div>
+
                     <div class="mb-4">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="mb-0 fw-bold text-dark">Device Library</h6>
+                            <h6 class="mb-0 fw-bold text-dark collapse-header" data-bs-toggle="collapse" href="#collapseDevice" role="button" aria-expanded="true" aria-controls="collapseDevice">
+                                Device Library
+                            </h6>
                             <button class="btn btn-sm btn-link text-primary text-decoration-none fw-bold" onclick="openDeviceModal()">+ Add</button>
                         </div>
-                        <div class="row g-3 m-0" id="deviceLibraryContent"></div>
-                    </div>
-                </div>
+                        <div class="collapse show" id="collapseDevice">
+                            <div class="row g-3 m-0" id="deviceLibraryContent"></div>
+                        </div>
+                    </div>              </div>
             </div>
 
             <div class="col-lg-9">

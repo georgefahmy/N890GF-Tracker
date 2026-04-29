@@ -87,14 +87,13 @@ async function loadLibraries() {
 async function saveLibraryToServer(type) {
     const data = type === 'device' ? deviceLibrary : switchLibrary;
     const endpoint = type === 'device' ? '/save-devices' : '/save-switches';
-
     const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
 
-    if (response.ok) alert(`${type} library saved!`);
+    if (!response.ok) alert(`${type} Error saving library!`);
 }
 
 // Initialization
@@ -135,7 +134,7 @@ function saveDevice() {
     }
 
     renderAll();
-    saveLibraryToServer('deviceLibrary')
+    saveLibraryToServer('device')
     bootstrap.Modal.getInstance(document.getElementById('deviceModal')).hide();
 }
 
@@ -159,7 +158,7 @@ function saveSwitch() {
     }
 
     renderAll();
-    saveLibraryToServer('switchLibrary')
+    saveLibraryToServer('switch')
     bootstrap.Modal.getInstance(document.getElementById('switchModal')).hide();
 }
 
@@ -257,6 +256,7 @@ function deleteDevice(id, event) {
     if (confirm("Are you sure you want to remove this device from the library?")) {
         deviceLibrary = deviceLibrary.filter(d => d.id !== id);
         renderAll();
+        saveLibraryToServer('device')
     }
 }
 
@@ -287,6 +287,7 @@ function deleteSwitch(idx, event) {
     if (confirm(`Delete switch "${swName}"? This will not affect devices already assigned to it.`)) {
         switchLibrary.splice(idx, 1);
         renderAll();
+        saveLibraryToServer('switch')
     }
 }
 

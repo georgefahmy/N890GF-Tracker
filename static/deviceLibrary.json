@@ -14,7 +14,13 @@
     {
         "id": 3,
         "name": "Fuel Pump",
-        "breaker": 15,
+        "breaker": 7,
         "switchVal": "AlwaysOff"
+    },
+    {
+        "id": 1777432522694,
+        "name": "Skyview MFD",
+        "breaker": 5,
+        "switchVal": "Avionics Master"
     }
 ]
