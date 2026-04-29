@@ -694,6 +694,12 @@ function renderPlotlyChart(plotId, data) {
         const pitchArr = AppState.currentPlotData?.pitch || [];
         const rollArr = AppState.currentPlotData?.roll || [];
         const headingArr = AppState.currentPlotData?.heading || [];
+        const airspeed = AppState.currentPlotData.airspeed || 0;
+        const altitude = AppState.currentPlotData.altitude || 0;
+        const verticalSpeed =AppState.currentPlotData.vertical_speed || 0;
+        const rpm = AppState.currentPlotData.rpm || 0;
+        const map = AppState.currentPlotData.map_data || 0;
+        const power =AppState.currentPlotData.percent_power || 0;
 
         if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
             document.getElementById('attPitch').innerText =
@@ -704,6 +710,14 @@ function renderPlotlyChart(plotId, data) {
 
             document.getElementById('attHeading').innerText =
                 (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
+
+            document.getElementById('attAirspeed').innerText =
+                (airspeed[idx] !== undefined ? Number(airspeed[idx]).toFixed(1) : '--')  + ' kts';
+            document.getElementById('attAltitude').innerText = altitude.toFixed(0) + ' ft';
+            document.getElementById('attVerticalSpeed').innerText = verticalSpeed.toFixed(0) + ' fpm';
+            document.getElementById('attRpm').innerText = rpm.toFixed(1);
+            document.getElementById('attMap').innerText = map.toFixed(1);
+            document.getElementById('attPower').innerText = power.toFixed(1) + ' %';
         }
 
         // --- Drive 3D Model Rotation and Position ---
@@ -2178,10 +2192,22 @@ function scrubMap(idx) {
         const heading = AppState.currentPlotData.heading?.[idx] || 0;
         const magVar = AppState.currentPlotData.mag_variance?.[idx] || -13;
         const trueHeading = heading - magVar
+        const airspeed = AppState.currentPlotData.airspeed?.[idx] || 0;
+        const altitude = AppState.currentPlotData.altitude?.[idx] || 0;
+        const verticalSpeed =AppState.currentPlotData.vertical_speed?.[idx] || 0;
+        const rpm = AppState.currentPlotData.rpm?.[idx] || 0;
+        const map = AppState.currentPlotData.map_data?.[idx] || 0;
+        const power =AppState.currentPlotData.percent_power?.[idx] || 0;
 
         document.getElementById('attPitch').innerText = pitch.toFixed(1) + ' °';
         document.getElementById('attRoll').innerText = roll.toFixed(1) + ' °';
         document.getElementById('attHeading').innerText = heading.toFixed(1) + ' °';
+        document.getElementById('attAirspeed').innerText = airspeed.toFixed(1) + ' kts';
+        document.getElementById('attAltitude').innerText = altitude.toFixed(0) + ' ft';
+        document.getElementById('attVerticalSpeed').innerText = verticalSpeed.toFixed(0) + ' fpm';
+        document.getElementById('attRpm').innerText = rpm.toFixed(1);
+        document.getElementById('attMap').innerText = map.toFixed(1);
+        document.getElementById('attPower').innerText = power.toFixed(1) + ' %';
 
         if (window.updateAircraft3D) {
             const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
@@ -2205,9 +2231,9 @@ function togglePlayback() {
     if (AppState.playback.timer) {
         clearInterval(AppState.playback.timer);
         AppState.playback.timer = null;
-        if (btn) btn.innerText = '▶ Play';
+        if (btn) btn.innerText = '▶';
     } else {
-        if (btn) btn.innerText = '⏸ Pause';
+        if (btn) btn.innerText = '⏸';
         const scrubber = document.getElementById('mapScrubber');
         AppState.playback.index = parseInt(scrubber.value) || 0;
 
@@ -2238,7 +2264,7 @@ function setPlaybackSpeed(val) {
             clearInterval(AppState.playback.timer);
             AppState.playback.timer = null;
             const btn = document.getElementById('playPauseBtn');
-            if (btn) btn.innerText = '▶ Play';
+            if (btn) btn.innerText = '▶';
             return;
         }
 
@@ -2307,14 +2333,63 @@ function setPlaybackSpeed(val) {
                 t
             )
         );
+        const currentAirspeed = (
+            lerp(
+                AppState.currentPlotData?.airspeed[AppState.playback.index],
+                AppState.currentPlotData?.airspeed[nextIdx],
+                t
+            )
+        );
+        const currentAltitude = (
+            lerp(
+                AppState.currentPlotData?.altitude[AppState.playback.index],
+                AppState.currentPlotData?.altitude[nextIdx],
+                t
+            )
+        );
+        const currentVerticalSpeed = (
+            lerp(
+                AppState.currentPlotData?.vertical_speed[AppState.playback.index],
+                AppState.currentPlotData?.vertical_speed[nextIdx],
+                t
+            )
+        );
+        const currentRpm = (
+            lerp(
+                AppState.currentPlotData?.rpm[AppState.playback.index],
+                AppState.currentPlotData?.rpm[nextIdx],
+                t
+            )
+        );
+        const currentMap = (
+            lerp(
+                AppState.currentPlotData?.map_data[AppState.playback.index],
+                AppState.currentPlotData?.map_data[nextIdx],
+                t
+            )
+        );
+        const currentPower = (
+            lerp(
+                AppState.currentPlotData?.percent_power[AppState.playback.index],
+                AppState.currentPlotData?.percent_power[nextIdx],
+                t
+            )
+        );
 
         // 4. Send the SMOOTH data to the 3D model
         if (window.updateAircraft3D) {
             window.updateAircraft3D(currentPitch, currentRoll, trueHeading, currentLat, currentLon, currentAlt);
         }
+
         document.getElementById('attPitch').innerText = currentPitch.toFixed(1) + ' °';
         document.getElementById('attRoll').innerText = currentRoll.toFixed(1) + ' °';
         document.getElementById('attHeading').innerText = currentHeading.toFixed(1) + ' °';
+        document.getElementById('attAirspeed').innerText = currentAirspeed.toFixed(1) + ' kts';
+        document.getElementById('attAltitude').innerText = currentAltitude.toFixed(0) + ' ft';
+        document.getElementById('attVerticalSpeed').innerText = currentVerticalSpeed.toFixed(0) + ' fpm';
+        document.getElementById('attRpm').innerText = currentRpm.toFixed(1);
+        document.getElementById('attMap').innerText = currentMap.toFixed(1);
+        document.getElementById('attPower').innerText = currentPower.toFixed(1) + ' %';
 
         // 4.5 Smoothly update the 2D Map Marker
         const mapDiv = document.getElementById('mapGraph');
