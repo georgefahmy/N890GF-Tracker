@@ -694,30 +694,32 @@ function renderPlotlyChart(plotId, data) {
         const pitchArr = AppState.currentPlotData?.pitch || [];
         const rollArr = AppState.currentPlotData?.roll || [];
         const headingArr = AppState.currentPlotData?.heading || [];
-        const airspeed = AppState.currentPlotData.airspeed || 0;
-        const altitude = AppState.currentPlotData.altitude || 0;
-        const verticalSpeed =AppState.currentPlotData.vertical_speed || 0;
-        const rpm = AppState.currentPlotData.rpm || 0;
-        const map = AppState.currentPlotData.map_data || 0;
-        const power =AppState.currentPlotData.percent_power || 0;
+        const airspeed = AppState.currentPlotData.airspeed || [];
+        const altitude = AppState.currentPlotData.altitude || [];
+        const verticalSpeed =AppState.currentPlotData.vertical_speed || [];
+        const rpm = AppState.currentPlotData.rpm || [];
+        const map = AppState.currentPlotData.map_data || [];
+        const power =AppState.currentPlotData.percent_power || [];
 
         if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
             document.getElementById('attPitch').innerText =
                 (pitchArr[idx] !== undefined ? Number(pitchArr[idx]).toFixed(1) : '--') + ' °';
-
             document.getElementById('attRoll').innerText =
                 (rollArr[idx] !== undefined ? Number(rollArr[idx]).toFixed(1) : '--') + ' °';
-
             document.getElementById('attHeading').innerText =
                 (headingArr[idx] !== undefined ? Number(headingArr[idx]).toFixed(1) : '--') + ' °';
-
             document.getElementById('attAirspeed').innerText =
                 (airspeed[idx] !== undefined ? Number(airspeed[idx]).toFixed(1) : '--')  + ' kts';
-            document.getElementById('attAltitude').innerText = altitude.toFixed(0) + ' ft';
-            document.getElementById('attVerticalSpeed').innerText = verticalSpeed.toFixed(0) + ' fpm';
-            document.getElementById('attRpm').innerText = rpm.toFixed(1);
-            document.getElementById('attMap').innerText = map.toFixed(1);
-            document.getElementById('attPower').innerText = power.toFixed(1) + ' %';
+            document.getElementById('attAltitude').innerText =
+                (altitude[idx] !== undefined ? Number(altitude[idx]).toFixed(0) : "--") + ' ft';
+            document.getElementById('attVerticalSpeed').innerText =
+                (verticalSpeed[idx] !== undefined ? Number(verticalSpeed[idx]).toFixed(0) : "--") + ' fpm';
+            document.getElementById('attRpm').innerText =
+                (rpm[idx] !== undefined ? Number(rpm[idx]).toFixed(1) : "--");
+            document.getElementById('attMap').innerText =
+                (map[idx] !== undefined ? Number(map[idx]).toFixed(1) : "--");
+            document.getElementById('attPower').innerText =
+                (power[idx] !== undefined ? Number(power[idx]).toFixed(1) : "--") + ' %';
         }
 
         // --- Drive 3D Model Rotation and Position ---
