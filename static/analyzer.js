@@ -824,6 +824,7 @@ function renderPlotlyChart(plotId, data) {
         }
 
         // Sync other plots using the new clean logic
+        xVal = idx
         if (xVal !== undefined) {
             const t = parseFloat(xVal);
             syncTooltips(xVal);
@@ -1924,7 +1925,7 @@ function scrubMap(idx) {
             window.updateAircraft3D(pitch, roll, trueHeading, lat, lon, alt);
         }
     }
-
+    syncTooltips(idx);
     // Follow mode
     if (AppState.map.followAircraft) {
         Plotly.relayout('mapGraph', {
@@ -1949,6 +1950,7 @@ function togglePlayback() {
 
         // Start the loop!
         setPlaybackSpeed(AppState.playback.speed);
+        syncTooltips( AppState.playback.index);
     }
 }
 
@@ -2148,6 +2150,8 @@ function setPlaybackSpeed(val) {
             // Sync the scrubber UI
             const scrubber = document.getElementById('mapScrubber');
             if (scrubber) scrubber.value = AppState.playback.index;
+
+            syncTooltips( AppState.playback.index);
         }
 
     }, baseInterval);
