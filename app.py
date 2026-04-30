@@ -1310,7 +1310,8 @@ def api_get_signals():
             "GP Input 13",
             "RPM L",
             "RPM R",
-            "Oil Pressure (psi)",
+            "Oil Pressure (PSI)",
+            "Fuel Pressure (PSI)",
             "Oil Temp (deg F)",
         ]
         signals = sorted([col for col in numeric_cols if col not in excluded])
