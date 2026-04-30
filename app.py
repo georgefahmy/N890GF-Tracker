@@ -52,34 +52,6 @@ log_formatter = logging.Formatter(
     "%(asctime)s | %(levelname)s | ip=%(ip)s | user=%(user)s | status=%(status)s | ua=%(ua)s | msg=%(message)s"
 )
 
-# Define the pins based on your vertical_power.py data
-VPX_PINS = [
-    {"id": "Starter", "name": "Starter", "breaker": 10, "sw": "AlwaysOn"},
-    {"id": "EFIS", "name": "EFIS PFD", "breaker": 5, "sw": "AlwaysOn"},
-    {"id": "Alternator", "name": "Alternator Field", "breaker": 5, "sw": "Switch1"},
-    {"id": "A5_1", "name": "Boost pump", "breaker": 5, "sw": "Switch4"},
-    {"id": "A5_2", "name": "SV-INT-2S - BOSE", "breaker": 2, "sw": "Switch3"},
-    {"id": "A5_3", "name": "Garmin G5", "breaker": 2, "sw": "Switch3"},
-    {"id": "A5_4", "name": "E-Mag/P-Mag 1", "breaker": 3, "sw": "Switch9"},
-    {"id": "A5_5", "name": "E-Mag/P-Mag 2", "breaker": 3, "sw": "Switch10"},
-    {"id": "A5_6", "name": "Taxi Light Left", "breaker": 5, "sw": "Switch6"},
-    {"id": "A5_7", "name": "Taxi Light Right", "breaker": 5, "sw": "Switch6"},
-    {"id": "A5_8", "name": "Hobbs meter", "breaker": 2, "sw": "Switch3"},
-    {"id": "A5_9", "name": "SV-XPNDR/SV-ADSB", "breaker": 3, "sw": "Switch3"},
-    {"id": "A5_10", "name": "Nav Light Left", "breaker": 5, "sw": "Switch7"},
-    {"id": "A5_11", "name": "EFIS MFD", "breaker": 5, "sw": "Switch3"},
-    {"id": "A5_12", "name": "Nav Light Right", "breaker": 5, "sw": "Switch7"},
-    {"id": "A10_1", "name": "trim AP Power", "breaker": 5, "sw": "Switch3"},
-    {"id": "A10_2", "name": "Left Landing Lt", "breaker": 7, "sw": "Switch5"},
-    {"id": "A10_3", "name": "Right Landing Lt", "breaker": 7, "sw": "Switch5"},
-    {"id": "A10_4", "name": "Strobe Left", "breaker": 7, "sw": "Switch8"},
-    {"id": "A10_5", "name": "Strobe Right", "breaker": 7, "sw": "Switch8"},
-    {"id": "A10_6", "name": "SV-COM-X25", "breaker": 7, "sw": "Switch3"},
-    {"id": "A15_1", "name": "AP Servos", "breaker": 10, "sw": "Switch3"},
-    {"id": "A15_3", "name": "Eyeball lights", "breaker": 10, "sw": "AlwaysOn"},
-    {"id": "A3_1", "name": "ELT", "breaker": 10, "sw": "AlwaysOn"},
-]
-
 
 def _create_logger(name, filename):
     logger = logging.getLogger(name)

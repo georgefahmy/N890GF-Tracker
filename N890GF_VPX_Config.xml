@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<VpxConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>George Fahmy</User>
+  <TailNumber>N890GF</TailNumber>
+  <HardwareVersion>2</HardwareVersion>
+  <SoftwareMajor>1</SoftwareMajor>
+  <SoftwareMinor>6</SoftwareMinor>
+  <ConfiguratorVersion>1.6.0.0</ConfiguratorVersion>
+  <CircuitConfigurations>
+    <CircuitConfiguration>
+      <Id>10A-4</Id>
+      <BreakerValue>10</BreakerValue>
+      <CurrentFault>false</CurrentFault>
+      <SwitchId>Avionics Master</SwitchId>
+      <Enabled>true</Enabled>
+      <Name>SV-COM-X25</Name>
+    </CircuitConfiguration>
+    <CircuitConfiguration>
+      <Id>15A-2</Id>
+      <BreakerValue>5</BreakerValue>
+      <CurrentFault>false</CurrentFault>
+      <SwitchId>AlwaysOn</SwitchId>
+      <Enabled>true</Enabled>
+      <Name>Skyview PFD</Name>
+    </CircuitConfiguration>
+    <CircuitConfiguration>
+      <Id>10A-5</Id>
+      <BreakerValue>5</BreakerValue>
+      <CurrentFault>false</CurrentFault>
+      <SwitchId>Avionics Master</SwitchId>
+      <Enabled>true</Enabled>
+      <Name>Skyview MFD</Name>
+    </CircuitConfiguration>
+    <CircuitConfiguration>
+      <Id>J12-4</Id>
+      <BreakerValue>1</BreakerValue>
+      <CurrentFault>false</CurrentFault>
+      <SwitchId>AlwaysOff</SwitchId>
+      <Enabled>true</Enabled>
+      <Name>Fuel Pump</Name>
+    </CircuitConfiguration>
+  </CircuitConfigurations>
+  <TimeStamp>2026-04-28T20:29:34.580688</TimeStamp>
+</VpxConfiguration>

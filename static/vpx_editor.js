@@ -321,26 +321,60 @@ function applyDevice(devId) {
     document.getElementById(`en-${currentSelectedPin}`).checked = true;
 }
 
-function exportConfig() {
-    const config = [];
+async function exportConfig() {
+    const circuits = [];
+
+    // 1. Iterate through all pin rows to find enabled circuits
     document.querySelectorAll('.pin-row').forEach(row => {
         const pinId = row.id.replace('row-', '');
-        const enabled = document.getElementById(`en-${pinId}`).checked;
+        const isEnabled = document.getElementById(`en-${pinId}`).checked;
 
-        if (enabled) {
+        if (isEnabled) {
             const hardware = hardwareMap[pinId];
-            const systemId = hardware ? hardware.name : pinId;
+            // Use the internal VPX name (e.g., '5A-1') if it exists, otherwise fallback to Pin ID
+            const vpxId = hardware ? hardware.name : pinId;
 
-            config.push({
-                hardware_pin: pinId,
-                system_id: systemId,
-                name: document.getElementById(`nm-${pinId}`).value,
-                amps: document.getElementById(`br-${pinId}`).value,
-                switch: document.getElementById(`sw-${pinId}`).value
+            circuits.push({
+                id: vpxId,
+                name: document.getElementById(`nm-${pinId}`).value || "Unnamed Circuit",
+                breaker: parseInt(document.getElementById(`br-${pinId}`).value) || 1,
+                switchId: document.getElementById(`sw-${pinId}`).value,
+                enabled: true
             });
         }
     });
 
-    console.log("Exporting Mapping Logic:", config);
-    alert("Export compiled with hardware system IDs mapping.");
+    // 2. Prepare the full payload for George's aircraft (N890GF)
+    const payload = {
+        user: "George Fahmy",
+        tailNumber: "N890GF",
+        circuits: circuits
+    };
+
+    try {
+        // 3. Send to your Flask API
+        const response = await fetch("/api/generate-vpx", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error("Server failed to generate VPX file");
+
+        // 4. Trigger the browser download for the returned XML
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `N890GF_VPX_Config.xml`;
+        document.body.appendChild(a);
+        a.click();
+
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+    } catch (error) {
+        console.error("Export Error:", error);
+        alert("Error exporting configuration. Check console for details.");
+    }
 }
