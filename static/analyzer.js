@@ -827,7 +827,7 @@ function renderPlotlyChart(plotId, data) {
         xVal = idx
         if (xVal !== undefined) {
             const t = parseFloat(xVal);
-            syncTooltips(xVal);
+            syncTooltips(AppState.playback.index);
             syncAircraftToTime(t);
         }
     });
@@ -1950,7 +1950,7 @@ function togglePlayback() {
 
         // Start the loop!
         setPlaybackSpeed(AppState.playback.speed);
-        syncTooltips( AppState.playback.index);
+        syncTooltips(AppState.playback.index);
     }
 }
 
