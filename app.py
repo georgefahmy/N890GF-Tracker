@@ -140,7 +140,7 @@ def validate_float(value, default=0.0):
     if isinstance(value, str) and value.strip().lower() in ["none", "null", ""]:
         return default
     try:
-        return round(float(value), 1)
+        return round(float(value), 2)
     except (ValueError, TypeError):
         return default
 
@@ -1041,9 +1041,9 @@ def add_mx():
 @login_required
 def add_fuel():
     hobbs, gallons, price = (
-        validate_float(request.form.get("hobbs", 0)),
-        validate_float(request.form.get("gallons", 0)),
-        validate_float(request.form.get("price", 0)),
+        validate_float(request.form.get("hobbs")),
+        validate_float(request.form.get("gallons")),
+        validate_float(request.form.get("price")),
     )
     conn = get_db_connection()
     conn.execute(
@@ -1138,10 +1138,11 @@ def edit_mx(id):
 @login_required
 def edit_fuel(id):
     hours, gallons, price = (
-        validate_float(request.form.get("hours", 0)),
-        validate_float(request.form.get("gallons", 0)),
-        validate_float(request.form.get("price", 0)),
+        validate_float(request.form.get("hobbs")),
+        validate_float(request.form.get("gallons")),
+        validate_float(request.form.get("price")),
     )
+    print(hours, gallons, price)
     conn = get_db_connection()
     conn.execute(
         "UPDATE fuel_tracker SET date =?, hobbs =?, gallons =?, price_per_gallon =?, total_cost =?, gal_per_hour =? WHERE id = ?",
