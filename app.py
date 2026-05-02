@@ -994,8 +994,8 @@ def add_flight():
         "INSERT INTO flight_log (date, takeoff_airport, landing_airport, hobbs, tach, landings, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
         (
             parse_date_safe(request.form.get("date")),
-            request.form.get("takeoff"),
-            request.form.get("landing"),
+            request.form.get("takeoff").upper(),
+            request.form.get("landing").upper(),
             validate_float(request.form.get("hobbs")),
             validate_float(request.form.get("tach")),
             request.form.get("landings", 0),
