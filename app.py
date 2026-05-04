@@ -900,6 +900,7 @@ def index():
     # --- Fuel Cost Metrics ---
     total_fuel_cost = 0.0
     total_gallons = 0.0
+    cost_per_month = 0.0
 
     for f in fuel_logs:
         try:
@@ -981,6 +982,7 @@ def index():
         oil_due=upcoming_mx["oil_due"],
         oil_status_class=upcoming_mx["oil_status_class"],
         total_fuel_cost=total_fuel_cost,
+        cost_per_month=cost_per_month,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
     )
