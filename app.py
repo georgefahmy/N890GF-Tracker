@@ -34,7 +34,7 @@ from src.airspeed_calibration import analyze_flight_data
 from src.fuel_prices import scrape_airnav_to_json
 from src.sw_db_updates import download_dynon_databases_only
 
-CWD_PATH = os.path.abspath(os.path.dirname(__file__))
+CWD_PATH = os.path.abspath(os.getcwd())
 print(CWD_PATH)
 app = Flask(__name__)
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
