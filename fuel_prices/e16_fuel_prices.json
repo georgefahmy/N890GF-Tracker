@@ -41,7 +41,7 @@
         "fbos": [
             {
                 "fbo_name": "Watsonville Municipal Airport",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
@@ -83,7 +83,7 @@
         "fbos": [
             {
                 "fbo_name": "Hollister Jet Center, Inc",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
@@ -151,7 +151,7 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
@@ -203,7 +203,33 @@
         "fbos": [
             {
                 "fbo_name": "Jet West GateOne",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.34"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.84"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.43"
+                        },
+                        {
+                            "service": "SS",
+                            "price": "$8.43"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "gateOne Salinas",
+                "last_updated": "28-Apr",
                 "prices": {
                     "100LL": [
                         {
@@ -239,7 +265,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Marina (FBO)",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
@@ -267,7 +293,7 @@
         "fbos": [
             {
                 "fbo_name": "Avports Moffett Field",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "Jet A": [
                         {
@@ -357,7 +383,7 @@
         "fbos": [
             {
                 "fbo_name": "Rossi Aircraft",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
@@ -513,7 +539,7 @@
             },
             {
                 "fbo_name": "Signature Aviation (formerly Meridian Hayward)",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
@@ -541,7 +567,7 @@
         "fbos": [
             {
                 "fbo_name": "Modesto Jet Center",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
@@ -573,120 +599,12 @@
         "fbos": [
             {
                 "fbo_name": "Contra Costa County (FBO)",
-                "last_updated": "02-May",
+                "last_updated": "04-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
                             "price": "$6.38"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "airport_code": "KOAK",
-        "airport_name": "Oakland San Francisco Bay Airport Oakland, CA",
-        "distance": {
-            "nm": 49,
-            "direction": "NW"
-        },
-        "fbos": [
-            {
-                "fbo_name": "KaiserAir, Inc.",
-                "last_updated": "02-May",
-                "prices": {
-                    "100LL": [
-                        {
-                            "service": "FS",
-                            "price": "$8.49"
-                        }
-                    ],
-                    "Jet A": [
-                        {
-                            "service": "FS",
-                            "price": "$8.49"
-                        }
-                    ]
-                }
-            },
-            {
-                "fbo_name": "Signature Aviation",
-                "last_updated": "01-May",
-                "prices": {
-                    "100LL": [
-                        {
-                            "service": "FS",
-                            "price": "$8.29"
-                        }
-                    ],
-                    "Jet A": [
-                        {
-                            "service": "FS",
-                            "price": "$8.793"
-                        }
-                    ],
-                    "SAF": [
-                        {
-                            "service": "FS",
-                            "price": "$10.758"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "airport_code": "KSFO",
-        "airport_name": "San Francisco International Airport San Francisco, CA",
-        "distance": {
-            "nm": 49,
-            "direction": "NW"
-        },
-        "fbos": [
-            {
-                "fbo_name": "Signature Aviation",
-                "last_updated": "01-May",
-                "prices": {
-                    "100LL": [
-                        {
-                            "service": "FS",
-                            "price": "$9.75"
-                        }
-                    ],
-                    "Jet A": [
-                        {
-                            "service": "FS",
-                            "price": "$11.83"
-                        }
-                    ],
-                    "SAF": [
-                        {
-                            "service": "FS",
-                            "price": "$13.08"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "airport_code": "O15",
-        "airport_name": "Turlock Municipal Airport Turlock, CA",
-        "distance": {
-            "nm": 49,
-            "direction": "ENE"
-        },
-        "fbos": [
-            {
-                "fbo_name": "Turlock Municipal Airport",
-                "last_updated": "20-Apr",
-                "prices": {
-                    "100LL": [
-                        {
-                            "service": "SS",
-                            "price": "$6.29"
                         }
                     ]
                 }
