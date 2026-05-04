@@ -912,7 +912,7 @@ def index():
             continue
 
     total_fuel_cost = round(total_fuel_cost, 2)
-    total_gallons = round(total_gallons, 2)
+    total_gallons = round(total_gallons, 2) - 40
 
     avg_gph = (
         round(total_gallons / latest_fuel_hobbs, 2) if latest_fuel_hobbs > 0 else 0.0
