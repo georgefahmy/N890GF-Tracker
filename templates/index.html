@@ -452,6 +452,7 @@
                     </thead>
                     <tbody>
                         {% for fuel in fuel_logs %}
+
                         <tr>
                             <td class="text-nowrap">{{ fuel.display_date }}</td>
                             <td>{{ "%.1f"|format(fuel.hobbs) }}</td>
@@ -460,7 +461,18 @@
                             <td>${{ "%.2f"|format(fuel.price_per_gallon) }}</td>
                             <td>${{ "%.2f"|format(fuel.gallons * fuel.price_per_gallon) }}</td>
                             <td>{{ "%.2f"|format(fuel.gallons / fuel.delta) if fuel.delta is not none else "%.2f"|format(fuel.gallons / fuel.hobbs) if fuel.hobbs > 0 else "%.2f"|format(0)}}</td>
-                            <td>${{ "%.2f"|format(fuel.gallons / fuel.delta * fuel.price_per_gallon) if fuel.delta is not none else "%.2f"|format(fuel.gallons / fuel.hobbs * fuel.price_per_gallon) if fuel.hobbs > 0 else "%.2f"|format(0)}}</td>
+                            <td>
+                                {% if loop.last %}
+                                    {{ "0.00" }}
+                                {% else %}
+                                    {% set prev = loop.nextitem %}
+                                    {% if fuel.gallons is defined and prev.gallons is defined %}
+                                        ${{ "%.2f"|format(fuel.gallons / fuel.delta * prev.price_per_gallon) if fuel.delta is not none else "%.2f"|format(fuel.gallons / fuel.hobbs * prev.price_per_gallon) if fuel.hobbs > 0 else "%.2f"|format(0)}}
+                                    {% else %}
+                                        ${{"0.00"}}
+                                    {% endif %}
+                                {% endif %}
+                            </td>
 
                             <td class="text-center action-btns">
                                 <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#editFuelModal{{ fuel.id }}">Edit</button>
