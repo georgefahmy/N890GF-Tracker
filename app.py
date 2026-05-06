@@ -1136,6 +1136,12 @@ def edit_mx(id):
     return redirect(url_for("index"))
 
 
+@app.route("/live_map")
+# @login_required # Uncomment if you want to restrict this to logged-in users
+def live_map():
+    return render_template("live_map.html")
+
+
 @app.route("/edit_fuel/<int:id>", methods=["POST"])
 @login_required
 def edit_fuel(id):
