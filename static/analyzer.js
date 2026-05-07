@@ -215,7 +215,7 @@ function loadSignals(formData) {
             document.getElementById('statsPlaceholder').innerHTML = 'Error loading data.';
             return;
         }
-
+        // console.log(data)
         AppState.file.currentName = data.saved_filename;
         if (data.saved_filename) {
             localStorage.setItem(STORAGE_KEY, data.saved_filename);
@@ -245,17 +245,20 @@ function loadSignals(formData) {
 // 3. Handle File Upload
 document.getElementById('csvFile').addEventListener('change', function(e) {
     if (e.target.files.length === 0) return;
-
     // Clear the URL parameter since we are uploading a new, unsaved file
     window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
 
     document.getElementById('savedFlights').value = ""; // Reset dropdown
     localStorage.removeItem(STORAGE_KEY);
     const formData = new FormData();
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlFlight = urlParams.get('flight');
+
     formData.append('saved_filename', e.target.files[0]);
     loadSignals(formData);
+    console.log(AppState.file.currentName)
     if (!urlFlight) {
-        const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(saved);
+        const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(AppState.file.currentName);
         window.history.replaceState({ path: newUrl }, '', newUrl);
     }
 });
@@ -727,7 +730,6 @@ function renderPlotlyChart(plotId, data) {
         if (!eventdata.points || eventdata.points.length === 0) return;
         const pt = eventdata.points[0];
         const idx = pt.pointIndex;
-        const xVal = pt.x;
 
         const pitchArr = AppState.currentPlotData?.pitch || [];
         const rollArr = AppState.currentPlotData?.roll || [];
@@ -740,6 +742,7 @@ function renderPlotlyChart(plotId, data) {
         const power =AppState.currentPlotData.percent_power || [];
         const fuelFlow =AppState.currentPlotData.fuel_flow || [];
         const mpg =AppState.currentPlotData.mpg || [];
+        // const xVal = pt.x;
 
         if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
             document.getElementById('attPitch').innerText =
@@ -824,9 +827,9 @@ function renderPlotlyChart(plotId, data) {
         }
 
         // Sync other plots using the new clean logic
-        xVal = idx
-        if (xVal !== undefined) {
-            const t = parseFloat(xVal);
+        AppState.playback.index = idx
+        if (idx !== undefined) {
+            const t = parseFloat(idx);
             syncTooltips(AppState.playback.index);
             syncAircraftToTime(t);
         }
@@ -2151,7 +2154,7 @@ function setPlaybackSpeed(val) {
             const scrubber = document.getElementById('mapScrubber');
             if (scrubber) scrubber.value = AppState.playback.index;
 
-            syncTooltips( AppState.playback.index);
+            syncTooltips(AppState.playback.index);
         }
 
     }, baseInterval);

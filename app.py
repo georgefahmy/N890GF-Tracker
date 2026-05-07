@@ -1247,9 +1247,10 @@ def api_get_signals():
             df = pd.read_csv(filepath, low_memory=False)
 
         else:
-            if "file" not in request.files:
+            print(request.files)
+            if "saved_filename" not in request.files:
                 return jsonify({"error": "No file part"}), 400
-            file = request.files["file"]
+            file = request.files["saved_filename"]
             if file.filename == "" or not file.filename.endswith(".csv"):
                 return jsonify({"error": "Invalid file. Please upload a CSV."}), 400
 
@@ -1276,7 +1277,8 @@ def api_get_signals():
                 # Clean filename
                 safe_name = fid_str.replace("/", "-").replace(":", "-")
                 base_name, ext = os.path.splitext(safe_name)
-                filepath = os.path.join(SAVE_DIR, f"{safe_name}.csv")
+                saved_filename = f"{safe_name}.csv"
+                filepath = os.path.join(SAVE_DIR, saved_filename)
                 flight_data.to_csv(filepath, index=False)
             git_push_data()
             df = flight_data
