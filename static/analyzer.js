@@ -256,7 +256,7 @@ document.getElementById('csvFile').addEventListener('change', function(e) {
 
     formData.append('saved_filename', e.target.files[0]);
     loadSignals(formData);
-    console.log(AppState.file.currentName)
+
     if (!urlFlight) {
         const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(AppState.file.currentName);
         window.history.replaceState({ path: newUrl }, '', newUrl);
