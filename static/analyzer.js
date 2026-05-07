@@ -252,7 +252,7 @@ document.getElementById('csvFile').addEventListener('change', function(e) {
     document.getElementById('savedFlights').value = ""; // Reset dropdown
     localStorage.removeItem(STORAGE_KEY);
     const formData = new FormData();
-    formData.append('file', e.target.files[0]);
+    formData.append('saved_filename', e.target.files[0]);
     loadSignals(formData);
     if (!urlFlight) {
         const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(saved);
