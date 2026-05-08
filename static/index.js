@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
 
         const form = this;
-        const downloadPath = "~/Documents/RV-7/SoftwareDocuments/projects/dynon/Software/sv_software/";
+        const downloadPath = "~/Documents/RV-7/Software/sv_software/";
 
         // UI feedback elements
         let statusDiv = document.getElementById("dbUpdateStatus");
