@@ -31,7 +31,7 @@ from werkzeug.security import check_password_hash
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
-from src.fuel_estimate import calculate_fuel
+from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.sw_db_updates import download_dynon_databases_only
 
