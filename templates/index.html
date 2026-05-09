@@ -132,6 +132,26 @@
                 min-height: 100vh;
             }
         }
+        .vertical-slider {
+            -webkit-appearance: slider-vertical;
+            height: 250px !important;
+            /* This makes the slider track thin */
+            width: 20px !important;
+            cursor: pointer;
+        }
+
+        /* Custom alignment classes */
+        .align-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .align-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
     </style>
 </head>
 <body>
@@ -176,6 +196,7 @@
                     <button class="btn route-advisor-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal">Routes</button>
                     <a href="/analyzer" class="btn flight-analyzer-btn flex-grow-1 flex-md-grow-0">Analyzer</a>
                     <a href="/live_map" class="btn btn-info text-white flex-grow-1 flex-md-grow-0">Live Map</a>
+                    <button class="btn btn-secondary flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal">Est. Fuel</button>
                     <button class="btn database-download-button flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">⬇️ Dynon DBs</button>
                 </div>
             </div>
@@ -789,6 +810,54 @@
     </div>
 </div>
 
+<div class="modal fade" id="fuelEstimatorModal" tabindex="-1">
+    <div class="modal-dialog modal-sm"> <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h5 class="modal-title">Fuel Estimator</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row align-items-center">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-6 align-left">
+                        <h6 class="mb-1">Left Wing</h6>
+                        <div class="text-primary mb-2">
+                            <span id="leftHeightDisplay" class="fw-bold">0.0</span><small> in</small>
+                        </div>
+
+                        <input type="range" class="form-range vertical-slider" orient="vertical" id="leftFuelSlider" min="0" max="7.5" step="0.1" value="0">
+
+                        <div class="mt-2 text-muted">
+                            <span id="leftGalDisplay" class="fw-bold text-dark">0.00</span><small> gal</small>
+                        </div>
+                    </div>
+
+                    <div class="col-6 align-right">
+                        <h6 class="mb-1">Right Wing</h6>
+                        <div class="text-primary mb-2">
+                            <span id="rightHeightDisplay" class="fw-bold">0.0</span><small> in</small>
+                        </div>
+
+                        <input type="range" class="form-range vertical-slider" orient="vertical" id="rightFuelSlider" min="0" max="7.5" step="0.1" value="0">
+
+                        <div class="mt-2 text-muted">
+                            <span id="rightGalDisplay" class="fw-bold text-dark">0.00</span><small> gal</small>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-center align-items-center fs-4">
+                    <span class="me-2">Total:</span>
+                    <span class="text-primary fw-bold"><span id="totalGalDisplay">0.00</span> gal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Database Updates Modal -->
 <div class="modal fade" id="dbUpdateModal" tabindex="-1" aria-labelledby="dbUpdateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -856,5 +925,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="{{ url_for('static', filename='index.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </body>
 </html>

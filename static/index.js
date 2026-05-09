@@ -50,6 +50,44 @@ document.addEventListener("DOMContentLoaded", function() {
     paginateTable("mxTable", "mxPagination", 10);
     paginateTable("fuelTable", "fuelPagination", 10);
 
+    // Fuel Estimator Logic
+    const leftSlider = document.getElementById('leftFuelSlider');
+    const rightSlider = document.getElementById('rightFuelSlider');
+    const leftHeightDisp = document.getElementById('leftHeightDisplay');
+    const rightHeightDisp = document.getElementById('rightHeightDisplay');
+    const leftGalDisp = document.getElementById('leftGalDisplay');
+    const rightGalDisp = document.getElementById('rightGalDisplay');
+    const totalGalDisp = document.getElementById('totalGalDisplay');
+
+    function updateFuelEstimate() {
+        const leftVal = leftSlider.value;
+        const rightVal = rightSlider.value;
+
+        // Update the UI height text immediately
+        leftHeightDisp.textContent = leftVal;
+        rightHeightDisp.textContent = rightVal;
+
+        // Fetch the calculation from the backend
+        fetch('/api/estimate_fuel', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ left_height: leftVal, right_height: rightVal })
+        })
+        .then(response => response.json())
+        .then(data => {
+            leftGalDisp.textContent = data.left_gallons.toFixed(2);
+            rightGalDisp.textContent = data.right_gallons.toFixed(2);
+            totalGalDisp.textContent = data.total_gallons.toFixed(2);
+        })
+        .catch(err => console.error("Error fetching fuel estimate:", err));
+    }
+
+    // Trigger calculation when sliders are moved
+    if(leftSlider && rightSlider) {
+        leftSlider.addEventListener('input', updateFuelEstimate);
+        rightSlider.addEventListener('input', updateFuelEstimate);
+    }
+
     // ====== FUEL PRICE LOGIC ======
     let fuelOptionsCache = [];
     function renderFuelPrices(limit) {

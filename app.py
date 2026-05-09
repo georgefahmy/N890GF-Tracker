@@ -31,6 +31,7 @@ from werkzeug.security import check_password_hash
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
+from src.fuel_estimate import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.sw_db_updates import download_dynon_databases_only
 
@@ -1218,6 +1219,28 @@ def analyzer():
     template = "analyzer.html" if is_mobile else "analyzer.html"
 
     return render_template(template)
+
+
+@app.route("/api/estimate_fuel", methods=["POST"])
+# @login_required  <-- Uncomment if your app uses login_required
+def estimate_fuel():
+    data = request.json
+
+    # Get slider heights (defaulting to 0 if missing)
+    left_height = float(data.get("left_height", 0))
+    right_height = float(data.get("right_height", 0))
+
+    # Calculate using defaults (TILT_DEG, CHORD_TILT_DEG) from your script
+    left_gal, _ = calculate_fuel(left_height)
+    right_gal, _ = calculate_fuel(right_height)
+
+    return jsonify(
+        {
+            "left_gallons": left_gal,
+            "right_gallons": right_gal,
+            "total_gallons": left_gal + right_gal,
+        }
+    )
 
 
 # --- GAMI Spread Page Route ---
