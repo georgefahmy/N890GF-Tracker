@@ -121,6 +121,7 @@ class OilAnalysis(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tail_number = db.Column(db.String(20), default="N890GF")
     date_sampled = db.Column(db.Date, nullable=False)
+    sample_no = db.Column(db.Float)
     oil_hrs = db.Column(db.Float)
     engine_hrs = db.Column(db.Float)
 
@@ -839,6 +840,8 @@ def logout():
 @app.route("/upload_oil_analysis", methods=["POST"])
 # @login_required
 def upload_oil_analysis():
+    logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
+
     if "oil_pdf" not in request.files:
         return jsonify({"error": "No file part"}), 400
 
@@ -862,25 +865,34 @@ def upload_oil_analysis():
                 ).date()
             except Exception:
                 sample_date = datetime.utcnow().date()
-            # Save to Database using SQLAlchemy
-            new_entry = OilAnalysis(
-                date_sampled=sample_date,
-                oil_hrs=float(results["metadata"].get("oil_hrs", 0)),
-                engine_hrs=float(results["metadata"].get("engine_hrs", 0)),
-                iron=float(results["metals"].get("Iron", 0)),
-                copper=float(results["metals"].get("Copper", 0)),
-                chromium=float(results["metals"].get("Chromium", 0)),
-                aluminum=float(results["metals"].get("Aluminium", 0)),
-                nickel=float(results["metals"].get("Nickel", 0)),
-                lead=float(results["metals"].get("Lead", 0)),
-                diagnosis=results.get("diagnosis", ""),
-                report_path=filepath,
-            )
-            print(new_entry)
+            sample_no = results["metadata"].get("sample_no")
+            exists = [
+                True if float(sample_no) == float(log.sample_no) else False
+                for log in logs
+            ]
+            print(exists)
+            if not any(exists):
+                # Save to Database using SQLAlchemy
+                new_entry = OilAnalysis(
+                    date_sampled=sample_date,
+                    oil_hrs=float(results["metadata"].get("oil_hrs", 0)),
+                    engine_hrs=float(results["metadata"].get("engine_hrs", 0)),
+                    iron=float(results["metals"].get("Iron", 0)),
+                    copper=float(results["metals"].get("Copper", 0)),
+                    chromium=float(results["metals"].get("Chromium", 0)),
+                    aluminum=float(results["metals"].get("Aluminium", 0)),
+                    nickel=float(results["metals"].get("Nickel", 0)),
+                    lead=float(results["metals"].get("Lead", 0)),
+                    diagnosis=results.get("diagnosis", ""),
+                    report_path=filepath,
+                    sample_no=results["metadata"].get("sample_no"),
+                )
 
-            db.session.add(new_entry)
-            db.session.commit()
-            return jsonify(results)
+                db.session.add(new_entry)
+                db.session.commit()
+                return jsonify(results)
+            else:
+                return jsonify({"error": "Analysis Already Exists"}), 400
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
@@ -889,9 +901,7 @@ def upload_oil_analysis():
 
 @app.route("/api/oil_trends")
 def get_oil_trends():
-    # Fetch records sorted by engine hours to see the timeline
     logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
-
     history = []
     for log in logs:
         history.append(
@@ -899,10 +909,13 @@ def get_oil_trends():
                 "engine_hrs": log.engine_hrs,
                 "iron": log.iron,
                 "copper": log.copper,
+                "chromium": log.chromium,
+                "aluminum": log.aluminum,
+                "nickel": log.nickel,
+                "lead": log.lead,
                 "date": log.date_sampled.strftime("%Y-%m-%d"),
             }
         )
-
     return jsonify(history)
 
 

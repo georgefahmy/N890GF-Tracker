@@ -928,12 +928,20 @@
                         </table>
 
                         <div class="alert alert-info py-2" id="oilDiagnosis">
-                            </div>
+                        </div>
+                    </div>
+                    <div id="oilTrendsContainer" class="d-none" style="width: 100%;">
+                        <div id="oilTrendPlot">
+                            <p class="text-center pt-5 text-muted">Waiting for Plotly...</p>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="uploadBtn" disabled>Upload PDF</button>
+                    <button type="button" class="btn btn-outline-info" id="showOilTrendsBtn">View Trends</button>
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="uploadBtn" disabled>Upload PDF</button>
+                    </div>
                 </div>
 
             </form> </div>
@@ -1008,5 +1016,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="{{ url_for('static', filename='index.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </body>
 </html>

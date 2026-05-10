@@ -531,99 +531,81 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultsZoneContainer = document.getElementById('resultsZoneContainer');
     const errorDiv = document.getElementById('uploadError');
 
-    // Helper function to handle UI state when a file is picked
+    const showOilTrendsBtn = document.getElementById('showOilTrendsBtn');
+    const oilTrendsContainer = document.getElementById('oilTrendsContainer');
+
+    // Track if we have a successful upload so we know which screen to return to
+    let hasParsedReport = false;
+
+    // --- 1. Drop Zone & File Selection ---
     function handleFileSelection() {
         if (fileInput && fileInput.files.length > 0) {
-            const fileName = fileInput.files[0].name;
             if (nameDisplay) {
-                nameDisplay.textContent = "Selected: " + fileName;
+                nameDisplay.textContent = "Selected: " + fileInput.files[0].name;
                 nameDisplay.style.display = 'block';
             }
-            if (uploadBtn) {
-                uploadBtn.disabled = false; // This enables the button
-            }
+            if (uploadBtn) uploadBtn.disabled = false;
         }
     }
 
-    // 1. Drop Zone & File Selection Listeners
     if (dropZone && fileInput) {
         dropZone.addEventListener('click', () => fileInput.click());
-
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('bg-white');
-        });
-
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-white'); });
         dropZone.addEventListener('dragleave', () => dropZone.classList.remove('bg-white'));
-
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.classList.remove('bg-white');
             fileInput.files = e.dataTransfer.files;
             handleFileSelection();
         });
-
         fileInput.addEventListener('change', handleFileSelection);
     }
 
-    // 2. Form Submission Logic
+    // --- 2. Form Submission ---
     if (oilUploadForm) {
         oilUploadForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
             const formData = new FormData(this);
 
-            // Set loading state
             if (uploadBtn) {
                 uploadBtn.disabled = true;
-                uploadBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+                uploadBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Processing...';
             }
             if (errorDiv) errorDiv.classList.add('d-none');
 
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
+            fetch(this.action, { method: 'POST', body: formData })
             .then(response => {
                 if (!response.ok) return response.json().then(err => { throw err; });
                 return response.json();
             })
             .then(data => {
-                // Hide upload zone, show results zone
+                hasParsedReport = true; // Mark that we have data!
+
                 if (uploadZoneContainer) uploadZoneContainer.classList.add('d-none');
                 if (resultsZoneContainer) resultsZoneContainer.classList.remove('d-none');
+                if (oilTrendsContainer) oilTrendsContainer.classList.add('d-none'); // Ensure trends are hidden
                 if (uploadBtn) uploadBtn.style.display = 'none';
 
-                // 1. Populate Metadata
-                const metaEl = document.getElementById('oilMetadata');
-                if (metaEl) {
-                    metaEl.innerHTML = `
-                        <div class="col-6"><strong>Date:</strong> ${data.metadata.date_sampled || 'N/A'}</div>
-                        <div class="col-6"><strong>Oil Hrs:</strong> ${data.metadata.oil_hrs || 'N/A'}</div>
-                    `;
+                // Ensure button says "View Trends"
+                if (showOilTrendsBtn) {
+                    showOilTrendsBtn.textContent = "View Trends";
+                    showOilTrendsBtn.classList.replace('btn-info', 'btn-outline-info');
                 }
 
-                // 2. Populate Metals Table
+                // Populate UI
+                const metaEl = document.getElementById('oilMetadata');
+                if (metaEl) metaEl.innerHTML = `<div class="col-6"><strong>Date:</strong> ${data.metadata.date_sampled || 'N/A'}</div><div class="col-6"><strong>Oil Hrs:</strong> ${data.metadata.oil_hrs || 'N/A'}</div>`;
+
                 const tbody = document.getElementById('oilMetalsTableBody');
                 if (tbody) {
                     tbody.innerHTML = '';
                     for (const [metal, value] of Object.entries(data.metals)) {
-                        tbody.innerHTML += `
-                            <tr>
-                                <td>${metal}</td>
-                                <td class="fw-bold">${value}</td>
-                            </tr>
-                        `;
+                        tbody.innerHTML += `<tr><td>${metal}</td><td class="fw-bold">${value}</td></tr>`;
                     }
                 }
 
-                // 3. Populate Diagnosis
                 const diagEl = document.getElementById('oilDiagnosis');
-                if (diagEl) {
-                    diagEl.innerHTML = `
-                        <small><strong>Notes:</strong> ${data.diagnosis || 'No diagnosis notes extracted.'}</small>
-                    `;
-                }
+                if (diagEl) diagEl.innerHTML = `<small><strong>Notes:</strong> ${data.diagnosis || 'None'}</small>`;
             })
             .catch(err => {
                 console.error("Upload failed:", err);
@@ -631,13 +613,76 @@ document.addEventListener('DOMContentLoaded', function() {
                     errorDiv.textContent = err.error || err.message || "An error occurred during upload.";
                     errorDiv.classList.remove('d-none');
                 }
-
-                // Reset button so user can try again
                 if (uploadBtn) {
                     uploadBtn.disabled = false;
                     uploadBtn.innerHTML = 'Upload PDF';
                 }
             });
+        });
+    }
+
+    if (showOilTrendsBtn) {
+        showOilTrendsBtn.addEventListener('click', function() {
+            const isHidden = oilTrendsContainer.classList.contains('d-none');
+            const plotDiv = document.getElementById('oilTrendPlot');
+
+            if (isHidden) {
+                // 1. Show the containers
+                oilTrendsContainer.classList.remove('d-none');
+                uploadZoneContainer.classList.add('d-none');
+                resultsZoneContainer.classList.add('d-none');
+                showOilTrendsBtn.textContent = hasParsedReport ? "Back to Results" : "Upload New Report";
+
+                // 2. Clear old instances
+                Plotly.purge(plotDiv);
+                plotDiv.innerHTML = '<div class="text-center p-5">Rendering...</div>';
+
+                fetch('/api/oil_trends')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!data || data.length === 0) return;
+
+                        const engineHrs = data.map(row => parseFloat(row.engine_hrs));
+                        const metals = ['iron', 'copper', 'chromium', 'aluminum', 'nickel', 'lead'];
+
+                        const traces = metals.map(metal => ({
+                            x: engineHrs,
+                            y: data.map(row => parseFloat(row[metal] || 0)),
+                            name: metal.charAt(0).toUpperCase() + metal.slice(1),
+                            type: 'scatter',
+                            mode: 'lines+markers'
+                        }));
+
+                        const layout = {
+                            title: 'Wear Metals Trend',
+                            margin: { l: 50, r: 30, t: 50, b: 80 },
+                            xaxis: { title: 'Engine Hours' },
+                            yaxis: { title: 'PPM' },
+                            legend: { orientation: 'h', y: -0.3 },
+                            autosize: true // Let CSS handle the dimensions
+                        };
+
+                        // 3. WAIT FOR ONE BROWSER PAINT CYCLE
+                        // This ensures the d-none removal is finished
+                        requestAnimationFrame(() => {
+                            plotDiv.innerHTML = '';
+                            Plotly.newPlot(plotDiv, traces, layout, {responsive: true});
+
+                            // Force a second snap-to-size
+                            setTimeout(() => {
+                                Plotly.Plots.resize(plotDiv);
+                            }, 200);
+                        });
+                    });
+            } else {
+                oilTrendsContainer.classList.add('d-none');
+                showOilTrendsBtn.textContent = "View Trends";
+                if (hasParsedReport) {
+                    resultsZoneContainer.classList.remove('d-none');
+                } else {
+                    uploadZoneContainer.classList.remove('d-none');
+                }
+            }
         });
     }
 });
