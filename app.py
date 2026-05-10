@@ -27,6 +27,7 @@ from flask import (
     session,
     url_for,
 )
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
@@ -41,6 +42,13 @@ CWD_PATH = os.path.abspath(os.getcwd())
 app = Flask(__name__)
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
+
+# Replace your sqlite3 path logic with this
+db_path = os.path.join(CWD_PATH, "src/maintenance.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
 
 # --- Login attempt logging (split logs) ---
 LOG_DIR = os.path.join(CWD_PATH if "CWD_PATH" in globals() else os.getcwd(), "logs")
@@ -106,6 +114,32 @@ MAX_ATTEMPTS = 3
 BLOCK_WINDOW_SECONDS = 300  # 5 minutes
 BAN_THRESHOLD = 3  # number of times hitting rate limit before ban
 BAN_DURATION_SECONDS = 3600  # 1 hour
+
+
+class OilAnalysis(db.Model):
+    __tablename__ = "oil_analysis"
+    id = db.Column(db.Integer, primary_key=True)
+    tail_number = db.Column(db.String(20), default="N890GF")
+    date_sampled = db.Column(db.Date, nullable=False)
+    oil_hrs = db.Column(db.Float)
+    engine_hrs = db.Column(db.Float)
+
+    # Wear Metals (ppm)
+    iron = db.Column(db.Float)
+    copper = db.Column(db.Float)
+    chromium = db.Column(db.Float)
+    aluminum = db.Column(db.Float)
+    nickel = db.Column(db.Float)
+    lead = db.Column(db.Float)
+
+    diagnosis = db.Column(db.Text)
+    report_path = db.Column(db.String(255))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+# Create the tables in the DB if they don't exist
+with app.app_context():
+    db.create_all()
 
 
 def get_db_connection():
@@ -822,11 +856,54 @@ def upload_oil_analysis():
         try:
             # Parse the PDF and return the dictionary as JSON
             results = parse_oil_report(filepath)
+            try:
+                sample_date = datetime.strptime(
+                    results["metadata"]["date_sampled"], "%d-%b-%y"
+                ).date()
+            except Exception:
+                sample_date = datetime.utcnow().date()
+            # Save to Database using SQLAlchemy
+            new_entry = OilAnalysis(
+                date_sampled=sample_date,
+                oil_hrs=float(results["metadata"].get("oil_hrs", 0)),
+                engine_hrs=float(results["metadata"].get("engine_hrs", 0)),
+                iron=float(results["metals"].get("Iron", 0)),
+                copper=float(results["metals"].get("Copper", 0)),
+                chromium=float(results["metals"].get("Chromium", 0)),
+                aluminum=float(results["metals"].get("Aluminium", 0)),
+                nickel=float(results["metals"].get("Nickel", 0)),
+                lead=float(results["metals"].get("Lead", 0)),
+                diagnosis=results.get("diagnosis", ""),
+                report_path=filepath,
+            )
+            print(new_entry)
+
+            db.session.add(new_entry)
+            db.session.commit()
             return jsonify(results)
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
     return jsonify({"error": "Only PDF files are allowed"}), 400
+
+
+@app.route("/api/oil_trends")
+def get_oil_trends():
+    # Fetch records sorted by engine hours to see the timeline
+    logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
+
+    history = []
+    for log in logs:
+        history.append(
+            {
+                "engine_hrs": log.engine_hrs,
+                "iron": log.iron,
+                "copper": log.copper,
+                "date": log.date_sampled.strftime("%Y-%m-%d"),
+            }
+        )
+
+    return jsonify(history)
 
 
 @app.route("/")
