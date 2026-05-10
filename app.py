@@ -44,7 +44,7 @@ app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 
 # Replace your sqlite3 path logic with this
-db_path = os.path.join(CWD_PATH, "src/maintenance.db")
+db_path = os.path.join(CWD_PATH, "../maintenance.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
