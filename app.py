@@ -19,6 +19,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import (
     Flask,
+    flash,
     jsonify,
     make_response,
     redirect,
@@ -28,11 +29,13 @@ from flask import (
     url_for,
 )
 from werkzeug.security import check_password_hash
+from werkzeug.utils import secure_filename
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
 from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
+from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
 
 CWD_PATH = os.path.abspath(os.getcwd())
@@ -800,6 +803,33 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/upload_oil_analysis", methods=["POST"])
+# @login_required
+def upload_oil_analysis():
+    if "oil_pdf" not in request.files:
+        return jsonify({"error": "No file part"}), 400
+
+    file = request.files["oil_pdf"]
+    if file.filename == "":
+        return jsonify({"error": "No selected file"}), 400
+
+    if file and file.filename.endswith(".pdf"):
+        upload_folder = os.path.join(app.static_folder, "oil_analysis")
+        os.makedirs(upload_folder, exist_ok=True)
+
+        filepath = os.path.join(upload_folder, secure_filename(file.filename))
+        file.save(filepath)
+
+        try:
+            # Parse the PDF and return the dictionary as JSON
+            results = parse_oil_report(filepath)
+            return jsonify(results)
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    return jsonify({"error": "Only PDF files are allowed"}), 400
+
+
 @app.route("/")
 @login_required
 def index():
@@ -985,6 +1015,7 @@ def index():
         cost_per_month=cost_per_month,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
+        oil_results=None,
     )
 
 
