@@ -133,11 +133,19 @@
             }
         }
         .vertical-slider {
-            -webkit-appearance: slider-vertical;
-            height: 250px !important;
-            /* This makes the slider track thin */
-            width: 20px !important;
+            -webkit-appearance: slider-vertical; /* Required for Chrome/Safari */
+            appearance: slider-vertical;
+            width: 16px !important;               /* Set a narrow width to center the track */
+            height: 50px !important;
+            padding: 0 !important;               /* Remove default browser padding */
+            margin: 2px auto !important;        /* Ensure it centers within the flex container */
             cursor: pointer;
+        }
+
+        /* Optional: This targets the "dot" specifically to ensure it's not offset */
+        .vertical-slider::-webkit-slider-thumb {
+            margin-left: 0;
+            margin-right: 0;
         }
 
         /* Custom alignment classes */
@@ -194,10 +202,9 @@
                     <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelModal">Log Fuel</button>
                     <button class="btn fuel-prices-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#pricesResultModal">Check $$</button>
                     <button class="btn route-advisor-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal">Routes</button>
-                    <a href="/analyzer" class="btn flight-analyzer-btn flex-grow-1 flex-md-grow-0">Analyzer</a>
+                    <button class="btn database-download-button flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">Dynon DBs</button>
                     <a href="/live_map" class="btn btn-info text-white flex-grow-1 flex-md-grow-0">Live Map</a>
-                    <button class="btn btn-secondary flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal">Est. Fuel</button>
-                    <button class="btn database-download-button flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">⬇️ Dynon DBs</button>
+                    <a href="/analyzer" class="btn flight-analyzer-btn flex-grow-1 flex-md-grow-0">Analyzer</a>
                 </div>
             </div>
         </div>
@@ -234,14 +241,37 @@
         </div>
         <div class="col-6 col-lg">
             <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
-                <h6 class="text-muted mb-2">Aviation Database</h6>
+                <h6 class="text-muted mb-2">Av & Ob Databases</h6>
                 <span class="{{ aviation_status_class }}">{{ aviation_db_text }}</span>
             </div>
         </div>
-        <div class="col-6 col-lg">
-            <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
-                <h6 class="text-muted mb-2">Obstacle Database</h6>
-                <span class="{{ obstacle_status_class }}">{{ obstacle_db_text }}</span>
+        <div class="col-md-2 col-lg"> <div class="card h-100 shadow-sm">
+            <div class="card-header bg-secondary text-white py-2 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">Fuel Estimator</h6>
+                <span class="fw-bold"><span id="totalGalDisplay">12.05</span> gal</span>
+            </div>
+            <div class="card-body py-1">
+                <div class="row gx-1 align-items-center">
+                    <div class="col-6 d-flex flex-column align-items-center border-end py-2">
+                        <div class="text-primary small mb-0">
+                            <span id="leftHeightDisplay" class="fw-bold">0.0</span>"
+                        </div>
+                        <input type="range" class="form-range vertical-slider" orient="vertical" id="leftFuelSlider" min="0" max="6.5" step="0.25" value="0">
+                        <div class="mt-2 small">
+                            <span id="leftGalDisplay" class="fw-bold">6.03</span> gal
+                        </div>
+                    </div>
+
+                    <div class="col-6 d-flex flex-column align-items-center py-2">
+                        <div class="text-primary small mb-0">
+                            <span id="rightHeightDisplay" class="fw-bold">0.0</span>"
+                        </div>
+                        <input type="range" class="form-range vertical-slider" orient="vertical" id="rightFuelSlider" min="0" max="6.5" step="0.25" value="0">
+                        <div class="mt-2 small">
+                            <span id="rightGalDisplay" class="fw-bold">6.03</span> gal
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -810,6 +840,7 @@
     </div>
 </div>
 
+<!-- Fuel Estimator Modal -->
 <div class="modal fade" id="fuelEstimatorModal" tabindex="-1">
     <div class="modal-dialog modal-sm"> <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
