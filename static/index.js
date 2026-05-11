@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             title: 'Wear Metals Trend',
                             margin: { l: 50, r: 30, t: 50, b: 80 },
                             xaxis: { title: 'Engine Hours' },
-                            yaxis: { title: 'PPM' },
+                            yaxis: { title: 'PPM' , type: 'log'},
                             legend: { orientation: 'h', y: -0.3 },
                             autosize: true // Let CSS handle the dimensions
                         };
