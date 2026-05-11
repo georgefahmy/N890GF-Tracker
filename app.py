@@ -28,6 +28,7 @@ from flask import (
     url_for,
 )
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
@@ -116,6 +117,51 @@ BAN_THRESHOLD = 3  # number of times hitting rate limit before ban
 BAN_DURATION_SECONDS = 3600  # 1 hour
 
 
+class Users(db.Model):
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text, nullable=False)
+    password_hash = db.Column(db.Text, nullable=False)
+
+
+class FlightLog(db.Model):
+    __tablename__ = "flight_log"
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, nullable=False)
+    takeoff_airport = db.Column(db.Text)
+    landing_airport = db.Column(db.Text)
+    hobbs = db.Column(db.Float)
+    tach = db.Column(db.Float)
+    hobbs_delta = db.Column(db.Float, default=0.0)
+    tach_delta = db.Column(db.Float, default=0.0)
+    landings = db.Column(db.Integer)
+    notes = db.Column(db.Text)
+
+
+class MaintenanceLog(db.Model):
+    __tablename__ = (
+        "maintenance_entries"  # Kept original name for migration compatibility
+    )
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, nullable=False)
+    tach_time = db.Column(db.Float)
+    airframe_time = db.Column(db.Float)
+    recurrent_item = db.Column(db.Text)
+    category = db.Column(db.Text)
+    notes = db.Column(db.Text)
+
+
+class FuelLog(db.Model):
+    __tablename__ = "fuel_tracker"
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, nullable=False)
+    hobbs = db.Column(db.Float)
+    gallons = db.Column(db.Float)
+    price_per_gallon = db.Column(db.Float)
+    total_cost = db.Column(db.Float)
+    gal_per_hour = db.Column(db.Float)
+
+
 class OilAnalysis(db.Model):
     __tablename__ = "oil_analysis"
     id = db.Column(db.Integer, primary_key=True)
@@ -136,6 +182,15 @@ class OilAnalysis(db.Model):
     diagnosis = db.Column(db.Text)
     report_path = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class BannedIPs(db.Model):
+    __tablename__ = "banned_ips"
+    id = db.Column(db.Integer, primary_key=True)
+    ip = db.Column(db.String(50))
+    username = db.Column(db.String(100))
+    ban_time = db.Column(db.Float, default=0.0)
+    count = db.Column(db.Integer, default=0)
 
 
 # Create the tables in the DB if they don't exist
@@ -159,6 +214,15 @@ def login_required(f):
     return decorated_function
 
 
+def validate_float(value, default=0.0):
+    if value is None:
+        return default
+    try:
+        return round(float(value), 2)
+    except (ValueError, TypeError):
+        return default
+
+
 def git_push_data():
     script_path = "/home/georgefahmy/Documents/n890gf_tracker/push.sh"
     try:
@@ -171,15 +235,16 @@ def git_push_data():
         return f"Server Error: {str(e)}", 500
 
 
-def validate_float(value, default=0.0):
-    if value is None:
-        return default
-    if isinstance(value, str) and value.strip().lower() in ["none", "null", ""]:
-        return default
-    try:
-        return round(float(value), 2)
-    except (ValueError, TypeError):
-        return default
+def parse_date_obj(value):
+    """Returns a datetime object."""
+    if not value:
+        return datetime.today()
+    for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%m-%d-%Y"):
+        try:
+            return datetime.strptime(value, fmt)
+        except ValueError:
+            continue
+    return datetime.today()
 
 
 def parse_date_safe(value):
@@ -212,94 +277,74 @@ def sanitize_for_json(obj):
     return obj
 
 
-def recompute_flight_history(conn):
-    cur = conn.execute(
-        "SELECT id, hobbs, tach FROM flight_log ORDER BY date ASC, id ASC"
-    )
-    rows = cur.fetchall()
+def recompute_flight_history():
+    flights = FlightLog.query.order_by(FlightLog.date.asc(), FlightLog.id.asc()).all()
     prev_hobbs, prev_tach = None, None
-
-    for r in rows:
-        row_id, hobbs, tach = (
-            r["id"],
-            validate_float(r["hobbs"]),
-            validate_float(r["tach"]),
+    for f in flights:
+        h_val = validate_float(f.hobbs)
+        t_val = validate_float(f.tach)
+        f.hobbs_delta = (
+            round(max(0.0, h_val - prev_hobbs), 1) if prev_hobbs is not None else 0.0
         )
-        hobbs_delta = round(hobbs - prev_hobbs, 1) if prev_hobbs is not None else 0.0
-        tach_delta = round(tach - prev_tach, 1) if prev_tach is not None else 0.0
-        if hobbs_delta < 0:
-            hobbs_delta = 0.0
-        if tach_delta < 0:
-            tach_delta = 0.0
-
-        conn.execute(
-            "UPDATE flight_log SET hobbs_delta = ?, tach_delta = ? WHERE id = ?",
-            (hobbs_delta, tach_delta, row_id),
+        f.tach_delta = (
+            round(max(0.0, t_val - prev_tach), 1) if prev_tach is not None else 0.0
         )
-        prev_hobbs, prev_tach = hobbs, tach
-    conn.commit()
+        prev_hobbs, prev_tach = h_val, t_val
+    db.session.commit()
 
 
-def check_auto_maintenance(conn):
-    cur = conn.execute(
-        "SELECT MAX(tach_time) FROM maintenance_entries WHERE recurrent_item='Oil Change'"
+def check_auto_maintenance():
+    last_oil = (
+        db.session.query(func.max(MaintenanceLog.tach_time))
+        .filter_by(recurrent_item="Oil Change")
+        .scalar()
+        or 0.0
     )
-    last_row = cur.fetchone()
-    last = validate_float(last_row[0] if last_row and last_row[0] else 0)
+    current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
 
-    cur2 = conn.execute("SELECT MAX(tach) FROM flight_log")
-    curr_row = cur2.fetchone()
-    current = validate_float(curr_row[0] if curr_row and curr_row[0] else 0)
-
-    if current - last >= OIL_CHANGE_INTERVAL_HOURS:
-        conn.execute(
-            "INSERT INTO maintenance_entries (date, tach_time, airframe_time, notes, recurrent_item, category) VALUES (date('now'), ?, ?, ?, ?, ?)",
-            (
-                current,
-                current,
-                "AUTO",
-                f"Auto oil change reminder (>{OIL_CHANGE_INTERVAL_HOURS} hrs)",
-                "Oil Change",
-                "Engine",
-            ),
+    if current_tach - last_oil >= OIL_CHANGE_INTERVAL_HOURS:
+        new_mx = MaintenanceLog(
+            date=datetime.now(),
+            tach_time=current_tach,
+            airframe_time=current_tach,
+            notes=f"Auto oil change reminder (>{OIL_CHANGE_INTERVAL_HOURS} hrs)",
+            recurrent_item="Oil Change",
+            category="Engine",
         )
-        conn.commit()
+        db.session.add(new_mx)
+        db.session.commit()
 
 
-def calculate_overdue(conn):
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT recurrent_item, MAX(date) FROM maintenance_entries GROUP BY recurrent_item"
-    )
-    rows = cursor.fetchall()
-    today = datetime.today().date()
+def calculate_overdue_items():
     overdue_items = []
+    today = datetime.today().date()
+    current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
 
-    cursor.execute("SELECT MAX(tach) FROM flight_log")
-    tach_row = cursor.fetchone()
-    current_tach = validate_float(tach_row[0] if tach_row and tach_row[0] else 0)
+    # Get latest date for each recurrent item
+    latest_entries = (
+        db.session.query(MaintenanceLog.recurrent_item, func.max(MaintenanceLog.date))
+        .group_by(MaintenanceLog.recurrent_item)
+        .all()
+    )
 
-    for item, last_date in rows:
-        if not item or not last_date or item == "None":
+    for item, last_date in latest_entries:
+        if not item or item == "None" or last_date is None:
             continue
         rule = MAINTENANCE_RULES.get(item)
         if not rule:
             continue
-        try:
-            last_dt = datetime.strptime(parse_date_safe(last_date), "%Y-%m-%d").date()
-        except:
-            continue
 
-        if rule["type"] == "date" and today > (last_dt + timedelta(days=rule["days"])):
+        last_date_only = last_date.date()
+        if rule["type"] == "date" and today > (
+            last_date_only + timedelta(days=rule["days"])
+        ):
             overdue_items.append(item)
         elif rule["type"] == "tach":
-            cursor.execute(
-                "SELECT MAX(tach_time) FROM maintenance_entries WHERE recurrent_item=?",
-                (item,),
-            )
-            last_tach_row = cursor.fetchone()
-            last_tach = validate_float(
-                last_tach_row[0] if last_tach_row and last_tach_row[0] else 0
+            last_tach = (
+                db.session.query(func.max(MaintenanceLog.tach_time))
+                .filter_by(recurrent_item=item)
+                .scalar()
+                or 0.0
             )
             if current_tach > (last_tach + rule["hours"]):
                 overdue_items.append(item)
@@ -333,7 +378,7 @@ def compute_nav_status(nav_date, date_aviation, date_obstacle, today):
     return aviation_status, obstacle_status
 
 
-def _get_nav_database_status_live(conn):
+def _get_nav_database_status_live():
     url = "https://dynonavionics.com/us-aviation-obstacle-data.php"
     aviation_status, obstacle_status = "--", "--"
     aviation_days_remaining, obstacle_days_remaining = None, None
@@ -375,15 +420,21 @@ def _get_nav_database_status_live(conn):
                     else None
                 )
 
-                cursor = conn.cursor()
-                cursor.execute(
-                    "SELECT date FROM maintenance_entries WHERE recurrent_item='Nav Data Update' ORDER BY date DESC LIMIT 1"
+                # --- SQLAlchemy Query Update ---
+                nav_entry = (
+                    MaintenanceLog.query.filter_by(recurrent_item="Nav Data Update")
+                    .order_by(MaintenanceLog.date.desc())
+                    .first()
                 )
-                nav_entry = cursor.fetchone()
-                if nav_entry and nav_entry[0] and date_aviation and date_obstacle:
-                    nav_date = datetime.strptime(
-                        parse_date_safe(nav_entry[0]), "%Y-%m-%d"
-                    ).date()
+
+                if nav_entry and nav_entry.date and date_aviation and date_obstacle:
+                    # SQLAlchemy returns a datetime object natively
+                    nav_date = (
+                        nav_entry.date.date()
+                        if isinstance(nav_entry.date, datetime)
+                        else nav_entry.date
+                    )
+
                     aviation_status, obstacle_status = compute_nav_status(
                         nav_date,
                         date_aviation,
@@ -412,37 +463,47 @@ def _get_nav_database_status_live(conn):
     }
 
 
-def get_nav_database_status(conn):
+def get_nav_database_status():
     global NAV_CACHE
     now = time.time()
     with NAV_CACHE_LOCK:
         if NAV_CACHE["data"] and (now - NAV_CACHE["timestamp"] < NAV_CACHE_TTL):
             return NAV_CACHE["data"]
-    live = _get_nav_database_status_live(conn)
+    live = _get_nav_database_status_live()
     with NAV_CACHE_LOCK:
         NAV_CACHE["data"] = live
         NAV_CACHE["timestamp"] = now
     return live
 
 
-def get_upcoming_maintenance(conn):
-    cursor = conn.cursor()
+def get_upcoming_maintenance():
     today = datetime.today().date()
-    cursor.execute("SELECT MAX(tach) FROM flight_log")
-    tach_row = cursor.fetchone()
-    current_tach = validate_float(tach_row[0] if tach_row and tach_row[0] else 0)
 
+    # Get current tach time using SQLAlchemy func.max
+    current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
+
+    # --- Condition Inspection Logic ---
     cond_due_str, cond_class = "--", "status-default"
-    cursor.execute(
-        "SELECT date FROM maintenance_entries WHERE recurrent_item='Condition Inspection' ORDER BY date DESC LIMIT 1"
+
+    ci_entry = (
+        MaintenanceLog.query.filter_by(recurrent_item="Condition Inspection")
+        .order_by(MaintenanceLog.date.desc())
+        .first()
     )
-    ci_row = cursor.fetchone()
-    if ci_row and ci_row[0]:
+
+    if ci_entry and ci_entry.date:
         try:
-            last_dt = datetime.strptime(parse_date_safe(ci_row[0]), "%Y-%m-%d").date()
+            # SQLAlchemy returns a datetime object; ensure we have the date portion
+            last_dt = (
+                ci_entry.date.date()
+                if isinstance(ci_entry.date, datetime)
+                else ci_entry.date
+            )
+
             prelim_due = last_dt + timedelta(
                 days=MAINTENANCE_RULES["Condition Inspection"]["days"]
             )
+            # Find the last day of the month for the due date
             due_date = prelim_due.replace(
                 day=calendar.monthrange(prelim_due.year, prelim_due.month)[1]
             )
@@ -453,21 +514,24 @@ def get_upcoming_maintenance(conn):
                 if days_left < 0
                 else "status-warning" if days_left <= 30 else "status-current"
             )
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Condition inspection calculation failed: {e}")
 
+    # --- Oil Change Logic ---
     oil_due_str, oil_class = "--", "status-default"
-    cursor.execute(
-        "SELECT tach_time FROM maintenance_entries WHERE recurrent_item='Oil Change' ORDER BY date DESC, tach_time DESC LIMIT 1"
+
+    oil_entry = (
+        MaintenanceLog.query.filter_by(recurrent_item="Oil Change")
+        .order_by(MaintenanceLog.date.desc(), MaintenanceLog.tach_time.desc())
+        .first()
     )
-    oil_row = cursor.fetchone()
-    if oil_row and oil_row[0] is not None:
-        hrs_left = round(
-            (validate_float(oil_row[0]) + MAINTENANCE_RULES["Oil Change"]["hours"])
-            - current_tach,
-            1,
-        )
-        oil_due_str = f"{(validate_float(oil_row[0]) + MAINTENANCE_RULES['Oil Change']['hours']):.1f} hrs ({hrs_left:.1f} hrs left)"
+
+    if oil_entry and oil_entry.tach_time is not None:
+        last_oil_tach = validate_float(oil_entry.tach_time)
+        next_oil_due = last_oil_tach + MAINTENANCE_RULES["Oil Change"]["hours"]
+        hrs_left = round(next_oil_due - current_tach, 1)
+
+        oil_due_str = f"{next_oil_due:.1f} hrs ({hrs_left:.1f} hrs left)"
         oil_class = (
             "status-overdue"
             if hrs_left < 0
@@ -659,13 +723,6 @@ def update_server():
     return "GET received (This is why you got a 405 before)", 200
 
 
-@app.before_request
-def redirect_www():
-    host = request.host.split(":")[0]
-    if host == "www.n890gf.local":
-        return redirect("http://n890gf.local:5001" + request.path)
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if "user_id" in session:
@@ -675,20 +732,14 @@ def login():
         ip = request.headers.get("X-Forwarded-For", request.remote_addr)
         user_agent = request.headers.get("User-Agent", "")
         now = time.time()
-        # Extract username before ban check
         username = request.form.get("username")
         log_user = username or "-"
 
-        # --- Check ban list (DB-backed) ---
-        conn = get_db_connection()
-        ban_row = conn.execute(
-            "SELECT ban_time FROM banned_ips WHERE ip = ? AND username = ?",
-            (ip, username),
-        ).fetchone()
+        # --- Check ban list (SQLAlchemy) ---
+        ban_entry = BannedIPs.query.filter_by(ip=ip, username=username).first()
 
-        if ban_row:
-            ban_time = ban_row["ban_time"]
-            if now - ban_time < BAN_DURATION_SECONDS:
+        if ban_entry:
+            if now - ban_entry.ban_time < BAN_DURATION_SECONDS:
                 login_security_logger.warning(
                     "banned_ip_attempt",
                     extra={
@@ -698,57 +749,35 @@ def login():
                         "ua": user_agent,
                     },
                 )
-                conn.close()
                 return render_template(
                     "login.html",
                     error="Too many attempts. You are temporarily banned.",
                 )
             else:
-                conn.execute(
-                    "DELETE FROM banned_ips WHERE ip = ? AND username = ?",
-                    (ip, username),
-                )
-                conn.commit()
-        conn.close()
+                # Ban expired, remove it
+                db.session.delete(ban_entry)
+                db.session.commit()
 
         # --- Rate limit check ---
         with LOGIN_LOCK:
             attempts = LOGIN_ATTEMPTS.get(ip, [])
-            # remove old attempts
             attempts = [t for t in attempts if now - t < BLOCK_WINDOW_SECONDS]
             LOGIN_ATTEMPTS[ip] = attempts
 
             if len(attempts) >= MAX_ATTEMPTS:
-                conn = get_db_connection()
+                # Re-fetch ban_entry in case it was deleted above
+                ban_entry = BannedIPs.query.filter_by(ip=ip, username=username).first()
 
-                row = conn.execute(
-                    "SELECT count FROM banned_ips WHERE ip = ? AND username = ?",
-                    (ip, username),
-                ).fetchone()
-
-                if row:
-                    new_count = row["count"] + 1
-                    conn.execute(
-                        "UPDATE banned_ips SET count = ? WHERE ip = ? AND username = ?",
-                        (new_count, ip, username),
-                    )
+                if ban_entry:
+                    ban_entry.count += 1
                 else:
-                    new_count = 1
-                    conn.execute(
-                        "INSERT INTO banned_ips (ip, username, ban_time, count) VALUES (?, ?, ?, ?)",
-                        (ip, username, 0, new_count),
-                    )
+                    ban_entry = BannedIPs(ip=ip, username=username, ban_time=0, count=1)
+                    db.session.add(ban_entry)
 
-                conn.commit()
-
-                # ban if threshold exceeded
-                if new_count >= BAN_THRESHOLD:
-                    conn.execute(
-                        "UPDATE banned_ips SET ban_time = ? WHERE ip = ? AND username = ?",
-                        (now, ip, username),
-                    )
-                    conn.commit()
-                    conn.close()
+                # Check if we should elevate to a timed ban
+                if ban_entry.count >= BAN_THRESHOLD:
+                    ban_entry.ban_time = now
+                    db.session.commit()
 
                     login_security_logger.warning(
                         "ip_banned",
@@ -764,7 +793,7 @@ def login():
                         error="Too many attempts. You are temporarily banned.",
                     )
 
-                conn.close()
+                db.session.commit()
 
                 login_security_logger.warning(
                     "rate_limited",
@@ -780,27 +809,20 @@ def login():
                 )
 
         password = request.form.get("password")
+        user = Users.query.filter_by(username=username).first()
 
-        conn = get_db_connection()
-        user = conn.execute(
-            "SELECT * FROM users WHERE username = ?", (username,)
-        ).fetchone()
-        conn.close()
-
-        if user and check_password_hash(user["password_hash"], password):
+        if user and check_password_hash(user.password_hash, password):
             # reset attempts on success
             with LOGIN_LOCK:
                 LOGIN_ATTEMPTS.pop(ip, None)
-            conn = get_db_connection()
-            conn.execute(
-                "DELETE FROM banned_ips WHERE ip = ? AND username = ?", (ip, username)
-            )
-            conn.commit()
-            conn.close()
-            remember = request.form.get("remember") == "on"
 
-            session["user_id"] = user["id"]
-            session.permanent = remember  # this is the key
+            # Clear any ban tracking for this user/ip combo
+            BannedIPs.query.filter_by(ip=ip, username=username).delete()
+            db.session.commit()
+
+            remember = request.form.get("remember") == "on"
+            session["user_id"] = user.id
+            session.permanent = remember
 
             login_success_logger.info(
                 "login_success",
@@ -922,16 +944,31 @@ def get_oil_trends():
 @app.route("/")
 @login_required
 def index():
-    conn = get_db_connection()
-    cursor = conn.cursor()
+    # Helper to convert SQLAlchemy models to dictionaries so existing template
+    # and sorting logic continues to work seamlessly without modifications.
+    def model_to_dict(obj):
+        if not obj:
+            return {}
+        return {c.name: getattr(obj, c.name) for c in obj.__table__.columns}
 
     def sort_and_format_logs(logs_list):
         def parse_to_datetime(d):
             if not d:
                 return datetime.min
-            for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%m-%d-%Y"):
+            # SQLAlchemy natively returns datetime objects
+            if isinstance(d, datetime):
+                return d
+
+            # Fallback for string representations
+            for fmt in (
+                "%Y-%m-%d",
+                "%m/%d/%Y",
+                "%m-%d-%Y",
+                "%Y-%m-%d %H:%M:%S",
+                "%Y-%m-%d %H:%M:%S.%f",
+            ):
                 try:
-                    return datetime.strptime(d, fmt)
+                    return datetime.strptime(str(d), fmt)
                 except ValueError:
                     continue
             return datetime.min
@@ -945,26 +982,28 @@ def index():
         sorted_logs = sorted(
             logs_list,
             key=lambda x: (
-                parse_to_datetime(x["date"]),
+                parse_to_datetime(x.get("date")),
                 hobbs_val(x),
             ),
             reverse=True,
         )
         for log in sorted_logs:
-            dt = parse_to_datetime(log["date"])
+            dt = parse_to_datetime(log.get("date"))
             if dt != datetime.min:
                 log["date"] = dt.strftime("%Y-%m-%d")
                 log["display_date"] = dt.strftime("%m/%d/%Y")
             else:
-                log["display_date"] = log.get("date", "")
+                log["display_date"] = str(log.get("date", ""))
         return sorted_logs
 
-    cursor.execute("SELECT * FROM flight_log")
-    flight_logs = sort_and_format_logs([dict(row) for row in cursor.fetchall()])
-    cursor.execute("SELECT * FROM maintenance_entries")
-    mx_logs = sort_and_format_logs([dict(row) for row in cursor.fetchall()])
-    cursor.execute("SELECT * FROM fuel_tracker")
-    fuel_logs = sort_and_format_logs([dict(row) for row in cursor.fetchall()])
+    # --- Fetch and format logs using SQLAlchemy ---
+    flight_logs_raw = [model_to_dict(row) for row in FlightLog.query.all()]
+    mx_logs_raw = [model_to_dict(row) for row in MaintenanceLog.query.all()]
+    fuel_logs_raw = [model_to_dict(row) for row in FuelLog.query.all()]
+
+    flight_logs = sort_and_format_logs(flight_logs_raw)
+    mx_logs = sort_and_format_logs(mx_logs_raw)
+    fuel_logs = sort_and_format_logs(fuel_logs_raw)
 
     # --- Compute Hobbs delta between fuel-ups ---
     def safe_hobbs(x):
@@ -987,34 +1026,21 @@ def index():
         prev = curr
 
     # --- Get latest Hobbs and Tach ---
-    cursor.execute("SELECT hobbs, tach FROM flight_log ORDER BY hobbs DESC LIMIT 1")
-    latest_res = cursor.fetchone()
+    latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
 
-    total_hobbs = (
-        validate_float(latest_res["hobbs"])
-        if latest_res and latest_res["hobbs"]
-        else 0.0
-    )
-    total_tach = (
-        validate_float(latest_res["tach"]) if latest_res and latest_res["tach"] else 0.0
-    )
+    total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
+    total_tach = validate_float(latest_flight.tach) if latest_flight else 0.0
 
     # Keep legacy total_hours for compatibility
     total_hours = total_hobbs
 
     # --- Get latest Hobbs from fuel tracker ---
-    cursor.execute("SELECT hobbs FROM fuel_tracker ORDER BY hobbs DESC LIMIT 1")
-    fuel_hobbs_row = cursor.fetchone()
+    latest_fuel = FuelLog.query.order_by(FuelLog.hobbs.desc()).first()
 
-    latest_fuel_hobbs = (
-        validate_float(fuel_hobbs_row["hobbs"])
-        if fuel_hobbs_row and fuel_hobbs_row["hobbs"]
-        else 0.0
-    )
+    latest_fuel_hobbs = validate_float(latest_fuel.hobbs) if latest_fuel else 0.0
 
-    cursor.execute("SELECT SUM(landings) as total_ldgs FROM flight_log")
-    l_res = cursor.fetchone()
-    total_landings = l_res["total_ldgs"] if l_res and l_res["total_ldgs"] else 0
+    # --- Sum total landings ---
+    total_landings = db.session.query(func.sum(FlightLog.landings)).scalar() or 0
 
     # --- Fuel Cost Metrics ---
     total_fuel_cost = 0.0
@@ -1041,10 +1067,11 @@ def index():
         round(total_fuel_cost / total_hours, 2) if total_hours > 0 else 0.0
     )
 
-    overdue_items = calculate_overdue(conn)
-    nav_status = get_nav_database_status(conn)
-    upcoming_mx = get_upcoming_maintenance(conn)
-    conn.close()
+    # Note: Passed without 'conn' assuming these helpers have also been refactored
+    # to use SQLAlchemy queries directly as requested in prior steps.
+    overdue_items = calculate_overdue_items()
+    nav_status = get_nav_database_status()
+    upcoming_mx = get_upcoming_maintenance()
 
     if nav_status.get("aviation_status") == "Overdue":
         overdue_items.append("Aviation DB")
@@ -1111,24 +1138,28 @@ def index():
 @app.route("/add_flight", methods=["POST"])
 @login_required
 def add_flight():
-    conn = get_db_connection()
-    conn.execute(
-        "INSERT INTO flight_log (date, takeoff_airport, landing_airport, hobbs, tach, landings, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (
-            parse_date_safe(request.form.get("date")),
-            request.form.get("takeoff").upper(),
-            request.form.get("landing").upper(),
-            validate_float(request.form.get("hobbs")),
-            validate_float(request.form.get("tach")),
-            request.form.get("landings", 0),
-            request.form.get("notes"),
-        ),
+    # Create a new FlightLog object using values from the form
+    new_flight = FlightLog(
+        date=parse_date_obj(request.form.get("date")),
+        takeoff_airport=request.form.get("takeoff").upper(),
+        landing_airport=request.form.get("landing").upper(),
+        hobbs=validate_float(request.form.get("hobbs")),
+        tach=validate_float(request.form.get("tach")),
+        landings=int(request.form.get("landings", 0)),
+        notes=request.form.get("notes"),
     )
-    conn.commit()
-    recompute_flight_history(conn)
-    check_auto_maintenance(conn)
-    conn.close()
+
+    # Add to the session and commit to the database
+    db.session.add(new_flight)
+    db.session.commit()
+
+    # Call helpers (assuming these have been updated to use the SQLAlchemy session)
+    recompute_flight_history()
+    check_auto_maintenance()
+
+    # Trigger external synchronization
     git_push_data()
+
     return redirect(url_for("index"))
 
 
