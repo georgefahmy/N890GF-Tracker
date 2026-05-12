@@ -4,7 +4,6 @@ import json
 import logging
 import os
 import re
-import sqlite3
 import subprocess
 import threading
 import time
@@ -196,12 +195,6 @@ class BannedIPs(db.Model):
 # Create the tables in the DB if they don't exist
 with app.app_context():
     db.create_all()
-
-
-def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
 
 
 def login_required(f):
@@ -1166,27 +1159,31 @@ def add_flight():
 @app.route("/add_mx", methods=["POST"])
 @login_required
 def add_mx():
-    conn = get_db_connection()
-    conn.execute(
-        "INSERT INTO maintenance_entries (date, tach_time, airframe_time, recurrent_item, category, notes) VALUES (?, ?, ?, ?, ?, ?)",
-        (
-            parse_date_safe(request.form.get("date")),
-            validate_float(request.form.get("tach")),
-            validate_float(request.form.get("airframe")),
-            request.form.get("recurrent_item"),
-            request.form.get("category"),
-            request.form.get("notes"),
-        ),
+    # Create a new MaintenanceLog object using values from the form
+    new_mx = MaintenanceLog(
+        date=parse_date_obj(request.form.get("date")),
+        tach_time=validate_float(request.form.get("tach")),
+        airframe_time=validate_float(request.form.get("airframe")),
+        recurrent_item=request.form.get("recurrent_item"),
+        category=request.form.get("category"),
+        notes=request.form.get("notes"),
     )
-    conn.commit()
-    recompute_flight_history(conn)
-    check_auto_maintenance(conn)
 
+    # Add to the session and commit
+    db.session.add(new_mx)
+    db.session.commit()
+
+    # Call the updated helper functions (no connection parameter needed)
+    recompute_flight_history()
+    check_auto_maintenance()
+
+    # Reset the nav cache
     global NAV_CACHE
     NAV_CACHE = {"data": None, "timestamp": 0}
 
-    conn.close()
+    # Trigger external synchronization
     git_push_data()
+
     return redirect(url_for("index"))
 
 
@@ -1198,21 +1195,24 @@ def add_fuel():
         validate_float(request.form.get("gallons")),
         validate_float(request.form.get("price")),
     )
-    conn = get_db_connection()
-    conn.execute(
-        "INSERT INTO fuel_tracker (date, hobbs, gallons, price_per_gallon, total_cost, gal_per_hour) VALUES (?, ?, ?, ?, ?, ?)",
-        (
-            parse_date_safe(request.form.get("date")),
-            hobbs,
-            gallons,
-            price,
-            round(gallons * price, 2),
-            round(gallons / hobbs, 2) if hobbs > 0 else 0,
-        ),
+
+    # Create a new FuelLog object mapping to the fuel_tracker table
+    new_fuel = FuelLog(
+        date=parse_date_obj(request.form.get("date")),
+        hobbs=hobbs,
+        gallons=gallons,
+        price_per_gallon=price,
+        total_cost=round(gallons * price, 2),
+        gal_per_hour=round(gallons / hobbs, 2) if hobbs > 0 else 0,
     )
-    conn.commit()
-    conn.close()
+
+    # Add to the session and commit
+    db.session.add(new_fuel)
+    db.session.commit()
+
+    # Trigger external synchronization
     git_push_data()
+
     return redirect(url_for("index"))
 
 
@@ -1237,53 +1237,153 @@ def api_fuel_prices():
 @app.route("/edit_flight/<int:id>", methods=["POST"])
 @login_required
 def edit_flight(id):
-    conn = get_db_connection()
-    conn.execute(
-        "UPDATE flight_log SET date = ?, takeoff_airport = ?, landing_airport = ?, hobbs = ?, tach = ?, landings = ?, notes = ? WHERE id = ?",
-        (
-            parse_date_safe(request.form.get("date")),
-            request.form.get("takeoff"),
-            request.form.get("landing"),
-            validate_float(request.form.get("hobbs")),
-            validate_float(request.form.get("tach")),
-            request.form.get("landings", 0),
-            request.form.get("notes"),
-            id,
-        ),
-    )
-    conn.commit()
-    recompute_flight_history(conn)
-    check_auto_maintenance(conn)
-    conn.close()
+    # Fetch the existing flight record or return a 404 if not found
+    flight = FlightLog.query.get_or_404(id)
+
+    # Update the object attributes directly
+    flight.date = parse_date_obj(request.form.get("date"))
+    flight.takeoff_airport = request.form.get("takeoff").upper()
+    flight.landing_airport = request.form.get("landing").upper()
+    flight.hobbs = validate_float(request.form.get("hobbs"))
+    flight.tach = validate_float(request.form.get("tach"))
+    flight.landings = int(request.form.get("landings", 0))
+    flight.notes = request.form.get("notes")
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Call updated helpers (no connection object required)
+    recompute_flight_history()
+    check_auto_maintenance()
+
+    # Trigger external synchronization
     git_push_data()
+
     return redirect(url_for("index"))
 
 
 @app.route("/edit_mx/<int:id>", methods=["POST"])
 @login_required
 def edit_mx(id):
-    conn = get_db_connection()
-    conn.execute(
-        "UPDATE maintenance_entries SET date = ?, tach_time = ?, airframe_time = ?, recurrent_item = ?, category = ?, notes = ? WHERE id=?",
-        (
-            parse_date_safe(request.form.get("date")),
-            validate_float(request.form.get("tach")),
-            validate_float(request.form.get("airframe")),
-            request.form.get("recurrent_item"),
-            request.form.get("category"),
-            request.form.get("notes"),
-            id,
-        ),
-    )
-    conn.commit()
-    recompute_flight_history(conn)
-    check_auto_maintenance(conn)
+    # Fetch the existing maintenance record or return a 404
+    mx_entry = MaintenanceLog.query.get_or_404(id)
 
+    # Update attributes directly from form data
+    mx_entry.date = parse_date_obj(request.form.get("date"))
+    mx_entry.tach_time = validate_float(request.form.get("tach"))
+    mx_entry.airframe_time = validate_float(request.form.get("airframe"))
+    mx_entry.recurrent_item = request.form.get("recurrent_item")
+    mx_entry.category = request.form.get("category")
+    mx_entry.notes = request.form.get("notes")
+
+    # Save changes to the database
+    db.session.commit()
+
+    # Update logs and check reminders using updated helpers
+    recompute_flight_history()
+    check_auto_maintenance()
+
+    # Invalidate the navigation database cache
     global NAV_CACHE
     NAV_CACHE = {"data": None, "timestamp": 0}
 
-    conn.close()
+    # Synchronize data
     git_push_data()
+
+    return redirect(url_for("index"))
+
+
+@app.route("/edit_fuel/<int:id>", methods=["POST"])
+@login_required
+def edit_fuel(id):
+    # Fetch the existing fuel record or return a 404
+    fuel_entry = FuelLog.query.get_or_404(id)
+
+    hours, gallons, price = (
+        validate_float(request.form.get("hobbs")),
+        validate_float(request.form.get("gallons")),
+        validate_float(request.form.get("price")),
+    )
+
+    # Update attributes directly
+    fuel_entry.date = parse_date_obj(request.form.get("date"))
+    fuel_entry.hobbs = hours
+    fuel_entry.gallons = gallons
+    fuel_entry.price_per_gallon = price
+    fuel_entry.total_cost = round(gallons * price, 2)
+    fuel_entry.gal_per_hour = round(gallons / hours, 2) if hours > 0 else 0
+
+    # SQLAlchemy tracks these changes and syncs them on commit
+    db.session.commit()
+
+    # Trigger external synchronization
+    git_push_data()
+
+    return redirect(url_for("index"))
+
+
+@app.route("/delete_flight/<int:id>")
+@login_required
+def delete_flight(id):
+    # Fetch the record by ID or return a 404 if it doesn't exist
+    flight = FlightLog.query.get_or_404(id)
+
+    # Delete the object from the session
+    db.session.delete(flight)
+
+    # Commit the transaction to the database
+    db.session.commit()
+
+    # Recompute history (using the SQLAlchemy-based helper)
+    recompute_flight_history()
+
+    # Trigger external synchronization
+    git_push_data()
+
+    return redirect(url_for("index"))
+
+
+@app.route("/delete_maintenance/<int:id>")
+@login_required
+def delete_maintenance(id):
+    # Fetch the maintenance record or return 404
+    mx_entry = MaintenanceLog.query.get_or_404(id)
+
+    # Delete the record from the session
+    db.session.delete(mx_entry)
+
+    # Commit the transaction
+    db.session.commit()
+
+    # Update history and maintenance logic using SQLAlchemy-based helpers
+    recompute_flight_history()
+    check_auto_maintenance()
+
+    # Invalidate the navigation database cache
+    global NAV_CACHE
+    NAV_CACHE = {"data": None, "timestamp": 0}
+
+    # Synchronize data
+    git_push_data()
+
+    return redirect(url_for("index"))
+
+
+@app.route("/delete_fuel/<int:id>")
+@login_required
+def delete_fuel(id):
+    # Fetch the fuel record by ID or return 404 if not found
+    fuel_entry = FuelLog.query.get_or_404(id)
+
+    # Delete the record from the session
+    db.session.delete(fuel_entry)
+
+    # Commit the transaction to the database
+    db.session.commit()
+
+    # Trigger external synchronization
+    git_push_data()
+
     return redirect(url_for("index"))
 
 
@@ -1291,74 +1391,6 @@ def edit_mx(id):
 # @login_required # Uncomment if you want to restrict this to logged-in users
 def live_map():
     return render_template("live_map.html")
-
-
-@app.route("/edit_fuel/<int:id>", methods=["POST"])
-@login_required
-def edit_fuel(id):
-    hours, gallons, price = (
-        validate_float(request.form.get("hobbs")),
-        validate_float(request.form.get("gallons")),
-        validate_float(request.form.get("price")),
-    )
-    print(hours, gallons, price)
-    conn = get_db_connection()
-    conn.execute(
-        "UPDATE fuel_tracker SET date =?, hobbs =?, gallons =?, price_per_gallon =?, total_cost =?, gal_per_hour =? WHERE id = ?",
-        (
-            parse_date_safe(request.form.get("date")),
-            hours,
-            gallons,
-            price,
-            round(gallons * price, 2),
-            round(gallons / hours, 2) if hours > 0 else 0,
-            id,
-        ),
-    )
-    conn.commit()
-    conn.close()
-    git_push_data()
-    return redirect(url_for("index"))
-
-
-@app.route("/delete_flight/<int:id>")
-@login_required
-def delete_flight(id):
-    conn = get_db_connection()
-    conn.execute("DELETE FROM flight_log WHERE id = ?", (id,))
-    conn.commit()
-    recompute_flight_history(conn)
-    conn.close()
-    git_push_data()
-    return redirect(url_for("index"))
-
-
-@app.route("/delete_maintenance/<int:id>")
-@login_required
-def delete_maintenance(id):
-    conn = get_db_connection()
-    conn.execute("DELETE FROM maintenance_entries WHERE id = ?", (id,))
-    conn.commit()
-    recompute_flight_history(conn)
-    check_auto_maintenance(conn)
-
-    global NAV_CACHE
-    NAV_CACHE = {"data": None, "timestamp": 0}
-
-    conn.close()
-    git_push_data()
-    return redirect(url_for("index"))
-
-
-@app.route("/delete_fuel/<int:id>")
-@login_required
-def delete_fuel(id):
-    conn = get_db_connection()
-    conn.execute("DELETE FROM fuel_tracker WHERE id = ?", (id,))
-    conn.commit()
-    conn.close()
-    git_push_data()
-    return redirect(url_for("index"))
 
 
 @app.route("/analyzer")
@@ -2035,12 +2067,8 @@ def api_airspeed_calibration():
 @app.route("/export/flights")
 @login_required
 def export_flights():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    # Query all columns from flight_log
-    cursor.execute("SELECT * FROM flight_log ORDER BY date DESC, id DESC")
-    rows = cursor.fetchall()
-    conn.close()
+    # Use SQLAlchemy to query all records ordered by date and ID
+    rows = FlightLog.query.order_by(FlightLog.date.desc(), FlightLog.id.desc()).all()
 
     si = StringIO()
     cw = csv.writer(si)
@@ -2064,16 +2092,16 @@ def export_flights():
     for r in rows:
         cw.writerow(
             [
-                r["id"],
-                r["date"],
-                r["takeoff_airport"],
-                r["landing_airport"],
-                r["hobbs"],
-                r["tach"],
-                r["landings"],
-                r["notes"],
-                r["hobbs_delta"],
-                r["tach_delta"],
+                r.id,
+                r.date,
+                r.takeoff_airport,
+                r.landing_airport,
+                r.hobbs,
+                r.tach,
+                r.landings,
+                r.notes,
+                r.hobbs_delta,
+                r.tach_delta,
             ]
         )
 
@@ -2086,11 +2114,10 @@ def export_flights():
 @app.route("/export/mx")
 @login_required
 def export_mx():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM maintenance_entries ORDER BY date DESC, id DESC")
-    rows = cursor.fetchall()
-    conn.close()
+    # Use SQLAlchemy to query all maintenance entries ordered by date and ID
+    rows = MaintenanceLog.query.order_by(
+        MaintenanceLog.date.desc(), MaintenanceLog.id.desc()
+    ).all()
 
     si = StringIO()
     cw = csv.writer(si)
@@ -2111,13 +2138,13 @@ def export_mx():
     for r in rows:
         cw.writerow(
             [
-                r["id"],
-                r["date"],
-                r["tach_time"],
-                r["airframe_time"],
-                r["recurrent_item"],
-                r["category"],
-                r["notes"],
+                r.id,
+                r.date,
+                r.tach_time,
+                r.airframe_time,
+                r.recurrent_item,
+                r.category,
+                r.notes,
             ]
         )
 
@@ -2130,11 +2157,8 @@ def export_mx():
 @app.route("/export/fuel")
 @login_required
 def export_fuel():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM fuel_tracker ORDER BY date DESC, id DESC")
-    rows = cursor.fetchall()
-    conn.close()
+    # Query all fuel tracker records ordered by date and ID
+    rows = FuelLog.query.order_by(FuelLog.date.desc(), FuelLog.id.desc()).all()
 
     si = StringIO()
     cw = csv.writer(si)
@@ -2147,13 +2171,13 @@ def export_fuel():
     for r in rows:
         cw.writerow(
             [
-                r["id"],
-                r["date"],
-                r["hobbs"],
-                r["gallons"],
-                r["price_per_gallon"],
-                r["total_cost"],
-                r["gal_per_hour"],
+                r.id,
+                r.date,
+                r.hobbs,
+                r.gallons,
+                r.price_per_gallon,
+                r.total_cost,
+                r.gal_per_hour,
             ]
         )
 
