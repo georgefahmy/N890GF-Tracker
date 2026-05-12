@@ -176,7 +176,13 @@
                 <span>Landings: <strong>{{ total_landings }}</strong></span>
                 <span class="d-none d-lg-inline">|</span>
                 <span>Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong></span>
-                <span>Cost Per Month: <strong>${{ "%.2f"|format(cost_per_month) }}</strong></span>
+                <span data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-html="true"
+                    title="<b>Variable Costs:</b> Fuel & Oil.<br><b>Fixed costs:</b> Hangar, Insurance, Taxes, and Subscriptions."
+                    style="cursor: help; border-bottom: 1px dotted #666;">
+                    Cost Per Month: <strong>${{ "%.2f"|format(cost_per_month) }}</strong>
+                </span>
                 <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
                 <div class="d-flex gap-2 mt-2 mt-lg-0">
                     <button id="themeToggle" class="btn btn-sm btn-outline-light">🌙</button>

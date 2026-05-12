@@ -957,6 +957,19 @@ def index():
     total_fuel_cost = 0.0
     total_gallons = 0.0
     cost_per_month = 0.0
+    insurance_per_year = 2400
+    insurance_per_month = insurance_per_year / 12
+    hangar_per_month = 605
+    taxes_per_year = 0.01 * 150000
+    taxes_per_month = taxes_per_year / 12
+    xpndr_check = 125
+    xpndr_check_per_month = xpndr_check / 24
+    foreflight_year = 250
+    foreflight_month = foreflight_year / 12
+    airmate_year = 49
+    airmate_month = airmate_year / 12
+    atc_year = 89
+    atc_month = atc_year / 12
 
     for f in fuel_logs:
         try:
@@ -977,6 +990,29 @@ def index():
     avg_fuel_cost_per_hour = (
         round(total_fuel_cost / total_hours, 2) if total_hours > 0 else 0.0
     )
+    print(avg_gph, db.session.query(func.avg(FuelLog.gal_per_hour)).scalar() or 0)
+
+    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
+    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
+    today = datetime.now()
+    years_diff = today.year - first_flight_date.year
+    months_diff = today.month - first_flight_date.month
+    total_months = (years_diff * 12) + months_diff
+    total_months = max(total_months, 1)
+    cost_per_month = (
+        total_fuel_cost / total_months
+        + insurance_per_month
+        + hangar_per_month
+        + taxes_per_month
+        + xpndr_check_per_month
+        + foreflight_month
+        + airmate_month
+        + atc_month
+    )
+    avg_price_per_gallon = (
+        # db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
+    )
+    # total_gallons_qry = db.session.query(func.sum(FuelLog.gallons)).scalar() or 0
 
     # Note: Passed without 'conn' assuming these helpers have also been refactored
     # to use SQLAlchemy queries directly as requested in prior steps.
