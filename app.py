@@ -852,88 +852,6 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/upload_oil_analysis", methods=["POST"])
-# @login_required
-def upload_oil_analysis():
-    logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
-
-    if "oil_pdf" not in request.files:
-        return jsonify({"error": "No file part"}), 400
-
-    file = request.files["oil_pdf"]
-    if file.filename == "":
-        return jsonify({"error": "No selected file"}), 400
-
-    if file and file.filename.endswith(".pdf"):
-        upload_folder = os.path.join(app.static_folder, "oil_analysis")
-        os.makedirs(upload_folder, exist_ok=True)
-
-        filepath = os.path.join(upload_folder, secure_filename(file.filename))
-        file.save(filepath)
-
-        try:
-            # Parse the PDF and return the dictionary as JSON
-            results = parse_oil_report(filepath)
-            try:
-                sample_date = datetime.strptime(
-                    results["metadata"]["date_sampled"], "%d-%b-%y"
-                ).date()
-            except Exception:
-                sample_date = datetime.utcnow().date()
-            sample_no = results["metadata"].get("sample_no")
-            exists = [
-                True if float(sample_no) == float(log.sample_no) else False
-                for log in logs
-            ]
-            print(exists)
-            if not any(exists):
-                # Save to Database using SQLAlchemy
-                new_entry = OilAnalysis(
-                    date_sampled=sample_date,
-                    oil_hrs=float(results["metadata"].get("oil_hrs", 0)),
-                    engine_hrs=float(results["metadata"].get("engine_hrs", 0)),
-                    iron=float(results["metals"].get("Iron", 0)),
-                    copper=float(results["metals"].get("Copper", 0)),
-                    chromium=float(results["metals"].get("Chromium", 0)),
-                    aluminum=float(results["metals"].get("Aluminium", 0)),
-                    nickel=float(results["metals"].get("Nickel", 0)),
-                    lead=float(results["metals"].get("Lead", 0)),
-                    diagnosis=results.get("diagnosis", ""),
-                    report_path=filepath,
-                    sample_no=results["metadata"].get("sample_no"),
-                )
-
-                db.session.add(new_entry)
-                db.session.commit()
-                return jsonify(results)
-            else:
-                return jsonify({"error": "Analysis Already Exists"}), 400
-        except Exception as e:
-            return jsonify({"error": str(e)}), 500
-
-    return jsonify({"error": "Only PDF files are allowed"}), 400
-
-
-@app.route("/api/oil_trends")
-def get_oil_trends():
-    logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
-    history = []
-    for log in logs:
-        history.append(
-            {
-                "engine_hrs": log.engine_hrs,
-                "iron": log.iron,
-                "copper": log.copper,
-                "chromium": log.chromium,
-                "aluminum": log.aluminum,
-                "nickel": log.nickel,
-                "lead": log.lead,
-                "date": log.date_sampled.strftime("%Y-%m-%d"),
-            }
-        )
-    return jsonify(history)
-
-
 @app.route("/")
 @login_required
 def index():
@@ -1153,7 +1071,7 @@ def add_flight():
     # Trigger external synchronization
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="flight"))
 
 
 @app.route("/add_mx", methods=["POST"])
@@ -1184,7 +1102,7 @@ def add_mx():
     # Trigger external synchronization
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="mx"))
 
 
 @app.route("/add_fuel", methods=["POST"])
@@ -1213,25 +1131,7 @@ def add_fuel():
     # Trigger external synchronization
     git_push_data()
 
-    return redirect(url_for("index"))
-
-
-@app.route("/api/fuel_prices", methods=["GET"])
-@login_required
-def api_fuel_prices():
-    airport = request.args.get("airport", "").strip()
-    if not airport:
-        return jsonify({"error": "No airport provided"}), 400
-    try:
-        options, _ = scrape_airnav_to_json(airport)
-        git_push_data()
-        return (
-            jsonify({"options": options})
-            if options
-            else jsonify({"error": f"No fuel data found for {airport}"})
-        ), 404
-    except Exception:
-        return jsonify({"error": "An error occurred while fetching fuel prices."}), 500
+    return redirect(url_for("index", _anchor="fuel"))
 
 
 @app.route("/edit_flight/<int:id>", methods=["POST"])
@@ -1259,7 +1159,7 @@ def edit_flight(id):
     # Trigger external synchronization
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="flight"))
 
 
 @app.route("/edit_mx/<int:id>", methods=["POST"])
@@ -1290,7 +1190,7 @@ def edit_mx(id):
     # Synchronize data
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="mx"))
 
 
 @app.route("/edit_fuel/<int:id>", methods=["POST"])
@@ -1319,7 +1219,7 @@ def edit_fuel(id):
     # Trigger external synchronization
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="fuel"))
 
 
 @app.route("/delete_flight/<int:id>")
@@ -1340,7 +1240,7 @@ def delete_flight(id):
     # Trigger external synchronization
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="flight"))
 
 
 @app.route("/delete_maintenance/<int:id>")
@@ -1366,7 +1266,7 @@ def delete_maintenance(id):
     # Synchronize data
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="mx"))
 
 
 @app.route("/delete_fuel/<int:id>")
@@ -1384,23 +1284,107 @@ def delete_fuel(id):
     # Trigger external synchronization
     git_push_data()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("index", _anchor="fuel"))
 
 
-@app.route("/live_map")
-# @login_required # Uncomment if you want to restrict this to logged-in users
-def live_map():
-    return render_template("live_map.html")
+@app.route("/api/fuel_prices", methods=["GET"])
+@login_required
+def api_fuel_prices():
+    airport = request.args.get("airport", "").strip()
+    if not airport:
+        return jsonify({"error": "No airport provided"}), 400
+    try:
+        options, _ = scrape_airnav_to_json(airport)
+        git_push_data()
+        return (
+            jsonify({"options": options})
+            if options
+            else jsonify({"error": f"No fuel data found for {airport}"})
+        ), 404
+    except Exception:
+        return jsonify({"error": "An error occurred while fetching fuel prices."}), 500
 
 
-@app.route("/analyzer")
-def analyzer():
-    user_agent = request.headers.get("User-Agent", "").lower()
-    is_mobile = any(x in user_agent for x in ["iphone", "android", "mobile"])
+@app.route("/upload_oil_analysis", methods=["POST"])
+# @login_required
+def upload_oil_analysis():
+    logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
 
-    template = "analyzer.html" if is_mobile else "analyzer.html"
+    if "oil_pdf" not in request.files:
+        return jsonify({"error": "No file part"}), 400
 
-    return render_template(template)
+    file = request.files["oil_pdf"]
+    if file.filename == "":
+        return jsonify({"error": "No selected file"}), 400
+
+    if file and file.filename.endswith(".pdf"):
+        upload_folder = os.path.join(app.static_folder, "oil_analysis")
+        os.makedirs(upload_folder, exist_ok=True)
+
+        filepath = os.path.join(upload_folder, secure_filename(file.filename))
+        file.save(filepath)
+
+        try:
+            # Parse the PDF and return the dictionary as JSON
+            results = parse_oil_report(filepath)
+            try:
+                sample_date = datetime.strptime(
+                    results["metadata"]["date_sampled"], "%d-%b-%y"
+                ).date()
+            except Exception:
+                sample_date = datetime.utcnow().date()
+            sample_no = results["metadata"].get("sample_no")
+            exists = [
+                True if float(sample_no) == float(log.sample_no) else False
+                for log in logs
+            ]
+            print(exists)
+            if not any(exists):
+                # Save to Database using SQLAlchemy
+                new_entry = OilAnalysis(
+                    date_sampled=sample_date,
+                    oil_hrs=float(results["metadata"].get("oil_hrs", 0)),
+                    engine_hrs=float(results["metadata"].get("engine_hrs", 0)),
+                    iron=float(results["metals"].get("Iron", 0)),
+                    copper=float(results["metals"].get("Copper", 0)),
+                    chromium=float(results["metals"].get("Chromium", 0)),
+                    aluminum=float(results["metals"].get("Aluminium", 0)),
+                    nickel=float(results["metals"].get("Nickel", 0)),
+                    lead=float(results["metals"].get("Lead", 0)),
+                    diagnosis=results.get("diagnosis", ""),
+                    report_path=filepath,
+                    sample_no=results["metadata"].get("sample_no"),
+                )
+
+                db.session.add(new_entry)
+                db.session.commit()
+                return jsonify(results)
+            else:
+                return jsonify({"error": "Analysis Already Exists"}), 400
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    return jsonify({"error": "Only PDF files are allowed"}), 400
+
+
+@app.route("/api/oil_trends")
+def get_oil_trends():
+    logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
+    history = []
+    for log in logs:
+        history.append(
+            {
+                "engine_hrs": log.engine_hrs,
+                "iron": log.iron,
+                "copper": log.copper,
+                "chromium": log.chromium,
+                "aluminum": log.aluminum,
+                "nickel": log.nickel,
+                "lead": log.lead,
+                "date": log.date_sampled.strftime("%Y-%m-%d"),
+            }
+        )
+    return jsonify(history)
 
 
 @app.route("/api/estimate_fuel", methods=["POST"])
@@ -1423,6 +1407,22 @@ def estimate_fuel():
             "total_gallons": left_gal + right_gal,
         }
     )
+
+
+@app.route("/live_map")
+# @login_required # Uncomment if you want to restrict this to logged-in users
+def live_map():
+    return render_template("live_map.html")
+
+
+@app.route("/analyzer")
+def analyzer():
+    user_agent = request.headers.get("User-Agent", "").lower()
+    is_mobile = any(x in user_agent for x in ["iphone", "android", "mobile"])
+
+    template = "analyzer.html" if is_mobile else "analyzer.html"
+
+    return render_template(template)
 
 
 # --- GAMI Spread Page Route ---

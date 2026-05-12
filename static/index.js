@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
         displayPage(1);
     }
 
-    paginateTable("flightTable", "flightPagination", 10);
-    paginateTable("mxTable", "mxPagination", 10);
-    paginateTable("fuelTable", "fuelPagination", 10);
+    paginateTable("flightTable", "flightPagination", 7);
+    paginateTable("mxTable", "mxPagination", 7);
+    paginateTable("fuelTable", "fuelPagination", 7);
 
     // Fuel Estimator Logic
     const leftSlider = document.getElementById('leftFuelSlider');
@@ -685,4 +685,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Check if there is a hash in the URL (e.g., #fuel)
+    const hash = window.location.hash;
+
+    if (hash) {
+        // Find the tab trigger button that corresponds to this ID
+        // The ID of the pane is 'fuel', but the button ID is 'fuel-tab'
+        const tabTriggerEl = document.querySelector(`.nav-link[data-bs-target="${hash}"]`);
+
+        if (tabTriggerEl) {
+            const tab = new bootstrap.Tab(tabTriggerEl);
+            tab.show();
+        }
+    }
+
+    // 2. Update the Export button dynamically when switching tabs
+    // This ensures the "Export to CSV" button always points to the right data
+    const tabEls = document.querySelectorAll('button[data-bs-toggle="tab"]');
+    const exportBtn = document.getElementById('dynamicExportBtn');
+
+    tabEls.forEach(tabEl => {
+        tabEl.addEventListener('shown.bs.tab', function (event) {
+            const targetId = event.target.getAttribute('data-bs-target').replace('#', '');
+
+            // Update the CSV link based on the active tab
+            if (targetId === 'flight') exportBtn.href = "/export/flights";
+            else if (targetId === 'mx') exportBtn.href = "/export/mx";
+            else if (targetId === 'fuel') exportBtn.href = "/export/fuel";
+
+            // Optional: Update the URL hash without reloading the page
+            window.location.hash = targetId;
+        });
+    });
 });
