@@ -13,15 +13,27 @@
         .navbar { position: fixed; top: 0; width: 100%; z-index: 1050; }
         .graph-wrapper { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #dee2e6;}
         .plot-loader { z-index: 10; background: rgba(255,255,255,0.9); border-radius: 8px;}
+        /* Mobile First: Natural document flow */
         .right-sticky-col {
-            position: fixed;
-            top: 80px;
-            right: 50px;
-            width: calc(33.333vw - 50px);
-            height: calc(100vh - 80px);
-            overflow: hidden;
-            box-sizing: border-box;
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: 2rem; /* Adds breathing room under the plots on mobile */
             z-index: 1000;
+        }
+
+        /* Desktop View: Fixed/Sticky layout */
+        @media (min-width: 992px) {
+            .right-sticky-col {
+                position: fixed;
+                top: 80px;
+                right: 50px;
+                width: calc(33.333vw - 50px);
+                height: calc(100vh - 80px);
+                overflow: hidden;
+                box-sizing: border-box;
+                margin-top: 0;
+            }
         }
         /* Apply transition to the flex properties for both columns */
         [name="leftColumn"], [name="rightColumn"] {
@@ -71,7 +83,7 @@
     <div class="row mb-4 align-items-start">
 
         <!-- LEFT COLUMN: file + stats + plots -->
-        <div class="col-lg-8 col-xl-8" name="leftColumn">
+       <div class="col-12 col-lg-8" name="leftColumn">
 
             <div class="row">
                 <div class="col-md-5">
@@ -218,7 +230,7 @@
         </div>
 
         <!-- RIGHT COLUMN: sticky 3D + map -->
-        <div class="col-md-4" name="rightColumn">
+       <div class="col-12 col-lg-4" name="rightColumn">
             <div class="right-sticky-col">
                 <div class="right-scroll">
                 <div class="d-flex flex-column gap-3">
