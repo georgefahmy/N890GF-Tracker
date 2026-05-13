@@ -717,7 +717,14 @@ def process_flights(df):
         fid: f"{flight_start_gps.get(fid, '')}"
         for idx, fid in enumerate(engine_flight_ids)
     }
+
     df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None))
+    dt_obj = datetime.strptime(df["Flight ID"], "%Y-%m-%d %H:%M:%S")
+    from_zone = tz.gettz("UTC")
+    to_zone = tz.gettz("America/Los_Angeles")
+    utc = dt_obj.replace(tzinfo=from_zone)
+    local = utc.astimezone(to_zone)
+    df["Flight ID"] = datetime.strftime(local, "%Y-%m-%d %H-%M-%S")
     df.drop(columns=["_orig_flight_num"], inplace=True)
     # Fill NaNs safely by dtype:
     # - numeric columns → 0
@@ -1556,15 +1563,8 @@ def api_get_signals():
                 fid_str = str(fid)
                 safe_name = fid_str.replace("/", "-").replace(":", "-")
 
-                dt_obj = datetime.strptime(safe_name, "%Y-%m-%d %H-%M-%S")
-                from_zone = tz.gettz("UTC")
-                to_zone = tz.gettz("America/Los_Angeles")
-                utc = dt_obj.replace(tzinfo=from_zone)
-                local = utc.astimezone(to_zone)
-                final_id = datetime.strftime(local, "%Y-%m-%d %H-%M-%S")
-
                 # Clean filename
-                base_name, ext = os.path.splitext(final_id)
+                base_name, ext = os.path.splitext(safe_name)
                 saved_filename = f"{final_id}.csv"
                 filepath = os.path.join(SAVE_DIR, saved_filename)
                 flight_data.to_csv(filepath, index=False)
