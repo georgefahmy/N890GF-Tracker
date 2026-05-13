@@ -28,14 +28,7 @@ from flask import (
     session,
     url_for,
 )
-from flask_login import (
-    LoginManager,
-    UserMixin,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-)
+from flask_login import LoginManager, UserMixin, login_required, login_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from werkzeug.exceptions import RequestEntityTooLarge
