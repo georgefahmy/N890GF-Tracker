@@ -1556,12 +1556,12 @@ def api_get_signals():
                 fid_str = str(fid)
                 safe_name = fid_str.replace("/", "-").replace(":", "-")
 
-                dt_obj = datetime.datetime.strptime(safe_name, "%Y-%m-%d %H-%M-%S")
+                dt_obj = datetime.strptime(safe_name, "%Y-%m-%d %H-%M-%S")
                 from_zone = tz.gettz("UTC")
                 to_zone = tz.gettz("America/Los_Angeles")
                 utc = dt_obj.replace(tzinfo=from_zone)
                 local = utc.astimezone(to_zone)
-                final_id = datetime.datetime.strftime(local, "%Y-%m-%d %H-%M-%S")
+                final_id = datetime.strftime(local, "%Y-%m-%d %H-%M-%S")
 
                 # Clean filename
                 base_name, ext = os.path.splitext(final_id)
