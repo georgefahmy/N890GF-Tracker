@@ -2,7 +2,7 @@ import sqlite3
 
 from werkzeug.security import generate_password_hash
 
-conn = sqlite3.connect("src/maintenance.db")
+conn = sqlite3.connect("../maintenance.db")
 username = "admin"
 password = "admin"
 conn.execute(
@@ -11,5 +11,4 @@ conn.execute(
 )
 
 conn.commit()
-
 conn.close()
