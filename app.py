@@ -15,10 +15,8 @@ import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from dateutil import tz
 from flask import (
     Flask,
-    flash,
     jsonify,
     make_response,
     redirect,
@@ -50,7 +48,6 @@ app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 db_path = os.path.join(CWD_PATH, "../maintenance.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["UPLOAD_FOLDER"] = os.path.join("static", "uploads")
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
@@ -90,7 +87,6 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
 
 # DB_PATH = CWD_PATH + "/src/maintenance.db"
 DB_PATH = CWD_PATH + "/../maintenance.db"
-print(DB_PATH)
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
@@ -196,49 +192,6 @@ class BannedIPs(db.Model):
     username = db.Column(db.String(100))
     ban_time = db.Column(db.Float, default=0.0)
     count = db.Column(db.Integer, default=0)
-
-
-post_categories = db.Table(
-    "post_categories",
-    db.Column("post_id", db.Integer, db.ForeignKey("post.id"), primary_key=True),
-    db.Column(
-        "category_id", db.Integer, db.ForeignKey("category.id"), primary_key=True
-    ),
-)
-
-post_tags = db.Table(
-    "post_tags",
-    db.Column("post_id", db.Integer, db.ForeignKey("post.id"), primary_key=True),
-    db.Column("tag_id", db.Integer, db.ForeignKey("tag.id"), primary_key=True),
-)
-
-
-class Category(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False, unique=True)
-
-
-class Tag(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False, unique=True)
-
-
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(150), nullable=False)
-    slug = db.Column(db.String(150), nullable=False, unique=True)
-    content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    categories = db.relationship(
-        "Category",
-        secondary=post_categories,
-        backref=db.backref("posts", lazy="dynamic"),
-    )
-    tags = db.relationship(
-        "Tag",
-        secondary=post_tags,
-        backref=db.backref("posts", lazy="select"),
-    )
 
 
 # Create the tables in the DB if they don't exist
@@ -2277,244 +2230,5 @@ def app_handle_413(e):
     return jsonify({"error": "File is too large. Max size is 64MB."}), 413
 
 
-@app.context_processor
-def inject_categories():
-    return dict(categories=Category.query.order_by(Category.name).all())
-
-
-@app.route("/blog")
-def blog():
-    search_query = request.args.get("search", "")
-    cat_name = request.args.get("category", "")
-    tag_name = request.args.get("tag", "")
-
-    query = Post.query
-
-    # 1. Filter by Search
-    if search_query:
-        query = query.filter(
-            Post.title.contains(search_query) | Post.content.contains(search_query)
-        )
-
-    # 2. Filter by Category
-    if cat_name:
-        query = query.join(Post.categories).filter(Category.name == cat_name)
-
-    # 3. Filter by Tag
-    if tag_name:
-        query = query.join(Post.tags).filter(Tag.name == tag_name)
-
-    # 4. Fetch the posts
-    posts = query.order_by(Post.created_at.desc()).all()
-
-    # 5. Fetch Sidebar Data (Crucial for the widgets to appear)
-    categories = Category.query.all()
-    all_tags = Tag.query.all()
-
-    return render_template(
-        "blog.html",
-        posts=posts,
-        categories=categories,
-        all_tags=all_tags,
-        current_cat=cat_name,
-        current_tag=tag_name,
-    )
-
-
-@app.route("/admin/new_post", methods=["GET", "POST"])
-@login_required
-def new_post():
-    if request.method == "POST":
-        title = request.form.get("title")
-        content = request.form.get("content")
-        selected_cat_ids = request.form.getlist(
-            "categories"
-        )  # Gets list of IDs from checkboxes
-
-        slug = re.sub(r"[-\s]+", "-", re.sub(r"[^\w\s-]", "", title).strip().lower())
-        post = Post(title=title, slug=slug, content=content)
-
-        # Add existing categories by ID
-        for cid in selected_cat_ids:
-            cat = Category.query.get(cid)
-            if cat:
-                post.categories.append(cat)
-
-        tags_input = request.form.get("tags", "")
-        if tags_input:
-            # Split by comma, remove whitespace, and ignore empty strings
-            tag_names = [n.strip() for n in tags_input.split(",") if n.strip()]
-            for name in tag_names:
-                tag = Tag.query.filter_by(name=name).first()
-                if not tag:
-                    tag = Tag(name=name)
-                    db.session.add(tag)
-                post.tags.append(tag)
-
-        db.session.add(post)
-        db.session.commit()
-        return redirect(url_for("view_post", slug=post.slug))
-
-    categories = Category.query.order_by(Category.name).all()
-    files = (
-        os.listdir(app.config["UPLOAD_FOLDER"])
-        if os.path.exists(app.config["UPLOAD_FOLDER"])
-        else []
-    )
-    return render_template("editor.html", categories=categories, post=None, files=files)
-
-
-@app.route("/admin/edit/<int:post_id>", methods=["GET", "POST"])
-@login_required
-def edit_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if request.method == "POST":
-        post.title = request.form.get("title")
-        post.content = request.form.get("content")
-
-        # Clear and re-add categories
-        post.categories = []
-        for cid in request.form.getlist("categories"):
-            cat = Category.query.get(cid)
-            if cat:
-                post.categories.append(cat)
-
-        post.tags = []
-        tags_input = request.form.get("tags", "")
-        tag_names = [n.strip() for n in tags_input.split(",") if n.strip()]
-        for name in tag_names:
-            tag = Tag.query.filter_by(name=name).first()
-            if not tag:
-                tag = Tag(name=name)
-                db.session.add(tag)
-            post.tags.append(tag)
-
-        db.session.commit()
-        return redirect(url_for("view_post", slug=post.slug))
-
-    categories = Category.query.order_by(Category.name).all()
-    all_tags = Tag.query.all()
-    files = (
-        os.listdir(app.config["UPLOAD_FOLDER"])
-        if os.path.exists(app.config["UPLOAD_FOLDER"])
-        else []
-    )
-    return render_template(
-        "editor.html",
-        post=post,
-        categories=categories,
-        all_tags=all_tags,
-        files=files,
-    )
-
-
-@app.route("/admin/delete/<int:post_id>", methods=["GET", "POST"])
-@login_required
-def delete_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if not post:
-        flash("Post not found.")
-        return redirect(url_for("blog"))
-
-    # Remove associations in the many-to-many table first (SQLAlchemy usually handles this, but being explicit is safer)
-    post.categories = []
-    post.tags = []
-
-    db.session.delete(post)
-    db.session.commit()
-    flash("Post deleted successfully.")
-    return redirect(url_for("blog"))
-
-
-@app.route("/admin/media/upload", methods=["POST"])
-@login_required
-def upload_to_gallery():
-    if "file" not in request.files:
-        flash("No file part")
-        return redirect(request.url)
-
-    file = request.files["file"]
-    if file.filename == "":
-        flash("No selected file")
-        return redirect(request.url)
-
-    if file:
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-        flash(f"File {filename} uploaded successfully!")
-
-    return redirect(url_for("media_gallery"))
-
-
-@app.route("/admin/media")
-@login_required
-def media_gallery():
-    # List all files in the upload directory
-    files = []
-    if os.path.exists(app.config["UPLOAD_FOLDER"]):
-        files = os.listdir(app.config["UPLOAD_FOLDER"])
-        # Sort by newest first (optional)
-        files.sort(
-            key=lambda x: os.path.getmtime(
-                os.path.join(app.config["UPLOAD_FOLDER"], x)
-            ),
-            reverse=True,
-        )
-
-    return render_template("media.html", files=files)
-
-
-@app.route("/admin/media/delete/<filename>", methods=["POST"])
-@login_required
-def delete_media(filename):
-    # Secure the filename to prevent directory traversal attacks
-    filename = secure_filename(filename)
-    file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-
-    try:
-        if os.path.exists(file_path):
-            os.remove(file_path)
-            flash(f"File {filename} deleted successfully.")
-        else:
-            flash(f"Error: File {filename} not found.", "error")
-    except Exception as e:
-        flash(f"Error deleting file: {str(e)}", "error")
-
-    return redirect(url_for("media_gallery"))
-
-
-@app.route("/post/<slug>")
-def view_post(slug):
-    post = Post.query.filter_by(slug=slug).first_or_404()
-    return render_template("post.html", post=post)
-
-
-@app.route("/admin/category/add", methods=["POST"])
-@login_required
-def add_category():
-    name = request.form.get("name")
-    if name:
-        existing = Category.query.filter_by(name=name).first()
-        if not existing:
-            new_cat = Category(name=name)
-            db.session.add(new_cat)
-            db.session.commit()
-            return jsonify({"success": True, "id": new_cat.id, "name": new_cat.name})
-    return jsonify({"success": False}), 400
-
-
-@app.context_processor
-def inject_sidebar_data():
-    return dict(
-        categories=Category.query.order_by(Category.name).all(),
-        all_tags=Tag.query.order_by(Tag.name).all(),  # Add this
-    )
-
-
 if __name__ == "__main__":
-    # if not Users.query.filter_by(username="george").first():
-    #     db.session.add(
-    #         Users(username="george", password=generate_password_hash("Soccer10"))
-    #     )
-    # db.session.commit()
     app.run(debug=DEBUG)
