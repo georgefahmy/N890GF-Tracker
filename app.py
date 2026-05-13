@@ -8,8 +8,6 @@ import subprocess
 import threading
 import time
 from datetime import datetime, timedelta
-
-# from functools import wraps
 from io import StringIO
 from logging.handlers import RotatingFileHandler
 
@@ -245,16 +243,6 @@ class Post(db.Model):
 # Create the tables in the DB if they don't exist
 with app.app_context():
     db.create_all()
-
-
-# def login_required(f):
-#     @wraps(f)
-#     def decorated_function(*args, **kwargs):
-#         if "user_id" not in session:
-#             return redirect(url_for("login"))
-#         return f(*args, **kwargs)
-
-#     return decorated_function
 
 
 def validate_float(value, default=0.0):
