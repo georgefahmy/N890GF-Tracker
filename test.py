@@ -63,8 +63,20 @@ df["AVG_CHT"] = (
     + df["CHT 3 (deg C)"]
     + df["CHT 4 (deg C)"]
 ) / 4
-df["CHT_Delta_T"] = df["AVG_CHT"] - df["OAT (deg C)"]
-df["OIL_Delta_T"] = df["OIL TEMPERATURE (deg C)"] - df["OAT (deg C)"]
+df["CHT_Delta_T (deg C)"] = df["AVG_CHT"] - df["OAT (deg C)"]
+df["OIL_Delta_T (deg C)"] = df["OIL TEMPERATURE (deg C)"] - df["OAT (deg C)"]
+
+temp_cols = [col for col in df.columns if "(deg C)" in col]
+for col in temp_cols:
+    try:
+        new_name = col.replace("(deg C)", "(deg F)")
+        # Force numeric conversion to prevent string math errors
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+        # Convert C to F
+        df[new_name] = df[col] * 9.0 / 5.0 + 32.0
+
+    except Exception as e:
+        print(f"Warning: Temperature conversion failed for column '{col}': {e}")
 
 if "Total Fuel Flow (gal/hr)" in df.columns:
     df["Total Fuel Flow (gal/hr)"] = pd.to_numeric(
