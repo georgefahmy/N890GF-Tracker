@@ -23,16 +23,12 @@ def load_flights(files):
 
 
 df = load_flights(files)
+# Remove rows where System Time is NaN or blank
+df = df[df["System Time"].notna() & (df["System Time"] != "")]
+df["System Time"] = pd.to_numeric(df["System Time"], errors="coerce").fillna(0)
+
+# Remove rows where GPS Date & Time is NaN or blank
 df = df[df["GPS Date & Time"].notna() & (df["GPS Date & Time"] != "")]
-num_cols = df.select_dtypes(include=[np.number]).columns
-obj_cols = df.select_dtypes(include=["object"]).columns
-
-if len(num_cols) > 0:
-    df[num_cols] = df[num_cols].fillna(0)
-
-if len(obj_cols) > 0:
-    df[obj_cols] = df[obj_cols].fillna("")
-
 core_numeric_cols = [
     "Session Time",
     "System Time",
@@ -135,6 +131,15 @@ df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None)
 df["Flight ID"] = pd.to_datetime(df["Flight ID"])
 df["Flight ID"] = df["Flight ID"].dt.tz_localize("UTC").dt.tz_convert("US/Pacific")
 df["System Time"] = pd.to_numeric(df["System Time"], errors="coerce").fillna(0)
+
+num_cols = df.select_dtypes(include=[np.number]).columns
+obj_cols = df.select_dtypes(include=["object"]).columns
+
+if len(num_cols) > 0:
+    df[num_cols] = df[num_cols].fillna(0)
+
+if len(obj_cols) > 0:
+    df[obj_cols] = df[obj_cols].fillna("")
 
 df.drop(columns=["_orig_flight_num"], inplace=True)
 # Ensure RPM L and RPM R are numeric and fill NaNs with 0
