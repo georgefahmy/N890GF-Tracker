@@ -115,7 +115,7 @@ flight_max_cht = df.groupby("_orig_flight_num")[
     ]
 ].max()
 df["Max CHT"] = df["_orig_flight_num"].map(flight_max_cht.max(axis=1))
-flights_with_engine = (flight_max_rpm["RPM"] > 0) & (flight_max_cht.max(axis=1) > 50)
+flights_with_engine = (flight_max_rpm["RPM"] > 0) & (flight_max_cht.max(axis=1) > 150)
 engine_flight_ids = [
     fid
     for fid in df["_orig_flight_num"].unique()
