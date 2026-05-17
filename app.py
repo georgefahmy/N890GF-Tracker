@@ -449,7 +449,7 @@ def _get_nav_database_status_live():
 
 
 def get_nav_database_status():
-    global NAV_CACHE
+    # global NAV_CACHE
     now = time.time()
     with NAV_CACHE_LOCK:
         if NAV_CACHE["data"] and (now - NAV_CACHE["timestamp"] < NAV_CACHE_TTL):
