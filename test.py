@@ -55,15 +55,14 @@ for col in core_numeric_cols:
         df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
 df["_orig_flight_num"] = (df["Session Time"].diff() < 0).cumsum()
-df["CHT 1 (deg C)"] = pd.to_numeric(df["CHT 1 (deg C)"], errors="coerce")
 df["RPM"] = (df["RPM L"] + df["RPM R"]) / 2
-df["AVG_CHT"] = (
+df["AVG_CHT (deg C)"] = (
     df["CHT 1 (deg C)"]
     + df["CHT 2 (deg C)"]
     + df["CHT 3 (deg C)"]
     + df["CHT 4 (deg C)"]
 ) / 4
-df["CHT_Delta_T (deg C)"] = df["AVG_CHT"] - df["OAT (deg C)"]
+df["CHT_Delta_T (deg C)"] = df["AVG_CHT (deg C)"] - df["OAT (deg C)"]
 df["OIL_Delta_T (deg C)"] = df["OIL TEMPERATURE (deg C)"] - df["OAT (deg C)"]
 
 temp_cols = [col for col in df.columns if "(deg C)" in col]
