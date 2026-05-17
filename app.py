@@ -1449,12 +1449,14 @@ def live_map():
 
 @app.route("/analyzer")
 def analyzer():
+    print(session)
+    is_logged_in = "user_id" in session
     user_agent = request.headers.get("User-Agent", "").lower()
     is_mobile = any(x in user_agent for x in ["iphone", "android", "mobile"])
 
     template = "analyzer.html" if is_mobile else "analyzer.html"
 
-    return render_template(template)
+    return render_template(template, is_logged_in=is_logged_in)
 
 
 # --- GAMI Spread Page Route ---
@@ -1973,6 +1975,7 @@ def api_analyze_flight():
 
 
 @app.route("/api/save_signal_bands", methods=["POST"])
+@login_required
 def save_signal_bands():
     try:
         new_bands_data = request.json

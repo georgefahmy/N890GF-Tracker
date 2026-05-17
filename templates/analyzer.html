@@ -134,9 +134,11 @@
                 <h5 class="text-secondary d-none mb-0" id="plotHeader">Flight Graphs</h5>
 
                 <div class="d-flex gap-2 flex-wrap align-items-center">
+                    {% if current_user.is_authenticated %}
                     <button class="btn btn-outline-info btn-sm" onclick="openSignalBandsModal()">
                         Edit Signal Bands
                     </button>
+                    {% endif %}
                     <button class="btn btn-outline-secondary btn-sm" onclick="toggleXYTab()">
                         Show XY Plot
                     </button>
