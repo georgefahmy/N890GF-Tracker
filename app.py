@@ -1038,10 +1038,7 @@ def index():
         else ""
     )
 
-    user_agent = request.headers.get("User-Agent", "").lower()
-    is_mobile = any(x in user_agent for x in ["iphone", "android", "mobile"])
-
-    template = "index.html" if is_mobile else "index.html"
+    template = "index.html"
 
     return render_template(
         template,
@@ -1449,12 +1446,8 @@ def live_map():
 
 @app.route("/analyzer")
 def analyzer():
-    print(session)
     is_logged_in = "user_id" in session
-    user_agent = request.headers.get("User-Agent", "").lower()
-    is_mobile = any(x in user_agent for x in ["iphone", "android", "mobile"])
-
-    template = "analyzer.html" if is_mobile else "analyzer.html"
+    template = "analyzer.html"
 
     return render_template(template, is_logged_in=is_logged_in)
 
