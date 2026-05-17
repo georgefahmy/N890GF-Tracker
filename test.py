@@ -111,7 +111,15 @@ else:
     df["MPG"] = 0
 
 flight_max_rpm = df.groupby("_orig_flight_num")[["RPM"]].max()
-flight_max_cht = df.groupby("_orig_flight_num")[["CHT 1 (deg C)"]].max()
+flight_max_cht = df.groupby("_orig_flight_num")[
+    [
+        "CHT 1 (deg F)",
+        "CHT 2 (deg F)",
+        "CHT 3 (deg F)",
+        "CHT 4 (deg F)",
+    ]
+].max()
+df["Max CHT"] = df["_orig_flight_num"].map(flight_max_cht.max(axis=1))
 flights_with_engine = (flight_max_rpm["RPM"] > 0) & (flight_max_cht.max(axis=1) > 50)
 engine_flight_ids = [
     fid
@@ -127,8 +135,9 @@ flightid_map = {
 df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None))
 df["Flight ID"] = pd.to_datetime(df["Flight ID"])
 df["Flight ID"] = df["Flight ID"].dt.tz_localize("UTC").dt.tz_convert("US/Pacific")
-df.drop(columns=["_orig_flight_num"], inplace=True)
 df["System Time"] = pd.to_numeric(df["System Time"], errors="coerce").fillna(0)
+
+df.drop(columns=["_orig_flight_num"], inplace=True)
 # Ensure RPM L and RPM R are numeric and fill NaNs with 0
 flight_ids = [
     fid for fid in df["Flight ID"].unique() if fid not in (None, 0, "", "nan")
