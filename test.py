@@ -115,17 +115,11 @@ flight_max_cht = df.groupby("_orig_flight_num")[
     ]
 ].max()
 df["Max CHT"] = df["_orig_flight_num"].map(flight_max_cht.max(axis=1))
-flights_with_engine = (flight_max_rpm["RPM"] > 0) & (flight_max_cht.max(axis=1) > 150)
-engine_flight_ids = [
-    fid
-    for fid in df["_orig_flight_num"].unique()
-    if flights_with_engine.get(fid, False)
-]
+check = (flight_max_rpm["RPM"] > 0) & (flight_max_cht.max(axis=1) > 150)
+real_flight = [fid for fid in df["_orig_flight_num"].unique() if check.get(fid, False)]
 
 flight_start_gps = df.groupby("_orig_flight_num")["GPS Date & Time"].first()
-flightid_map = {
-    fid: f"{flight_start_gps.get(fid, '')}" for idx, fid in enumerate(engine_flight_ids)
-}
+flightid_map = {fid: f"{flight_start_gps.get(fid, '')}" for fid in real_flight}
 
 df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None))
 df["Flight ID"] = pd.to_datetime(df["Flight ID"])
