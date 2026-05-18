@@ -1,0 +1,274 @@
+[
+    {
+        "airport_code": "KRDD",
+        "airport_name": "Redding Regional Airport Redding, CA",
+        "distance": {
+            "nm": null,
+            "direction": null
+        },
+        "fbos": [
+            {
+                "fbo_name": "Redding Jet Center",
+                "last_updated": "17-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.33"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Air Shasta Rotor and Wing",
+                "last_updated": "17-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.15"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.75"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.47"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O85",
+        "airport_name": "Benton Field Airport Redding, CA",
+        "distance": {
+            "nm": 6,
+            "direction": "NW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Cardan Aircraft Services",
+                "last_updated": "04-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.98"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.32"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KRBL",
+        "airport_name": "Red Bluff Municipal Airport Red Bluff, CA",
+        "distance": {
+            "nm": 22,
+            "direction": "S"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Cardan Aircraft Services",
+                "last_updated": "17-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.83"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.98"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$8.07"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.32"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KCIC",
+        "airport_name": "Chico Regional Airport Chico, CA",
+        "distance": {
+            "nm": 47,
+            "direction": "SSE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Northgate Aviation Chico Jet Center",
+                "last_updated": "17-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.80"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.30"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O37",
+        "airport_name": "Haigh Field Airport Orland, CA",
+        "distance": {
+            "nm": 48,
+            "direction": "S"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Haigh Field Airport",
+                "last_updated": "15-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.09"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O05",
+        "airport_name": "Rogers Field Airport Chester, CA",
+        "distance": {
+            "nm": 50,
+            "direction": "ESE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Mt. Lassen Aviation",
+                "last_updated": "08-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$5.49"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$5.80"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$6.05"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "CL56",
+        "airport_name": "Ranchaero Airport Chico, CA",
+        "distance": {
+            "nm": 51,
+            "direction": "SSE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Ranchaero Airport",
+                "last_updated": "06-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$5.95"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O46",
+        "airport_name": "Weed Airport Weed, CA",
+        "distance": {
+            "nm": 59,
+            "direction": "N"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Vali Aviation",
+                "last_updated": "07-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "AS",
+                            "price": "$7.25"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "AS",
+                            "price": "$7.75"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.75"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O09",
+        "airport_name": "Round Valley Airport Covelo, CA",
+        "distance": {
+            "nm": 62,
+            "direction": "SW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Mendocino County",
+                "last_updated": "01-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$5.95"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
