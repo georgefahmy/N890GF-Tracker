@@ -758,54 +758,65 @@
   </div>
 </div>
 
-<!-- Fuel Prices Result Modal -->
-<div class="modal fade" id="pricesResultModal" tabindex="-1">
+<div class="modal fade" id="pricesResultModal" tabindex="-1" aria-labelledby="pricesResultModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
         <div class="modal-content">
-            <div class="modal-header bg-info text-dark d-flex align-items-center">
-                <h5 class="modal-title mb-0">Nearby 100LL Prices</h5>
-                <div class="ms-3 input-group input-group-sm" style="width: 250px;">
-                    <input type="text" id="searchAirportCode" class="form-control text-uppercase" placeholder="e.g. KOSH">
-                    <button type="button" id="checkPricesBtn" class="btn btn-outline-dark">
-                        Search
-                    </button>
-                </div>
-                <div class="ms-auto d-flex align-items-center gap-2">
-                    <label class="small mb-0">Limit</label>
-                    <select id="priceLimitSelect" class="form-select form-select-sm" style="width: 90px;">
-                        <option value="3" selected>3</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="all">All</option>
-                    </select>
 
-                    <label class="small mb-0">Total Gallons</label>
-                    <input type="number" id="totalGallonsInput" class="form-control form-control-sm" style="width: 100px;" value="30" min="0" step="1">
-                </div>
-
-                <button type="button" class="btn-close ms-2" data-bs-dismiss="modal"></button>
+            <div class="modal-header bg-info text-dark">
+                <h5 class="modal-title id="pricesResultModalLabel" mb-0 fw-bold">Nearby 100LL Prices</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
-                <div id="pricesLoader" class="text-center d-none my-4">
-                    <div class="spinner-border text-info" role="status"></div>
-                    <p class="mt-2">Scraping AirNav... Please wait.</p>
+                <div class="row g-3 mb-4 align-items-end p-3 bg-light rounded border">
+                    <div class="col-12 col-md-4">
+                        <label for="searchAirportCode" class="form-label small fw-semibold text-secondary">Airport Code</label>
+                        <div class="input-group">
+                            <input type="text" id="searchAirportCode" class="form-control text-uppercase" placeholder="e.g. KOSH">
+                            <button type="button" id="checkPricesBtn" class="btn btn-dark">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <label for="priceLimitSelect" class="form-label small fw-semibold text-secondary">Results Limit</label>
+                        <select id="priceLimitSelect" class="form-select">
+                            <option value="3" selected>3 Results</option>
+                            <option value="5">5 Results</option>
+                            <option value="10">10 Results</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <label for="totalGallonsInput" class="form-label small fw-semibold text-secondary">Total Gallons</label>
+                        <input type="number" id="totalGallonsInput" class="form-control" value="30" min="0" step="1">
+                    </div>
                 </div>
-                <div id="pricesError" class="alert alert-danger d-none"></div>
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped d-none" id="pricesTable">
+
+                <div id="pricesLoader" class="text-center d-none my-5">
+                    <div class="spinner-border text-info mb-3" role="status" style="width: 3rem; height: 3rem;"></div>
+                    <p class="text-muted fw-medium">Scraping AirNav... Please wait.</p>
+                </div>
+
+                <div id="pricesError" class="alert alert-danger d-none my-3" role="alert"></div>
+
+                <div class="table-responsive border rounded">
+                    <table class="table table-hover table-striped align-middle mb-0 d-none" id="pricesTable">
                         <thead class="table-dark">
                             <tr>
-                                <th>Airport</th>
-                                <th>Price (100LL)</th>
-                                <th style="min-width: 140px; white-space: nowrap;">Distance</th>
-                                <th>Est. Total Trip Cost</th>
-                                <th>Last Updated</th>
+                                <th scope="col">Airport</th>
+                                <th scope="col">Price (100LL)</th>
+                                <th scope="col" style="min-width: 120px;">Distance</th>
+                                <th scope="col">Est. Total Cost</th>
+                                <th scope="col" class="text-nowrap">Last Updated</th>
                             </tr>
                         </thead>
-                        <tbody id="pricesTableBody"></tbody>
+                        <tbody id="pricesTableBody">
+                            </tbody>
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

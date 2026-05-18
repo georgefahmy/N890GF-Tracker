@@ -98,53 +98,52 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let filtered = [...fuelOptionsCache];
 
+        // PERFORMANCE FIX: Use the already fetched 'totalGallons' variable.
+        // The original code was querying the DOM and parsing a float on every single array comparison.
+        filtered.sort((a, b) => {
+            const costA = (a.price * totalGallons) + (a.price * a.used_to_return);
+            const costB = (b.price * totalGallons) + (b.price * b.used_to_return);
+            return costA - costB;
+        });
+
         if (limit !== "all") {
             filtered = filtered.slice(0, parseInt(limit));
         }
 
-        // Sort by estimated total trip cost (lowest first)
-        filtered.sort((a, b) => {
-            const totalGallonsVal = parseFloat(document.getElementById('totalGallonsInput').value) || 0;
-            const costA = (a.price * totalGallonsVal) + (a.price * a.used_to_return);
-            const costB = (b.price * totalGallonsVal) + (b.price * b.used_to_return);
-            return costA - costB;
-        });
-
         filtered.forEach(opt => {
             const tr = document.createElement('tr');
             const distanceStr = opt.distance > 0 ? `${opt.distance} nm ${opt.direction}` : '0 nm';
+            const totalTripCost = (opt.price * totalGallons) + (opt.price * opt.used_to_return);
 
+            // RESPONSIVE OPTIMIZATION: Swapped fixed min-widths for Bootstrap utility classes.
+            // - 'text-nowrap' keeps prices, distances, and dates on a single line.
+            // - 'text-wrap' on the airport name lets long names gracefully fold on mobile instead of blowing out the table width.
             tr.innerHTML = `
-                <td style="white-space: nowrap; min-width: ${Math.max(150, opt.name.length * 7)}px;">
-                    <strong>${opt.airport}</strong><br>
-                    <small class="text-muted">${opt.name}</small>
-                </td>
-                <td class="text-success fw-bold">$
-                    ${opt.price.toFixed(2)}
-                </td>
-                <td style="white-space: nowrap; min-width: 150px;">
-                    ${distanceStr}<br>
-                    <small class="text-muted">
-                        (${opt.used_to_return.toFixed(1)} gal)
-                    </small>
-                </td>
                 <td>
-                    $${(opt.price * totalGallons+(opt.price * opt.used_to_return)).toFixed(2)}<br>
-                    <small class="text-muted">
-                        (${totalGallons.toFixed(1)} gal)
-                    </small>
+                    <strong class="text-dark d-block">${opt.airport}</strong>
+                    <small class="text-muted d-block text-wrap" style="max-width: 220px;">${opt.name}</small>
                 </td>
-                <td>${opt.date}</td>
+                <td class="text-success fw-bold text-nowrap">
+                    $${opt.price.toFixed(2)}
+                </td>
+                <td class="text-nowrap">
+                    ${distanceStr}<br>
+                    <small class="text-muted">(${opt.used_to_return.toFixed(1)} gal)</small>
+                </td>
+                <td class="text-nowrap">
+                    <span class="fw-semibold">$${totalTripCost.toFixed(2)}</span><br>
+                    <small class="text-muted">(${totalGallons.toFixed(1)} gal)</small>
+                </td>
+                <td class="text-muted small text-nowrap">${opt.date}</td>
             `;
             tbody.appendChild(tr);
         });
 
         document.getElementById('pricesTable').classList.remove('d-none');
-        // Dynamically adjust modal width based on the longest airport name
-        const modalDialog = document.querySelector('#pricesResultModal .modal-dialog');
-        const maxNameLength = Math.max(...filtered.map(o => o.name.length), 0);
-        const dynamicWidth = Math.min(95, Math.max(60, maxNameLength * 0.8));
-        modalDialog.style.maxWidth = dynamicWidth + '%';
+
+        // REMOVED: The dynamic modal maxWidth javascript layout calculation.
+        // Bootstrap's CSS classes (like 'modal-xl' and 'modal-fullscreen-sm-down') handle device widths
+        // flawlessly native-side. Forcing element styles via JS here breaks mobile responsiveness.
     }
 
     function loadFuelPrices() {
