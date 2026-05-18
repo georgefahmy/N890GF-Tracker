@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // - 'text-wrap' on the airport name lets long names gracefully fold on mobile instead of blowing out the table width.
             tr.innerHTML = `
                 <td>
-                    <strong class="text-dark d-block">${opt.airport}</strong>
+                    <strong class="text-dark d-block text-nowrap">${opt.airport}</strong>
                     <small class="text-muted d-block text-wrap" style="max-width: 220px;">${opt.name}</small>
                 </td>
                 <td class="text-success fw-bold text-nowrap">
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 </td>
                 <td class="text-nowrap">
                     <span class="fw-semibold">$${totalTripCost.toFixed(2)}</span><br>
-                    <small class="text-muted">(${totalGallons.toFixed(1)} gal)</small>
+                    <small class="text-muted">(${totalGallons.toFixed(0)} gal)</small>
                 </td>
                 <td class="text-muted small text-nowrap">${opt.date}</td>
             `;
