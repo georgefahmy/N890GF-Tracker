@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         filtered.forEach(opt => {
             const tr = document.createElement('tr');
-            const distanceStr = opt.distance > 0 ? `${opt.distance} nm ${opt.direction}` : '0 nm';
+            const distanceStr = opt.distance > 0 ? `${opt.distance}nm ${opt.direction}` : '0nm';
             const totalTripCost = (opt.price * totalGallons) + (opt.price * opt.used_to_return);
 
             // RESPONSIVE OPTIMIZATION: Swapped fixed min-widths for Bootstrap utility classes.
