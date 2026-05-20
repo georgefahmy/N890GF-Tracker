@@ -673,7 +673,9 @@ def process_flights(df):
 
     df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None))
     df["Flight ID"] = pd.to_datetime(df["Flight ID"])
-    df["Flight ID"] = df["Flight ID"].dt.tz_localize("UTC").dt.tz_convert("US/Pacific")
+    df["Flight ID"] = (
+        df["Flight ID"].dt.tz_localize("UTC").dt.tz_convert("America/Los_Angeles")
+    )
     df.drop(columns=["_orig_flight_num"], inplace=True)
     # Fill NaNs safely by dtype:
     # - numeric columns → 0
