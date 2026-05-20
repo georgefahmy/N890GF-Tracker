@@ -1,0 +1,304 @@
+[
+    {
+        "airport_code": "KBOI",
+        "airport_name": "Boise Air Terminal/Gowen Field Boise, ID",
+        "distance": {
+            "nm": null,
+            "direction": null
+        },
+        "fbos": [
+            {
+                "fbo_name": "Western Aircraft",
+                "last_updated": "19-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$8.43"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Jackson Jet Center",
+                "last_updated": "19-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.25"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.99"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Turbo Air",
+                "last_updated": "14-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.60"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.99"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.01"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMAN",
+        "airport_name": "Nampa Municipal Airport Nampa, ID",
+        "distance": {
+            "nm": 13,
+            "direction": "W"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Avcenter",
+                "last_updated": "15-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.629"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.929"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.139"
+                        }
+                    ],
+                    "Mogas": [
+                        {
+                            "service": "SS",
+                            "price": "$7.119"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KEUL",
+        "airport_name": "Caldwell Executive Airport Caldwell, ID",
+        "distance": {
+            "nm": 19,
+            "direction": "WNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Qmulus Aviation",
+                "last_updated": "08-May",
+                "prices": {
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$6.60"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Silverhawk Aviation Academy",
+                "last_updated": "11-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.99"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$6.50"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Midfield Aviation",
+                "last_updated": "11-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.85"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "S78",
+        "airport_name": "Emmett Municipal Airport Emmett, ID",
+        "distance": {
+            "nm": 22,
+            "direction": "NW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Back Country Fuel Stop",
+                "last_updated": "11-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.83"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "U76",
+        "airport_name": "Mountain Home Municipal Airport Mountain Home, ID",
+        "distance": {
+            "nm": 34,
+            "direction": "SE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Altitude Aviation Services",
+                "last_updated": "04-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.25"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$7.25"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.45"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "S75",
+        "airport_name": "Payette Municipal Airport Payette, ID",
+        "distance": {
+            "nm": 43,
+            "direction": "NW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Payette Municipal Airport",
+                "last_updated": "19-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.99"
+                        }
+                    ],
+                    "Mogas": [
+                        {
+                            "service": "SS",
+                            "price": "$5.49"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KONO",
+        "airport_name": "Ontario Municipal Airport Ontario, OR",
+        "distance": {
+            "nm": 44,
+            "direction": "NW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Silverhawk Aviation Academy",
+                "last_updated": "18-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.10"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.60"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.00"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$6.50"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "S87",
+        "airport_name": "Weiser Municipal Airport Weiser, ID",
+        "distance": {
+            "nm": 50,
+            "direction": "NW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Weiser Municipal Airport",
+                "last_updated": "09-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.49"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
