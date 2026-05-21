@@ -41,7 +41,7 @@
         "fbos": [
             {
                 "fbo_name": "Watsonville Municipal Airport",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -83,7 +83,7 @@
         "fbos": [
             {
                 "fbo_name": "Hollister Jet Center, Inc",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -151,7 +151,7 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -169,7 +169,7 @@
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "15-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -180,7 +180,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$12.243"
+                            "price": "$11.777"
                         }
                     ],
                     "SAF": [
@@ -203,7 +203,7 @@
         "fbos": [
             {
                 "fbo_name": "Jet West GateOne",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -265,7 +265,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Marina (FBO)",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -293,12 +293,12 @@
         "fbos": [
             {
                 "fbo_name": "Avports Moffett Field",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$10.71"
+                            "price": "$10.59"
                         }
                     ]
                 }
@@ -383,7 +383,7 @@
         "fbos": [
             {
                 "fbo_name": "Rossi Aircraft",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -539,7 +539,7 @@
             },
             {
                 "fbo_name": "Signature Aviation (formerly Meridian Hayward)",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
@@ -550,7 +550,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.435"
+                            "price": "$7.952"
                         }
                     ]
                 }
@@ -567,16 +567,16 @@
         "fbos": [
             {
                 "fbo_name": "Modesto Jet Center",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$7.20"
+                            "price": "$7.78"
                         },
                         {
                             "service": "FS",
-                            "price": "$8.20"
+                            "price": "$8.78"
                         }
                     ],
                     "Jet A": [
@@ -599,7 +599,7 @@
         "fbos": [
             {
                 "fbo_name": "Contra Costa County (FBO)",
-                "last_updated": "19-May",
+                "last_updated": "20-May",
                 "prices": {
                     "100LL": [
                         {
