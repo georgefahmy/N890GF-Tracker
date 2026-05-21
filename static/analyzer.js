@@ -851,7 +851,7 @@ function updateGlobalUI(data) {
     document.getElementById('statsList').innerHTML = `
         <div class="col-sm-4 mb-3"><strong>Duration:</strong><br>${data.stats.duration_min} min</div>
         <div class="col-sm-4 mb-3"><strong>Total Fuel:</strong><br>${data.stats.total_fuel} gal ($${(data.stats.total_fuel * data.stats.current_fuel_price).toFixed(2)})</div>
-        <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${data.stats.avg_fuel_flow} gal/hr</div>
+        <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${data.stats.avg_fuel_flow} gal/hr ($${(data.stats.avg_fuel_flow * data.stats.current_fuel_price).toFixed(2)}/hr)</div>
         <div class="col-sm-4 mb-3"><strong>Avg MPG:</strong><br><span class="text-success fw-bold">${data.stats.avg_mpg} nm/gal</span></div>
         <div class="col-sm-4 mb-3"><strong>Distance Traveled:</strong><br>${data.stats.distance_traveled.toFixed(1)} mi</div>
         <div class="col-sm-4 mb-3"><strong>Max RPM:</strong><br>
