@@ -1884,7 +1884,7 @@ def api_analyze_flight():
         roll_data = extract_attitude("Roll (deg)")
         heading_data = extract_attitude("Magnetic Heading (deg)")
         magnetic_variance = extract_attitude("Mag Var (deg)")
-        latest_fuel = FuelLog.query.order_by(FuelLog.hobbs.desc()).first()
+        fuel_log = FuelLog.query.order_by(FuelLog.hobbs.desc()).first()
 
         plot_data = {
             "x": x_data,
@@ -1944,6 +1944,9 @@ def api_analyze_flight():
                 return round(series.max(), 1) if not series.empty else "N/A"
             return "N/A"
 
+        print(flight_data["Flight ID"][0])
+        fuel_price = validate_float(fuel_log.price_per_gallon)
+
         stats = {
             "flight_id": target_flight,
             "duration_min": round(duration / 60, 2),
@@ -1955,7 +1958,7 @@ def api_analyze_flight():
             "avg_fuel_flow": round(avg_flow, 2),
             "avg_mpg": avg_mpg,
             "distance_traveled": distance_traveled[-1] / 5280,
-            "current_fuel_price": validate_float(latest_fuel.price_per_gallon),
+            "current_fuel_price": fuel_price,
         }
 
         rawData = flight_data.to_dict(orient="records")
