@@ -1,0 +1,362 @@
+[
+    {
+        "airport_code": "KSMX",
+        "airport_name": "Santa Maria Public Airport/Capt G Allan Hancock Field Santa Maria, CA",
+        "distance": {
+            "nm": null,
+            "direction": null
+        },
+        "fbos": [
+            {
+                "fbo_name": "Central Coast Jet Center",
+                "last_updated": "08-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.98"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.78"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.17"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KLPC",
+        "airport_name": "Lompoc Airport Lompoc, CA",
+        "distance": {
+            "nm": 14,
+            "direction": "S"
+        },
+        "fbos": [
+            {
+                "fbo_name": "City of Lompoc (automated fuel pump)",
+                "last_updated": "18-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.38"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$7.00"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "L52",
+        "airport_name": "Oceano County Airport Oceano, CA",
+        "distance": {
+            "nm": 15,
+            "direction": "NNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "ACI Jet - Oceano",
+                "last_updated": "26-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.79"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KSBP",
+        "airport_name": "San Luis Obispo County Regional Airport San Luis Obispo, CA",
+        "distance": {
+            "nm": 22,
+            "direction": "NNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "ACI Jet - San Luis Obispo",
+                "last_updated": "26-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.79"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.32"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.83"
+                        }
+                    ],
+                    "SAF": [
+                        {
+                            "service": "FS",
+                            "price": "$9.83"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KIZA",
+        "airport_name": "Santa Ynez Airport/Kunkle Field Santa Ynez, CA",
+        "distance": {
+            "nm": 26,
+            "direction": "SE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Santa Ynez Airport",
+                "last_updated": "15-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.58"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.33"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$7.24"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KSBA",
+        "airport_name": "Santa Barbara Municipal Airport Santa Barbara, CA",
+        "distance": {
+            "nm": 42,
+            "direction": "SE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Atlantic Aviation",
+                "last_updated": "26-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.95"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$10.93"
+                        }
+                    ],
+                    "SAF": [
+                        {
+                            "service": "FS",
+                            "price": "$12.97"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Signature Aviation",
+                "last_updated": "22-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.84"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.84"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$9.947"
+                        }
+                    ],
+                    "SAF": [
+                        {
+                            "service": "FS",
+                            "price": "$12.277"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KPRB",
+        "airport_name": "Paso Robles Municipal Airport Paso Robles, CA",
+        "distance": {
+            "nm": 47,
+            "direction": "N"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Loyd's Aviation",
+                "last_updated": "19-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.25"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.55"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.65"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "L17",
+        "airport_name": "Taft-Kern County Airport Taft, CA",
+        "distance": {
+            "nm": 52,
+            "direction": "ENE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "CB & RR, LLC",
+                "last_updated": "06-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.29"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$5.66"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMIT",
+        "airport_name": "Shafter Airport-Minter Field Shafter, CA",
+        "distance": {
+            "nm": 72,
+            "direction": "ENE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Minter Field Airport District",
+                "last_updated": "18-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.42"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$6.82"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.49"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$6.89"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KOXR",
+        "airport_name": "Oxnard Airport Oxnard, CA",
+        "distance": {
+            "nm": 75,
+            "direction": "SE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Oxnard Aircraft & Jet Center",
+                "last_updated": "26-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.25"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.15"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Axis Air",
+                "last_updated": "19-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.84"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.35"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
