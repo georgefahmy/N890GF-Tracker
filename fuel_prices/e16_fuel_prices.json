@@ -41,7 +41,7 @@
         "fbos": [
             {
                 "fbo_name": "Watsonville Municipal Airport",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -83,7 +83,7 @@
         "fbos": [
             {
                 "fbo_name": "Hollister Jet Center, Inc",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -119,7 +119,7 @@
         "fbos": [
             {
                 "fbo_name": "Santa Clara County",
-                "last_updated": "14-May",
+                "last_updated": "27-May",
                 "prices": {
                     "G100UL": [
                         {
@@ -151,12 +151,12 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "FS",
-                            "price": "$13.56"
+                            "price": "$14.61"
                         }
                     ],
                     "Jet A": [
@@ -169,7 +169,7 @@
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "22-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -180,7 +180,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$11.777"
+                            "price": "$11.652"
                         }
                     ],
                     "SAF": [
@@ -203,52 +203,52 @@
         "fbos": [
             {
                 "fbo_name": "Jet West GateOne",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$7.34"
+                            "price": "$7.85"
                         },
                         {
                             "service": "FS",
-                            "price": "$7.84"
+                            "price": "$8.35"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.00"
+                            "price": "$7.65"
                         },
                         {
                             "service": "SS",
-                            "price": "$8.00"
+                            "price": "$7.65"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "gateOne Salinas",
-                "last_updated": "19-May",
+                "last_updated": "26-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$7.34"
+                            "price": "$7.85"
                         },
                         {
                             "service": "FS",
-                            "price": "$7.84"
+                            "price": "$8.35"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.00"
+                            "price": "$7.65"
                         },
                         {
                             "service": "SS",
-                            "price": "$8.00"
+                            "price": "$7.65"
                         }
                     ]
                 }
@@ -265,7 +265,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Marina (FBO)",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -293,12 +293,12 @@
         "fbos": [
             {
                 "fbo_name": "Avports Moffett Field",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$10.59"
+                            "price": "$10.24"
                         }
                     ]
                 }
@@ -315,7 +315,7 @@
         "fbos": [
             {
                 "fbo_name": "Del Monte Aviation",
-                "last_updated": "15-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -339,7 +339,7 @@
             },
             {
                 "fbo_name": "Monterey Jet Center, LLC",
-                "last_updated": "14-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -383,7 +383,7 @@
         "fbos": [
             {
                 "fbo_name": "Rossi Aircraft",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -449,7 +449,7 @@
         "fbos": [
             {
                 "fbo_name": "Tracy Municipal Airport",
-                "last_updated": "04-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -498,7 +498,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$7.96"
+                            "price": "$7.60"
                         }
                     ]
                 }
@@ -515,7 +515,7 @@
         "fbos": [
             {
                 "fbo_name": "APP Jet Center Hayward",
-                "last_updated": "19-May",
+                "last_updated": "26-May",
                 "prices": {
                     "100LL": [
                         {
@@ -532,14 +532,14 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.35"
+                            "price": "$7.99"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "Signature Aviation (formerly Meridian Hayward)",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -550,7 +550,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$7.952"
+                            "price": "$7.822"
                         }
                     ]
                 }
@@ -567,7 +567,7 @@
         "fbos": [
             {
                 "fbo_name": "Modesto Jet Center",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -582,7 +582,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.48"
+                            "price": "$8.24"
                         }
                     ]
                 }
@@ -599,7 +599,7 @@
         "fbos": [
             {
                 "fbo_name": "Contra Costa County (FBO)",
-                "last_updated": "25-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
