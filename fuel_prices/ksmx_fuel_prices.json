@@ -9,7 +9,7 @@
         "fbos": [
             {
                 "fbo_name": "Central Coast Jet Center",
-                "last_updated": "08-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -24,7 +24,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.17"
+                            "price": "$7.76"
                         }
                     ]
                 }
@@ -41,7 +41,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Lompoc (automated fuel pump)",
-                "last_updated": "18-May",
+                "last_updated": "28-May",
                 "prices": {
                     "100LL": [
                         {
@@ -69,7 +69,7 @@
         "fbos": [
             {
                 "fbo_name": "ACI Jet - Oceano",
-                "last_updated": "26-May",
+                "last_updated": "28-May",
                 "prices": {
                     "100LL": [
                         {
@@ -91,7 +91,7 @@
         "fbos": [
             {
                 "fbo_name": "ACI Jet - San Luis Obispo",
-                "last_updated": "26-May",
+                "last_updated": "28-May",
                 "prices": {
                     "100LL": [
                         {
@@ -112,7 +112,7 @@
                     "SAF": [
                         {
                             "service": "FS",
-                            "price": "$9.83"
+                            "price": "$9.36"
                         }
                     ]
                 }
@@ -129,7 +129,7 @@
         "fbos": [
             {
                 "fbo_name": "Santa Ynez Airport",
-                "last_updated": "15-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -165,7 +165,7 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "26-May",
+                "last_updated": "28-May",
                 "prices": {
                     "100LL": [
                         {
@@ -176,7 +176,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$10.93"
+                            "price": "$10.79"
                         }
                     ],
                     "SAF": [
@@ -189,22 +189,22 @@
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "22-May",
+                "last_updated": "28-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$6.84"
+                            "price": "$6.85"
                         },
                         {
                             "service": "FS",
-                            "price": "$7.84"
+                            "price": "$7.85"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$9.947"
+                            "price": "$9.827"
                         }
                     ],
                     "SAF": [
@@ -227,22 +227,22 @@
         "fbos": [
             {
                 "fbo_name": "Loyd's Aviation",
-                "last_updated": "19-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$7.25"
+                            "price": "$7.10"
                         },
                         {
                             "service": "FS",
-                            "price": "$8.55"
+                            "price": "$8.42"
                         }
                     ],
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$8.65"
+                            "price": "$8.30"
                         }
                     ]
                 }
@@ -259,7 +259,7 @@
         "fbos": [
             {
                 "fbo_name": "CB & RR, LLC",
-                "last_updated": "06-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
@@ -287,16 +287,16 @@
         "fbos": [
             {
                 "fbo_name": "Minter Field Airport District",
-                "last_updated": "18-May",
+                "last_updated": "27-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$6.42"
+                            "price": "$6.74"
                         },
                         {
                             "service": "FS",
-                            "price": "$6.82"
+                            "price": "$7.14"
                         }
                     ],
                     "Jet A": [
@@ -323,7 +323,7 @@
         "fbos": [
             {
                 "fbo_name": "Oxnard Aircraft & Jet Center",
-                "last_updated": "26-May",
+                "last_updated": "28-May",
                 "prices": {
                     "100LL": [
                         {
@@ -341,7 +341,7 @@
             },
             {
                 "fbo_name": "Axis Air",
-                "last_updated": "19-May",
+                "last_updated": "26-May",
                 "prices": {
                     "100LL": [
                         {
