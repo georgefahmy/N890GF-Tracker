@@ -41,7 +41,7 @@ from src.sw_db_updates import download_dynon_databases_only
 from src.tool_functions import (
     calc_total_distance,
     calc_total_gallons,
-    load_combined_files,
+    load_stats_file,
 )
 
 CWD_PATH = os.path.abspath(os.getcwd())
@@ -1051,7 +1051,7 @@ def index():
         and nav_status.get("obstacle_status") != "--"
         else ""
     )
-    combined = load_combined_files()
+    stats_data = load_stats_file()
     template = "index.html"
 
     return render_template(
@@ -1085,8 +1085,8 @@ def index():
         cost_per_month=cost_per_month,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
-        total_distance_traveled=calc_total_distance(combined),
-        total_gallons_used=calc_total_gallons(combined),
+        total_distance_traveled=calc_total_distance(stats_data),
+        total_gallons_used=calc_total_gallons(stats_data),
         oil_results=None,
     )
 
