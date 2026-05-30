@@ -172,10 +172,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav ms-auto text-white gap-lg-3 align-items-lg-center py-2 py-lg-0">
-                <span>Airframe: <strong>{{ "%.1f"|format(total_hours) }}h</strong></span>
+
+                <span>Hobbs: <strong>{{ "%.1f"|format(total_hours) }}h</strong></span>
                 <span>Landings: <strong>{{ total_landings }}</strong></span>
+                <span>Distance: <strong>{{ "%.0f"|format(total_distance_traveled) }} miles</strong></span>
                 <span class="d-none d-lg-inline">|</span>
-                <span>Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong></span>
+                <span>Total Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong></span>
                 <span data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-html="true"
@@ -275,7 +277,7 @@
                         </div>
                         <input type="range" class="form-range vertical-slider" orient="vertical" id="rightFuelSlider" min="0" max="6.5" step="0.25" value="0">
                         <div class="mt-2 small">
-                            <span id="rightGalDisplay" class="fw-bold">6.03</span> gal
+                            <span id="rightGalDisplay" class="fw-bold">4.98</span> gal
                         </div>
                     </div>
                 </div>

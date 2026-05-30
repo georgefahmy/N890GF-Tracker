@@ -38,6 +38,7 @@ from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
+from src.total_distance import calc_total_distance
 
 CWD_PATH = os.path.abspath(os.getcwd())
 app = Flask(__name__)
@@ -964,18 +965,18 @@ def index():
     total_gallons = 0.0
     cost_per_month = 0.0
     insurance_per_year = 2400
-    insurance_per_month = insurance_per_year / 12
+    insurance_per_month = insurance_per_year / 12  # $200 per month
     hangar_per_month = 605
     taxes_per_year = 0.01 * 150000
-    taxes_per_month = taxes_per_year / 12
+    taxes_per_month = taxes_per_year / 12  # $125 per month
     xpndr_check = 125
-    xpndr_check_per_month = xpndr_check / 24
+    xpndr_check_per_month = xpndr_check / 24  # $5.20 per month
     foreflight_year = 250
-    foreflight_month = foreflight_year / 12
+    foreflight_month = foreflight_year / 12  # $20.83 per month
     airmate_year = 49
-    airmate_month = airmate_year / 12
+    airmate_month = airmate_year / 12  # $4.03 per month
     atc_year = 89
-    atc_month = atc_year / 12
+    atc_month = atc_year / 12  # $7.42 per month
 
     for f in fuel_logs:
         try:
@@ -996,7 +997,6 @@ def index():
     avg_fuel_cost_per_hour = (
         round(total_fuel_cost / total_hours, 2) if total_hours > 0 else 0.0
     )
-    print(avg_gph, db.session.query(func.avg(FuelLog.gal_per_hour)).scalar() or 0)
 
     total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
@@ -1005,16 +1005,16 @@ def index():
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
     total_months = max(total_months, 1)
-    cost_per_month = (
-        total_fuel_cost / total_months
-        + insurance_per_month
-        + hangar_per_month
-        + taxes_per_month
-        + xpndr_check_per_month
-        + foreflight_month
-        + airmate_month
-        + atc_month
+    fixed_costs = (
+        insurance_per_month  # $200
+        + hangar_per_month  # $605
+        + taxes_per_month  # $125
+        + xpndr_check_per_month  # $5.20
+        + foreflight_month  # $20.83
+        + airmate_month  # $4.03
+        + atc_month  # $7.42
     )
+    cost_per_month = total_fuel_cost / total_months + fixed_costs
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
     # )
@@ -1081,6 +1081,7 @@ def index():
         cost_per_month=cost_per_month,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
+        total_distance_traveled=calc_total_distance(),
         oil_results=None,
     )
 
@@ -1378,7 +1379,6 @@ def upload_oil_analysis():
                 True if float(sample_no) == float(log.sample_no) else False
                 for log in logs
             ]
-            print(exists)
             if not any(exists):
                 # Save to Database using SQLAlchemy
                 new_entry = OilAnalysis(
