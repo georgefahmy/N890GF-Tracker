@@ -38,7 +38,7 @@ from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
-from src.total_distance import calc_total_distance
+from src.tool_functions import calc_total_distance, calc_total_gallons
 
 CWD_PATH = os.path.abspath(os.getcwd())
 app = Flask(__name__)
@@ -1082,6 +1082,7 @@ def index():
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
         total_distance_traveled=calc_total_distance(),
+        total_gallons_used=calc_total_gallons(),
         oil_results=None,
     )
 

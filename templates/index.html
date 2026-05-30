@@ -177,7 +177,7 @@
                 <span>Landings: <strong>{{ total_landings }}</strong></span>
                 <span>Distance: <strong>{{ "%.0f"|format(total_distance_traveled) }} miles</strong></span>
                 <span class="d-none d-lg-inline">|</span>
-                <span>Total Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong></span>
+                <span>Total Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }} ({{"%.0f"|format(total_gallons_used)}}gals)</strong></span>
                 <span data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-html="true"
@@ -185,7 +185,8 @@
                     style="cursor: help; border-bottom: 1px dotted #666;">
                     Cost Per Month: <strong>${{ "%.2f"|format(cost_per_month) }}</strong>
                 </span>
-                <span>Avg Gal/Hr: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
+                <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
+                <span>Avg MPG: <strong>{{ "%.2f"|format(total_distance_traveled/total_gallons_used) }}</strong></span>
                 <div class="d-flex gap-2 mt-2 mt-lg-0">
                     <button id="themeToggle" class="btn btn-sm btn-outline-light">🌙</button>
                     <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
