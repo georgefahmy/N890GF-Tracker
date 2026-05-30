@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import numpy as np
+import csv
 
 data_dir = "/Users/GFahmy/Documents/RV-7/data_logs"
 
@@ -157,3 +158,12 @@ for fid in flight_ids:
         "/Users/GFahmy/Documents/projects/n890gf_tracker/clean_flights", saved_filename
     )
     flight_data.to_csv(filepath, index=False)
+    stats_file = "/Users/GFahmy/Documents/projects/n890gf_tracker/static/stats.csv"
+    data = [
+        safe_name,
+        flight_data["Distance Traveled"].iloc[-1] / 5280,
+        flight_data["Fuel Flow Integral"].iloc[-1],
+    ]
+    with open(stats_file, "a", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(data)
