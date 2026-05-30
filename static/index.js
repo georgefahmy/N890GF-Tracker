@@ -63,10 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const leftVal = leftSlider.value;
         const rightVal = rightSlider.value;
 
-        // Update the UI height text immediately
-        leftHeightDisp.textContent = leftVal;
-        rightHeightDisp.textContent = rightVal;
-
         // Fetch the calculation from the backend
         fetch('/api/estimate_fuel', {
             method: 'POST',
@@ -81,11 +77,22 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(err => console.error("Error fetching fuel estimate:", err));
     }
+    function updateFuelEstimateText(){
+        const leftVal = leftSlider.value;
+        const rightVal = rightSlider.value;
+
+        // Update the UI height text immediately
+        leftHeightDisp.textContent = leftVal;
+        rightHeightDisp.textContent = rightVal;
+
+    }
 
     // Trigger calculation when sliders are moved
     if(leftSlider && rightSlider) {
-        leftSlider.addEventListener('input', updateFuelEstimate);
-        rightSlider.addEventListener('input', updateFuelEstimate);
+        leftSlider.addEventListener('change', updateFuelEstimate);
+        rightSlider.addEventListener('change', updateFuelEstimate);
+        leftSlider.addEventListener('input', updateFuelEstimateText);
+        rightSlider.addEventListener('input', updateFuelEstimateText);
     }
 
     // ====== FUEL PRICE LOGIC ======
