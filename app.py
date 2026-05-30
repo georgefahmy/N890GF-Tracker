@@ -38,7 +38,11 @@ from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
-from src.tool_functions import calc_total_distance, calc_total_gallons
+from src.tool_functions import (
+    calc_total_distance,
+    calc_total_gallons,
+    load_combined_files,
+)
 
 CWD_PATH = os.path.abspath(os.getcwd())
 app = Flask(__name__)
@@ -1047,7 +1051,7 @@ def index():
         and nav_status.get("obstacle_status") != "--"
         else ""
     )
-
+    combined = load_combined_files()
     template = "index.html"
 
     return render_template(
@@ -1081,8 +1085,8 @@ def index():
         cost_per_month=cost_per_month,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
-        total_distance_traveled=calc_total_distance(),
-        total_gallons_used=calc_total_gallons(),
+        total_distance_traveled=calc_total_distance(combined),
+        total_gallons_used=calc_total_gallons(combined),
         oil_results=None,
     )
 
