@@ -69,7 +69,7 @@
         "fbos": [
             {
                 "fbo_name": "ACI Jet - Oceano",
-                "last_updated": "28-May",
+                "last_updated": "30-May",
                 "prices": {
                     "100LL": [
                         {
@@ -91,7 +91,7 @@
         "fbos": [
             {
                 "fbo_name": "ACI Jet - San Luis Obispo",
-                "last_updated": "28-May",
+                "last_updated": "30-May",
                 "prices": {
                     "100LL": [
                         {
@@ -165,7 +165,7 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "28-May",
+                "last_updated": "30-May",
                 "prices": {
                     "100LL": [
                         {
@@ -189,7 +189,7 @@
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "28-May",
+                "last_updated": "29-May",
                 "prices": {
                     "100LL": [
                         {
@@ -227,12 +227,12 @@
         "fbos": [
             {
                 "fbo_name": "Loyd's Aviation",
-                "last_updated": "27-May",
+                "last_updated": "28-May",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$7.10"
+                            "price": "$7.20"
                         },
                         {
                             "service": "FS",
@@ -323,7 +323,7 @@
         "fbos": [
             {
                 "fbo_name": "Oxnard Aircraft & Jet Center",
-                "last_updated": "28-May",
+                "last_updated": "30-May",
                 "prices": {
                     "100LL": [
                         {
