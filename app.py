@@ -226,10 +226,12 @@ def parse_date_obj(value):
         return datetime.today()
     for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%m-%d-%Y"):
         try:
-            return datetime.strptime(value, fmt)
+            return datetime.combine(
+                datetime.strptime(value, fmt).date(), datetime.now().time()
+            )
         except ValueError:
             continue
-    return datetime.today()
+    return datetime.now()
 
 
 def parse_date_safe(value):
@@ -237,10 +239,16 @@ def parse_date_safe(value):
         return datetime.today().strftime("%Y-%m-%d")
     for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%m-%d-%Y"):
         try:
+            return datetime.combine(
+                datetime.strptime(value, fmt).strftime("%Y-%m-%d"),
+                datetime.now().time(),
+            )
             return datetime.strptime(value, fmt).strftime("%Y-%m-%d")
         except ValueError:
             continue
-    return datetime.today().strftime("%Y-%m-%d")
+    return datetime.combine(
+        datetime.today().strftime("%Y-%m-%d"), datetime.now().time()
+    )
 
 
 def sanitize_for_json(obj):
@@ -1144,10 +1152,11 @@ def add_fuel():
         validate_float(request.form.get("gallons")),
         validate_float(request.form.get("price")),
     )
+    date_entry = parse_date_obj(request.form.get("date"))
 
     # Create a new FuelLog object mapping to the fuel_tracker table
     new_fuel = FuelLog(
-        date=parse_date_obj(request.form.get("date")),
+        date=date_entry,
         hobbs=hobbs,
         gallons=gallons,
         price_per_gallon=price,
@@ -1945,7 +1954,7 @@ def api_analyze_flight():
             return "N/A"
 
         flight_date = datetime.strptime(
-            flight_data["Flight ID"][0].split(" ")[0], "%Y-%m-%d"
+            "-".join(flight_data["Flight ID"][0].split("-")[:-1]), "%Y-%m-%d %H:%M:%S"
         )
 
         fuel_price = validate_float(
