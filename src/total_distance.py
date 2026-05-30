@@ -5,7 +5,7 @@ import os
 # ====== LOAD ALL CSV FILES ======
 def calc_total_distance():
     base_dir = os.getcwd()
-    data_dir = base_dir + "clean_flights"
+    data_dir = base_dir + "/clean_flights"
     files = [file for file in os.listdir(data_dir)]
     all_data = []
     for file in files:
