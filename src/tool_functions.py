@@ -10,6 +10,7 @@ def load_stats_file():
         stats_file,
         names=["fid", "distance_traveled", "gallons_used"],
         index_col=0,
+        skiprows=1,
     )
     return df
 
