@@ -1,0 +1,270 @@
+[
+    {
+        "airport_code": "C80",
+        "airport_name": "New Coalinga Municipal Airport Coalinga, CA",
+        "distance": {
+            "nm": null,
+            "direction": null
+        },
+        "fbos": [
+            {
+                "fbo_name": "New Coalinga Municipal Airport",
+                "last_updated": "21-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$5.31"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "3O8",
+        "airport_name": "Harris Ranch Airport Coalinga, CA",
+        "distance": {
+            "nm": 6,
+            "direction": "NNE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Harris Ranch Inn & Restaurant",
+                "last_updated": "14-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.69"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KPRB",
+        "airport_name": "Paso Robles Municipal Airport Paso Robles, CA",
+        "distance": {
+            "nm": 34,
+            "direction": "SSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Loyd's Aviation",
+                "last_updated": "28-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.20"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.42"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.30"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "0Q4",
+        "airport_name": "Selma Airport Selma, CA",
+        "distance": {
+            "nm": 40,
+            "direction": "NE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Selma Aerodrome",
+                "last_updated": "16-Jan-2023",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "PS",
+                            "price": "$6.95"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KKIC",
+        "airport_name": "Mesa Del Rey Airport King City, CA",
+        "distance": {
+            "nm": 40,
+            "direction": "W"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Aviation Specialties Unlimited",
+                "last_updated": "17-Apr",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$8.29"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KFCH",
+        "airport_name": "Fresno Chandler Executive Airport Fresno, CA",
+        "distance": {
+            "nm": 41,
+            "direction": "NNE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Flight Level Aviation",
+                "last_updated": "09-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.30"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.60"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.25"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KVIS",
+        "airport_name": "Visalia Municipal Airport Visalia, CA",
+        "distance": {
+            "nm": 45,
+            "direction": "ENE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Visalia Municipal Airport",
+                "last_updated": "15-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.60"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.00"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.70"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.00"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KFAT",
+        "airport_name": "Fresno Yosemite International Airport Fresno, CA",
+        "distance": {
+            "nm": 46,
+            "direction": "NE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Atlantic Aviation",
+                "last_updated": "01-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$8.75"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.80"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Signature Aviation",
+                "last_updated": "30-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.631"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.995"
+                        }
+                    ],
+                    "SAF": [
+                        {
+                            "service": "FS",
+                            "price": "$11.355"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KTLR",
+        "airport_name": "Mefford Field Airport Tulare, CA",
+        "distance": {
+            "nm": 47,
+            "direction": "E"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Valley Air Crafts",
+                "last_updated": "29-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.20"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.50"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
