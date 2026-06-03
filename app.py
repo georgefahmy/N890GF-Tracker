@@ -982,17 +982,10 @@ def index():
     atc_year = 89
     atc_month = atc_year / 12  # $7.42 per month
 
-    for f in fuel_logs:
-        try:
-            gallons = float(f.get("gallons", 0) or 0)
-            price = float(f.get("price_per_gallon", 0) or 0)
-            total_gallons += gallons
-            total_fuel_cost += gallons * price
-        except Exception:
-            continue
-
-    total_fuel_cost = round(total_fuel_cost, 2)
-    total_gallons = round(total_gallons, 2) - 40
+    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
+    total_gallons = db.session.query(func.sum(FuelLog.gallons)).scalar() or 0
+    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
+    today = datetime.now()
 
     avg_gph = (
         round(total_gallons / latest_fuel_hobbs, 2) if latest_fuel_hobbs > 0 else 0.0
@@ -1002,9 +995,6 @@ def index():
         round(total_fuel_cost / total_hours, 2) if total_hours > 0 else 0.0
     )
 
-    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
-    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
-    today = datetime.now()
     years_diff = today.year - first_flight_date.year
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
@@ -1019,6 +1009,8 @@ def index():
         + atc_month  # $7.42
     )
     cost_per_month = total_fuel_cost / total_months + fixed_costs
+    hours_per_month = total_hobbs / total_months
+    cost_per_hour = cost_per_month / hours_per_month
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
     # )
@@ -1083,8 +1075,10 @@ def index():
         oil_status_class=upcoming_mx["oil_status_class"],
         total_fuel_cost=total_fuel_cost,
         cost_per_month=cost_per_month,
+        cost_per_hour=cost_per_hour,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
+        hours_per_month=hours_per_month,
         total_distance_traveled=calc_total_distance(stats_data),
         total_gallons_used=calc_total_gallons(stats_data),
         oil_results=None,
