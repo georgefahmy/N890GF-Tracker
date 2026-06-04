@@ -953,14 +953,6 @@ def index():
     total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
     total_tach = validate_float(latest_flight.tach) if latest_flight else 0.0
 
-    # Keep legacy total_hours for compatibility
-    total_hours = total_hobbs
-
-    # --- Get latest Hobbs from fuel tracker ---
-    latest_fuel = FuelLog.query.order_by(FuelLog.hobbs.desc()).first()
-
-    latest_fuel_hobbs = validate_float(latest_fuel.hobbs) if latest_fuel else 0.0
-
     # --- Sum total landings ---
     total_landings = db.session.query(func.sum(FlightLog.landings)).scalar() or 0
 
@@ -983,16 +975,15 @@ def index():
     atc_month = atc_year / 12  # $7.42 per month
 
     total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
-    total_gallons = db.session.query(func.sum(FuelLog.gallons)).scalar() or 0
+    stats_data = load_stats_file()
+    total_gallons = calc_total_gallons(stats_data)
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     today = datetime.now()
 
-    avg_gph = (
-        round(total_gallons / latest_fuel_hobbs, 2) if latest_fuel_hobbs > 0 else 0.0
-    )
+    avg_gph = round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0
 
     avg_fuel_cost_per_hour = (
-        round(total_fuel_cost / total_hours, 2) if total_hours > 0 else 0.0
+        round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
     )
 
     years_diff = today.year - first_flight_date.year
@@ -1043,7 +1034,7 @@ def index():
         and nav_status.get("obstacle_status") != "--"
         else ""
     )
-    stats_data = load_stats_file()
+
     template = "index.html"
 
     return render_template(
@@ -1051,7 +1042,6 @@ def index():
         flight_logs=flight_logs,
         mx_logs=mx_logs,
         fuel_logs=fuel_logs,
-        total_hours=total_hours,
         total_hobbs=total_hobbs,
         total_tach=total_tach,
         total_landings=total_landings,
