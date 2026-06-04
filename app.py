@@ -706,6 +706,20 @@ def process_flights(df):
     return df
 
 
+def append_unique_row(filename, new_row):
+    # Read existing rows to check for duplicates
+    with open(filename, "r", newline="") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row == new_row:
+                print("Entry already exists. Skipping...")
+                return
+    # If loop finishes without returning, append the new row
+    with open(filename, "a", newline="") as f:
+        csv.writer(f).writerow(new_row)
+        print("New entry added successfully.")
+
+
 @app.route("/update_server", methods=["GET", "POST"])
 @app.route("/update_server/", methods=["GET", "POST"])
 def update_server():
@@ -1518,9 +1532,10 @@ def api_get_signals():
                     flight_data["Distance Traveled"].iloc[-1] / 5280,
                     flight_data["Fuel Flow Integral"].iloc[-1],
                 ]
-                with open(stats_file, "a", newline="", encoding="utf-8") as file:
-                    writer = csv.writer(file)
-                    writer.writerow(data)
+                # with open(stats_file, "a", newline="", encoding="utf-8") as file:
+                #     writer = csv.writer(file)
+                #     writer.writerow(data)
+                append_unique_row(stats_file, data)
             git_push_data()
             df = flight_data
         numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
