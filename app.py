@@ -1522,9 +1522,7 @@ def api_get_signals():
                 saved_filename = f"{safe_name}.csv"
                 filepath = os.path.join(SAVE_DIR, saved_filename)
                 flight_data.to_csv(filepath, index=False)
-                stats_file = (
-                    "/Users/GFahmy/Documents/projects/n890gf_tracker/static/stats.csv"
-                )
+                stats_file = os.getcwd() + "/static/stats.csv"
                 data = [
                     safe_name,
                     flight_data["Distance Traveled"].iloc[-1] / 5280,
