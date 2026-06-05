@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import re
+import tempfile
 import subprocess
 import threading
 import time
@@ -24,6 +25,7 @@ from flask import (
     request,
     session,
     url_for,
+    send_file,
 )
 from flask_login import LoginManager, UserMixin, login_required, login_user
 from flask_sqlalchemy import SQLAlchemy
@@ -211,6 +213,10 @@ def validate_float(value, default=0.0):
         return round(float(value), 2)
     except (ValueError, TypeError):
         return default
+
+
+def convection(dew_point, outside_air_temp):
+    return float((outside_air_temp - dew_point) / 4.4 * 1000)
 
 
 def git_push_data():
@@ -1438,6 +1444,7 @@ def estimate_fuel():
     # Get slider heights (defaulting to 0 if missing)
     left_height = float(data.get("left_height", 0))
     right_height = float(data.get("right_height", 0))
+    print(left_height, right_height)
 
     # Calculate using defaults (TILT_DEG, CHORD_TILT_DEG) from your script
     left_gal, _ = calculate_fuel(left_height)
@@ -1448,6 +1455,21 @@ def estimate_fuel():
             "left_gallons": left_gal,
             "right_gallons": right_gal,
             "total_gallons": left_gal + right_gal,
+        }
+    )
+
+
+@app.route("/api/convection_layer", methods=["POST"])
+def calc_convection_alt():
+    data = request.json
+    dew_point = float(data.get("dew_point", 0))
+    outside_air = float(data.get("outside_air_temp", 0))
+
+    convection_alt = convection(dew_point=dew_point, outside_air_temp=outside_air)
+
+    return jsonify(
+        {
+            "convection_alt": convection_alt,
         }
     )
 
@@ -1617,38 +1639,31 @@ def route_advisor():
 @login_required
 def api_database_updates():
     """
-    Trigger download of Dynon aviation and obstacle databases.
+    Trigger download of the Dynon aviation/obstacle database to the local client.
     """
     try:
-        data = request.get_json(silent=True) or request.form
-        download_path = data.get("download_path", "").strip()
-        # Expand ~ to user home directory
-        download_path = os.path.expanduser(download_path)
-        # If still empty, default to Downloads
-        if not download_path:
-            download_path = os.path.expanduser("~/Downloads/")
-
-        if not download_path:
-            return jsonify({"error": "Download path is required"}), 400
-
-        # Ensure directory exists
-        try:
-            os.makedirs(download_path, exist_ok=True)
-        except Exception as e:
-            return jsonify({"error": f"Invalid path: {e}"}), 400
-
         database_url = "https://dynonavionics.com/us-aviation-obstacle-data.php"
 
-        # Run download in background thread so UI doesn't hang
-        def run_download():
-            try:
-                download_dynon_databases_only(database_url, download_path)
-            except Exception as e:
-                print("Database download error:", e)
+        # 1. Create a secure, temporary directory on the Flask server
+        temp_dir = tempfile.mkdtemp()
 
-        threading.Thread(target=run_download, daemon=True).start()
+        # 2. Run your existing download function synchronously
+        download_dynon_databases_only(database_url, temp_dir)
 
-        return jsonify({"status": "Download started"})
+        # 3. Find the single downloaded file in the temp directory
+        downloaded_files = os.listdir(temp_dir)
+        if not downloaded_files:
+            return jsonify({"error": "No file was found after download"}), 500
+
+        filename = downloaded_files[0]
+        file_path = os.path.join(temp_dir, filename)
+
+        # 4. Send the file directly to the user's local browser
+        return send_file(
+            file_path,
+            as_attachment=True,
+            download_name=filename,  # Keeps the original Dynon filename
+        )
 
     except Exception as e:
         print("Database update API error:", e)

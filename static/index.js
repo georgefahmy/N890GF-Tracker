@@ -390,7 +390,6 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
 
         const form = this;
-        const downloadPath = "~/Documents/RV-7/Software/sv_software/";
 
         // UI feedback elements
         let statusDiv = document.getElementById("dbUpdateStatus");
@@ -401,40 +400,81 @@ document.addEventListener("DOMContentLoaded", function() {
             form.querySelector(".modal-body").appendChild(statusDiv);
         }
 
+        // Reset status to "info" for downloading state
         statusDiv.classList.remove("d-none", "alert-danger", "alert-success");
         statusDiv.classList.add("alert-info");
-        statusDiv.innerHTML = "Starting download...";
+        statusDiv.innerHTML = "Downloading database... Please wait.";
 
         fetch("/api/database_updates", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ download_path: downloadPath })
+            method: "POST"
+            // No need to send JSON body anymore, the browser handles the save location
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.error) {
-                statusDiv.classList.remove("alert-info");
-                statusDiv.classList.add("alert-danger");
-                statusDiv.innerHTML = data.error;
-            } else {
-                statusDiv.classList.remove("alert-info");
-                statusDiv.classList.add("alert-success");
-                statusDiv.innerHTML = "Download started successfully.";
+        .then(async res => {
+            // First, check if the server returned a JSON error instead of a file
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                const errorData = await res.json();
+                throw new Error(errorData.error || "Server returned an error");
+            }
 
-                // Close modal after short delay
-                setTimeout(() => {
-                    const modalEl = document.getElementById("dbUpdateModal");
+            if (!res.ok) throw new Error("Download failed with status: " + res.status);
+
+            // Extract the filename from the server's headers
+            let filename = 'Dynon_Database_Update'; // Fallback name
+            const disposition = res.headers.get('Content-Disposition');
+            if (disposition && disposition.includes('attachment')) {
+                const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(disposition);
+                if (matches != null && matches[1]) {
+                    filename = matches[1].replace(/['"]/g, '');
+                }
+            }
+
+            // Convert the response to a Blob
+            const blob = await res.blob();
+            return { blob, filename };
+        })
+        .then(({ blob, filename }) => {
+            // Create a temporary local URL for the file
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a hidden link and programmatically click it to trigger the download
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up the DOM and memory
+            a.remove();
+            window.URL.revokeObjectURL(url);
+
+            // Update UI to success state
+            statusDiv.classList.remove("alert-info");
+            statusDiv.classList.add("alert-success");
+            statusDiv.innerHTML = "Download complete.";
+
+            // Close modal after a short delay
+            setTimeout(() => {
+                const modalEl = document.getElementById("dbUpdateModal");
+                // Check if bootstrap is available before calling
+                if (typeof bootstrap !== 'undefined') {
                     const modal = bootstrap.Modal.getInstance(modalEl);
                     if (modal) modal.hide();
-                }, 1000);
-            }
+                }
+
+                // Optional: reset the status div for the next time the modal opens
+                setTimeout(() => {
+                    statusDiv.classList.add("d-none");
+                }, 500);
+
+            }, 1500);
         })
         .catch(err => {
-            statusDiv.classList.remove("alert-info");
+            // Update UI to error state
+            statusDiv.classList.remove("alert-info", "alert-success");
             statusDiv.classList.add("alert-danger");
-            statusDiv.innerHTML = "Failed to start download.";
+            statusDiv.innerHTML = err.message || "Failed to start download.";
             console.error(err);
         });
     });
