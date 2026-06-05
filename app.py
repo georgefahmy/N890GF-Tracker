@@ -982,7 +982,7 @@ def index():
     cost_per_month = 0.0
     insurance_per_year = 2400
     insurance_per_month = insurance_per_year / 12  # $200 per month
-    hangar_per_month = 605
+    hangar_per_month = 623
     taxes_per_year = 0.01 * 150000
     taxes_per_month = taxes_per_year / 12  # $125 per month
     xpndr_check = 125
