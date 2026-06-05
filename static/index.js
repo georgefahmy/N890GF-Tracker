@@ -390,92 +390,68 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
 
         const form = this;
-
-        // UI feedback elements
         let statusDiv = document.getElementById("dbUpdateStatus");
-        if (!statusDiv) {
-            statusDiv = document.createElement("div");
-            statusDiv.id = "dbUpdateStatus";
-            statusDiv.className = "alert mt-3";
-            form.querySelector(".modal-body").appendChild(statusDiv);
-        }
-
-        // Reset status to "info" for downloading state
-        statusDiv.classList.remove("d-none", "alert-danger", "alert-success");
-        statusDiv.classList.add("alert-info");
-        statusDiv.innerHTML = "Downloading database... Please wait.";
+        // ... (keep your existing UI setup and status updates here) ...
 
         fetch("/api/database_updates", {
             method: "POST"
-            // No need to send JSON body anymore, the browser handles the save location
         })
         .then(async res => {
-            // First, check if the server returned a JSON error instead of a file
-            const contentType = res.headers.get("content-type");
-            if (contentType && contentType.includes("application/json")) {
-                const errorData = await res.json();
-                throw new Error(errorData.error || "Server returned an error");
-            }
-
-            if (!res.ok) throw new Error("Download failed with status: " + res.status);
-
-            // Extract the filename from the server's headers
-            let filename = 'Dynon_Database_Update'; // Fallback name
-            const disposition = res.headers.get('Content-Disposition');
-            if (disposition && disposition.includes('attachment')) {
-                const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(disposition);
-                if (matches != null && matches[1]) {
-                    filename = matches[1].replace(/['"]/g, '');
-                }
-            }
-
-            // Convert the response to a Blob
+            // ... (keep your existing error checking and filename extraction here) ...
             const blob = await res.blob();
             return { blob, filename };
         })
-        .then(({ blob, filename }) => {
-            // Create a temporary local URL for the file
-            const url = window.URL.createObjectURL(blob);
+        .then(async ({ blob, filename }) => {
 
-            // Create a hidden link and programmatically click it to trigger the download
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
+            // --- NEW FILE SYSTEM ACCESS API ---
+            try {
+                // 1. This forces the OS "Save As" dialog to open!
+                const fileHandle = await window.showSaveFilePicker({
+                    suggestedName: filename,
+                    types: [{
+                        description: 'Aviation Database',
+                        accept: {'application/octet-stream': ['.duc', '.zip', '.csv']} // Add your expected extensions
+                    }]
+                });
 
-            // Clean up the DOM and memory
-            a.remove();
-            window.URL.revokeObjectURL(url);
+                // 2. Create a writable stream to the location the user just chose
+                const writableStream = await fileHandle.createWritable();
 
-            // Update UI to success state
-            statusDiv.classList.remove("alert-info");
-            statusDiv.classList.add("alert-success");
-            statusDiv.innerHTML = "Download complete.";
+                // 3. Write the Blob data from Flask into that file
+                await writableStream.write(blob);
 
-            // Close modal after a short delay
-            setTimeout(() => {
-                const modalEl = document.getElementById("dbUpdateModal");
-                // Check if bootstrap is available before calling
-                if (typeof bootstrap !== 'undefined') {
-                    const modal = bootstrap.Modal.getInstance(modalEl);
-                    if (modal) modal.hide();
-                }
+                // 4. Close the file to finalize the save
+                await writableStream.close();
 
-                // Optional: reset the status div for the next time the modal opens
+                // --- Success UI Updates ---
+                statusDiv.classList.remove("alert-info");
+                statusDiv.classList.add("alert-success");
+                statusDiv.innerHTML = "Database saved successfully.";
+
                 setTimeout(() => {
-                    statusDiv.classList.add("d-none");
-                }, 500);
+                    const modalEl = document.getElementById("dbUpdateModal");
+                    if (typeof bootstrap !== 'undefined') {
+                        const modal = bootstrap.Modal.getInstance(modalEl);
+                        if (modal) modal.hide();
+                    }
+                }, 1500);
 
-            }, 1500);
+            } catch (err) {
+                // If the user clicks "Cancel" on the Save As dialog, it throws an AbortError.
+                // We can just ignore that, but catch actual saving errors.
+                if (err.name !== 'AbortError') {
+                    console.error("File System Error:", err);
+                    statusDiv.classList.remove("alert-info", "alert-success");
+                    statusDiv.classList.add("alert-danger");
+                    statusDiv.innerHTML = "Failed to save the file to your drive.";
+                } else {
+                    // User cancelled the dialog, reset UI
+                    statusDiv.innerHTML = "Download cancelled by user.";
+                }
+            }
         })
         .catch(err => {
-            // Update UI to error state
-            statusDiv.classList.remove("alert-info", "alert-success");
-            statusDiv.classList.add("alert-danger");
-            statusDiv.innerHTML = err.message || "Failed to start download.";
-            console.error(err);
+            // ... (keep your existing network error catch block here) ...
         });
     });
 });
