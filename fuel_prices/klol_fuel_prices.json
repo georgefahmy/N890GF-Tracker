@@ -1,0 +1,274 @@
+[
+    {
+        "airport_code": "KLOL",
+        "airport_name": "Derby Field Airport Lovelock, NV",
+        "distance": {
+            "nm": null,
+            "direction": null
+        },
+        "fbos": [
+            {
+                "fbo_name": "Lovelock Airport",
+                "last_updated": "18-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$5.50"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KFLX",
+        "airport_name": "Fallon Municipal Airport Fallon, NV",
+        "distance": {
+            "nm": 35,
+            "direction": "SSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Fallon Airmotive Co.",
+                "last_updated": "02-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.36"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.86"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.99"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KSPZ",
+        "airport_name": "Silver Springs Airport Silver Springs, NV",
+        "distance": {
+            "nm": 51,
+            "direction": "SW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Silver Springs Regional Airport, LLC",
+                "last_updated": "20-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.89"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.10"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KWMC",
+        "airport_name": "Winnemucca Municipal Airport Winnemucca, NV",
+        "distance": {
+            "nm": 61,
+            "direction": "NE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Winnemucca Air Service",
+                "last_updated": "04-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.85"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.35"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.25"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KRTS",
+        "airport_name": "Reno/Stead Airport Reno, NV",
+        "distance": {
+            "nm": 65,
+            "direction": "WSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Aviation Classics",
+                "last_updated": "27-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.85"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.35"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$6.99"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KRNO",
+        "airport_name": "Reno/Tahoe International Airport Reno, NV",
+        "distance": {
+            "nm": 65,
+            "direction": "WSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Stellar Aviation",
+                "last_updated": "08-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.19"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.77"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Atlantic Aviation",
+                "last_updated": "08-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$8.32"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$10.08"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O43",
+        "airport_name": "Yerington Municipal Airport Yerington, NV",
+        "distance": {
+            "nm": 69,
+            "direction": "SSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "City of Yerington",
+                "last_updated": "05-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.25"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KCXP",
+        "airport_name": "Carson City Airport Carson City, NV",
+        "distance": {
+            "nm": 75,
+            "direction": "SW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Mountain West Aviation",
+                "last_updated": "08-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.95"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.49"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$5.75"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$6.99"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Stellar Aviation of Carson City",
+                "last_updated": "08-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$6.85"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.39"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
