@@ -771,3 +771,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const costToggle = document.getElementById('costToggle');
+    const monthDisplay = document.getElementById('costPerMonthDisplay');
+    const hourDisplay = document.getElementById('costPerHourDisplay');
+
+    if (costToggle && monthDisplay && hourDisplay) {
+        // Parse raw numeric values from Jinja data attributes
+        const monthFull = parseFloat(monthDisplay.getAttribute('data-full'));
+        const monthReduced = parseFloat(monthDisplay.getAttribute('data-reduced'));
+
+        const hourFull = parseFloat(hourDisplay.getAttribute('data-full'));
+        const hourReduced = parseFloat(hourDisplay.getAttribute('data-reduced'));
+
+        costToggle.addEventListener('change', function () {
+            // Select the appropriate values based on toggle state
+            const targetMonth = this.checked ? monthFull : monthReduced;
+            const targetHour = this.checked ? hourFull : hourReduced;
+
+            // Format to 2 decimal places and push to DOM
+            monthDisplay.textContent = `$${targetMonth.toFixed(2)}`;
+            hourDisplay.textContent = `$${targetHour.toFixed(2)}`;
+        });
+    }
+});

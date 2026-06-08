@@ -179,12 +179,28 @@
                 <span>Distance: <strong>{{ "%.0f"|format(total_distance_traveled) }} miles</strong></span>
                 <span class="d-none d-lg-inline">|</span>
                 <span>Total Fuel Cost: <strong>${{ "%.2f"|format(total_fuel_cost) }} ({{"%.1f"|format(total_gallons_used)}}gals)</strong></span>
+                <div class="form-check form-switch d-inline-flex align-items-center gap-1 m-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="costToggle" checked style="cursor: pointer;">
+                    <label class="form-check-label" for="costToggle" style="font-size: 0.85rem; opacity: 0.8; cursor: pointer;" data-bs-toggle="tooltip" title="Toggle fixed hangar costs ($623)">Hangar</label>
+                </div>
                 <span data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-html="true"
                     title="<b>Variable Costs:</b> Fuel & Oil.<br><b>Fixed costs:</b> Hangar, Insurance, Taxes, and Subscriptions."
                     style="cursor: help; border-bottom: 1px dotted #666;">
-                    Cost Per Month: <strong>${{ "%.2f"|format(cost_per_month) }} (${{ "%.2f"|format(cost_per_hour)}}/hr)</strong>
+                    Cost Per Month:
+                    <strong id="costPerMonthDisplay"
+                            data-full="{{ cost_per_month }}"
+                            data-reduced="{{ cost_per_month - 623 }}">
+                        ${{ "%.2f"|format(cost_per_month) }}
+                    </strong>
+                    (<strong id="costPerHourDisplay"
+                            class="fw-bold"
+                            data-full="{{ cost_per_hour }}"
+                            /* If total_hobbs is 0, fall back to avoid dividing by zero */
+                            data-reduced="{{ (cost_per_month - 623) / (hours_per_month if hours_per_month > 0 else 1) }}">
+                        ${{ "%.2f"|format(cost_per_hour) }}
+                    </strong>/hr)
                 </span>
                 <span>Hr/Mon (yr): <strong>{{ "%.1f"|format(hours_per_month) }} ({{ "%.0f"|format(hours_per_month * 12) }})</strong></span>
                 <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
