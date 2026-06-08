@@ -34,13 +34,16 @@
 </head>
 <body>
 
-    <div class="header-bar text-white d-flex justify-content-between">
+    <div class="header-bar text-white d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="/">← Back </a>
         <span class="navbar-text text-white m-2"> ✈️ ADSB Live Traffic</span>
 
-        <div class="input-group input-group-sm ms-auto" style="max-width: 300px;">
-            <input type="text" id="adsbSearchInput" class="form-control text-uppercase" placeholder="Enter N-Number">
-            <button class="btn btn-primary" type="button" id="adsbSearchBtn">Search</button>
+        <div class="d-flex align-items-center gap-2 ms-auto" style="max-width: 450px;">
+            <input type="text" id="adsbSearchInput" class="form-control form-control-sm text-uppercase" placeholder="Enter N-Number">
+            <button class="btn btn-sm btn-primary" type="button" id="adsbSearchBtn">Search</button>
+
+            <input type="text" id="typeSearchInput" class="form-control form-control-sm text-uppercase" placeholder="Enter type filter">
+            <button class="btn btn-sm btn-primary" type="button" id="typeSearchBtn">Search</button>
         </div>
     </div>
 
@@ -51,7 +54,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const searchBtn = document.getElementById('adsbSearchBtn');
+            const typeBtn = document.getElementById('typeSearchBtn');
             const searchInput = document.getElementById('adsbSearchInput');
+            const typeInput = document.getElementById('typeSearchInput');
             const iframe = document.getElementById('adsbIframe');
 
             function updateAdsbMap() {
@@ -64,15 +69,30 @@
                     iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200";
                 }
             }
+            function updateTypeMap() {
+                let type = typeInput.value.trim().toLowerCase();
+                if (type) {
+                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200&filtertype=" + encodeURIComponent(type);
+                } else {
+                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200";
+                }
+            }
 
             // Click listener for the button
             searchBtn.addEventListener('click', updateAdsbMap);
+            typeBtn.addEventListener('click', updateTypeMap);
 
             // Enter key listener for the input field
             searchInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     updateAdsbMap();
+                }
+            });
+            typeInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    updateTypeMap();
                 }
             });
         });
