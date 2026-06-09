@@ -981,9 +981,15 @@ def index():
     total_gallons = 0.0
     cost_per_month = 0.0
     engine_overhaul = 25000
-    engine_overhaul_per_month = engine_overhaul / 12
+    engine_overhaul_per_hour = engine_overhaul / 2000
     prop_overhaul = 3500
-    prop_overhaul_per_month = prop_overhaul / 12
+    # IF(1800>(D1*72/12),$B$10/(D1*72/12),$B$10/1800)
+    prop_overhaul_per_hour = (
+        prop_overhaul / (total_hobbs * 72 / 12)
+        if 1800 > (total_hobbs * 72 / 12)
+        else prop_overhaul / 1800
+    )
+    mx_costs = prop_overhaul_per_hour + engine_overhaul_per_hour
     insurance_per_year = 2400
     insurance_per_month = insurance_per_year / 12  # $200 per month
     hangar_per_month = 623
@@ -999,6 +1005,7 @@ def index():
     atc_month = atc_year / 12  # $7.42 per month
 
     total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
+
     stats_data = load_stats_file()
     total_gallons = calc_total_gallons(stats_data)
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
@@ -1015,9 +1022,7 @@ def index():
     total_months = (years_diff * 12) + months_diff
     total_months = max(total_months, 1)
     fixed_costs = (
-        engine_overhaul_per_month
-        + prop_overhaul_per_month
-        + insurance_per_month  # $200
+        insurance_per_month  # $200
         + hangar_per_month  # $605
         + taxes_per_month  # $125
         + xpndr_check_per_month  # $5.20
@@ -1025,9 +1030,11 @@ def index():
         + airmate_month  # $4.03
         + atc_month  # $7.42
     )
-    cost_per_month = total_fuel_cost / total_months + fixed_costs
     hours_per_month = total_hobbs / total_months
-    cost_per_hour = cost_per_month / hours_per_month
+    cost_per_month = (
+        total_fuel_cost / total_months + fixed_costs + (mx_costs * hours_per_month)
+    )
+    cost_per_hour = (cost_per_month / hours_per_month) + mx_costs
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
     # )
