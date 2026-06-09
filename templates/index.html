@@ -180,7 +180,7 @@
                 <span>Landings: <strong>{{ total_landings }}</strong></span>
                 <span>Distance: <strong>{{ "%.0f"|format(total_distance_traveled) }} miles</strong></span>
                 <span class="d-none d-lg-inline">|</span>
-                <span>Fuel Costs: <strong>${{ "%.2f"|format(total_fuel_cost) }} ({{"%.1f"|format(total_gallons_used)}}gals)</strong></span>
+                <span>Fuel $: <strong>${{ "%.2f"|format(total_fuel_cost) }} ({{"%.1f"|format(total_gallons_used)}}gals)</strong></span>
                 <div class="form-check form-switch d-inline-flex align-items-center gap-1 m-0">
                     <input class="form-check-input" type="checkbox" role="switch" id="costToggle" checked style="cursor: pointer;">
                     <label class="form-check-label" for="costToggle" style="font-size: 0.85rem; opacity: 0.8; cursor: pointer;" data-bs-toggle="tooltip" title="Toggle fixed hangar costs ($623)">Hangar</label>
@@ -190,7 +190,7 @@
                     data-bs-html="true"
                     title="<b>Variable Costs:</b> Fuel, Oil, Mx.<br><b>Fixed costs:</b> Hangar, Insurance, Taxes, and Subscriptions."
                     style="cursor: help; border-bottom: 1px dotted #666;">
-                    Monthly Costs:
+                    Monthly $:
                     <strong id="costPerMonthDisplay"
                             data-full="{{ cost_per_month }}"
                             data-reduced="{{ cost_per_month - 623 }}">
