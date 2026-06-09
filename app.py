@@ -1031,9 +1031,8 @@ def index():
         + fixed_costs
         + (mx_costs_per_hour * hours_per_month)
     )
-    cost_per_hour = (cost_per_month / hours_per_month) + mx_costs_per_hour
-    print(cost_per_hour)
-    print(avg_fuel_cost_per_hour + mx_costs_per_hour + (fixed_costs / hours_per_month))
+    cost_per_hour = cost_per_month / hours_per_month
+
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
     # )
