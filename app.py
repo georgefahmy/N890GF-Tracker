@@ -980,6 +980,10 @@ def index():
     total_fuel_cost = 0.0
     total_gallons = 0.0
     cost_per_month = 0.0
+    engine_overhaul = 25000
+    engine_overhaul_per_month = engine_overhaul / 12
+    prop_overhaul = 3500
+    prop_overhaul_per_month = prop_overhaul / 12
     insurance_per_year = 2400
     insurance_per_month = insurance_per_year / 12  # $200 per month
     hangar_per_month = 623
@@ -1011,7 +1015,9 @@ def index():
     total_months = (years_diff * 12) + months_diff
     total_months = max(total_months, 1)
     fixed_costs = (
-        insurance_per_month  # $200
+        engine_overhaul_per_month
+        + prop_overhaul_per_month
+        + insurance_per_month  # $200
         + hangar_per_month  # $605
         + taxes_per_month  # $125
         + xpndr_check_per_month  # $5.20
