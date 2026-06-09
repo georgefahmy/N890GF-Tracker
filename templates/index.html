@@ -179,12 +179,8 @@
                 <span>Hobbs: <strong>{{ "%.1f"|format(total_hobbs) }}</strong></span>
                 <span>Landings: <strong>{{ total_landings }}</strong></span>
                 <span>Distance (Mi): <strong>{{ "%.0f"|format(total_distance_traveled) }}</strong></span>
-                <span class="d-none d-lg-inline">|</span>
+                <!-- <span class="d-none d-lg-inline">|</span> -->
                 <span>Fuel $: <strong>${{ "%.2f"|format(total_fuel_cost) }} ({{"%.1f"|format(total_gallons_used)}}gals)</strong></span>
-                <div class="form-check form-switch d-flex align-items-center gap-1 m-0">
-                    <input class="form-check-input" type="checkbox" role="switch" id="costToggle" checked style="cursor: pointer;" data-bs-toggle="tooltip" title="Toggle fixed hangar costs ($623)">
-                    <!-- <label class="form-check-label" for="costToggle" style="font-size: 0.85rem; opacity: 0.8; cursor: pointer;" >Hangar</label> -->
-                </div>
                 <span data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-html="true"
@@ -204,6 +200,10 @@
                         ${{ "%.2f"|format(cost_per_hour) }}
                     </strong>/hr)
                 </span>
+                <div class="form-check form-switch d-flex align-items-center gap-1 m-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="costToggle" checked style="cursor: pointer;" data-bs-toggle="tooltip" title="Toggle fixed hangar costs ($623)">
+                    <!-- <label class="form-check-label" for="costToggle" style="font-size: 0.85rem; opacity: 0.8; cursor: pointer;" >Hangar</label> -->
+                </div>
                 <span>Hr/Mon (yr): <strong>{{ "%.1f"|format(hours_per_month) }} ({{ "%.0f"|format(hours_per_month * 12) }})</strong></span>
                 <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
                 <span>Avg MPG: <strong>{{ "%.2f"|format(total_distance_traveled/total_gallons_used) }}</strong></span>
