@@ -4,8 +4,8 @@ import json
 import logging
 import os
 import re
-import tempfile
 import subprocess
+import tempfile
 import threading
 import time
 from datetime import datetime, timedelta
@@ -23,9 +23,9 @@ from flask import (
     redirect,
     render_template,
     request,
+    send_file,
     session,
     url_for,
-    send_file,
 )
 from flask_login import LoginManager, UserMixin, login_required, login_user
 from flask_sqlalchemy import SQLAlchemy
@@ -40,11 +40,7 @@ from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
-from src.tool_functions import (
-    calc_total_distance,
-    calc_total_gallons,
-    load_stats_file,
-)
+from src.tool_functions import calc_total_distance, calc_total_gallons, load_stats_file
 
 CWD_PATH = os.path.abspath(os.getcwd())
 app = Flask(__name__)
@@ -972,7 +968,6 @@ def index():
 
     total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
     total_tach = validate_float(latest_flight.tach) if latest_flight else 0.0
-
     # --- Sum total landings ---
     total_landings = db.session.query(func.sum(FlightLog.landings)).scalar() or 0
 
@@ -980,16 +975,6 @@ def index():
     total_fuel_cost = 0.0
     total_gallons = 0.0
     cost_per_month = 0.0
-    engine_overhaul = 25000
-    engine_overhaul_per_hour = engine_overhaul / 2000
-    prop_overhaul = 3500
-    # IF(1800>(D1*72/12),$B$10/(D1*72/12),$B$10/1800)
-    prop_overhaul_per_hour = (
-        prop_overhaul / (total_hobbs * 72 / 12)
-        if 1800 > (total_hobbs * 72 / 12)
-        else prop_overhaul / 1800
-    )
-    mx_costs = prop_overhaul_per_hour + engine_overhaul_per_hour
     insurance_per_year = 2400
     insurance_per_month = insurance_per_year / 12  # $200 per month
     hangar_per_month = 623
@@ -1016,25 +1001,39 @@ def index():
     avg_fuel_cost_per_hour = (
         round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
     )
-
     years_diff = today.year - first_flight_date.year
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
     total_months = max(total_months, 1)
+    hours_per_month = total_hobbs / total_months
+    hours_per_year_est = hours_per_month * 12
+    engine_overhaul = 25000
+    engine_overhaul_per_hour = engine_overhaul / 2000
+    prop_overhaul = 3500
+    prop_overhaul_per_hour = (
+        prop_overhaul / (hours_per_year_est * 72 / 12)
+        if 1800 > (hours_per_year_est * 72 / 12)
+        else prop_overhaul / 1800
+    )
+    mx_costs_per_hour = prop_overhaul_per_hour + engine_overhaul_per_hour
     fixed_costs = (
         insurance_per_month  # $200
-        + hangar_per_month  # $605
+        + hangar_per_month  # $623
         + taxes_per_month  # $125
         + xpndr_check_per_month  # $5.20
         + foreflight_month  # $20.83
         + airmate_month  # $4.03
         + atc_month  # $7.42
     )
-    hours_per_month = total_hobbs / total_months
+
     cost_per_month = (
-        total_fuel_cost / total_months + fixed_costs + (mx_costs * hours_per_month)
+        total_fuel_cost / total_months
+        + fixed_costs
+        + (mx_costs_per_hour * hours_per_month)
     )
-    cost_per_hour = (cost_per_month / hours_per_month) + mx_costs
+    cost_per_hour = (cost_per_month / hours_per_month) + mx_costs_per_hour
+    print(cost_per_hour)
+    print(avg_fuel_cost_per_hour + mx_costs_per_hour + (fixed_costs / hours_per_month))
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
     # )
