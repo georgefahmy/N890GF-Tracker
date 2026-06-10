@@ -995,18 +995,18 @@ def index():
     total_gallons = calc_total_gallons(stats_data)
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     today = datetime.now()
-
-    avg_gph = round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0
-
-    avg_fuel_cost_per_hour = (
-        round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
-    )
     years_diff = today.year - first_flight_date.year
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
     total_months = max(total_months, 1)
     hours_per_month = total_hobbs / total_months
     hours_per_year_est = hours_per_month * 12
+
+    avg_gph = round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0
+
+    avg_fuel_cost_per_hour = (
+        round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
+    )
     engine_overhaul = 25000
     engine_overhaul_per_hour = engine_overhaul / 2000
     prop_overhaul = 3500
@@ -1015,16 +1015,30 @@ def index():
         if 1800 > (hours_per_year_est * 72 / 12)
         else prop_overhaul / 1800
     )
-    mx_costs_per_hour = prop_overhaul_per_hour + engine_overhaul_per_hour
+
+    # interval of hours for oil change is every 50 hours
+    oil_change_interval = 50
+    oil_change_qty = 7
+    oil_change_price = 63.75 / 6 * oil_change_qty / oil_change_interval
+    mx_costs_per_hour = (
+        prop_overhaul_per_hour + engine_overhaul_per_hour + oil_change_price
+    )
+    # average fuel cost per hour and maintenance costs per hour of operation included below
+    per_hour_cost = avg_fuel_cost_per_hour + mx_costs_per_hour
+    # print(per_hour_cost)
+
+    # monthly/yearly subscriptions. prices per month are $20.83  $4.03  $7.42
+    subscriptions = foreflight_month + airmate_month + atc_month
+
+    # per month fixed costs
     fixed_costs = (
-        insurance_per_month  # $200
-        + hangar_per_month  # $623
+        hangar_per_month  # $623
+        + insurance_per_month  # $200
         + taxes_per_month  # $125
         + xpndr_check_per_month  # $5.20
-        + foreflight_month  # $20.83
-        + airmate_month  # $4.03
-        + atc_month  # $7.42
+        + subscriptions  # 32.28
     )
+    # print(fixed_costs)
 
     cost_per_month = (
         total_fuel_cost / total_months
@@ -1100,6 +1114,8 @@ def index():
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
         hours_per_month=hours_per_month,
+        monthly_fixed_costs=fixed_costs,
+        hourly_operating_cost=per_hour_cost,
         total_distance_traveled=calc_total_distance(stats_data),
         total_gallons_used=calc_total_gallons(stats_data),
         oil_results=None,
