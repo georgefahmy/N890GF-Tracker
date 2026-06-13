@@ -1,0 +1,624 @@
+[
+    {
+        "airport_code": "KLSN",
+        "airport_name": "Los Banos Municipal Airport Los Banos, CA",
+        "distance": {
+            "nm": 13,
+            "direction": "SSE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "City of Los Banos (FBO)",
+                "last_updated": "04-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.32"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$5.04"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O15",
+        "airport_name": "Turlock Municipal Airport Turlock, CA",
+        "distance": {
+            "nm": 18,
+            "direction": "NE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Turlock Municipal Airport",
+                "last_updated": "04-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.55"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMER",
+        "airport_name": "Castle Airport Atwater, CA",
+        "distance": {
+            "nm": 20,
+            "direction": "ENE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "KT Aero",
+                "last_updated": "14-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.80"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.87"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMCE",
+        "airport_name": "Merced Yosemite Regional Airport Merced, CA",
+        "distance": {
+            "nm": 22,
+            "direction": "E"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Gateway Air Center",
+                "last_updated": "05-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$8.65"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.75"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.68"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMOD",
+        "airport_name": "Modesto City-County Airport-Harry Sham Field Modesto, CA",
+        "distance": {
+            "nm": 22,
+            "direction": "N"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Modesto Jet Center",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.78"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.78"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KCVH",
+        "airport_name": "Hollister Municipal Airport Hollister, CA",
+        "distance": {
+            "nm": 31,
+            "direction": "SW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Hollister Jet Center, Inc",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.48"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.98 $7.88"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$7.52"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.02 $7.92"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O27",
+        "airport_name": "Oakdale Airport Oakdale, CA",
+        "distance": {
+            "nm": 31,
+            "direction": "NNE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "City of Oakdale",
+                "last_updated": "05-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.62"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "E16",
+        "airport_name": "San Martin Airport San Martin, CA",
+        "distance": {
+            "nm": 32,
+            "direction": "WSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "San Martin Aviation Corp",
+                "last_updated": "10-Jun",
+                "prices": {
+                    "UL94": [
+                        {
+                            "service": "SS",
+                            "price": "$7.79"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.78"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KTCY",
+        "airport_name": "Tracy Municipal Airport Tracy, CA",
+        "distance": {
+            "nm": 34,
+            "direction": "NW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Tracy Municipal Airport",
+                "last_updated": "10-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.23"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$5.81"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KSCK",
+        "airport_name": "Stockton Metro Airport Stockton, CA",
+        "distance": {
+            "nm": 40,
+            "direction": "NNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Atlantic Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$8.02"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$9.19"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KRHV",
+        "airport_name": "Reid-Hillview Airport of Santa Clara County San Jose, CA",
+        "distance": {
+            "nm": 41,
+            "direction": "W"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Santa Clara County",
+                "last_updated": "05-Jun",
+                "prices": {
+                    "G100UL": [
+                        {
+                            "service": "FS",
+                            "price": "$6.99"
+                        }
+                    ],
+                    "UL94": [
+                        {
+                            "service": "SS",
+                            "price": "$8.47"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.77"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMAE",
+        "airport_name": "Madera Municipal Airport Madera, CA",
+        "distance": {
+            "nm": 44,
+            "direction": "ESE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Madera Jet Center, Inc.",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.34"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$8.29"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "C&T Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.28"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.05"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Bode Enterprises",
+                "last_updated": "24-Feb",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.60"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KWVI",
+        "airport_name": "Watsonville Municipal Airport Watsonville, CA",
+        "distance": {
+            "nm": 44,
+            "direction": "WSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Watsonville Municipal Airport",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.00"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.50"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.75"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.25"
+                        }
+                    ],
+                    "U": [
+                        {
+                            "service": "FS",
+                            "price": "$6.25"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "C83",
+        "airport_name": "Byron Airport Byron, CA",
+        "distance": {
+            "nm": 46,
+            "direction": "NW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Contra Costa County (FBO)",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.78"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KSJC",
+        "airport_name": "Norman Y Mineta San Jose International Airport San Jose, CA",
+        "distance": {
+            "nm": 46,
+            "direction": "W"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Atlantic Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$14.61"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$11.76"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Signature Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$13.75"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$11.107"
+                        }
+                    ],
+                    "SAF": [
+                        {
+                            "service": "FS",
+                            "price": "$13.27"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMPI",
+        "airport_name": "Mariposa-Yosemite Airport Mariposa, CA",
+        "distance": {
+            "nm": 47,
+            "direction": "ENE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Mariposa County",
+                "last_updated": "09-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.899"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "AS",
+                            "price": "$6.099"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KSNS",
+        "airport_name": "Salinas Municipal Airport Salinas, CA",
+        "distance": {
+            "nm": 47,
+            "direction": "SW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Jet West GateOne",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.85"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.35"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.52"
+                        },
+                        {
+                            "service": "SS",
+                            "price": "$7.52"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "gateOne Salinas",
+                "last_updated": "09-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.85"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.35"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.52"
+                        },
+                        {
+                            "service": "SS",
+                            "price": "$7.52"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KLVK",
+        "airport_name": "Livermore Municipal Airport Livermore, CA",
+        "distance": {
+            "nm": 48,
+            "direction": "WNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Five Rivers Aviation",
+                "last_updated": "09-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.39"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$8.39"
+                        }
+                    ],
+                    "UL94": [
+                        {
+                            "service": "SS",
+                            "price": "$8.30"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.42"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
