@@ -1,0 +1,358 @@
+[
+    {
+        "airport_code": "KTVL",
+        "airport_name": "Lake Tahoe Airport South Lake Tahoe, CA",
+        "distance": {
+            "nm": null,
+            "direction": null
+        },
+        "fbos": [
+            {
+                "fbo_name": "Mountain West Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.99"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KMEV",
+        "airport_name": "Minden-Tahoe Airport Minden, NV",
+        "distance": {
+            "nm": 13,
+            "direction": "ENE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Hutt Aviation, Inc.",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$7.00"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.50"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.45"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KCXP",
+        "airport_name": "Carson City Airport Carson City, NV",
+        "distance": {
+            "nm": 22,
+            "direction": "NE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Mountain West Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.95"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.49"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$5.75"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$6.99"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Stellar Aviation of Carson City",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$6.85"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.39"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KTRK",
+        "airport_name": "Truckee-Tahoe Airport Truckee, CA",
+        "distance": {
+            "nm": 26,
+            "direction": "NNW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Truckee Tahoe Airport",
+                "last_updated": "09-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.14"
+                        },
+                        {
+                            "service": "SS",
+                            "price": "$7.14"
+                        }
+                    ],
+                    "SAF": [
+                        {
+                            "service": "FS",
+                            "price": "$9.11"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KPVF",
+        "airport_name": "Placerville Airport Placerville, CA",
+        "distance": {
+            "nm": 37,
+            "direction": "WSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "El Dorado County (FBO)",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.79"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$7.49"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.74"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KRNO",
+        "airport_name": "Reno/Tahoe International Airport Reno, NV",
+        "distance": {
+            "nm": 38,
+            "direction": "NNE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Stellar Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$7.19"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.77"
+                        }
+                    ]
+                }
+            },
+            {
+                "fbo_name": "Atlantic Aviation",
+                "last_updated": "12-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "FS",
+                            "price": "$8.32"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$10.08"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O43",
+        "airport_name": "Yerington Municipal Airport Yerington, NV",
+        "distance": {
+            "nm": 40,
+            "direction": "E"
+        },
+        "fbos": [
+            {
+                "fbo_name": "City of Yerington",
+                "last_updated": "05-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.25"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KSPZ",
+        "airport_name": "Silver Springs Airport Silver Springs, NV",
+        "distance": {
+            "nm": 46,
+            "direction": "NE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Silver Springs Regional Airport, LLC",
+                "last_updated": "20-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.89"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$7.10"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KRTS",
+        "airport_name": "Reno/Stead Airport Reno, NV",
+        "distance": {
+            "nm": 47,
+            "direction": "N"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Aviation Classics",
+                "last_updated": "10-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.85"
+                        },
+                        {
+                            "service": "FS",
+                            "price": "$7.35"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "FS",
+                            "price": "$6.99"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "O61",
+        "airport_name": "Cameron Park Airport Cameron Park, CA",
+        "distance": {
+            "nm": 48,
+            "direction": "WSW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Cameron Park Airport",
+                "last_updated": "28-May",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.79"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "airport_code": "KJAQ",
+        "airport_name": "Westover Field / Amador County Airport Jackson, CA",
+        "distance": {
+            "nm": 49,
+            "direction": "SW"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Amador County (FBO)",
+                "last_updated": "02-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.59"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.99"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
