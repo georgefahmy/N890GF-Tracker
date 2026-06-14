@@ -1765,39 +1765,42 @@ def api_analyze_flight():
 
         target_flight = flight_ids[0]
         flight_data = df[df["Flight ID"] == target_flight].copy()
-
+        flight_data = flight_data.replace([np.inf, -np.inf], 0)
+        flight_data = flight_data.fillna(0)
+        flight_date = datetime.strptime(
+            "-".join(flight_data["Flight ID"][0].split("-")[:-1]), "%Y-%m-%d %H:%M:%S"
+        )
         # --- Apply Filters ---
         filters_json = request.form.get("filters")
         if filters_json:
             try:
                 filters = json.loads(filters_json)
+                final_mask = pd.Series(True, index=flight_data.index)
                 for f in filters:
                     signal = f.get("signal")
                     op = f.get("op")
-                    value = f.get("value")
+                    value = float(f.get("value"))  # Convert to float immediately
 
-                    if signal not in flight_data.columns:
-                        continue
+                    # Ensure column is numeric
+                    col = pd.to_numeric(flight_data[signal], errors="coerce")
 
-                    col_data = pd.to_numeric(flight_data[signal], errors="coerce")
-
+                    # Apply the logic based on the operator
                     if op == ">":
-                        flight_data = flight_data[col_data > value]
+                        final_mask &= col > value
                     elif op == "<":
-                        flight_data = flight_data[col_data < value]
-                    elif op == ">=":
-                        flight_data = flight_data[col_data >= value]
-                    elif op == "<=":
-                        flight_data = flight_data[col_data <= value]
+                        final_mask &= col < value
                     elif op == "==":
-                        flight_data = flight_data[col_data == value]
-
+                        final_mask &= col == value
+                    elif op == ">=":
+                        final_mask &= col >= value
+                    elif op == "<=":
+                        final_mask &= col <= value
+                # print(final_mask)
+                flight_data = flight_data[final_mask]
             except Exception as e:
-                print("Filter parsing error:", e)
+                print(f"didnt work: {e}")
 
         # Sanitize data for JSON
-        flight_data = flight_data.replace([np.inf, -np.inf], 0)
-        flight_data = flight_data.fillna(0)
         x_data = flight_data["Session Time"].tolist()
 
         def extract_traces(sig):
@@ -1868,7 +1871,6 @@ def api_analyze_flight():
                 .replace([np.inf, -np.inf], np.nan)
                 .tolist()
             )
-        # --- ALIGNED MULTI-MODE SIGNALS (for heatmap modes) ---
 
         def safe_numeric(series):
             return (
@@ -1900,7 +1902,6 @@ def api_analyze_flight():
             )
         )
         mpg = safe_numeric(flight_data.get("MPG", pd.Series([0] * len(flight_data))))
-
         # --- Vertical speed (use native Dynon data if available) ---
         if "Vertical Speed (ft/min)" in flight_data.columns:
             vertical_speed = (
@@ -2007,10 +2008,6 @@ def api_analyze_flight():
                 series = pd.to_numeric(flight_data[col], errors="coerce").dropna()
                 return round(series.max(), 1) if not series.empty else "N/A"
             return "N/A"
-
-        flight_date = datetime.strptime(
-            "-".join(flight_data["Flight ID"][0].split("-")[:-1]), "%Y-%m-%d %H:%M:%S"
-        )
 
         fuel_price = validate_float(
             [
