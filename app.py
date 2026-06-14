@@ -2019,7 +2019,8 @@ def api_analyze_flight():
                 if fuel_log.date <= flight_date
             ][0]
         )
-        avg_speed_mph = (distance_traveled[-1] / 5280) / duration
+        distance_traveled_miles = distance_traveled[-1] / 5280
+        avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2)
         stats = {
             "flight_id": target_flight,
             "duration_min": round(duration / 60, 2),
@@ -2030,7 +2031,7 @@ def api_analyze_flight():
             ),
             "avg_fuel_flow": round(avg_flow, 2),
             "avg_mpg": avg_mpg,
-            "distance_traveled": distance_traveled[-1] / 5280,
+            "distance_traveled": distance_traveled_miles,
             "current_fuel_price": fuel_price,
             "avg_speed_mph": avg_speed_mph,
         }
