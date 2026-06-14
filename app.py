@@ -16,17 +16,8 @@ import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from flask import (
-    Flask,
-    jsonify,
-    make_response,
-    redirect,
-    render_template,
-    request,
-    send_file,
-    session,
-    url_for,
-)
+from flask import (Flask, jsonify, make_response, redirect, render_template,
+                   request, send_file, session, url_for)
 from flask_login import LoginManager, UserMixin, login_required, login_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
@@ -40,7 +31,8 @@ from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
-from src.tool_functions import calc_total_distance, calc_total_gallons, load_stats_file
+from src.tool_functions import (calc_total_distance, calc_total_gallons,
+                                load_stats_file)
 
 CWD_PATH = os.path.abspath(os.getcwd())
 app = Flask(__name__)
@@ -2019,7 +2011,7 @@ def api_analyze_flight():
                 if fuel_log.date <= flight_date
             ][0]
         )
-
+        avg_speed_mph = (distance_traveled[-1] / 5280) / duration
         stats = {
             "flight_id": target_flight,
             "duration_min": round(duration / 60, 2),
@@ -2032,6 +2024,7 @@ def api_analyze_flight():
             "avg_mpg": avg_mpg,
             "distance_traveled": distance_traveled[-1] / 5280,
             "current_fuel_price": fuel_price,
+            "avg_speed_mph": avg_speed_mph,,
         }
 
         rawData = flight_data.to_dict(orient="records")
