@@ -597,7 +597,7 @@ function renderGami(data) {
         // =====================================================
         Plotly.newPlot('scatterGraph', scatter, {
             title: "EGT vs Fuel Flow",
-            xaxis: { title: "Fuel Flow" },
+            xaxis: { title: "Fuel Flow", autorange: 'reversed'},
             yaxis: { title: `EGT (°${tempUnit})` },
             annotations: annotations,
             hovermode: 'x unified',
