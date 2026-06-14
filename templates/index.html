@@ -179,16 +179,16 @@
                 <span>Hobbs: <strong>{{ "%.1f"|format(total_hobbs) }}</strong></span>
                 <span>Landings: <strong>{{ total_landings }}</strong></span>
                 <span>Distance: <strong>{{ "%.0f"|format(total_distance_traveled) }}mi</strong></span>
-                <span>Monthly Fixed Costs: <strong>${{ "%.0f"|format(monthly_fixed_costs) }}</strong></span>
-                <span>Per Hour Cost: <strong>${{ "%.0f"|format(hourly_operating_cost) }}</strong></span>
+                <span>Monthly Fixed $: <strong>${{ "%.0f"|format(monthly_fixed_costs) }}</strong></span>
+                <span>Hourly: <strong>${{ "%.0f"|format(hourly_operating_cost) }}</strong></span>
                 <!-- <span class="d-none d-lg-inline">|</span> -->
-                <span>Fuel $: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong> ({{"%.1f"|format(total_gallons_used)}}gals)</span>
+                <span>Fuel $: <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong> ({{"%.0f"|format(total_gallons_used)}}gals)</span>
                 <span data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-html="true"
                     title="<b>Variable Costs:</b> Fuel, Oil, Mx.<br><b>Fixed costs:</b> Hangar, Insurance, Taxes, and Subscriptions."
                     style="cursor: help;">
-                    Monthly Cost:
+                    Monthly $:
                     <strong>${{ "%.2f"|format(cost_per_month) }}
                     </strong>
                 </span>
