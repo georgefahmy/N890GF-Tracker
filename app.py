@@ -879,6 +879,39 @@ def logout():
     return redirect(url_for("login"))
 
 
+def calc_per_hour_cost():
+    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
+    latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
+    total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
+    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
+    today = datetime.now()
+    years_diff = today.year - first_flight_date.year
+    months_diff = today.month - first_flight_date.month
+    total_months = (years_diff * 12) + months_diff
+    total_months = max(total_months, 1)
+    hours_per_month = total_hobbs / total_months
+    hours_per_year_est = hours_per_month * 12
+    engine_overhaul = 25000
+    engine_overhaul_per_hour = engine_overhaul / 2000
+    prop_overhaul = 3500
+    prop_overhaul_per_hour = (
+        prop_overhaul / (hours_per_year_est * 72 / 12)
+        if 1800 > (hours_per_year_est * 72 / 12)
+        else prop_overhaul / 1800
+    )
+    oil_change_interval = 50
+    oil_change_qty = 7
+    oil_change_price = 63.75 / 6 * oil_change_qty / oil_change_interval
+    mx_costs_per_hour = (
+        prop_overhaul_per_hour + engine_overhaul_per_hour + oil_change_price
+    )
+    avg_fuel_cost_per_hour = (
+        round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
+    )
+    per_hour_cost = avg_fuel_cost_per_hour + mx_costs_per_hour
+    return per_hour_cost, mx_costs_per_hour
+
+
 @app.route("/")
 @login_required
 def index():
@@ -1000,32 +1033,12 @@ def index():
     total_months = (years_diff * 12) + months_diff
     total_months = max(total_months, 1)
     hours_per_month = total_hobbs / total_months
-    hours_per_year_est = hours_per_month * 12
 
     avg_gph = round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0
 
-    avg_fuel_cost_per_hour = (
-        round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
-    )
-    engine_overhaul = 25000
-    engine_overhaul_per_hour = engine_overhaul / 2000
-    prop_overhaul = 3500
-    prop_overhaul_per_hour = (
-        prop_overhaul / (hours_per_year_est * 72 / 12)
-        if 1800 > (hours_per_year_est * 72 / 12)
-        else prop_overhaul / 1800
-    )
-
-    # interval of hours for oil change is every 50 hours
-    oil_change_interval = 50
-    oil_change_qty = 7
-    oil_change_price = 63.75 / 6 * oil_change_qty / oil_change_interval
-    mx_costs_per_hour = (
-        prop_overhaul_per_hour + engine_overhaul_per_hour + oil_change_price
-    )
     # average fuel cost per hour and maintenance costs per hour of operation included below
-    per_hour_cost = avg_fuel_cost_per_hour + mx_costs_per_hour
-    # print(per_hour_cost)
+    per_hour_cost, mx_costs_per_hour = calc_per_hour_cost()
+    avg_fuel_cost_per_hour = per_hour_cost - mx_costs_per_hour
 
     # monthly/yearly subscriptions. prices per month are $20.83  $4.03  $7.42
     subscriptions = foreflight_month + airmate_month + atc_month
@@ -2018,6 +2031,8 @@ def api_analyze_flight():
         )
         distance_traveled_miles = distance_traveled[-1] / 5280
         avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2)
+        per_hour_cost, _ = calc_per_hour_cost()
+        actual_cost_per_hour = round(per_hour_cost * (duration / 3600), 2)
         stats = {
             "flight_id": target_flight,
             "duration_min": round(duration / 60, 2),
@@ -2031,6 +2046,7 @@ def api_analyze_flight():
             "distance_traveled": distance_traveled_miles,
             "current_fuel_price": fuel_price,
             "avg_speed_mph": avg_speed_mph,
+            "actual_cost_per_hour": actual_cost_per_hour,
         }
 
         rawData = flight_data.to_dict(orient="records")
