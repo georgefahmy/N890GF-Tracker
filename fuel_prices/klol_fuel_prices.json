@@ -31,12 +31,12 @@
         "fbos": [
             {
                 "fbo_name": "Fallon Airmotive Co.",
-                "last_updated": "02-Jun",
+                "last_updated": "12-Jun",
                 "prices": {
                     "100LL": [
                         {
                             "service": "SS",
-                            "price": "$7.36"
+                            "price": "$7.61"
                         },
                         {
                             "service": "FS",
@@ -95,7 +95,7 @@
         "fbos": [
             {
                 "fbo_name": "Winnemucca Air Service",
-                "last_updated": "04-Jun",
+                "last_updated": "15-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -127,7 +127,7 @@
         "fbos": [
             {
                 "fbo_name": "Aviation Classics",
-                "last_updated": "27-May",
+                "last_updated": "10-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -159,7 +159,7 @@
         "fbos": [
             {
                 "fbo_name": "Stellar Aviation",
-                "last_updated": "08-Jun",
+                "last_updated": "16-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -177,7 +177,7 @@
             },
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "08-Jun",
+                "last_updated": "16-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -205,7 +205,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Yerington",
-                "last_updated": "05-Jun",
+                "last_updated": "15-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -227,7 +227,7 @@
         "fbos": [
             {
                 "fbo_name": "Mountain West Aviation",
-                "last_updated": "08-Jun",
+                "last_updated": "16-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -253,7 +253,7 @@
             },
             {
                 "fbo_name": "Stellar Aviation of Carson City",
-                "last_updated": "08-Jun",
+                "last_updated": "16-Jun",
                 "prices": {
                     "100LL": [
                         {
