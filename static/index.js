@@ -796,3 +796,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cloudForm = document.getElementById('cloudCalcForm');
+
+    if (cloudForm) {
+        cloudForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Fetch inputs
+            const temp = parseFloat(document.getElementById('surfaceTemp').value);
+            const dew = parseFloat(document.getElementById('dewPoint').value);
+            const elevation = parseFloat(document.getElementById('surfaceElevation').value) || 0;
+
+            // Standard Aviation Calculation (Yields Feet AGL directly)
+            const aglFeet = ((temp - dew) / 2.5) * 1000;
+            const aglMeters = aglFeet / 3.28084;
+
+            // Mean Sea Level (MSL) Calculation
+            const mslFeet = aglFeet + elevation;
+
+            // Update the DOM
+            document.getElementById('standardFeetResult').textContent = aglFeet.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('mslFeetResult').textContent = mslFeet.toLocaleString(undefined, {maximumFractionDigits: 0});
+
+            // Reveal the results container
+            document.getElementById('cloudResults').classList.remove('d-none');
+        });
+    }
+});
