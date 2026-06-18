@@ -159,7 +159,7 @@
         "fbos": [
             {
                 "fbo_name": "Stellar Aviation",
-                "last_updated": "16-Jun",
+                "last_updated": "18-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -177,7 +177,7 @@
             },
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "16-Jun",
+                "last_updated": "18-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -188,7 +188,7 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$10.08"
+                            "price": "$9.29"
                         }
                     ]
                 }
@@ -218,6 +218,34 @@
         ]
     },
     {
+        "airport_code": "KTMT",
+        "airport_name": "Austin Airport Austin, NV",
+        "distance": {
+            "nm": 73,
+            "direction": "ESE"
+        },
+        "fbos": [
+            {
+                "fbo_name": "Gold Mountain Aviation Services LLC",
+                "last_updated": "18-Jun",
+                "prices": {
+                    "100LL": [
+                        {
+                            "service": "SS",
+                            "price": "$6.85"
+                        }
+                    ],
+                    "Jet A": [
+                        {
+                            "service": "SS",
+                            "price": "$6.25"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
         "airport_code": "KCXP",
         "airport_name": "Carson City Airport Carson City, NV",
         "distance": {
@@ -227,7 +255,7 @@
         "fbos": [
             {
                 "fbo_name": "Mountain West Aviation",
-                "last_updated": "16-Jun",
+                "last_updated": "18-Jun",
                 "prices": {
                     "100LL": [
                         {
@@ -246,14 +274,14 @@
                         },
                         {
                             "service": "FS",
-                            "price": "$6.99"
+                            "price": "$6.75"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "Stellar Aviation of Carson City",
-                "last_updated": "16-Jun",
+                "last_updated": "18-Jun",
                 "prices": {
                     "100LL": [
                         {
