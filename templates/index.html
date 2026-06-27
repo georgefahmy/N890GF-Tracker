@@ -180,13 +180,14 @@
                 <span>Landings: <strong>{{ total_landings }}</strong></span>
                 <span>Distance: <strong>{{ "%.0f"|format(total_distance_traveled) }}mi</strong></span>
                 <span>Monthly Fixed $: <strong>${{ "%.0f"|format(monthly_fixed_costs) }}</strong></span>
-                <span>Hourly: <strong>${{ "%.0f"|format(hourly_operating_cost) }}</strong></strong> (${{ "%.0f"|format(hourly_fuel_cost) }})</span></span>
-                <!-- <span class="d-none d-lg-inline">|</span> -->
                 <span data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-html="true"
                     title="Total Hourly cost (Fuel Only costs)"
                     style="cursor: help;">
+                    Hourly: <strong>${{ "%.0f"|format(hourly_operating_cost) }}</strong></strong> (${{ "%.0f"|format(hourly_fuel_cost) }})</span></span>
+                <!-- <span class="d-none d-lg-inline">|</span> -->
+                <span>
                     Fuel $:
                     <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong>
                      ({{"%.0f"|format(total_gallons_used)}}gals)
