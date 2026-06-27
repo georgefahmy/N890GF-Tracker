@@ -909,7 +909,7 @@ def calc_per_hour_cost():
         round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
     )
     per_hour_cost = avg_fuel_cost_per_hour + mx_costs_per_hour
-    return per_hour_cost, mx_costs_per_hour
+    return per_hour_cost, mx_costs_per_hour, avg_fuel_cost_per_hour
 
 
 @app.route("/")
@@ -1037,7 +1037,7 @@ def index():
     avg_gph = round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0
 
     # average fuel cost per hour and maintenance costs per hour of operation included below
-    per_hour_cost, mx_costs_per_hour = calc_per_hour_cost()
+    per_hour_cost, mx_costs_per_hour, hourly_fuel_cost = calc_per_hour_cost()
     avg_fuel_cost_per_hour = per_hour_cost - mx_costs_per_hour
 
     # monthly/yearly subscriptions. prices per month are $20.83  $4.03  $7.42
@@ -1129,6 +1129,7 @@ def index():
         hours_per_month=hours_per_month,
         monthly_fixed_costs=fixed_costs,
         hourly_operating_cost=per_hour_cost,
+        hourly_fuel_cost=hourly_fuel_cost,
         total_distance_traveled=calc_total_distance(stats_data),
         total_gallons_used=calc_total_gallons(stats_data),
         oil_results=None,
@@ -2031,7 +2032,7 @@ def api_analyze_flight():
         )
         distance_traveled_miles = distance_traveled[-1] / 5280
         avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2)
-        per_hour_cost, _ = calc_per_hour_cost()
+        per_hour_cost, _, _ = calc_per_hour_cost()
         actual_cost_per_hour = round(per_hour_cost * (duration / 3600), 2)
         stats = {
             "flight_id": target_flight,
