@@ -41,10 +41,10 @@ from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
 from src.tool_functions import (
+    calc_total_air_time,
     calc_total_distance,
     calc_total_gallons,
     load_stats_file,
-    calc_total_air_time,
 )
 
 CWD_PATH = os.path.abspath(os.getcwd())
@@ -1066,7 +1066,7 @@ def index():
         + (mx_costs_per_hour * hours_per_month)
     )
     cost_per_hour = cost_per_month / hours_per_month
-
+    total_hourly_cost = per_hour_cost + cost_per_hour
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
     # )
@@ -1135,7 +1135,7 @@ def index():
         avg_gph=avg_gph,
         hours_per_month=hours_per_month,
         monthly_fixed_costs=fixed_costs,
-        hourly_operating_cost=per_hour_cost,
+        hourly_operating_cost=total_hourly_cost,
         hourly_fuel_cost=hourly_fuel_cost,
         total_distance_traveled=calc_total_distance(stats_data),
         total_gallons_used=calc_total_gallons(stats_data),
