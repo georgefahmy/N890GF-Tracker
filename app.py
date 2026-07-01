@@ -1136,7 +1136,7 @@ def index():
         hours_per_month=hours_per_month,
         monthly_fixed_costs=fixed_costs,
         hourly_operating_cost=total_hourly_cost,
-        hourly_fuel_cost=hourly_fuel_cost,
+        hourly_fuel_cost=per_hour_cost,
         total_distance_traveled=calc_total_distance(stats_data),
         total_gallons_used=calc_total_gallons(stats_data),
         oil_results=None,
