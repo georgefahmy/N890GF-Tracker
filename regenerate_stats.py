@@ -87,8 +87,12 @@ for fid in flight_ids:
 
 final_mask = pd.Series(True, index=flight_data.index)
 final_mask &= pd.to_numeric(flight_data["RPM"], errors="coerce") > 2200
-final_mask &= pd.to_numeric(flight_data["Manifold Pressure (inHg)"], errors="coerce") > 17
-final_mask &= pd.to_numeric(flight_data["Indicated Airspeed (knots)"], errors="coerce") > 100
+final_mask &= (
+    pd.to_numeric(flight_data["Manifold Pressure (inHg)"], errors="coerce") > 17
+)
+final_mask &= (
+    pd.to_numeric(flight_data["Indicated Airspeed (knots)"], errors="coerce") > 100
+)
 
 # 2. Set up the 3D canvas
 fig = plt.figure(figsize=(10, 7))
