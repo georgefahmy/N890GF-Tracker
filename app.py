@@ -40,7 +40,12 @@ from src.fuel_estimate_simple import calculate_fuel
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
-from src.tool_functions import calc_total_distance, calc_total_gallons, load_stats_file
+from src.tool_functions import (
+    calc_total_distance,
+    calc_total_gallons,
+    load_stats_file,
+    calc_total_air_time,
+)
 
 CWD_PATH = os.path.abspath(os.getcwd())
 app = Flask(__name__)
@@ -1026,6 +1031,8 @@ def index():
 
     stats_data = load_stats_file()
     total_gallons = calc_total_gallons(stats_data)
+    total_air_time = calc_total_air_time(stats_data)
+    print(total_air_time)
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     today = datetime.now()
     years_diff = today.year - first_flight_date.year

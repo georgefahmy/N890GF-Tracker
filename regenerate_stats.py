@@ -1,15 +1,10 @@
 import pandas as pd
 import os
-import numpy as np
 import csv
-
-data_dir = "/Users/GFahmy/Documents/RV-7/data_logs"
-
-files = [file for file in os.listdir(data_dir) if "USER_LOG" in file]
 
 
 # ====== LOAD ALL CSV FILES ======
-def load_flights(files):
+def load_flights(data_dir, files):
     all_data = []
     for file in files:
         if file.endswith(".csv"):
@@ -23,147 +18,96 @@ def load_flights(files):
     return combined
 
 
-df = load_flights(files)
-# Remove rows where System Time is NaN or blank
-df = df[df["System Time"].notna() & (df["System Time"] != "")]
-df["System Time"] = pd.to_numeric(df["System Time"], errors="coerce").fillna(0)
+def append_unique_row(filename, new_row):
+    # Read existing rows to check for duplicates
+    with open(filename, "r", newline="") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row == new_row:
+                print("Entry already exists. Skipping...")
+                return
+    # If loop finishes without returning, append the new row
+    with open(filename, "a", newline="") as f:
+        csv.writer(f).writerow(new_row)
+        print("New entry added successfully.")
 
-# Remove rows where GPS Date & Time is NaN or blank
-df = df[df["GPS Date & Time"].notna() & (df["GPS Date & Time"] != "")]
-core_numeric_cols = [
-    "Session Time",
-    "System Time",
-    "RPM L",
-    "RPM R",
-    "RPM",
-    "CHT 1 (deg C)",
-    "CHT 2 (deg C)",
-    "CHT 3 (deg C)",
-    "CHT 4 (deg C)",
-    "OAT (deg C)",
-    "OIL TEMPERATURE (deg C)",
-    "Fuel Flow 1 (gal/hr)",
-    "Total Fuel Flow (gal/hr)",
-    "Ground Speed (knots)",
-]
 
-for col in core_numeric_cols:
-    if col in df.columns:
-        df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+cwd = os.getcwd()
+data_dir = cwd + "/clean_flights/"
+files = os.listdir(data_dir)
+stats_file = cwd + "/static/stats.csv"
 
-df["_orig_flight_num"] = (df["Session Time"].diff() < 0).cumsum()
-df["RPM"] = (df["RPM L"] + df["RPM R"]) / 2
-df["AVG_CHT (deg C)"] = (
-    df["CHT 1 (deg C)"]
-    + df["CHT 2 (deg C)"]
-    + df["CHT 3 (deg C)"]
-    + df["CHT 4 (deg C)"]
-) / 4
-df["CHT_Delta_T (deg C)"] = df["AVG_CHT (deg C)"] - df["OAT (deg C)"]
-df["OIL_Delta_T (deg C)"] = df["OIL TEMPERATURE (deg C)"] - df["OAT (deg C)"]
-
-temp_cols = [col for col in df.columns if "(deg C)" in col]
-for col in temp_cols:
-    try:
-        new_name = col.replace("(deg C)", "(deg F)")
-        # Force numeric conversion to prevent string math errors
-        df[col] = pd.to_numeric(df[col], errors="coerce")
-        # Convert C to F
-        df[new_name] = df[col] * 9.0 / 5.0 + 32.0
-
-    except Exception as e:
-        print(f"Warning: Temperature conversion failed for column '{col}': {e}")
-
-if "Total Fuel Flow (gal/hr)" in df.columns:
-    df["Total Fuel Flow (gal/hr)"] = pd.to_numeric(
-        df["Fuel Flow 1 (gal/hr)"], errors="coerce"
-    ).fillna(0)
-    # Vectorized trapezoidal integration per flight
-    df = df.sort_values(["_orig_flight_num", "Session Time"])
-    dt = df.groupby("_orig_flight_num")["Session Time"].diff().fillna(0)
-    flow_gps = df["Total Fuel Flow (gal/hr)"] / 3600.0
-    flow_prev = flow_gps.groupby(df["_orig_flight_num"]).shift(1).fillna(flow_gps)
-    avg_flow = 0.5 * (flow_gps + flow_prev)
-    increment = avg_flow * dt
-    df["Fuel Flow Integral"] = increment.groupby(df["_orig_flight_num"]).cumsum()
-
-if "Ground Speed (knots)" in df.columns:
-    df["Ground Speed (knots)"] = pd.to_numeric(
-        df["Ground Speed (knots)"], errors="coerce"
-    ).fillna(0)
-    # Vectorized trapezoidal integration for distance per flight
-    dt = df.groupby("_orig_flight_num")["Session Time"].diff().fillna(0)
-    speed_fps = df["Ground Speed (knots)"] * 1.15 * 5280 / 3600
-    speed_prev = speed_fps.groupby(df["_orig_flight_num"]).shift(1).fillna(speed_fps)
-    avg_speed = 0.5 * (speed_fps + speed_prev)
-    increment = avg_speed * dt
-    df["Distance Traveled"] = increment.groupby(df["_orig_flight_num"]).cumsum()
-
-# Calculate MPG (nautical miles per gallon)
-if "Ground Speed (knots)" in df.columns and "Total Fuel Flow (gal/hr)" in df.columns:
-    df["MPG"] = df["Ground Speed (knots)"] / df["Total Fuel Flow (gal/hr)"]
-    df["MPG"] = df["MPG"].replace([float("inf"), -float("inf")], 0).fillna(0)
-else:
-    df["MPG"] = 0
-
-flight_max_rpm = df.groupby("_orig_flight_num")[["RPM"]].max()
-flight_max_cht = df.groupby("_orig_flight_num")[
-    [
-        "CHT 1 (deg F)",
-        "CHT 2 (deg F)",
-        "CHT 3 (deg F)",
-        "CHT 4 (deg F)",
-    ]
-].max()
-df["Max CHT"] = df["_orig_flight_num"].map(flight_max_cht.max(axis=1))
-check = (flight_max_rpm["RPM"] > 0) & (flight_max_cht.max(axis=1) > 150)
-real_flight = [fid for fid in df["_orig_flight_num"].unique() if check.get(fid, False)]
-
-flight_start_gps = df.groupby("_orig_flight_num")["GPS Date & Time"].first()
-flightid_map = {fid: f"{flight_start_gps.get(fid, '')}" for fid in real_flight}
-
-df["Flight ID"] = df["_orig_flight_num"].map(lambda x: flightid_map.get(x, None))
-df["Flight ID"] = pd.to_datetime(df["Flight ID"])
-df["Flight ID"] = df["Flight ID"].dt.tz_localize("UTC").dt.tz_convert("US/Pacific")
-df["System Time"] = pd.to_numeric(df["System Time"], errors="coerce").fillna(0)
-
-num_cols = df.select_dtypes(include=[np.number]).columns
-obj_cols = df.select_dtypes(include=["object"]).columns
-
-if len(num_cols) > 0:
-    df[num_cols] = df[num_cols].fillna(0)
-
-if len(obj_cols) > 0:
-    df[obj_cols] = df[obj_cols].fillna("")
-
-df.drop(columns=["_orig_flight_num"], inplace=True)
-# Ensure RPM L and RPM R are numeric and fill NaNs with 0
-flight_ids = [
-    fid for fid in df["Flight ID"].unique() if fid not in (None, 0, "", "nan")
-]
+df = load_flights(data_dir, files)
+flight_ids = sorted(
+    [fid for fid in df["Flight ID"].unique() if fid not in (None, 0, "", "nan")]
+)
 
 for fid in flight_ids:
-    flight_data = df[df["Flight ID"] == fid]
-    if flight_data.empty:
-        continue
-
+    flight_data = df[df["Flight ID"] == fid].copy()
     # Extract date from Flight ID (assumes format: "YYYY-MM-DD ... - Flight X")
     fid_str = "-".join(str(fid).split("-")[:-1])
     safe_name = fid_str.replace("/", "-").replace(":", "-")
 
-    # Clean filename
-    base_name, ext = os.path.splitext(safe_name)
-    saved_filename = f"{safe_name}.csv"
-    filepath = os.path.join(
-        "/Users/GFahmy/Documents/projects/n890gf_tracker/clean_flights", saved_filename
+    total_duration = (
+        flight_data["Session Time"].iloc[-1] - flight_data["Session Time"].iloc[-0]
     )
-    flight_data.to_csv(filepath, index=False)
-    stats_file = "/Users/GFahmy/Documents/projects/n890gf_tracker/static/stats.csv"
+    try:
+        air_time = (
+            flight_data[flight_data["Transponder Status"] == 3]["Session Time"].iloc[-1]
+            - flight_data[flight_data["Transponder Status"] == 3]["Session Time"].iloc[
+                0
+            ]
+        )
+    except:
+        air_time = 0
+    distance_traveled = flight_data["Distance Traveled"].iloc[-1] / 5280
+    gallons_used = flight_data["Fuel Flow Integral"].iloc[-1]
+    max_cht = flight_data["Max CHT"].iloc[-1]
+    max_rpm = flight_data["RPM"].max()
+    avg_mpg = flight_data["MPG"].mean()
+    avg_speed = (
+        flight_data[flight_data["Transponder Status"] == 3][
+            "Ground Speed (knots)"
+        ].mean()
+        * 1.15
+    )
     data = [
         safe_name,
-        flight_data["Distance Traveled"].iloc[-1] / 5280,
-        flight_data["Fuel Flow Integral"].iloc[-1],
+        total_duration,
+        air_time,
+        distance_traveled,
+        gallons_used,
+        max_cht,
+        max_rpm,
+        avg_mpg,
+        avg_speed,
     ]
-    with open(stats_file, "a", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
-        writer.writerow(data)
+    append_unique_row(stats_file, data)
+
+
+final_mask = pd.Series(True, index=flight_data.index)
+final_mask &= pd.to_numeric(flight_data["RPM"], errors="coerce") > 2200
+final_mask &= pd.to_numeric(flight_data["Manifold Pressure (inHg)"], errors="coerce") > 17
+final_mask &= pd.to_numeric(flight_data["Indicated Airspeed (knots)"], errors="coerce") > 100
+
+# 2. Set up the 3D canvas
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(projection="3d")
+
+# 3. Plot using DataFrame columns
+# 's' controls the sizes, 'c' controls colors (optional)
+scatter = ax.scatter(
+    df[final_mask]["RPM"],
+    df[final_mask]["Total Fuel Flow (gal/hr)"],
+    df[final_mask]["Manifold Pressure (inHg)"],
+    c=df[final_mask]["True Airspeed (knots)"],
+    alpha=0.7,
+    cmap="viridis",
+)
+fig.colorbar(scatter, ax=ax, label="True Airspeed (knots)")
+# 4. Add labels and titles
+ax.set_xlabel("RPM")
+ax.set_ylabel("FF")
+ax.set_zlabel("MAP")
+plt.title("Matplotlib 3D Scatter Plot with Variable Sizes")
+plt.show()
