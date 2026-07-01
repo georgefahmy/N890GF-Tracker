@@ -1,6 +1,7 @@
-import pandas as pd
-import os
 import csv
+import os
+
+import pandas as pd
 
 
 # ====== LOAD ALL CSV FILES ======
@@ -85,33 +86,33 @@ for fid in flight_ids:
     append_unique_row(stats_file, data)
 
 
-final_mask = pd.Series(True, index=flight_data.index)
-final_mask &= pd.to_numeric(flight_data["RPM"], errors="coerce") > 2200
-final_mask &= (
-    pd.to_numeric(flight_data["Manifold Pressure (inHg)"], errors="coerce") > 17
-)
-final_mask &= (
-    pd.to_numeric(flight_data["Indicated Airspeed (knots)"], errors="coerce") > 100
-)
+# final_mask = pd.Series(True, index=flight_data.index)
+# final_mask &= pd.to_numeric(flight_data["RPM"], errors="coerce") > 2200
+# final_mask &= (
+#     pd.to_numeric(flight_data["Manifold Pressure (inHg)"], errors="coerce") > 17
+# )
+# final_mask &= (
+#     pd.to_numeric(flight_data["Indicated Airspeed (knots)"], errors="coerce") > 100
+# )
 
-# 2. Set up the 3D canvas
-fig = plt.figure(figsize=(10, 7))
-ax = fig.add_subplot(projection="3d")
+# # 2. Set up the 3D canvas
+# fig = plt.figure(figsize=(10, 7))
+# ax = fig.add_subplot(projection="3d")
 
-# 3. Plot using DataFrame columns
-# 's' controls the sizes, 'c' controls colors (optional)
-scatter = ax.scatter(
-    df[final_mask]["RPM"],
-    df[final_mask]["Total Fuel Flow (gal/hr)"],
-    df[final_mask]["Manifold Pressure (inHg)"],
-    c=df[final_mask]["True Airspeed (knots)"],
-    alpha=0.7,
-    cmap="viridis",
-)
-fig.colorbar(scatter, ax=ax, label="True Airspeed (knots)")
-# 4. Add labels and titles
-ax.set_xlabel("RPM")
-ax.set_ylabel("FF")
-ax.set_zlabel("MAP")
-plt.title("Matplotlib 3D Scatter Plot with Variable Sizes")
-plt.show()
+# # 3. Plot using DataFrame columns
+# # 's' controls the sizes, 'c' controls colors (optional)
+# scatter = ax.scatter(
+#     df[final_mask]["RPM"],
+#     df[final_mask]["Total Fuel Flow (gal/hr)"],
+#     df[final_mask]["Manifold Pressure (inHg)"],
+#     c=df[final_mask]["True Airspeed (knots)"],
+#     alpha=0.7,
+#     cmap="viridis",
+# )
+# fig.colorbar(scatter, ax=ax, label="True Airspeed (knots)")
+# # 4. Add labels and titles
+# ax.set_xlabel("RPM")
+# ax.set_ylabel("FF")
+# ax.set_zlabel("MAP")
+# plt.title("Matplotlib 3D Scatter Plot with Variable Sizes")
+# plt.show()
