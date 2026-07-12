@@ -3,3 +3,7 @@ src/__pycache__
 logs
 static/uploads/
 instance/
+htmlcov/
+.coverage
+tests/__pycache__/
+.agents
