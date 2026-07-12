@@ -13,6 +13,7 @@ import sys
 import pytest
 from datetime import datetime, timedelta
 from unittest.mock import patch
+# pyrefly: ignore [missing-import]
 from werkzeug.security import generate_password_hash
 
 # Ensure project root is importable
