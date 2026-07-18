@@ -61,9 +61,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">✈️ N890GF Tracker</a>
-        <div class="d-flex text-white gap-3 align-items-center">
+        <div class="d-flex text-white gap-3 align-items-center flex-wrap">
             <span>Total Airframe: <strong>{{ "%.1f"|format(total_hours) }} hrs</strong></span>
             <span>Total Landings: <strong>{{ total_landings }}</strong></span>
+            <span id="connectionBadge" class="badge bg-secondary">Offline</span>
+            <span id="syncBadge" class="badge bg-secondary">Sync: Unknown</span>
+            <button id="syncBtn" class="btn btn-sm btn-success" style="display: none;">Sync</button>
         </div>
     </div>
 </nav>
@@ -862,6 +865,75 @@ function openDetail(type, dataStr) {
     body.innerText = output;
     modal.show();
 }
+
+// Offline / Online Bidirectional Sync Status logic
+function updateSyncStatus() {
+    fetch('/api/sync_status')
+        .then(response => response.json())
+        .then(data => {
+            const connBadge = document.getElementById('connectionBadge');
+            const syncBadge = document.getElementById('syncBadge');
+            const syncBtn = document.getElementById('syncBtn');
+
+            if (data.configured) {
+                connBadge.style.display = 'inline-block';
+                syncBadge.style.display = 'inline-block';
+                if (data.online) {
+                    connBadge.className = 'badge bg-success';
+                    connBadge.innerText = 'Online';
+                    syncBtn.style.display = 'inline-block';
+                } else {
+                    connBadge.className = 'badge bg-danger';
+                    connBadge.innerText = 'Offline';
+                    syncBtn.style.display = 'none';
+                }
+
+                if (data.pending_changes > 0) {
+                    syncBadge.className = 'badge bg-warning text-dark';
+                    syncBadge.innerText = `Pending: ${data.pending_changes}`;
+                } else {
+                    syncBadge.className = 'badge bg-info text-white';
+                    syncBadge.innerText = 'Synced';
+                }
+            } else {
+                connBadge.style.display = 'none';
+                syncBadge.style.display = 'none';
+                syncBtn.style.display = 'none';
+            }
+        })
+        .catch(err => console.error('Error fetching sync status:', err));
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateSyncStatus();
+    setInterval(updateSyncStatus, 5000);
+
+    const syncBtn = document.getElementById('syncBtn');
+    if (syncBtn) {
+        syncBtn.addEventListener('click', function() {
+            syncBtn.disabled = true;
+            syncBtn.innerText = 'Syncing...';
+            fetch('/api/trigger_sync', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    syncBtn.disabled = false;
+                    syncBtn.innerText = 'Sync';
+                    if (data.status === 'success') {
+                        alert('Sync completed successfully!');
+                        updateSyncStatus();
+                        location.reload();
+                    } else {
+                        alert('Sync failed: ' + data.message);
+                    }
+                })
+                .catch(err => {
+                    syncBtn.disabled = false;
+                    syncBtn.innerText = 'Sync';
+                    alert('Sync error: ' + err);
+                });
+        });
+    }
+});
 </script>
 
 </body>

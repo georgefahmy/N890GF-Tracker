@@ -5,10 +5,11 @@ import logging
 import os
 import re
 import subprocess
+import sys
 import tempfile
 import threading
 import time
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from io import StringIO
 from logging.handlers import RotatingFileHandler
 
@@ -48,12 +49,41 @@ from src.tool_functions import (
 )
 
 CWD_PATH = os.path.abspath(os.getcwd())
-app = Flask(__name__)
+
+if getattr(sys, "frozen", False):
+    # PyInstaller bundle path resolution
+    base_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    app = Flask(
+        __name__,
+        template_folder=os.path.join(base_dir, "templates"),
+        static_folder=os.path.join(base_dir, "static"),
+    )
+else:
+    app = Flask(__name__)
+
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 
-# Replace your sqlite3 path logic with this
-db_path = os.path.join(CWD_PATH, "../maintenance.db")
+# Ensure instance folder exists and use maintenance.db inside it
+os.makedirs(app.instance_path, exist_ok=True)
+db_path = os.path.join(app.instance_path, "maintenance.db")
+if not os.path.exists(db_path):
+    potential_srcs = [
+        os.path.join(CWD_PATH, "../src/maintenance.db"),
+        os.path.join(CWD_PATH, "src/maintenance.db"),
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "src/maintenance.db"),
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "maintenance.db"),
+    ]
+    for src in potential_srcs:
+        if os.path.exists(src):
+            try:
+                import shutil
+
+                shutil.copy(src, db_path)
+                break
+            except Exception:
+                pass
+
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -133,6 +163,12 @@ class Users(UserMixin, db.Model):
     password_hash = db.Column(db.Text, nullable=False)
 
 
+def generate_uuid():
+    import uuid
+
+    return str(uuid.uuid4())
+
+
 class FlightLog(db.Model):
     __tablename__ = "flight_log"
     id = db.Column(db.Integer, primary_key=True)
@@ -145,6 +181,11 @@ class FlightLog(db.Model):
     tach_delta = db.Column(db.Float, default=0.0)
     landings = db.Column(db.Integer)
     notes = db.Column(db.Text)
+    uuid = db.Column(db.String(36), unique=True, default=generate_uuid, nullable=True)
+    updated_at = db.Column(
+        db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=True
+    )
+    is_deleted = db.Column(db.Boolean, default=False, nullable=True)
 
 
 class MaintenanceLog(db.Model):
@@ -158,6 +199,11 @@ class MaintenanceLog(db.Model):
     recurrent_item = db.Column(db.Text)
     category = db.Column(db.Text)
     notes = db.Column(db.Text)
+    uuid = db.Column(db.String(36), unique=True, default=generate_uuid, nullable=True)
+    updated_at = db.Column(
+        db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=True
+    )
+    is_deleted = db.Column(db.Boolean, default=False, nullable=True)
 
 
 class FuelLog(db.Model):
@@ -169,6 +215,11 @@ class FuelLog(db.Model):
     price_per_gallon = db.Column(db.Float)
     total_cost = db.Column(db.Float)
     gal_per_hour = db.Column(db.Float)
+    uuid = db.Column(db.String(36), unique=True, default=generate_uuid, nullable=True)
+    updated_at = db.Column(
+        db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=True
+    )
+    is_deleted = db.Column(db.Boolean, default=False, nullable=True)
 
 
 class OilAnalysis(db.Model):
@@ -191,6 +242,11 @@ class OilAnalysis(db.Model):
     diagnosis = db.Column(db.Text)
     report_path = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    uuid = db.Column(db.String(36), unique=True, default=generate_uuid, nullable=True)
+    updated_at = db.Column(
+        db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=True
+    )
+    is_deleted = db.Column(db.Boolean, default=False, nullable=True)
 
 
 class BannedIPs(db.Model):
@@ -202,9 +258,110 @@ class BannedIPs(db.Model):
     count = db.Column(db.Integer, default=0)
 
 
-# Create the tables in the DB if they don't exist
+def migrate_db():
+    import uuid as py_uuid
+
+    from sqlalchemy import text
+
+    tables = [
+        ("flight_log", FlightLog),
+        ("maintenance_entries", MaintenanceLog),
+        ("fuel_tracker", FuelLog),
+        ("oil_analysis", OilAnalysis),
+    ]
+
+    with app.app_context():
+        db.create_all()
+        for table_name, model_cls in tables:
+            inspector = db.inspect(db.engine)
+            columns = [c["name"] for c in inspector.get_columns(table_name)]
+
+            if "uuid" not in columns:
+                try:
+                    db.session.execute(
+                        text(f"ALTER TABLE {table_name} ADD COLUMN uuid TEXT")
+                    )
+                    db.session.commit()
+                except Exception as e:
+                    db.session.rollback()
+            if "updated_at" not in columns:
+                try:
+                    db.session.execute(
+                        text(f"ALTER TABLE {table_name} ADD COLUMN updated_at DATETIME")
+                    )
+                    db.session.commit()
+                except Exception as e:
+                    db.session.rollback()
+            if "is_deleted" not in columns:
+                try:
+                    db.session.execute(
+                        text(
+                            f"ALTER TABLE {table_name} ADD COLUMN is_deleted BOOLEAN DEFAULT 0"
+                        )
+                    )
+                    db.session.commit()
+                except Exception as e:
+                    db.session.rollback()
+
+            records = model_cls.query.execution_options(include_deleted=True).all()
+            updated_any = False
+            for record in records:
+                if not record.uuid:
+                    record.uuid = str(py_uuid.uuid4())
+                    updated_any = True
+                if not record.updated_at:
+                    if hasattr(record, "date") and record.date:
+                        record.updated_at = record.date
+                    elif hasattr(record, "date_sampled") and record.date_sampled:
+                        d = record.date_sampled
+                        record.updated_at = datetime(d.year, d.month, d.day)
+                    elif hasattr(record, "created_at") and record.created_at:
+                        record.updated_at = record.created_at
+                    else:
+                        record.updated_at = datetime.utcnow()
+                    updated_any = True
+                if record.is_deleted is None:
+                    record.is_deleted = False
+                    updated_any = True
+            if updated_any:
+                db.session.commit()
+
+        # Check if users table is empty and seed default admin user
+        from werkzeug.security import generate_password_hash
+
+        try:
+            if Users.query.count() == 0:
+                default_user = Users(
+                    username="admin", password_hash=generate_password_hash("admin")
+                )
+                db.session.add(default_user)
+                db.session.commit()
+        except Exception:
+            db.session.rollback()
+
+
+# Setup listener to filter out soft-deleted items unless overridden
+@db.event.listens_for(db.Session, "do_orm_execute")
+def _add_filtering_criteria(execute_state):
+    from sqlalchemy.orm import with_loader_criteria
+
+    if execute_state.is_select and not execute_state.execution_options.get(
+        "include_deleted", False
+    ):
+        execute_state.statement = execute_state.statement.options(
+            with_loader_criteria(
+                db.Model,
+                lambda cls: (
+                    cls.is_deleted == False if hasattr(cls, "is_deleted") else True
+                ),
+                include_aliases=True,
+                propagate_to_loaders=True,
+            )
+        )
+
+
 with app.app_context():
-    db.create_all()
+    migrate_db()
 
 
 def validate_float(value, default=0.0):
@@ -301,11 +458,17 @@ def recompute_flight_history():
 def check_auto_maintenance():
     last_oil = (
         db.session.query(func.max(MaintenanceLog.tach_time))
+        .filter(MaintenanceLog.is_deleted != True)
         .filter_by(recurrent_item="Oil Change")
         .scalar()
         or 0.0
     )
-    current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
+    current_tach = (
+        db.session.query(func.max(FlightLog.tach))
+        .filter(FlightLog.is_deleted != True)
+        .scalar()
+        or 0.0
+    )
 
     if current_tach - last_oil >= OIL_CHANGE_INTERVAL_HOURS:
         new_mx = MaintenanceLog(
@@ -323,11 +486,17 @@ def check_auto_maintenance():
 def calculate_overdue_items():
     overdue_items = []
     today = datetime.today().date()
-    current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
+    current_tach = (
+        db.session.query(func.max(FlightLog.tach))
+        .filter(FlightLog.is_deleted != True)
+        .scalar()
+        or 0.0
+    )
 
     # Get latest date for each recurrent item
     latest_entries = (
         db.session.query(MaintenanceLog.recurrent_item, func.max(MaintenanceLog.date))
+        .filter(MaintenanceLog.is_deleted != True)
         .group_by(MaintenanceLog.recurrent_item)
         .all()
     )
@@ -347,6 +516,7 @@ def calculate_overdue_items():
         elif rule["type"] == "tach":
             last_tach = (
                 db.session.query(func.max(MaintenanceLog.tach_time))
+                .filter(MaintenanceLog.is_deleted != True)
                 .filter_by(recurrent_item=item)
                 .scalar()
                 or 0.0
@@ -485,7 +655,12 @@ def get_upcoming_maintenance():
     today = datetime.today().date()
 
     # Get current tach time using SQLAlchemy func.max
-    current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
+    current_tach = (
+        db.session.query(func.max(FlightLog.tach))
+        .filter(FlightLog.is_deleted != True)
+        .scalar()
+        or 0.0
+    )
 
     # --- Condition Inspection Logic ---
     cond_due_str, cond_class = "--", "status-default"
@@ -885,11 +1060,22 @@ def logout():
 
 
 def calc_per_hour_cost():
-    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
+    total_fuel_cost = (
+        db.session.query(func.sum(FuelLog.total_cost))
+        .filter(FuelLog.is_deleted != True)
+        .scalar()
+        or 0
+    )
     latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
     total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
-    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
+    first_flight_date = (
+        db.session.query(func.min(FlightLog.date))
+        .filter(FlightLog.is_deleted != True)
+        .scalar()
+    )
     today = datetime.now()
+    if not first_flight_date:
+        first_flight_date = today
     years_diff = today.year - first_flight_date.year
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
@@ -899,11 +1085,14 @@ def calc_per_hour_cost():
     engine_overhaul = 25000
     engine_overhaul_per_hour = engine_overhaul / 2000
     prop_overhaul = 3500
-    prop_overhaul_per_hour = (
-        prop_overhaul / (hours_per_year_est * 72 / 12)
-        if 1800 > (hours_per_year_est * 72 / 12)
-        else prop_overhaul / 1800
-    )
+    try:
+        prop_overhaul_per_hour = (
+            prop_overhaul / (hours_per_year_est * 72 / 12)
+            if 1800 > (hours_per_year_est * 72 / 12)
+            else prop_overhaul / 1800
+        )
+    except:
+        prop_overhaul_per_hour = prop_overhaul / 1800
     oil_change_interval = 50
     oil_change_qty = 7
     oil_change_price = 63.75 / 6 * oil_change_qty / oil_change_interval
@@ -1007,7 +1196,12 @@ def index():
     total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
     total_tach = validate_float(latest_flight.tach) if latest_flight else 0.0
     # --- Sum total landings ---
-    total_landings = db.session.query(func.sum(FlightLog.landings)).scalar() or 0
+    total_landings = (
+        db.session.query(func.sum(FlightLog.landings))
+        .filter(FlightLog.is_deleted != True)
+        .scalar()
+        or 0
+    )
 
     # --- Fuel Cost Metrics ---
     total_fuel_cost = 0.0
@@ -1027,14 +1221,25 @@ def index():
     atc_year = 89
     atc_month = atc_year / 12  # $7.42 per month
 
-    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
+    total_fuel_cost = (
+        db.session.query(func.sum(FuelLog.total_cost))
+        .filter(FuelLog.is_deleted != True)
+        .scalar()
+        or 0
+    )
 
     stats_data = load_stats_file()
     total_gallons = calc_total_gallons(stats_data)
     total_air_time = calc_total_air_time(stats_data)
     print(total_air_time)
-    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
+    first_flight_date = (
+        db.session.query(func.min(FlightLog.date))
+        .filter(FlightLog.is_deleted != True)
+        .scalar()
+    )
     today = datetime.now()
+    if not first_flight_date:
+        first_flight_date = today
     years_diff = today.year - first_flight_date.year
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
@@ -1326,8 +1531,9 @@ def delete_flight(id):
     # Fetch the record by ID or return a 404 if it doesn't exist
     flight = FlightLog.query.get_or_404(id)
 
-    # Delete the object from the session
-    db.session.delete(flight)
+    # Soft delete the object
+    flight.is_deleted = True
+    flight.updated_at = datetime.utcnow()
 
     # Commit the transaction to the database
     db.session.commit()
@@ -1347,8 +1553,9 @@ def delete_maintenance(id):
     # Fetch the maintenance record or return 404
     mx_entry = MaintenanceLog.query.get_or_404(id)
 
-    # Delete the record from the session
-    db.session.delete(mx_entry)
+    # Soft delete the record
+    mx_entry.is_deleted = True
+    mx_entry.updated_at = datetime.utcnow()
 
     # Commit the transaction
     db.session.commit()
@@ -1373,8 +1580,9 @@ def delete_fuel(id):
     # Fetch the fuel record by ID or return 404 if not found
     fuel_entry = FuelLog.query.get_or_404(id)
 
-    # Delete the record from the session
-    db.session.delete(fuel_entry)
+    # Soft delete the record
+    fuel_entry.is_deleted = True
+    fuel_entry.updated_at = datetime.utcnow()
 
     # Commit the transaction to the database
     db.session.commit()
@@ -2327,6 +2535,289 @@ def load_user(user_id):
 @app.errorhandler(RequestEntityTooLarge)
 def app_handle_413(e):
     return jsonify({"error": "File is too large. Max size is 64MB."}), 413
+
+
+def serialize_model(obj):
+    if not obj:
+        return None
+    d = {}
+    for c in obj.__table__.columns:
+        val = getattr(obj, c.name)
+        if isinstance(val, (datetime, date)):
+            d[c.name] = val.isoformat()
+        else:
+            d[c.name] = val
+    return d
+
+
+def deserialize_model(model_cls, data):
+    kwargs = {}
+    for c in model_cls.__table__.columns:
+        if c.name in data:
+            val = data[c.name]
+            if val is not None:
+                if isinstance(c.type, db.DateTime):
+                    kwargs[c.name] = datetime.fromisoformat(val)
+                elif isinstance(c.type, db.Date):
+                    kwargs[c.name] = (
+                        date.fromisoformat(val) if isinstance(val, str) else val
+                    )
+                else:
+                    kwargs[c.name] = val
+            else:
+                kwargs[c.name] = None
+    return model_cls(**kwargs)
+
+
+def get_remote_sync_url():
+    url = os.environ.get("REMOTE_SYNC_URL")
+    if url:
+        return url
+    config_path = os.path.join(app.instance_path, "sync_config.json")
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r") as f:
+                config = json.load(f)
+                return config.get("remote_sync_url")
+        except Exception:
+            pass
+    return None
+
+
+def perform_sync():
+    remote_url = get_remote_sync_url()
+    if not remote_url:
+        return {"status": "error", "message": "No remote sync URL configured"}
+
+    sync_info_path = os.path.join(app.instance_path, "sync_info.json")
+    last_sync_time = None
+    if os.path.exists(sync_info_path):
+        try:
+            with open(sync_info_path, "r") as f:
+                sync_info = json.load(f)
+                last_sync_time = sync_info.get("last_sync_time")
+        except Exception:
+            pass
+
+    changes = {}
+    models_to_sync = {
+        "flight_log": FlightLog,
+        "maintenance_entries": MaintenanceLog,
+        "fuel_tracker": FuelLog,
+        "oil_analysis": OilAnalysis,
+    }
+
+    for name, model_cls in models_to_sync.items():
+        query = model_cls.query.execution_options(include_deleted=True)
+        if last_sync_time:
+            lst_dt = datetime.fromisoformat(last_sync_time)
+            query = query.filter(model_cls.updated_at > lst_dt)
+        records = query.all()
+        changes[name] = [serialize_model(r) for r in records]
+
+    try:
+        response = requests.post(
+            f"{remote_url.rstrip('/')}/api/sync",
+            json={"last_sync_time": last_sync_time, "changes": changes},
+            timeout=10,
+        )
+        if response.status_code != 200:
+            return {
+                "status": "error",
+                "message": f"Server returned status code {response.status_code}",
+            }
+
+        res_data = response.json()
+        if res_data.get("status") != "success":
+            return {
+                "status": "error",
+                "message": res_data.get("message", "Unknown server error"),
+            }
+
+        server_changes = res_data.get("changes", {})
+        server_time = res_data.get("server_time")
+
+        for name, model_cls in models_to_sync.items():
+            records_data = server_changes.get(name, [])
+            for r_data in records_data:
+                uuid_val = r_data.get("uuid")
+                if not uuid_val:
+                    continue
+                local_rec = (
+                    model_cls.query.execution_options(include_deleted=True)
+                    .filter_by(uuid=uuid_val)
+                    .first()
+                )
+                updated_at_val = datetime.fromisoformat(r_data.get("updated_at"))
+
+                if local_rec:
+                    if updated_at_val > local_rec.updated_at:
+                        for c in model_cls.__table__.columns:
+                            if c.name == "id":
+                                continue
+                            val = r_data.get(c.name)
+                            if val is not None:
+                                if isinstance(c.type, db.DateTime):
+                                    val = datetime.fromisoformat(val)
+                                elif isinstance(c.type, db.Date):
+                                    val = (
+                                        date.fromisoformat(val)
+                                        if isinstance(val, str)
+                                        else val
+                                    )
+                            setattr(local_rec, c.name, val)
+                else:
+                    new_local = deserialize_model(model_cls, r_data)
+                    db.session.add(new_local)
+
+        db.session.commit()
+
+        with open(sync_info_path, "w") as f:
+            json.dump({"last_sync_time": server_time}, f)
+
+        recompute_flight_history()
+        check_auto_maintenance()
+
+        return {"status": "success", "last_sync_time": server_time}
+    except Exception as e:
+        db.session.rollback()
+        return {"status": "error", "message": str(e)}
+
+
+@app.route("/api/sync", methods=["POST"])
+def api_sync():
+    data = request.json or {}
+    last_sync_time = data.get("last_sync_time")
+    client_changes = data.get("changes", {})
+
+    models_to_sync = {
+        "flight_log": FlightLog,
+        "maintenance_entries": MaintenanceLog,
+        "fuel_tracker": FuelLog,
+        "oil_analysis": OilAnalysis,
+    }
+
+    try:
+        for name, model_cls in models_to_sync.items():
+            records_data = client_changes.get(name, [])
+            for r_data in records_data:
+                uuid_val = r_data.get("uuid")
+                if not uuid_val:
+                    continue
+                server_rec = (
+                    model_cls.query.execution_options(include_deleted=True)
+                    .filter_by(uuid=uuid_val)
+                    .first()
+                )
+                updated_at_val = datetime.fromisoformat(r_data.get("updated_at"))
+
+                if server_rec:
+                    if updated_at_val > server_rec.updated_at:
+                        for c in model_cls.__table__.columns:
+                            if c.name == "id":
+                                continue
+                            val = r_data.get(c.name)
+                            if val is not None:
+                                if isinstance(c.type, db.DateTime):
+                                    val = datetime.fromisoformat(val)
+                                elif isinstance(c.type, db.Date):
+                                    val = (
+                                        date.fromisoformat(val)
+                                        if isinstance(val, str)
+                                        else val
+                                    )
+                            setattr(server_rec, c.name, val)
+                else:
+                    new_server = deserialize_model(model_cls, r_data)
+                    db.session.add(new_server)
+
+        db.session.commit()
+
+        server_changes = {}
+        server_time = datetime.utcnow().isoformat()
+
+        for name, model_cls in models_to_sync.items():
+            query = model_cls.query.execution_options(include_deleted=True)
+            if last_sync_time:
+                lst_dt = datetime.fromisoformat(last_sync_time)
+                query = query.filter(model_cls.updated_at > lst_dt)
+            records = query.all()
+            server_changes[name] = [serialize_model(r) for r in records]
+
+        return jsonify(
+            {"status": "success", "server_time": server_time, "changes": server_changes}
+        )
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route("/api/sync_status", methods=["GET"])
+def api_sync_status():
+    remote_url = get_remote_sync_url()
+    if not remote_url:
+        return jsonify(
+            {
+                "configured": False,
+                "online": False,
+                "last_sync_time": None,
+                "pending_changes": 0,
+            }
+        )
+
+    online = False
+    try:
+        requests.get(remote_url, timeout=2)
+        online = True
+    except Exception:
+        pass
+
+    sync_info_path = os.path.join(app.instance_path, "sync_info.json")
+    last_sync_time = None
+    if os.path.exists(sync_info_path):
+        try:
+            with open(sync_info_path, "r") as f:
+                sync_info = json.load(f)
+                last_sync_time = sync_info.get("last_sync_time")
+        except Exception:
+            pass
+
+    pending_count = 0
+    models_to_sync = {
+        "flight_log": FlightLog,
+        "maintenance_entries": MaintenanceLog,
+        "fuel_tracker": FuelLog,
+        "oil_analysis": OilAnalysis,
+    }
+
+    if last_sync_time:
+        lst_dt = datetime.fromisoformat(last_sync_time)
+        for model_cls in models_to_sync.values():
+            pending_count += (
+                model_cls.query.execution_options(include_deleted=True)
+                .filter(model_cls.updated_at > lst_dt)
+                .count()
+            )
+    else:
+        for model_cls in models_to_sync.values():
+            pending_count += model_cls.query.execution_options(
+                include_deleted=True
+            ).count()
+
+    return jsonify(
+        {
+            "configured": True,
+            "online": online,
+            "last_sync_time": last_sync_time,
+            "pending_changes": pending_count,
+        }
+    )
+
+
+@app.route("/api/trigger_sync", methods=["POST"])
+def api_trigger_sync():
+    res = perform_sync()
+    return jsonify(res)
 
 
 if __name__ == "__main__":

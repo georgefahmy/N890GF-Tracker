@@ -211,7 +211,12 @@ class TestFlightCRUD:
                 follow_redirects=True,
             )
             assert response.status_code == 200
-            assert FlightLog.query.get(flight_id) is None
+            
+            # Since soft-delete is active, it remains in DB but marked as deleted
+            from app import db
+            db.session.expire_all()
+            deleted_flight = FlightLog.query.execution_options(include_deleted=True).get(flight_id)
+            assert deleted_flight.is_deleted is True
 
     def test_delete_nonexistent_flight_404(self, app, auth_client):
         with app.app_context():
@@ -290,7 +295,12 @@ class TestMaintenanceCRUD:
                 follow_redirects=True,
             )
             assert response.status_code == 200
-            assert MaintenanceLog.query.get(mx_id) is None
+            
+            # Since soft-delete is active, it remains in DB but marked as deleted
+            from app import db
+            db.session.expire_all()
+            deleted_mx = MaintenanceLog.query.execution_options(include_deleted=True).get(mx_id)
+            assert deleted_mx.is_deleted is True
 
 
 # =============================================================================
@@ -358,7 +368,12 @@ class TestFuelCRUD:
                 follow_redirects=True,
             )
             assert response.status_code == 200
-            assert FuelLog.query.get(fuel_id) is None
+            
+            # Since soft-delete is active, it remains in DB but marked as deleted
+            from app import db
+            db.session.expire_all()
+            deleted_fuel = FuelLog.query.execution_options(include_deleted=True).get(fuel_id)
+            assert deleted_fuel.is_deleted is True
 
 
 # =============================================================================
