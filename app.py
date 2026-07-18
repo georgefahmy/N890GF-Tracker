@@ -64,25 +64,30 @@ else:
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 
-# Ensure instance folder exists and use maintenance.db inside it
-os.makedirs(app.instance_path, exist_ok=True)
-db_path = os.path.join(app.instance_path, "maintenance.db")
-if not os.path.exists(db_path):
-    potential_srcs = [
-        os.path.join(CWD_PATH, "../src/maintenance.db"),
-        os.path.join(CWD_PATH, "src/maintenance.db"),
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "src/maintenance.db"),
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "maintenance.db"),
-    ]
-    for src in potential_srcs:
-        if os.path.exists(src):
-            try:
-                import shutil
+# Determine database path based on running mode
+if os.environ.get("IS_OFFLINE_APP") == "true":
+    os.makedirs(app.instance_path, exist_ok=True)
+    db_path = os.path.join(app.instance_path, "maintenance.db")
+    if not os.path.exists(db_path):
+        potential_srcs = [
+            os.path.join(CWD_PATH, "../src/maintenance.db"),
+            os.path.join(CWD_PATH, "src/maintenance.db"),
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "src/maintenance.db"),
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "maintenance.db"),
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../maintenance.db"),
+        ]
+        for src in potential_srcs:
+            if os.path.exists(src):
+                try:
+                    import shutil
 
-                shutil.copy(src, db_path)
-                break
-            except Exception:
-                pass
+                    shutil.copy(src, db_path)
+                    break
+                except Exception:
+                    pass
+else:
+    # Use the shared server database at ../maintenance.db
+    db_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../maintenance.db"))
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -1270,7 +1275,7 @@ def index():
         + fixed_costs
         + (mx_costs_per_hour * hours_per_month)
     )
-    cost_per_hour = cost_per_month / hours_per_month
+    cost_per_hour = cost_per_month / hours_per_month if hours_per_month > 0 else 0.0
     total_hourly_cost = per_hour_cost + cost_per_hour
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
@@ -2246,7 +2251,7 @@ def api_analyze_flight():
             ][0]
         )
         distance_traveled_miles = distance_traveled[-1] / 5280
-        avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2)
+        avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2) if duration > 0 else 0.0
         per_hour_cost, _, _ = calc_per_hour_cost()
         actual_cost_per_hour = round(per_hour_cost * (duration / 3600), 2)
         stats = {

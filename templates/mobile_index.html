@@ -37,6 +37,15 @@
         .card { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .action-btns { min-width: 120px; }
 
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spin-icon {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
         /* Prevent Hobbs/Tach wrapping */
         .no-wrap-col {
             white-space: nowrap;
@@ -64,9 +73,18 @@
         <div class="d-flex text-white gap-3 align-items-center flex-wrap">
             <span>Total Airframe: <strong>{{ "%.1f"|format(total_hours) }} hrs</strong></span>
             <span>Total Landings: <strong>{{ total_landings }}</strong></span>
-            <span id="connectionBadge" class="badge bg-secondary">Offline</span>
-            <span id="syncBadge" class="badge bg-secondary">Sync: Unknown</span>
-            <button id="syncBtn" class="btn btn-sm btn-success" style="display: none;">Sync</button>
+            <!-- Connection Dot -->
+            <span id="connectionDot" style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: #6c757d;" title="Standalone" data-bs-toggle="tooltip"></span>
+            
+            <!-- Sync Status Icon -->
+            <span id="syncIconContainer" style="display: inline-flex; align-items: center;" title="Sync not configured" data-bs-toggle="tooltip">
+                <svg id="syncIcon" width="14" height="14" viewBox="0 0 16 16" fill="#6c757d">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                </svg>
+            </span>
+
+            <button id="syncBtn" class="btn btn-sm btn-success" style="display: none; padding: 2px 8px; font-size: 0.8rem;">Sync</button>
         </div>
     </div>
 </nav>
@@ -871,35 +889,49 @@ function updateSyncStatus() {
     fetch('/api/sync_status')
         .then(response => response.json())
         .then(data => {
-            const connBadge = document.getElementById('connectionBadge');
-            const syncBadge = document.getElementById('syncBadge');
+            const connDot = document.getElementById('connectionDot');
+            const syncIconContainer = document.getElementById('syncIconContainer');
+            const syncIcon = document.getElementById('syncIcon');
             const syncBtn = document.getElementById('syncBtn');
 
             if (data.configured) {
-                connBadge.style.display = 'inline-block';
-                syncBadge.style.display = 'inline-block';
+                connDot.style.display = 'inline-block';
+                syncIconContainer.style.display = 'inline-flex';
                 if (data.online) {
-                    connBadge.className = 'badge bg-success';
-                    connBadge.innerText = 'Online';
+                    connDot.style.backgroundColor = '#198754';
+                    connDot.setAttribute('title', 'Online');
                     syncBtn.style.display = 'inline-block';
                 } else {
-                    connBadge.className = 'badge bg-danger';
-                    connBadge.innerText = 'Offline';
+                    connDot.style.backgroundColor = '#dc3545';
+                    connDot.setAttribute('title', 'Offline');
                     syncBtn.style.display = 'none';
                 }
 
                 if (data.pending_changes > 0) {
-                    syncBadge.className = 'badge bg-warning text-dark';
-                    syncBadge.innerText = `Pending: ${data.pending_changes}`;
+                    syncIcon.style.fill = '#ffc107';
+                    syncIconContainer.setAttribute('title', `Pending changes: ${data.pending_changes}`);
                 } else {
-                    syncBadge.className = 'badge bg-info text-white';
-                    syncBadge.innerText = 'Synced';
+                    syncIcon.style.fill = '#198754';
+                    syncIconContainer.setAttribute('title', 'Synced');
                 }
             } else {
-                connBadge.style.display = 'none';
-                syncBadge.style.display = 'none';
+                // Not configured for sync (running as standalone server)
+                connDot.style.display = 'inline-block';
+                connDot.style.backgroundColor = '#6c757d';
+                connDot.setAttribute('title', 'Standalone (No Sync)');
+                
+                syncIconContainer.style.display = 'inline-flex';
+                syncIcon.style.fill = '#6c757d';
+                syncIconContainer.setAttribute('title', 'Sync not configured');
+                
                 syncBtn.style.display = 'none';
             }
+
+            // Reinitialize bootstrap tooltip if it exists
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
         })
         .catch(err => console.error('Error fetching sync status:', err));
 }
@@ -911,13 +943,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const syncBtn = document.getElementById('syncBtn');
     if (syncBtn) {
         syncBtn.addEventListener('click', function() {
+            const syncIcon = document.getElementById('syncIcon');
             syncBtn.disabled = true;
             syncBtn.innerText = 'Syncing...';
+            if (syncIcon) {
+                syncIcon.classList.add('spin-icon');
+            }
             fetch('/api/trigger_sync', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
                     syncBtn.disabled = false;
                     syncBtn.innerText = 'Sync';
+                    if (syncIcon) {
+                        syncIcon.classList.remove('spin-icon');
+                    }
                     if (data.status === 'success') {
                         alert('Sync completed successfully!');
                         updateSyncStatus();
@@ -929,6 +968,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(err => {
                     syncBtn.disabled = false;
                     syncBtn.innerText = 'Sync';
+                    if (syncIcon) {
+                        syncIcon.classList.remove('spin-icon');
+                    }
                     alert('Sync error: ' + err);
                 });
         });
