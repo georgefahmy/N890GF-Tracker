@@ -1597,17 +1597,48 @@ def api_get_signals():
                 filepath = os.path.join(SAVE_DIR, saved_filename)
                 flight_data.to_csv(filepath, index=False)
                 stats_file = os.getcwd() + "/static/stats.csv"
+                total_duration = (
+                    flight_data["Session Time"].iloc[-1]
+                    - flight_data["Session Time"].iloc[-0]
+                )
+                try:
+                    air_time = (
+                        flight_data[flight_data["Transponder Status"] == 3][
+                            "Session Time"
+                        ].iloc[-1]
+                        - flight_data[flight_data["Transponder Status"] == 3][
+                            "Session Time"
+                        ].iloc[0]
+                    )
+                except:
+                    air_time = 0
+                distance_traveled = flight_data["Distance Traveled"].iloc[-1] / 5280
+                gallons_used = flight_data["Fuel Flow Integral"].iloc[-1]
+                max_cht = flight_data["Max CHT"].iloc[-1]
+                max_rpm = flight_data["RPM"].max()
+                avg_mpg = flight_data["MPG"].mean()
+                avg_speed = (
+                    flight_data[flight_data["Transponder Status"] == 3][
+                        "Ground Speed (knots)"
+                    ].mean()
+                    * 1.15
+                )
                 data = [
                     safe_name,
-                    flight_data["Distance Traveled"].iloc[-1] / 5280,
-                    flight_data["Fuel Flow Integral"].iloc[-1],
+                    total_duration,
+                    air_time,
+                    distance_traveled,
+                    gallons_used,
+                    max_cht,
+                    max_rpm,
+                    avg_mpg,
+                    avg_speed,
                 ]
-                # with open(stats_file, "a", newline="", encoding="utf-8") as file:
-                #     writer = csv.writer(file)
-                #     writer.writerow(data)
                 append_unique_row(stats_file, data)
+
             git_push_data()
             df = flight_data
+
         numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
         excluded = [
             "Unnamed: 103",
