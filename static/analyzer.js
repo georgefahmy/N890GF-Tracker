@@ -897,6 +897,9 @@ function updateGlobalUI(data) {
     // --- ALWAYS initialize 3D viewer if not already initialized ---
     if (window.init3DViewer) {
         window.init3DViewer();
+        if (window.initFlightPath3D && AppState.map.data) {
+            window.initFlightPath3D(AppState.map.data.lat || [], AppState.map.data.lon || [], AppState.map.data.alt || []);
+        }
     }
 
     document.getElementById('aircraftDataCard').classList.remove('d-none');

@@ -61,6 +61,38 @@
             width: 0;
             display: none;
         }
+        .attitude-viewer-wrapper {
+            position: relative;
+            height: 300px;
+        }
+        .cesium-hud-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: rgba(33, 37, 41, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 6px;
+            padding: 6px 10px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .cesium-hud-overlay .btn-hud {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 2px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .cesium-hud-overlay .btn-hud:hover, .cesium-hud-overlay .btn-hud.active {
+            background: var(--bs-primary);
+            border-color: var(--bs-primary);
+        }
     </style>
 </head>
 <body>
@@ -244,12 +276,20 @@
                         <h6 class="text-primary mb-2">Playback</h6>
                         <hr class="mt-0 mb-2">
 
-                        <div id="attitude3DContainer"
-                             class="border rounded d-flex align-items-center justify-content-center mb-3"
-                             style="height: 300px;">
-                            <span class="text-muted small">
-                                3D Model Placeholder (load .glb / .gltf file here)
-                            </span>
+                        <div class="attitude-viewer-wrapper border rounded mb-3 overflow-hidden">
+                            <div id="attitude3DContainer" class="h-100 w-100 d-flex align-items-center justify-content-center">
+                                <span class="text-muted small">
+                                    3D Model Placeholder (load .glb / .gltf file here)
+                                </span>
+                            </div>
+                            <div class="cesium-hud-overlay">
+                                <button class="btn-hud active" id="btnCamChase" onclick="set3DCameraMode('chase')">Chase</button>
+                                <button class="btn-hud" id="btnCamCockpit" onclick="set3DCameraMode('cockpit')">Cockpit</button>
+                                <button class="btn-hud" id="btnCamTop" onclick="set3DCameraMode('top')">Top-Down</button>
+                                <button class="btn-hud" id="btnCamOrbit" onclick="set3DCameraMode('orbit')">Orbit</button>
+                                <div class="vr mx-1 text-white opacity-25"></div>
+                                <button class="btn-hud active" id="btnToggleTrail" onclick="toggle3DTrail()">Trail</button>
+                            </div>
                         </div>
                         <div class="px-2 pb-2 d-flex flex-sm-row gap-2 align-items-center">
                             <select class="form-select form-select-sm w-auto" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">

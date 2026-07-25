@@ -27,7 +27,7 @@ from flask import (
     session,
     url_for,
 )
-from flask_login import LoginManager, UserMixin, login_required, login_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from werkzeug.exceptions import RequestEntityTooLarge
@@ -749,7 +749,7 @@ def update_server():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if "user_id" in session:
+    if current_user.is_authenticated:
         return redirect(url_for("index"))
 
     if request.method == "POST":
@@ -1530,7 +1530,7 @@ def live_map():
 
 @app.route("/analyzer")
 def analyzer():
-    is_logged_in = "user_id" in session
+    is_logged_in = current_user.is_authenticated
     template = "analyzer.html"
 
     return render_template(template, is_logged_in=is_logged_in)
