@@ -40,6 +40,28 @@
         .status-default { color: #6c757d; font-weight: bold; }
         .card { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .action-btns { min-width: 120px; }
+        .flight-row-clickable {
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out;
+        }
+        .flight-row-clickable:hover {
+            background-color: rgba(13, 202, 240, 0.12) !important;
+        }
+
+        /* Stats Dropdown Menu Styling (High Contrast Opposite Color) */
+        .stats-dropdown-menu {
+            background-color: #ffffff;
+            color: #121212;
+            border: 1px solid #dee2e6;
+        }
+        .stats-dropdown-menu .stats-label {
+            color: #495057;
+            font-weight: 500;
+        }
+        .stats-dropdown-menu .stats-value {
+            color: #000000;
+            font-weight: 700;
+        }
 
         /* Prevent Hobbs/Tach wrapping */
         .no-wrap-col {
@@ -167,47 +189,62 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">✈️ N890GF</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav ms-auto text-white gap-lg-3 align-items-lg-center py-2 py-lg-0 no-wrap-col">
-
-                <span>Hobbs: <strong>{{ "%.1f"|format(total_hobbs) }}</strong></span>
-                <span>Landings: <strong>{{ total_landings }}</strong></span>
-                <span>Distance: <strong>{{ "%.0f"|format(total_distance_traveled) }}mi</strong></span>
-                <span>Monthly Fixed $: <strong>${{ "%.0f"|format(monthly_fixed_costs) }}</strong></span>
-                <span data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    data-bs-html="true"
-                    title="Total Hourly cost (Fuel + Mx costs)"
-                    style="cursor: help;">
-                    Hourly: <strong>${{ "%.0f"|format(hourly_operating_cost) }}</strong></strong> (${{ "%.0f"|format(hourly_fuel_cost) }})</span></span>
-                <!-- <span class="d-none d-lg-inline">|</span> -->
-                <span>
-                    Fuel $:
-                    <strong>${{ "%.2f"|format(total_fuel_cost) }}</strong>
-                     ({{"%.0f"|format(total_gallons_used)}}gals)
-                </span>
-                <span data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    data-bs-html="true"
-                    title="<b>Variable Costs:</b> Fuel, Oil, Mx.<br><b>Fixed costs:</b> Hangar, Insurance, Taxes, and Subscriptions."
-                    style="cursor: help;">
-                    Monthly $:
-                    <strong>${{ "%.2f"|format(cost_per_month) }}
-                    </strong>
-                </span>
-                <span>Hr/Mon (yr): <strong>{{ "%.1f"|format(hours_per_month) }}</strong> ({{ "%.0f"|format(hours_per_month * 12) }})</span>
-                <span>Avg GPH: <strong>{{ "%.2f"|format(avg_gph) }}</strong></span>
-                <span>Avg MPG: <strong>{{ "%.2f"|format(total_distance_traveled/total_gallons_used) }}</strong></span>
-                <div class="d-flex gap-2 mt-2 mt-lg-0">
-                    <button id="themeToggle" class="btn btn-sm btn-outline-light">🌙</button>
-                    <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
+        <div class="d-flex align-items-center ms-auto gap-2 gap-sm-3">
+            <span class="text-white fw-bold me-1">Hobbs: <span class="text-info">{{ "%.1f"|format(total_hobbs) }}</span></span>
+            
+            <div class="dropdown">
+                <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-1" type="button" id="statsMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                    📊 Stats
+                </button>
+                <div class="dropdown-menu dropdown-menu-end p-3 shadow-lg stats-dropdown-menu" aria-labelledby="statsMenuBtn" style="min-width: 290px; z-index: 1060;">
+                    <h6 class="dropdown-header text-primary px-0 mb-2 border-bottom pb-2 fw-bold fs-6">Aircraft Stats Summary</h6>
+                    <div class="d-flex flex-column gap-2 small">
+                        <div class="d-flex justify-content-between">
+                            <span class="stats-label">Landings:</span>
+                            <strong class="stats-value">{{ total_landings }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="stats-label">Distance:</span>
+                            <strong class="stats-value">{{ "%.0f"|format(total_distance_traveled) }} mi</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="stats-label">Monthly Fixed $:</span>
+                            <strong class="stats-value">${{ "%.0f"|format(monthly_fixed_costs) }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between" data-bs-toggle="tooltip" title="Total Hourly cost (Fuel + Mx costs)">
+                            <span class="stats-label">Hourly Operating:</span>
+                            <strong class="stats-value">${{ "%.0f"|format(hourly_operating_cost) }} <span class="fw-normal opacity-75">(${{ "%.0f"|format(hourly_fuel_cost) }} fuel)</span></strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="stats-label">Fuel Spent:</span>
+                            <strong class="stats-value">${{ "%.2f"|format(total_fuel_cost) }} <span class="fw-normal opacity-75">({{"%.0f"|format(total_gallons_used)}} gal)</span></strong>
+                        </div>
+                        <div class="d-flex justify-content-between" data-bs-toggle="tooltip" title="Variable Costs: Fuel, Oil, Mx. Fixed costs: Hangar, Insurance, Taxes, Subscriptions.">
+                            <span class="stats-label">Monthly Cost:</span>
+                            <strong class="stats-value">${{ "%.2f"|format(cost_per_month) }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="stats-label">Hr/Month (Est Yr):</span>
+                            <strong class="stats-value">{{ "%.1f"|format(hours_per_month) }} hrs <span class="fw-normal opacity-75">({{ "%.0f"|format(hours_per_month * 12) }} yr)</span></strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="stats-label">Avg GPH:</span>
+                            <strong class="stats-value">{{ "%.2f"|format(avg_gph) }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="stats-label">Avg MPG:</span>
+                            <strong class="stats-value">{{ "%.2f"|format(total_distance_traveled/total_gallons_used) }}</strong>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button id="themeToggle" class="btn btn-sm btn-outline-light" title="Toggle Theme">🌙</button>
+                <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
             </div>
         </div>
     </div>
@@ -344,13 +381,21 @@
                     <tbody>
                         {% for row in flight_logs %}
                         <tr>
-                            <td class="text-nowrap">{{ row.display_date }}</td>
+                            <td class="text-nowrap">
+                                {{ row.display_date }}
+                                {% if row.matching_csv %}
+                                <span class="badge bg-info text-dark ms-1">📊</span>
+                                {% endif %}
+                            </td>
                             <td class="text-nowrap">{{ row.takeoff_airport }} ➔ {{ row.landing_airport }}</td>
                             <td class="no-wrap-col">{{ row.hobbs_delta }} <span class="text-muted">({{ row.hobbs }})</span></td>
                             <td class="no-wrap-col">{{ row.tach_delta }} <span class="text-muted">({{ row.tach }})</span></td>
                             <td>{{ row.landings }}</td>
                             <td>{{ row.notes }}</td>
                             <td class="text-center action-btns">
+                                {% if row.matching_csv %}
+                                <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" class="btn btn-sm btn-outline-info">📊 Analyze</a>
+                                {% endif %}
                                 <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editFlightModal{{ row.id }}">Edit</button>
                                 <a href="/delete_flight/{{ row.id }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this flight entry?');">Del</a>
                             </td>
@@ -629,7 +674,7 @@
 <div class="modal fade" id="flightModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/add_flight" method="POST">
+      <form action="/add_flight" method="POST" enctype="multipart/form-data">
           <div class="modal-header bg-primary text-white">
             <h5 class="modal-title">Log New Flight</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -666,6 +711,11 @@
               <div class="mb-3">
                   <label class="form-label">Notes</label>
                   <textarea name="notes" class="form-control" rows="2"></textarea>
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Flight Telemetry CSV <span class="text-muted fw-normal">(Optional)</span></label>
+                  <input class="form-control" type="file" name="flight_csv" accept=".csv">
+                  <div class="form-text">Attach raw flight telemetry CSV. Telemetry data will be processed in the background.</div>
               </div>
           </div>
           <div class="modal-footer">
@@ -1045,6 +1095,12 @@
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
+    });
+</script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="{{ url_for('static', filename='index.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>

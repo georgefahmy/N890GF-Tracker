@@ -761,8 +761,10 @@ document.addEventListener('DOMContentLoaded', function() {
             else if (targetId === 'mx') exportBtn.href = "/export/mx";
             else if (targetId === 'fuel') exportBtn.href = "/export/fuel";
 
-            // Optional: Update the URL hash without reloading the page
-            window.location.hash = targetId;
+            // Update the URL hash without scrolling the page
+            if (history.replaceState) {
+                history.replaceState(null, null, '#' + targetId);
+            }
         });
     });
 });

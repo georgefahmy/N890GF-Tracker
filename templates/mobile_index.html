@@ -174,7 +174,12 @@
                         <tr class="clickable-row" style="cursor:pointer"
                             onclick="openDetail('flight', this.dataset.entry)"
                             data-entry='{{ row|tojson }}'>
-                            <td class="text-nowrap">{{ row.display_date }}</td>
+                            <td class="text-nowrap">
+                                {{ row.display_date }}
+                                {% if row.matching_csv %}
+                                <span class="badge bg-info text-dark ms-1" title="Telemetry available">📊</span>
+                                {% endif %}
+                            </td>
                             <td class="text-nowrap">{{ row.takeoff_airport }} ➔ {{ row.landing_airport }}</td>
                             <td>{{ row.hobbs_delta }}</td>
                         </tr>
@@ -417,7 +422,7 @@
 <div class="modal fade" id="flightModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/add_flight" method="POST">
+      <form action="/add_flight" method="POST" enctype="multipart/form-data">
           <div class="modal-header bg-primary text-white">
             <h5 class="modal-title">Log New Flight</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -454,6 +459,11 @@
               <div class="mb-3">
                   <label class="form-label">Notes</label>
                   <textarea name="notes" class="form-control" rows="2"></textarea>
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Flight Telemetry CSV <span class="text-muted fw-normal">(Optional)</span></label>
+                  <input class="form-control" type="file" name="flight_csv" accept=".csv">
+                  <div class="form-text">Attach raw flight telemetry CSV. Telemetry data will be processed in the background.</div>
               </div>
           </div>
           <div class="modal-footer">
@@ -830,13 +840,20 @@ function openDetail(type, dataStr) {
 
     if (type === "flight") {
         title.innerText = "Flight Details";
-        output =
+        const detailsText =
             `Date: ${data.display_date}\n` +
             `Route: ${data.takeoff_airport} ➔ ${data.landing_airport}\n` +
             `Hobbs: ${data.hobbs_delta} (${data.hobbs})\n` +
             `Tach: ${data.tach_delta} (${data.tach})\n` +
             `Landings: ${data.landings}\n` +
-            `Notes: ${data.notes}`;
+            `Notes: ${data.notes || ''}`;
+
+        if (data.matching_csv) {
+            body.innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit;">${detailsText}</pre>` +
+                `<div class="mt-3 text-center"><a href="/analyzer?flight=${encodeURIComponent(data.matching_csv)}" class="btn btn-info w-100 fw-bold">📊 Open Telemetry in Analyzer</a></div>`;
+        } else {
+            body.innerText = detailsText;
+        }
     }
 
     if (type === "mx") {

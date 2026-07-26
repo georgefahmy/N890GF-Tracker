@@ -172,6 +172,38 @@ class TestFlightCRUD:
             assert flight.landing_airport == "KRHV"
 
     @patch("app.git_push_data")
+    def test_add_flight_with_csv(self, mock_push, app, auth_client):
+        from io import BytesIO
+        from app import FlightLog
+
+        with app.app_context():
+            sample_csv = (
+                "Session Time,System Time,GPS Date & Time,RPM L,RPM R,Transponder Status,Distance Traveled,Fuel Flow Integral,Max CHT,RPM,MPG,Ground Speed (knots),Flight ID\n"
+                "1.0,1.0,2026-07-26 12:00:00,2400,2400,3,5280,1.5,380,2400,12.5,120.0,2026-07-26 12:00:00-07:00\n"
+            )
+            data = {
+                "date": "2026-07-26",
+                "takeoff": "E16",
+                "landing": "KCVH",
+                "hobbs": "200.0",
+                "tach": "190.0",
+                "landings": "1",
+                "notes": "Flight with CSV attached",
+                "flight_csv": (BytesIO(sample_csv.encode("utf-8")), "flight_data.csv"),
+            }
+            response = auth_client.post(
+                "/add_flight",
+                data=data,
+                content_type="multipart/form-data",
+                follow_redirects=True,
+            )
+            assert response.status_code == 200
+            flight = FlightLog.query.filter_by(
+                notes="Flight with CSV attached"
+            ).first()
+            assert flight is not None
+
+    @patch("app.git_push_data")
     def test_edit_flight(self, mock_push, app, auth_client):
         from app import FlightLog
 
@@ -694,3 +726,32 @@ class TestRateLimiting:
                 follow_redirects=True,
             )
             assert b"Too many attempts" in response.data
+
+
+# =============================================================================
+# Flight CSV Telemetry Matching Tests
+# =============================================================================
+
+
+class TestFlightCsvMatching:
+    """Tests for matching flight log entries to telemetry CSV files."""
+
+    def test_find_matching_csv_map(self, app):
+        with app.app_context():
+            from app import find_matching_csv_map
+
+            raw_logs = [
+                {"id": 1, "date": "2026-07-21 07:28:49"},
+                {"id": 2, "date": "2020-01-01 00:00:00"},
+            ]
+            csv_map = find_matching_csv_map(raw_logs)
+            assert isinstance(csv_map, dict)
+            assert csv_map.get(1) == "2026-07-21 07-28-49.csv"
+            assert 2 not in csv_map
+
+    def test_index_renders_data_csv_attributes(self, app, auth_client, seed_db):
+        with app.app_context():
+            response = auth_client.get("/")
+            assert response.status_code == 200
+            assert b"flightTable" in response.data
+
