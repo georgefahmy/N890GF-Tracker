@@ -8,7 +8,7 @@ import subprocess
 import tempfile
 import threading
 import time
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from io import StringIO
 from logging.handlers import RotatingFileHandler
 
@@ -27,7 +27,14 @@ from flask import (
     session,
     url_for,
 )
-from flask_login import LoginManager, UserMixin, login_required, login_user
+from flask_login import (
+    LoginManager,
+    UserMixin,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from werkzeug.exceptions import RequestEntityTooLarge
@@ -47,14 +54,36 @@ from src.tool_functions import (
     load_stats_file,
 )
 
-CWD_PATH = os.path.abspath(os.getcwd())
-app = Flask(__name__)
+import shutil
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
+os.makedirs(INSTANCE_DIR, exist_ok=True)
+
+app = Flask(__name__, instance_path=INSTANCE_DIR)
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 
-# Replace your sqlite3 path logic with this
-db_path = os.path.join(CWD_PATH, "../maintenance.db")
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
+db_path = os.path.join(app.instance_path, "maintenance.db")
+
+# Fallback auto-migration: If instance/maintenance.db is missing or empty, copy from legacy paths if present
+old_parent_db = os.path.abspath(os.path.join(BASE_DIR, "..", "maintenance.db"))
+old_src_db = os.path.abspath(os.path.join(BASE_DIR, "src", "maintenance.db"))
+
+if not os.path.exists(db_path) or os.path.getsize(db_path) == 0:
+    if os.path.exists(old_parent_db) and os.path.getsize(old_parent_db) > 0:
+        shutil.copy2(old_parent_db, db_path)
+    elif os.path.exists(old_src_db) and os.path.getsize(old_src_db) > 0:
+        shutil.copy2(old_src_db, db_path)
+
+env_db_uri = os.getenv("DATABASE_URL") or os.getenv("DB_PATH")
+if env_db_uri:
+    if not env_db_uri.startswith("sqlite://") and not env_db_uri.startswith("postgresql://"):
+        env_db_uri = f"sqlite:///{env_db_uri}"
+    app.config["SQLALCHEMY_DATABASE_URI"] = env_db_uri
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -62,7 +91,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # --- Login attempt logging (split logs) ---
-LOG_DIR = os.path.join(CWD_PATH if "CWD_PATH" in globals() else os.getcwd(), "logs")
+LOG_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 
 log_formatter = logging.Formatter(
@@ -93,8 +122,7 @@ login_security_logger = _create_logger("login_security", "login_security.log")
 app.config["SESSION_PERMANENT"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
 
-# DB_PATH = CWD_PATH + "/src/maintenance.db"
-DB_PATH = CWD_PATH + "/../maintenance.db"
+DB_PATH = db_path
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
@@ -749,7 +777,7 @@ def update_server():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if "user_id" in session:
+    if current_user.is_authenticated:
         return redirect(url_for("index"))
 
     if request.method == "POST":
@@ -834,7 +862,6 @@ def login():
 
         password = request.form.get("password")
         user = Users.query.filter_by(username=username).first()
-        # user = User.query.filter_by(username=request.form.get("username")).first()
         if user and check_password_hash(user.password_hash, password):
             # reset attempts on success
             with LOGIN_LOCK:
@@ -845,6 +872,7 @@ def login():
             db.session.commit()
 
             remember = request.form.get("remember") == "on"
+            login_user(user, remember=remember)
             session["user_id"] = user.id
             session.permanent = remember
 
@@ -857,7 +885,9 @@ def login():
                     "ua": user_agent,
                 },
             )
-            login_user(user)
+            next_page = request.args.get("next")
+            if next_page and next_page.startswith("/"):
+                return redirect(next_page)
             return redirect(url_for("index"))
         else:
             # record failed attempt
@@ -880,6 +910,7 @@ def login():
 
 @app.route("/logout")
 def logout():
+    logout_user()
     session.clear()
     return redirect(url_for("login"))
 
@@ -915,6 +946,76 @@ def calc_per_hour_cost():
     )
     per_hour_cost = avg_fuel_cost_per_hour + mx_costs_per_hour
     return per_hour_cost, mx_costs_per_hour, avg_fuel_cost_per_hour
+
+
+def find_matching_csv_map(flight_logs_raw):
+    """
+    Maps each FlightLog dictionary (by 'id') to a matching CSV filename in clean_flights/.
+    """
+    if not os.path.exists(SAVE_DIR):
+        return {}
+
+    csv_files = [f for f in os.listdir(SAVE_DIR) if f.endswith(".csv")]
+    if not csv_files:
+        return {}
+
+    csv_by_date = {}
+    for f in csv_files:
+        date_part = f[:10]
+        csv_by_date.setdefault(date_part, []).append(f)
+
+    for date_part in csv_by_date:
+        csv_by_date[date_part].sort()
+
+    logs_by_date = {}
+    for log in flight_logs_raw:
+        dt_val = log.get("date")
+        dt_obj = None
+        if isinstance(dt_val, (datetime, date)):
+            dt_obj = dt_val
+        elif isinstance(dt_val, str):
+            for fmt in ("%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+                try:
+                    dt_obj = datetime.strptime(dt_val, fmt)
+                    break
+                except ValueError:
+                    pass
+
+        date_key = dt_obj.strftime("%Y-%m-%d") if dt_obj else (str(dt_val)[:10] if dt_val else "")
+        logs_by_date.setdefault(date_key, []).append((dt_obj, log))
+
+    result = {}
+    for date_key, log_list in logs_by_date.items():
+        matching_csvs = csv_by_date.get(date_key, [])
+        if not matching_csvs:
+            continue
+
+        if len(matching_csvs) == 1:
+            for _, log in log_list:
+                result[log.get("id")] = matching_csvs[0]
+        else:
+            sorted_logs = sorted(log_list, key=lambda x: x[0] if x[0] else datetime.min)
+            for idx, (log_dt, log) in enumerate(sorted_logs):
+                matched_csv = None
+                if log_dt and (log_dt.hour != 0 or log_dt.minute != 0 or log_dt.second != 0):
+                    min_diff = float("inf")
+                    for csv_f in matching_csvs:
+                        try:
+                            time_str = csv_f[11:-4].replace("-", ":")
+                            csv_dt = datetime.strptime(f"{date_key} {time_str}", "%Y-%m-%d %H:%M:%S")
+                            diff = abs((log_dt - csv_dt).total_seconds())
+                            if diff < min_diff:
+                                min_diff = diff
+                                matched_csv = csv_f
+                        except Exception:
+                            pass
+                if not matched_csv:
+                    csv_idx = min(idx, len(matching_csvs) - 1)
+                    matched_csv = matching_csvs[csv_idx]
+
+                result[log.get("id")] = matched_csv
+
+    return result
 
 
 @app.route("/")
@@ -980,6 +1081,10 @@ def index():
     flight_logs = sort_and_format_logs(flight_logs_raw)
     mx_logs = sort_and_format_logs(mx_logs_raw)
     fuel_logs = sort_and_format_logs(fuel_logs_raw)
+
+    csv_map = find_matching_csv_map(flight_logs_raw)
+    for log in flight_logs:
+        log["matching_csv"] = csv_map.get(log.get("id"))
 
     # --- Compute Hobbs delta between fuel-ups ---
     def safe_hobbs(x):
@@ -1143,14 +1248,100 @@ def index():
     )
 
 
+def process_flight_csv_file(filepath):
+    """
+    Processes a raw flight CSV file in the background:
+    1. Runs process_flights(df) to group into flight segments (handles multi-flight files).
+    2. Saves each flight CSV to clean_flights/ (SAVE_DIR).
+    3. Appends telemetry stats to static/stats.csv.
+    4. Triggers git_push_data() and cleans up the temp file.
+    """
+    try:
+        df = pd.read_csv(filepath, low_memory=False)
+        df = process_flights(df)
+
+        if df is None or df.empty:
+            return
+
+        flight_ids = [
+            fid
+            for fid in df["Flight ID"].unique()
+            if fid not in (None, 0, "", "nan")
+        ]
+
+        stats_file = os.path.join(BASE_DIR, "static", "stats.csv")
+
+        for fid in flight_ids:
+            flight_data = df[df["Flight ID"] == fid]
+            if flight_data.empty:
+                continue
+
+            fid_str = "-".join(str(fid).split("-")[:-1])
+            safe_name = fid_str.replace("/", "-").replace(":", "-")
+
+            saved_filename = f"{safe_name}.csv"
+            out_filepath = os.path.join(SAVE_DIR, saved_filename)
+            flight_data.to_csv(out_filepath, index=False)
+
+            total_duration = (
+                flight_data["Session Time"].iloc[-1]
+                - flight_data["Session Time"].iloc[0]
+            )
+            try:
+                air_time = (
+                    flight_data[flight_data["Transponder Status"] == 3][
+                        "Session Time"
+                    ].iloc[-1]
+                    - flight_data[flight_data["Transponder Status"] == 3][
+                        "Session Time"
+                    ].iloc[0]
+                )
+            except Exception:
+                air_time = 0
+
+            distance_traveled = flight_data["Distance Traveled"].iloc[-1] / 5280
+            gallons_used = flight_data["Fuel Flow Integral"].iloc[-1]
+            max_cht = flight_data["Max CHT"].iloc[-1]
+            max_rpm = flight_data["RPM"].max()
+            avg_mpg = flight_data["MPG"].mean()
+            avg_speed = (
+                flight_data[flight_data["Transponder Status"] == 3][
+                    "Ground Speed (knots)"
+                ].mean()
+                * 1.15
+            )
+            data = [
+                safe_name,
+                total_duration,
+                air_time,
+                distance_traveled,
+                gallons_used,
+                max_cht,
+                max_rpm,
+                avg_mpg,
+                avg_speed,
+            ]
+            append_unique_row(stats_file, data)
+
+        git_push_data()
+    except Exception as e:
+        print(f"Error processing flight CSV in background: {e}")
+    finally:
+        if os.path.exists(filepath) and ("tmp" in filepath or "temp" in filepath or "upload_" in filepath):
+            try:
+                os.remove(filepath)
+            except Exception:
+                pass
+
+
 @app.route("/add_flight", methods=["POST"])
 @login_required
 def add_flight():
     # Create a new FlightLog object using values from the form
     new_flight = FlightLog(
         date=parse_date_obj(request.form.get("date")),
-        takeoff_airport=request.form.get("takeoff").upper(),
-        landing_airport=request.form.get("landing").upper(),
+        takeoff_airport=request.form.get("takeoff").upper() if request.form.get("takeoff") else "",
+        landing_airport=request.form.get("landing").upper() if request.form.get("landing") else "",
         hobbs=validate_float(request.form.get("hobbs")),
         tach=validate_float(request.form.get("tach")),
         landings=int(request.form.get("landings", 0)),
@@ -1164,6 +1355,22 @@ def add_flight():
     # Call helpers (assuming these have been updated to use the SQLAlchemy session)
     recompute_flight_history()
     check_auto_maintenance()
+
+    # Process optional background flight telemetry CSV
+    if "flight_csv" in request.files:
+        file = request.files["flight_csv"]
+        if file and file.filename and file.filename.endswith(".csv"):
+            temp_dir = tempfile.gettempdir()
+            temp_filename = f"upload_{int(time.time())}_{secure_filename(file.filename)}"
+            temp_path = os.path.join(temp_dir, temp_filename)
+            file.save(temp_path)
+
+            thread = threading.Thread(
+                target=process_flight_csv_file,
+                args=(temp_path,)
+            )
+            thread.daemon = True
+            thread.start()
 
     # Trigger external synchronization
     git_push_data()
@@ -1530,7 +1737,7 @@ def live_map():
 
 @app.route("/analyzer")
 def analyzer():
-    is_logged_in = "user_id" in session
+    is_logged_in = current_user.is_authenticated
     template = "analyzer.html"
 
     return render_template(template, is_logged_in=is_logged_in)
@@ -2351,7 +2558,10 @@ def export_fuel():
 
 @login_manager.user_loader
 def load_user(user_id):
-    return Users.query.get(int(user_id))
+    try:
+        return db.session.get(Users, int(user_id))
+    except Exception:
+        return None
 
 
 @app.errorhandler(413)
