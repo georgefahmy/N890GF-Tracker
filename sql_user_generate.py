@@ -1,8 +1,12 @@
+import os
 import sqlite3
 
 from werkzeug.security import generate_password_hash
 
-conn = sqlite3.connect("../maintenance.db")
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(BASE_DIR, "instance", "maintenance.db")
+
+conn = sqlite3.connect(db_path)
 username = "admin"
 password = "admin"
 conn.execute(

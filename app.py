@@ -47,14 +47,16 @@ from src.tool_functions import (
     load_stats_file,
 )
 
-CWD_PATH = os.path.abspath(os.getcwd())
-app = Flask(__name__)
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
+os.makedirs(INSTANCE_DIR, exist_ok=True)
+
+app = Flask(__name__, instance_path=INSTANCE_DIR)
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 
-# Replace your sqlite3 path logic with this
-db_path = os.path.join(CWD_PATH, "../maintenance.db")
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
+db_path = os.path.join(app.instance_path, "maintenance.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", f"sqlite:///{db_path}")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -62,7 +64,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # --- Login attempt logging (split logs) ---
-LOG_DIR = os.path.join(CWD_PATH if "CWD_PATH" in globals() else os.getcwd(), "logs")
+LOG_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 
 log_formatter = logging.Formatter(
@@ -93,8 +95,7 @@ login_security_logger = _create_logger("login_security", "login_security.log")
 app.config["SESSION_PERMANENT"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
 
-# DB_PATH = CWD_PATH + "/src/maintenance.db"
-DB_PATH = CWD_PATH + "/../maintenance.db"
+DB_PATH = db_path
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
