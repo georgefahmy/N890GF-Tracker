@@ -23,6 +23,8 @@ def create_sample_flight_df():
             "True Airspeed (knots)": np.where(time_points < 300, 0, 115),
             "Magnetic Heading (deg)": np.full(100, 270.0),
             "Ground Track (deg)": np.full(100, 265.0),
+            "Wind Direction (deg)": np.full(100, 180.0),
+            "Wind Speed (knots)": np.full(100, 15.0),
             "RPM": np.where(time_points < 300, 1000, 2400),
             "GPS Altitude (feet)": np.where(
                 time_points < 300,
@@ -34,7 +36,7 @@ def create_sample_flight_df():
                 0,
                 np.where(time_points < 900, 500, 0),
             ),
-            "CHT 1 (deg F)": np.where(time_points > 1200, 390 - (time_points - 1200) * 0.1, 350),
+            "CHT 1 (deg F)": np.where(time_points > 1200, 420 - (time_points - 1200) * 0.1, 350),
             "CHT 2 (deg F)": np.full(100, 340.0),
             "CHT 3 (deg F)": np.full(100, 330.0),
             "CHT 4 (deg F)": np.full(100, 320.0),
@@ -42,7 +44,7 @@ def create_sample_flight_df():
             "OIL TEMPERATURE (deg F)": np.full(100, 180.0),
             "Oil Pressure (PSI)": np.full(100, 65.0),
             "Roll (deg)": np.full(100, 15.0),
-            "Vert Accel (G)": np.full(100, 1.2),
+            "Vertical Accel(g)": np.full(100, 0.2),  # Incremental G (0.2 + 1.0 = 1.2G total)
         }
     )
     return df
@@ -66,8 +68,9 @@ def test_thermal_durations():
     df = create_sample_flight_df()
     durations = calculate_cht_thermal_durations(df)
     assert "above_380_min" in durations
-    assert "above_400_min" in durations
-    assert durations["above_380_min"] >= 0.0
+    assert "above_410_min" in durations
+    assert "above_430_min" in durations
+    assert durations["above_410_min"] >= 0.0
 
 
 def test_oil_metrics():
@@ -95,15 +98,17 @@ def test_landings():
 def test_wind_aloft():
     df = create_sample_flight_df()
     wind = calculate_wind_aloft(df)
-    assert "wind_speed_kts" in wind
+    assert wind["wind_speed_kts"] == 15.0
+    assert wind["wind_dir_deg"] == 180
     assert "headwind_kts" in wind
+    assert "crosswind_kts" in wind
 
 
 def test_g_load_and_bank():
     df = create_sample_flight_df()
     g_bank = calculate_g_load_and_bank(df)
-    assert "peak_pos_g" in g_bank
-    assert "max_bank_deg" in g_bank
+    assert g_bank["peak_pos_g"] == 1.2  # 0.2 + 1.0 baseline G
+    assert g_bank["max_bank_deg"] == 15.0
 
 
 def test_comprehensive_stats():

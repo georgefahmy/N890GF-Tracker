@@ -39,9 +39,7 @@ def calculate_cht_spread(df: pd.DataFrame) -> float:
 
     try:
         cht_data = df[cht_cols].apply(pd.to_numeric, errors="coerce")
-        # Find row-wise spread (max - min)
         row_spreads = cht_data.max(axis=1) - cht_data.min(axis=1)
-        # Filter for rows where engine is running (> 150 F)
         valid_mask = cht_data.min(axis=1) > 150
         valid_spreads = row_spreads[valid_mask]
         return round(float(valid_spreads.max()), 1) if not valid_spreads.empty else 0.0
@@ -51,25 +49,28 @@ def calculate_cht_spread(df: pd.DataFrame) -> float:
 
 def calculate_cht_thermal_durations(df: pd.DataFrame) -> dict:
     """
-    Calculates duration (in minutes) spent with any CHT > 380 F and > 400 F.
+    Calculates duration (in minutes) spent with any CHT > 410 F (caution threshold in SIGNAL_BANDS)
+    and > 430 F (redline threshold in SIGNAL_BANDS).
     """
     cht_cols = [c for c in df.columns if c.startswith("CHT ") and "(deg F)" in c]
     if not cht_cols or "Session Time" not in df.columns:
-        return {"above_380_min": 0.0, "above_400_min": 0.0}
+        return {"above_380_min": 0.0, "above_410_min": 0.0, "above_430_min": 0.0}
 
     try:
         dt = pd.to_numeric(df["Session Time"], errors="coerce").diff().fillna(0)
         cht_max = df[cht_cols].apply(pd.to_numeric, errors="coerce").max(axis=1)
 
         sec_above_380 = dt[cht_max > 380].sum()
-        sec_above_400 = dt[cht_max > 400].sum()
+        sec_above_410 = dt[cht_max > 410].sum()
+        sec_above_430 = dt[cht_max > 430].sum()
 
         return {
             "above_380_min": round(float(sec_above_380 / 60.0), 1),
-            "above_400_min": round(float(sec_above_400 / 60.0), 1),
+            "above_410_min": round(float(sec_above_410 / 60.0), 1),
+            "above_430_min": round(float(sec_above_430 / 60.0), 1),
         }
     except Exception:
-        return {"above_380_min": 0.0, "above_400_min": 0.0}
+        return {"above_380_min": 0.0, "above_410_min": 0.0, "above_430_min": 0.0}
 
 
 def calculate_oil_metrics(df: pd.DataFrame) -> dict:
@@ -88,7 +89,6 @@ def calculate_oil_metrics(df: pd.DataFrame) -> dict:
         oil_press_cols = [c for c in df.columns if "oil" in c.lower() and "press" in c.lower()]
         if oil_press_cols:
             press = pd.to_numeric(df[oil_press_cols[0]], errors="coerce").dropna()
-            # Only consider when engine is warmed up (RPM > 1000)
             if "RPM" in df.columns:
                 rpm = pd.to_numeric(df["RPM"], errors="coerce")
                 press = press[rpm > 1000]
@@ -118,7 +118,6 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         gs = pd.to_numeric(df.get("Ground Speed (knots)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
         rpm = pd.to_numeric(df.get("RPM", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
 
-        # Vertical speed: use column or compute from altitude
         if "Vertical Speed (ft/min)" in df.columns:
             vs = pd.to_numeric(df["Vertical Speed (ft/min)"], errors="coerce").fillna(0)
         elif "GPS Altitude (feet)" in df.columns:
@@ -128,7 +127,6 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         else:
             vs = pd.Series(0, index=df.index)
 
-        # Classification masks
         taxi_mask = (rpm > 600) & (gs < 35)
         climb_mask = (gs >= 35) & (vs > 250)
         descent_mask = (gs >= 35) & (vs < -250)
@@ -156,9 +154,7 @@ def calculate_landings(df: pd.DataFrame) -> int:
 
     try:
         gs = pd.to_numeric(df["Ground Speed (knots)"], errors="coerce").fillna(0)
-        # Flight mask: GS > 45 kts
         in_air = gs > 45
-        # Landings detected when transitioning from in_air (True) to ground (GS < 30 kts)
         transitions = (in_air.astype(int).diff() == -1)
         landing_count = int(transitions.sum())
         return max(landing_count, 1)
@@ -168,8 +164,7 @@ def calculate_landings(df: pd.DataFrame) -> int:
 
 def calculate_wind_aloft(df: pd.DataFrame) -> dict:
     """
-    Calculates average cruise wind vector (speed in kts, direction, headwind/crosswind).
-    Formula: Wind_vector = Ground_Velocity - Air_Velocity
+    Uses direct logged signal columns 'Wind Direction (deg)' and 'Wind Speed (knots)'.
     """
     res = {
         "wind_speed_kts": "N/A",
@@ -177,96 +172,136 @@ def calculate_wind_aloft(df: pd.DataFrame) -> dict:
         "headwind_kts": "N/A",
         "crosswind_kts": "N/A",
     }
-    required = ["Ground Speed (knots)", "True Airspeed (knots)", "Magnetic Heading (deg)"]
-    if not all(c in df.columns for c in required):
+
+    wdir_cols = [c for c in df.columns if "wind direction" in c.lower()]
+    wspd_cols = [c for c in df.columns if "wind speed" in c.lower()]
+
+    if not wdir_cols or not wspd_cols:
         return res
 
     try:
-        gs = pd.to_numeric(df["Ground Speed (knots)"], errors="coerce").fillna(0)
-        tas = pd.to_numeric(df["True Airspeed (knots)"], errors="coerce").fillna(0)
-        heading = pd.to_numeric(df["Magnetic Heading (deg)"], errors="coerce").fillna(0)
+        wspd = pd.to_numeric(df[wspd_cols[0]], errors="coerce").fillna(0)
+        wdir = pd.to_numeric(df[wdir_cols[0]], errors="coerce").fillna(0)
+        gs = pd.to_numeric(df.get("Ground Speed (knots)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
+        tas = pd.to_numeric(df.get("True Airspeed (knots)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
+        heading = pd.to_numeric(df.get("Magnetic Heading (deg)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
 
-        # Filter for cruise flight (TAS > 70 kts)
-        mask = (tas > 70) & (gs > 40)
+        # Filter for active flight (GS > 40 kts)
+        mask = (gs > 40) | (tas > 40)
         if not mask.any():
+            mask = pd.Series(True, index=df.index)
+
+        wspd_f = wspd[mask]
+        wdir_f = wdir[mask]
+        hdg_f = heading[mask]
+        gs_f = gs[mask]
+        tas_f = tas[mask]
+
+        if wspd_f.empty or (wspd_f == 0).all():
             return res
 
-        gs_c = gs[mask]
-        tas_c = tas[mask]
-        hdg_c = heading[mask]
+        avg_wspd = float(wspd_f.mean())
 
-        # Use Track if available, else fallback to Heading
-        track_col = next((c for c in df.columns if "track" in c.lower() or "ground track" in c.lower()), None)
-        if track_col:
-            trk_c = pd.to_numeric(df[track_col], errors="coerce")[mask].fillna(hdg_c)
+        # Circular mean of wind direction
+        wdir_rad = np.radians(wdir_f)
+        sin_sum = np.sin(wdir_rad).mean()
+        cos_sum = np.cos(wdir_rad).mean()
+        avg_wdir = (np.degrees(np.arctan2(sin_sum, cos_sum))) % 360
+
+        # Headwind & Crosswind calculation
+        if not hdg_f.empty and hdg_f.abs().sum() > 0:
+            hdg_rad = np.radians(hdg_f.mean())
+            angle_diff = np.radians(avg_wdir) - hdg_rad
+            headwind = avg_wspd * np.cos(angle_diff)
+            crosswind = abs(avg_wspd * np.sin(angle_diff))
         else:
-            trk_c = hdg_c
+            headwind = tas_f.mean() - gs_f.mean() if not tas_f.empty else 0.0
+            crosswind = 0.0
 
-        # Convert to radians (0 deg = North)
-        hdg_rad = np.radians(hdg_c)
-        trk_rad = np.radians(trk_c)
-
-        # Air velocity components (pointing direction of flight)
-        v_air_x = tas_c * np.sin(hdg_rad)
-        v_air_y = tas_c * np.cos(hdg_rad)
-
-        # Ground velocity components
-        v_gnd_x = gs_c * np.sin(trk_rad)
-        v_gnd_y = gs_c * np.cos(trk_rad)
-
-        # Wind vector (from direction wind is blowing FROM)
-        # Wind = Ground_vector - Air_vector
-        w_x = v_gnd_x - v_air_x
-        w_y = v_gnd_y - v_air_y
-
-        avg_wx = w_x.mean()
-        avg_wy = w_y.mean()
-
-        wind_speed = np.sqrt(avg_wx**2 + avg_wy**2)
-        # Direction wind is coming FROM
-        wind_dir = (np.degrees(np.arctan2(-avg_wx, -avg_wy))) % 360
-
-        # Headwind & Crosswind components relative to heading
-        avg_hdg_rad = np.radians(hdg_c.mean())
-        # Headwind = TAS - GS approx or vector projection
-        headwind = tas_c.mean() - gs_c.mean()
-        crosswind = np.abs(wind_speed * np.sin(np.radians(wind_dir - np.degrees(avg_hdg_rad))))
-
-        res["wind_speed_kts"] = round(float(wind_speed), 1)
-        res["wind_dir_deg"] = int(round(wind_dir))
+        res["wind_speed_kts"] = round(avg_wspd, 1)
+        res["wind_dir_deg"] = int(round(avg_wdir))
         res["headwind_kts"] = round(float(headwind), 1)
         res["crosswind_kts"] = round(float(crosswind), 1)
 
     except Exception as e:
-        print(f"Wind calculation notice: {e}")
+        print(f"Wind signal extraction error: {e}")
 
     return res
 
 
 def calculate_g_load_and_bank(df: pd.DataFrame) -> dict:
     """
-    Extracts peak positive/negative vertical G acceleration and maximum bank angle.
+    Extracts peak positive/negative vertical G acceleration and maximum bank angle during flight.
+    Uses absolute values for bank angles to properly handle left (<0) and right (>0) turns.
     """
-    res = {"peak_pos_g": "N/A", "peak_neg_g": "N/A", "max_bank_deg": "N/A"}
+    res = {
+        "peak_pos_g": "N/A",
+        "peak_neg_g": "N/A",
+        "max_bank_deg": "N/A",
+        "max_left_bank_deg": "N/A",
+        "max_right_bank_deg": "N/A",
+    }
 
-    # G-Load column candidates (Garmin / Dynon)
-    g_cols = [c for c in df.columns if "accel" in c.lower() or "g_load" in c.lower() or "norm accel" in c.lower() or "vert accel" in c.lower()]
+    # G-Load column (prefer Vertical Accel)
+    g_cols = [c for c in df.columns if "vertical accel" in c.lower() or "vert accel" in c.lower() or "g_load" in c.lower()]
+    if not g_cols:
+        g_cols = [c for c in df.columns if "accel" in c.lower()]
+
     if g_cols:
         try:
+            gs = pd.to_numeric(df.get("Ground Speed (knots)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
             g_series = pd.to_numeric(df[g_cols[0]], errors="coerce").dropna()
-            if not g_series.empty:
-                res["peak_pos_g"] = round(float(g_series.max()), 2)
-                res["peak_neg_g"] = round(float(g_series.min()), 2)
-        except Exception:
-            pass
+            
+            flight_mask = (gs > 35)
+            if "RPM" in df.columns:
+                rpm = pd.to_numeric(df["RPM"], errors="coerce").fillna(0)
+                flight_mask |= (rpm > 1000)
 
-    if "Roll (deg)" in df.columns:
+            if flight_mask.any():
+                g_series = g_series[flight_mask]
+
+            if not g_series.empty:
+                mean_g = g_series.mean()
+                if abs(mean_g) < 0.5:
+                    g_total = g_series + 1.0
+                else:
+                    g_total = g_series
+
+                res["peak_pos_g"] = round(float(g_total.max()), 2)
+                res["peak_neg_g"] = round(float(g_total.min()), 2)
+        except Exception as e:
+            print(f"G-load extraction notice: {e}")
+
+    # Bank Angle (Roll)
+    roll_cols = [c for c in df.columns if c.lower() == "roll (deg)" or "roll" in c.lower()]
+    if roll_cols:
         try:
-            roll_series = pd.to_numeric(df["Roll (deg)"], errors="coerce").abs().dropna()
-            if not roll_series.empty:
-                res["max_bank_deg"] = round(float(roll_series.max()), 1)
-        except Exception:
-            pass
+            gs = pd.to_numeric(df.get("Ground Speed (knots)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
+            raw_roll = pd.to_numeric(df[roll_cols[0]], errors="coerce")
+
+            flight_mask = (gs > 35)
+            if "RPM" in df.columns:
+                rpm = pd.to_numeric(df["RPM"], errors="coerce").fillna(0)
+                flight_mask |= (rpm > 1000)
+
+            if flight_mask.any():
+                raw_roll = raw_roll[flight_mask]
+
+            raw_roll = raw_roll.dropna()
+            if not raw_roll.empty:
+                abs_roll = raw_roll.abs()
+                res["max_bank_deg"] = round(float(abs_roll.max()), 1)
+
+                left_turns = raw_roll[raw_roll < 0].abs()
+                if not left_turns.empty:
+                    res["max_left_bank_deg"] = round(float(left_turns.max()), 1)
+
+                right_turns = raw_roll[raw_roll > 0]
+                if not right_turns.empty:
+                    res["max_right_bank_deg"] = round(float(right_turns.max()), 1)
+
+        except Exception as e:
+            print(f"Bank angle extraction notice: {e}")
 
     return res
 
@@ -283,7 +318,6 @@ def calculate_climb_gradient(df: pd.DataFrame) -> float:
         gs = pd.to_numeric(df["Ground Speed (knots)"], errors="coerce").fillna(0)
         dt = pd.to_numeric(df["Session Time"], errors="coerce").diff().fillna(0)
 
-        # Filter for active climb (VS > 300 fpm, GS > 40 kts)
         dt_safe = dt.replace(0, np.nan)
         vs_fpm = (alt.diff() / dt_safe) * 60.0
 
@@ -291,7 +325,6 @@ def calculate_climb_gradient(df: pd.DataFrame) -> float:
         if not climb_mask.any():
             return 0.0
 
-        # Gradient (ft/NM) = (Vertical Speed ft/min) / (Ground Speed NM/min) = (vs_fpm) / (gs / 60)
         grad_series = vs_fpm[climb_mask] / (gs[climb_mask] / 60.0)
         grad_series = grad_series.replace([np.inf, -np.inf], np.nan).dropna()
         return round(float(grad_series.mean()), 1) if not grad_series.empty else 0.0

@@ -1,0 +1,245 @@
+let globalFlights = [];
+let sortKey = 'date';
+let sortAsc = false;
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadMultiFlightStats();
+
+    const searchInput = document.getElementById("searchFlightInput");
+    if (searchInput) {
+        searchInput.addEventListener("input", filterAndRenderTable);
+    }
+});
+
+function loadMultiFlightStats() {
+    const statusEl = document.getElementById("multiStatsStatus");
+    if (statusEl) statusEl.innerHTML = '<span class="spinner-border spinner-border-sm text-primary"></span> Loading multi-flight analytics...';
+
+    fetch("/api/multi_flight_stats")
+        .then(r => r.json())
+        .then(data => {
+            if (statusEl) statusEl.style.display = "none";
+            globalFlights = data.flights || [];
+            renderFleetTotals(data.totals || {});
+            renderTrendCharts(globalFlights);
+            filterAndRenderTable();
+        })
+        .catch(err => {
+            console.error("Multi-flight stats error:", err);
+            if (statusEl) statusEl.innerText = "Error loading flight statistics.";
+        });
+}
+
+function renderFleetTotals(totals) {
+    const setVal = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = val;
+    };
+
+    setVal("totalFlightCount", totals.flight_count || 0);
+    setVal("totalHours", (totals.total_hours || 0) + " hrs");
+    setVal("totalMiles", (totals.total_distance_mi || 0).toLocaleString() + " mi");
+    setVal("totalFuel", (totals.total_fuel_gal || 0).toLocaleString() + " gal");
+    setVal("totalLandings", totals.total_landings || 0);
+    setVal("fleetAvgCht", (totals.fleet_avg_cht || "--") + " °F");
+}
+
+function renderTrendCharts(flights) {
+    if (!flights || flights.length === 0) return;
+
+    // Chronological order for trend charts (oldest -> newest)
+    const chronological = [...flights].reverse();
+    const dates = chronological.map(f => f.date || f.filename);
+
+    // 1. Engine Health Trend Chart (CHT Spread & Shock Cooling)
+    const engineDiv = document.getElementById("chartEngineHealth");
+    if (engineDiv) {
+        const chtSpreadTrace = {
+            x: dates,
+            y: chronological.map(f => f.cht_spread !== undefined ? f.cht_spread : null),
+            type: "scatter",
+            mode: "lines+markers",
+            name: "CHT Spread (°F)",
+            line: { color: "#fd7e14", width: 2 }
+        };
+
+        const shockCoolingTrace = {
+            x: dates,
+            y: chronological.map(f => f.max_shock_cooling !== undefined ? f.max_shock_cooling : null),
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Max Shock Cooling (°F/min)",
+            yaxis: "y2",
+            line: { color: "#dc3545", width: 2, dash: "dot" }
+        };
+
+        const layoutEngine = {
+            title: "Engine Thermal Trends (CHT Spread & Shock Cooling)",
+            xaxis: { title: "Flight Date", tickangle: -45 },
+            yaxis: { title: "CHT Spread (°F)" },
+            yaxis2: { title: "Max Shock Cooling (°F/min)", overlaying: "y", side: "right" },
+            margin: { l: 50, r: 50, t: 40, b: 80 },
+            legend: { orientation: "h", y: -0.25 }
+        };
+
+        Plotly.newPlot(engineDiv, [chtSpreadTrace, shockCoolingTrace], layoutEngine);
+    }
+
+    // 2. Flight Activity Chart (Duration & Distance)
+    const activityDiv = document.getElementById("chartActivity");
+    if (activityDiv) {
+        const durationTrace = {
+            x: dates,
+            y: chronological.map(f => f.duration_hours || 0),
+            type: "bar",
+            name: "Duration (hrs)",
+            marker: { color: "#0d6efd" }
+        };
+
+        const distanceTrace = {
+            x: dates,
+            y: chronological.map(f => f.distance_traveled_mi || 0),
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Distance (mi)",
+            yaxis: "y2",
+            line: { color: "#198754", width: 2 }
+        };
+
+        const layoutActivity = {
+            title: "Flight Activity (Duration & Distance)",
+            xaxis: { title: "Flight Date", tickangle: -45 },
+            yaxis: { title: "Duration (Hours)" },
+            yaxis2: { title: "Distance (Miles)", overlaying: "y", side: "right" },
+            margin: { l: 50, r: 50, t: 40, b: 80 },
+            legend: { orientation: "h", y: -0.25 }
+        };
+
+        Plotly.newPlot(activityDiv, [durationTrace, distanceTrace], layoutActivity);
+    }
+
+    // 3. Fuel & Efficiency Trend Chart
+    const fuelDiv = document.getElementById("chartFuelEfficiency");
+    if (fuelDiv) {
+        const fuelFlowTrace = {
+            x: dates,
+            y: chronological.map(f => f.avg_fuel_flow || 0),
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Avg Flow (gal/hr)",
+            line: { color: "#6f42c1", width: 2 }
+        };
+
+        const mpgTrace = {
+            x: dates,
+            y: chronological.map(f => typeof f.avg_mpg === "number" ? f.avg_mpg : null),
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Avg MPG (nm/gal)",
+            yaxis: "y2",
+            line: { color: "#20c997", width: 2 }
+        };
+
+        const layoutFuel = {
+            title: "Fuel Consumption & Speed Efficiency",
+            xaxis: { title: "Flight Date", tickangle: -45 },
+            yaxis: { title: "Avg Fuel Flow (GPH)" },
+            yaxis2: { title: "Avg MPG (NM/gal)", overlaying: "y", side: "right" },
+            margin: { l: 50, r: 50, t: 40, b: 80 },
+            legend: { orientation: "h", y: -0.25 }
+        };
+
+        Plotly.newPlot(fuelDiv, [fuelFlowTrace, mpgTrace], layoutFuel);
+    }
+}
+
+function filterAndRenderTable() {
+    const searchInput = document.getElementById("searchFlightInput");
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+    let filtered = globalFlights.filter(f => {
+        if (!query) return true;
+        return (f.filename && f.filename.toLowerCase().includes(query)) ||
+               (f.date && f.date.toLowerCase().includes(query)) ||
+               (f.flight_id && f.flight_id.toLowerCase().includes(query));
+    });
+
+    // Sort table data
+    filtered.sort((a, b) => {
+        let valA = a[sortKey];
+        let valB = b[sortKey];
+
+        if (valA === undefined || valA === "N/A" || valA === null) valA = -999999;
+        if (valB === undefined || valB === "N/A" || valB === null) valB = -999999;
+
+        if (typeof valA === "string") {
+            return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+        return sortAsc ? valA - valB : valB - valA;
+    });
+
+    renderTableRows(filtered);
+}
+
+function sortBy(key) {
+    if (sortKey === key) {
+        sortAsc = !sortAsc;
+    } else {
+        sortKey = key;
+        sortAsc = false;
+    }
+    filterAndRenderTable();
+}
+
+function renderTableRows(flights) {
+    const tbody = document.getElementById("multiStatsTbody");
+    if (!tbody) return;
+
+    if (!flights || flights.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="12" class="text-center text-muted">No flight logs found.</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = flights.map(f => {
+        const shockBadge = f.max_shock_cooling > 30
+            ? `<span class="badge bg-danger">${f.max_shock_cooling} °F/m</span>`
+            : `<span class="badge bg-success">${f.max_shock_cooling || 0} °F/m</span>`;
+
+        const chtColor = f.max_cht > 430 ? 'text-danger fw-bold' : (f.max_cht >= 410 ? 'text-warning fw-bold' : 'text-success');
+
+        return `
+            <tr>
+                <td><strong>${f.date}</strong><br><span class="small text-muted">${f.filename}</span></td>
+                <td>${f.duration_hours || 0} hrs (${f.duration_min || 0}m)</td>
+                <td>${f.distance_traveled_mi || 0} mi</td>
+                <td>${f.total_fuel || 0} gal</td>
+                <td>${f.avg_fuel_flow || 0} GPH</td>
+                <td><span class="text-success fw-bold">${f.avg_mpg || 'N/A'}</span></td>
+                <td><span class="${chtColor}">${f.max_cht || '--'} °F</span> / ${f.max_rpm || '--'}</td>
+                <td>${shockBadge}</td>
+                <td>${f.cht_spread !== undefined ? f.cht_spread + ' °F' : 'N/A'}</td>
+                <td><span class="badge bg-info text-dark">${f.landing_count || 1}</span></td>
+                <td>${f.wind_speed_kts !== 'N/A' && f.wind_speed_kts !== undefined ? `${f.wind_speed_kts} kts @ ${f.wind_dir_deg}°` : 'N/A'}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary" onclick="openFlightInAnalyzer('${f.filename}')">
+                        <i class="bi bi-play-circle"></i> Analyze
+                    </button>
+                </td>
+            </tr>
+        `;
+    }).join("");
+}
+
+function openFlightInAnalyzer(filename) {
+    if (window.location.pathname === "/analyzer" || document.getElementById("gamiModal")) {
+        const sel = document.getElementById("savedFlights");
+        if (sel) {
+            sel.value = filename;
+            sel.dispatchEvent(new Event("change"));
+        }
+        const modal = bootstrap.Modal.getInstance(document.getElementById("multiStatsModal"));
+        if (modal) modal.hide();
+    } else {
+        window.location.href = `/analyzer?flight=${encodeURIComponent(filename)}`;
+    }
+}

@@ -1632,6 +1632,173 @@ def analyzer():
     return render_template(template, is_logged_in=is_logged_in)
 
 
+# --- Multi-Flight Stats Dashboard Route ---
+@app.route("/multi_flight_stats")
+def multi_flight_stats_page():
+    is_logged_in = current_user.is_authenticated
+    return render_template("multi_stats.html", is_logged_in=is_logged_in)
+
+
+MULTI_STATS_CACHE_FILE = os.path.join(CACHE_DIR, "multi_stats_cache.json")
+
+
+@app.route("/api/multi_flight_stats", methods=["GET"])
+def api_multi_flight_stats():
+    """Returns high-level summary statistics (new & old) across all saved flights with disk caching."""
+    if not os.path.exists(SAVE_DIR):
+        return jsonify({"flights": [], "totals": {}})
+
+    csv_files = [f for f in os.listdir(SAVE_DIR) if f.endswith(".csv")]
+    if not csv_files:
+        return jsonify({"flights": [], "totals": {}})
+
+    cache_data = {}
+    if os.path.exists(MULTI_STATS_CACHE_FILE):
+        try:
+            with open(MULTI_STATS_CACHE_FILE, "r") as f:
+                cache_data = json.load(f)
+        except Exception:
+            cache_data = {}
+
+    updated_cache = {}
+    flight_stats_list = []
+
+    for filename in csv_files:
+        filepath = os.path.join(SAVE_DIR, filename)
+        mtime = os.path.getmtime(filepath)
+        cache_key = f"{filename}_{mtime}"
+
+        if cache_key in cache_data:
+            stats = cache_data[cache_key]
+        else:
+            try:
+                df = load_cached_flight_df(filename)
+                if df is None or df.empty:
+                    continue
+
+                flight_ids = [
+                    fid for fid in df["Flight ID"].unique() if pd.notna(fid) and fid != ""
+                ]
+                if not flight_ids:
+                    continue
+
+                target_flight = flight_ids[0]
+                flight_data = df[df["Flight ID"] == target_flight].copy()
+
+                numeric_times = pd.to_numeric(
+                    flight_data["Session Time"], errors="coerce"
+                )
+                duration = (
+                    numeric_times.max() - numeric_times.min()
+                    if not numeric_times.empty
+                    else 0
+                )
+
+                total_fuel = (
+                    flight_data["Fuel Flow Integral"].max()
+                    if "Fuel Flow Integral" in flight_data.columns
+                    and flight_data["Fuel Flow Integral"].max() != ""
+                    else 0
+                )
+                avg_flow = (total_fuel * 3600) / duration if duration > 0 else 0
+
+                avg_mpg = "N/A"
+                if "MPG" in flight_data.columns:
+                    valid_mpg = pd.to_numeric(
+                        flight_data["MPG"], errors="coerce"
+                    ).dropna()
+                    if not valid_mpg.empty:
+                        avg_mpg = round(float(valid_mpg.mean()), 1)
+
+                dist_miles = 0.0
+                if "Distance Traveled" in flight_data.columns:
+                    dt_series = pd.to_numeric(
+                        flight_data["Distance Traveled"], errors="coerce"
+                    ).dropna()
+                    if not dt_series.empty:
+                        dist_miles = round(float(dt_series.iloc[-1] / 5280.0), 1)
+
+                def safe_max_col(col):
+                    if col in flight_data.columns:
+                        s = pd.to_numeric(flight_data[col], errors="coerce").dropna()
+                        return round(float(s.max()), 1) if not s.empty else "N/A"
+                    return "N/A"
+
+                avg_speed_mph = (
+                    round(float(dist_miles / (duration / 3600)), 1)
+                    if duration > 0
+                    else 0.0
+                )
+
+                stats = {
+                    "filename": filename,
+                    "flight_id": str(target_flight),
+                    "date": filename[:10]
+                    if len(filename) >= 10
+                    else str(target_flight)[:10],
+                    "duration_min": round(float(duration / 60.0), 1),
+                    "duration_hours": round(float(duration / 3600.0), 2),
+                    "total_fuel": round(float(total_fuel), 1)
+                    if isinstance(total_fuel, (int, float))
+                    else 0.0,
+                    "avg_fuel_flow": round(float(avg_flow), 1),
+                    "avg_mpg": avg_mpg,
+                    "distance_traveled_mi": dist_miles,
+                    "distance_traveled_nm": round(dist_miles / 1.15078, 1),
+                    "avg_speed_mph": avg_speed_mph,
+                    "max_rpm": safe_max_col("RPM"),
+                    "max_cht": safe_max_col("Max CHT"),
+                }
+
+                # Advanced Telemetry Stats
+                adv_stats = extract_comprehensive_flight_stats(flight_data)
+                stats.update(adv_stats)
+
+            except Exception as e:
+                print(f"Error processing stats for {filename}: {e}")
+                continue
+
+        updated_cache[cache_key] = stats
+        flight_stats_list.append(stats)
+
+    # Save cache back
+    try:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        with open(MULTI_STATS_CACHE_FILE, "w") as f:
+            json.dump(updated_cache, f)
+    except Exception as e:
+        print(f"Cache write error: {e}")
+
+    # Sort flights newest to oldest
+    flight_stats_list.sort(key=lambda x: x.get("date", ""), reverse=True)
+
+    # Calculate Fleet Totals
+    total_hours = sum(f.get("duration_hours", 0) for f in flight_stats_list)
+    total_distance_mi = sum(f.get("distance_traveled_mi", 0) for f in flight_stats_list)
+    total_fuel_gal = sum(f.get("total_fuel", 0) for f in flight_stats_list)
+    total_landings = sum(f.get("landing_count", 1) for f in flight_stats_list)
+
+    avg_cht_list = [
+        f["max_cht"]
+        for f in flight_stats_list
+        if isinstance(f.get("max_cht"), (int, float))
+    ]
+    fleet_avg_cht = (
+        round(sum(avg_cht_list) / len(avg_cht_list), 1) if avg_cht_list else "N/A"
+    )
+
+    totals = {
+        "flight_count": len(flight_stats_list),
+        "total_hours": round(total_hours, 1),
+        "total_distance_mi": round(total_distance_mi, 1),
+        "total_fuel_gal": round(total_fuel_gal, 1),
+        "total_landings": total_landings,
+        "fleet_avg_cht": fleet_avg_cht,
+    }
+
+    return jsonify(sanitize_for_json({"flights": flight_stats_list, "totals": totals}))
+
+
 # --- GAMI Spread Page Route ---
 @app.route("/gami")
 def gami():

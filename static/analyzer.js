@@ -996,10 +996,10 @@ function updateGlobalUI(data) {
         <div class="col-sm-4 mb-3"><strong>Max Shock Cooling:</strong><br>${shockBadge}</div>
         <div class="col-sm-4 mb-3"><strong>Cruise CHT Spread:</strong><br>${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
         <div class="col-sm-4 mb-3"><strong>Max CHT / RPM:</strong><br>
-            <span style="${s.max_cht > 420 ? 'color: red; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'} °F</span> / 
-            <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : 'color: green;'}">${s.max_rpm || '--'} RPM</span>
+            <span style="${s.max_cht > 430 ? 'color: red; font-weight: bold;' : s.max_cht >= 410 ? 'color: orange; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'} °F</span> / 
+            <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : s.max_rpm >= 2600 ? 'color: orange;' : 'color: green;'}">${s.max_rpm || '--'} RPM</span>
         </div>
-        <div class="col-sm-4 mb-3"><strong>Time CHT > 380°F:</strong><br>${s.above_380_min !== undefined ? s.above_380_min + ' min' : '0 min'}</div>
+        <div class="col-sm-4 mb-3"><strong>Time CHT > 410°F:</strong><br>${s.above_410_min !== undefined ? s.above_410_min + ' min' : '0 min'}</div>
         <div class="col-sm-4 mb-3"><strong>Oil Temp Delta:</strong><br>${s.oil_temp_delta !== undefined && s.oil_temp_delta !== 'N/A' ? '+' + s.oil_temp_delta + ' °F vs OAT' : 'N/A'}</div>
         <div class="col-sm-4 mb-3"><strong>Min Oil Pressure:</strong><br>${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
 
@@ -1009,7 +1009,7 @@ function updateGlobalUI(data) {
         <div class="col-sm-4 mb-3"><strong>Landings Detected:</strong><br><span class="badge bg-info text-dark">${s.landing_count || 1} Landings</span></div>
         <div class="col-sm-4 mb-3"><strong>Climb Gradient:</strong><br>${s.climb_gradient_ft_nm ? s.climb_gradient_ft_nm + ' ft/NM' : 'N/A'}</div>
         <div class="col-sm-6 mb-3"><strong>Wind Aloft (Cruise):</strong><br>${windAloft}</div>
-        <div class="col-sm-6 mb-3"><strong>G-Load / Max Bank:</strong><br>${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'} | Max Bank: ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '°' : 'N/A'}</div>
+        <div class="col-sm-6 mb-3"><strong>G-Load / Max Bank:</strong><br>${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'} | Max Bank: ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '° (L:' + (s.max_left_bank_deg || '--') + '° / R:' + (s.max_right_bank_deg || '--') + '°)' : 'N/A'}</div>
     `;
 
     // Always show the aircraft card once analysis runs
