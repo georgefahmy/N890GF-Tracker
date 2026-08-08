@@ -339,58 +339,48 @@ function renderGami(data) {
 
         Plotly.react(timeGraphDiv, timeTraces, timeLayout);
 
+        if (timeGraphDiv.removeAllListeners) {
+            timeGraphDiv.removeAllListeners('plotly_click');
+        }
+
         // Click-based time window selection
         timeGraphDiv.on('plotly_click', function(eventdata) {
-        if (!eventdata.points || eventdata.points.length === 0) return;
+            if (!eventdata.points || eventdata.points.length === 0) return;
 
-        const x = eventdata.points[0].x;
+            const x = eventdata.points[0].x;
 
-        // add black click marker
-        clickMarkers.push(x);
+            // Check if start point is set and currently visible on the active plot zoom range
+            const currentRange = timeGraphDiv.layout?.xaxis?.range;
+            const isStartVisible = timeSelectionState.start !== null && (
+                !currentRange || (timeSelectionState.start >= currentRange[0] && timeSelectionState.start <= currentRange[1])
+            );
 
-        // CASE 3: reset if both already set
-        if (timeSelectionState.start !== null && timeSelectionState.end !== null) {
-            timeSelectionState.start = x;
-            timeSelectionState.end = null;
-            timeWindow = null;
+            // First click (or restart if both set or start is not visible on screen)
+            if (timeSelectionState.start === null || timeSelectionState.end !== null || !isStartVisible) {
+                timeSelectionState.start = x;
+                timeSelectionState.end = null;
+                timeWindow = null;
+                clickMarkers = [x];
+            } else {
+                // Second click: set end time (only if start time is visible on the plot)
+                timeSelectionState.end = x;
 
-            // reset click markers on new selection
-            clickMarkers = [x];
+                if (timeSelectionState.end < timeSelectionState.start) {
+                    const tmp = timeSelectionState.start;
+                    timeSelectionState.start = timeSelectionState.end;
+                    timeSelectionState.end = tmp;
+                }
+
+                timeWindow = {
+                    start: timeSelectionState.start,
+                    end: timeSelectionState.end
+                };
+                clickMarkers = [timeSelectionState.start, timeSelectionState.end];
+            }
 
             drawSelectionBox();
             renderGami(currentData);
-            return;
-        }
-
-        // CASE 1: first click (start)
-        if (timeSelectionState.start === null) {
-            timeSelectionState.start = x;
-            timeSelectionState.end = null;
-            timeWindow = null;
-
-            // first click marker
-            clickMarkers = [x];
-        }
-        // CASE 2: second click (end)
-        else {
-            timeSelectionState.end = x;
-
-            // ensure ordering
-            if (timeSelectionState.end < timeSelectionState.start) {
-                const tmp = timeSelectionState.start;
-                timeSelectionState.start = timeSelectionState.end;
-                timeSelectionState.end = tmp;
-            }
-
-            timeWindow = {
-                start: timeSelectionState.start,
-                end: timeSelectionState.end
-            };
-        }
-
-        drawSelectionBox();
-        renderGami(currentData);
-    });
+        });
 
     function updateVerticalCursor(x) {
         Plotly.relayout(getGamiElem('timeGraph'), {
