@@ -243,44 +243,52 @@ function loadSignals(formData) {
 }
 
 // 3. Handle File Upload
-document.getElementById('csvFile').addEventListener('change', function(e) {
-    if (e.target.files.length === 0) return;
-    // Clear the URL parameter since we are uploading a new, unsaved file
-    window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
+const csvFileInput = document.getElementById('csvFile');
+if (csvFileInput) {
+    csvFileInput.addEventListener('change', function(e) {
+        if (e.target.files.length === 0) return;
+        // Clear the URL parameter since we are uploading a new, unsaved file
+        window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
 
-    document.getElementById('savedFlights').value = ""; // Reset dropdown
-    localStorage.removeItem(STORAGE_KEY);
-    const formData = new FormData();
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlFlight = urlParams.get('flight');
+        const savedSelect = document.getElementById('savedFlights');
+        if (savedSelect) savedSelect.value = ""; // Reset dropdown
+        localStorage.removeItem(STORAGE_KEY);
+        const formData = new FormData();
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlFlight = urlParams.get('flight');
 
-    formData.append('saved_filename', e.target.files[0]);
-    loadSignals(formData);
+        formData.append('saved_filename', e.target.files[0]);
+        loadSignals(formData);
 
-    if (!urlFlight) {
-        const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(AppState.file.currentName);
-        window.history.replaceState({ path: newUrl }, '', newUrl);
-    }
-});
+        if (!urlFlight) {
+            const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(AppState.file.currentName);
+            window.history.replaceState({ path: newUrl }, '', newUrl);
+        }
+    });
+}
 
 // 4. Handle Saved Flight Selection
-document.getElementById('savedFlights').addEventListener('change', function(e) {
-    if (!e.target.value) {
-        // Clear URL if empty selection
-        window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
-        return;
-    }
+const savedFlightsSelect = document.getElementById('savedFlights');
+if (savedFlightsSelect) {
+    savedFlightsSelect.addEventListener('change', function(e) {
+        if (!e.target.value) {
+            // Clear URL if empty selection
+            window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
+            return;
+        }
 
-    // Update the URL dynamically
-    const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(e.target.value);
-    window.history.pushState({ path: newUrl }, '', newUrl);
+        // Update the URL dynamically
+        const newUrl = window.location.pathname + '?flight=' + encodeURIComponent(e.target.value);
+        window.history.pushState({ path: newUrl }, '', newUrl);
 
-    localStorage.setItem(STORAGE_KEY, e.target.value);
-    document.getElementById('csvFile').value = ""; // Reset file input
-    const formData = new FormData();
-    formData.append('saved_filename', e.target.value);
-    loadSignals(formData);
-});
+        localStorage.setItem(STORAGE_KEY, e.target.value);
+        const csvInput = document.getElementById('csvFile');
+        if (csvInput) csvInput.value = ""; // Reset file input
+        const formData = new FormData();
+        formData.append('saved_filename', e.target.value);
+        loadSignals(formData);
+    });
+}
 
 // 5. Handle Unit Toggle Change
 document.querySelectorAll('input[name="tempUnit"]').forEach(radio => {
@@ -497,13 +505,18 @@ function populateDropdownsForPlot(plotId) {
 function syncTooltips(xVal, sourceDivId) {
     const plots = document.querySelectorAll('[id^="flightGraph-"]');
 
+    let targetX = xVal;
+    if (typeof xVal === 'number' && Number.isInteger(xVal) && AppState.currentPlotData?.x?.[xVal] !== undefined) {
+        targetX = AppState.currentPlotData.x[xVal];
+    }
+
     plots.forEach(div => {
         // Skip the plot we are currently hovering on, and any hidden/empty plots
         if (!div || !div.data || div.id === sourceDivId) return;
 
         try {
             // Explicitly target both top (xy) and bottom (xy2) subplots
-            Plotly.Fx.hover(div, { xval: xVal }, ['xy', 'xy2']);
+            Plotly.Fx.hover(div, { xval: targetX }, ['xy', 'xy2']);
         } catch (e) {
             console.error("Hover sync failed on", div.id, e);
         }
@@ -562,6 +575,93 @@ async function triggerAnalysis(plotId) {
     window._isChartUpdating = false;
 }
 
+// --- LTTB (Largest-Triangle-Three-Buckets) Downsampling Algorithm ---
+function downsampleLTTB(xData, yData, maxPoints = 2000) {
+    if (!xData || !yData || xData.length <= maxPoints || maxPoints < 3) {
+        const origIndices = new Array(xData.length);
+        for (let i = 0; i < xData.length; i++) origIndices[i] = i;
+        return { x: xData, y: yData, indices: origIndices };
+    }
+
+    const dataLength = xData.length;
+    const sampledX = new Array(maxPoints);
+    const sampledY = new Array(maxPoints);
+    const sampledIndices = new Array(maxPoints);
+
+    sampledX[0] = xData[0];
+    sampledY[0] = yData[0];
+    sampledIndices[0] = 0;
+
+    const bucketSize = (dataLength - 2) / (maxPoints - 2);
+    let a = 0;
+
+    for (let i = 0; i < maxPoints - 2; i++) {
+        let avgX = 0;
+        let avgY = 0;
+        const avgRangeStart = Math.floor((i + 1) * bucketSize) + 1;
+        const avgRangeEnd = Math.min(Math.floor((i + 2) * bucketSize) + 1, dataLength);
+        const avgRangeLength = avgRangeEnd - avgRangeStart;
+
+        if (avgRangeLength > 0) {
+            for (let j = avgRangeStart; j < avgRangeEnd; j++) {
+                avgX += Number(xData[j]) || 0;
+                avgY += Number(yData[j]) || 0;
+            }
+            avgX /= avgRangeLength;
+            avgY /= avgRangeLength;
+        }
+
+        const rangeOffs = Math.floor(i * bucketSize) + 1;
+        const rangeTo = Math.floor((i + 1) * bucketSize) + 1;
+
+        const pointAX = Number(xData[a]) || 0;
+        const pointAY = Number(yData[a]) || 0;
+
+        let maxArea = -1;
+        let maxAreaPoint = rangeOffs;
+
+        for (let j = rangeOffs; j < rangeTo; j++) {
+            const pointJX = Number(xData[j]) || 0;
+            const pointJY = Number(yData[j]) || 0;
+
+            const area = Math.abs(
+                (pointAX - avgX) * (pointJY - pointAY) -
+                (pointAX - pointJX) * (avgY - pointAY)
+            ) * 0.5;
+
+            if (area > maxArea) {
+                maxArea = area;
+                maxAreaPoint = j;
+            }
+        }
+
+        sampledX[i + 1] = xData[maxAreaPoint];
+        sampledY[i + 1] = yData[maxAreaPoint];
+        sampledIndices[i + 1] = maxAreaPoint;
+        a = maxAreaPoint;
+    }
+
+    sampledX[maxPoints - 1] = xData[dataLength - 1];
+    sampledY[maxPoints - 1] = yData[dataLength - 1];
+    sampledIndices[maxPoints - 1] = dataLength - 1;
+
+    return { x: sampledX, y: sampledY, indices: sampledIndices };
+}
+
+function findClosestIndex(arr, val) {
+    if (!arr || !arr.length) return 0;
+    let low = 0, high = arr.length - 1;
+    while (low <= high) {
+        const mid = (low + high) >> 1;
+        if (arr[mid] === val) return mid;
+        if (arr[mid] < val) low = mid + 1;
+        else high = mid - 1;
+    }
+    if (low >= arr.length) return arr.length - 1;
+    if (high < 0) return 0;
+    return (Math.abs(arr[low] - val) < Math.abs(arr[high] - val)) ? low : high;
+}
+
 function renderPlotlyChart(plotId, data) {
     const graphDiv = document.getElementById(`flightGraph-${plotId}`);
     const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
@@ -581,7 +681,6 @@ function renderPlotlyChart(plotId, data) {
     // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis
     const colorsLeft = ['#0d6efd', '#0dcaf0', '#198754', '#20c997'];
     const colorsRight = ['#dc3545', '#fd7e14', '#ffc107', '#d63384'];
-    // --- NEW: Track exact data limits to prevent shapes from squishing the chart ---
 
     // Map Left Traces
     let leftMin = Infinity, leftMax = -Infinity;
@@ -590,16 +689,16 @@ function renderPlotlyChart(plotId, data) {
         const len = yData.length;
         for (let i = 0; i < len; i++) {
             const val = parseFloat(yData[i]);
-
-            // 'val === val' is a native JS trick. NaN is the only value that does not equal itself.
-            // It is significantly faster than calling the !isNaN() function.
             if (val === val) {
                 if (val < leftMin) leftMin = val;
                 if (val > leftMax) leftMax = val;
             }
         }
+        const sampled = downsampleLTTB(data.plot_data.x, traceData.y, 2000);
         traces.push({
-            x: data.plot_data.x, y: traceData.y, name: traceData.name,
+            x: sampled.x, y: sampled.y, name: traceData.name,
+            customdata: sampled.indices,
+            hovertemplate: '%{y:,}<extra></extra>',
             type: 'scattergl', mode: 'lines',
             line: { color: colorsLeft[idx % colorsLeft.length] }
         });
@@ -612,16 +711,16 @@ function renderPlotlyChart(plotId, data) {
         const len = yData.length;
         for (let i = 0; i < len; i++) {
             const val = parseFloat(yData[i]);
-
-            // 'val === val' is a native JS trick. NaN is the only value that does not equal itself.
-            // It is significantly faster than calling the !isNaN() function.
             if (val === val) {
                 if (val < rightMin) rightMin = val;
                 if (val > rightMax) rightMax = val;
             }
         }
+        const sampled = downsampleLTTB(data.plot_data.x, traceData.y, 2000);
         traces.push({
-            x: data.plot_data.x, y: traceData.y, name: traceData.name,
+            x: sampled.x, y: sampled.y, name: traceData.name,
+            customdata: sampled.indices,
+            hovertemplate: '%{y:,}<extra></extra>',
             type: 'scattergl', mode: 'lines',
             line: { color: colorsRight[idx % colorsRight.length] },
             yaxis: 'y2'
@@ -729,20 +828,24 @@ function renderPlotlyChart(plotId, data) {
 
         if (!eventdata.points || eventdata.points.length === 0) return;
         const pt = eventdata.points[0];
-        const idx = pt.pointIndex;
+
+        // Resolve exact raw telemetry index from customdata or x-value lookup
+        let idx = (pt.customdata !== undefined && pt.customdata !== null) ? pt.customdata : pt.pointIndex;
+        if (typeof idx !== 'number' || idx >= (AppState.currentPlotData?.x?.length || 0)) {
+            idx = findClosestIndex(AppState.currentPlotData?.x, pt.x);
+        }
 
         const pitchArr = AppState.currentPlotData?.pitch || [];
         const rollArr = AppState.currentPlotData?.roll || [];
         const headingArr = AppState.currentPlotData?.heading || [];
         const airspeed = AppState.currentPlotData.airspeed || [];
         const altitude = AppState.currentPlotData.altitude || [];
-        const verticalSpeed =AppState.currentPlotData.vertical_speed || [];
+        const verticalSpeed = AppState.currentPlotData.vertical_speed || [];
         const rpm = AppState.currentPlotData.rpm || [];
         const map = AppState.currentPlotData.map_data || [];
-        const power =AppState.currentPlotData.percent_power || [];
-        const fuelFlow =AppState.currentPlotData.fuel_flow || [];
-        const mpg =AppState.currentPlotData.mpg || [];
-        // const xVal = pt.x;
+        const power = AppState.currentPlotData.percent_power || [];
+        const fuelFlow = AppState.currentPlotData.fuel_flow || [];
+        const mpg = AppState.currentPlotData.mpg || [];
 
         if (pitchArr.length && rollArr.length && headingArr.length && idx !== undefined) {
             document.getElementById('attPitch').innerText =
@@ -784,54 +887,49 @@ function renderPlotlyChart(plotId, data) {
             window.updateAircraft3D(pitchVal, rollVal, trueHeading, lat, lon, alt);
         }
 
-        // DIRECT INDEX MATCH
-        if (pt.pointIndex !== undefined && AppState.map.data?.lat && AppState.map.data?.lon) {
-            const idx = pt.pointIndex;
+        // DIRECT INDEX MATCH FOR MAP MARKER
+        if (idx !== undefined && AppState.map.data?.lat && AppState.map.data?.lon) {
             const mapLat = AppState.map.data.lat[idx];
             const mapLon = AppState.map.data.lon[idx];
 
-            if (mapLat === undefined || mapLon === undefined) return;
+            if (mapLat !== undefined && mapLon !== undefined) {
+                const mapDiv = document.getElementById('mapGraph');
 
-            const mapDiv = document.getElementById('mapGraph');
+                if (mapDiv && mapDiv.data && mapDiv.data.length > 0) {
+                    let aircraftIndex = window._mapMarkerTraceIndex || 0;
 
-            if (mapDiv && mapDiv.data && mapDiv.data.length > 0) {
-                let aircraftIndex = window._mapMarkerTraceIndex || 0;
+                    if (mapDiv.data[aircraftIndex]) {
+                        Plotly.restyle('mapGraph', {
+                            lat: [[mapLat]],
+                            lon: [[mapLon]]
+                        }, [aircraftIndex]).catch(e => {
+                            console.debug("Async marker update skipped during transition.");
+                        });
+                    }
 
-                if (mapDiv.data[aircraftIndex]) {
-                    // FIX: Append .catch() to handle the asynchronous Mapbox rejection
-                    Plotly.restyle('mapGraph', {
-                        lat: [[mapLat]],
-                        lon: [[mapLon]]
-                    }, [aircraftIndex]).catch(e => {
-                        console.debug("Async marker update skipped during transition.");
-                    });
+                    if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
+                        AppState.map.isMapPanning = true;
+
+                        Plotly.relayout('mapGraph', {
+                            'mapbox.center.lat': mapLat,
+                            'mapbox.center.lon': mapLon
+                        }).catch(e => {
+                            console.debug("Async map pan skipped during transition.");
+                        });
+
+                        setTimeout(() => { AppState.map.isMapPanning = false; }, 50);
+                    }
                 }
 
-                if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
-                    AppState.map.isMapPanning = true;
-
-                    // FIX: Append .catch() here as well
-                    Plotly.relayout('mapGraph', {
-                        'mapbox.center.lat': mapLat,
-                        'mapbox.center.lon': mapLon
-                    }).catch(e => {
-                        console.debug("Async map pan skipped during transition.");
-                    });
-
-                    setTimeout(() => { AppState.map.isMapPanning = false; }, 50);
-                }
+                const scrubber = document.getElementById('mapScrubber');
+                if (scrubber) scrubber.value = idx;
             }
-
-            const scrubber = document.getElementById('mapScrubber');
-            if (scrubber) scrubber.value = idx;
         }
 
-        // Sync other plots using the new clean logic
-        AppState.playback.index = idx
-        if (idx !== undefined) {
-            const t = parseFloat(idx);
-            syncTooltips(AppState.playback.index);
-            syncAircraftToTime(t);
+        // Sync other plots using exact x coordinate
+        AppState.playback.index = idx;
+        if (pt.x !== undefined) {
+            syncTooltips(pt.x, graphDiv.id);
         }
     });
     graphDiv.on('plotly_unhover', function(eventdata) {
@@ -1594,22 +1692,25 @@ function renderMap(data) {
         }
 
         // Final safety fallback to avoid black map
-        let cmin, cmax;
+        let cmin = Infinity, cmax = -Infinity;
 
         if (AppState.map.colorMode === 'altitude' && AppState.map.data.alt && AppState.map.data.alt.length) {
-            const altVals = AppState.map.data.alt.filter(v => !isNaN(v));
-
-            cmin = altVals.length ? Math.min(...altVals) : 0;
-            cmax = altVals.length ? Math.max(...altVals) : 15000;
-
-            // Hard clamp fallback if data is flat or broken
-            if (cmin === cmax) {
-                cmin = 0;
-                cmax = 15000;
+            const altVals = AppState.map.data.alt;
+            for (let i = 0; i < altVals.length; i++) {
+                const v = altVals[i];
+                if (!isNaN(v)) {
+                    if (v < cmin) cmin = v;
+                    if (v > cmax) cmax = v;
+                }
             }
+            if (cmin === Infinity) { cmin = 0; cmax = 15000; }
         } else {
-            cmin = validVals.length ? Math.min(...validVals) : 0;
-            cmax = validVals.length ? Math.max(...validVals) : 1;
+            for (let i = 0; i < validVals.length; i++) {
+                const v = validVals[i];
+                if (v < cmin) cmin = v;
+                if (v > cmax) cmax = v;
+            }
+            if (cmin === Infinity) { cmin = 0; cmax = 1; }
         }
 
         heatTrace = {
@@ -1809,7 +1910,6 @@ function renderMap(data) {
 function syncAircraftToTime(t) {
     if (!window._mapTime || !AppState.map.data.lat || !AppState.map.data.lon) return;
 
-    // Find closest index in time array
     let bestIndex = 0;
     let bestDiff = Infinity;
 
@@ -1821,123 +1921,109 @@ function syncAircraftToTime(t) {
         }
     }
 
-    const mapDiv = document.getElementById('mapGraph');
-    if (!mapDiv) return;
+    scrubMap(bestIndex);
 
-    // Resolve aircraft marker trace index (fallback-safe)
-    let aircraftIndex = window._mapMarkerTraceIndex;
-
-    if (mapDiv.data && mapDiv.data.length) {
-        const idx = mapDiv.data.findIndex(t =>
-            t && t.meta && t.meta.role === 'aircraft_marker'
-        );
-        if (idx !== -1) aircraftIndex = idx;
-    }
-
-    if (aircraftIndex === undefined || aircraftIndex === null || aircraftIndex < 0) {
-        aircraftIndex = window._mapMarkerTraceIndex || 0;
-    }
-
-    const lat = AppState.map.data.lat[bestIndex];
-    const lon = AppState.map.data.lon[bestIndex];
-
-    // Directly update ONLY the aircraft marker trace (stable + no full redraw)
-    try {
-        Plotly.restyle('mapGraph', {
-            lat: [[lat]],
-            lon: [[lon]]
-        }, [aircraftIndex]);
-
-        Plotly.redraw('mapGraph');
-    } catch (e) {
-        console.error("Aircraft marker update failed:", e);
-    }
-
-    // Follow mode (map recenter)
-    if (AppState.map.followAircraft) {
-        Plotly.relayout('mapGraph', {
-            'mapbox.center.lat': lat,
-            'mapbox.center.lon': lon
-        });
-    }
-
-    // Update the map scrubber position
     const scrubber = document.getElementById('mapScrubber');
     if (scrubber) {
         scrubber.value = bestIndex;
     }
 }
 
+let pendingScrubIndex = null;
+let scrubAnimationFrame = null;
+let lastMapRelayoutTime = 0;
+
 function scrubMap(idx) {
     idx = parseInt(idx);
-
     AppState.playback.index = idx;
     AppState.playback.tick = 0;
 
+    pendingScrubIndex = idx;
+    if (!scrubAnimationFrame) {
+        scrubAnimationFrame = requestAnimationFrame(() => {
+            const targetIdx = pendingScrubIndex;
+            scrubAnimationFrame = null;
+            executeScrub(targetIdx);
+        });
+    }
+}
+
+function executeScrub(idx) {
     if (!AppState.map.data.lat || !AppState.map.data.lon) return;
 
     const lat = AppState.map.data.lat[idx];
     const lon = AppState.map.data.lon[idx];
 
     const mapDiv = document.getElementById('mapGraph');
-    if (!mapDiv) return;
+    if (mapDiv) {
+        let aircraftIndex = window._mapMarkerTraceIndex;
+        if (mapDiv.data && mapDiv.data.length) {
+            const foundIdx = mapDiv.data.findIndex(t => t && t.meta && t.meta.role === 'aircraft_marker');
+            if (foundIdx !== -1) aircraftIndex = foundIdx;
+        }
+        if (aircraftIndex === undefined || aircraftIndex === null || aircraftIndex < 0) {
+            aircraftIndex = window._mapMarkerTraceIndex || 0;
+        }
 
-    let aircraftIndex = window._mapMarkerTraceIndex || 0;
+        try {
+            Plotly.restyle('mapGraph', {
+                lat: [[lat]],
+                lon: [[lon]]
+            }, [aircraftIndex]);
+        } catch (e) {
+            console.error("Scrubber update failed:", e);
+        }
 
-    try {
-        Plotly.restyle('mapGraph', {
-            lat: [[lat]],
-            lon: [[lon]]
-        }, [aircraftIndex]);
-    } catch (e) {
-        console.error("Scrubber update failed:", e);
+        const now = Date.now();
+        if (AppState.map.followAircraft && (now - lastMapRelayoutTime > 150 || !AppState.playback.isScrubbing)) {
+            lastMapRelayoutTime = now;
+            Plotly.relayout('mapGraph', {
+                'mapbox.center.lat': lat,
+                'mapbox.center.lon': lon
+            });
+        }
     }
 
-    // Also sync 3D + attitude if available
     if (AppState.currentPlotData) {
         const pitch = AppState.currentPlotData.pitch?.[idx] || 0;
         const roll = AppState.currentPlotData.roll?.[idx] || 0;
         const heading = AppState.currentPlotData.heading?.[idx] || 0;
         const magVar = AppState.currentPlotData.mag_variance?.[idx] || -13;
-        const trueHeading = heading - magVar
+        const trueHeading = heading - magVar;
         const airspeed = AppState.currentPlotData.airspeed?.[idx] || 0;
         const altitude = AppState.currentPlotData.altitude?.[idx] || 0;
-        const verticalSpeed =AppState.currentPlotData.vertical_speed?.[idx] || 0;
+        const verticalSpeed = AppState.currentPlotData.vertical_speed?.[idx] || 0;
         const rpm = AppState.currentPlotData.rpm?.[idx] || 0;
         const map = AppState.currentPlotData.map_data?.[idx] || 0;
-        const power =AppState.currentPlotData.percent_power?.[idx] || 0;
-        const fuelFlow =AppState.currentPlotData.fuel_flow?.[idx] || 0;
-        const mpg =AppState.currentPlotData.mpg?.[idx] || 0;
+        const power = AppState.currentPlotData.percent_power?.[idx] || 0;
+        const fuelFlow = AppState.currentPlotData.fuel_flow?.[idx] || 0;
+        const mpg = AppState.currentPlotData.mpg?.[idx] || 0;
 
-        document.getElementById('attPitch').innerText = pitch.toFixed(1) + ' °';
-        document.getElementById('attRoll').innerText = roll.toFixed(1) + ' °';
-        document.getElementById('attHeading').innerText = heading.toFixed(1) + ' °';
-        document.getElementById('attAirspeed').innerText = airspeed.toFixed(1) + ' kts';
-        document.getElementById('attAltitude').innerText = altitude.toFixed(0) + ' ft';
-        document.getElementById('attVerticalSpeed').innerText = verticalSpeed.toFixed(0) + ' fpm';
-        document.getElementById('attRpm').innerText = rpm.toFixed(1);
-        document.getElementById('attMap').innerText = map.toFixed(1);
-        document.getElementById('attPower').innerText = power.toFixed(1) + ' %';
-        document.getElementById('attFuelFlow').innerText = fuelFlow.toFixed(1) + ' gph';
-        document.getElementById('attMpg').innerText = mpg.toFixed(1);
+        const updateVal = (id, text) => {
+            const el = document.getElementById(id);
+            if (el) el.innerText = text;
+        };
+
+        updateVal('attPitch', pitch.toFixed(1) + ' °');
+        updateVal('attRoll', roll.toFixed(1) + ' °');
+        updateVal('attHeading', heading.toFixed(1) + ' °');
+        updateVal('attAirspeed', airspeed.toFixed(1) + ' kts');
+        updateVal('attAltitude', altitude.toFixed(0) + ' ft');
+        updateVal('attVerticalSpeed', verticalSpeed.toFixed(0) + ' fpm');
+        updateVal('attRpm', rpm.toFixed(1));
+        updateVal('attMap', map.toFixed(1));
+        updateVal('attPower', power.toFixed(1) + ' %');
+        updateVal('attFuelFlow', fuelFlow.toFixed(1) + ' gph');
+        updateVal('attMpg', mpg.toFixed(1));
 
         if (window.updateAircraft3D) {
-            const lat = AppState.map.data.lat ? AppState.map.data.lat[idx] : 0;
-            const lon = AppState.map.data.lon ? AppState.map.data.lon[idx] : 0;
-            const alt = AppState.map.data.alt ? AppState.map.data.alt[idx] : 0; // Assuming alt is in feet
-
+            const alt = AppState.map.data.alt ? AppState.map.data.alt[idx] : 0;
             window.updateAircraft3D(pitch, roll, trueHeading, lat, lon, alt);
         }
     }
     syncTooltips(idx);
-    // Follow mode
-    if (AppState.map.followAircraft) {
-        Plotly.relayout('mapGraph', {
-            'mapbox.center.lat': lat,
-            'mapbox.center.lon': lon
-        });
-    }
 }
+
 function togglePlayback() {
     const btn = document.getElementById('playPauseBtn');
     if (AppState.playback.timer) {

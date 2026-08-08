@@ -656,6 +656,20 @@ class TestPublicPages:
             response = client.get("/analyzer")
             assert response.status_code == 200
 
+    def test_flight_cache_helper(self, app, tmp_path, monkeypatch):
+        from app import load_cached_flight_df, save_flight_df_cache, CACHE_DIR, SAVE_DIR
+        import pandas as pd
+        import os
+
+        # Test creating and reading cache
+        test_filename = "test_cache_flight.csv"
+        df = pd.DataFrame({"Flight ID": ["2026-01-01 - Flight 1"], "RPM": [2400], "Session Time": [10]})
+        save_flight_df_cache(test_filename, df)
+
+        cache_file = os.path.join(CACHE_DIR, f"{test_filename}.pkl.gz")
+        assert os.path.exists(cache_file)
+
+
     def test_live_map_page(self, app, client):
         with app.app_context():
             response = client.get("/live_map")

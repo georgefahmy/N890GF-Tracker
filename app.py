@@ -127,7 +127,53 @@ DB_PATH = db_path
 DEBUG = True
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
+CACHE_DIR = os.path.join(SAVE_DIR, ".cache")
 os.makedirs(SAVE_DIR, exist_ok=True)
+os.makedirs(CACHE_DIR, exist_ok=True)
+
+
+def save_flight_df_cache(saved_filename, df):
+    """Saves a flight DataFrame to compressed pickle cache."""
+    try:
+        import gzip
+        import pickle
+
+        cache_path = os.path.join(CACHE_DIR, f"{saved_filename}.pkl.gz")
+        with gzip.open(cache_path, "wb") as f:
+            pickle.dump(df, f, protocol=pickle.HIGHEST_PROTOCOL)
+    except Exception as e:
+        print(f"Cache save failed for {saved_filename}: {e}")
+
+
+def load_cached_flight_df(saved_filename):
+    """
+    Loads a flight DataFrame from a compressed pickle cache.
+    If the cache doesn't exist or is older than the CSV file, reads the CSV and updates the cache.
+    """
+    csv_path = os.path.join(SAVE_DIR, saved_filename)
+    if not os.path.exists(csv_path):
+        return None
+
+    cache_path = os.path.join(CACHE_DIR, f"{saved_filename}.pkl.gz")
+
+    if os.path.exists(cache_path):
+        try:
+            csv_mtime = os.path.getmtime(csv_path)
+            cache_mtime = os.path.getmtime(cache_path)
+            if cache_mtime >= csv_mtime:
+                import gzip
+                import pickle
+
+                with gzip.open(cache_path, "rb") as f:
+                    return pickle.load(f)
+        except Exception as e:
+            print(f"Cache load failed for {saved_filename}: {e}")
+
+    # Fallback to reading CSV and updating cache
+    df = pd.read_csv(csv_path, low_memory=False)
+    save_flight_df_cache(saved_filename, df)
+    return df
+
 
 # Constants
 OIL_CHANGE_INTERVAL_HOURS = 25
@@ -1609,7 +1655,7 @@ def api_get_signals():
             filepath = os.path.join(SAVE_DIR, saved_filename)
             if not os.path.exists(filepath):
                 return jsonify({"error": "Saved file not found."}), 404
-            df = pd.read_csv(filepath, low_memory=False)
+            df = load_cached_flight_df(saved_filename)
 
         else:
             print(request.files)
@@ -1645,6 +1691,7 @@ def api_get_signals():
                 saved_filename = f"{safe_name}.csv"
                 filepath = os.path.join(SAVE_DIR, saved_filename)
                 flight_data.to_csv(filepath, index=False)
+                save_flight_df_cache(saved_filename, flight_data)
                 stats_file = os.getcwd() + "/static/stats.csv"
                 total_duration = (
                     flight_data["Session Time"].iloc[-1]
@@ -1849,7 +1896,7 @@ def api_analyze_flight():
         if not os.path.exists(filepath):
             return jsonify({"error": "Saved file not found on server."}), 404
 
-        df = pd.read_csv(filepath, low_memory=False)
+        df = load_cached_flight_df(saved_filename)
 
         left_signal = request.form.get("left_signal", "RPM")
         right_signal = request.form.get("right_signal", "AVG_CHT")
@@ -2187,7 +2234,7 @@ def api_airspeed_calibration():
         if not os.path.exists(filepath):
             return jsonify({"error": "File not found"}), 404
 
-        df = pd.read_csv(filepath, low_memory=False)
+        df = load_cached_flight_df(saved_filename)
 
         # pick first flight
         flight_ids = [
