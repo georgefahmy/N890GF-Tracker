@@ -38,6 +38,7 @@ function renderFleetTotals(totals) {
 
     setVal("totalFlightCount", totals.flight_count || 0);
     setVal("totalHours", (totals.total_hours || 0) + " hrs");
+    setVal("totalAirborneHours", (totals.total_airborne_hours || 0) + " hrs");
     setVal("totalMiles", (totals.total_distance_mi || 0).toLocaleString() + " mi");
     setVal("totalFuel", (totals.total_fuel_gal || 0).toLocaleString() + " gal");
     setVal("totalLandings", totals.total_landings || 0);
@@ -85,37 +86,47 @@ function renderTrendCharts(flights) {
         Plotly.newPlot(engineDiv, [chtSpreadTrace, shockCoolingTrace], layoutEngine);
     }
 
-    // 2. Flight Activity Chart (Duration & Distance)
+    // 2. Flight Activity & Cumulative Hours Chart
     const activityDiv = document.getElementById("chartActivity");
     if (activityDiv) {
         const durationTrace = {
             x: dates,
             y: chronological.map(f => f.duration_hours || 0),
             type: "bar",
-            name: "Duration (hrs)",
+            name: "Per-Flight Engine (hrs)",
             marker: { color: "#0d6efd" }
         };
 
-        const distanceTrace = {
+        const cumHoursTrace = {
             x: dates,
-            y: chronological.map(f => f.distance_traveled_mi || 0),
+            y: chronological.map(f => f.cum_total_hours || 0),
             type: "scatter",
             mode: "lines+markers",
-            name: "Distance (mi)",
+            name: "Cum. Total Engine Hrs",
             yaxis: "y2",
             line: { color: "#198754", width: 2 }
         };
 
+        const cumAirborneTrace = {
+            x: dates,
+            y: chronological.map(f => f.cum_airborne_hours || 0),
+            type: "scatter",
+            mode: "lines+markers",
+            name: "Cum. Airborne Flight Time",
+            yaxis: "y2",
+            line: { color: "#20c997", width: 2, dash: "dot" }
+        };
+
         const layoutActivity = {
-            title: "Flight Activity (Duration & Distance)",
+            title: "Flight Activity & Cumulative Hours",
             xaxis: { title: "Flight Date", tickangle: -45 },
-            yaxis: { title: "Duration (Hours)" },
-            yaxis2: { title: "Distance (Miles)", overlaying: "y", side: "right" },
+            yaxis: { title: "Flight Duration (Hours)" },
+            yaxis2: { title: "Cumulative Hours", overlaying: "y", side: "right" },
             margin: { l: 50, r: 50, t: 40, b: 80 },
             legend: { orientation: "h", y: -0.25 }
         };
 
-        Plotly.newPlot(activityDiv, [durationTrace, distanceTrace], layoutActivity);
+        Plotly.newPlot(activityDiv, [durationTrace, cumHoursTrace, cumAirborneTrace], layoutActivity);
     }
 
     // 3. Fuel & Efficiency Trend Chart
@@ -196,7 +207,7 @@ function renderTableRows(flights) {
     if (!tbody) return;
 
     if (!flights || flights.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="12" class="text-center text-muted">No flight logs found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="14" class="text-center text-muted">No flight logs found.</td></tr>';
         return;
     }
 
@@ -210,7 +221,9 @@ function renderTableRows(flights) {
         return `
             <tr>
                 <td><strong>${f.date}</strong><br><span class="small text-muted">${f.filename}</span></td>
-                <td>${f.duration_hours || 0} hrs (${f.duration_min || 0}m)</td>
+                <td>${f.duration_hours || 0} hrs (${f.duration_min || 0}m)<br><span class="small text-muted">Airborne: ${f.airborne_hours || 0} hrs</span></td>
+                <td><span class="fw-bold text-success">${f.cum_total_hours !== undefined ? f.cum_total_hours + ' hrs' : 'N/A'}</span></td>
+                <td><span class="fw-bold text-teal" style="color: #20c997;">${f.cum_airborne_hours !== undefined ? f.cum_airborne_hours + ' hrs' : 'N/A'}</span></td>
                 <td>${f.distance_traveled_mi || 0} mi</td>
                 <td>${f.total_fuel || 0} gal</td>
                 <td>${f.avg_fuel_flow || 0} GPH</td>

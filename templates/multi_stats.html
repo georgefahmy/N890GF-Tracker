@@ -35,39 +35,45 @@
 
         <!-- FLEET SUMMARY CARDS -->
         <div class="row g-3 mb-4">
-            <div class="col-md-2 col-sm-4">
+            <div class="col-xl-2 col-md-4 col-sm-6">
                 <div class="card p-3 text-center border-start border-primary border-4 shadow-sm">
                     <div class="text-muted small">Total Flights</div>
                     <div id="totalFlightCount" class="fs-4 fw-bold text-primary">--</div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-4">
+            <div class="col-xl-2 col-md-4 col-sm-6">
                 <div class="card p-3 text-center border-start border-success border-4 shadow-sm">
-                    <div class="text-muted small">Total Hours</div>
+                    <div class="text-muted small">Total Engine Hours</div>
                     <div id="totalHours" class="fs-4 fw-bold text-success">--</div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-4">
+            <div class="col-xl-2 col-md-4 col-sm-6">
+                <div class="card p-3 text-center border-start border-teal border-4 shadow-sm" style="border-left-color: #20c997 !important;">
+                    <div class="text-muted small">Total Flight Time (Airborne)</div>
+                    <div id="totalAirborneHours" class="fs-4 fw-bold" style="color: #20c997;">--</div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6">
                 <div class="card p-3 text-center border-start border-info border-4 shadow-sm">
                     <div class="text-muted small">Total Distance</div>
                     <div id="totalMiles" class="fs-4 fw-bold text-info">--</div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-4">
+            <div class="col-xl-2 col-md-4 col-sm-6">
                 <div class="card p-3 text-center border-start border-warning border-4 shadow-sm">
                     <div class="text-muted small">Total Fuel Burned</div>
                     <div id="totalFuel" class="fs-4 fw-bold text-warning">--</div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-4">
+            <div class="col-xl-1 col-md-4 col-sm-6">
                 <div class="card p-3 text-center border-start border-secondary border-4 shadow-sm">
-                    <div class="text-muted small">Total Landings</div>
+                    <div class="text-muted small">Landings</div>
                     <div id="totalLandings" class="fs-4 fw-bold text-secondary">--</div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-4">
+            <div class="col-xl-1 col-md-4 col-sm-6">
                 <div class="card p-3 text-center border-start border-danger border-4 shadow-sm">
-                    <div class="text-muted small">Fleet Avg CHT</div>
+                    <div class="text-muted small">Avg CHT</div>
                     <div id="fleetAvgCht" class="fs-4 fw-bold text-danger">--</div>
                 </div>
             </div>
@@ -105,7 +111,9 @@
                     <thead class="table-light">
                         <tr>
                             <th role="button" onclick="sortBy('date')">Date & File <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('duration_hours')">Duration <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('duration_hours')">Duration (Engine / Air) <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('cum_total_hours')">Cum. Total Hrs <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('cum_airborne_hours')">Cum. Flight Time <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('distance_traveled_mi')">Distance <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('total_fuel')">Fuel <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('avg_fuel_flow')">Avg Flow <i class="bi bi-arrow-down-up small text-muted"></i></th>

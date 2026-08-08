@@ -1666,7 +1666,7 @@ def api_multi_flight_stats():
     for filename in csv_files:
         filepath = os.path.join(SAVE_DIR, filename)
         mtime = os.path.getmtime(filepath)
-        CACHE_VERSION = "v4"
+        CACHE_VERSION = "v5"
         cache_key = f"{CACHE_VERSION}_{filename}_{mtime}"
 
         if cache_key in cache_data:
@@ -1770,11 +1770,28 @@ def api_multi_flight_stats():
     except Exception as e:
         print(f"Cache write error: {e}")
 
-    # Sort flights newest to oldest
-    flight_stats_list.sort(key=lambda x: x.get("date", ""), reverse=True)
+    # Sort flights oldest to newest to compute running cumulative totals
+    flight_stats_list.sort(key=lambda x: x.get("date", x.get("filename", "")))
 
-    # Calculate Fleet Totals
-    total_hours = sum(f.get("duration_hours", 0) for f in flight_stats_list)
+    cum_total_hours = 0.0
+    cum_airborne_hours = 0.0
+
+    for f in flight_stats_list:
+        dur_h = f.get("duration_hours", 0.0) or 0.0
+        air_h = f.get("airborne_hours", 0.0)
+        if air_h is None or air_h == "N/A":
+            air_min = (f.get("climb_min", 0.0) or 0.0) + (f.get("cruise_min", 0.0) or 0.0) + (f.get("descent_min", 0.0) or 0.0)
+            air_h = round(air_min / 60.0, 2)
+            f["airborne_hours"] = air_h
+        else:
+            air_h = float(air_h)
+
+        cum_total_hours += dur_h
+        cum_airborne_hours += air_h
+
+        f["cum_total_hours"] = round(cum_total_hours, 2)
+        f["cum_airborne_hours"] = round(cum_airborne_hours, 2)
+
     total_distance_mi = sum(f.get("distance_traveled_mi", 0) for f in flight_stats_list)
     total_fuel_gal = sum(f.get("total_fuel", 0) for f in flight_stats_list)
     total_landings = sum(f.get("landing_count", 1) for f in flight_stats_list)
@@ -1790,12 +1807,16 @@ def api_multi_flight_stats():
 
     totals = {
         "flight_count": len(flight_stats_list),
-        "total_hours": round(total_hours, 1),
+        "total_hours": round(cum_total_hours, 1),
+        "total_airborne_hours": round(cum_airborne_hours, 1),
         "total_distance_mi": round(total_distance_mi, 1),
         "total_fuel_gal": round(total_fuel_gal, 1),
         "total_landings": total_landings,
         "fleet_avg_cht": fleet_avg_cht,
     }
+
+    # Sort flights newest to oldest for default UI view
+    flight_stats_list.sort(key=lambda x: x.get("date", x.get("filename", "")), reverse=True)
 
     return jsonify(sanitize_for_json({"flights": flight_stats_list, "totals": totals}))
 

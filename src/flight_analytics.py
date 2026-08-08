@@ -186,11 +186,14 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         cruise_mask = (gs >= 45) & (vs.abs() <= 250)
         landing_mask = (gs < 55) & (gs >= 15) & (vs < -100)
 
+        airborne_mask = (gs >= 35)
         phases["taxi_min"] = round(float(dt[taxi_mask].sum() / 60.0), 1)
         phases["climb_min"] = round(float(dt[climb_mask].sum() / 60.0), 1)
         phases["cruise_min"] = round(float(dt[cruise_mask].sum() / 60.0), 1)
         phases["descent_min"] = round(float(dt[descent_mask].sum() / 60.0), 1)
         phases["landing_phase_min"] = round(float(dt[landing_mask].sum() / 60.0), 1)
+        phases["airborne_min"] = round(float(dt[airborne_mask].sum() / 60.0), 1)
+        phases["airborne_hours"] = round(float(dt[airborne_mask].sum() / 3600.0), 2)
 
     except Exception:
         pass
