@@ -76,6 +76,18 @@ function openGamiModal() {
     const modalEl = document.getElementById('gamiModal');
     if (!modalEl) return;
 
+    // Reset selection state & markers to start fresh every time modal is opened
+    timeWindow = null;
+    timeSelectionState = { start: null, end: null };
+    clickMarkers = [];
+    hoverX = null;
+
+    // Purge old Plotly layouts and zoom ranges
+    const timeGraph = getGamiElem('timeGraph');
+    const scatterGraph = getGamiElem('scatterGraph');
+    if (timeGraph) Plotly.purge(timeGraph);
+    if (scatterGraph) Plotly.purge(scatterGraph);
+
     const mainSelect = document.getElementById('savedFlights');
     const gamiSelect = getGamiElem('savedFlights');
     if (mainSelect && gamiSelect) {
@@ -680,12 +692,9 @@ function renderGami(data) {
         // =====================================================
         const scatterDiv = getGamiElem('scatterGraph');
         if (scatterDiv) {
-            const currentScatterXRange = scatterDiv.layout?.xaxis?.range ? [...scatterDiv.layout.xaxis.range] : null;
-            const currentScatterYRange = scatterDiv.layout?.yaxis?.range ? [...scatterDiv.layout.yaxis.range] : null;
-
             const scatterLayout = {
                 title: "EGT vs Fuel Flow",
-                xaxis: { title: "Fuel Flow", autorange: 'reversed'},
+                xaxis: { title: "Fuel Flow", autorange: 'reversed' },
                 yaxis: { title: `EGT (°${tempUnit})` },
                 annotations: annotations,
                 hovermode: 'closest',
@@ -693,13 +702,37 @@ function renderGami(data) {
                 legend: { orientation: "h", y: -0.15 }
             };
 
-            if (currentScatterXRange) {
-                scatterLayout.xaxis.range = currentScatterXRange;
-                scatterLayout.xaxis.autorange = false;
-            }
-            if (currentScatterYRange) {
-                scatterLayout.yaxis.range = currentScatterYRange;
-                scatterLayout.yaxis.autorange = false;
+            // ZOOM TO SELECTED REGION AFTER SELECTING START AND END MARKS
+            if (timeWindow && timeWindow.start != null && timeWindow.end != null && fuelTrace) {
+                const selectedFuelFlows = [];
+                const selectedEgts = [];
+
+                egtTraces.forEach(t => {
+                    for (let j = 0; j < t.y.length; j++) {
+                        if (mask[j]) {
+                            const ffVal = parseFloat(fuelTrace.y[j]);
+                            const egtVal = parseFloat(t.y[j]);
+                            if (!isNaN(ffVal) && ffVal > 0) selectedFuelFlows.push(ffVal);
+                            if (!isNaN(egtVal) && egtVal > 0) selectedEgts.push(egtVal);
+                        }
+                    }
+                });
+
+                if (selectedFuelFlows.length && selectedEgts.length) {
+                    const minFF = Math.min(...selectedFuelFlows);
+                    const maxFF = Math.max(...selectedFuelFlows);
+                    const minEGT = Math.min(...selectedEgts);
+                    const maxEGT = Math.max(...selectedEgts);
+
+                    const ffPad = Math.max((maxFF - minFF) * 0.08, 0.2);
+                    const egtPad = Math.max((maxEGT - minEGT) * 0.08, 5);
+
+                    scatterLayout.xaxis.range = [maxFF + ffPad, Math.max(0, minFF - ffPad)];
+                    scatterLayout.xaxis.autorange = false;
+
+                    scatterLayout.yaxis.range = [minEGT - egtPad, maxEGT + egtPad];
+                    scatterLayout.yaxis.autorange = false;
+                }
             }
 
             Plotly.react(scatterDiv, scatter, scatterLayout);
