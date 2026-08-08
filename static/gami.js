@@ -288,7 +288,8 @@ function renderGami(data) {
         x: time,
         y: t.y,
         mode: 'lines',
-        name: t.name
+        name: t.name,
+        hoverinfo: 'none'
     }));
 
     if (fuelTrace) {
@@ -297,13 +298,19 @@ function renderGami(data) {
             y: fuelTrace.y,
             mode: 'lines',
             name: fuelTrace.name,
-            yaxis: 'y2'
+            yaxis: 'y2',
+            hoverinfo: 'none'
         });
     }
 
     const timeGraphDiv = getGamiElem('timeGraph');
     if (timeGraphDiv) {
-        Plotly.newPlot(timeGraphDiv, timeTraces, {
+        // PRESERVE EXISTING ZOOM LEVEL ON TIME GRAPH
+        const currentTimeXRange = timeGraphDiv.layout?.xaxis?.range ? [...timeGraphDiv.layout.xaxis.range] : null;
+        const currentTimeYRange = timeGraphDiv.layout?.yaxis?.range ? [...timeGraphDiv.layout.yaxis.range] : null;
+        const currentTimeY2Range = timeGraphDiv.layout?.yaxis2?.range ? [...timeGraphDiv.layout.yaxis2.range] : null;
+
+        const timeLayout = {
             title: "EGT + Fuel Flow vs Time",
             xaxis: { title: "Time" },
             yaxis: { title: `EGT (°${tempUnit})` },
@@ -312,10 +319,25 @@ function renderGami(data) {
                 overlaying: 'y',
                 side: 'right'
             },
-            hovermode: 'x unified',
+            hovermode: false,
             margin: { l: 60, r: 60, t: 40, b: 40 },
             legend: { orientation: "h", y: -0.15 }
-        });
+        };
+
+        if (currentTimeXRange) {
+            timeLayout.xaxis.range = currentTimeXRange;
+            timeLayout.xaxis.autorange = false;
+        }
+        if (currentTimeYRange) {
+            timeLayout.yaxis.range = currentTimeYRange;
+            timeLayout.yaxis.autorange = false;
+        }
+        if (currentTimeY2Range) {
+            timeLayout.yaxis2.range = currentTimeY2Range;
+            timeLayout.yaxis2.autorange = false;
+        }
+
+        Plotly.react(timeGraphDiv, timeTraces, timeLayout);
 
         // Click-based time window selection
         timeGraphDiv.on('plotly_click', function(eventdata) {
@@ -656,25 +678,29 @@ function renderGami(data) {
         // =====================================================
         const scatterDiv = getGamiElem('scatterGraph');
         if (scatterDiv) {
-            Plotly.newPlot(scatterDiv, scatter, {
+            const currentScatterXRange = scatterDiv.layout?.xaxis?.range ? [...scatterDiv.layout.xaxis.range] : null;
+            const currentScatterYRange = scatterDiv.layout?.yaxis?.range ? [...scatterDiv.layout.yaxis.range] : null;
+
+            const scatterLayout = {
                 title: "EGT vs Fuel Flow",
                 xaxis: { title: "Fuel Flow", autorange: 'reversed'},
                 yaxis: { title: `EGT (°${tempUnit})` },
                 annotations: annotations,
-                hovermode: 'x unified',
+                hovermode: false,
                 margin: { l: 60, r: 60, t: 40, b: 40 },
                 legend: { orientation: "h", y: -0.15 }
-            });
+            };
 
-            scatterDiv.on('plotly_hover', function(eventdata) {
-                if (eventdata && eventdata.points && eventdata.points.length > 0) {
-                    syncCursor(eventdata.points[0].x);
-                }
-            });
+            if (currentScatterXRange) {
+                scatterLayout.xaxis.range = currentScatterXRange;
+                scatterLayout.xaxis.autorange = false;
+            }
+            if (currentScatterYRange) {
+                scatterLayout.yaxis.range = currentScatterYRange;
+                scatterLayout.yaxis.autorange = false;
+            }
 
-            scatterDiv.on('plotly_unhover', function() {
-                Plotly.relayout(scatterDiv, { shapes: [] });
-            });
+            Plotly.react(scatterDiv, scatter, scatterLayout);
         }
     }
 
