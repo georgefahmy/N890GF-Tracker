@@ -6,7 +6,24 @@
     {% include 'dark_mode.html' %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        .table-responsive-sticky {
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+        .table-sticky-header th {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            background-color: #f8f9fa !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        [data-bs-theme="dark"] .table-sticky-header th,
+        body.dark-mode .table-sticky-header th {
+            background-color: #212529 !important;
+            color: #f8f9fa;
+        }
+    </style>
 </head>
 
 <body style="padding-top: 70px;">
@@ -106,13 +123,12 @@
                     <input type="text" id="searchFlightInput" class="form-control form-control-sm" placeholder="🔍 Search date, filename...">
                 </div>
             </div>
-            <div class="card-body p-0 table-responsive">
+            <div class="card-body p-0 table-responsive table-responsive-sticky">
                 <table class="table table-hover align-middle mb-0 text-nowrap">
-                    <thead class="table-light">
+                    <thead class="table-light table-sticky-header">
                         <tr>
                             <th role="button" onclick="sortBy('date')">Date & File <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('duration_hours')">Duration (Engine / Air) <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('cum_total_hours')">Cum. Total Hrs <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('cum_airborne_hours')">Cum. Flight Time <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('distance_traveled_mi')">Distance <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('total_fuel')">Fuel <i class="bi bi-arrow-down-up small text-muted"></i></th>

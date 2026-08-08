@@ -207,7 +207,7 @@ function renderTableRows(flights) {
     if (!tbody) return;
 
     if (!flights || flights.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="14" class="text-center text-muted">No flight logs found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="13" class="text-center text-muted">No flight logs found.</td></tr>';
         return;
     }
 
@@ -222,7 +222,6 @@ function renderTableRows(flights) {
             <tr>
                 <td><strong>${f.date}</strong><br><span class="small text-muted">${f.filename}</span></td>
                 <td>${f.duration_hours || 0} hrs (${f.duration_min || 0}m)<br><span class="small text-muted">Airborne: ${f.airborne_hours || 0} hrs</span></td>
-                <td><span class="fw-bold text-success">${f.cum_total_hours !== undefined ? f.cum_total_hours + ' hrs' : 'N/A'}</span></td>
                 <td><span class="fw-bold text-teal" style="color: #20c997;">${f.cum_airborne_hours !== undefined ? f.cum_airborne_hours + ' hrs' : 'N/A'}</span></td>
                 <td>${f.distance_traveled_mi || 0} mi</td>
                 <td>${f.total_fuel || 0} gal</td>
