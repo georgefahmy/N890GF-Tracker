@@ -571,10 +571,7 @@ async function triggerAnalysis(plotId, isInitialLoad = false) {
             if (!AppState.currentPlotData) {
                 AppState.currentPlotData = data.plot_data;
             } else {
-                AppState.currentPlotData.left_traces = data.plot_data.left_traces;
-                AppState.currentPlotData.right_traces = data.plot_data.right_traces;
-                AppState.currentPlotData.left_name = data.plot_data.left_name;
-                AppState.currentPlotData.right_name = data.plot_data.right_name;
+                Object.assign(AppState.currentPlotData, data.plot_data);
             }
         }
 
@@ -695,7 +692,11 @@ function renderPlotlyChart(plotId, data) {
         const diff = max - min;
         return [min - (diff * 0.05), max + (diff * 0.05)];
     };
-    AppState.currentPlotData = data.plot_data;
+    if (!AppState.currentPlotData) {
+        AppState.currentPlotData = data.plot_data;
+    } else if (data.plot_data) {
+        Object.assign(AppState.currentPlotData, data.plot_data);
+    }
 
     const traces = [];
     // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis

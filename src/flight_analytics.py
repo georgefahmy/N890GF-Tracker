@@ -5,27 +5,55 @@ import pandas as pd
 def calculate_shock_cooling(df: pd.DataFrame) -> float:
     """
     Calculates the maximum CHT cooling rate in deg F / min across all cylinders.
+    Evaluates over a 15-second rolling window during active flight to filter out quantization noise.
     """
-    cht_cols = [c for c in df.columns if c.startswith("CHT ") and ("(deg F)" in c or "(deg C)" in c)]
+    cht_cols = [c for c in df.columns if c.startswith("CHT ") and "(deg F)" in c]
+    needs_c_conversion = False
+    if not cht_cols:
+        cht_cols = [c for c in df.columns if c.startswith("CHT ") and "(deg C)" in c]
+        needs_c_conversion = True
+
     if not cht_cols or "Session Time" not in df.columns:
         return 0.0
 
     try:
-        dt = pd.to_numeric(df["Session Time"], errors="coerce").diff().fillna(0)
-        dt = dt.replace(0, np.nan)
+        time_series = pd.to_numeric(df["Session Time"], errors="coerce")
+        gs = pd.to_numeric(df.get("Ground Speed (knots)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
+        rpm = pd.to_numeric(df.get("RPM", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
+
+        # Active flight mask: engine running (> 1000 RPM) or flying (> 35 kts)
+        flight_mask = (gs > 35)
+        if "RPM" in df.columns:
+            flight_mask |= (rpm > 1000)
+
+        # Estimate sampling period
+        dt_1s = time_series.diff().median()
+        period_window = int(round(15.0 / dt_1s)) if (pd.notna(dt_1s) and dt_1s > 0) else 15
+        period_window = max(1, period_window)
+
+        dt_window = time_series.diff(periods=period_window)
 
         max_cooling_rates = []
         for col in cht_cols:
-            cht_vals = pd.to_numeric(df[col], errors="coerce").fillna(method="ffill")
-            # dCHT / dt (deg F per sec) * 60 = deg F per min
-            dcht_dt = (cht_vals.diff() / dt) * 60.0
-            dcht_dt = dcht_dt.replace([np.inf, -np.inf], np.nan).fillna(0)
-            # Cooling rate is negative derivative
-            cooling_rate = -dcht_dt
-            max_cooling_rates.append(cooling_rate.max())
+            cht_vals = pd.to_numeric(df[col], errors="coerce")
+            if needs_c_conversion:
+                cht_vals = cht_vals * 9.0 / 5.0 + 32.0
 
-        return round(float(max(max_cooling_rates)), 1) if max_cooling_rates else 0.0
-    except Exception:
+            valid_mask = flight_mask & (cht_vals > 200) & (dt_window > 0) & (dt_window < 120)
+
+            # dCHT / dt over period window (deg F per min)
+            dcht = cht_vals.diff(periods=period_window)
+            cooling_rate = (-dcht / dt_window) * 60.0
+            valid_rates = cooling_rate[valid_mask].replace([np.inf, -np.inf], np.nan).dropna()
+
+            if not valid_rates.empty and valid_rates.max() > 0:
+                max_cooling_rates.append(valid_rates.max())
+
+        if max_cooling_rates:
+            return round(float(max(max_cooling_rates)), 1)
+        return 0.0
+    except Exception as e:
+        print(f"Shock cooling calculation notice: {e}")
         return 0.0
 
 
