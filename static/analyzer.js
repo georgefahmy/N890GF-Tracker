@@ -965,6 +965,8 @@ function updateGlobalUI(data) {
     // Render Map
     renderMap(data);
 
+    window._isShockCoolingHighlighted = false;
+
     // Update Text Stats
     document.getElementById('statFlightId').innerText = `Flight: ${data.stats.flight_id}`;
     
@@ -2322,21 +2324,36 @@ function toggleSidebar() {
 }
 
 window.highlightShockCoolingPeak = function() {
+    const plotDivs = document.querySelectorAll("[id^='flightGraph-']");
+
+    if (window._isShockCoolingHighlighted) {
+        // Toggle OFF: Reset zoom and clear highlight shapes & annotations
+        window._isShockCoolingHighlighted = false;
+        plotDivs.forEach(div => {
+            Plotly.relayout(div, {
+                'xaxis.autorange': true,
+                'shapes': [],
+                'annotations': []
+            }).catch(e => console.debug("Plotly relayout error:", e));
+        });
+        return;
+    }
+
     const stats = AppState.lastAnalysisResponse?.stats || {};
     const tStart = stats.shock_cooling_t_start;
     const tEnd = stats.shock_cooling_t_end;
     const rate = stats.max_shock_cooling;
     const cyl = stats.shock_cooling_cyl || 'CHT';
-    const drop = stats.shock_cooling_cht_drop || 0;
 
     if (tStart === undefined || tStart === null || tEnd === undefined || tEnd === null) {
         return alert("Shock cooling peak timestamp is not available for this flight.");
     }
 
+    // Toggle ON: Highlight and zoom to peak region
+    window._isShockCoolingHighlighted = true;
     const xMin = Math.max(0, tStart - 30);
     const xMax = tEnd + 30;
 
-    const plotDivs = document.querySelectorAll("[id^='flightGraph-']");
     plotDivs.forEach(div => {
         Plotly.relayout(div, {
             'xaxis.range': [xMin, xMax],
