@@ -206,6 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadSignals(formData) {
     // Show temporary loading state
     document.getElementById('statsPlaceholder').innerHTML = '<div class="spinner-border text-primary spinner-border-sm"></div> Loading data...';
+    AppState.map.lastRenderData = null;
+    AppState.currentPlotData = null;
+    AppState.playback.index = 0;
 
     fetch('/api/get_signals', { method: 'POST', body: formData })
     .then(response => response.json())
@@ -232,8 +235,8 @@ function loadSignals(formData) {
         if (AppState.ui.plotCounter === 0) {
             addPlot();
         } else {
-            // If plots already exist, update their dropdowns and re-trigger analysis
-            updateAllPlots();
+            // If plots already exist, update their dropdowns and re-trigger full flight analysis
+            updateAllPlots(true);
         }
     })
     .catch(err => {
@@ -448,11 +451,11 @@ function removePlot(plotId) {
     }
 }
 
-function updateAllPlots() {
+function updateAllPlots(isInitialLoad = false) {
     document.querySelectorAll('.plot-card').forEach(card => {
         const id = parseInt(card.id.split('-')[1]);
         populateDropdownsForPlot(id);
-        triggerAnalysis(id);
+        triggerAnalysis(id, isInitialLoad);
     });
 }
 
