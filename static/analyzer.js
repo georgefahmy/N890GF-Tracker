@@ -970,7 +970,7 @@ function updateGlobalUI(data) {
     
     const s = data.stats || {};
     const shockCooling = s.max_shock_cooling !== undefined ? s.max_shock_cooling : 0;
-    const shockBadge = shockCooling > 30 
+    const shockBadge = shockCooling > 50 
         ? `<span class="badge bg-danger">${shockCooling} °F/min (High)</span>`
         : `<span class="badge bg-success">${shockCooling} °F/min</span>`;
 

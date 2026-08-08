@@ -201,7 +201,7 @@ function renderTableRows(flights) {
     }
 
     tbody.innerHTML = flights.map(f => {
-        const shockBadge = f.max_shock_cooling > 30
+        const shockBadge = f.max_shock_cooling > 50
             ? `<span class="badge bg-danger">${f.max_shock_cooling} °F/m</span>`
             : `<span class="badge bg-success">${f.max_shock_cooling || 0} °F/m</span>`;
 
