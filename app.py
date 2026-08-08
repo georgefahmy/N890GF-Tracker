@@ -1666,7 +1666,7 @@ def api_multi_flight_stats():
     for filename in csv_files:
         filepath = os.path.join(SAVE_DIR, filename)
         mtime = os.path.getmtime(filepath)
-        CACHE_VERSION = "v5"
+        CACHE_VERSION = "v6"
         cache_key = f"{CACHE_VERSION}_{filename}_{mtime}"
 
         if cache_key in cache_data:
@@ -1689,11 +1689,19 @@ def api_multi_flight_stats():
                 numeric_times = pd.to_numeric(
                     flight_data["Session Time"], errors="coerce"
                 )
-                duration = (
+                tot_duration = (
                     numeric_times.max() - numeric_times.min()
                     if not numeric_times.empty
                     else 0
                 )
+
+                dt = numeric_times.diff().fillna(0)
+                if "RPM" in flight_data.columns:
+                    rpm_series = pd.to_numeric(flight_data["RPM"], errors="coerce").fillna(0)
+                    engine_mask = (rpm_series > 0)
+                    duration = float(dt[engine_mask].sum()) if engine_mask.any() else float(tot_duration)
+                else:
+                    duration = float(tot_duration)
 
                 total_fuel = (
                     flight_data["Fuel Flow Integral"].max()
@@ -2325,9 +2333,17 @@ def api_analyze_flight():
 
         # --- Generate Summary Stats ---
         numeric_times = pd.to_numeric(flight_data["Session Time"], errors="coerce")
-        duration = (
+        tot_duration = (
             numeric_times.max() - numeric_times.min() if not numeric_times.empty else 0
         )
+
+        dt = numeric_times.diff().fillna(0)
+        if "RPM" in flight_data.columns:
+            rpm_series = pd.to_numeric(flight_data["RPM"], errors="coerce").fillna(0)
+            engine_mask = (rpm_series > 0)
+            duration = float(dt[engine_mask].sum()) if engine_mask.any() else float(tot_duration)
+        else:
+            duration = float(tot_duration)
 
         total_fuel = (
             flight_data["Fuel Flow Integral"].max()
