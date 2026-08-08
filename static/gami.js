@@ -319,7 +319,7 @@ function renderGami(data) {
                 overlaying: 'y',
                 side: 'right'
             },
-            hovermode: false,
+            hovermode: 'x',
             margin: { l: 60, r: 60, t: 40, b: 40 },
             legend: { orientation: "h", y: -0.15 }
         };
@@ -580,6 +580,7 @@ function renderGami(data) {
                 mode: 'lines',
                 type: 'scatter',
                 name: t.name,
+                hoverinfo: 'none',
                 line: {
                     shape: 'spline',
                     width: 2,
@@ -686,7 +687,7 @@ function renderGami(data) {
                 xaxis: { title: "Fuel Flow", autorange: 'reversed'},
                 yaxis: { title: `EGT (°${tempUnit})` },
                 annotations: annotations,
-                hovermode: false,
+                hovermode: 'closest',
                 margin: { l: 60, r: 60, t: 40, b: 40 },
                 legend: { orientation: "h", y: -0.15 }
             };
