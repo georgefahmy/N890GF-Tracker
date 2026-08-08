@@ -34,9 +34,9 @@ def calculate_shock_cooling(df: pd.DataFrame) -> dict:
         if "RPM" in df.columns:
             flight_mask |= (rpm > 1000)
 
-        # Estimate sampling period
+        # Estimate sampling period over a 60-second (1-minute) rolling window
         dt_1s = time_series.diff().median()
-        period_window = int(round(15.0 / dt_1s)) if (pd.notna(dt_1s) and dt_1s > 0) else 15
+        period_window = int(round(60.0 / dt_1s)) if (pd.notna(dt_1s) and dt_1s > 0) else 60
         period_window = max(1, period_window)
 
         dt_window = time_series.diff(periods=period_window)
@@ -52,7 +52,7 @@ def calculate_shock_cooling(df: pd.DataFrame) -> dict:
             if needs_c_conversion:
                 cht_vals = cht_vals * 9.0 / 5.0 + 32.0
 
-            valid_mask = flight_mask & (cht_vals > 200) & (dt_window > 0) & (dt_window < 120)
+            valid_mask = flight_mask & (cht_vals > 200) & (dt_window > 0) & (dt_window < 180)
 
             # dCHT / dt over period window (deg F per min)
             dcht = cht_vals.diff(periods=period_window)
