@@ -713,7 +713,7 @@ function renderPlotlyChart(plotId, data) {
         traces.push({
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
-            hovertemplate: '%{y:,}<extra></extra>',
+            hovertemplate: '%{fullData.name}: %{y:,}<extra></extra>',
             type: 'scattergl', mode: 'lines',
             line: { color: colorsLeft[idx % colorsLeft.length] }
         });
@@ -735,7 +735,7 @@ function renderPlotlyChart(plotId, data) {
         traces.push({
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
-            hovertemplate: '%{y:,}<extra></extra>',
+            hovertemplate: '%{fullData.name}: %{y:,}<extra></extra>',
             type: 'scattergl', mode: 'lines',
             line: { color: colorsRight[idx % colorsRight.length] },
             yaxis: 'y2'
