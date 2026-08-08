@@ -144,7 +144,7 @@
                     <button class="btn btn-outline-secondary btn-sm" onclick="toggleXYTab()">
                         Show XY Plot
                     </button>
-                    <button class="btn btn-outline-primary btn-sm" onclick="window.location.href='/gami'">
+                    <button class="btn btn-outline-primary btn-sm" onclick="openGamiModal()">
                         GAMI Spread
                     </button>
                     <button class="btn btn-outline-secondary btn-sm" onclick="openAirspeedCalModal()">
@@ -445,7 +445,60 @@
   </div>
 </div>
 
+<!-- GAMI SPREAD MODAL -->
+<div class="modal fade" id="gamiModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">✈️ GAMI Spread Analysis</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card p-3 mb-3">
+          <div class="row g-2 align-items-center">
+            <div class="col-md-7">
+              <label class="form-label text-muted small mb-1 fw-bold">Select Flight</label>
+              <select id="gamiSavedFlights" class="form-select form-select-sm" onchange="loadFlight()"></select>
+            </div>
+            <div class="col-md-5 text-md-end">
+              <label class="form-label text-muted small mb-1 d-block fw-bold">Temperature Unit</label>
+              <div class="btn-group btn-group-sm" role="group">
+                <input type="radio" class="btn-check" name="gamiTempUnit" id="gamiUnitF" autocomplete="off" value="F" checked>
+                <label class="btn btn-outline-primary" for="gamiUnitF">°F</label>
+
+                <input type="radio" class="btn-check" name="gamiTempUnit" id="gamiUnitC" autocomplete="off" value="C">
+                <label class="btn btn-outline-primary" for="gamiUnitC">°C</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-3 mb-3 bg-light border-0 shadow-sm">
+          <div id="gamiMetrics" class="text-muted small">Select a flight and click 2 points on the EGT vs Time graph to select a Lean Find window.</div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card p-2 shadow-sm">
+              <div id="gamiTimeGraph" style="height:380px;"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-2 shadow-sm">
+              <div id="gamiScatterGraph" style="height:380px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="{{ url_for('static', filename='signal_bands.js') }}"></script>
+<script src="{{ url_for('static', filename='gami.js') }}"></script>
 <script src="{{ url_for('static', filename='analyzer.js') }}"></script>
 <link href="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Cesium.js"></script>

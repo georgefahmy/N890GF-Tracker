@@ -1,11 +1,16 @@
 
 
-// Temp unit toggle event handler
-document.querySelectorAll('input[name="tempUnit"]').forEach(el => {
-    el.addEventListener('change', (e) => {
+function getGamiElem(id) {
+    const prefixed = 'gami' + id.charAt(0).toUpperCase() + id.slice(1);
+    return document.getElementById(prefixed) || document.getElementById(id);
+}
+
+// Temp unit toggle event handler (supports both page radio name="tempUnit" and modal radio name="gamiTempUnit")
+document.addEventListener('change', (e) => {
+    if (e.target && (e.target.name === 'tempUnit' || e.target.name === 'gamiTempUnit')) {
         tempUnit = e.target.value;
         if (currentData) renderGami(currentData);
-    });
+    }
 });
 
 let currentData = null;
@@ -30,13 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('/api/saved_flights')
         .then(r => r.json())
         .then(data => {
-            const sel = document.getElementById('savedFlights');
+            const sel = getGamiElem('savedFlights');
+            if (!sel) return;
 
             // Support multiple possible API response shapes
             const files = Array.isArray(data)
                 ? data
                 : (data.files || data.file_list || []);
 
+            sel.innerHTML = '';
             files
                 .filter(Boolean)
                 .sort((a, b) => b.localeCompare(a))
@@ -44,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     sel.add(new Option(f, f));
                 });
 
-            // AUTO-SELECT FIRST FLIGHT AND LOAD IT
-            if (sel.options.length > 0) {
+            // AUTO-SELECT FIRST FLIGHT AND LOAD IT (Only if standalone page)
+            if (sel.options.length > 0 && !document.getElementById('gamiModal')) {
                 sel.selectedIndex = 0;
                 loadFlight();
             }
@@ -53,19 +60,59 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => {
             console.error("Failed to load flights:", err);
         });
+
+    const modalEl = document.getElementById('gamiModal');
+    if (modalEl) {
+        modalEl.addEventListener('shown.bs.modal', () => {
+            const timeGraph = getGamiElem('timeGraph');
+            const scatterGraph = getGamiElem('scatterGraph');
+            if (timeGraph && timeGraph.data) Plotly.Plots.resize(timeGraph);
+            if (scatterGraph && scatterGraph.data) Plotly.Plots.resize(scatterGraph);
+        });
+    }
 });
 
+function openGamiModal() {
+    const modalEl = document.getElementById('gamiModal');
+    if (!modalEl) return;
+
+    const mainSelect = document.getElementById('savedFlights');
+    const gamiSelect = getGamiElem('savedFlights');
+    if (mainSelect && gamiSelect) {
+        gamiSelect.innerHTML = mainSelect.innerHTML;
+        if (mainSelect.value) {
+            gamiSelect.value = mainSelect.value;
+        } else if (gamiSelect.options.length > 0) {
+            gamiSelect.selectedIndex = 0;
+        }
+    }
+
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    loadFlight();
+}
+
 function loadFlight() {
-    const file = document.getElementById('savedFlights').value;
-    if (!file) return;
+    const sel = getGamiElem('savedFlights');
+    if (!sel || !sel.value) return;
+
+    const metricsEl = getGamiElem('metrics');
+    if (metricsEl) {
+        metricsEl.innerHTML = '<span class="spinner-border spinner-border-sm text-primary"></span> Loading flight data for GAMI analysis...';
+    }
 
     const formData = new FormData();
-    formData.append('saved_filename', file);
+    formData.append('saved_filename', sel.value);
     formData.append('filters', JSON.stringify([]));
 
     fetch('/api/analyze_flight', { method: 'POST', body: formData })
         .then(r => r.json())
-        .then(renderGami);
+        .then(renderGami)
+        .catch(err => {
+            console.error("GAMI load error:", err);
+            if (metricsEl) metricsEl.innerText = "Error loading GAMI analysis data.";
+        });
 }
 
 function renderGami(data) {
@@ -92,8 +139,9 @@ function renderGami(data) {
             : data.plot_data.x;
 
     // guard
+    const metricsEl = getGamiElem('metrics');
     if (!df || !df.length) {
-        document.getElementById("metrics").innerText = "No raw dataframe found in response.";
+        if (metricsEl) metricsEl.innerText = "No raw dataframe found in response.";
         return;
     }
 
@@ -134,8 +182,7 @@ function renderGami(data) {
     } : null;
 
     if (!egtTraces.length) {
-        document.getElementById("metrics").innerText =
-            `No EGT data found for ${tempUnit} units.`;
+        if (metricsEl) metricsEl.innerText = `No EGT data found for ${tempUnit} units.`;
         return;
     }
 
@@ -219,12 +266,14 @@ function renderGami(data) {
         }
     }
 
-    document.getElementById("metrics").innerHTML = `
-        <b>EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
-        <b>GAMI Spread (ΔFF):</b> ${gamiSpreadText}<br><br>
-        <b>Peak EGTs:</b><br>
-        ${peakEgtSummary}
-    `;
+    if (metricsEl) {
+        metricsEl.innerHTML = `
+            <b>EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
+            <b>GAMI Spread (ΔFF):</b> ${gamiSpreadText}<br><br>
+            <b>Peak EGTs:</b><br>
+            ${peakEgtSummary}
+        `;
+    }
 
     // TIME SERIES
     const timeTraces = egtTraces.map(t => ({
@@ -244,23 +293,24 @@ function renderGami(data) {
         });
     }
 
-    Plotly.newPlot('timeGraph', timeTraces, {
-        title: "EGT + Fuel Flow vs Time",
-        xaxis: { title: "Time" },
-        yaxis: { title: `EGT (°${tempUnit})` },
-        yaxis2: {
-            title: "Fuel Flow",
-            overlaying: 'y',
-            side: 'right'
-        },
-        hovermode: 'x unified',
-        margin: { l: 60, r: 60, t: 40, b: 40 },
-        legend: { orientation: "h", y: -0.15 }
-    });
+    const timeGraphDiv = getGamiElem('timeGraph');
+    if (timeGraphDiv) {
+        Plotly.newPlot(timeGraphDiv, timeTraces, {
+            title: "EGT + Fuel Flow vs Time",
+            xaxis: { title: "Time" },
+            yaxis: { title: `EGT (°${tempUnit})` },
+            yaxis2: {
+                title: "Fuel Flow",
+                overlaying: 'y',
+                side: 'right'
+            },
+            hovermode: 'x unified',
+            margin: { l: 60, r: 60, t: 40, b: 40 },
+            legend: { orientation: "h", y: -0.15 }
+        });
 
-    // Click-based time window selection
-    const timeGraphDiv = document.getElementById('timeGraph');
-    timeGraphDiv.on('plotly_click', function(eventdata) {
+        // Click-based time window selection
+        timeGraphDiv.on('plotly_click', function(eventdata) {
         if (!eventdata.points || eventdata.points.length === 0) return;
 
         const x = eventdata.points[0].x;
@@ -313,7 +363,7 @@ function renderGami(data) {
     });
 
     function updateVerticalCursor(x) {
-        Plotly.relayout('timeGraph', {
+        Plotly.relayout(getGamiElem('timeGraph'), {
             shapes: [
                 {
                     type: 'line',
@@ -383,7 +433,7 @@ function renderGami(data) {
             });
         }
 
-        Plotly.relayout('timeGraph', { shapes });
+        Plotly.relayout(getGamiElem('timeGraph'), { shapes });
     }
     function drawCursor(plotId, x) {
         const shapes = [];
@@ -453,7 +503,7 @@ function renderGami(data) {
             });
         }
 
-        Plotly.relayout(plotId, { shapes });
+        Plotly.relayout(getGamiElem(plotId), { shapes });
     }
 
     function syncCursor(x) {
@@ -474,6 +524,7 @@ function renderGami(data) {
         // restore persistent selection + click markers without cursor
         drawSelectionBox();
     });
+    }
 
 
 
@@ -595,27 +646,28 @@ function renderGami(data) {
         // =====================================================
         // SCATTER PLOT (EGT vs FUEL FLOW - SMOOTHED)
         // =====================================================
-        Plotly.newPlot('scatterGraph', scatter, {
-            title: "EGT vs Fuel Flow",
-            xaxis: { title: "Fuel Flow", autorange: 'reversed'},
-            yaxis: { title: `EGT (°${tempUnit})` },
-            annotations: annotations,
-            hovermode: 'x unified',
-            margin: { l: 60, r: 60, t: 40, b: 40 },
-            legend: { orientation: "h", y: -0.15 }
-        });
+        const scatterDiv = getGamiElem('scatterGraph');
+        if (scatterDiv) {
+            Plotly.newPlot(scatterDiv, scatter, {
+                title: "EGT vs Fuel Flow",
+                xaxis: { title: "Fuel Flow", autorange: 'reversed'},
+                yaxis: { title: `EGT (°${tempUnit})` },
+                annotations: annotations,
+                hovermode: 'x unified',
+                margin: { l: 60, r: 60, t: 40, b: 40 },
+                legend: { orientation: "h", y: -0.15 }
+            });
 
-        const scatterDiv = document.getElementById('scatterGraph');
+            scatterDiv.on('plotly_hover', function(eventdata) {
+                if (eventdata && eventdata.points && eventdata.points.length > 0) {
+                    syncCursor(eventdata.points[0].x);
+                }
+            });
 
-        scatterDiv.on('plotly_hover', function(eventdata) {
-            if (eventdata && eventdata.points && eventdata.points.length > 0) {
-                syncCursor(eventdata.points[0].x);
-            }
-        });
-
-        scatterDiv.on('plotly_unhover', function() {
-            Plotly.relayout('scatterGraph', { shapes: [] });
-        });
+            scatterDiv.on('plotly_unhover', function() {
+                Plotly.relayout(scatterDiv, { shapes: [] });
+            });
+        }
     }
 
 }
