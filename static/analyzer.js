@@ -537,12 +537,12 @@ function clearTooltips(sourceDivId) {
     });
 }
 
-async function triggerAnalysis(plotId) {
+async function triggerAnalysis(plotId, isInitialLoad = false) {
     if (!AppState.file.currentName) return;
 
     const loader = document.getElementById(`loader-${plotId}`);
     window._isChartUpdating = true;
-    loader.classList.remove('d-none');
+    if (loader) loader.classList.remove('d-none');
 
     try {
         const formData = new FormData();
@@ -552,25 +552,40 @@ async function triggerAnalysis(plotId) {
         formData.append('temp_unit', document.getElementById('unitF').checked ? 'F' : 'C');
         formData.append('filters', JSON.stringify(AppState.ui.filters[plotId] || []));
 
+        // If map telemetry is already loaded, request ONLY the chart trace data!
+        if (AppState.map.lastRenderData && !isInitialLoad) {
+            formData.append('only_traces', 'true');
+        }
+
         const response = await fetch('/api/analyze_flight', { method: 'POST', body: formData });
         const data = await response.json();
 
-        loader.classList.add('d-none');
+        if (loader) loader.classList.add('d-none');
         if (data.error) return alert("Error: " + data.error);
 
-        // 1. Store data
-        AppState.currentPlotData = data.plot_data;
+        // Merge traces into AppState.currentPlotData
+        if (data.plot_data) {
+            if (!AppState.currentPlotData) {
+                AppState.currentPlotData = data.plot_data;
+            } else {
+                AppState.currentPlotData.left_traces = data.plot_data.left_traces;
+                AppState.currentPlotData.right_traces = data.plot_data.right_traces;
+                AppState.currentPlotData.left_name = data.plot_data.left_name;
+                AppState.currentPlotData.right_name = data.plot_data.right_name;
+            }
+        }
 
-        // 2. Specialized Plot Update (Fast)
+        // 2. Specialized Plot Update (Fast Plotly.react)
         renderPlotlyChart(plotId, data);
 
-        // 3. UI/Map Update (Only update if global stats aren't populated yet)
-        // or if you want them to refresh.
-        updateGlobalUI(data);
+        // 3. UI/Map Update (Only when full payload with latitude/map data is returned)
+        if (data.plot_data && data.plot_data.latitude) {
+            updateGlobalUI(data);
+        }
 
     } catch (err) {
         console.error(err);
-        loader.classList.add('d-none');
+        if (loader) loader.classList.add('d-none');
     }
     window._isChartUpdating = false;
 }

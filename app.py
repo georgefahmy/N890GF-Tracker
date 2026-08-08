@@ -1974,6 +1974,17 @@ def api_analyze_flight():
                 traces.append({"name": col, "y": flight_data[col].tolist()})
             return traces
 
+        only_traces = request.form.get("only_traces") == "true"
+        if only_traces:
+            plot_data = {
+                "x": x_data,
+                "left_traces": extract_traces(left_signal),
+                "right_traces": extract_traces(right_signal),
+                "left_name": left_signal,
+                "right_name": right_signal,
+            }
+            return jsonify({"plot_data": plot_data})
+
         # --- Extract Latitude / Longitude (supports Dynon naming) ---
         lat_col = next(
             (c for c in flight_data.columns if "latitude" in c.lower()), None
