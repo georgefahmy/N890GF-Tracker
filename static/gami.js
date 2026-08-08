@@ -275,12 +275,25 @@ function renderGami(data) {
     }
 
     if (metricsEl) {
-        metricsEl.innerHTML = `
-            <b>EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
-            <b>GAMI Spread (ΔFF):</b> ${gamiSpreadText}<br><br>
-            <b>Peak EGTs:</b><br>
-            ${peakEgtSummary}
-        `;
+        if (timeSelectionState.start !== null && timeSelectionState.end === null) {
+            metricsEl.innerHTML = `
+                <b>Overall EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
+                <b>Start Time:</b> ${Number(timeSelectionState.start).toFixed(1)}s <span class="text-success ms-2 fw-bold">← Click a second point on the graph to set End Time</span>
+            `;
+        } else if (timeWindow && timeWindow.start != null && timeWindow.end != null) {
+            metricsEl.innerHTML = `
+                <b>Overall EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
+                <b>GAMI Spread (ΔFF):</b> <span class="text-primary fw-bold fs-6">${gamiSpreadText} gal/hr</span><br>
+                <span class="text-muted small">Window: ${Number(timeSelectionState.start).toFixed(1)}s – ${Number(timeSelectionState.end).toFixed(1)}s (${(timeSelectionState.end - timeSelectionState.start).toFixed(1)}s)</span><br><br>
+                <b>Peak EGTs:</b><br>
+                ${peakEgtSummary}
+            `;
+        } else {
+            metricsEl.innerHTML = `
+                <b>Overall EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
+                <span class="text-muted small">Click any point on the EGT vs Time graph below to select a Lean Find window.</span>
+            `;
+        }
     }
 
     // TIME SERIES
@@ -405,21 +418,19 @@ function renderGami(data) {
     function drawSelectionBox() {
         const shapes = [];
 
-        // CLICK MARKERS (BLACK VERTICAL LINES)
-        clickMarkers.forEach(x => {
+        // SHADED SELECTION REGION (between start and end)
+        if (timeSelectionState.start !== null && timeSelectionState.end !== null) {
             shapes.push({
-                type: 'line',
-                x0: x,
-                x1: x,
+                type: 'rect',
+                x0: timeSelectionState.start,
+                x1: timeSelectionState.end,
                 y0: 0,
                 y1: 1,
                 yref: 'paper',
-                line: {
-                    color: 'black',
-                    width: 2
-                }
+                fillcolor: 'rgba(25, 135, 84, 0.15)',
+                line: { width: 0 }
             });
-        });
+        }
 
         // START LINE (green)
         if (timeSelectionState.start !== null) {
@@ -431,7 +442,7 @@ function renderGami(data) {
                 y1: 1,
                 yref: 'paper',
                 line: {
-                    color: 'green',
+                    color: '#198754',
                     width: 2
                 }
             });
@@ -447,7 +458,7 @@ function renderGami(data) {
                 y1: 1,
                 yref: 'paper',
                 line: {
-                    color: 'red',
+                    color: '#dc3545',
                     width: 2
                 }
             });
