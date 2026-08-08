@@ -2,11 +2,19 @@ import numpy as np
 import pandas as pd
 
 
-def calculate_shock_cooling(df: pd.DataFrame) -> float:
+def calculate_shock_cooling(df: pd.DataFrame) -> dict:
     """
-    Calculates the maximum CHT cooling rate in deg F / min across all cylinders.
-    Evaluates over a 15-second rolling window during active flight to filter out quantization noise.
+    Calculates the maximum CHT cooling rate in deg F / min across all cylinders,
+    returning peak rate, cylinder name, start/end timestamps, and CHT drop.
     """
+    res = {
+        "max_shock_cooling": 0.0,
+        "shock_cooling_cyl": "N/A",
+        "shock_cooling_t_start": None,
+        "shock_cooling_t_end": None,
+        "shock_cooling_cht_drop": 0.0,
+    }
+
     cht_cols = [c for c in df.columns if c.startswith("CHT ") and "(deg F)" in c]
     needs_c_conversion = False
     if not cht_cols:
@@ -14,7 +22,7 @@ def calculate_shock_cooling(df: pd.DataFrame) -> float:
         needs_c_conversion = True
 
     if not cht_cols or "Session Time" not in df.columns:
-        return 0.0
+        return res
 
     try:
         time_series = pd.to_numeric(df["Session Time"], errors="coerce")
@@ -33,7 +41,12 @@ def calculate_shock_cooling(df: pd.DataFrame) -> float:
 
         dt_window = time_series.diff(periods=period_window)
 
-        max_cooling_rates = []
+        best_rate = 0.0
+        best_cyl = "N/A"
+        best_t_start = None
+        best_t_end = None
+        best_drop = 0.0
+
         for col in cht_cols:
             cht_vals = pd.to_numeric(df[col], errors="coerce")
             if needs_c_conversion:
@@ -46,15 +59,27 @@ def calculate_shock_cooling(df: pd.DataFrame) -> float:
             cooling_rate = (-dcht / dt_window) * 60.0
             valid_rates = cooling_rate[valid_mask].replace([np.inf, -np.inf], np.nan).dropna()
 
-            if not valid_rates.empty and valid_rates.max() > 0:
-                max_cooling_rates.append(valid_rates.max())
+            if not valid_rates.empty:
+                max_idx = valid_rates.idxmax()
+                rate_val = valid_rates.loc[max_idx]
+                if rate_val > best_rate:
+                    best_rate = rate_val
+                    best_cyl = col.split(" (")[0]
+                    best_t_start = float(time_series.iloc[max_idx - period_window])
+                    best_t_end = float(time_series.iloc[max_idx])
+                    best_drop = float(cht_vals.iloc[max_idx - period_window] - cht_vals.iloc[max_idx])
 
-        if max_cooling_rates:
-            return round(float(max(max_cooling_rates)), 1)
-        return 0.0
+        if best_rate > 0:
+            res["max_shock_cooling"] = round(float(best_rate), 1)
+            res["shock_cooling_cyl"] = best_cyl
+            res["shock_cooling_t_start"] = round(best_t_start, 1) if best_t_start is not None else None
+            res["shock_cooling_t_end"] = round(best_t_end, 1) if best_t_end is not None else None
+            res["shock_cooling_cht_drop"] = round(best_drop, 1)
+
     except Exception as e:
-        print(f"Shock cooling calculation notice: {e}")
-        return 0.0
+        print(f"Shock cooling detail extraction notice: {e}")
+
+    return res
 
 
 def calculate_cht_spread(df: pd.DataFrame) -> float:
@@ -355,7 +380,6 @@ def calculate_climb_gradient(df: pd.DataFrame) -> float:
 
         grad_series = vs_fpm[climb_mask] / (gs[climb_mask] / 60.0)
         grad_series = grad_series.replace([np.inf, -np.inf], np.nan).dropna()
-        return round(float(grad_series.mean()), 1) if not grad_series.empty else 0.0
     except Exception:
         return 0.0
 
@@ -365,7 +389,8 @@ def extract_comprehensive_flight_stats(df: pd.DataFrame) -> dict:
     Combines all advanced analytics into a structured dictionary.
     """
     stats = {}
-    stats["max_shock_cooling"] = calculate_shock_cooling(df)
+    shock_dict = calculate_shock_cooling(df)
+    stats.update(shock_dict)
     stats["cht_spread"] = calculate_cht_spread(df)
 
     thermal = calculate_cht_thermal_durations(df)

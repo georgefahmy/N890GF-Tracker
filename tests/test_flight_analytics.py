@@ -53,8 +53,10 @@ def create_sample_flight_df():
 def test_shock_cooling():
     df = create_sample_flight_df()
     shock = calculate_shock_cooling(df)
-    assert isinstance(shock, float)
-    assert shock >= 0.0
+    assert isinstance(shock, dict)
+    assert "max_shock_cooling" in shock
+    assert "shock_cooling_cyl" in shock
+    assert shock["max_shock_cooling"] >= 0.0
 
 
 def test_cht_spread():

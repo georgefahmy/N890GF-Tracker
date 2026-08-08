@@ -970,9 +970,12 @@ function updateGlobalUI(data) {
     
     const s = data.stats || {};
     const shockCooling = s.max_shock_cooling !== undefined ? s.max_shock_cooling : 0;
+    const peakCyl = s.shock_cooling_cyl && s.shock_cooling_cyl !== 'N/A' ? s.shock_cooling_cyl : '';
+    const dropText = s.shock_cooling_cht_drop ? ` (-${s.shock_cooling_cht_drop}°F)` : '';
+    const shockText = `${shockCooling} °F/min ${peakCyl ? '(' + peakCyl + dropText + ')' : ''}`;
     const shockBadge = shockCooling > 50 
-        ? `<span class="badge bg-danger">${shockCooling} °F/min (High)</span>`
-        : `<span class="badge bg-success">${shockCooling} °F/min</span>`;
+        ? `<span class="badge bg-danger shadow-sm" style="cursor: pointer;" onclick="highlightShockCoolingPeak()" title="Click to zoom & highlight peak on chart">${shockText} 🔍</span>`
+        : `<span class="badge bg-success shadow-sm" style="cursor: pointer;" onclick="highlightShockCoolingPeak()" title="Click to zoom & highlight peak on chart">${shockText} 🔍</span>`;
 
     const windAloft = (s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined)
         ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}° (Headwind: ${s.headwind_kts} kts, X-Wind: ${s.crosswind_kts} kts)`
@@ -2318,3 +2321,49 @@ function toggleSidebar() {
         window.dispatchEvent(new Event('resize'));
     }, 450);
 }
+
+window.highlightShockCoolingPeak = function() {
+    const stats = AppState.lastAnalysisResponse?.stats || {};
+    const tStart = stats.shock_cooling_t_start;
+    const tEnd = stats.shock_cooling_t_end;
+    const rate = stats.max_shock_cooling;
+    const cyl = stats.shock_cooling_cyl || 'CHT';
+    const drop = stats.shock_cooling_cht_drop || 0;
+
+    if (tStart === undefined || tStart === null || tEnd === undefined || tEnd === null) {
+        return alert("Shock cooling peak timestamp is not available for this flight.");
+    }
+
+    const xMin = Math.max(0, tStart - 30);
+    const xMax = tEnd + 30;
+
+    const plotDivs = document.querySelectorAll("[id^='flightGraph-']");
+    plotDivs.forEach(div => {
+        Plotly.relayout(div, {
+            'xaxis.range': [xMin, xMax],
+            'shapes': [{
+                type: 'rect',
+                xref: 'x',
+                yref: 'paper',
+                x0: tStart,
+                x1: tEnd,
+                y0: 0,
+                y1: 1,
+                fillcolor: 'rgba(255, 0, 0, 0.25)',
+                line: { color: '#dc3545', width: 2, dash: 'dot' }
+            }],
+            'annotations': [{
+                x: (tStart + tEnd) / 2,
+                y: 1,
+                yref: 'paper',
+                text: `⚡ Peak Shock Cooling: ${rate} °F/min (${cyl} drop -${drop}°F)`,
+                showarrow: true,
+                arrowhead: 2,
+                ax: 0,
+                ay: -30,
+                bgcolor: '#dc3545',
+                font: { color: '#ffffff', size: 12, weight: 'bold' }
+            }]
+        }).catch(e => console.debug("Plotly relayout error:", e));
+    });
+};
