@@ -1666,7 +1666,8 @@ def api_multi_flight_stats():
     for filename in csv_files:
         filepath = os.path.join(SAVE_DIR, filename)
         mtime = os.path.getmtime(filepath)
-        cache_key = f"{filename}_{mtime}"
+        CACHE_VERSION = "v3"
+        cache_key = f"{CACHE_VERSION}_{filename}_{mtime}"
 
         if cache_key in cache_data:
             stats = cache_data[cache_key]

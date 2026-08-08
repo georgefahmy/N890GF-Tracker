@@ -238,6 +238,9 @@
                             <span class="stats-label">Avg MPG:</span>
                             <strong class="stats-value">{{ "%.2f"|format(total_distance_traveled/total_gallons_used) }}</strong>
                         </div>
+                        <div class="border-top pt-2 mt-2">
+                            <a href="/multi_flight_stats" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-bar-chart"></i> Multi-Flight Telemetry Stats</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -268,6 +271,7 @@
                     <button class="btn database-download-button flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">Dynon DBs</button>
                     <a href="/live_map" class="btn btn-info text-white flex-grow-1 flex-md-grow-0">Live Map</a>
                     <a href="/analyzer" class="btn flight-analyzer-btn flex-grow-1 flex-md-grow-0">Analyzer</a>
+                    <a href="/multi_flight_stats" class="btn btn-outline-info flex-grow-1 flex-md-grow-0">Multi-Flight Stats</a>
                     <button class="btn btn-outline-primary flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#oilAnalysisModal">Oil Analysis</button>
                     <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#cloudModal">Cloud Base</button>
                 </div>
