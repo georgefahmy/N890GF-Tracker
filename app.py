@@ -48,6 +48,7 @@ from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
 from src.process_telemetry import process_flights, calculate_flight_summary
+from src.flight_analytics import extract_comprehensive_flight_stats
 from src.tool_functions import (
     calc_total_air_time,
     calc_total_distance,
@@ -2194,6 +2195,10 @@ def api_analyze_flight():
             "avg_speed_mph": avg_speed_mph,
             "actual_cost_per_hour": actual_cost_per_hour,
         }
+
+        # Merge advanced flight analytics (shock cooling, CHT spread, flight phases, wind aloft, G-load)
+        advanced_stats = extract_comprehensive_flight_stats(flight_data)
+        stats.update(advanced_stats)
 
         rawData = flight_data.to_dict(orient="records")
 

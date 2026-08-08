@@ -966,31 +966,50 @@ function updateGlobalUI(data) {
 
     // Update Text Stats
     document.getElementById('statFlightId').innerText = `Flight: ${data.stats.flight_id}`;
+    
+    const s = data.stats || {};
+    const shockCooling = s.max_shock_cooling !== undefined ? s.max_shock_cooling : 0;
+    const shockBadge = shockCooling > 30 
+        ? `<span class="badge bg-danger">${shockCooling} °F/min (High)</span>`
+        : `<span class="badge bg-success">${shockCooling} °F/min</span>`;
+
+    const windAloft = (s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined)
+        ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}° (Headwind: ${s.headwind_kts} kts, X-Wind: ${s.crosswind_kts} kts)`
+        : 'N/A';
+
+    const costVal = typeof s.actual_cost_per_hour === 'number' ? s.actual_cost_per_hour.toFixed(2) : '0.00';
+    const fuelCostVal = typeof s.total_fuel === 'number' && typeof s.current_fuel_price === 'number' ? (s.total_fuel * s.current_fuel_price).toFixed(2) : '0.00';
+    const distVal = typeof s.distance_traveled === 'number' ? s.distance_traveled.toFixed(1) : '0.0';
+
     document.getElementById('statsList').innerHTML = `
-        <div class="col-sm-4 mb-3"><strong>Duration (Trip Total $):</strong><br>${data.stats.duration_min} min ($${(data.stats.actual_cost_per_hour).toFixed(2)})</div>
-        <div class="col-sm-4 mb-3"><strong>Total Fuel:</strong><br>${data.stats.total_fuel} gal ($${(data.stats.total_fuel * data.stats.current_fuel_price).toFixed(2)})</div>
-        <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${data.stats.avg_fuel_flow} gal/hr ($${(data.stats.avg_fuel_flow * data.stats.current_fuel_price).toFixed(2)}/hr)</div>
-        <div class="col-sm-4 mb-3"><strong>Avg MPG:</strong><br><span class="text-success fw-bold">${data.stats.avg_mpg} nm/gal</span></div>
-        <div class="col-sm-4 mb-3"><strong>Distance Traveled:</strong><br>${data.stats.distance_traveled.toFixed(1)} mi</div>
-        <div class="col-sm-4 mb-3"><strong>Avg Speed:</strong><br><span class="text-success fw-bold">${data.stats.avg_speed_mph} mph</span></div>
-        <div class="col-sm-4 mb-3"><strong>Max RPM:</strong><br>
-            <span style="
-                ${data.stats.max_rpm > 2750 ? 'color: red; font-weight: bold;' :
-                    data.stats.max_rpm >= 2700 ? 'color: orange;' :
-                    'color: green;'}
-            ">
-                ${data.stats.max_rpm}
-            </span>
+        <!-- General & Fuel Performance -->
+        <div class="col-12 mb-2"><h6 class="text-primary border-bottom pb-1"><i class="bi bi-speedometer2"></i> Flight & Fuel Performance</h6></div>
+        <div class="col-sm-4 mb-3"><strong>Duration (Trip Cost):</strong><br>${s.duration_min || 0} min ($${costVal})</div>
+        <div class="col-sm-4 mb-3"><strong>Total Fuel:</strong><br>${s.total_fuel || 0} gal ($${fuelCostVal})</div>
+        <div class="col-sm-4 mb-3"><strong>Avg Flow:</strong><br>${s.avg_fuel_flow || 0} gal/hr</div>
+        <div class="col-sm-4 mb-3"><strong>Avg MPG:</strong><br><span class="text-success fw-bold">${s.avg_mpg || 'N/A'} nm/gal</span></div>
+        <div class="col-sm-4 mb-3"><strong>Distance Traveled:</strong><br>${distVal} mi</div>
+        <div class="col-sm-4 mb-3"><strong>Avg Speed:</strong><br><span class="text-success fw-bold">${s.avg_speed_mph || 0} mph</span></div>
+
+        <!-- Engine Thermal & Health -->
+        <div class="col-12 mt-2 mb-2"><h6 class="text-danger border-bottom pb-1"><i class="bi bi-thermometer-high"></i> Engine Thermal Health</h6></div>
+        <div class="col-sm-4 mb-3"><strong>Max Shock Cooling:</strong><br>${shockBadge}</div>
+        <div class="col-sm-4 mb-3"><strong>Cruise CHT Spread:</strong><br>${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
+        <div class="col-sm-4 mb-3"><strong>Max CHT / RPM:</strong><br>
+            <span style="${s.max_cht > 420 ? 'color: red; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'} °F</span> / 
+            <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : 'color: green;'}">${s.max_rpm || '--'} RPM</span>
         </div>
-        <div class="col-sm-4 mb-3"><strong>Max CHT:</strong><br>
-            <span style="
-                ${data.stats.max_cht > 450 ? 'color: red; font-weight: bold;' :
-                    data.stats.max_cht > 420 ? 'color: orange;' :
-                    data.stats.max_cht < 400 ? 'color: green;' : ''}
-            ">
-                ${data.stats.max_cht} °F
-            </span>
-        </div>
+        <div class="col-sm-4 mb-3"><strong>Time CHT > 380°F:</strong><br>${s.above_380_min !== undefined ? s.above_380_min + ' min' : '0 min'}</div>
+        <div class="col-sm-4 mb-3"><strong>Oil Temp Delta:</strong><br>${s.oil_temp_delta !== undefined && s.oil_temp_delta !== 'N/A' ? '+' + s.oil_temp_delta + ' °F vs OAT' : 'N/A'}</div>
+        <div class="col-sm-4 mb-3"><strong>Min Oil Pressure:</strong><br>${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
+
+        <!-- Flight Phases & Wind Aloft -->
+        <div class="col-12 mt-2 mb-2"><h6 class="text-info border-bottom pb-1"><i class="bi bi-compass"></i> Flight Phases & Dynamics</h6></div>
+        <div class="col-sm-4 mb-3"><strong>Phase Breakdown:</strong><br><span class="small text-muted">Taxi: ${s.taxi_min || 0}m | Climb: ${s.climb_min || 0}m | Cruise: ${s.cruise_min || 0}m | Descent: ${s.descent_min || 0}m</span></div>
+        <div class="col-sm-4 mb-3"><strong>Landings Detected:</strong><br><span class="badge bg-info text-dark">${s.landing_count || 1} Landings</span></div>
+        <div class="col-sm-4 mb-3"><strong>Climb Gradient:</strong><br>${s.climb_gradient_ft_nm ? s.climb_gradient_ft_nm + ' ft/NM' : 'N/A'}</div>
+        <div class="col-sm-6 mb-3"><strong>Wind Aloft (Cruise):</strong><br>${windAloft}</div>
+        <div class="col-sm-6 mb-3"><strong>G-Load / Max Bank:</strong><br>${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'} | Max Bank: ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '°' : 'N/A'}</div>
     `;
 
     // Always show the aircraft card once analysis runs
