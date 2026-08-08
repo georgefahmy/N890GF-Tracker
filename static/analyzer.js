@@ -583,6 +583,8 @@ async function triggerAnalysis(plotId, isInitialLoad = false) {
 
         // 3. UI/Map Update (Only when full payload with latitude/map data is returned)
         if (data.plot_data && data.plot_data.latitude) {
+            AppState.lastAnalysisResponse = data;
+            if (data.rawData) AppState.rawData = data.rawData;
             updateGlobalUI(data);
         }
 

@@ -97,13 +97,21 @@ function loadFlight() {
     const sel = getGamiElem('savedFlights');
     if (!sel || !sel.value) return;
 
+    const file = sel.value;
+
+    // PIGGYBACK: If the requested flight is already loaded in AppState, render instantly without network fetch!
+    if (typeof AppState !== 'undefined' && file === AppState.file.currentName && (AppState.lastAnalysisResponse || AppState.rawData)) {
+        renderGami(AppState.lastAnalysisResponse || { rawData: AppState.rawData, plot_data: AppState.currentPlotData });
+        return;
+    }
+
     const metricsEl = getGamiElem('metrics');
     if (metricsEl) {
         metricsEl.innerHTML = '<span class="spinner-border spinner-border-sm text-primary"></span> Loading flight data for GAMI analysis...';
     }
 
     const formData = new FormData();
-    formData.append('saved_filename', sel.value);
+    formData.append('saved_filename', file);
     formData.append('filters', JSON.stringify([]));
 
     fetch('/api/analyze_flight', { method: 'POST', body: formData })
