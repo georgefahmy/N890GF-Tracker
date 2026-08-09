@@ -1046,25 +1046,43 @@ function updateGlobalUI(data) {
 
         <!-- Flight Phases & Dynamics -->
         <div class="col-12 mt-1"><div class="fw-bold text-info border-bottom pb-1 mb-2 small"><i class="bi bi-compass"></i> Flight Phases & Dynamics</div></div>
-        <div class="col-12 col-md-6 col-xl-3 mb-2">
-            <div class="small fw-bold text-body-emphasis">Phase Breakdown</div>
-            <div><span class="fw-bold text-body-emphasis">Taxi:</span> ${s.taxi_min || 0}m | <span class="fw-bold text-body-emphasis">Climb:</span> ${s.climb_min || 0}m | <span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m | <span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m</div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small fw-bold text-body-emphasis text-nowrap">Phase Breakdown</div>
+            <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
+                <div><span class="fw-bold text-body-emphasis">Taxi:</span> ${s.taxi_min || 0}m</div>
+                <div><span class="fw-bold text-body-emphasis">Climb:</span> ${s.climb_min || 0}m</div>
+                <div><span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m</div>
+                <div><span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m</div>
+            </div>
         </div>
-        <div class="col-6 col-md-3 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Landings Detected</div>
-            <div><span class="badge bg-info text-dark">${s.landing_count || 1} Landings</span></div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small fw-bold text-body-emphasis text-nowrap">Landings Detected</div>
+            <div class="mt-1"><span class="badge bg-info text-dark">${s.landing_count || 1} Landings</span></div>
         </div>
-        <div class="col-6 col-md-3 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Climb Gradient</div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small fw-bold text-body-emphasis text-nowrap">Climb Gradient</div>
             <div>${s.climb_gradient_ft_nm ? s.climb_gradient_ft_nm + ' ft/NM' : 'N/A'}</div>
         </div>
-        <div class="col-12 col-md-6 col-xl-3 mb-2">
-            <div class="small fw-bold text-body-emphasis">Wind Aloft (Cruise)</div>
-            <div>${windAloft}</div>
+        <div class="col-6 col-md-4 col-xl-3 mb-2">
+            <div class="small fw-bold text-body-emphasis text-nowrap">Wind Aloft (Cruise)</div>
+            <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
+                <div>${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}°` : 'N/A'}</div>
+                ${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `
+                <div><span class="fw-bold text-body-emphasis">Headwind:</span> ${s.headwind_kts} kts</div>
+                <div><span class="fw-bold text-body-emphasis">X-Wind:</span> ${s.crosswind_kts} kts</div>
+                ` : ''}
+            </div>
         </div>
-        <div class="col-12 col-md-6 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">G-Load / Max Bank</div>
-            <div>${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'} | <span class="fw-bold text-body-emphasis">Bank:</span> ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '° (<span class="fw-bold text-body-emphasis">L:</span>' + (s.max_left_bank_deg || '--') + '° / <span class="fw-bold text-body-emphasis">R:</span>' + (s.max_right_bank_deg || '--') + '°)' : 'N/A'}</div>
+        <div class="col-6 col-md-4 col-xl-3 mb-2">
+            <div class="small fw-bold text-body-emphasis text-nowrap">G-Load / Max Bank</div>
+            <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
+                <div><span class="fw-bold text-body-emphasis">G-Load:</span> ${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'}</div>
+                <div><span class="fw-bold text-body-emphasis">Max Bank:</span> ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '°' : 'N/A'}</div>
+                ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? `
+                <div><span class="fw-bold text-body-emphasis">Left Bank:</span> ${s.max_left_bank_deg || '--'}°</div>
+                <div><span class="fw-bold text-body-emphasis">Right Bank:</span> ${s.max_right_bank_deg || '--'}°</div>
+                ` : ''}
+            </div>
         </div>
     `;
 
