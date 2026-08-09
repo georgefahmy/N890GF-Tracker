@@ -77,6 +77,17 @@ const COLOR_LABELS = {
 
 function toggleFollowAircraft(state) {
     AppState.map.followAircraft = state;
+    if (state && AppState.map.data?.lat && AppState.map.data?.lon) {
+        const idx = AppState.playback.index || 0;
+        const mapLat = AppState.map.data.lat[idx];
+        const mapLon = AppState.map.data.lon[idx];
+        if (mapLat !== undefined && mapLon !== undefined) {
+            Plotly.relayout('mapGraph', {
+                'mapbox.center.lat': mapLat,
+                'mapbox.center.lon': mapLon
+            }).catch(e => console.debug("Map pan error:", e));
+        }
+    }
 }
 
 function toggleXYTab() {
@@ -1021,7 +1032,7 @@ function renderPlotlyChart(plotId, data) {
                         });
                     }
 
-                    if (AppState.map.followAircraft && (AppState.playback.timer || AppState.playback.isScrubbing) && !AppState.map.isMapPanning) {
+                    if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
                         AppState.map.isMapPanning = true;
 
                         Plotly.relayout('mapGraph', {
