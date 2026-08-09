@@ -685,10 +685,14 @@ function findClosestIndex(arr, val) {
 
 function renderPlotlyChart(plotId, data) {
     const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+    if (!graphDiv) return;
+
     const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
     const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
-    const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value;
-    const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value;
+    const showPhases = document.getElementById(`showPhases-${plotId}`)?.checked;
+    const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`)?.value || '';
+    const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`)?.value || '';
+
     // Helper to add a 5% margin to the bounds so the lines don't hug the edges
     const padRange = (min, max) => {
         if (min === Infinity || max === -Infinity) return [0, 100]; // Safe fallback
@@ -696,9 +700,13 @@ function renderPlotlyChart(plotId, data) {
         const diff = max - min;
         return [min - (diff * 0.05), max + (diff * 0.05)];
     };
+
+    const plotData = data?.plot_data || AppState.currentPlotData;
+    if (!plotData || !plotData.left_traces || !plotData.right_traces) return;
+
     if (!AppState.currentPlotData) {
-        AppState.currentPlotData = data.plot_data;
-    } else if (data.plot_data) {
+        AppState.currentPlotData = plotData;
+    } else if (data?.plot_data) {
         Object.assign(AppState.currentPlotData, data.plot_data);
     }
 
@@ -709,8 +717,8 @@ function renderPlotlyChart(plotId, data) {
 
     // Map Left Traces
     let leftMin = Infinity, leftMax = -Infinity;
-    data.plot_data.left_traces.forEach((traceData, idx) => {
-        const yData = traceData.y;
+    (plotData.left_traces || []).forEach((traceData, idx) => {
+        const yData = traceData.y || [];
         const len = yData.length;
         for (let i = 0; i < len; i++) {
             const val = parseFloat(yData[i]);
@@ -719,7 +727,7 @@ function renderPlotlyChart(plotId, data) {
                 if (val > leftMax) leftMax = val;
             }
         }
-        const sampled = downsampleLTTB(data.plot_data.x, traceData.y, 2000);
+        const sampled = downsampleLTTB(plotData.x, yData, 2000);
         traces.push({
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
@@ -731,8 +739,8 @@ function renderPlotlyChart(plotId, data) {
 
     // Map Right Traces
     let rightMin = Infinity, rightMax = -Infinity;
-    data.plot_data.right_traces.forEach((traceData, idx) => {
-        const yData = traceData.y;
+    (plotData.right_traces || []).forEach((traceData, idx) => {
+        const yData = traceData.y || [];
         const len = yData.length;
         for (let i = 0; i < len; i++) {
             const val = parseFloat(yData[i]);
@@ -741,7 +749,7 @@ function renderPlotlyChart(plotId, data) {
                 if (val > rightMax) rightMax = val;
             }
         }
-        const sampled = downsampleLTTB(data.plot_data.x, traceData.y, 2000);
+        const sampled = downsampleLTTB(plotData.x, yData, 2000);
         traces.push({
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
