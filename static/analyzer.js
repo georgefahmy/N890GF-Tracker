@@ -11,7 +11,7 @@ const AppState = {
         xyOverlay: false
     },
     map: {
-        followAircraft: false,
+        followAircraft: true,
         colorMode: 'altitude',
         isMapPanning: false,
         lastRenderData: null,
@@ -1021,7 +1021,7 @@ function renderPlotlyChart(plotId, data) {
                         });
                     }
 
-                    if (AppState.map.followAircraft && !AppState.map.isMapPanning) {
+                    if (AppState.map.followAircraft && (AppState.playback.timer || AppState.playback.isScrubbing) && !AppState.map.isMapPanning) {
                         AppState.map.isMapPanning = true;
 
                         Plotly.relayout('mapGraph', {
@@ -2081,26 +2081,21 @@ function renderMap(data) {
     const centerLon = (minLon + maxLon) / 2;
 
     const latSpan = Math.abs(maxLat - minLat);
-    const lonSpan = Math.abs(maxLon - minLon);
+    const lonSpan = Math.abs(maxLon - minLon) * Math.cos(centerLat * Math.PI / 180);
     const maxSpan = Math.max(latSpan, lonSpan);
 
-    let calculatedZoom = 10;
+    let calculatedZoom = 9;
     if (maxSpan > 0) {
-        calculatedZoom = Math.floor(Math.log2(360 / maxSpan)) - 1;
-        calculatedZoom = Math.max(3, Math.min(14, calculatedZoom));
+        // Fits entire flight track comfortably inside map container with margin around borders
+        calculatedZoom = Math.floor(Math.log2(360 / maxSpan)) - 2;
+        calculatedZoom = Math.max(2, Math.min(14, calculatedZoom));
     }
 
     const layout = {
         mapbox: {
             style: "open-street-map",
             center: { lat: centerLat, lon: centerLon },
-            zoom: calculatedZoom,
-            bounds: {
-                west: minLon - (lonSpan * 0.08 || 0.01),
-                east: maxLon + (lonSpan * 0.08 || 0.01),
-                south: minLat - (latSpan * 0.08 || 0.01),
-                north: maxLat + (latSpan * 0.08 || 0.01)
-            }
+            zoom: calculatedZoom
         },
         margin: { t: 0, b: 0, l: 0, r: 0 },
         showlegend: false
