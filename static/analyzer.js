@@ -683,6 +683,33 @@ function findClosestIndex(arr, val) {
     return (Math.abs(arr[low] - val) < Math.abs(arr[high] - val)) ? low : high;
 }
 
+function onPhasesToggleChanged(plotId) {
+    const phasesToggle = document.getElementById(`showPhases-${plotId}`);
+    const bandsToggle = document.getElementById(`showBands-${plotId}`);
+    if (phasesToggle && bandsToggle) {
+        if (phasesToggle.checked) {
+            bandsToggle.checked = false;
+        } else {
+            bandsToggle.checked = true;
+        }
+    }
+    renderPlotlyChart(plotId, AppState.lastAnalysisResponse || {});
+}
+
+function onBandsToggleChanged(plotId) {
+    const phasesToggle = document.getElementById(`showPhases-${plotId}`);
+    const bandsToggle = document.getElementById(`showBands-${plotId}`);
+    if (bandsToggle && phasesToggle) {
+        if (bandsToggle.checked) {
+            phasesToggle.checked = false;
+        }
+    }
+    renderPlotlyChart(plotId, AppState.lastAnalysisResponse || {});
+}
+
+window.onPhasesToggleChanged = onPhasesToggleChanged;
+window.onBandsToggleChanged = onBandsToggleChanged;
+
 function renderPlotlyChart(plotId, data) {
     const graphDiv = document.getElementById(`flightGraph-${plotId}`);
     if (!graphDiv) return;
