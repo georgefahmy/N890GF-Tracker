@@ -198,29 +198,60 @@
 
                     <!-- Aircraft Attitude / 3D Model -->
                     <div class="card p-3 shadow-sm h-100 d-none" id="aircraftDataCard">
-                        <h5 class="text-primary mb-2">Aircraft Attitude</h5>
-                        <hr class="mt-0 mb-3">
+                        <h6 class="text-primary mb-2">3D Flight View & Telemetry</h6>
+                        <hr class="mt-0 mb-2">
 
                         <div id="attitude3DContainer"
-                             class="border rounded d-flex align-items-center justify-content-center mb-3"
-                             style="height: 200px;">
-                            <span class="text-muted small">
-                                3D Model Placeholder (load .glb / .gltf file here)
+                             class="border rounded position-relative overflow-hidden mb-0"
+                             style="height: 420px; min-height: 350px;">
+                            <span class="cesium-placeholder text-muted small position-absolute top-50 start-50 translate-middle">
+                                Loading 3D Model...
                             </span>
-                        </div>
+                            <div class="cesium-hud-overlay position-absolute bottom-0 start-0 end-0 p-2 bg-dark bg-opacity-75 text-white shadow-lg" style="z-index: 999; backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.15);">
+                                <!-- Playback controls bar -->
+                                <div class="d-flex align-items-center gap-2 mb-2 px-1">
+                                    <select class="form-select form-select-sm w-auto bg-dark text-white border-secondary shadow-sm" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                                        <option value="1">1x</option>
+                                        <option value="2">2x</option>
+                                        <option value="5">5x</option>
+                                        <option value="10">10x</option>
+                                        <option value="30">30x</option>
+                                    </select>
+                                    <button class="btn btn-sm btn-primary shadow-sm px-3" id="playPauseBtn" onclick="togglePlayback()">▶</button>
+                                    <input type="range" id="mapScrubber" class="form-range flex-grow-1 mx-2" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
+                                </div>
 
-                        <div class="row text-center">
-                            <div class="col-4">
-                                <div class="small text-muted">Pitch</div>
-                                <div id="attPitch" class="fw-bold">-- °</div>
-                            </div>
-                            <div class="col-4">
-                                <div class="small text-muted">Roll</div>
-                                <div id="attRoll" class="fw-bold">-- °</div>
-                            </div>
-                            <div class="col-4">
-                                <div class="small text-muted">Heading</div>
-                                <div id="attHeading" class="fw-bold">-- °</div>
+                                <!-- Telemetry metrics row 1 -->
+                                <div class="row g-1 text-center align-items-center mb-1">
+                                    <div class="col-4">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Pitch</div>
+                                        <div id="attPitch" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Roll</div>
+                                        <div id="attRoll" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Heading</div>
+                                        <div id="attHeading" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
+                                    </div>
+                                </div>
+
+                                <!-- Telemetry metrics row 2 -->
+                                <div class="row g-1 text-center align-items-center">
+                                    <div class="col-4">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Airspeed</div>
+                                        <div id="attAirspeed" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- kts</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Altitude</div>
+                                        <div id="attAltitude" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- ft</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">VS</div>
+                                        <div id="attVerticalSpeed" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- fpm</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

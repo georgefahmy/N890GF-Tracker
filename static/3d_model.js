@@ -11,11 +11,29 @@ document.addEventListener('DOMContentLoaded', function() {
     async function init3DViewer() {
         const container = document.getElementById('attitude3DContainer');
         if (!container) return;
-        container.innerHTML = '';
+        if (viewer) return;
+
+        // Remove placeholder text if present
+        const placeholder = container.querySelector('.cesium-placeholder');
+        if (placeholder) placeholder.remove();
+
+        // Create or find dedicated canvas wrapper for Cesium viewer
+        let cesiumDiv = document.getElementById('cesiumCanvasDiv');
+        if (!cesiumDiv) {
+            cesiumDiv = document.createElement('div');
+            cesiumDiv.id = 'cesiumCanvasDiv';
+            cesiumDiv.style.width = '100%';
+            cesiumDiv.style.height = '100%';
+            cesiumDiv.style.position = 'absolute';
+            cesiumDiv.style.top = '0';
+            cesiumDiv.style.left = '0';
+            cesiumDiv.style.zIndex = '1';
+            container.insertBefore(cesiumDiv, container.firstChild);
+        }
 
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1OWFhZWY3Yi04N2EwLTRjMzEtOTU1Ny04ZTU0NjIwZGI2NGUiLCJpZCI6NDIxMzY1LCJpYXQiOjE3NzY3ODUyNTh9.JD1aQq2VNXJDdjP7D4gz3YJc2XkRnc6bSbDBA6YmNrE';
 
-        viewer = new Cesium.Viewer(container, {
+        viewer = new Cesium.Viewer(cesiumDiv, {
             terrain: Cesium.Terrain.fromWorldTerrain(),
             baseLayerPicker: false, timeline: false, animation: false,
             infoBox: false, selectionIndicator: false,

@@ -228,73 +228,80 @@
 
                     <!-- Aircraft Attitude / 3D Model -->
                     <div class="card p-3 shadow-sm h-100 d-none" id="aircraftDataCard">
-                        <h6 class="text-primary mb-2">Playback</h6>
+                        <h6 class="text-primary mb-2">3D Flight View & Telemetry</h6>
                         <hr class="mt-0 mb-2">
 
                         <div id="attitude3DContainer"
-                             class="border rounded d-flex align-items-center justify-content-center mb-3"
-                             style="height: 300px;">
-                            <span class="text-muted small">
-                                3D Model Placeholder (load .glb / .gltf file here)
+                             class="border rounded position-relative overflow-hidden mb-0"
+                             style="height: 480px; min-height: 400px;">
+                            <span class="cesium-placeholder text-muted small position-absolute top-50 start-50 translate-middle">
+                                Loading 3D Model...
                             </span>
-                        </div>
-                        <div class="px-2 pb-2 d-flex flex-sm-row gap-2 align-items-center">
-                            <select class="form-select form-select-sm w-auto" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
-                                <option value="1">1x</option>
-                                <option value="2">2x</option>
-                                <option value="5">5x</option>
-                                <option value="10">10x</option>
-                                <option value="30">30x</option>
-                            </select>
-                            <button class="btn btn-sm btn-primary" id="playPauseBtn" onclick="togglePlayback()">▶</button>
-                            <input type="range" id="mapScrubber" class="form-range" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
-                        </div>
-                        <div class="row text-center">
-                            <div class="col-2">
-                                <div class="small text-muted">Pitch</div>
-                                <div id="attPitch" class="fw-bold text-nowrap">-- °</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted">Roll</div>
-                                <div id="attRoll" class="fw-bold text-nowrap">-- °</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">Heading</div>
-                                <div id="attHeading" class="fw-bold text-nowrap">-- °</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">Airspeed</div>
-                                <div id="attAirspeed" class="fw-bold text-nowrap">-- kts</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">Altitude</div>
-                                <div id="attAltitude" class="fw-bold text-nowrap">-- ft</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">VS</div>
-                                <div id="attVerticalSpeed" class="fw-bold text-nowrap">-- fpm</div>
-                            </div>
-                        </div>
-                        <div class="row text-center">
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">RPM</div>
-                                <div id="attRpm" class="fw-bold text-nowrap">--</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">MAP (inHg)</div>
-                                <div id="attMap" class="fw-bold text-nowrap">--</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">Power</div>
-                                <div id="attPower" class="fw-bold text-nowrap">-- %</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">Fuel Flow</div>
-                                <div id="attFuelFlow" class="fw-bold text-nowrap">-- gph</div>
-                            </div>
-                            <div class="col-2">
-                                <div class="small text-muted text-nowrap">MPG (NM)</div>
-                                <div id="attMpg" class="fw-bold text-nowrap">--</div>
+                            <div class="cesium-hud-overlay position-absolute bottom-0 start-0 end-0 p-2 bg-dark bg-opacity-75 text-white shadow-lg" style="z-index: 999; backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.15);">
+                                <!-- Playback controls bar -->
+                                <div class="d-flex align-items-center gap-2 mb-2 px-1">
+                                    <select class="form-select form-select-sm w-auto bg-dark text-white border-secondary shadow-sm" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                                        <option value="1">1x</option>
+                                        <option value="2">2x</option>
+                                        <option value="5">5x</option>
+                                        <option value="10">10x</option>
+                                        <option value="30">30x</option>
+                                    </select>
+                                    <button class="btn btn-sm btn-primary shadow-sm px-3" id="playPauseBtn" onclick="togglePlayback()">▶</button>
+                                    <input type="range" id="mapScrubber" class="form-range flex-grow-1 mx-2" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
+                                </div>
+
+                                <!-- Telemetry metrics row 1 -->
+                                <div class="row g-1 text-center align-items-center mb-1">
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Pitch</div>
+                                        <div id="attPitch" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Roll</div>
+                                        <div id="attRoll" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Heading</div>
+                                        <div id="attHeading" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Airspeed</div>
+                                        <div id="attAirspeed" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- kts</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Altitude</div>
+                                        <div id="attAltitude" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- ft</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">VS</div>
+                                        <div id="attVerticalSpeed" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- fpm</div>
+                                    </div>
+                                </div>
+
+                                <!-- Telemetry metrics row 2 -->
+                                <div class="row g-1 text-center align-items-center">
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">RPM</div>
+                                        <div id="attRpm" class="fw-bold text-nowrap" style="font-size: 0.85rem;">--</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">MAP (inHg)</div>
+                                        <div id="attMap" class="fw-bold text-nowrap" style="font-size: 0.85rem;">--</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Power</div>
+                                        <div id="attPower" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- %</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Fuel Flow</div>
+                                        <div id="attFuelFlow" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- gph</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">MPG (NM)</div>
+                                        <div id="attMpg" class="fw-bold text-nowrap" style="font-size: 0.85rem;">--</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
