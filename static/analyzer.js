@@ -324,8 +324,12 @@ function addPlot() {
                 </div>
                 <div class="col-md-auto mt-2 mt-md-0 d-flex justify-content-end align-items-end flex-nowrap gap-2">
                     <div class="form-check form-switch mb-1 me-2">
-                        <input class="form-check-input" type="checkbox" id="showBands-${plotId}" checked onchange="triggerAnalysis(${plotId})">
+                        <input class="form-check-input" type="checkbox" id="showBands-${plotId}" checked onchange="onBandsToggleChanged(${plotId})">
                         <label class="form-check-label small text-muted" for="showBands-${plotId}">Bands</label>
+                    </div>
+                    <div class="form-check form-switch mb-1 me-2">
+                        <input class="form-check-input" type="checkbox" id="showPhases-${plotId}" onchange="onPhasesToggleChanged(${plotId})">
+                        <label class="form-check-label small text-muted" for="showPhases-${plotId}">Phases</label>
                     </div>
                     <div class="form-check form-switch mb-1 me-2">
                         <input class="form-check-input" type="checkbox" id="splitAxis-${plotId}" onchange="triggerAnalysis(${plotId})">
@@ -751,10 +755,9 @@ function renderPlotlyChart(plotId, data) {
     const leftRange = padRange(leftMin, leftMax);
     const rightRange = padRange(rightMin, rightMax);
 
-    // const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
-    // const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
-
     let plotShapes = [];
+    let plotAnnotations = [];
+
     let layout = {
             title: false,
             xaxis: {
@@ -798,14 +801,64 @@ function renderPlotlyChart(plotId, data) {
             legend: { orientation: "h", y: -0.15 },
             template: 'plotly_dark'
         };
-    // Only generate and apply shapes if the toggle is checked
-    if (showBands) {
+
+    if (showPhases) {
+        const phaseIntervals = AppState.lastAnalysisResponse?.stats?.phase_intervals || [];
+        const PHASE_COLORS = {
+            'Taxi': 'rgba(108, 117, 125, 0.22)',
+            'Climb': 'rgba(13, 110, 253, 0.22)',
+            'Cruise': 'rgba(25, 135, 84, 0.22)',
+            'Descent': 'rgba(255, 193, 7, 0.25)'
+        };
+        const PHASE_BORDER_COLORS = {
+            'Taxi': '#6c757d',
+            'Climb': '#0d6efd',
+            'Cruise': '#198754',
+            'Descent': '#ffc107'
+        };
+
+        phaseIntervals.forEach(interval => {
+            const fillColor = PHASE_COLORS[interval.phase] || 'rgba(108, 117, 125, 0.18)';
+            const borderColor = PHASE_BORDER_COLORS[interval.phase] || '#6c757d';
+
+            plotShapes.push({
+                type: 'rect',
+                xref: 'x',
+                yref: 'paper',
+                x0: interval.start,
+                x1: interval.end,
+                y0: 0,
+                y1: 1,
+                fillcolor: fillColor,
+                line: { color: borderColor, width: 1, dash: 'dot' },
+                layer: 'below'
+            });
+
+            if (interval.end - interval.start >= 0.5) {
+                plotAnnotations.push({
+                    x: (interval.start + interval.end) / 2,
+                    y: 0.98,
+                    yref: 'paper',
+                    text: interval.phase,
+                    showarrow: false,
+                    font: { size: 11, color: '#ffffff', weight: 'bold' },
+                    bgcolor: borderColor,
+                    bordercolor: borderColor,
+                    borderwidth: 1,
+                    borderpad: 3
+                });
+            }
+        });
+    } else if (showBands) {
         const leftShapes = generateBandShapes(leftSignal, 'y');
         const rightShapes = generateBandShapes(rightSignal, 'y2');
         plotShapes = [...leftShapes, ...rightShapes];
     }
 
-    layout.shapes = plotShapes
+    layout.shapes = plotShapes;
+    if (plotAnnotations.length > 0) {
+        layout.annotations = plotAnnotations;
+    }
 
     // Use .react() for much faster updates than .newPlot()
     Plotly.react(graphDiv, traces, layout, {responsive: true, doubleClick: false});

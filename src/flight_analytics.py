@@ -154,7 +154,8 @@ def calculate_oil_metrics(df: pd.DataFrame) -> dict:
 
 def calculate_flight_phases(df: pd.DataFrame) -> dict:
     """
-    Segments flight into Taxi, Climb, Cruise, Descent, and Pattern/Landing durations (minutes).
+    Segments flight into Taxi, Climb, Cruise, Descent, and Pattern/Landing durations (minutes),
+    and returns continuous phase_intervals for plot shading.
     """
     phases = {
         "taxi_min": 0.0,
@@ -162,6 +163,7 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         "cruise_min": 0.0,
         "descent_min": 0.0,
         "landing_phase_min": 0.0,
+        "phase_intervals": [],
     }
     if "Session Time" not in df.columns:
         return phases
@@ -195,8 +197,32 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         phases["airborne_min"] = round(float(dt[airborne_mask].sum() / 60.0), 1)
         phases["airborne_hours"] = round(float(dt[airborne_mask].sum() / 3600.0), 2)
 
-    except Exception:
-        pass
+        # Build contiguous phase intervals
+        phase_labels = pd.Series("Ground", index=df.index)
+        phase_labels[taxi_mask] = "Taxi"
+        phase_labels[climb_mask] = "Climb"
+        phase_labels[cruise_mask] = "Cruise"
+        phase_labels[descent_mask] = "Descent"
+
+        session_min = pd.to_numeric(df["Session Time"], errors="coerce").fillna(0) / 60.0
+
+        change = (phase_labels != phase_labels.shift()).cumsum()
+        intervals = []
+        for _, group in df.groupby(change):
+            p = phase_labels.loc[group.index[0]]
+            if p != "Ground":
+                t_start = round(float(session_min.loc[group.index[0]]), 2)
+                t_end = round(float(session_min.loc[group.index[-1]]), 2)
+                if t_end > t_start:
+                    intervals.append({
+                        "phase": p,
+                        "start": t_start,
+                        "end": t_end,
+                    })
+        phases["phase_intervals"] = intervals
+
+    except Exception as e:
+        print(f"Phase interval calculation notice: {e}")
 
     return phases
 
