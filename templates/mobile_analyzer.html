@@ -57,47 +57,34 @@
         <!-- LEFT COLUMN: file + stats + plots -->
         <div class="col-md-8">
 
-            <div class="row g-3">
-                <div class="col-md-5">
-                    <div class="card p-3 shadow-sm h-100">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h5 class="mb-0">Flight Data Source</h5>
+            <!-- COMBINED FLIGHT SELECTION & SUMMARY STATS CARD -->
+            <div class="card p-3 shadow-sm mb-3">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-3 border-bottom">
+                    <div class="d-flex align-items-center gap-2 flex-grow-1" style="max-width: 550px;">
+                        <label class="form-label text-muted small mb-0 fw-semibold text-nowrap">Flight Log:</label>
+                        <select class="form-select" id="savedFlights">
+                            <option value="">-- Select Flight Log --</option>
+                        </select>
+                    </div>
 
-                            <div class="btn-group" role="group">
-                                <input type="radio" class="btn-check" name="tempUnit" id="unitF" autocomplete="off" value="F" checked>
-                                <label class="btn btn-outline-primary btn-sm" for="unitF">°F</label>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="btn-group" role="group" aria-label="Temperature unit selection">
+                            <input type="radio" class="btn-check" name="tempUnit" id="unitF" autocomplete="off" value="F" checked>
+                            <label class="btn btn-outline-primary btn-sm" for="unitF">°F</label>
 
-                                <input type="radio" class="btn-check" name="tempUnit" id="unitC" autocomplete="off" value="C">
-                                <label class="btn btn-outline-primary btn-sm" for="unitC">°C</label>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label text-muted small mb-1">Previously Saved Flights</label>
-                            <select class="form-select" id="savedFlights">
-                                <option value="">-- Upload New File Below --</option>
-                            </select>
-                        </div>
-
-                        <hr class="mt-1 mb-3">
-
-                        <div class="mb-1">
-                            <label class="form-label text-muted small mb-1">Upload New File</label>
-                            <input class="form-control" type="file" id="csvFile" accept=".csv">
+                            <input type="radio" class="btn-check" name="tempUnit" id="unitC" autocomplete="off" value="C">
+                            <label class="btn btn-outline-primary btn-sm" for="unitC">°C</label>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-7">
-                    <div class="card p-3 shadow-sm h-100 d-none" id="statsCard">
-                        <h5 class="text-primary mb-2" id="statFlightId">Flight Summary</h5>
-                        <hr class="mt-0 mb-3">
-                        <div class="row" id="statsList"></div>
-                    </div>
+                <div class="pt-3 d-none" id="statsCard">
+                    <h5 class="text-primary mb-2" id="statFlightId">Flight Summary</h5>
+                    <div class="row g-2" id="statsList"></div>
+                </div>
 
-                    <div class="card p-3 shadow-sm h-100 d-flex align-items-center justify-content-center text-muted text-center" id="statsPlaceholder">
-                        Select or upload a flight to begin analysis.
-                    </div>
+                <div class="pt-3 text-muted text-center" id="statsPlaceholder">
+                    Select a flight log to begin analysis.
                 </div>
             </div>
 
