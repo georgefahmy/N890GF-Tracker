@@ -836,7 +836,7 @@ function renderPlotlyChart(plotId, data) {
                 autorange: false
             },
             hovermode: 'x unified',
-            margin: { l: 60, r: 60, t: 20, b: 40 },
+            margin: { l: 60, r: 60, t: 30, b: 40 },
             legend: { orientation: "h", y: -0.15 },
             template: 'plotly_dark'
         };
@@ -2573,15 +2573,15 @@ window.highlightShockCoolingPeak = function() {
             }],
             'annotations': [{
                 x: (tStartMin + tEndMin) / 2,
-                y: 1,
+                y: 0.98,
                 yref: 'paper',
                 text: `⚡ Peak Shock Cooling: ${rate} °F/min (${cyl})`,
                 showarrow: true,
                 arrowhead: 2,
                 ax: 0,
-                ay: -30,
+                ay: 30,
                 bgcolor: '#dc3545',
-                font: { color: '#ffffff', size: 12, weight: 'bold' }
+                font: { color: '#ffffff', size: 11, weight: 'bold' }
             }]
         }).catch(e => console.debug("Plotly relayout error:", e));
     });
