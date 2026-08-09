@@ -989,32 +989,83 @@ function updateGlobalUI(data) {
     document.getElementById('statsList').innerHTML = `
         <!-- General & Fuel Performance -->
         <div class="col-12"><div class="fw-bold text-primary border-bottom pb-1 mb-2 small"><i class="bi bi-speedometer2"></i> Flight & Fuel Performance</div></div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Duration:</strong> ${s.duration_min || 0}m ($${costVal})</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Total Fuel:</strong> ${s.total_fuel || 0} gal ($${fuelCostVal})</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Avg Flow:</strong> ${s.avg_fuel_flow || 0} GPH</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Avg MPG:</strong> <span class="text-success fw-bold">${s.avg_mpg || 'N/A'}</span></div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Distance:</strong> ${distVal} mi</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Avg Speed:</strong> <span class="text-success fw-bold">${s.avg_speed_mph || 0} mph</span></div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Duration (Trip Cost)</div>
+            <div>${s.duration_min || 0} min ($${costVal})</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Total Fuel</div>
+            <div>${s.total_fuel || 0} gal ($${fuelCostVal})</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Avg Fuel Flow</div>
+            <div>${s.avg_fuel_flow || 0} GPH</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Avg MPG</div>
+            <div><span class="text-success fw-bold">${s.avg_mpg || 'N/A'}</span> nm/gal</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Distance Traveled</div>
+            <div>${distVal} mi</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Avg Speed</div>
+            <div><span class="text-success fw-bold">${s.avg_speed_mph || 0} mph</span></div>
+        </div>
 
         <!-- Engine Thermal & Health -->
         <div class="col-12 mt-1"><div class="fw-bold text-danger border-bottom pb-1 mb-2 small"><i class="bi bi-thermometer-high"></i> Engine Thermal Health</div></div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Max Shock Cooling:</strong> ${shockBadge}</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Cruise CHT Spread:</strong> ${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Max CHT / RPM:</strong> 
-            <span style="${s.max_cht > 430 ? 'color: red; font-weight: bold;' : s.max_cht >= 410 ? 'color: orange; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'}°F</span> / 
-            <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : s.max_rpm >= 2600 ? 'color: orange;' : 'color: green;'}">${s.max_rpm || '--'}</span>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Max Shock Cooling</div>
+            <div>${shockBadge}</div>
         </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Time CHT > 410°F:</strong> ${s.above_410_min !== undefined ? s.above_410_min + 'm' : '0m'}</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Oil Temp Delta:</strong> ${s.oil_temp_delta !== undefined && s.oil_temp_delta !== 'N/A' ? '+' + s.oil_temp_delta + '°F' : 'N/A'}</div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2 small"><strong>Min Oil Press:</strong> ${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Cruise CHT Spread</div>
+            <div>${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Max CHT / RPM</div>
+            <div>
+                <span style="${s.max_cht > 430 ? 'color: red; font-weight: bold;' : s.max_cht >= 410 ? 'color: orange; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'} °F</span> / 
+                <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : s.max_rpm >= 2600 ? 'color: orange;' : 'color: green;'}">${s.max_rpm || '--'} RPM</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Time CHT > 410°F</div>
+            <div>${s.above_410_min !== undefined ? s.above_410_min + ' min' : '0 min'}</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Oil Temp Delta</div>
+            <div>${s.oil_temp_delta !== undefined && s.oil_temp_delta !== 'N/A' ? '+' + s.oil_temp_delta + ' °F vs OAT' : 'N/A'}</div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Min Oil Pressure</div>
+            <div>${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
+        </div>
 
         <!-- Flight Phases & Dynamics -->
         <div class="col-12 mt-1"><div class="fw-bold text-info border-bottom pb-1 mb-2 small"><i class="bi bi-compass"></i> Flight Phases & Dynamics</div></div>
-        <div class="col-12 col-md-6 col-xl-3 mb-2 small"><strong>Phase Breakdown:</strong> Taxi: ${s.taxi_min || 0}m | Climb: ${s.climb_min || 0}m | Cruise: ${s.cruise_min || 0}m | Descent: ${s.descent_min || 0}m</div>
-        <div class="col-6 col-md-3 col-xl-2 mb-2 small"><strong>Landings:</strong> <span class="badge bg-info text-dark">${s.landing_count || 1}</span></div>
-        <div class="col-6 col-md-3 col-xl-2 mb-2 small"><strong>Climb Grad:</strong> ${s.climb_gradient_ft_nm ? s.climb_gradient_ft_nm + ' ft/NM' : 'N/A'}</div>
-        <div class="col-12 col-md-6 col-xl-3 mb-2 small"><strong>Wind Aloft:</strong> ${windAloft}</div>
-        <div class="col-12 col-md-6 col-xl-2 mb-2 small"><strong>G-Load / Bank:</strong> ${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G/' + s.peak_neg_g + 'G' : 'N/A'} | Bank: ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '°' : 'N/A'}</div>
+        <div class="col-12 col-md-6 col-xl-3 mb-2">
+            <div class="small text-muted fw-semibold">Phase Breakdown</div>
+            <div>Taxi: ${s.taxi_min || 0}m | Climb: ${s.climb_min || 0}m | Cruise: ${s.cruise_min || 0}m | Descent: ${s.descent_min || 0}m</div>
+        </div>
+        <div class="col-6 col-md-3 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Landings Detected</div>
+            <div><span class="badge bg-info text-dark">${s.landing_count || 1} Landings</span></div>
+        </div>
+        <div class="col-6 col-md-3 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">Climb Gradient</div>
+            <div>${s.climb_gradient_ft_nm ? s.climb_gradient_ft_nm + ' ft/NM' : 'N/A'}</div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 mb-2">
+            <div class="small text-muted fw-semibold">Wind Aloft (Cruise)</div>
+            <div>${windAloft}</div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-2 mb-2">
+            <div class="small text-muted fw-semibold">G-Load / Max Bank</div>
+            <div>${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'} | Bank: ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '° (L:' + (s.max_left_bank_deg || '--') + '° / R:' + (s.max_right_bank_deg || '--') + '°)' : 'N/A'}</div>
+        </div>
     `;
 
     // Always show the aircraft card once analysis runs
