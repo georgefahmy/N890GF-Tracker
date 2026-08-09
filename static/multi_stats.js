@@ -100,12 +100,19 @@ function renderTrendCharts(flights) {
         };
 
         const layoutEngine = {
-            title: "Engine Thermal Trends (CHT Spread & Shock Cooling)",
-            xaxis: { title: "Flight Date", tickangle: -45 },
+            title: {
+                text: "Engine Thermal Trends (CHT Spread & Shock Cooling)",
+                font: { size: 14 },
+                x: 0.5,
+                xanchor: "center",
+                y: 0.96,
+                yanchor: "top"
+            },
+            xaxis: { title: { text: "Flight Date", standoff: 12 }, tickangle: -45 },
             yaxis: { title: "CHT Spread (°F)" },
             yaxis2: { title: "Max Shock Cooling (°F/min)", overlaying: "y", side: "right" },
-            margin: { l: 50, r: 50, t: 40, b: 80 },
-            legend: { orientation: "h", y: -0.25 }
+            margin: { l: 55, r: 55, t: 60, b: 100 },
+            legend: { orientation: "h", x: 0.5, xanchor: "center", y: -0.38, yanchor: "top" }
         };
 
         Plotly.newPlot(engineDiv, [chtSpreadTrace, shockCoolingTrace], layoutEngine);
@@ -143,12 +150,19 @@ function renderTrendCharts(flights) {
         };
 
         const layoutActivity = {
-            title: "Flight Activity & Cumulative Hours",
-            xaxis: { title: "Flight Date", tickangle: -45 },
+            title: {
+                text: "Flight Activity & Cumulative Hours",
+                font: { size: 14 },
+                x: 0.5,
+                xanchor: "center",
+                y: 0.96,
+                yanchor: "top"
+            },
+            xaxis: { title: { text: "Flight Date", standoff: 12 }, tickangle: -45 },
             yaxis: { title: "Flight Duration (Hours)" },
             yaxis2: { title: "Cumulative Hours", overlaying: "y", side: "right" },
-            margin: { l: 50, r: 50, t: 40, b: 80 },
-            legend: { orientation: "h", y: -0.25 }
+            margin: { l: 55, r: 55, t: 60, b: 100 },
+            legend: { orientation: "h", x: 0.5, xanchor: "center", y: -0.38, yanchor: "top" }
         };
 
         Plotly.newPlot(activityDiv, [durationTrace, cumHoursTrace, cumAirborneTrace], layoutActivity);
@@ -177,12 +191,19 @@ function renderTrendCharts(flights) {
         };
 
         const layoutFuel = {
-            title: "Fuel Consumption & Speed Efficiency",
-            xaxis: { title: "Flight Date", tickangle: -45 },
+            title: {
+                text: "Fuel Consumption & Speed Efficiency",
+                font: { size: 14 },
+                x: 0.5,
+                xanchor: "center",
+                y: 0.96,
+                yanchor: "top"
+            },
+            xaxis: { title: { text: "Flight Date", standoff: 12 }, tickangle: -45 },
             yaxis: { title: "Avg Fuel Flow (GPH)" },
             yaxis2: { title: "Avg MPG (NM/gal)", overlaying: "y", side: "right" },
-            margin: { l: 50, r: 50, t: 40, b: 80 },
-            legend: { orientation: "h", y: -0.25 }
+            margin: { l: 55, r: 55, t: 60, b: 100 },
+            legend: { orientation: "h", x: 0.5, xanchor: "center", y: -0.38, yanchor: "top" }
         };
 
         Plotly.newPlot(fuelDiv, [fuelFlowTrace, mpgTrace], layoutFuel);
