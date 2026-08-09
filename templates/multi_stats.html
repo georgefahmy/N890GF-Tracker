@@ -23,7 +23,14 @@
             background-color: #212529 !important;
             color: #f8f9fa;
         }
+        @media (min-width: 1200px) {
+            .row-cols-xl-7 > * {
+                flex: 0 0 auto;
+                width: 14.2857%;
+            }
+        }
     </style>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </head>
 
 <body style="padding-top: 70px;">
@@ -51,47 +58,47 @@
         </div>
 
         <!-- FLEET SUMMARY CARDS -->
-        <div class="row g-3 mb-4">
-            <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card p-3 text-center border-start border-primary border-4 shadow-sm">
-                    <div class="text-muted small">Total Flights</div>
-                    <div id="totalFlightCount" class="fs-4 fw-bold text-primary">--</div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-7 g-3 mb-4">
+            <div class="col">
+                <div class="card p-3 text-center border-start border-primary border-4 shadow-sm text-nowrap">
+                    <div class="text-muted small text-nowrap">Total Flights</div>
+                    <div id="totalFlightCount" class="fs-4 fw-bold text-primary text-nowrap">--</div>
                 </div>
             </div>
-            <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card p-3 text-center border-start border-success border-4 shadow-sm">
-                    <div class="text-muted small">Total Engine Hours</div>
-                    <div id="totalHours" class="fs-4 fw-bold text-success">--</div>
+            <div class="col">
+                <div class="card p-3 text-center border-start border-success border-4 shadow-sm text-nowrap">
+                    <div class="text-muted small text-nowrap">Total Engine Hours</div>
+                    <div id="totalHours" class="fs-4 fw-bold text-success text-nowrap">--</div>
                 </div>
             </div>
-            <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card p-3 text-center border-start border-teal border-4 shadow-sm" style="border-left-color: #20c997 !important;">
-                    <div class="text-muted small">Total Flight Time (Airborne)</div>
-                    <div id="totalAirborneHours" class="fs-4 fw-bold" style="color: #20c997;">--</div>
+            <div class="col">
+                <div class="card p-3 text-center border-start border-teal border-4 shadow-sm text-nowrap" style="border-left-color: #20c997 !important;">
+                    <div class="text-muted small text-nowrap">Flight Time (Airborne)</div>
+                    <div id="totalAirborneHours" class="fs-4 fw-bold text-nowrap" style="color: #20c997;">--</div>
                 </div>
             </div>
-            <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card p-3 text-center border-start border-info border-4 shadow-sm">
-                    <div class="text-muted small">Total Distance</div>
-                    <div id="totalMiles" class="fs-4 fw-bold text-info">--</div>
+            <div class="col">
+                <div class="card p-3 text-center border-start border-info border-4 shadow-sm text-nowrap">
+                    <div class="text-muted small text-nowrap">Total Distance</div>
+                    <div id="totalMiles" class="fs-4 fw-bold text-info text-nowrap">--</div>
                 </div>
             </div>
-            <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card p-3 text-center border-start border-warning border-4 shadow-sm">
-                    <div class="text-muted small">Total Fuel Burned</div>
-                    <div id="totalFuel" class="fs-4 fw-bold text-warning">--</div>
+            <div class="col">
+                <div class="card p-3 text-center border-start border-warning border-4 shadow-sm text-nowrap">
+                    <div class="text-muted small text-nowrap">Total Fuel Burned</div>
+                    <div id="totalFuel" class="fs-4 fw-bold text-warning text-nowrap">--</div>
                 </div>
             </div>
-            <div class="col-xl-1 col-md-4 col-sm-6">
-                <div class="card p-3 text-center border-start border-secondary border-4 shadow-sm">
-                    <div class="text-muted small">Landings</div>
-                    <div id="totalLandings" class="fs-4 fw-bold text-secondary">--</div>
+            <div class="col">
+                <div class="card p-3 text-center border-start border-secondary border-4 shadow-sm text-nowrap">
+                    <div class="text-muted small text-nowrap">Total Landings</div>
+                    <div id="totalLandings" class="fs-4 fw-bold text-secondary text-nowrap">--</div>
                 </div>
             </div>
-            <div class="col-xl-1 col-md-4 col-sm-6">
-                <div class="card p-3 text-center border-start border-danger border-4 shadow-sm">
-                    <div class="text-muted small">Avg CHT</div>
-                    <div id="fleetAvgCht" class="fs-4 fw-bold text-danger">--</div>
+            <div class="col">
+                <div class="card p-3 text-center border-start border-danger border-4 shadow-sm text-nowrap">
+                    <div class="text-muted small text-nowrap">Fleet Avg CHT</div>
+                    <div id="fleetAvgCht" class="fs-4 fw-bold text-danger text-nowrap">--</div>
                 </div>
             </div>
         </div>

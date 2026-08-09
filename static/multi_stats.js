@@ -13,20 +13,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loadMultiFlightStats() {
     const statusEl = document.getElementById("multiStatsStatus");
-    if (statusEl) statusEl.innerHTML = '<span class="spinner-border spinner-border-sm text-primary"></span> Loading multi-flight analytics...';
+    if (statusEl) {
+        statusEl.style.display = "block";
+        statusEl.innerHTML = '<span class="spinner-border spinner-border-sm text-primary"></span> Loading multi-flight analytics...';
+    }
 
     fetch("/api/multi_flight_stats")
         .then(r => r.json())
         .then(data => {
             if (statusEl) statusEl.style.display = "none";
             globalFlights = data.flights || [];
-            renderFleetTotals(data.totals || {});
-            renderTrendCharts(globalFlights);
-            filterAndRenderTable();
+
+            try {
+                renderFleetTotals(data.totals || {});
+            } catch (e) {
+                console.error("Error rendering totals:", e);
+            }
+
+            try {
+                renderTrendCharts(globalFlights);
+            } catch (e) {
+                console.error("Error rendering trend charts:", e);
+            }
+
+            try {
+                filterAndRenderTable();
+            } catch (e) {
+                console.error("Error rendering flight table:", e);
+            }
         })
         .catch(err => {
             console.error("Multi-flight stats error:", err);
-            if (statusEl) statusEl.innerText = "Error loading flight statistics.";
+            if (statusEl) {
+                statusEl.style.display = "block";
+                statusEl.innerText = "Error loading flight statistics.";
+            }
         });
 }
 
@@ -47,6 +68,10 @@ function renderFleetTotals(totals) {
 
 function renderTrendCharts(flights) {
     if (!flights || flights.length === 0) return;
+    if (typeof Plotly === "undefined") {
+        console.warn("Plotly library is not loaded. Trend charts will be skipped.");
+        return;
+    }
 
     // Chronological order for trend charts (oldest -> newest)
     const chronological = [...flights].reverse();
