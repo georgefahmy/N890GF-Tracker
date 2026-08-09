@@ -155,7 +155,7 @@ def calculate_oil_metrics(df: pd.DataFrame) -> dict:
 def calculate_flight_phases(df: pd.DataFrame) -> dict:
     """
     Segments flight into Taxi, Climb, Cruise, Descent, and Pattern/Landing durations (minutes),
-    and returns continuous phase_intervals for plot shading.
+    using a 30-second rolling vertical speed average with a |200| fpm threshold to filter out noise.
     """
     phases = {
         "taxi_min": 0.0,
@@ -174,18 +174,21 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         rpm = pd.to_numeric(df.get("RPM", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
 
         if "Vertical Speed (ft/min)" in df.columns:
-            vs = pd.to_numeric(df["Vertical Speed (ft/min)"], errors="coerce").fillna(0)
+            vs_raw = pd.to_numeric(df["Vertical Speed (ft/min)"], errors="coerce").fillna(0)
         elif "GPS Altitude (feet)" in df.columns:
             alt = pd.to_numeric(df["GPS Altitude (feet)"], errors="coerce").fillna(0)
             dt_safe = dt.replace(0, np.nan)
-            vs = (alt.diff() / dt_safe * 60.0).fillna(0)
+            vs_raw = (alt.diff() / dt_safe * 60.0).fillna(0)
         else:
-            vs = pd.Series(0, index=df.index)
+            vs_raw = pd.Series(0, index=df.index)
+
+        # 30-second rolling average for Vertical Speed to eliminate turbulence/micro-flickers
+        vs = vs_raw.rolling(window=30, center=True, min_periods=1).mean()
 
         taxi_mask = (rpm > 600) & (gs < 35)
-        climb_mask = (gs >= 35) & (vs > 250)
-        descent_mask = (gs >= 35) & (vs < -250)
-        cruise_mask = (gs >= 45) & (vs.abs() <= 250)
+        climb_mask = (gs >= 35) & (vs >= 200)
+        descent_mask = (gs >= 35) & (vs <= -200)
+        cruise_mask = (gs >= 45) & (vs.abs() < 200)
         landing_mask = (gs < 55) & (gs >= 15) & (vs < -100)
 
         airborne_mask = (gs >= 35)
@@ -197,7 +200,7 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         phases["airborne_min"] = round(float(dt[airborne_mask].sum() / 60.0), 1)
         phases["airborne_hours"] = round(float(dt[airborne_mask].sum() / 3600.0), 2)
 
-        # Build contiguous phase intervals
+        # Build contiguous phase intervals (merging adjacent phase blocks and filtering out micro-flickers under 30s)
         phase_labels = pd.Series("Ground", index=df.index)
         phase_labels[taxi_mask] = "Taxi"
         phase_labels[climb_mask] = "Climb"
@@ -207,19 +210,29 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         session_min = pd.to_numeric(df["Session Time"], errors="coerce").fillna(0) / 60.0
 
         change = (phase_labels != phase_labels.shift()).cumsum()
-        intervals = []
+        raw_intervals = []
         for _, group in df.groupby(change):
             p = phase_labels.loc[group.index[0]]
             if p != "Ground":
                 t_start = round(float(session_min.loc[group.index[0]]), 2)
                 t_end = round(float(session_min.loc[group.index[-1]]), 2)
-                if t_end > t_start:
-                    intervals.append({
+                duration = t_end - t_start
+                if duration >= 0.5 or p == "Taxi":  # Minimum 30 seconds duration
+                    raw_intervals.append({
                         "phase": p,
                         "start": t_start,
                         "end": t_end,
                     })
-        phases["phase_intervals"] = intervals
+
+        # Merge adjacent identical phase intervals
+        merged_intervals = []
+        for intv in raw_intervals:
+            if merged_intervals and merged_intervals[-1]["phase"] == intv["phase"]:
+                merged_intervals[-1]["end"] = intv["end"]
+            else:
+                merged_intervals.append(intv)
+
+        phases["phase_intervals"] = merged_intervals
 
     except Exception as e:
         print(f"Phase interval calculation notice: {e}")
