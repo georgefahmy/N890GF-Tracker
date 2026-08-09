@@ -73,8 +73,15 @@ function renderTrendCharts(flights) {
         return;
     }
 
-    // Chronological order for trend charts (oldest -> newest)
-    const chronological = [...flights].reverse();
+    // Chronological order for trend charts (oldest -> newest, sorted by cum_total_hours ascending)
+    const chronological = [...flights].sort((a, b) => {
+        if (typeof a.cum_total_hours === 'number' && typeof b.cum_total_hours === 'number') {
+            return a.cum_total_hours - b.cum_total_hours;
+        }
+        const keyA = `${a.date || ''}_${a.filename || ''}`;
+        const keyB = `${b.date || ''}_${b.filename || ''}`;
+        return keyA.localeCompare(keyB);
+    });
     const dates = chronological.map(f => f.date || f.filename);
 
     // 1. Engine Health Trend Chart (CHT Spread & Shock Cooling)

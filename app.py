@@ -1778,8 +1778,8 @@ def api_multi_flight_stats():
     except Exception as e:
         print(f"Cache write error: {e}")
 
-    # Sort flights oldest to newest to compute running cumulative totals
-    flight_stats_list.sort(key=lambda x: x.get("date", x.get("filename", "")))
+    # Sort flights oldest to newest to compute running cumulative totals (using filename as tiebreaker for same-day flights)
+    flight_stats_list.sort(key=lambda x: (x.get("date", ""), x.get("filename", "")))
 
     cum_total_hours = 0.0
     cum_airborne_hours = 0.0
@@ -1824,7 +1824,7 @@ def api_multi_flight_stats():
     }
 
     # Sort flights newest to oldest for default UI view
-    flight_stats_list.sort(key=lambda x: x.get("date", x.get("filename", "")), reverse=True)
+    flight_stats_list.sort(key=lambda x: (x.get("date", ""), x.get("filename", "")), reverse=True)
 
     return jsonify(sanitize_for_json({"flights": flight_stats_list, "totals": totals}))
 
