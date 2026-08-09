@@ -11,7 +11,7 @@ const AppState = {
         xyOverlay: false
     },
     map: {
-        followAircraft: true,
+        followAircraft: false,
         colorMode: 'altitude',
         isMapPanning: false,
         lastRenderData: null,
@@ -2054,14 +2054,53 @@ function renderMap(data) {
         showlegend: false
     };
 
+    // Calculate bounding box and optimal center & zoom to show entire flight track on load
+    let minLat = Infinity, maxLat = -Infinity;
+    let minLon = Infinity, maxLon = -Infinity;
+    for (let i = 0; i < lat.length; i++) {
+        const la = Number(lat[i]);
+        const lo = Number(lon[i]);
+        if (!isNaN(la) && Math.abs(la) > 1.0) {
+            if (la < minLat) minLat = la;
+            if (la > maxLat) maxLat = la;
+        }
+        if (!isNaN(lo) && Math.abs(lo) > 1.0) {
+            if (lo < minLon) minLon = lo;
+            if (lo > maxLon) maxLon = lo;
+        }
+    }
+
+    if (minLat === Infinity) {
+        minLat = Number(lat[0]) || 0;
+        maxLat = Number(lat[0]) || 0;
+        minLon = Number(lon[0]) || 0;
+        maxLon = Number(lon[0]) || 0;
+    }
+
+    const centerLat = (minLat + maxLat) / 2;
+    const centerLon = (minLon + maxLon) / 2;
+
+    const latSpan = Math.abs(maxLat - minLat);
+    const lonSpan = Math.abs(maxLon - minLon);
+    const maxSpan = Math.max(latSpan, lonSpan);
+
+    let calculatedZoom = 10;
+    if (maxSpan > 0) {
+        calculatedZoom = Math.floor(Math.log2(360 / maxSpan)) - 1;
+        calculatedZoom = Math.max(3, Math.min(14, calculatedZoom));
+    }
+
     const layout = {
         mapbox: {
             style: "open-street-map",
-            center: {
-                lat: lat[Math.floor(lat.length / 2)],
-                lon: lon[Math.floor(lon.length / 2)]
-            },
-            zoom: 8
+            center: { lat: centerLat, lon: centerLon },
+            zoom: calculatedZoom,
+            bounds: {
+                west: minLon - (lonSpan * 0.08 || 0.01),
+                east: maxLon + (lonSpan * 0.08 || 0.01),
+                south: minLat - (latSpan * 0.08 || 0.01),
+                north: maxLat + (latSpan * 0.08 || 0.01)
+            }
         },
         margin: { t: 0, b: 0, l: 0, r: 0 },
         showlegend: false
