@@ -2533,6 +2533,8 @@ window.highlightShockCoolingPeak = function() {
         plotDivs.forEach(div => {
             Plotly.relayout(div, {
                 'xaxis.autorange': true,
+                'yaxis.autorange': true,
+                'yaxis2.autorange': true,
                 'shapes': [],
                 'annotations': []
             }).catch(e => console.debug("Plotly relayout error:", e));
@@ -2550,7 +2552,7 @@ window.highlightShockCoolingPeak = function() {
         return alert("Shock cooling peak timestamp is not available for this flight.");
     }
 
-    // Toggle ON: Highlight and zoom to peak region
+    // Toggle ON: Highlight and zoom horizontally + vertically to peak region
     window._isShockCoolingHighlighted = true;
     const tStartMin = tStart / 60.0;
     const tEndMin = tEnd / 60.0;
@@ -2558,7 +2560,32 @@ window.highlightShockCoolingPeak = function() {
     const xMax = tEndMin + 0.5;
 
     plotDivs.forEach(div => {
-        Plotly.relayout(div, {
+        // Calculate vertical Y-bounds for signals displayed on this graph in the [xMin, xMax] window
+        let yMin = Infinity, yMax = -Infinity;
+        let y2Min = Infinity, y2Max = -Infinity;
+
+        if (div.data && Array.isArray(div.data)) {
+            div.data.forEach(trace => {
+                if (trace.x && trace.y && Array.isArray(trace.x) && Array.isArray(trace.y)) {
+                    const isRightAxis = trace.yaxis === 'y2';
+                    for (let i = 0; i < trace.x.length; i++) {
+                        const tx = Number(trace.x[i]);
+                        const ty = Number(trace.y[i]);
+                        if (!isNaN(tx) && tx >= xMin && tx <= xMax && !isNaN(ty)) {
+                            if (isRightAxis) {
+                                if (ty < y2Min) y2Min = ty;
+                                if (ty > y2Max) y2Max = ty;
+                            } else {
+                                if (ty < yMin) yMin = ty;
+                                if (ty > yMax) yMax = ty;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        const updateObj = {
             'xaxis.range': [xMin, xMax],
             'shapes': [{
                 type: 'rect',
@@ -2583,6 +2610,21 @@ window.highlightShockCoolingPeak = function() {
                 bgcolor: '#dc3545',
                 font: { color: '#ffffff', size: 11, weight: 'bold' }
             }]
-        }).catch(e => console.debug("Plotly relayout error:", e));
+        };
+
+        // Apply vertical zoom with 10% padding if valid bounds were found
+        if (yMin !== Infinity && yMax !== -Infinity) {
+            const yPad = Math.max((yMax - yMin) * 0.1, 5);
+            updateObj['yaxis.range'] = [yMin - yPad, yMax + yPad];
+            updateObj['yaxis.autorange'] = false;
+        }
+
+        if (y2Min !== Infinity && y2Max !== -Infinity) {
+            const y2Pad = Math.max((y2Max - y2Min) * 0.1, 5);
+            updateObj['yaxis2.range'] = [y2Min - y2Pad, y2Max + y2Pad];
+            updateObj['yaxis2.autorange'] = false;
+        }
+
+        Plotly.relayout(div, updateObj).catch(e => console.debug("Plotly relayout error:", e));
     });
 };
