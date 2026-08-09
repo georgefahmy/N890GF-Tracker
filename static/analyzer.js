@@ -208,6 +208,7 @@ function loadSignals(formData) {
     document.getElementById('statsPlaceholder').innerHTML = '<div class="spinner-border text-primary spinner-border-sm"></div> Loading data...';
     AppState.map.lastRenderData = null;
     AppState.currentPlotData = null;
+    AppState.lastAnalysisResponse = null;
     AppState.playback.index = 0;
 
     fetch('/api/get_signals', { method: 'POST', body: formData })
@@ -579,12 +580,15 @@ async function triggerAnalysis(plotId, isInitialLoad = false) {
             }
         }
 
+        if (data.stats) {
+            AppState.lastAnalysisResponse = data;
+        }
+
         // 2. Specialized Plot Update (Fast Plotly.react)
         renderPlotlyChart(plotId, data);
 
         // 3. UI/Map Update (Only when full payload with latitude/map data is returned)
         if (data.plot_data && data.plot_data.latitude) {
-            AppState.lastAnalysisResponse = data;
             if (data.rawData) AppState.rawData = data.rawData;
             updateGlobalUI(data);
         }
