@@ -979,7 +979,7 @@ function updateGlobalUI(data) {
         : `<span class="badge bg-success shadow-sm" style="cursor: pointer;" onclick="highlightShockCoolingPeak()" title="Click to zoom & highlight peak on chart">${shockText} 🔍</span>`;
 
     const windAloft = (s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined)
-        ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}° (Headwind: ${s.headwind_kts} kts, X-Wind: ${s.crosswind_kts} kts)`
+        ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}° (<span class="fw-bold text-body-emphasis">Headwind:</span> ${s.headwind_kts} kts, <span class="fw-bold text-body-emphasis">X-Wind:</span> ${s.crosswind_kts} kts)`
         : 'N/A';
 
     const costVal = typeof s.actual_cost_per_hour === 'number' ? s.actual_cost_per_hour.toFixed(2) : '0.00';
@@ -1048,7 +1048,7 @@ function updateGlobalUI(data) {
         <div class="col-12 mt-1"><div class="fw-bold text-info border-bottom pb-1 mb-2 small"><i class="bi bi-compass"></i> Flight Phases & Dynamics</div></div>
         <div class="col-12 col-md-6 col-xl-3 mb-2">
             <div class="small fw-bold text-body-emphasis">Phase Breakdown</div>
-            <div>Taxi: ${s.taxi_min || 0}m | Climb: ${s.climb_min || 0}m | Cruise: ${s.cruise_min || 0}m | Descent: ${s.descent_min || 0}m</div>
+            <div><span class="fw-bold text-body-emphasis">Taxi:</span> ${s.taxi_min || 0}m | <span class="fw-bold text-body-emphasis">Climb:</span> ${s.climb_min || 0}m | <span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m | <span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m</div>
         </div>
         <div class="col-6 col-md-3 col-xl-2 mb-2">
             <div class="small fw-bold text-body-emphasis">Landings Detected</div>
@@ -1064,7 +1064,7 @@ function updateGlobalUI(data) {
         </div>
         <div class="col-12 col-md-6 col-xl-2 mb-2">
             <div class="small fw-bold text-body-emphasis">G-Load / Max Bank</div>
-            <div>${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'} | Bank: ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '° (L:' + (s.max_left_bank_deg || '--') + '° / R:' + (s.max_right_bank_deg || '--') + '°)' : 'N/A'}</div>
+            <div>${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'} | <span class="fw-bold text-body-emphasis">Bank:</span> ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '° (<span class="fw-bold text-body-emphasis">L:</span>' + (s.max_left_bank_deg || '--') + '° / <span class="fw-bold text-body-emphasis">R:</span>' + (s.max_right_bank_deg || '--') + '°)' : 'N/A'}</div>
         </div>
     `;
 
