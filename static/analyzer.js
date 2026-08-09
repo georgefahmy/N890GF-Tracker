@@ -1068,7 +1068,7 @@ function updateGlobalUI(data) {
             <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
                 <div>${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}°` : 'N/A'}</div>
                 ${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `
-                <div><span class="fw-bold text-body-emphasis">Headwind:</span> ${s.headwind_kts} kts</div>
+                <div><span class="fw-bold text-body-emphasis">${s.headwind_kts < 0 ? 'Tailwind:' : 'Headwind:'}</span> ${Math.abs(s.headwind_kts)} kts</div>
                 <div><span class="fw-bold text-body-emphasis">X-Wind:</span> ${s.crosswind_kts} kts</div>
                 ` : ''}
             </div>
