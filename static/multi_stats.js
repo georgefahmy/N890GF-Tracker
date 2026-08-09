@@ -85,16 +85,17 @@ function renderTrendCharts(flights) {
 
     const dateCounts = {};
     chronological.forEach(f => {
-        const d = f.date || f.filename || '';
+        const d = (f.date && f.date.length >= 10) ? f.date.substring(0, 10) : (f.filename ? f.filename.substring(0, 10) : '2026-01-01');
         dateCounts[d] = (dateCounts[d] || 0) + 1;
     });
 
     const dateSeen = {};
     const dates = chronological.map(f => {
-        const d = f.date || f.filename || '';
+        const d = (f.date && f.date.length >= 10) ? f.date.substring(0, 10) : (f.filename ? f.filename.substring(0, 10) : '2026-01-01');
         if (dateCounts[d] > 1) {
             dateSeen[d] = (dateSeen[d] || 0) + 1;
-            return `${d} (#${dateSeen[d]})`;
+            const hourOffset = String(6 + Math.min(dateSeen[d] * 2, 16)).padStart(2, '0');
+            return `${d}T${hourOffset}:00:00`;
         }
         return d;
     });
