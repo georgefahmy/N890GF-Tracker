@@ -758,7 +758,8 @@ function renderPlotlyChart(plotId, data) {
     let layout = {
             title: false,
             xaxis: {
-                title: 'Session Time (seconds)',
+                title: 'Session Time (minutes)',
+                ticksuffix: ' min',
                 gridcolor: '#f0f0f0',
                 // Add native spikelines to ensure the vertical line ALWAYS draws
                 showspikes: true,
@@ -2420,8 +2421,10 @@ window.highlightShockCoolingPeak = function() {
 
     // Toggle ON: Highlight and zoom to peak region
     window._isShockCoolingHighlighted = true;
-    const xMin = Math.max(0, tStart - 30);
-    const xMax = tEnd + 30;
+    const tStartMin = tStart / 60.0;
+    const tEndMin = tEnd / 60.0;
+    const xMin = Math.max(0, tStartMin - 0.5);
+    const xMax = tEndMin + 0.5;
 
     plotDivs.forEach(div => {
         Plotly.relayout(div, {
@@ -2430,15 +2433,15 @@ window.highlightShockCoolingPeak = function() {
                 type: 'rect',
                 xref: 'x',
                 yref: 'paper',
-                x0: tStart,
-                x1: tEnd,
+                x0: tStartMin,
+                x1: tEndMin,
                 y0: 0,
                 y1: 1,
                 fillcolor: 'rgba(255, 0, 0, 0.25)',
                 line: { color: '#dc3545', width: 2, dash: 'dot' }
             }],
             'annotations': [{
-                x: (tStart + tEnd) / 2,
+                x: (tStartMin + tEndMin) / 2,
                 y: 1,
                 yref: 'paper',
                 text: `⚡ Peak Shock Cooling: ${rate} °F/min (${cyl})`,

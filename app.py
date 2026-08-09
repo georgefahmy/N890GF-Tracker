@@ -2146,8 +2146,9 @@ def api_analyze_flight():
             except Exception as e:
                 print(f"didnt work: {e}")
 
-        # Sanitize data for JSON
-        x_data = flight_data["Session Time"].tolist()
+        # Sanitize data for JSON (convert Session Time from seconds to minutes)
+        session_times = pd.to_numeric(flight_data["Session Time"], errors="coerce").fillna(0)
+        x_data = [round(float(t) / 60.0, 2) for t in session_times]
 
         def extract_traces(sig):
             traces = []
