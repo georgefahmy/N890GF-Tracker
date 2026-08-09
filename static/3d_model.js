@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             terrain: Cesium.Terrain.fromWorldTerrain(),
             baseLayerPicker: false, timeline: false, animation: false,
             infoBox: false, selectionIndicator: false,
+            fullscreenButton: true,
             fullscreenElement: container
         });
 
@@ -97,6 +98,23 @@ document.addEventListener('DOMContentLoaded', function() {
         // Ensure camera stays locked
         if (!viewer.trackedEntity) {
             viewer.trackedEntity = aircraftEntity;
+        }
+    };
+
+    window.toggle3DFullscreen = function() {
+        const container = document.getElementById('attitude3DContainer');
+        if (!container) return;
+        const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+        if (isFullscreen) {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+            else if (document.msExitFullscreen) document.msExitFullscreen();
+        } else {
+            if (container.requestFullscreen) container.requestFullscreen();
+            else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+            else if (container.mozRequestFullScreen) container.mozRequestFullScreen();
+            else if (container.msRequestFullscreen) container.msRequestFullscreen();
         }
     };
 
