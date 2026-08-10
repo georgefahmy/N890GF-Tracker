@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van's Aircraft Paint Scheme Studio | Custom Prototype Designer</title>
+    <meta name="description" content="Interactive paint scheme and design hub for Van's Aircraft models (RV-3, RV-4, RV-6/6A, RV-7/7A, RV-8/8A, RV-9/9A) using Sherwin-Williams Aerospace colors.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='painting.css') }}">
+    
+    <!-- External Libraries for PDF & Canvas Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body class="painting-body">
+
+    <!-- Navigation Header -->
+    <header class="paint-nav-header">
+        <div class="brand-container">
+            <a href="/" style="color: var(--text-muted); font-size: 1.1rem; text-decoration: none;" title="Return to Home">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <i class="fa-solid fa-plane-slant brand-icon"></i>
+            <span class="brand-title">VAN'S AIRCRAFT DESIGN HUB</span>
+            <span class="brand-tag">Section 13 Prototype</span>
+        </div>
+
+        <div class="nav-actions">
+            <button class="btn-secondary" id="btnUndo" title="Undo Action"><i class="fa-solid fa-rotate-left"></i></button>
+            <button class="btn-secondary" id="btnRedo" title="Redo Action"><i class="fa-solid fa-rotate-right"></i></button>
+            <button class="btn-secondary" id="btnResetScheme" title="Reset All Colors"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+            <button class="btn-primary" id="btnOpenExport"><i class="fa-solid fa-file-export"></i> Export Tech Spec</button>
+        </div>
+    </header>
+
+    <!-- Main App Container -->
+    <main class="paint-app-container">
+        
+        <!-- Left Sidebar - Design Controls -->
+        <aside class="paint-sidebar">
+            <div class="sidebar-tab-header">
+                <button class="tab-btn active" data-tab="tab-model"><i class="fa-solid fa-plane"></i> Model</button>
+                <button class="tab-btn" data-tab="tab-colors"><i class="fa-solid fa-palette"></i> SW Colors</button>
+                <button class="tab-btn" data-tab="tab-tools"><i class="fa-solid fa-wand-magic-sparkles"></i> Patterns</button>
+                <button class="tab-btn" data-tab="tab-sections"><i class="fa-solid fa-layer-group"></i> Sections</button>
+            </div>
+
+            <div class="tab-content-area">
+                <!-- Tab 1: Model Selection & Specs -->
+                <div class="tab-pane active" id="tab-model">
+                    <div class="control-group">
+                        <label class="control-label">Select Van's Aircraft Model</label>
+                        <select id="modelSelector" class="custom-select">
+                            <option value="rv3">Van's RV-3 (Single-Seat Aerobatic)</option>
+                            <option value="rv4">Van's RV-4 (Tandem Aerobatic)</option>
+                            <option value="rv6">Van's RV-6 (Side-by-Side Taildragger)</option>
+                            <option value="rv6a">Van's RV-6A (Side-by-Side Tricycle)</option>
+                            <option value="rv7" selected>Van's RV-7 (Side-by-Side Taildragger)</option>
+                            <option value="rv7a">Van's RV-7A (Side-by-Side Tricycle)</option>
+                            <option value="rv8">Van's RV-8 (Tandem Taildragger)</option>
+                            <option value="rv8a">Van's RV-8A (Tandem Tricycle)</option>
+                            <option value="rv9">Van's RV-9 (High-Efficiency Taildragger)</option>
+                            <option value="rv9a">Van's RV-9A (High-Efficiency Tricycle)</option>
+                            <option value="rv10">Van's RV-10 (4-Seat Cross Country)</option>
+                            <option value="rv12">Van's RV-12 (Light Sport Aircraft)</option>
+                            <option value="rv12is">Van's RV-12iS (Light Sport Fuel-Injected)</option>
+                            <option value="rv14">Van's RV-14 (Performance Aerobatic Taildragger)</option>
+                            <option value="rv14a">Van's RV-14A (Performance Aerobatic Tricycle)</option>
+                        </select>
+
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 8px; padding: 14px; margin-top: 16px;">
+                        <h4 style="font-family: var(--font-heading); font-size: 0.9rem; color: var(--accent-blue); margin: 0 0 8px 0;" id="modelCardName">Van's RV-7 Specs</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 10px 0;" id="modelCardDesc">Side-by-Side aerobatic kitplane.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.75rem;">
+                            <div><span style="color: var(--text-muted);">Wingspan:</span> <strong id="specWingspan">25.0 ft</strong></div>
+                            <div><span style="color: var(--text-muted);">Length:</span> <strong id="specLength">20.4 ft</strong></div>
+                            <div><span style="color: var(--text-muted);">Gear:</span> <strong id="specGear">Taildragger</strong></div>
+                            <div><span style="color: var(--text-muted);">Empty Wt:</span> <strong id="specWeight">1,110 lbs</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Sherwin-Williams Aerospace Color Palette -->
+                <div class="tab-pane" id="tab-colors" style="display: none;">
+                    <div class="control-group">
+                        <label class="control-label">Paint Line</label>
+                        <select id="swLineSelector" class="custom-select">
+                            <option value="all">All Sherwin-Williams Aerospace Lines</option>
+                            <option value="skyscapes">SKYscapes® Polyurethane</option>
+                            <option value="jetglo">Jet Glo® High Solid</option>
+                            <option value="acryglo">Acry Glo® Acrylic Polyurethane</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Finish Sheen</label>
+                        <select id="swFinishSelector" class="custom-select">
+                            <option value="gloss">High Gloss</option>
+                            <option value="satin">Satin / Semi-Gloss</option>
+                            <option value="metallic">Metallic / Pearl Accent</option>
+                            <option value="matte">Matte / Tactical</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Sherwin-Williams Color Swatches</label>
+                        <div class="swatch-grid" id="swatchGrid">
+                            <!-- Populated dynamically via painting.js -->
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="margin-top: 20px;">
+                        <label class="control-label">Custom Hex Color</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="color" id="customColorPicker" value="#ffffff" style="width: 44px; height: 38px; border: none; border-radius: 6px; cursor: pointer; background: transparent;">
+                            <input type="text" id="customColorHex" class="custom-input" value="#FFFFFF" placeholder="#HEXCODE">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Creative Patterns & Vector Drawing Tools -->
+                <div class="tab-pane" id="tab-tools" style="display: none;">
+                    <div class="control-group">
+                        <label class="control-label">Vector Drawing Tools</label>
+                        <div class="drawing-tools-grid">
+                            <button class="draw-tool-btn active" data-tool="select" title="Select & Edit Shapes"><i class="fa-solid fa-arrow-pointer"></i> Select</button>
+                            <button class="draw-tool-btn" data-tool="pen" title="Polygon Pen (Click points, Enter to finish)"><i class="fa-solid fa-pen"></i> Pen</button>
+                            <button class="draw-tool-btn" data-tool="spline" title="Spline Curve (Click points, Enter to finish)"><i class="fa-solid fa-bezier-curve"></i> Spline</button>
+                            <button class="draw-tool-btn" data-tool="line" title="Draw Straight Line / Stripe"><i class="fa-solid fa-slash"></i> Line</button>
+                            <button class="draw-tool-btn" data-tool="rect" title="Draw Rectangle Stripe / Panel"><i class="fa-regular fa-square"></i> Box</button>
+                            <button class="draw-tool-btn" data-tool="circle" title="Draw Circle / Ellipse Roundel"><i class="fa-regular fa-circle"></i> Circle</button>
+                            <button class="draw-tool-btn" data-tool="swoosh" title="Draw Curved Aero Swoosh"><i class="fa-solid fa-water"></i> Swoosh</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="margin-top: 16px;">
+                        <label class="control-label">Drawn Shape Properties</label>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Fill Color:</span>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div id="shapeFillPreview" style="width: 24px; height: 24px; border-radius: 4px; background: #D61A1F; border: 1px solid rgba(255,255,255,0.3);"></div>
+                                    <input type="color" id="shapeFillColorPicker" value="#D61A1F" style="width: 28px; height: 28px; border: none; background: transparent; cursor: pointer;">
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Fill Opacity:</span>
+                                <input type="range" id="shapeFillOpacity" min="0" max="1" step="0.05" value="0.85" style="width: 110px;">
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Stroke Color:</span>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div id="shapeStrokePreview" style="width: 24px; height: 24px; border-radius: 4px; background: #FFFFFF; border: 1px solid rgba(255,255,255,0.3);"></div>
+                                    <input type="color" id="shapeStrokeColorPicker" value="#FFFFFF" style="width: 28px; height: 28px; border: none; background: transparent; cursor: pointer;">
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Line Thickness:</span>
+                                <input type="range" id="shapeStrokeWidth" min="0" max="15" step="1" value="2" style="width: 110px;">
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Corner Curvature:</span>
+                                <div style="display: flex; align-items: center; gap: 6px;">
+                                    <input type="range" id="shapeCornerRadius" min="0" max="50" step="1" value="4" style="width: 80px;">
+                                    <span id="shapeCornerRadiusVal" style="font-size: 0.75rem; color: var(--text-primary); min-width: 28px;">4px</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Rotation Angle:</span>
+                                <div style="display: flex; align-items: center; gap: 6px;">
+                                    <input type="range" id="shapeRotation" min="0" max="360" step="1" value="0" style="width: 80px;">
+                                    <span id="shapeRotationVal" style="font-size: 0.75rem; color: var(--text-primary); min-width: 28px;">0°</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 8px; margin-top: 14px;">
+                            <button class="btn-secondary" id="btnDeleteSelectedShape" style="flex: 1; color: #ff4d4d; border-color: rgba(255,77,77,0.3);"><i class="fa-solid fa-trash"></i> Delete Selected</button>
+                            <button class="btn-secondary" id="btnClearAllShapes" style="flex: 1;"><i class="fa-solid fa-rotate-left"></i> Clear All</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="margin-top: 20px;">
+                        <label class="control-label">Preset Design Patterns</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <button class="btn-secondary pattern-preset-btn" data-pattern="swoosh"><i class="fa-solid fa-water"></i> Aero Swoosh</button>
+                            <button class="btn-secondary pattern-preset-btn" data-pattern="speed"><i class="fa-solid fa-bolt"></i> Speed Stripes</button>
+                            <button class="btn-secondary pattern-preset-btn" data-pattern="chevron"><i class="fa-solid fa-angle-right"></i> Chevron</button>
+                            <button class="btn-secondary pattern-preset-btn" data-pattern="checker"><i class="fa-solid fa-chess-board"></i> Checkerboard</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="margin-top: 20px;">
+                        <label class="control-label">N-Number Registration Customizer</label>
+                        <input type="text" id="inputNNumber" class="custom-input" value="N890GF" placeholder="e.g. N890GF">
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+                            <select id="nNumberFont" class="custom-select">
+                                <option value="Outfit">Outfit Bold</option>
+                                <option value="Inter">Inter Sans</option>
+                                <option value="Courier New">Military Stencil</option>
+                                <option value="Impact">Heavy Block</option>
+                                <option value="Georgia">Classic Serif</option>
+                            </select>
+                            <select id="nNumberViewTarget" class="custom-select">
+                                <option value="side">Side Profile</option>
+                                <option value="top">Top Wing</option>
+                                <option value="both">Side & Top</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Text Size:</span>
+                                <input type="range" id="nNumberSize" min="0.05" max="0.35" step="0.01" value="0.15" style="width: 110px;">
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Rotation Angle:</span>
+                                <div style="display: flex; align-items: center; gap: 6px;">
+                                    <input type="range" id="nNumberRotation" min="-180" max="180" step="1" value="0" style="width: 80px;">
+                                    <span id="nNumberRotVal" style="font-size: 0.75rem; color: var(--text-primary); min-width: 28px;">0°</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Fill Color:</span>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div id="nNumFillPreview" style="width: 24px; height: 24px; border-radius: 4px; background: #000000; border: 1px solid rgba(255,255,255,0.3);"></div>
+                                    <input type="color" id="nNumberColor" value="#000000" style="width: 28px; height: 28px; border: none; background: transparent; cursor: pointer;">
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Outline / Stroke:</span>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div id="nNumStrokePreview" style="width: 24px; height: 24px; border-radius: 4px; background: #FFFFFF; border: 1px solid rgba(255,255,255,0.3);"></div>
+                                    <input type="color" id="nNumberStrokeColor" value="#FFFFFF" style="width: 28px; height: 28px; border: none; background: transparent; cursor: pointer;">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.75rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-up-down-left-right"></i> Click & drag N-Number on canvas to position anywhere!
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Canvas Geometry & Clipping</label>
+                        <label style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer; margin-bottom: 8px;">
+                            <input type="checkbox" id="chkClipToModel" checked> Auto-Clip Shapes to Aircraft Boundary
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
+                            <input type="checkbox" id="chkShowGuides" checked> Show Side-to-Top Projection Lines
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Aircraft Sections Layer Stack -->
+                <div class="tab-pane" id="tab-sections" style="display: none;">
+                    <label class="control-label">Aircraft Structural Sections</label>
+                    <div id="sectionLayerList" style="display: flex; flex-direction: column; gap: 8px; max-height: 400px; overflow-y: auto;">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Workspace - Vector Canvas -->
+        <section class="paint-workspace">
+            <div class="workspace-toolbar">
+                <div class="view-switcher-group">
+                    <button class="view-btn" data-view="side"><i class="fa-solid fa-plane"></i> Side View</button>
+                    <button class="view-btn" data-view="top"><i class="fa-solid fa-plane-up"></i> Top View</button>
+                    <button class="view-btn" data-view="front"><i class="fa-solid fa-circle-dot"></i> Front View</button>
+                    <button class="view-btn" data-view="combined"><i class="fa-solid fa-layer-group"></i> Combined 3-View</button>
+                    <button class="view-btn active" data-view="split"><i class="fa-solid fa-table-cells-large"></i> All-Views Grid</button>
+                </div>
+
+                <div class="toolbar-draw-tools">
+                    <button class="tool-quick-btn active" data-tool="select" title="Pointer Select"><i class="fa-solid fa-arrow-pointer"></i></button>
+                    <button class="tool-quick-btn" data-tool="pen" title="Polygon Pen Tool"><i class="fa-solid fa-pen"></i></button>
+                    <button class="tool-quick-btn" data-tool="spline" title="Spline Curve Tool"><i class="fa-solid fa-bezier-curve"></i></button>
+                    <button class="tool-quick-btn" data-tool="line" title="Draw Line / Stripe"><i class="fa-solid fa-slash"></i></button>
+                    <button class="tool-quick-btn" data-tool="rect" title="Draw Box / Panel"><i class="fa-regular fa-square"></i></button>
+                    <button class="tool-quick-btn" data-tool="circle" title="Draw Circle / Roundel"><i class="fa-regular fa-circle"></i></button>
+                    <button class="tool-quick-btn" data-tool="swoosh" title="Draw Aero Swoosh"><i class="fa-solid fa-water"></i></button>
+                </div>
+
+            </div>
+
+            <div class="canvas-container" id="mainCanvasContainer">
+                <div class="views-grid split-4-view" id="viewsGrid">
+                    <!-- Side View Card -->
+                    <div class="view-card" id="cardSideView">
+                        <div class="view-card-header">
+                            <span>SIDE PROFILE VIEW</span>
+                            <small id="sideViewSub">Isolated Side Technical View</small>
+                        </div>
+                        <div class="view-card-body" id="svgContainerSide"></div>
+                    </div>
+
+                    <!-- Top View Card -->
+                    <div class="view-card" id="cardTopView">
+                        <div class="view-card-header">
+                            <span>TOP PLAN VIEW</span>
+                            <small id="topViewSub">Isolated Top Plan View</small>
+                        </div>
+                        <div class="view-card-body" id="svgContainerTop"></div>
+                    </div>
+
+                    <!-- Front View Card -->
+                    <div class="view-card" id="cardFrontView">
+                        <div class="view-card-header">
+                            <span>FRONT ELEVATION VIEW</span>
+                            <small>Isolated Front View</small>
+                        </div>
+                        <div class="view-card-body" id="svgContainerFront"></div>
+                    </div>
+
+                    <!-- Combined 3-View Master Blueprint Card -->
+                    <div class="view-card" id="cardCombinedView">
+                        <div class="view-card-header">
+                            <span>COMBINED 3-VIEW BLUEPRINT</span>
+                            <small>Master Technical Drawing</small>
+                        </div>
+                        <div class="view-card-body" id="svgContainerCombined"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Right Property & Color Dock -->
+        <aside class="paint-property-dock">
+            <div class="section-title">
+                <span>Selected Paint</span>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: 10px; padding: 14px; text-align: center; margin-bottom: 20px;">
+                <div id="activeSwatchPreview" style="width: 100%; height: 50px; border-radius: 8px; background-color: #FFFFFF; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 10px;"></div>
+                <h4 style="margin: 0; font-family: var(--font-heading); font-size: 0.95rem;" id="activeSwatchName">Insignia White</h4>
+                <p style="margin: 4px 0 0 0; font-size: 0.75rem; color: var(--text-muted);" id="activeSwatchCode">SW Code: SW1001 (SKYscapes)</p>
+            </div>
+
+            <div class="section-title">
+                <span>Color Palette Legend</span>
+            </div>
+            <div id="activePaletteSummary" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn-primary" id="btnQuickExportImg" style="width: 100%;"><i class="fa-solid fa-camera"></i> Quick JPEG Image</button>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Tech Spec Export Modal -->
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="font-family: var(--font-heading); margin: 0; color: var(--accent-blue);"><i class="fa-solid fa-file-pdf"></i> Export Aircraft Paint Tech Spec</h3>
+                <button id="btnCloseModal" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="control-group">
+                    <label class="control-label">Project / Aircraft Name</label>
+                    <input type="text" id="exportProjectName" class="custom-input" value="N890GF Custom RV Paint Design">
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Painter / Builder Notes</label>
+                    <textarea id="exportNotes" class="custom-input" rows="3" placeholder="Additional instructions, stripe offsets, gloss requirements..."></textarea>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-top: 10px;">
+                    <button class="btn-primary" id="btnGeneratePdf" style="flex: 1;"><i class="fa-solid fa-download"></i> Download PDF Tech Spec Sheet</button>
+                    <button class="btn-secondary" id="btnGenerateJpeg" style="flex: 1;"><i class="fa-solid fa-file-image"></i> Download High-Res JPEG</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript Files -->
+    <script src="{{ url_for('static', filename='painting_models.js') }}"></script>
+    <script src="{{ url_for('static', filename='painting_clip_hulls.js') }}"></script>
+    <script src="{{ url_for('static', filename='painting.js') }}"></script>
+</body>
+</html>

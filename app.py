@@ -1835,6 +1835,13 @@ def gami():
     return render_template("gami.html")
 
 
+# --- Painting Prototype Design Hub Route ---
+@app.route("/painting")
+def painting():
+    return render_template("painting.html")
+
+
+
 @app.route("/api/saved_flights", methods=["GET"])
 def api_saved_flights():
     """Lists all previously uploaded and processed flight data files."""
