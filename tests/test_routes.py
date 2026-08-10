@@ -680,6 +680,12 @@ class TestPublicPages:
             response = client.get("/gami")
             assert response.status_code == 200
 
+    def test_painting_page(self, app, client):
+        with app.app_context():
+            response = client.get("/painting")
+            assert response.status_code == 200
+
+
 
 # =============================================================================
 # Error Handlers
