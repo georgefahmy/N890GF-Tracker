@@ -221,6 +221,11 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
 
     engine_settings = extract_engine_settings(maneuver_df)
 
+    # Calculate density altitude over maneuver segment
+    mean_press_alt = float(np.mean(maneuver_df["press_alt"]))
+    mean_sigma = float(np.mean(maneuver_df["sigma"]))
+    density_alt = round((1.0 - (mean_sigma ** 0.234969)) / 6.87559e-6, 1)
+
     results = {
         "calibrated_airspeed_correction_kts": round(cas_corr, 2),
         "calibrated_heading_correction_deg": round(hdg_corr, 2),
@@ -231,6 +236,8 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         "native_wind_direction_deg": round(native_w_dir, 1),
         "native_wind_speed_kts": round(native_w_spd, 1),
         "heading_span_deg": heading_span,
+        "pressure_altitude_ft": round(mean_press_alt, 1),
+        "density_altitude_ft": density_alt,
         "average_indicated_airspeed_kts": round(float(np.mean(maneuver_df["ias"])), 2),
         "average_calibrated_airspeed_kts": round(float(np.mean(cas)), 2),
         "uncorrected_average_true_airspeed_kts": round(

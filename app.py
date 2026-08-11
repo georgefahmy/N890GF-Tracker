@@ -296,6 +296,10 @@ class AirspeedCalibration(db.Model):
     uncorrected_tas_kts = db.Column(db.Float)
     corrected_tas_kts = db.Column(db.Float)
 
+    # Altitude & Atmosphere metrics
+    pressure_altitude_ft = db.Column(db.Float)
+    density_altitude_ft = db.Column(db.Float)
+
     # Heading & Wind metrics
     compass_hdg_bias_deg = db.Column(db.Float)
     mag_variation_deg = db.Column(db.Float)
@@ -324,6 +328,8 @@ class AirspeedCalibration(db.Model):
                 "average_calibrated_airspeed_kts": self.avg_cas_kts,
                 "uncorrected_average_true_airspeed_kts": self.uncorrected_tas_kts,
                 "corrected_average_true_airspeed_kts": self.corrected_tas_kts,
+                "pressure_altitude_ft": self.pressure_altitude_ft,
+                "density_altitude_ft": self.density_altitude_ft,
                 "calibrated_heading_correction_deg": self.compass_hdg_bias_deg,
                 "magnetic_variation_deg": self.mag_variation_deg,
                 "wind_direction_deg": self.wind_direction_deg,
@@ -2724,6 +2730,8 @@ def api_airspeed_calibration():
                 cal_record.avg_cas_kts = output.get("average_calibrated_airspeed_kts")
                 cal_record.uncorrected_tas_kts = output.get("uncorrected_average_true_airspeed_kts")
                 cal_record.corrected_tas_kts = output.get("corrected_average_true_airspeed_kts")
+                cal_record.pressure_altitude_ft = output.get("pressure_altitude_ft")
+                cal_record.density_altitude_ft = output.get("density_altitude_ft")
                 cal_record.compass_hdg_bias_deg = output.get("calibrated_heading_correction_deg")
                 cal_record.mag_variation_deg = output.get("magnetic_variation_deg")
                 cal_record.wind_direction_deg = output.get("wind_direction_deg")
