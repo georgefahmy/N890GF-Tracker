@@ -276,7 +276,7 @@ function renderTableRows(flights) {
     if (!tbody) return;
 
     if (!flights || flights.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="12" class="text-center text-muted">No flight logs found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="13" class="text-center text-muted">No flight logs found.</td></tr>';
         return;
     }
 
@@ -286,6 +286,11 @@ function renderTableRows(flights) {
             : `<span class="badge bg-success">${f.max_shock_cooling || 0} °F/m</span>`;
 
         const chtColor = f.max_cht > 430 ? 'text-danger fw-bold' : (f.max_cht >= 410 ? 'text-warning fw-bold' : 'text-success');
+
+        const calCount = (f.saved_calibrations && f.saved_calibrations.length) ? f.saved_calibrations.length : 0;
+        const calBadge = calCount > 0
+            ? `<span class="badge bg-success" title="${calCount} Airspeed Calibration(s) Saved">✈️ ${calCount} Calibrated</span>`
+            : `<span class="badge bg-light text-muted border">None</span>`;
 
         return `
             <tr>
@@ -300,6 +305,7 @@ function renderTableRows(flights) {
                 <td>${f.cht_spread !== undefined ? f.cht_spread + ' °F' : 'N/A'}</td>
                 <td><span class="badge bg-info text-dark">${f.landing_count || 1}</span></td>
                 <td>${f.wind_speed_kts !== 'N/A' && f.wind_speed_kts !== undefined ? `${f.wind_speed_kts} kts @ ${f.wind_dir_deg}°` : 'N/A'}</td>
+                <td>${calBadge}</td>
                 <td>
                     <button class="btn btn-sm btn-outline-primary" onclick="openFlightInAnalyzer('${f.filename}')">
                         <i class="bi bi-play-circle"></i> Analyze

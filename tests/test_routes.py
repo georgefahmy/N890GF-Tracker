@@ -775,3 +775,53 @@ class TestFlightCsvMatching:
             assert response.status_code == 200
             assert b"flightTable" in response.data
 
+
+# =============================================================================
+# Airspeed Calibration Database & API Tests
+# =============================================================================
+
+
+class TestAirspeedCalibrationDB:
+    """Tests for Airspeed Calibration database persistence and deletion endpoints."""
+
+    def test_airspeed_calibration_model(self, app, seed_db):
+        with app.app_context():
+            from app import AirspeedCalibration, db
+            cal = AirspeedCalibration(
+                filename="test_flight.csv",
+                start_time=100.0,
+                end_time=300.0,
+                airspeed_error_kts=2.5,
+                avg_ias_kts=138.0,
+                avg_cas_kts=140.5,
+                corrected_tas_kts=153.0,
+            )
+            db.session.add(cal)
+            db.session.commit()
+
+            assert cal.id is not None
+            d = cal.to_dict()
+            assert d["filename"] == "test_flight.csv"
+            assert d["results"]["airspeed_error_kts"] == 2.5
+            assert d["results"]["average_indicated_airspeed_kts"] == 138.0
+
+    def test_delete_airspeed_calibration_api(self, app, auth_client, seed_db):
+        with app.app_context():
+            from app import AirspeedCalibration, db
+            cal = AirspeedCalibration(
+                filename="delete_test.csv",
+                start_time=50.0,
+                end_time=150.0,
+                airspeed_error_kts=1.2,
+            )
+            db.session.add(cal)
+            db.session.commit()
+
+            cal_id = cal.id
+            res = auth_client.post(f"/api/delete_airspeed_calibration/{cal_id}")
+            assert res.status_code == 200
+            data = res.get_json()
+            assert data["success"] is True
+
+            assert db.session.get(AirspeedCalibration, cal_id) is None
+

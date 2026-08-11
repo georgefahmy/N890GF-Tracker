@@ -278,6 +278,68 @@ class BannedIPs(db.Model):
     count = db.Column(db.Integer, default=0)
 
 
+class AirspeedCalibration(db.Model):
+    __tablename__ = "airspeed_calibration_records"
+
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(255), index=True, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    start_time = db.Column(db.Float, nullable=False)
+    end_time = db.Column(db.Float, nullable=False)
+
+    # Airspeed metrics
+    airspeed_error_kts = db.Column(db.Float)
+    cas_correction_kts = db.Column(db.Float)
+    avg_ias_kts = db.Column(db.Float)
+    avg_cas_kts = db.Column(db.Float)
+    uncorrected_tas_kts = db.Column(db.Float)
+    corrected_tas_kts = db.Column(db.Float)
+
+    # Heading & Wind metrics
+    compass_hdg_bias_deg = db.Column(db.Float)
+    mag_variation_deg = db.Column(db.Float)
+    wind_direction_deg = db.Column(db.Float)
+    wind_speed_kts = db.Column(db.Float)
+    heading_span_deg = db.Column(db.Float)
+    data_points = db.Column(db.Integer)
+
+    # Engine Settings during maneuver segment
+    manifold_pressure_inhg = db.Column(db.Float)
+    rpm = db.Column(db.Float)
+    fuel_flow_gph = db.Column(db.Float)
+    percent_power = db.Column(db.Float)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "filename": self.filename,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "start_time": round(float(self.start_time), 1),
+            "end_time": round(float(self.end_time), 1),
+            "results": {
+                "airspeed_error_kts": self.airspeed_error_kts,
+                "calibrated_airspeed_correction_kts": self.cas_correction_kts,
+                "average_indicated_airspeed_kts": self.avg_ias_kts,
+                "average_calibrated_airspeed_kts": self.avg_cas_kts,
+                "uncorrected_average_true_airspeed_kts": self.uncorrected_tas_kts,
+                "corrected_average_true_airspeed_kts": self.corrected_tas_kts,
+                "calibrated_heading_correction_deg": self.compass_hdg_bias_deg,
+                "magnetic_variation_deg": self.mag_variation_deg,
+                "wind_direction_deg": self.wind_direction_deg,
+                "wind_speed_kts": self.wind_speed_kts,
+                "heading_span_deg": self.heading_span_deg,
+                "analyzed_data_points": self.data_points,
+            },
+            "engine_settings": {
+                "manifold_pressure_inhg": self.manifold_pressure_inhg,
+                "rpm": self.rpm,
+                "fuel_flow_gph": self.fuel_flow_gph,
+                "percent_power": self.percent_power,
+            },
+        }
+
+
 # Create the tables in the DB if they don't exist
 with app.app_context():
     db.create_all()
@@ -1786,7 +1848,19 @@ def api_multi_flight_stats():
         with open(MULTI_STATS_CACHE_FILE, "w") as f:
             json.dump(updated_cache, f)
     except Exception as e:
-        print(f"Cache write error: {e}")
+        print("Error saving multi stats cache:", e)
+
+    # Attach dynamic DB airspeed calibration records to each flight
+    for stats in flight_stats_list:
+        fname = stats.get("filename")
+        if fname:
+            try:
+                cals = AirspeedCalibration.query.filter_by(filename=fname).order_by(AirspeedCalibration.start_time).all()
+                stats["saved_calibrations"] = [c.to_dict() for c in cals]
+                stats["has_calibration"] = len(cals) > 0
+            except Exception:
+                stats["saved_calibrations"] = []
+                stats["has_calibration"] = False
 
     # Sort flights oldest to newest to compute running cumulative totals (using filename as tiebreaker for same-day flights)
     flight_stats_list.sort(key=lambda x: (x.get("date", ""), x.get("filename", "")))
@@ -2423,6 +2497,16 @@ def api_analyze_flight():
         advanced_stats = extract_comprehensive_flight_stats(flight_data)
         stats.update(advanced_stats)
 
+        # Query saved airspeed calibrations for this flight
+        saved_calibrations = []
+        try:
+            cals = AirspeedCalibration.query.filter_by(filename=target_flight).order_by(AirspeedCalibration.start_time).all()
+            saved_calibrations = [c.to_dict() for c in cals]
+        except Exception as cal_err:
+            print("Error querying saved calibrations:", cal_err)
+
+        stats["saved_calibrations"] = saved_calibrations
+
         rawData = flight_data.to_dict(orient="records")
 
         safe_response = sanitize_for_json(
@@ -2612,14 +2696,78 @@ def api_airspeed_calibration():
             f"% Power:               {power_str}\n"
         )
 
+        # Persist / Update AirspeedCalibration database record
+        saved_calibrations = []
+        try:
+            filename = data.get("filename") or flight_id
+            if filename:
+                existing_cal = AirspeedCalibration.query.filter(
+                    AirspeedCalibration.filename == filename,
+                    db.func.abs(AirspeedCalibration.start_time - start_time) < 1.0,
+                    db.func.abs(AirspeedCalibration.end_time - end_time) < 1.0,
+                ).first()
+
+                cal_record = existing_cal or AirspeedCalibration(
+                    filename=filename, start_time=start_time, end_time=end_time
+                )
+                cal_record.start_time = float(start_time)
+                cal_record.end_time = float(end_time)
+                cal_record.airspeed_error_kts = output.get("airspeed_error_kts")
+                cal_record.cas_correction_kts = output.get("calibrated_airspeed_correction_kts")
+                cal_record.avg_ias_kts = output.get("average_indicated_airspeed_kts")
+                cal_record.avg_cas_kts = output.get("average_calibrated_airspeed_kts")
+                cal_record.uncorrected_tas_kts = output.get("uncorrected_average_true_airspeed_kts")
+                cal_record.corrected_tas_kts = output.get("corrected_average_true_airspeed_kts")
+                cal_record.compass_hdg_bias_deg = output.get("calibrated_heading_correction_deg")
+                cal_record.mag_variation_deg = output.get("magnetic_variation_deg")
+                cal_record.wind_direction_deg = output.get("wind_direction_deg")
+                cal_record.wind_speed_kts = output.get("wind_speed_kts")
+                cal_record.heading_span_deg = output.get("heading_span_deg")
+                cal_record.data_points = output.get("analyzed_data_points")
+
+                cal_record.manifold_pressure_inhg = map_val
+                cal_record.rpm = rpm_val
+                cal_record.fuel_flow_gph = ff_val
+                cal_record.percent_power = power_val
+
+                db.session.add(cal_record)
+                db.session.commit()
+
+                cals = AirspeedCalibration.query.filter_by(filename=filename).order_by(AirspeedCalibration.start_time).all()
+                saved_calibrations = [c.to_dict() for c in cals]
+        except Exception as db_err:
+            print("Error saving airspeed calibration record to DB:", db_err)
+            db.session.rollback()
+
         return jsonify({
             "summary": summary,
             "results": sanitize_for_json(output),
-            "engine_settings": sanitize_for_json(eng)
+            "engine_settings": sanitize_for_json(eng),
+            "saved_calibrations": sanitize_for_json(saved_calibrations),
         })
 
     except Exception as e:
         print("Airspeed calibration error:", e)
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/delete_airspeed_calibration/<int:cal_id>", methods=["POST", "DELETE"])
+@login_required
+def delete_airspeed_calibration(cal_id):
+    try:
+        cal = AirspeedCalibration.query.get(cal_id)
+        if not cal:
+            return jsonify({"error": "Calibration record not found"}), 404
+        filename = cal.filename
+        db.session.delete(cal)
+        db.session.commit()
+
+        cals = AirspeedCalibration.query.filter_by(filename=filename).order_by(AirspeedCalibration.start_time).all()
+        remaining = [c.to_dict() for c in cals]
+
+        return jsonify({"success": True, "remaining_calibrations": sanitize_for_json(remaining)})
+    except Exception as e:
+        db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
 

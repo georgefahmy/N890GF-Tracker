@@ -1190,6 +1190,10 @@ function updateGlobalUI(data) {
         </div>
     `;
 
+    if (s.saved_calibrations && window.renderSavedAirspeedCalibrations) {
+        window.renderSavedAirspeedCalibrations(s.saved_calibrations);
+    }
+
     // Always show the aircraft card once analysis runs
     document.getElementById('aircraftDataCard').classList.remove('d-none');
     document.getElementById('aircraftDataPlaceholder').classList.add('d-none');

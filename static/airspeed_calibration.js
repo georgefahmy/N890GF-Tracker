@@ -491,8 +491,9 @@ function submitAirspeedCalibration() {
 
         if (resultsContainer) resultsContainer.classList.remove('d-none');
 
-        // Also update main page summary block if statsList is present
-        updateMainPageCalibrationBlock(start, end, resObj, engObj);
+        if (data.saved_calibrations) {
+            renderSavedAirspeedCalibrations(data.saved_calibrations);
+        }
 
         if (window.renderMap && window.AppState && AppState.map && AppState.map.lastRenderData) {
             renderMap(AppState.map.lastRenderData);
@@ -504,63 +505,96 @@ function submitAirspeedCalibration() {
     });
 }
 
-function updateMainPageCalibrationBlock(start, end, resObj, engObj) {
+function renderSavedAirspeedCalibrations(calsList) {
     const statsList = document.getElementById('statsList');
     if (!statsList) return;
 
     let existing = document.getElementById('airspeed-summary-block');
     if (existing) existing.remove();
 
+    if (!calsList || calsList.length === 0) return;
+
     const block = document.createElement('div');
     block.id = 'airspeed-summary-block';
     block.className = 'col-12 mt-3 p-3 border rounded shadow-sm bg-light';
 
-    const asErrorStr = resObj.airspeed_error_kts !== undefined ? (resObj.airspeed_error_kts >= 0 ? '+' : '') + resObj.airspeed_error_kts + ' kts' : 'N/A';
-    const corrCasStr = resObj.average_calibrated_airspeed_kts !== undefined ? resObj.average_calibrated_airspeed_kts + ' kts' : 'N/A';
-    const uncorrTasStr = resObj.uncorrected_average_true_airspeed_kts !== undefined ? resObj.uncorrected_average_true_airspeed_kts + ' kts' : 'N/A';
-    const corrTasStr = resObj.corrected_average_true_airspeed_kts !== undefined ? resObj.corrected_average_true_airspeed_kts + ' kts' : 'N/A';
-    const magVarStr = resObj.magnetic_variation_deg !== undefined ? (resObj.magnetic_variation_deg >= 0 ? '+' : '') + resObj.magnetic_variation_deg + '°' : '0.0°';
-    const hdgBiasStr = resObj.calibrated_heading_correction_deg !== undefined ? (resObj.calibrated_heading_correction_deg >= 0 ? '+' : '') + resObj.calibrated_heading_correction_deg + '°' : 'N/A';
+    let cardsHtml = `<div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="text-primary fw-bold mb-0">✈️ Saved Airspeed Calibrations (${calsList.length})</h6>
+    </div>`;
 
-    let windStr = 'N/A';
-    if (resObj.wind_direction_deg !== undefined && resObj.wind_speed_kts !== undefined && resObj.wind_speed_kts > 0) {
-        windStr = `${resObj.wind_direction_deg}° @ ${resObj.wind_speed_kts} kts`;
-    } else if (resObj.native_wind_direction_deg !== undefined && resObj.native_wind_speed_kts !== undefined) {
-        windStr = `${resObj.native_wind_direction_deg}° @ ${resObj.native_wind_speed_kts} kts`;
-    }
+    calsList.forEach((item, index) => {
+        const resObj = item.results || {};
+        const engObj = item.engine_settings || {};
+        const start = item.start_time;
+        const end = item.end_time;
 
-    const mapStr = engObj.manifold_pressure_inhg !== null && engObj.manifold_pressure_inhg !== undefined ? engObj.manifold_pressure_inhg + ' inHg' : 'N/A';
-    const rpmStr = engObj.rpm !== null && engObj.rpm !== undefined ? engObj.rpm : 'N/A';
-    const ffStr = engObj.fuel_flow_gph !== null && engObj.fuel_flow_gph !== undefined ? engObj.fuel_flow_gph + ' gph' : 'N/A';
-    const powerStr = engObj.percent_power !== null && engObj.percent_power !== undefined ? engObj.percent_power + ' %' : 'N/A';
+        const asErrorVal = resObj.airspeed_error_kts;
+        const asErrorStr = asErrorVal !== undefined ? (asErrorVal >= 0 ? '+' : '') + asErrorVal + ' kts' : 'N/A';
+        const errorColorClass = (asErrorVal !== undefined && asErrorVal >= 0) ? 'text-success' : 'text-danger';
 
-    block.innerHTML = `
-        <h6 class="text-primary fw-bold mb-2">Airspeed Calibration Results</h6>
-        <div class="row g-2 mb-2 small">
-            <div class="col-md-6"><strong>Maneuver Segment:</strong> ${formatMMSS(start)} to ${formatMMSS(end)}</div>
-            <div class="col-md-6"><strong>Data Points:</strong> ${resObj.analyzed_data_points || 'N/A'}</div>
-        </div>
-        <div class="row g-2 mb-2 small">
-            <div class="col-md-3"><strong>Airspeed Error:</strong> <span class="${errorColorClass} fw-bold">${asErrorStr}</span></div>
-            <div class="col-md-3"><strong>Corrected CAS:</strong> ${corrCasStr}</div>
-            <div class="col-md-3"><strong>Uncorrected TAS:</strong> ${uncorrTasStr}</div>
-            <div class="col-md-3"><strong>Corrected TAS:</strong> ${corrTasStr}</div>
-        </div>
-        <div class="row g-2 mb-3 small">
-            <div class="col-md-4"><strong>Compass HDG Bias:</strong> ${hdgBiasStr}</div>
-            <div class="col-md-4"><strong>Mag Variation:</strong> ${magVarStr}</div>
-            <div class="col-md-4"><strong>Wind Vector:</strong> ${windStr}</div>
-        </div>
-        <h6 class="text-warning text-dark fw-bold mb-2">⚙️ Engine Settings (Calibration Segment)</h6>
-        <div class="row g-2 small">
-            <div class="col-3"><strong>MAP:</strong> ${mapStr}</div>
-            <div class="col-3"><strong>RPM:</strong> ${rpmStr}</div>
-            <div class="col-3"><strong>Fuel Flow:</strong> ${ffStr}</div>
-            <div class="col-3"><strong>% Power:</strong> ${powerStr}</div>
-        </div>
-    `;
+        const corrCasStr = resObj.average_calibrated_airspeed_kts !== undefined ? resObj.average_calibrated_airspeed_kts + ' kts' : 'N/A';
+        const uncorrTasStr = resObj.uncorrected_average_true_airspeed_kts !== undefined ? resObj.uncorrected_average_true_airspeed_kts + ' kts' : 'N/A';
+        const corrTasStr = resObj.corrected_average_true_airspeed_kts !== undefined ? resObj.corrected_average_true_airspeed_kts + ' kts' : 'N/A';
+        const magVarStr = resObj.magnetic_variation_deg !== undefined ? (resObj.magnetic_variation_deg >= 0 ? '+' : '') + resObj.magnetic_variation_deg + '°' : '0.0°';
+        const hdgBiasStr = resObj.calibrated_heading_correction_deg !== undefined ? (resObj.calibrated_heading_correction_deg >= 0 ? '+' : '') + resObj.calibrated_heading_correction_deg + '°' : 'N/A';
 
+        let windStr = 'N/A';
+        if (resObj.wind_direction_deg !== undefined && resObj.wind_speed_kts !== undefined && resObj.wind_speed_kts > 0) {
+            windStr = `${resObj.wind_direction_deg}° @ ${resObj.wind_speed_kts} kts`;
+        }
+
+        const mapStr = engObj.manifold_pressure_inhg !== null && engObj.manifold_pressure_inhg !== undefined ? engObj.manifold_pressure_inhg + ' inHg' : 'N/A';
+        const rpmStr = engObj.rpm !== null && engObj.rpm !== undefined ? engObj.rpm : 'N/A';
+        const ffStr = engObj.fuel_flow_gph !== null && engObj.fuel_flow_gph !== undefined ? engObj.fuel_flow_gph + ' gph' : 'N/A';
+        const powerStr = engObj.percent_power !== null && engObj.percent_power !== undefined ? engObj.percent_power + ' %' : 'N/A';
+
+        cardsHtml += `
+            <div class="card mb-2 border-0 bg-white shadow-sm">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-secondary">Calibration #${index + 1} (${formatMMSS(start)} - ${formatMMSS(end)})</span>
+                        <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteAirspeedCalibration(${item.id})" title="Delete Calibration">
+                            &times; Delete
+                        </button>
+                    </div>
+                    <div class="row g-2 mb-2 small">
+                        <div class="col-6 col-md-3"><strong>Airspeed Error:</strong> <span class="${errorColorClass} fw-bold">${asErrorStr}</span></div>
+                        <div class="col-6 col-md-3"><strong>Corrected CAS:</strong> ${corrCasStr}</div>
+                        <div class="col-6 col-md-3"><strong>Uncorrected TAS:</strong> ${uncorrTasStr}</div>
+                        <div class="col-6 col-md-3"><strong>Corrected TAS:</strong> ${corrTasStr}</div>
+                    </div>
+                    <div class="row g-2 mb-2 small">
+                        <div class="col-4"><strong>Compass HDG Bias:</strong> ${hdgBiasStr}</div>
+                        <div class="col-4"><strong>Mag Variation:</strong> ${magVarStr}</div>
+                        <div class="col-4"><strong>Wind Vector:</strong> ${windStr}</div>
+                    </div>
+                    <div class="row g-2 small text-muted border-top pt-2 mt-1">
+                        <div class="col-3"><strong>MAP:</strong> ${mapStr}</div>
+                        <div class="col-3"><strong>RPM:</strong> ${rpmStr}</div>
+                        <div class="col-3"><strong>Fuel Flow:</strong> ${ffStr}</div>
+                        <div class="col-3"><strong>% Power:</strong> ${powerStr}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    block.innerHTML = cardsHtml;
     statsList.appendChild(block);
+}
+
+function deleteAirspeedCalibration(calId) {
+    if (!confirm("Are you sure you want to delete this saved airspeed calibration?")) return;
+    fetch(`/api/delete_airspeed_calibration/${calId}`, { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                renderSavedAirspeedCalibrations(data.remaining_calibrations || []);
+            } else if (data.error) {
+                alert("Error deleting calibration: " + data.error);
+            }
+        })
+        .catch(err => console.error("Error deleting calibration:", err));
 }
 
 function formatMMSS(seconds) {
