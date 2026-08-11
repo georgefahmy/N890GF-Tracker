@@ -404,20 +404,29 @@ function submitAirspeedCalibration() {
         }
 
         const magVarStr = resObj.magnetic_variation_deg !== undefined ? (resObj.magnetic_variation_deg >= 0 ? '+' : '') + resObj.magnetic_variation_deg + '°' : '0.0°';
+        const asErrorStr = resObj.airspeed_error_kts !== undefined ? (resObj.airspeed_error_kts >= 0 ? '+' : '') + resObj.airspeed_error_kts + ' kts' : 'N/A';
+        const uncorrTasStr = resObj.uncorrected_average_true_airspeed_kts !== undefined ? resObj.uncorrected_average_true_airspeed_kts + ' kts' : 'N/A';
+        const corrTasStr = resObj.corrected_average_true_airspeed_kts !== undefined ? resObj.corrected_average_true_airspeed_kts + ' kts' : 'N/A';
 
         const metricsGrid = document.getElementById('asCalMetricsGrid');
         if (metricsGrid) {
             metricsGrid.innerHTML = `
                 <div class="col-6 col-md-4">
                     <div class="p-2 bg-light rounded text-center">
-                        <div class="text-muted extra-small">CAS Correction</div>
-                        <div class="fw-bold fs-6 text-primary">${resObj.calibrated_airspeed_correction_kts !== undefined ? (resObj.calibrated_airspeed_correction_kts >= 0 ? '+' : '') + resObj.calibrated_airspeed_correction_kts + ' kts' : 'N/A'}</div>
+                        <div class="text-muted extra-small">Airspeed Error</div>
+                        <div class="fw-bold fs-6 text-danger">${asErrorStr}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-4">
                     <div class="p-2 bg-light rounded text-center">
-                        <div class="text-muted extra-small">Airspeed Error</div>
-                        <div class="fw-bold fs-6 text-danger">${resObj.airspeed_error_kts !== undefined ? resObj.airspeed_error_kts + ' kts' : 'N/A'}</div>
+                        <div class="text-muted extra-small">Uncorrected TAS</div>
+                        <div class="fw-bold fs-6 text-secondary">${uncorrTasStr}</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="p-2 bg-light rounded text-center">
+                        <div class="text-muted extra-small">Corrected TAS</div>
+                        <div class="fw-bold fs-6 text-success">${corrTasStr}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-4">
@@ -436,12 +445,6 @@ function submitAirspeedCalibration() {
                     <div class="p-2 bg-light rounded text-center">
                         <div class="text-muted extra-small">Wind Dir / Speed</div>
                         <div class="fw-bold fs-6 text-dark">${windStr}</div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4">
-                    <div class="p-2 bg-light rounded text-center">
-                        <div class="text-muted extra-small">Corrected TAS</div>
-                        <div class="fw-bold fs-6 text-success">${resObj.corrected_average_true_airspeed_kts !== undefined ? resObj.corrected_average_true_airspeed_kts + ' kts' : 'N/A'}</div>
                     </div>
                 </div>
             `;
@@ -503,9 +506,18 @@ function updateMainPageCalibrationBlock(start, end, resObj, engObj) {
     block.id = 'airspeed-summary-block';
     block.className = 'col-12 mt-3 p-3 border rounded shadow-sm bg-light';
 
-    const casCorrStr = resObj.calibrated_airspeed_correction_kts !== undefined ? (resObj.calibrated_airspeed_correction_kts >= 0 ? '+' : '') + resObj.calibrated_airspeed_correction_kts + ' kts' : 'N/A';
+    const asErrorStr = resObj.airspeed_error_kts !== undefined ? (resObj.airspeed_error_kts >= 0 ? '+' : '') + resObj.airspeed_error_kts + ' kts' : 'N/A';
     const uncorrTasStr = resObj.uncorrected_average_true_airspeed_kts !== undefined ? resObj.uncorrected_average_true_airspeed_kts + ' kts' : 'N/A';
     const corrTasStr = resObj.corrected_average_true_airspeed_kts !== undefined ? resObj.corrected_average_true_airspeed_kts + ' kts' : 'N/A';
+    const magVarStr = resObj.magnetic_variation_deg !== undefined ? (resObj.magnetic_variation_deg >= 0 ? '+' : '') + resObj.magnetic_variation_deg + '°' : '0.0°';
+    const hdgBiasStr = resObj.calibrated_heading_correction_deg !== undefined ? (resObj.calibrated_heading_correction_deg >= 0 ? '+' : '') + resObj.calibrated_heading_correction_deg + '°' : 'N/A';
+
+    let windStr = 'N/A';
+    if (resObj.wind_direction_deg !== undefined && resObj.wind_speed_kts !== undefined && resObj.wind_speed_kts > 0) {
+        windStr = `${resObj.wind_direction_deg}° @ ${resObj.wind_speed_kts} kts`;
+    } else if (resObj.native_wind_direction_deg !== undefined && resObj.native_wind_speed_kts !== undefined) {
+        windStr = `${resObj.native_wind_direction_deg}° @ ${resObj.native_wind_speed_kts} kts`;
+    }
 
     const mapStr = engObj.manifold_pressure_inhg !== null && engObj.manifold_pressure_inhg !== undefined ? engObj.manifold_pressure_inhg + ' inHg' : 'N/A';
     const rpmStr = engObj.rpm !== null && engObj.rpm !== undefined ? engObj.rpm : 'N/A';
@@ -518,10 +530,15 @@ function updateMainPageCalibrationBlock(start, end, resObj, engObj) {
             <div class="col-md-6"><strong>Maneuver Segment:</strong> ${formatMMSS(start)} to ${formatMMSS(end)}</div>
             <div class="col-md-6"><strong>Data Points:</strong> ${resObj.analyzed_data_points || 'N/A'}</div>
         </div>
-        <div class="row g-2 mb-3 small">
-            <div class="col-md-4"><strong>CAS Correction:</strong> ${casCorrStr}</div>
+        <div class="row g-2 mb-2 small">
+            <div class="col-md-4"><strong>Airspeed Error:</strong> ${asErrorStr}</div>
             <div class="col-md-4"><strong>Uncorrected TAS:</strong> ${uncorrTasStr}</div>
             <div class="col-md-4"><strong>Corrected TAS:</strong> ${corrTasStr}</div>
+        </div>
+        <div class="row g-2 mb-3 small">
+            <div class="col-md-4"><strong>Compass HDG Bias:</strong> ${hdgBiasStr}</div>
+            <div class="col-md-4"><strong>Mag Variation:</strong> ${magVarStr}</div>
+            <div class="col-md-4"><strong>Wind Vector:</strong> ${windStr}</div>
         </div>
         <h6 class="text-warning text-dark fw-bold mb-2">⚙️ Engine Settings (Calibration Segment)</h6>
         <div class="row g-2 small">
