@@ -287,10 +287,17 @@ function renderTableRows(flights) {
 
         const chtColor = f.max_cht > 430 ? 'text-danger fw-bold' : (f.max_cht >= 410 ? 'text-warning fw-bold' : 'text-success');
 
-        const calCount = (f.saved_calibrations && f.saved_calibrations.length) ? f.saved_calibrations.length : 0;
-        const calBadge = calCount > 0
-            ? `<span class="badge bg-success" title="${calCount} Airspeed Calibration(s) Saved">✈️ ${calCount} Calibrated</span>`
-            : `<span class="badge bg-light text-muted border">None</span>`;
+        let calCell = `<span class="badge bg-light text-muted border">None</span>`;
+        if (f.saved_calibrations && f.saved_calibrations.length > 0) {
+            calCell = f.saved_calibrations.map((c, idx) => {
+                const res = c.results || {};
+                const uncorr = res.uncorrected_average_true_airspeed_kts !== undefined ? res.uncorrected_average_true_airspeed_kts : '--';
+                const corr = res.corrected_average_true_airspeed_kts !== undefined ? res.corrected_average_true_airspeed_kts : '--';
+                const err = res.airspeed_error_kts !== undefined ? (res.airspeed_error_kts >= 0 ? '+' : '') + res.airspeed_error_kts : '';
+                const errColor = (res.airspeed_error_kts !== undefined && res.airspeed_error_kts >= 0) ? 'text-success' : 'text-danger';
+                return `<div style="font-size: 0.85rem;"><span class="text-muted" title="Uncorrected TAS">${uncorr}</span> &rarr; <span class="text-body-emphasis fw-bold" title="Corrected TAS">${corr} kts</span> ${err ? `<span class="${errColor} small">(${err})</span>` : ''}</div>`;
+            }).join('');
+        }
 
         return `
             <tr>
@@ -305,7 +312,7 @@ function renderTableRows(flights) {
                 <td>${f.cht_spread !== undefined ? f.cht_spread + ' °F' : 'N/A'}</td>
                 <td><span class="badge bg-info text-dark">${f.landing_count || 1}</span></td>
                 <td>${f.wind_speed_kts !== 'N/A' && f.wind_speed_kts !== undefined ? `${f.wind_speed_kts} kts @ ${f.wind_dir_deg}°` : 'N/A'}</td>
-                <td>${calBadge}</td>
+                <td>${calCell}</td>
                 <td>
                     <button class="btn btn-sm btn-outline-primary" onclick="openFlightInAnalyzer('${f.filename}')">
                         <i class="bi bi-play-circle"></i> Analyze
