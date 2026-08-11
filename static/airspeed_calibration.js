@@ -103,8 +103,8 @@ function loadAirspeedCalFlight() {
     }
 
     // Check if we already have this flight loaded in AppState
-    if (window.AppState && AppState.file && AppState.file.currentName === selectedFile && AppState.rawData) {
-        asCalCurrentData = AppState.rawData;
+    if (window.AppState && AppState.file && AppState.file.currentName === selectedFile && (AppState.rawData || (AppState.lastAnalysisResponse && AppState.lastAnalysisResponse.rawData))) {
+        asCalCurrentData = AppState.rawData || (AppState.lastAnalysisResponse && AppState.lastAnalysisResponse.rawData);
         renderAirspeedCalPlot(asCalCurrentData);
         return;
     }
@@ -112,10 +112,13 @@ function loadAirspeedCalFlight() {
     const instruction = getAsCalElem('instruction');
     if (instruction) instruction.innerHTML = '<span class="spinner-border spinner-border-sm text-primary"></span> Loading flight data for calibration...';
 
-    fetch('/api/load_flight_data', {
+    const formData = new FormData();
+    formData.append('saved_filename', selectedFile);
+    formData.append('filters', JSON.stringify([]));
+
+    fetch('/api/analyze_flight', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'filename=' + encodeURIComponent(selectedFile)
+        body: formData
     })
     .then(r => r.json())
     .then(data => {
@@ -123,7 +126,7 @@ function loadAirspeedCalFlight() {
             if (instruction) instruction.innerText = 'Error: ' + data.error;
             return;
         }
-        asCalCurrentData = data.data || data.rawData || data;
+        asCalCurrentData = data.rawData || data.data || data;
         renderAirspeedCalPlot(asCalCurrentData);
     })
     .catch(err => {
@@ -137,13 +140,28 @@ function renderAirspeedCalPlot(data) {
     const graphDiv = getAsCalElem('timeGraph');
     if (!graphDiv || !data) return;
 
-    // Helper to safely fetch numeric arrays
+    // Helper to safely fetch numeric arrays from row array or column dict
     function getSeries(colNames) {
-        for (const col of colNames) {
-            if (data[col] && Array.isArray(data[col])) {
-                return data[col];
+        if (!data) return [];
+
+        // Case 1: Array of record objects [{ col1: v1, col2: v2 }, ...]
+        if (Array.isArray(data)) {
+            for (const col of colNames) {
+                if (data.length > 0 && col in data[0]) {
+                    return data.map(row => row[col]);
+                }
             }
         }
+
+        // Case 2: Column dictionary { col1: [v1, v2], col2: [...] }
+        if (typeof data === 'object') {
+            for (const col of colNames) {
+                if (data[col] && Array.isArray(data[col])) {
+                    return data[col];
+                }
+            }
+        }
+
         return [];
     }
 
