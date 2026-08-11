@@ -500,6 +500,10 @@ function submitAirspeedCalibration() {
         if (resultsContainer) resultsContainer.classList.remove('d-none');
 
         if (data.saved_calibrations) {
+            window.lastSavedCalibrations = data.saved_calibrations;
+            if (window.AppState && AppState.currentFlightStats) {
+                AppState.currentFlightStats.saved_calibrations = data.saved_calibrations;
+            }
             renderSavedAirspeedCalibrations(data.saved_calibrations);
         }
 
@@ -598,7 +602,12 @@ function deleteAirspeedCalibration(calId) {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                renderSavedAirspeedCalibrations(data.remaining_calibrations || []);
+                const rem = data.remaining_calibrations || [];
+                window.lastSavedCalibrations = rem;
+                if (window.AppState && AppState.currentFlightStats) {
+                    AppState.currentFlightStats.saved_calibrations = rem;
+                }
+                renderSavedAirspeedCalibrations(rem);
             } else if (data.error) {
                 alert("Error deleting calibration: " + data.error);
             }

@@ -1190,8 +1190,9 @@ function updateGlobalUI(data) {
         </div>
     `;
 
-    if (s.saved_calibrations && window.renderSavedAirspeedCalibrations) {
-        window.renderSavedAirspeedCalibrations(s.saved_calibrations);
+    const calsToRender = (s.saved_calibrations && s.saved_calibrations.length > 0) ? s.saved_calibrations : (window.lastSavedCalibrations || []);
+    if (window.renderSavedAirspeedCalibrations && calsToRender.length > 0) {
+        window.renderSavedAirspeedCalibrations(calsToRender);
     }
 
     // Always show the aircraft card once analysis runs

@@ -346,9 +346,25 @@ class AirspeedCalibration(db.Model):
         }
 
 
-# Create the tables in the DB if they don't exist
+# Create the tables in the DB if they don't exist and auto-migrate missing columns
 with app.app_context():
     db.create_all()
+    try:
+        engine = db.engine
+        inspector = db.inspect(engine)
+        if "airspeed_calibration_records" in inspector.get_table_names():
+            existing_cols = [c["name"] for c in inspector.get_columns("airspeed_calibration_records")]
+            new_cols = {
+                "pressure_altitude_ft": "FLOAT",
+                "density_altitude_ft": "FLOAT",
+            }
+            with engine.connect() as conn:
+                for col_name, col_type in new_cols.items():
+                    if col_name not in existing_cols:
+                        conn.execute(db.text(f"ALTER TABLE airspeed_calibration_records ADD COLUMN {col_name} {col_type}"))
+                conn.commit()
+    except Exception as mig_err:
+        print("Auto-migration notice for airspeed_calibration_records:", mig_err)
 
 
 def validate_float(value, default=0.0):
