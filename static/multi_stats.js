@@ -295,10 +295,9 @@ function renderTableRows(flights) {
                 const corr = res.corrected_average_true_airspeed_kts !== undefined ? res.corrected_average_true_airspeed_kts : '--';
                 const err = res.airspeed_error_kts !== undefined ? (res.airspeed_error_kts >= 0 ? '+' : '') + res.airspeed_error_kts : '';
                 const errColor = (res.airspeed_error_kts !== undefined && res.airspeed_error_kts >= 0) ? 'text-success' : 'text-danger';
-                const da = res.density_altitude_ft !== undefined ? `@ ${Number(res.density_altitude_ft).toLocaleString()} ft DA` : '';
                 return `
                     <div class="d-flex align-items-center gap-1" style="font-size: 0.85rem;">
-                        <span><span class="text-muted" title="Uncorrected TAS">${uncorr}</span> &rarr; <span class="text-body-emphasis fw-bold" title="Corrected TAS">${corr} kts</span> ${err ? `<span class="${errColor} small">(${err})</span>` : ''} ${da ? `<span class="small text-muted ms-1">${da}</span>` : ''}</span>
+                        <span><span class="text-muted" title="Uncorrected TAS">${uncorr}</span> &rarr; <span class="text-body-emphasis fw-bold" title="Corrected TAS">${corr} kts</span> ${err ? `<span class="${errColor} small">(${err})</span>` : ''}</span>
                         <button class="btn btn-link btn-sm p-0 text-danger ms-1" onclick="deleteAirspeedCalibration(${c.id})" title="Delete Calibration from Database">
                             <i class="bi bi-trash small"></i>
                         </button>
