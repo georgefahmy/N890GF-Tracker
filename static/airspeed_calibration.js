@@ -409,13 +409,15 @@ function submitAirspeedCalibration() {
         const uncorrTasStr = resObj.uncorrected_average_true_airspeed_kts !== undefined ? resObj.uncorrected_average_true_airspeed_kts + ' kts' : 'N/A';
         const corrTasStr = resObj.corrected_average_true_airspeed_kts !== undefined ? resObj.corrected_average_true_airspeed_kts + ' kts' : 'N/A';
 
+        const errorColorClass = (resObj.airspeed_error_kts !== undefined && resObj.airspeed_error_kts >= 0) ? 'text-success' : 'text-danger';
+
         const metricsGrid = document.getElementById('asCalMetricsGrid');
         if (metricsGrid) {
             metricsGrid.innerHTML = `
                 <div class="col-6 col-md-3">
                     <div class="p-2 bg-light rounded text-center">
                         <div class="text-muted extra-small">Airspeed Error</div>
-                        <div class="fw-bold fs-6 text-danger">${asErrorStr}</div>
+                        <div class="fw-bold fs-6 ${errorColorClass}">${asErrorStr}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
@@ -539,7 +541,7 @@ function updateMainPageCalibrationBlock(start, end, resObj, engObj) {
             <div class="col-md-6"><strong>Data Points:</strong> ${resObj.analyzed_data_points || 'N/A'}</div>
         </div>
         <div class="row g-2 mb-2 small">
-            <div class="col-md-3"><strong>Airspeed Error:</strong> ${asErrorStr}</div>
+            <div class="col-md-3"><strong>Airspeed Error:</strong> <span class="${errorColorClass} fw-bold">${asErrorStr}</span></div>
             <div class="col-md-3"><strong>Corrected CAS:</strong> ${corrCasStr}</div>
             <div class="col-md-3"><strong>Uncorrected TAS:</strong> ${uncorrTasStr}</div>
             <div class="col-md-3"><strong>Corrected TAS:</strong> ${corrTasStr}</div>
