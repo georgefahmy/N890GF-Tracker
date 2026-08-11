@@ -29,6 +29,22 @@
                 width: 14.2857%;
             }
         }
+        @media (min-width: 992px) {
+            #allAirspeedCalsModal .modal-dialog {
+                max-width: 96vw !important;
+                width: 96vw !important;
+            }
+        }
+        #allAirspeedCalsTable {
+            font-size: 0.78rem;
+        }
+        #allAirspeedCalsTable th, #allAirspeedCalsTable td {
+            padding: 0.35rem 0.45rem;
+            vertical-align: middle;
+        }
+        .extra-small {
+            font-size: 0.72rem;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </head>
@@ -188,7 +204,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped align-middle text-nowrap mb-0" id="allAirspeedCalsTable">
+                        <table class="table table-sm table-hover table-striped align-middle w-100 mb-0" id="allAirspeedCalsTable">
                             <thead class="table-dark">
                                 <tr>
                                     <th role="button" onclick="sortAirspeedCalsTable('date')">Date & Flight <i class="bi bi-arrow-down-up small"></i></th>

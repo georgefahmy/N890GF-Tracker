@@ -444,34 +444,34 @@ function renderAirspeedCalsModalTable() {
         const errColor = (errVal !== undefined && errVal >= 0) ? 'text-success fw-bold' : 'text-danger fw-bold';
         const da = res.density_altitude_ft !== undefined ? Number(res.density_altitude_ft).toLocaleString() + ' ft' : '--';
 
-        const mapStr = eng.manifold_pressure_inhg !== null && eng.manifold_pressure_inhg !== undefined ? eng.manifold_pressure_inhg + ' inHg' : '--';
-        const rpmStr = eng.rpm !== null && eng.rpm !== undefined ? eng.rpm + ' RPM' : '--';
-        const ffStr = eng.fuel_flow_gph !== null && eng.fuel_flow_gph !== undefined ? eng.fuel_flow_gph + ' GPH' : '--';
+        const mapStr = eng.manifold_pressure_inhg !== null && eng.manifold_pressure_inhg !== undefined ? eng.manifold_pressure_inhg + '"' : '--';
+        const rpmStr = eng.rpm !== null && eng.rpm !== undefined ? Math.round(eng.rpm) : '--';
+        const ffStr = eng.fuel_flow_gph !== null && eng.fuel_flow_gph !== undefined ? eng.fuel_flow_gph + ' gph' : '--';
         const powerStr = eng.percent_power !== null && eng.percent_power !== undefined ? eng.percent_power + '%' : '--';
 
         const windStr = (res.wind_direction_deg !== undefined && res.wind_speed_kts !== undefined && res.wind_speed_kts > 0)
-            ? `${res.wind_direction_deg}° @ ${res.wind_speed_kts} kts`
+            ? `${res.wind_direction_deg}°@${res.wind_speed_kts}kt`
             : 'N/A';
 
         return `
             <tr>
-                <td><strong>${c.flight_date}</strong><br><span class="small text-muted">${c.filename}</span></td>
-                <td>${formatMMSS(c.start_time)} - ${formatMMSS(c.end_time)}</td>
-                <td>${res.average_indicated_airspeed_kts || '--'} kts</td>
-                <td>${res.average_calibrated_airspeed_kts || '--'} kts</td>
-                <td><span class="text-muted">${res.uncorrected_average_true_airspeed_kts || '--'} kts</span></td>
-                <td><span class="text-body-emphasis fw-bold">${res.corrected_average_true_airspeed_kts || '--'} kts</span></td>
-                <td><span class="${errColor}">${errStr}</span></td>
-                <td>${res.calibrated_heading_correction_deg !== undefined ? (res.calibrated_heading_correction_deg >= 0 ? '+' : '') + res.calibrated_heading_correction_deg + '°' : '--'}</td>
-                <td>${windStr}</td>
-                <td>${da}</td>
-                <td><span class="small text-muted">${mapStr} / ${rpmStr} / ${ffStr} / ${powerStr}</span></td>
-                <td>
+                <td class="text-nowrap"><strong>${c.flight_date}</strong><br><span class="extra-small text-muted">${c.filename}</span></td>
+                <td class="text-nowrap">${formatMMSS(c.start_time)}-${formatMMSS(c.end_time)}</td>
+                <td class="text-nowrap">${res.average_indicated_airspeed_kts || '--'}</td>
+                <td class="text-nowrap">${res.average_calibrated_airspeed_kts || '--'}</td>
+                <td class="text-nowrap"><span class="text-muted">${res.uncorrected_average_true_airspeed_kts || '--'}</span></td>
+                <td class="text-nowrap"><span class="text-body-emphasis fw-bold">${res.corrected_average_true_airspeed_kts || '--'} kt</span></td>
+                <td class="text-nowrap"><span class="${errColor}">${errStr}</span></td>
+                <td class="text-nowrap">${res.calibrated_heading_correction_deg !== undefined ? (res.calibrated_heading_correction_deg >= 0 ? '+' : '') + res.calibrated_heading_correction_deg + '°' : '--'}</td>
+                <td class="text-nowrap">${windStr}</td>
+                <td class="text-nowrap">${da}</td>
+                <td><span class="extra-small text-muted text-nowrap">${mapStr} | ${rpmStr} | ${ffStr} | ${powerStr}</span></td>
+                <td class="text-nowrap">
                     <div class="btn-group btn-group-sm">
-                        <button class="btn btn-outline-primary" onclick="openFlightInAnalyzer('${c.filename}')" title="Analyze Flight">
+                        <button class="btn btn-outline-primary py-0 px-1" onclick="openFlightInAnalyzer('${c.filename}')" title="Analyze Flight">
                             <i class="bi bi-play-circle"></i>
                         </button>
-                        <button class="btn btn-outline-danger" onclick="deleteAirspeedCalibration(${c.id})" title="Delete Calibration">
+                        <button class="btn btn-outline-danger py-0 px-1" onclick="deleteAirspeedCalibration(${c.id})" title="Delete Calibration">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>
