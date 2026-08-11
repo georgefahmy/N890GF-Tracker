@@ -200,23 +200,36 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
 
 def extract_engine_settings(maneuver_df):
     """
-    Extracts mean engine parameters during the maneuver segment:
-    Manifold Pressure, RPM, Fuel Flow, and Percent Power.
+    Extracts mean engine parameters specifically averaged over the selected maneuver segment
+    (between start_time and end_time): Manifold Pressure, RPM, Fuel Flow, and Percent Power.
     """
     def get_avg(possible_cols):
         for col in possible_cols:
             if col in maneuver_df.columns:
                 series = pd.to_numeric(maneuver_df[col], errors="coerce").dropna()
-                if not series.empty:
-                    val = float(series.mean())
+                valid = series[series > 0]
+                if not valid.empty:
+                    val = float(valid.mean())
                     if not (np.isnan(val) or np.isinf(val)):
                         return round(val, 1)
         return None
 
-    map_val = get_avg(["Manifold Pressure (inHg)", "map_inhg", "MAP", "Manifold Pressure"])
-    rpm_val = get_avg(["RPM", "rpm", "RPM L", "RPM R"])
-    ff_val = get_avg(["Total Fuel Flow (gal/hr)", "fuel_flow", "Fuel Flow 1 (gal/hr)", "Fuel Flow"])
-    power_val = get_avg(["Percent Power", "percent_power", "Power (%)", "POWER"])
+    map_val = get_avg([
+        "Manifold Pressure (inHg)", "MAP (inHg)", "map_inhg", "MAP",
+        "Manifold Pressure", "Engine MAP", "MAP 1"
+    ])
+    rpm_val = get_avg([
+        "RPM", "rpm", "RPM L", "RPM R", "Engine Speed", "RPM 1",
+        "Propeller RPM", "TACH"
+    ])
+    ff_val = get_avg([
+        "Total Fuel Flow (gal/hr)", "Fuel Flow (gal/hr)", "Fuel Flow 1 (gal/hr)",
+        "fuel_flow", "Fuel Flow", "FF (gal/hr)", "FF"
+    ])
+    power_val = get_avg([
+        "Percent Power", "percent_power", "Power (%)", "POWER",
+        "Engine Power (%)", "Power"
+    ])
 
     return {
         "manifold_pressure_inhg": map_val,

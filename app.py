@@ -2487,12 +2487,13 @@ def api_airspeed_calibration():
         flight_data = df[df["Flight ID"] == flight_id].copy().fillna(0)
 
         # Retain optional engine setting columns if present in flight_data
-        engine_cols = [
-            col for col in [
-                "Manifold Pressure (inHg)", "RPM", "RPM L", "Total Fuel Flow (gal/hr)",
-                "Fuel Flow 1 (gal/hr)", "Percent Power"
-            ] if col in flight_data.columns
+        possible_engine_cols = [
+            "Manifold Pressure (inHg)", "MAP (inHg)", "MAP", "map_inhg", "Manifold Pressure", "Engine MAP", "MAP 1",
+            "RPM", "rpm", "RPM L", "RPM R", "Engine Speed", "RPM 1", "Propeller RPM", "TACH",
+            "Total Fuel Flow (gal/hr)", "Fuel Flow (gal/hr)", "Fuel Flow 1 (gal/hr)", "fuel_flow", "Fuel Flow", "FF (gal/hr)", "FF",
+            "Percent Power", "percent_power", "Power (%)", "POWER", "Engine Power (%)", "Power"
         ]
+        engine_cols = [col for col in possible_engine_cols if col in flight_data.columns]
 
         as_cal_df = flight_data.rename(
             columns={
