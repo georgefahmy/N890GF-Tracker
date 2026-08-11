@@ -403,6 +403,8 @@ function submitAirspeedCalibration() {
             windStr = `${resObj.native_wind_direction_deg}° @ ${resObj.native_wind_speed_kts} kts`;
         }
 
+        const magVarStr = resObj.magnetic_variation_deg !== undefined ? (resObj.magnetic_variation_deg >= 0 ? '+' : '') + resObj.magnetic_variation_deg + '°' : '0.0°';
+
         const metricsGrid = document.getElementById('asCalMetricsGrid');
         if (metricsGrid) {
             metricsGrid.innerHTML = `
@@ -420,20 +422,20 @@ function submitAirspeedCalibration() {
                 </div>
                 <div class="col-6 col-md-4">
                     <div class="p-2 bg-light rounded text-center">
-                        <div class="text-muted extra-small">HDG Correction</div>
+                        <div class="text-muted extra-small">Compass HDG Bias</div>
                         <div class="fw-bold fs-6 text-secondary">${resObj.calibrated_heading_correction_deg !== undefined ? (resObj.calibrated_heading_correction_deg >= 0 ? '+' : '') + resObj.calibrated_heading_correction_deg + '°' : 'N/A'}</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="p-2 bg-light rounded text-center">
+                        <div class="text-muted extra-small">Mag Variation</div>
+                        <div class="fw-bold fs-6 text-info">${magVarStr}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-4">
                     <div class="p-2 bg-light rounded text-center">
                         <div class="text-muted extra-small">Wind Dir / Speed</div>
                         <div class="fw-bold fs-6 text-dark">${windStr}</div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4">
-                    <div class="p-2 bg-light rounded text-center">
-                        <div class="text-muted extra-small">Uncorrected TAS</div>
-                        <div class="fw-bold fs-6 text-secondary">${resObj.uncorrected_average_true_airspeed_kts !== undefined ? resObj.uncorrected_average_true_airspeed_kts + ' kts' : 'N/A'}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-4">

@@ -2510,6 +2510,11 @@ def api_airspeed_calibration():
             }
         )
 
+        possible_mag_cols = [
+            "Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar"
+        ]
+        mag_cols = [col for col in possible_mag_cols if col in flight_data.columns]
+
         essential_columns = [
             "session_time",
             "ias",
@@ -2521,7 +2526,7 @@ def api_airspeed_calibration():
             "baro",
             "Wind Speed (knots)",
             "Wind Direction (deg)",
-        ] + [c for c in engine_cols if c in as_cal_df.columns]
+        ] + [c for c in engine_cols if c in as_cal_df.columns] + [c for c in mag_cols if c in as_cal_df.columns]
 
         as_cal_df = as_cal_df[essential_columns].copy()
         as_cal_df = as_cal_df.dropna(subset=["session_time", "ias", "press_alt", "hdg", "gps_gs", "gps_trk", "oat", "baro"])
@@ -2563,11 +2568,15 @@ def api_airspeed_calibration():
         ff_str = f"{ff_val:.1f} gal/hr" if ff_val is not None else "N/A"
         power_str = f"{power_val:.1f} %" if power_val is not None else "N/A"
 
+        mag_var_val = output.get("magnetic_variation_deg", 0.0)
+        mag_var_str = f"{mag_var_val:+.2f} deg" if mag_var_val != 0 else "0.0 deg"
+
         summary = (
             f"Data Points Analyzed:  {output['analyzed_data_points']}\n"
             f"CAS Correction:        {output['calibrated_airspeed_correction_kts']} kts\n"
             f"Airspeed Error:        {output['airspeed_error_kts']} kts\n"
             f"HDG Correction:        {output['calibrated_heading_correction_deg']} deg\n"
+            f"Magnetic Variation:    {mag_var_str}\n"
             f"Wind Direction:        {output['wind_direction_deg']} deg (Avg: {avg_wind_dir:.1f})\n"
             f"Wind Speed:            {output['wind_speed_kts']} kts (Avg: {avg_wind_speed:.1f})\n"
             f"Uncorr. Avg TAS:       {output['uncorrected_average_true_airspeed_kts']} kts\n"

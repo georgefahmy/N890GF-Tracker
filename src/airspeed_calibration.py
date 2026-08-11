@@ -24,8 +24,9 @@ def wind_triangle_residuals(params, df):
     cas = df["ias"] + cas_corr
     tas = cas / np.sqrt(df["sigma"])
 
-    # Calculate True Heading (in radians)
-    true_hdg_rad = np.radians(df["hdg"] + hdg_corr)
+    # Calculate True Heading (incorporating Magnetic Variation + Compass Correction)
+    mag_var = df["mag_var"] if "mag_var" in df.columns else 0.0
+    true_hdg_rad = np.radians(df["hdg"] + mag_var + hdg_corr)
 
     # Aircraft velocity vector components (relative to airmass)
     v_ax = tas * np.sin(true_hdg_rad)
@@ -40,7 +41,7 @@ def wind_triangle_residuals(params, df):
     v_gx_expected = v_ax + v_wx
     v_gy_expected = v_ay + v_wy
 
-    # Measured GPS Ground velocity components
+    # Measured GPS Ground velocity components (GPS track is True North)
     trk_rad = np.radians(df["gps_trk"])
     v_gx_meas = df["gps_gs"] * np.sin(trk_rad)
     v_gy_meas = df["gps_gs"] * np.cos(trk_rad)
@@ -130,6 +131,17 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         maneuver_df["press_alt"], oat_c
     )
 
+    # Extract Magnetic Variation (deg) if present in columns
+    mag_var = 0.0
+    for col in ["Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar", "mag_var"]:
+        if col in maneuver_df.columns:
+            s = pd.to_numeric(maneuver_df[col], errors="coerce").dropna()
+            if not s.empty:
+                mag_var = float(s.mean())
+                break
+
+    maneuver_df["mag_var"] = mag_var
+
     # Check for native avionics wind speed and direction in columns
     native_w_spd = float(maneuver_df["Wind Speed (knots)"].mean()) if "Wind Speed (knots)" in maneuver_df.columns and not maneuver_df["Wind Speed (knots)"].dropna().empty else 0.0
     native_w_dir = float(maneuver_df["Wind Direction (deg)"].mean()) if "Wind Direction (deg)" in maneuver_df.columns and not maneuver_df["Wind Direction (deg)"].dropna().empty else 0.0
@@ -138,7 +150,7 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
     init_w_dir = native_w_dir if native_w_dir > 0 else 180.0
 
     initial_guess = [0.0, 0.0, init_w_spd, init_w_dir]
-    bounds = ((-20, 20), (-15, 15), (0, 150), (0, 360))
+    bounds = ((-20, 20), (-10, 10), (0, 150), (0, 360))
 
     result = minimize(
         wind_triangle_residuals,
@@ -172,13 +184,14 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
     # Calculate UNCORRECTED TAS
     uncorrected_tas_array = maneuver_df["ias"] / np.sqrt(maneuver_df["sigma"])
 
-    calibrated_hdg_array = (maneuver_df["hdg"] + hdg_corr) % 360
+    calibrated_hdg_array = (maneuver_df["hdg"] + mag_var + hdg_corr) % 360
 
     engine_settings = extract_engine_settings(maneuver_df)
 
     results = {
         "calibrated_airspeed_correction_kts": round(cas_corr, 2),
         "calibrated_heading_correction_deg": round(hdg_corr, 2),
+        "magnetic_variation_deg": round(mag_var, 2),
         "airspeed_error_kts": round(-cas_corr, 2),
         "wind_direction_deg": round(w_dir, 1),
         "wind_speed_kts": round(w_spd, 1),
