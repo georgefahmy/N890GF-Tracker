@@ -880,8 +880,8 @@ def calc_per_hour_cost():
     total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
     latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
     total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
-    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     today = datetime.now()
+    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar() or today
     years_diff = today.year - first_flight_date.year
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
@@ -892,8 +892,8 @@ def calc_per_hour_cost():
     engine_overhaul_per_hour = engine_overhaul / 2000
     prop_overhaul = 3500
     prop_overhaul_per_hour = (
-        prop_overhaul / (hours_per_year_est * 72 / 12)
-        if 1800 > (hours_per_year_est * 72 / 12)
+        prop_overhaul / (hours_per_year_est * 6)
+        if (hours_per_year_est > 0 and 1800 > (hours_per_year_est * 6))
         else prop_overhaul / 1800
     )
     oil_change_interval = 50
@@ -1099,8 +1099,8 @@ def index():
     total_gallons = calc_total_gallons(stats_data)
     total_air_time = calc_total_air_time(stats_data)
     print(total_air_time)
-    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     today = datetime.now()
+    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar() or today
     years_diff = today.year - first_flight_date.year
     months_diff = today.month - first_flight_date.month
     total_months = (years_diff * 12) + months_diff
@@ -2204,9 +2204,12 @@ def api_analyze_flight():
         flight_data = df[df["Flight ID"] == target_flight].copy()
         flight_data = flight_data.replace([np.inf, -np.inf], 0)
         flight_data = flight_data.fillna(0)
-        flight_date = datetime.strptime(
-            "-".join(flight_data["Flight ID"][0].split("-")[:-1]), "%Y-%m-%d %H:%M:%S"
-        )
+        try:
+            flight_date = datetime.strptime(
+                "-".join(flight_data["Flight ID"].iloc[0].split("-")[:-1]), "%Y-%m-%d %H:%M:%S"
+            )
+        except Exception:
+            flight_date = datetime.now()
         # --- Apply Filters ---
         filters_json = request.form.get("filters")
         if filters_json:
@@ -2466,17 +2469,16 @@ def api_analyze_flight():
                 return round(series.max(), 1) if not series.empty else "N/A"
             return "N/A"
 
-        fuel_price = validate_float(
-            [
-                fuel_log.price_per_gallon
-                for fuel_log in fuel_logs
-                if fuel_log.date <= flight_date
-            ][0]
-        )
-        distance_traveled_miles = distance_traveled[-1] / 5280
-        avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2)
+        matching_fuel_prices = [
+            fuel_log.price_per_gallon
+            for fuel_log in fuel_logs
+            if fuel_log.date <= flight_date
+        ]
+        fuel_price = validate_float(matching_fuel_prices[0]) if matching_fuel_prices else 0.0
+        distance_traveled_miles = distance_traveled[-1] / 5280 if len(distance_traveled) > 0 else 0.0
+        avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2) if duration > 0 else 0.0
         per_hour_cost, _, _ = calc_per_hour_cost()
-        actual_cost_per_hour = round(per_hour_cost * (duration / 3600), 2)
+        actual_cost_per_hour = round(per_hour_cost * (duration / 3600), 2) if duration > 0 else 0.0
         stats = {
             "flight_id": target_flight,
             "duration_min": round(duration / 60, 2),
@@ -2500,7 +2502,9 @@ def api_analyze_flight():
         # Query saved airspeed calibrations for this flight
         saved_calibrations = []
         try:
-            cals = AirspeedCalibration.query.filter_by(filename=target_flight).order_by(AirspeedCalibration.start_time).all()
+            cals = AirspeedCalibration.query.filter(
+                (AirspeedCalibration.filename == saved_filename) | (AirspeedCalibration.filename == target_flight)
+            ).order_by(AirspeedCalibration.start_time).all()
             saved_calibrations = [c.to_dict() for c in cals]
         except Exception as cal_err:
             print("Error querying saved calibrations:", cal_err)
@@ -2516,6 +2520,8 @@ def api_analyze_flight():
         return jsonify(safe_response)
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         print(f"Analysis Error: {e}")
         return jsonify({"error": str(e)}), 500
 
@@ -2699,7 +2705,7 @@ def api_airspeed_calibration():
         # Persist / Update AirspeedCalibration database record
         saved_calibrations = []
         try:
-            filename = data.get("filename") or flight_id
+            filename = saved_filename
             if filename:
                 existing_cal = AirspeedCalibration.query.filter(
                     AirspeedCalibration.filename == filename,
