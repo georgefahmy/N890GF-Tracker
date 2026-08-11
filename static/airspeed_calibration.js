@@ -614,15 +614,16 @@ function deleteAirspeedCalibration(calId) {
                 }
                 renderSavedAirspeedCalibrations(rem);
 
-                // If on multi-flight stats page, update local state & re-render
-                if (window.allFlightStats) {
-                    for (let f of window.allFlightStats) {
+                // If on multi-flight stats page, update local globalFlights state & re-render table
+                const flights = window.globalFlights || window.allFlightStats;
+                if (flights) {
+                    for (let f of flights) {
                         if (f.saved_calibrations && f.saved_calibrations.some(c => c.id === calId)) {
                             f.saved_calibrations = f.saved_calibrations.filter(c => c.id !== calId);
                             f.has_calibration = f.saved_calibrations.length > 0;
                         }
                     }
-                    if (window.filterAndRenderTable) filterAndRenderTable();
+                    if (window.filterAndRenderTable) window.filterAndRenderTable();
                 }
             } else if (data.error) {
                 alert("Error deleting calibration: " + data.error);

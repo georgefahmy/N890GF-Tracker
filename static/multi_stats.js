@@ -22,7 +22,7 @@ function loadMultiFlightStats() {
         .then(r => r.json())
         .then(data => {
             if (statusEl) statusEl.style.display = "none";
-            globalFlights = data.flights || [];
+            window.globalFlights = globalFlights = data.flights || [];
 
             try {
                 renderFleetTotals(data.totals || {});
@@ -344,3 +344,5 @@ function openFlightInAnalyzer(filename) {
         window.location.href = `/analyzer?flight=${encodeURIComponent(filename)}`;
     }
 }
+
+window.filterAndRenderTable = filterAndRenderTable;
