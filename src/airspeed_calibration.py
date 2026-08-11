@@ -113,11 +113,31 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
             f"Not enough data points between {start_time}s and {end_time}s. Minimum 10 points required."
         )
 
+    # Robust OAT handling (°C vs °F)
+    if "oat_c" in maneuver_df.columns:
+        oat_c = pd.to_numeric(maneuver_df["oat_c"], errors="coerce")
+    elif "oat" in maneuver_df.columns:
+        oat_vals = pd.to_numeric(maneuver_df["oat"], errors="coerce")
+        # If mean OAT > 45, assume values are in °F and convert to °C
+        if oat_vals.dropna().mean() > 45.0:
+            oat_c = (oat_vals - 32.0) * 5.0 / 9.0
+        else:
+            oat_c = oat_vals
+    else:
+        oat_c = pd.Series([15.0] * len(maneuver_df), index=maneuver_df.index)
+
     maneuver_df["sigma"] = calculate_density_ratio(
-        maneuver_df["press_alt"], (maneuver_df["oat"] - 32.0) * 5.0 / 9.0
+        maneuver_df["press_alt"], oat_c
     )
 
-    initial_guess = [0.0, 0.0, 10.0, 180.0]
+    # Check for native avionics wind speed and direction in columns
+    native_w_spd = float(maneuver_df["Wind Speed (knots)"].mean()) if "Wind Speed (knots)" in maneuver_df.columns and not maneuver_df["Wind Speed (knots)"].dropna().empty else 0.0
+    native_w_dir = float(maneuver_df["Wind Direction (deg)"].mean()) if "Wind Direction (deg)" in maneuver_df.columns and not maneuver_df["Wind Direction (deg)"].dropna().empty else 0.0
+
+    init_w_spd = native_w_spd if native_w_spd > 0 else 10.0
+    init_w_dir = native_w_dir if native_w_dir > 0 else 180.0
+
+    initial_guess = [0.0, 0.0, init_w_spd, init_w_dir]
     bounds = ((-20, 20), (-15, 15), (0, 150), (0, 360))
 
     result = minimize(
@@ -133,8 +153,17 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         return None
 
     cas_corr, hdg_corr, w_spd, w_dir = result.x
-
     w_dir = w_dir % 360
+
+    # If optimized wind speed is ~0 and native wind is available, use native wind values
+    if w_spd < 0.5 and native_w_spd > 0.5:
+        w_spd = native_w_spd
+        w_dir = native_w_dir
+
+    # Calculate heading span in maneuver segment
+    hdg_diffs = np.diff(np.sort(maneuver_df["hdg"].values % 360))
+    max_gap = np.max(np.append(hdg_diffs, (360 + maneuver_df["hdg"].min() % 360) - (maneuver_df["hdg"].max() % 360))) if len(hdg_diffs) > 0 else 360
+    heading_span = max(0, min(360, round(360 - max_gap, 1)))
 
     # Calculate corrected TAS
     cas = maneuver_df["ias"] + cas_corr
@@ -153,6 +182,9 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         "airspeed_error_kts": round(-cas_corr, 2),
         "wind_direction_deg": round(w_dir, 1),
         "wind_speed_kts": round(w_spd, 1),
+        "native_wind_direction_deg": round(native_w_dir, 1),
+        "native_wind_speed_kts": round(native_w_spd, 1),
+        "heading_span_deg": heading_span,
         "uncorrected_average_true_airspeed_kts": round(
             np.mean(uncorrected_tas_array), 2
         ),

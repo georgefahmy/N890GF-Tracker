@@ -382,16 +382,26 @@ function submitAirspeedCalibration() {
             return;
         }
 
+        const resObj = data.results || {};
+        const engObj = data.engine_settings || {};
+
         if (instruction) {
-            instruction.innerHTML = `✅ Calibration calculated for <strong>${formatMMSS(start)}</strong> to <strong>${formatMMSS(end)}</strong>.`;
+            let msg = `✅ Calibration calculated for <strong>${formatMMSS(start)}</strong> to <strong>${formatMMSS(end)}</strong>.`;
+            if (resObj.heading_span_deg !== undefined && resObj.heading_span_deg < 270) {
+                msg += `<br><span class="text-warning fw-bold">⚠️ Notice: Selected segment covers ${resObj.heading_span_deg}° of heading change. For optimal wind triangle calibration, select a full 360° turn segment.</span>`;
+            }
+            instruction.innerHTML = msg;
         }
 
         const summary = data.summary || "No summary returned.";
         if (resultBox) resultBox.innerText = summary;
 
-        // Render structured UI cards
-        const resObj = data.results || {};
-        const engObj = data.engine_settings || {};
+        let windStr = 'N/A';
+        if (resObj.wind_direction_deg !== undefined && resObj.wind_speed_kts !== undefined && resObj.wind_speed_kts > 0) {
+            windStr = `${resObj.wind_direction_deg}° @ ${resObj.wind_speed_kts} kts`;
+        } else if (resObj.native_wind_direction_deg !== undefined && resObj.native_wind_speed_kts !== undefined) {
+            windStr = `${resObj.native_wind_direction_deg}° @ ${resObj.native_wind_speed_kts} kts`;
+        }
 
         const metricsGrid = document.getElementById('asCalMetricsGrid');
         if (metricsGrid) {
@@ -417,7 +427,7 @@ function submitAirspeedCalibration() {
                 <div class="col-6 col-md-4">
                     <div class="p-2 bg-light rounded text-center">
                         <div class="text-muted extra-small">Wind Dir / Speed</div>
-                        <div class="fw-bold fs-6 text-dark">${resObj.wind_direction_deg !== undefined ? resObj.wind_direction_deg + '° @ ' + resObj.wind_speed_kts + ' kts' : 'N/A'}</div>
+                        <div class="fw-bold fs-6 text-dark">${windStr}</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-4">
