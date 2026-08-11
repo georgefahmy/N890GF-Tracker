@@ -118,17 +118,23 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         )
 
     # Robust OAT handling (°C vs °F)
-    if "oat_c" in maneuver_df.columns:
+    if "oat_c" in maneuver_df.columns and not maneuver_df["oat_c"].dropna().empty:
         oat_c = pd.to_numeric(maneuver_df["oat_c"], errors="coerce")
-    elif "oat" in maneuver_df.columns:
+    elif "oat" in maneuver_df.columns and not maneuver_df["oat"].dropna().empty:
         oat_vals = pd.to_numeric(maneuver_df["oat"], errors="coerce")
-        # If mean OAT > 45, assume values are in °F and convert to °C
         if oat_vals.dropna().mean() > 45.0:
             oat_c = (oat_vals - 32.0) * 5.0 / 9.0
         else:
             oat_c = oat_vals
+    elif "OAT (deg C)" in maneuver_df.columns:
+        oat_c = pd.to_numeric(maneuver_df["OAT (deg C)"], errors="coerce")
+    elif "OAT (deg F)" in maneuver_df.columns:
+        oat_vals = pd.to_numeric(maneuver_df["OAT (deg F)"], errors="coerce")
+        oat_c = (oat_vals - 32.0) * 5.0 / 9.0
     else:
         oat_c = pd.Series([15.0] * len(maneuver_df), index=maneuver_df.index)
+
+    oat_c = oat_c.fillna(15.0)
 
     maneuver_df["sigma"] = calculate_density_ratio(
         maneuver_df["press_alt"], oat_c
@@ -149,36 +155,47 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
     native_w_spd = float(maneuver_df["Wind Speed (knots)"].mean()) if "Wind Speed (knots)" in maneuver_df.columns and not maneuver_df["Wind Speed (knots)"].dropna().empty else 0.0
     native_w_dir = float(maneuver_df["Wind Direction (deg)"].mean()) if "Wind Direction (deg)" in maneuver_df.columns and not maneuver_df["Wind Direction (deg)"].dropna().empty else 0.0
 
-    init_w_spd = native_w_spd if native_w_spd > 0 else 10.0
-    init_w_dir = native_w_dir if native_w_dir > 0 else 180.0
-
-    initial_guess = [0.0, 0.0, init_w_spd, init_w_dir]
-    bounds = ((-20, 20), (-10, 10), (0, 150), (0, 360))
-
-    result = minimize(
-        wind_triangle_residuals,
-        initial_guess,
-        args=(maneuver_df,),
-        bounds=bounds,
-        method="L-BFGS-B",
-    )
-
-    if not result.success:
-        print("Optimization failed:", result.message)
-        return None
-
-    cas_corr, hdg_corr, w_spd, w_dir = result.x
-    w_dir = w_dir % 360
-
-    # If optimized wind speed is ~0 and native wind is available, use native wind values
-    if w_spd < 0.5 and native_w_spd > 0.5:
-        w_spd = native_w_spd
-        w_dir = native_w_dir
-
     # Calculate heading span in maneuver segment
     hdg_diffs = np.diff(np.sort(maneuver_df["hdg"].values % 360))
     max_gap = np.max(np.append(hdg_diffs, (360 + maneuver_df["hdg"].min() % 360) - (maneuver_df["hdg"].max() % 360))) if len(hdg_diffs) > 0 else 360
     heading_span = max(0, min(360, round(360 - max_gap, 1)))
+
+    if heading_span >= 180.0 or native_w_spd < 0.5:
+        # Full 4-parameter optimization (cas_corr, hdg_corr, wind_speed, wind_dir)
+        init_w_spd = native_w_spd if native_w_spd > 0 else 10.0
+        init_w_dir = native_w_dir if native_w_dir > 0 else 180.0
+        initial_guess = [0.0, 0.0, init_w_spd, init_w_dir]
+        bounds = ((-20, 20), (-10, 10), (0, 150), (0, 360))
+
+        result = minimize(
+            wind_triangle_residuals,
+            initial_guess,
+            args=(maneuver_df,),
+            bounds=bounds,
+            method="L-BFGS-B",
+        )
+        if result.success:
+            cas_corr, hdg_corr, w_spd, w_dir = result.x
+            w_dir = w_dir % 360
+        else:
+            cas_corr, hdg_corr, w_spd, w_dir = 0.0, 0.0, native_w_spd, native_w_dir
+    else:
+        # Low heading span: 2-parameter optimization fixing wind to native avionics wind
+        def fixed_wind_obj(params, df, f_spd, f_dir):
+            return wind_triangle_residuals([params[0], params[1], f_spd, f_dir], df)
+
+        res_2p = minimize(
+            fixed_wind_obj,
+            [0.0, 0.0],
+            args=(maneuver_df, native_w_spd, native_w_dir),
+            bounds=((-20, 20), (-10, 10)),
+            method="L-BFGS-B",
+        )
+        if res_2p.success:
+            cas_corr, hdg_corr = res_2p.x
+            w_spd, w_dir = native_w_spd, native_w_dir
+        else:
+            cas_corr, hdg_corr, w_spd, w_dir = 0.0, 0.0, native_w_spd, native_w_dir
 
     # Calculate corrected TAS
     cas = maneuver_df["ias"] + cas_corr

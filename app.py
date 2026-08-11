@@ -2495,6 +2495,20 @@ def api_airspeed_calibration():
         ]
         engine_cols = [col for col in possible_engine_cols if col in flight_data.columns]
 
+        # Extract OAT column safely (°C vs °F)
+        oat_c_series = None
+        if "OAT (deg C)" in flight_data.columns:
+            oat_c_series = pd.to_numeric(flight_data["OAT (deg C)"], errors="coerce")
+        elif "OAT (deg F)" in flight_data.columns:
+            oat_f = pd.to_numeric(flight_data["OAT (deg F)"], errors="coerce")
+            oat_c_series = (oat_f - 32.0) * 5.0 / 9.0
+        elif "OAT" in flight_data.columns:
+            oat_val = pd.to_numeric(flight_data["OAT"], errors="coerce")
+            if oat_val.dropna().mean() > 45.0:
+                oat_c_series = (oat_val - 32.0) * 5.0 / 9.0
+            else:
+                oat_c_series = oat_val
+
         as_cal_df = flight_data.rename(
             columns={
                 "Session Time": "session_time",
@@ -2506,12 +2520,18 @@ def api_airspeed_calibration():
                 "Mag Var (deg)": "mag_var",
                 "Mag Variation (deg)": "mag_var",
                 "Magnetic Variation (deg)": "mag_var",
-                "OAT (deg F)": "oat",
                 "Barometer Setting (inHg)": "baro",
                 "Wind Speed (knots)": "Wind Speed (knots)",
                 "Wind Direction (deg)": "Wind Direction (deg)",
             }
         )
+
+        if oat_c_series is not None:
+            as_cal_df["oat_c"] = oat_c_series
+            as_cal_df["oat"] = oat_c_series
+        else:
+            as_cal_df["oat_c"] = 15.0
+            as_cal_df["oat"] = 15.0
 
         possible_mag_cols = [
             "Mag Var (deg)", "Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar", "mag_var"
@@ -2525,6 +2545,7 @@ def api_airspeed_calibration():
             "hdg",
             "gps_gs",
             "gps_trk",
+            "oat_c",
             "oat",
             "baro",
             "Wind Speed (knots)",
@@ -2532,7 +2553,7 @@ def api_airspeed_calibration():
         ] + [c for c in engine_cols if c in as_cal_df.columns] + [c for c in mag_cols if c in as_cal_df.columns]
 
         as_cal_df = as_cal_df[essential_columns].copy()
-        as_cal_df = as_cal_df.dropna(subset=["session_time", "ias", "press_alt", "hdg", "gps_gs", "gps_trk", "oat", "baro"])
+        as_cal_df = as_cal_df.dropna(subset=["session_time", "ias", "press_alt", "hdg", "gps_gs", "gps_trk"])
         as_cal_df = as_cal_df[as_cal_df["ias"] > 55.0]
         as_cal_df = as_cal_df.reset_index(drop=True)
 
