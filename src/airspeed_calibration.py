@@ -34,8 +34,10 @@ def calculate_density_ratio(pressure_alt_ft, oat_c):
 
 def wind_triangle_residuals(params, df):
     """
-    Objective function to minimize.
-    params: [cas_correction, hdg_correction, wind_speed, wind_dir]
+    Objective function for airspeed & wind triangle calibration.
+    Minimizes Ground Speed Residuals according to NTPS / FAA AC 23-8C flight test standards:
+    R = sum((sqrt((v_ax + v_wx)^2 + (v_ay + v_wy)^2) - gps_gs)^2)
+    This prevents cross-track angular noise from artificially suppressing solved True Airspeed.
     """
     cas_corr, hdg_corr, w_spd, w_dir = params
 
@@ -51,25 +53,19 @@ def wind_triangle_residuals(params, df):
     v_ax = tas * np.sin(true_hdg_rad)
     v_ay = tas * np.cos(true_hdg_rad)
 
-    # Wind vector components
+    # Wind velocity vector components (wind blowing FROM w_dir)
     w_dir_rad = np.radians(w_dir)
     v_wx = -w_spd * np.sin(w_dir_rad)
     v_wy = -w_spd * np.cos(w_dir_rad)
 
-    # Expected Ground velocity components
-    v_gx_expected = v_ax + v_wx
-    v_gy_expected = v_ay + v_wy
+    # Calculated Ground Speed magnitude
+    v_gx = v_ax + v_wx
+    v_gy = v_ay + v_wy
+    calc_gs = np.sqrt(v_gx**2 + v_gy**2)
 
-    # Measured GPS Ground velocity components (GPS track is True North)
-    trk_rad = np.radians(df["gps_trk"])
-    v_gx_meas = df["gps_gs"] * np.sin(trk_rad)
-    v_gy_meas = df["gps_gs"] * np.cos(trk_rad)
-
-    # Calculate sum of squared errors
-    error_x = v_gx_expected - v_gx_meas
-    error_y = v_gy_expected - v_gy_meas
-
-    return np.sum(error_x**2 + error_y**2)
+    # Minimize ground speed residuals against measured GPS ground speed
+    gs_error = calc_gs - df["gps_gs"]
+    return np.sum(gs_error**2)
 
 
 def load_flight_log(filepath):
