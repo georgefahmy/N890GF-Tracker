@@ -157,8 +157,8 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
             np.mean(uncorrected_tas_array), 2
         ),
         "corrected_average_true_airspeed_kts": round(np.mean(tas_array), 2),
-        "ts_true_airspeed": tas_array.values,
-        "ts_calibrated_heading": calibrated_hdg_array.values,
+        "ts_true_airspeed": tas_array.tolist() if hasattr(tas_array, "tolist") else list(tas_array),
+        "ts_calibrated_heading": calibrated_hdg_array.tolist() if hasattr(calibrated_hdg_array, "tolist") else list(calibrated_hdg_array),
         "analyzed_data_points": len(maneuver_df),
         "engine_settings": engine_settings,
     }

@@ -341,18 +341,28 @@ def parse_date_safe(value):
 
 def sanitize_for_json(obj):
     """
-    Recursively replace NaN / inf / None values with 0 for safe JSON serialization.
+    Recursively replace NaN / inf / None values with 0 for safe JSON serialization,
+    and convert numpy arrays, numpy scalars, and pandas series to standard Python types.
     """
     import math
 
+    if hasattr(obj, "tolist") and callable(getattr(obj, "tolist")):
+        obj = obj.tolist()
+
+    if isinstance(obj, np.generic):
+        obj = obj.item()
+
     if isinstance(obj, dict):
         return {k: sanitize_for_json(v) for k, v in obj.items()}
-    if isinstance(obj, list):
+    if isinstance(obj, (list, tuple)):
         return [sanitize_for_json(v) for v in obj]
-    if isinstance(obj, float):
-        if math.isnan(obj) or math.isinf(obj):
+    if isinstance(obj, (float, np.floating)):
+        val = float(obj)
+        if math.isnan(val) or math.isinf(val):
             return 0
-        return obj
+        return val
+    if isinstance(obj, (int, np.integer)):
+        return int(obj)
     if obj is None:
         return 0
     return obj

@@ -210,6 +210,20 @@ class TestSanitizeForJson:
         result = sanitize_for_json(data)
         assert result == {"items": [{"val": 0}, {"val": 10}]}
 
+    def test_ndarray_sanitized(self, app):
+        import numpy as np
+        from app import sanitize_for_json
+
+        data = {
+            "arr": np.array([1.5, 2.5, np.nan]),
+            "scalar": np.float64(4.2),
+        }
+        result = sanitize_for_json(data)
+        assert isinstance(result["arr"], list)
+        assert result["arr"] == [1.5, 2.5, 0]
+        assert isinstance(result["scalar"], float)
+        assert result["scalar"] == 4.2
+
 
 class TestComputeNavStatus:
     """Tests for compute_nav_status() — aviation/obstacle database status."""
