@@ -387,8 +387,8 @@ function submitAirspeedCalibration() {
 
         if (instruction) {
             let msg = `✅ Calibration calculated for <strong>${formatMMSS(start)}</strong> to <strong>${formatMMSS(end)}</strong>.`;
-            if (resObj.heading_span_deg !== undefined && resObj.heading_span_deg < 270) {
-                msg += `<br><span class="text-warning fw-bold">⚠️ Notice: Selected segment covers ${resObj.heading_span_deg}° of heading change. For optimal wind triangle calibration, select a full 360° turn segment.</span>`;
+            if (resObj.heading_span_deg !== undefined && resObj.heading_span_deg < 180) {
+                msg += `<br><span class="text-warning fw-bold">⚠️ Notice: Selected segment covers ${resObj.heading_span_deg}° of heading change. For optimal wind triangle calibration, select a 3-leg triangle maneuver or a 360° turn segment.</span>`;
             }
             instruction.innerHTML = msg;
         }

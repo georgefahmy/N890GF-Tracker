@@ -14,6 +14,37 @@ import pytest
 
 
 # =============================================================================
+# Airspeed Calibration (src/airspeed_calibration.py)
+# =============================================================================
+
+
+class TestCalculateHeadingSpan:
+    """Tests for calculate_heading_span()."""
+
+    def test_triangle_maneuver_span(self):
+        from src.airspeed_calibration import calculate_heading_span
+
+        # 3-leg triangle maneuver (120, 240, 360)
+        hdgs = pd.Series([120, 120, 240, 240, 360, 360])
+        span = calculate_heading_span(hdgs)
+        assert span == 240.0
+
+    def test_straight_leg_span(self):
+        from src.airspeed_calibration import calculate_heading_span
+
+        hdgs = pd.Series([90.0, 91.0, 92.0, 90.5])
+        span = calculate_heading_span(hdgs)
+        assert span == 2.0
+
+    def test_full_circle_span(self):
+        from src.airspeed_calibration import calculate_heading_span
+
+        hdgs = pd.Series(np.linspace(0, 359, 360))
+        span = calculate_heading_span(hdgs)
+        assert span >= 358.0
+
+
+# =============================================================================
 # Fuel Estimation (src/fuel_estimate_simple.py)
 # =============================================================================
 

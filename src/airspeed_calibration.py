@@ -3,6 +3,25 @@ import pandas as pd
 from scipy.optimize import minimize
 
 
+def calculate_heading_span(hdg_series):
+    """
+    Calculates total angular heading coverage (span) in degrees [0, 360]
+    by finding the maximum angular gap between unique modulo-360 headings.
+    """
+    valid_hdgs = pd.to_numeric(hdg_series, errors="coerce").dropna().values
+    if len(valid_hdgs) < 2:
+        return 0.0
+
+    hdgs = np.sort(np.unique(np.mod(valid_hdgs, 360)))
+    if len(hdgs) < 2:
+        return 0.0
+
+    gaps = np.diff(hdgs)
+    wrap_gap = (360.0 + hdgs[0]) - hdgs[-1]
+    max_gap = np.max(np.append(gaps, wrap_gap))
+    return max(0.0, min(360.0, round(360.0 - max_gap, 1)))
+
+
 def calculate_density_ratio(pressure_alt_ft, oat_c):
     """Calculates the density ratio (sigma) based on standard atmosphere physics."""
     delta = (1 - 6.87559e-6 * pressure_alt_ft) ** 5.25588
@@ -156,9 +175,7 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
     native_w_dir = float(maneuver_df["Wind Direction (deg)"].mean()) if "Wind Direction (deg)" in maneuver_df.columns and not maneuver_df["Wind Direction (deg)"].dropna().empty else 0.0
 
     # Calculate heading span in maneuver segment
-    hdg_diffs = np.diff(np.sort(maneuver_df["hdg"].values % 360))
-    max_gap = np.max(np.append(hdg_diffs, (360 + maneuver_df["hdg"].min() % 360) - (maneuver_df["hdg"].max() % 360))) if len(hdg_diffs) > 0 else 360
-    heading_span = max(0, min(360, round(360 - max_gap, 1)))
+    heading_span = calculate_heading_span(maneuver_df["hdg"])
 
     if heading_span >= 180.0 or native_w_spd < 0.5:
         # Full 4-parameter optimization (cas_corr, hdg_corr, wind_speed, wind_dir)
