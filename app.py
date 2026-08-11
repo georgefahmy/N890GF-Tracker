@@ -2524,8 +2524,11 @@ def api_analyze_flight():
         # Query saved airspeed calibrations for this flight
         saved_calibrations = []
         try:
+            base_fname = os.path.basename(saved_filename)
             cals = AirspeedCalibration.query.filter(
-                (AirspeedCalibration.filename == saved_filename) | (AirspeedCalibration.filename == target_flight)
+                (AirspeedCalibration.filename == saved_filename) |
+                (AirspeedCalibration.filename == base_fname) |
+                (AirspeedCalibration.filename == target_flight)
             ).order_by(AirspeedCalibration.start_time).all()
             saved_calibrations = [c.to_dict() for c in cals]
         except Exception as cal_err:
@@ -2727,10 +2730,10 @@ def api_airspeed_calibration():
         # Persist / Update AirspeedCalibration database record
         saved_calibrations = []
         try:
-            filename = saved_filename
+            filename = os.path.basename(saved_filename) if saved_filename else ""
             if filename:
                 existing_cal = AirspeedCalibration.query.filter(
-                    AirspeedCalibration.filename == filename,
+                    (AirspeedCalibration.filename == filename) | (AirspeedCalibration.filename == saved_filename),
                     db.func.abs(AirspeedCalibration.start_time - start_time) < 1.0,
                     db.func.abs(AirspeedCalibration.end_time - end_time) < 1.0,
                 ).first()
@@ -2763,7 +2766,9 @@ def api_airspeed_calibration():
                 db.session.add(cal_record)
                 db.session.commit()
 
-                cals = AirspeedCalibration.query.filter_by(filename=filename).order_by(AirspeedCalibration.start_time).all()
+                cals = AirspeedCalibration.query.filter(
+                    (AirspeedCalibration.filename == filename) | (AirspeedCalibration.filename == saved_filename)
+                ).order_by(AirspeedCalibration.start_time).all()
                 saved_calibrations = [c.to_dict() for c in cals]
         except Exception as db_err:
             print("Error saving airspeed calibration record to DB:", db_err)
