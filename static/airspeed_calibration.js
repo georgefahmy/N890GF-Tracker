@@ -521,6 +521,11 @@ function renderSavedAirspeedCalibrations(calsList) {
     const statsList = document.getElementById('statsList');
     if (!statsList) return;
 
+    const statsCard = document.getElementById('statsCard');
+    const statsPlaceholder = document.getElementById('statsPlaceholder');
+    if (statsCard) statsCard.classList.remove('d-none');
+    if (statsPlaceholder) statsPlaceholder.classList.add('d-none');
+
     let existing = document.getElementById('airspeed-summary-block');
     if (existing) existing.remove();
 
@@ -597,7 +602,7 @@ function renderSavedAirspeedCalibrations(calsList) {
 }
 
 function deleteAirspeedCalibration(calId) {
-    if (!confirm("Are you sure you want to delete this saved airspeed calibration?")) return;
+    if (!confirm("Are you sure you want to delete this saved airspeed calibration from the database?")) return;
     fetch(`/api/delete_airspeed_calibration/${calId}`, { method: 'POST' })
         .then(res => res.json())
         .then(data => {
@@ -608,6 +613,17 @@ function deleteAirspeedCalibration(calId) {
                     AppState.currentFlightStats.saved_calibrations = rem;
                 }
                 renderSavedAirspeedCalibrations(rem);
+
+                // If on multi-flight stats page, update local state & re-render
+                if (window.allFlightStats) {
+                    for (let f of window.allFlightStats) {
+                        if (f.saved_calibrations && f.saved_calibrations.some(c => c.id === calId)) {
+                            f.saved_calibrations = f.saved_calibrations.filter(c => c.id !== calId);
+                            f.has_calibration = f.saved_calibrations.length > 0;
+                        }
+                    }
+                    if (window.filterAndRenderTable) filterAndRenderTable();
+                }
             } else if (data.error) {
                 alert("Error deleting calibration: " + data.error);
             }
