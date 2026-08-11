@@ -2503,6 +2503,9 @@ def api_airspeed_calibration():
                 "Magnetic Heading (deg)": "hdg",
                 "Ground Speed (knots)": "gps_gs",
                 "Ground Track (deg)": "gps_trk",
+                "Mag Var (deg)": "mag_var",
+                "Mag Variation (deg)": "mag_var",
+                "Magnetic Variation (deg)": "mag_var",
                 "OAT (deg F)": "oat",
                 "Barometer Setting (inHg)": "baro",
                 "Wind Speed (knots)": "Wind Speed (knots)",
@@ -2511,9 +2514,9 @@ def api_airspeed_calibration():
         )
 
         possible_mag_cols = [
-            "Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar"
+            "Mag Var (deg)", "Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar", "mag_var"
         ]
-        mag_cols = [col for col in possible_mag_cols if col in flight_data.columns]
+        mag_cols = [col for col in possible_mag_cols if col in flight_data.columns or col in as_cal_df.columns]
 
         essential_columns = [
             "session_time",

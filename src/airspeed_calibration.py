@@ -68,6 +68,9 @@ def load_flight_log(filepath):
             "Magnetic Heading (deg)": "hdg",
             "Ground Speed (knots)": "gps_gs",
             "Ground Track (deg)": "gps_trk",
+            "Mag Var (deg)": "mag_var",
+            "Mag Variation (deg)": "mag_var",
+            "Magnetic Variation (deg)": "mag_var",
             "OAT (deg C)": "oat",
             "Barometer Setting (inHg)": "baro",
         }
@@ -82,7 +85,7 @@ def load_flight_log(filepath):
         "gps_trk",
         "oat",
         "baro",
-    ]
+    ] + ([c for c in ["mag_var"] if c in df.columns])
     df = df[essential_columns].copy()
 
     df = df.dropna()
@@ -133,7 +136,7 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
 
     # Extract Magnetic Variation (deg) if present in columns
     mag_var = 0.0
-    for col in ["Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar", "mag_var"]:
+    for col in ["mag_var", "Mag Var (deg)", "Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar"]:
         if col in maneuver_df.columns:
             s = pd.to_numeric(maneuver_df[col], errors="coerce").dropna()
             if not s.empty:
