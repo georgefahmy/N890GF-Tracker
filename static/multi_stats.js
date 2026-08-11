@@ -494,3 +494,183 @@ function sortAirspeedCalsTable(key) {
 window.openAirspeedCalibrationsModal = openAirspeedCalibrationsModal;
 window.renderAirspeedCalsModalTable = renderAirspeedCalsModalTable;
 window.sortAirspeedCalsTable = sortAirspeedCalsTable;
+
+// --- TAS VS % POWER (DENSITY ALTITUDE NORMALIZED) PLOT ---
+function toggleAirspeedPowerPlot() {
+    const card = document.getElementById("airspeedPowerPlotCard");
+    if (!card) return;
+    const isHidden = card.classList.contains("d-none");
+    if (isHidden) {
+        card.classList.remove("d-none");
+        renderAirspeedPowerPlot();
+    } else {
+        card.classList.add("d-none");
+    }
+}
+
+function renderAirspeedPowerPlot() {
+    const div = document.getElementById("airspeedPowerPlotDiv");
+    const statsDiv = document.getElementById("airspeedPowerPlotStats");
+    if (!div) return;
+
+    const flights = window.globalFlights || [];
+    let dataPoints = [];
+
+    flights.forEach(f => {
+        if (f.saved_calibrations && f.saved_calibrations.length > 0) {
+            f.saved_calibrations.forEach(c => {
+                const res = c.results || {};
+                const eng = c.engine_settings || {};
+
+                const power = eng.percent_power;
+                const corrTas = res.corrected_average_true_airspeed_kts;
+                const da = res.density_altitude_ft !== undefined ? res.density_altitude_ft : 0;
+                const ias = res.average_indicated_airspeed_kts;
+                const cas = res.average_calibrated_airspeed_kts;
+
+                if (power !== undefined && power !== null && power > 0 && corrTas !== undefined && corrTas !== null && corrTas > 0) {
+                    const sigma = Math.pow(Math.max(0.1, 1 - 6.87559e-6 * da), 4.25588);
+                    const normTas = corrTas * Math.sqrt(sigma);
+
+                    dataPoints.push({
+                        power: Number(power),
+                        corrTas: Number(corrTas),
+                        normTas: Number(normTas.toFixed(1)),
+                        da: Number(da),
+                        ias: ias,
+                        cas: cas,
+                        flight_date: f.date,
+                        filename: f.filename,
+                        id: c.id,
+                        segment: `${formatMMSS(c.start_time)}-${formatMMSS(c.end_time)}`
+                    });
+                }
+            });
+        }
+    });
+
+    if (dataPoints.length === 0) {
+        div.innerHTML = '<div class="text-center text-muted p-5">No saved calibrations with recorded % Power and TAS to plot.</div>';
+        if (statsDiv) statsDiv.innerHTML = '';
+        return;
+    }
+
+    const useNormalized = document.getElementById("normTasToggle")?.checked || false;
+
+    dataPoints.sort((a, b) => a.power - b.power);
+
+    const xVals = dataPoints.map(p => p.power);
+    const yVals = dataPoints.map(p => useNormalized ? p.normTas : p.corrTas);
+    const daVals = dataPoints.map(p => p.da);
+
+    const hoverTexts = dataPoints.map(p => 
+        `<b>${p.flight_date}</b> (${p.segment})<br>` +
+        `<b>% Power:</b> ${p.power}%<br>` +
+        `<b>Corrected TAS:</b> ${p.corrTas} kts<br>` +
+        `<b>Normalized TAS (Sea Level):</b> ${p.normTas} kts<br>` +
+        `<b>Density Altitude:</b> ${p.da.toLocaleString()} ft<br>` +
+        `<b>CAS / IAS:</b> ${p.cas || '--'} / ${p.ias || '--'} kts`
+    );
+
+    let n = xVals.length;
+    let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0, sumYY = 0;
+    for (let i = 0; i < n; i++) {
+        sumX += xVals[i];
+        sumY += yVals[i];
+        sumXY += xVals[i] * yVals[i];
+        sumXX += xVals[i] * xVals[i];
+        sumYY += yVals[i] * yVals[i];
+    }
+    let slope = n > 1 && (n * sumXX - sumX * sumX) !== 0 ? (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX) : 0;
+    let intercept = n > 1 ? (sumY - slope * sumX) / n : 0;
+    
+    let r2 = 0;
+    let num = (n * sumXY - sumX * sumY);
+    let den = Math.sqrt((n * sumXX - sumX * sumX) * (n * sumYY - sumY * sumY));
+    if (den !== 0) r2 = Math.pow(num / den, 2);
+
+    const minX = Math.min(...xVals) - 5;
+    const maxX = Math.max(...xVals) + 5;
+    const fitX = [minX, maxX];
+    const fitY = [minX * slope + intercept, maxX * slope + intercept];
+
+    const scatterTrace = {
+        x: xVals,
+        y: yVals,
+        mode: 'markers',
+        type: 'scatter',
+        name: 'Calibration Points',
+        text: hoverTexts,
+        hoverinfo: 'text',
+        marker: {
+            size: 12,
+            color: daVals,
+            colorscale: 'Viridis',
+            colorbar: {
+                title: 'Density Alt (ft)',
+                titleside: 'right',
+                len: 0.8
+            },
+            showscale: true,
+            line: { color: '#ffffff', width: 1.5 }
+        }
+    };
+
+    const fitTrace = {
+        x: fitX,
+        y: fitY,
+        mode: 'lines',
+        type: 'scatter',
+        name: `Trendline (R² = ${r2.toFixed(3)})`,
+        line: { color: '#dc3545', width: 2, dash: 'dash' }
+    };
+
+    const isDarkMode = document.body.classList.contains("dark-mode") || document.documentElement.getAttribute("data-bs-theme") === "dark";
+
+    const layout = {
+        title: {
+            text: useNormalized 
+                ? 'Sea-Level Normalized TAS vs. Engine % Power (Density Altitude Normalized)' 
+                : 'Corrected TAS vs. Engine % Power (Color-Coded by Density Altitude)',
+            font: { size: 14, color: isDarkMode ? '#f8f9fa' : '#212529' }
+        },
+        xaxis: {
+            title: 'Engine % Power (%)',
+            gridcolor: isDarkMode ? '#343a40' : '#e9ecef',
+            zerolinecolor: isDarkMode ? '#495057' : '#ced4da',
+            color: isDarkMode ? '#f8f9fa' : '#212529'
+        },
+        yaxis: {
+            title: useNormalized ? 'Normalized TAS @ Sea Level (kts)' : 'Corrected TAS (kts)',
+            gridcolor: isDarkMode ? '#343a40' : '#e9ecef',
+            zerolinecolor: isDarkMode ? '#495057' : '#ced4da',
+            color: isDarkMode ? '#f8f9fa' : '#212529'
+        },
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent',
+        margin: { l: 60, r: 60, t: 40, b: 50 },
+        showlegend: true,
+        legend: {
+            orientation: 'h',
+            y: 1.15,
+            x: 0,
+            font: { color: isDarkMode ? '#f8f9fa' : '#212529' }
+        }
+    };
+
+    Plotly.newPlot(div, [scatterTrace, fitTrace], layout, { responsive: true });
+
+    if (statsDiv) {
+        const avgDA = Math.round(daVals.reduce((a, b) => a + b, 0) / n);
+        statsDiv.innerHTML = `
+            <strong>Performance Linear Fit:</strong> 
+            TAS = <strong>${slope.toFixed(2)}</strong> × (% Power) ${intercept >= 0 ? '+' : '-'} <strong>${Math.abs(intercept).toFixed(1)}</strong> kts 
+            | Correlation (R²): <strong>${r2.toFixed(3)}</strong> 
+            | Avg Density Alt: <strong>${avgDA.toLocaleString()} ft</strong> 
+            | Total Data Points: <strong>${n}</strong>
+        `;
+    }
+}
+
+window.toggleAirspeedPowerPlot = toggleAirspeedPowerPlot;
+window.renderAirspeedPowerPlot = renderAirspeedPowerPlot;

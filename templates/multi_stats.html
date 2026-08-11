@@ -187,13 +187,38 @@
     <div class="modal fade" id="allAirspeedCalsModal" tabindex="-1" aria-labelledby="allAirspeedCalsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content shadow-lg">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title fw-bold" id="allAirspeedCalsModalLabel">
+                <div class="modal-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="modal-title fw-bold mb-0" id="allAirspeedCalsModalLabel">
                         ✈️ Airspeed Calibration Comparative Analysis
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-outline-light btn-sm fw-bold shadow-sm" onclick="toggleAirspeedPowerPlot()">
+                            <i class="bi bi-graph-up"></i> 📈 Plot TAS vs % Power (Density Alt Normalized)
+                        </button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                 </div>
                 <div class="modal-body p-3">
+                    <!-- COLLAPSIBLE TAS VS POWER PLOT -->
+                    <div id="airspeedPowerPlotCard" class="card shadow-sm mb-3 d-none">
+                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                            <div class="fw-bold small">
+                                📊 Corrected TAS vs. % Power Normalized by Density Altitude
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="form-check form-switch mb-0 small">
+                                    <input class="form-check-input" type="checkbox" id="normTasToggle" onchange="renderAirspeedPowerPlot()">
+                                    <label class="form-check-label text-white small" for="normTasToggle">Normalize TAS to Sea Level (ISA)</label>
+                                </div>
+                                <button class="btn btn-sm btn-outline-light py-0 px-2" onclick="toggleAirspeedPowerPlot()">✖ Close Plot</button>
+                            </div>
+                        </div>
+                        <div class="card-body p-2">
+                            <div id="airspeedPowerPlotDiv" style="height: 400px; width: 100%;"></div>
+                            <div id="airspeedPowerPlotStats" class="mt-2 text-center text-muted extra-small"></div>
+                        </div>
+                    </div>
+
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="text-muted small">
                             Comparing all saved flight maneuver calibrations across your fleet. Click column headers to sort.
