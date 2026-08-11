@@ -145,6 +145,8 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
 
     calibrated_hdg_array = (maneuver_df["hdg"] + hdg_corr) % 360
 
+    engine_settings = extract_engine_settings(maneuver_df)
+
     results = {
         "calibrated_airspeed_correction_kts": round(cas_corr, 2),
         "calibrated_heading_correction_deg": round(hdg_corr, 2),
@@ -158,9 +160,38 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         "ts_true_airspeed": tas_array.values,
         "ts_calibrated_heading": calibrated_hdg_array.values,
         "analyzed_data_points": len(maneuver_df),
+        "engine_settings": engine_settings,
     }
 
     return results
+
+
+def extract_engine_settings(maneuver_df):
+    """
+    Extracts mean engine parameters during the maneuver segment:
+    Manifold Pressure, RPM, Fuel Flow, and Percent Power.
+    """
+    def get_avg(possible_cols):
+        for col in possible_cols:
+            if col in maneuver_df.columns:
+                series = pd.to_numeric(maneuver_df[col], errors="coerce").dropna()
+                if not series.empty:
+                    val = float(series.mean())
+                    if not (np.isnan(val) or np.isinf(val)):
+                        return round(val, 1)
+        return None
+
+    map_val = get_avg(["Manifold Pressure (inHg)", "map_inhg", "MAP", "Manifold Pressure"])
+    rpm_val = get_avg(["RPM", "rpm", "RPM L", "RPM R"])
+    ff_val = get_avg(["Total Fuel Flow (gal/hr)", "fuel_flow", "Fuel Flow 1 (gal/hr)", "Fuel Flow"])
+    power_val = get_avg(["Percent Power", "percent_power", "Power (%)", "POWER"])
+
+    return {
+        "manifold_pressure_inhg": map_val,
+        "rpm": rpm_val,
+        "fuel_flow_gph": ff_val,
+        "percent_power": power_val,
+    }
 
 
 # ==========================================

@@ -606,12 +606,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // 3. High-Contrast Vector Lines - Direct Instant Image Embed (Crisp Black 1px Vector Lines on Top)
         svgHtml += `<image href="${vDef.file}?v=1.3" x="0" y="0" width="${vw}" height="${vh}" pointer-events="none" />`;
 
-        // 4. Cross-View Projection Guidelines
+        // 4. Cross-View Projection Guidelines (Darker high-contrast dashed guidelines)
         if (showGuides && (viewType === 'side' || viewType === 'top')) {
             svgHtml += `
-                <line x1="${vw*0.25}" y1="0" x2="${vw*0.25}" y2="${vh}" stroke="#ff007f" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="3,3" opacity="0.5" pointer-events="none" />
-                <line x1="${vw*0.5}" y1="0" x2="${vw*0.5}" y2="${vh}" stroke="#ff007f" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="3,3" opacity="0.5" pointer-events="none" />
-                <line x1="${vw*0.85}" y1="0" x2="${vw*0.85}" y2="${vh}" stroke="#ff007f" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="3,3" opacity="0.5" pointer-events="none" />
+                <line x1="${vw*0.25}" y1="0" x2="${vw*0.25}" y2="${vh}" stroke="#d946ef" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-dasharray="4,3" opacity="0.85" pointer-events="none" />
+                <line x1="${vw*0.5}" y1="0" x2="${vw*0.5}" y2="${vh}" stroke="#d946ef" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-dasharray="4,3" opacity="0.85" pointer-events="none" />
+                <line x1="${vw*0.85}" y1="0" x2="${vw*0.85}" y2="${vh}" stroke="#d946ef" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-dasharray="4,3" opacity="0.85" pointer-events="none" />
             `;
         }
 

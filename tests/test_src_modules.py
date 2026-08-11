@@ -242,6 +242,10 @@ class TestAnalyzeFlightData:
                 "gps_trk": headings + np.random.normal(0, 1, n_points),
                 "oat": np.full(n_points, 50.0),  # deg F
                 "baro": np.full(n_points, 29.92),
+                "Manifold Pressure (inHg)": np.full(n_points, 24.5),
+                "RPM": np.full(n_points, 2400.0),
+                "Total Fuel Flow (gal/hr)": np.full(n_points, 11.5),
+                "Percent Power": np.full(n_points, 75.0),
             }
         )
         return df
@@ -256,6 +260,11 @@ class TestAnalyzeFlightData:
         assert "calibrated_airspeed_correction_kts" in result
         assert "wind_speed_kts" in result
         assert "wind_direction_deg" in result
+        assert "engine_settings" in result
+        assert result["engine_settings"]["manifold_pressure_inhg"] == 24.5
+        assert result["engine_settings"]["rpm"] == 2400.0
+        assert result["engine_settings"]["fuel_flow_gph"] == 11.5
+        assert result["engine_settings"]["percent_power"] == 75.0
         assert result["analyzed_data_points"] == len(df)
 
     def test_with_time_slice(self):

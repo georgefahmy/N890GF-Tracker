@@ -2476,6 +2476,14 @@ def api_airspeed_calibration():
         flight_id = flight_ids[0]
         flight_data = df[df["Flight ID"] == flight_id].copy().fillna(0)
 
+        # Retain optional engine setting columns if present in flight_data
+        engine_cols = [
+            col for col in [
+                "Manifold Pressure (inHg)", "RPM", "RPM L", "Total Fuel Flow (gal/hr)",
+                "Fuel Flow 1 (gal/hr)", "Percent Power"
+            ] if col in flight_data.columns
+        ]
+
         as_cal_df = flight_data.rename(
             columns={
                 "Session Time": "session_time",
@@ -2502,10 +2510,10 @@ def api_airspeed_calibration():
             "baro",
             "Wind Speed (knots)",
             "Wind Direction (deg)",
-        ]
+        ] + [c for c in engine_cols if c in as_cal_df.columns]
 
         as_cal_df = as_cal_df[essential_columns].copy()
-        as_cal_df = as_cal_df.dropna()
+        as_cal_df = as_cal_df.dropna(subset=["session_time", "ias", "press_alt", "hdg", "gps_gs", "gps_trk", "oat", "baro"])
         as_cal_df = as_cal_df[as_cal_df["ias"] > 55.0]
         as_cal_df = as_cal_df.reset_index(drop=True)
 
@@ -2523,15 +2531,26 @@ def api_airspeed_calibration():
 
         avg_wind_speed = (
             maneuver_df["Wind Speed (knots)"].mean()
-            if not maneuver_df.empty
+            if not maneuver_df.empty and "Wind Speed (knots)" in maneuver_df.columns
             else float("nan")
         )
 
         avg_wind_dir = (
             maneuver_df["Wind Direction (deg)"].mean()
-            if not maneuver_df.empty
+            if not maneuver_df.empty and "Wind Direction (deg)" in maneuver_df.columns
             else float("nan")
         )
+
+        eng = output.get("engine_settings", {})
+        map_val = eng.get("manifold_pressure_inhg")
+        rpm_val = eng.get("rpm")
+        ff_val = eng.get("fuel_flow_gph")
+        power_val = eng.get("percent_power")
+
+        map_str = f"{map_val:.1f} inHg" if map_val is not None else "N/A"
+        rpm_str = f"{rpm_val:.1f}" if rpm_val is not None else "N/A"
+        ff_str = f"{ff_val:.1f} gal/hr" if ff_val is not None else "N/A"
+        power_str = f"{power_val:.1f} %" if power_val is not None else "N/A"
 
         summary = (
             f"Data Points Analyzed:  {output['analyzed_data_points']}\n"
@@ -2541,10 +2560,19 @@ def api_airspeed_calibration():
             f"Wind Direction:        {output['wind_direction_deg']} deg (Avg: {avg_wind_dir:.1f})\n"
             f"Wind Speed:            {output['wind_speed_kts']} kts (Avg: {avg_wind_speed:.1f})\n"
             f"Uncorr. Avg TAS:       {output['uncorrected_average_true_airspeed_kts']} kts\n"
-            f"Corrected Avg TAS:     {output['corrected_average_true_airspeed_kts']} kts\n"
+            f"Corrected Avg TAS:     {output['corrected_average_true_airspeed_kts']} kts\n\n"
+            f"--- Engine Settings (Calibration Segment) ---\n"
+            f"Manifold Pressure:     {map_str}\n"
+            f"RPM:                   {rpm_str}\n"
+            f"Fuel Flow:             {ff_str}\n"
+            f"% Power:               {power_str}\n"
         )
 
-        return jsonify({"summary": summary})
+        return jsonify({
+            "summary": summary,
+            "results": sanitize_for_json(output),
+            "engine_settings": sanitize_for_json(eng)
+        })
 
     except Exception as e:
         print("Airspeed calibration error:", e)

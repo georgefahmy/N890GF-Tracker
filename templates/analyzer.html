@@ -344,47 +344,74 @@
 
     </div>
 
+<!-- AIRSPEED CALIBRATION MODAL -->
 <div class="modal fade" id="airspeedCalModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title">Airspeed Calibration Analysis</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">✈️ Airspeed Calibration Analysis</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-
       <div class="modal-body">
-
-        <div class="row g-3 mb-3">
-          <div class="col-md-4">
-            <label class="form-label">Start Maneuver (s)</label>
-            <input type="number" class="form-control" id="calStartTime" placeholder="Start time">
-          </div>
-
-          <div class="col-md-4">
-            <label class="form-label">End Maneuver (s)</label>
-            <input type="number" class="form-control" id="calEndTime" placeholder="End time">
-          </div>
-
-          <div class="col-md-4 d-flex align-items-end">
-            <button class="btn btn-primary w-100" onclick="submitAirspeedCalibration()">
-              Run Calibration
-            </button>
+        <div class="card p-3 mb-3">
+          <div class="row g-2 align-items-center">
+            <div class="col-md-5">
+              <label class="form-label text-muted small mb-1 fw-bold">Select Flight</label>
+              <select id="asCalSavedFlights" class="form-select form-select-sm" onchange="loadAirspeedCalFlight()"></select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small mb-1 fw-bold">Start Maneuver (s)</label>
+              <input type="number" class="form-control form-control-sm" id="calStartTime" placeholder="Start time">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small mb-1 fw-bold">End Maneuver (s)</label>
+              <input type="number" class="form-control form-control-sm" id="calEndTime" placeholder="End time">
+            </div>
+            <div class="col-md-1 d-flex align-items-end">
+              <button class="btn btn-primary btn-sm w-100" onclick="submitAirspeedCalibration()">Run</button>
+            </div>
           </div>
         </div>
 
-        <hr>
+        <div class="card p-3 mb-3 bg-light border-0 shadow-sm">
+          <div id="asCalInstruction" class="text-muted small">
+            Click 2 points on the graph below to select your 360° airspeed calibration maneuver segment (Green line = Start, Red line = End).
+          </div>
+        </div>
 
-        <pre id="calibrationResult" class="p-3 rounded small" style="white-space: pre-wrap;">
-            Results will appear here...
-        </pre>
+        <div class="card p-2 shadow-sm mb-3">
+          <div id="asCalTimeGraph" style="height:380px;"></div>
+        </div>
+
+        <div id="asCalResultsContainer" class="d-none">
+          <div class="row g-3 mb-2">
+            <!-- Calibration Results Card -->
+            <div class="col-md-7">
+              <div class="card p-3 border-primary shadow-sm h-100">
+                <h6 class="text-primary fw-bold mb-2">Airspeed Calibration Results</h6>
+                <div class="row g-2 small" id="asCalMetricsGrid">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+            <!-- Engine Settings Card -->
+            <div class="col-md-5">
+              <div class="card p-3 border-warning shadow-sm h-100">
+                <h6 class="text-warning text-dark fw-bold mb-2">⚙️ Engine Settings (Calibration Segment)</h6>
+                <div class="row g-2 small" id="asCalEngineGrid">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <pre id="calibrationResult" class="p-3 rounded small bg-dark text-light d-none" style="white-space: pre-wrap;"></pre>
 
       </div>
-
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
       </div>
-
     </div>
   </div>
 </div>
@@ -494,6 +521,7 @@
 
 <script src="{{ url_for('static', filename='signal_bands.js') }}"></script>
 <script src="{{ url_for('static', filename='gami.js') }}"></script>
+<script src="{{ url_for('static', filename='airspeed_calibration.js') }}"></script>
 <script src="{{ url_for('static', filename='analyzer.js') }}"></script>
 <link href="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Cesium.js"></script>
