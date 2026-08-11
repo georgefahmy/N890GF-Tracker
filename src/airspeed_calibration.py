@@ -212,7 +212,7 @@ def analyze_flight_data(df, start_time=None, end_time=None, show_plot=False):
         "calibrated_airspeed_correction_kts": round(cas_corr, 2),
         "calibrated_heading_correction_deg": round(hdg_corr, 2),
         "magnetic_variation_deg": round(mag_var, 2),
-        "airspeed_error_kts": round(-cas_corr, 2),
+        "airspeed_error_kts": round(cas_corr, 2),
         "wind_direction_deg": round(w_dir, 1),
         "wind_speed_kts": round(w_spd, 1),
         "native_wind_direction_deg": round(native_w_dir, 1),
