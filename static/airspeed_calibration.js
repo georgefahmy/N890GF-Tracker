@@ -625,6 +625,7 @@ function deleteAirspeedCalibration(calId) {
                         }
                     }
                     if (window.filterAndRenderTable) window.filterAndRenderTable();
+                    if (window.renderAirspeedCalsModalTable) window.renderAirspeedCalsModalTable();
                 }
             } else if (data.error) {
                 alert("Error deleting calibration: " + data.error);

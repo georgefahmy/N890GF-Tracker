@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (searchInput) {
         searchInput.addEventListener("input", filterAndRenderTable);
     }
+
+    const calsSearchInput = document.getElementById("searchAirspeedCalsInput");
+    if (calsSearchInput) {
+        calsSearchInput.addEventListener("input", renderAirspeedCalsModalTable);
+    }
 });
 
 function loadMultiFlightStats() {
@@ -345,3 +350,147 @@ function openFlightInAnalyzer(filename) {
 }
 
 window.filterAndRenderTable = filterAndRenderTable;
+
+// --- ALL AIRSPEED CALIBRATIONS COMPARATIVE MODAL ---
+let airspeedCalsSortKey = 'date';
+let airspeedCalsSortAsc = false;
+
+function openAirspeedCalibrationsModal() {
+    renderAirspeedCalsModalTable();
+    const modalEl = document.getElementById("allAirspeedCalsModal");
+    if (modalEl) {
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+    }
+}
+
+function renderAirspeedCalsModalTable() {
+    const tbody = document.getElementById("allAirspeedCalsTbody");
+    if (!tbody) return;
+
+    let allCals = [];
+    const flights = window.globalFlights || [];
+    flights.forEach(f => {
+        if (f.saved_calibrations && f.saved_calibrations.length > 0) {
+            f.saved_calibrations.forEach(c => {
+                allCals.push({
+                    ...c,
+                    flight_date: f.date,
+                    filename: f.filename
+                });
+            });
+        }
+    });
+
+    const searchInput = document.getElementById("searchAirspeedCalsInput");
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+    if (query) {
+        allCals = allCals.filter(c => 
+            (c.filename && c.filename.toLowerCase().includes(query)) ||
+            (c.flight_date && c.flight_date.toLowerCase().includes(query))
+        );
+    }
+
+    allCals.sort((a, b) => {
+        let valA, valB;
+        const resA = a.results || {};
+        const resB = b.results || {};
+
+        if (airspeedCalsSortKey === 'date') {
+            valA = a.flight_date || a.filename;
+            valB = b.flight_date || b.filename;
+        } else if (airspeedCalsSortKey === 'ias') {
+            valA = resA.average_indicated_airspeed_kts || 0;
+            valB = resB.average_indicated_airspeed_kts || 0;
+        } else if (airspeedCalsSortKey === 'cas') {
+            valA = resA.average_calibrated_airspeed_kts || 0;
+            valB = resB.average_calibrated_airspeed_kts || 0;
+        } else if (airspeedCalsSortKey === 'uncorr_tas') {
+            valA = resA.uncorrected_average_true_airspeed_kts || 0;
+            valB = resB.uncorrected_average_true_airspeed_kts || 0;
+        } else if (airspeedCalsSortKey === 'corr_tas') {
+            valA = resA.corrected_average_true_airspeed_kts || 0;
+            valB = resB.corrected_average_true_airspeed_kts || 0;
+        } else if (airspeedCalsSortKey === 'error') {
+            valA = resA.airspeed_error_kts || 0;
+            valB = resB.airspeed_error_kts || 0;
+        } else if (airspeedCalsSortKey === 'bias') {
+            valA = resA.calibrated_heading_correction_deg || 0;
+            valB = resB.calibrated_heading_correction_deg || 0;
+        } else if (airspeedCalsSortKey === 'da') {
+            valA = resA.density_altitude_ft || 0;
+            valB = resB.density_altitude_ft || 0;
+        } else {
+            valA = a.id;
+            valB = b.id;
+        }
+
+        if (typeof valA === 'string') {
+            return airspeedCalsSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+        return airspeedCalsSortAsc ? valA - valB : valB - valA;
+    });
+
+    if (allCals.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="12" class="text-center text-muted p-4">No saved airspeed calibrations found.</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = allCals.map(c => {
+        const res = c.results || {};
+        const eng = c.engine_settings || {};
+        const errVal = res.airspeed_error_kts;
+        const errStr = errVal !== undefined ? (errVal >= 0 ? '+' : '') + errVal + ' kts' : '--';
+        const errColor = (errVal !== undefined && errVal >= 0) ? 'text-success fw-bold' : 'text-danger fw-bold';
+        const da = res.density_altitude_ft !== undefined ? Number(res.density_altitude_ft).toLocaleString() + ' ft' : '--';
+
+        const mapStr = eng.manifold_pressure_inhg !== null && eng.manifold_pressure_inhg !== undefined ? eng.manifold_pressure_inhg + ' inHg' : '--';
+        const rpmStr = eng.rpm !== null && eng.rpm !== undefined ? eng.rpm + ' RPM' : '--';
+        const ffStr = eng.fuel_flow_gph !== null && eng.fuel_flow_gph !== undefined ? eng.fuel_flow_gph + ' GPH' : '--';
+        const powerStr = eng.percent_power !== null && eng.percent_power !== undefined ? eng.percent_power + '%' : '--';
+
+        const windStr = (res.wind_direction_deg !== undefined && res.wind_speed_kts !== undefined && res.wind_speed_kts > 0)
+            ? `${res.wind_direction_deg}° @ ${res.wind_speed_kts} kts`
+            : 'N/A';
+
+        return `
+            <tr>
+                <td><strong>${c.flight_date}</strong><br><span class="small text-muted">${c.filename}</span></td>
+                <td>${formatMMSS(c.start_time)} - ${formatMMSS(c.end_time)}</td>
+                <td>${res.average_indicated_airspeed_kts || '--'} kts</td>
+                <td>${res.average_calibrated_airspeed_kts || '--'} kts</td>
+                <td><span class="text-muted">${res.uncorrected_average_true_airspeed_kts || '--'} kts</span></td>
+                <td><span class="text-body-emphasis fw-bold">${res.corrected_average_true_airspeed_kts || '--'} kts</span></td>
+                <td><span class="${errColor}">${errStr}</span></td>
+                <td>${res.calibrated_heading_correction_deg !== undefined ? (res.calibrated_heading_correction_deg >= 0 ? '+' : '') + res.calibrated_heading_correction_deg + '°' : '--'}</td>
+                <td>${windStr}</td>
+                <td>${da}</td>
+                <td><span class="small text-muted">${mapStr} / ${rpmStr} / ${ffStr} / ${powerStr}</span></td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-primary" onclick="openFlightInAnalyzer('${c.filename}')" title="Analyze Flight">
+                            <i class="bi bi-play-circle"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" onclick="deleteAirspeedCalibration(${c.id})" title="Delete Calibration">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function sortAirspeedCalsTable(key) {
+    if (airspeedCalsSortKey === key) {
+        airspeedCalsSortAsc = !airspeedCalsSortAsc;
+    } else {
+        airspeedCalsSortKey = key;
+        airspeedCalsSortAsc = false;
+    }
+    renderAirspeedCalsModalTable();
+}
+
+window.openAirspeedCalibrationsModal = openAirspeedCalibrationsModal;
+window.renderAirspeedCalsModalTable = renderAirspeedCalsModalTable;
+window.sortAirspeedCalsTable = sortAirspeedCalsTable;

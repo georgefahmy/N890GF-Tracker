@@ -126,8 +126,13 @@
         <div class="card shadow-sm">
             <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
                 <h5 class="mb-0 fw-bold"><i class="bi bi-table"></i> Flight Log Summary Table</h5>
-                <div class="w-25">
-                    <input type="text" id="searchFlightInput" class="form-control form-control-sm" placeholder="🔍 Search date, filename...">
+                <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-primary btn-sm fw-bold shadow-sm" onclick="openAirspeedCalibrationsModal()">
+                        ✈️ Compare Airspeed Calibrations
+                    </button>
+                    <div style="min-width: 220px;">
+                        <input type="text" id="searchFlightInput" class="form-control form-control-sm" placeholder="🔍 Search date, filename...">
+                    </div>
                 </div>
             </div>
             <div class="card-body p-0 table-responsive table-responsive-sticky">
@@ -160,6 +165,57 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- ALL AIRSPEED CALIBRATIONS COMPARISON MODAL -->
+    <div class="modal fade" id="allAirspeedCalsModal" tabindex="-1" aria-labelledby="allAirspeedCalsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title fw-bold" id="allAirspeedCalsModalLabel">
+                        ✈️ Airspeed Calibration Comparative Analysis
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="text-muted small">
+                            Comparing all saved flight maneuver calibrations across your fleet. Click column headers to sort.
+                        </div>
+                        <div>
+                            <input type="text" id="searchAirspeedCalsInput" class="form-control form-control-sm" placeholder="🔍 Search date, filename..." style="width: 250px;">
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped align-middle text-nowrap mb-0" id="allAirspeedCalsTable">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th role="button" onclick="sortAirspeedCalsTable('date')">Date & Flight <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('segment')">Segment <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('ias')">IAS <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('cas')">CAS <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('uncorr_tas')">Uncorr. TAS <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('corr_tas')">Corr. TAS <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('error')">Airspeed Error <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('bias')">HDG Bias <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('wind')">Wind Vector <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th role="button" onclick="sortAirspeedCalsTable('da')">Density Alt <i class="bi bi-arrow-down-up small"></i></th>
+                                    <th>Engine Settings</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allAirspeedCalsTbody">
+                                <tr><td colspan="12" class="text-center text-muted p-4">Loading calibrations...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light py-2">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
