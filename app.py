@@ -2095,6 +2095,10 @@ def api_get_signals():
             signals.append("CHT")
         if "EGT" not in signals:
             signals.append("EGT")
+        if "Corrected TAS (knots)" not in signals and "Corrected TAS (knots)" in df.columns:
+            signals.append("Corrected TAS (knots)")
+        if "CAS (knots)" not in signals and "CAS (knots)" in df.columns:
+            signals.append("CAS (knots)")
 
         signals = sorted(signals)
 

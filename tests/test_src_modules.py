@@ -385,3 +385,35 @@ class TestToolFunctions:
         assert isinstance(calc_total_distance(df), float)
         assert isinstance(calc_total_air_time(df), float)
         assert isinstance(calc_total_gallons(df), float)
+
+
+class TestAirspeedCalibrationFactor:
+    """Tests for calculate_airspeed_calibration_factor and Corrected TAS signal derivation."""
+
+    def test_calculate_airspeed_calibration_factor_default(self):
+        from src.process_telemetry import calculate_airspeed_calibration_factor
+
+        factor = calculate_airspeed_calibration_factor()
+        assert isinstance(factor, float)
+        assert factor == 0.48
+
+    def test_process_flights_generates_corrected_tas(self):
+        from src.process_telemetry import process_flights
+
+        df = pd.DataFrame({
+            "Session Time": [1.0, 2.0, 3.0],
+            "System Time": ["2026-04-10 12:00:00", "2026-04-10 12:00:01", "2026-04-10 12:00:02"],
+            "GPS Date & Time": ["2026-04-10 12:00:00", "2026-04-10 12:00:01", "2026-04-10 12:00:02"],
+            "Indicated Airspeed (knots)": [120.0, 122.0, 125.0],
+            "Pressure Altitude (ft)": [5000, 5000, 5000],
+            "OAT (deg F)": [59.0, 59.0, 59.0],
+            "RPM": [2400, 2400, 2400],
+            "CHT 1 (deg F)": [350, 350, 350],
+        })
+
+        processed = process_flights(df)
+        assert "CAS (knots)" in processed.columns
+        assert "Corrected TAS (knots)" in processed.columns
+        assert (processed["CAS (knots)"] > processed["Indicated Airspeed (knots)"]).all()
+        assert (processed["Corrected TAS (knots)"] > processed["CAS (knots)"]).all()
+
