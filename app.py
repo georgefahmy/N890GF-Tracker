@@ -1968,6 +1968,137 @@ def api_multi_flight_stats():
     return jsonify(sanitize_for_json({"flights": flight_stats_list, "totals": totals}))
 
 
+@app.route("/api/engine_health_trends", methods=["GET"])
+def api_engine_health_trends():
+    """Extracts detailed CHTs, Oil Temps, OAT, Density Altitude, TAS, and Cooling Efficiency across all saved flights."""
+    if not os.path.exists(SAVE_DIR):
+        return jsonify({"flights": [], "summary": {}})
+
+    csv_files = [f for f in os.listdir(SAVE_DIR) if f.endswith(".csv")]
+    if not csv_files:
+        return jsonify({"flights": [], "summary": {}})
+
+    engine_data = []
+
+    for filename in sorted(csv_files):
+        filepath = os.path.join(SAVE_DIR, filename)
+        try:
+            df = load_cached_flight_df(filename)
+            if df is None or df.empty:
+                continue
+
+            rpm_series = pd.to_numeric(df["RPM"], errors="coerce").fillna(0) if "RPM" in df.columns else pd.Series(2000, index=df.index)
+            gs_col = next((c for c in df.columns if "ground speed" in c.lower() or "gps gs" in c.lower()), None)
+            gs_series = pd.to_numeric(df[gs_col], errors="coerce").fillna(0) if gs_col else pd.Series(50, index=df.index)
+
+            cruise_mask = (rpm_series > 1800) & (gs_series > 40)
+            target_df = df[cruise_mask] if cruise_mask.sum() > 20 else df
+
+            def safe_val(col_list, agg="mean"):
+                for col in col_list:
+                    if col in target_df.columns:
+                        s = pd.to_numeric(target_df[col], errors="coerce").dropna()
+                        if not s.empty:
+                            v = float(s.max()) if agg == "max" else float(s.mean())
+                            return round(v, 2)
+                return None
+
+            oat_f = safe_val(["OAT (deg F)", "OAT_F", "OAT"])
+            oat_c = safe_val(["OAT (deg C)", "OAT_C"])
+            if oat_f is None and oat_c is not None:
+                oat_f = round(oat_c * 9/5 + 32, 2)
+            if oat_c is None and oat_f is not None:
+                oat_c = round((oat_f - 32) * 5/9, 2)
+
+            oil_temp_f = safe_val(["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"])
+            oil_temp_c = safe_val(["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"])
+            if oil_temp_f is None and oil_temp_c is not None:
+                oil_temp_f = round(oil_temp_c * 9/5 + 32, 2)
+
+            cht1_f = safe_val(["CHT 1 (deg F)", "CHT 1"])
+            cht2_f = safe_val(["CHT 2 (deg F)", "CHT 2"])
+            cht3_f = safe_val(["CHT 3 (deg F)", "CHT 3"])
+            cht4_f = safe_val(["CHT 4 (deg F)", "CHT 4"])
+
+            cht1_c = safe_val(["CHT 1 (deg C)"])
+            cht2_c = safe_val(["CHT 2 (deg C)"])
+            cht3_c = safe_val(["CHT 3 (deg C)"])
+            cht4_c = safe_val(["CHT 4 (deg C)"])
+
+            if cht1_f is None and cht1_c is not None: cht1_f = round(cht1_c * 9/5 + 32, 2)
+            if cht2_f is None and cht2_c is not None: cht2_f = round(cht2_c * 9/5 + 32, 2)
+            if cht3_f is None and cht3_c is not None: cht3_f = round(cht3_c * 9/5 + 32, 2)
+            if cht4_f is None and cht4_c is not None: cht4_f = round(cht4_c * 9/5 + 32, 2)
+
+            all_chts = [c for c in [cht1_f, cht2_f, cht3_f, cht4_f] if c is not None]
+            avg_cht = round(sum(all_chts) / len(all_chts), 2) if all_chts else safe_val(["AVG_CHT (deg F)", "AVG_CHT", "Max CHT"])
+            max_cht = safe_val(["Max CHT", "AVG_CHT (deg F)", "AVG_CHT"], agg="max")
+            if max_cht is None and all_chts:
+                max_cht = max(all_chts)
+
+            cht_spread = round(max(all_chts) - min(all_chts), 2) if len(all_chts) >= 2 else None
+
+            density_alt = safe_val(["Density Altitude (ft)", "Density Altitude (feet)", "Density Altitude"])
+            press_alt = safe_val(["Pressure Altitude (ft)", "Pressure Altitude (feet)", "GPS Altitude (feet)"])
+            tas = safe_val(["Corrected TAS (knots)", "True Airspeed (knots)", "TAS"])
+            ias = safe_val(["Indicated Airspeed (knots)", "IAS"])
+            power = safe_val(["Percent Power", "Engine Power"])
+            ff = safe_val(["Total Fuel Flow (gal/hr)", "Fuel Flow 1 (gal/hr)"])
+            rpm = safe_val(["RPM"])
+
+            cht_delta_oat = round(max_cht - oat_f, 2) if (max_cht is not None and oat_f is not None) else None
+            oil_delta_oat = round(oil_temp_f - oat_f, 2) if (oil_temp_f is not None and oat_f is not None) else None
+            cooling_index = round(max_cht / tas, 3) if (max_cht is not None and tas and tas > 0) else None
+
+            date_str = filename[:10] if len(filename) >= 10 else filename
+
+            engine_data.append({
+                "filename": filename,
+                "date": date_str,
+                "oat_f": oat_f,
+                "oat_c": oat_c,
+                "density_alt": density_alt,
+                "press_alt": press_alt,
+                "tas": tas,
+                "ias": ias,
+                "oil_temp": oil_temp_f,
+                "avg_cht": avg_cht,
+                "max_cht": max_cht,
+                "cht1": cht1_f,
+                "cht2": cht2_f,
+                "cht3": cht3_f,
+                "cht4": cht4_f,
+                "cht_spread": cht_spread,
+                "percent_power": power,
+                "fuel_flow": ff,
+                "rpm": rpm,
+                "cht_delta_oat": cht_delta_oat,
+                "oil_delta_oat": oil_delta_oat,
+                "cooling_index": cooling_index
+            })
+        except Exception as e:
+            print(f"Error extracting engine health for {filename}: {e}")
+
+    hottest_counts = {"CHT 1": 0, "CHT 2": 0, "CHT 3": 0, "CHT 4": 0}
+    for d in engine_data:
+        c_vals = {"CHT 1": d.get("cht1"), "CHT 2": d.get("cht2"), "CHT 3": d.get("cht3"), "CHT 4": d.get("cht4")}
+        valid_c = {k: v for k, v in c_vals.items() if v is not None}
+        if valid_c:
+            hottest = max(valid_c, key=valid_c.get)
+            hottest_counts[hottest] += 1
+
+    hottest_cyl = max(hottest_counts, key=hottest_counts.get) if any(hottest_counts.values()) else "N/A"
+
+    summary = {
+        "total_flights": len(engine_data),
+        "hottest_cylinder": hottest_cyl,
+        "hottest_counts": hottest_counts
+    }
+
+    return jsonify(sanitize_for_json({"flights": engine_data, "summary": summary}))
+
+
+
 # --- GAMI Spread Page Route ---
 @app.route("/gami")
 def gami():

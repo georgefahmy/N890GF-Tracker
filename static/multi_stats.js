@@ -941,3 +941,285 @@ window.viewCalOnMap = viewCalOnMap;
 window.highlightAirspeedCalSegment = highlightAirspeedCalSegment;
 window.onAirspeedCalMapSliderChange = onAirspeedCalMapSliderChange;
 
+// --- FLEET ENGINE HEALTH & COOLING TRENDS MODAL ---
+window.engineHealthData = null;
+window.activeEngineHealthTab = 'thermal';
+
+function openEngineHealthModal() {
+    const modalEl = document.getElementById("engineHealthModal");
+    if (!modalEl) return;
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    if (!window.engineHealthData) {
+        fetchEngineHealthData();
+    } else {
+        renderEngineHealthTab(window.activeEngineHealthTab || 'thermal');
+    }
+}
+
+function fetchEngineHealthData() {
+    fetch('/api/engine_health_trends')
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                console.error("Engine health fetch error:", data.error);
+                return;
+            }
+            window.engineHealthData = data;
+            renderEngineHealthTab(window.activeEngineHealthTab || 'thermal');
+        })
+        .catch(err => console.error("Error fetching engine health trends:", err));
+}
+
+function renderEngineHealthTab(tabKey) {
+    window.activeEngineHealthTab = tabKey;
+    if (!window.engineHealthData || !window.engineHealthData.flights) return;
+
+    const flights = window.engineHealthData.flights;
+    const summary = window.engineHealthData.summary || {};
+    const isDarkMode = document.body.classList.contains("dark-mode") || document.documentElement.getAttribute("data-bs-theme") === "dark";
+    const textColor = isDarkMode ? '#f8f9fa' : '#212529';
+    const gridColor = isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+
+    if (tabKey === 'thermal') {
+        // --- TAB 1: Thermal Efficiency & OAT ---
+        const div = document.getElementById("enginePlotDiv1");
+        if (!div) return;
+
+        const validOat = flights.filter(f => f.oat_f !== null && f.max_cht !== null);
+        const oats = validOat.map(f => f.oat_f);
+        const chts = validOat.map(f => f.max_cht);
+        const oils = validOat.map(f => f.oil_temp).filter(v => v !== null);
+        const oilOats = validOat.filter(f => f.oil_temp !== null).map(f => f.oat_f);
+
+        // Linear fit CHT vs OAT
+        let slope = 0, intercept = 0, r2 = 0;
+        if (oats.length > 2) {
+            const n = oats.length;
+            const sumX = oats.reduce((a, b) => a + b, 0);
+            const sumY = chts.reduce((a, b) => a + b, 0);
+            const sumXY = oats.reduce((a, b, i) => a + b * chts[i], 0);
+            const sumXX = oats.reduce((a, b) => a + b * b, 0);
+            const sumYY = chts.reduce((a, b) => a + b * b, 0);
+
+            const denom = (n * sumXX - sumX * sumX);
+            if (denom !== 0) {
+                slope = (n * sumXY - sumX * sumY) / denom;
+                intercept = (sumY - slope * sumX) / n;
+                const rNum = (n * sumXY - sumX * sumY);
+                const rDen = Math.sqrt((n * sumXX - sumX * sumX) * (n * sumYY - sumY * sumY));
+                r2 = rDen !== 0 ? Math.pow(rNum / rDen, 2) : 0;
+            }
+        }
+
+        const minOat = Math.min(...oats, 30);
+        const maxOat = Math.max(...oats, 100);
+        const fitX = [minOat, maxOat];
+        const fitY = [slope * minOat + intercept, slope * maxOat + intercept];
+
+        const traceCHT = {
+            x: oats,
+            y: chts,
+            mode: 'markers',
+            name: 'Max CHT (°F)',
+            marker: { size: 9, color: '#dc3545', opacity: 0.85 },
+            text: validOat.map(f => `Date: ${f.date}<br>OAT: ${f.oat_f}°F<br>Max CHT: ${f.max_cht}°F<br>TAS: ${f.tas || '--'} kt`),
+            hoverinfo: 'text'
+        };
+
+        const traceFit = {
+            x: fitX,
+            y: fitY,
+            mode: 'lines',
+            name: `Linear Fit: +${slope.toFixed(2)}°F CHT / +1°F OAT (R²=${r2.toFixed(2)})`,
+            line: { color: '#dc3545', width: 2, dash: 'dash' }
+        };
+
+        const traceOil = {
+            x: oilOats,
+            y: oils,
+            mode: 'markers',
+            name: 'Oil Temp (°F)',
+            marker: { size: 8, color: '#ffc107', symbol: 'diamond', opacity: 0.85 },
+            text: validOat.filter(f => f.oil_temp !== null).map(f => `Date: ${f.date}<br>OAT: ${f.oat_f}°F<br>Oil Temp: ${f.oil_temp}°F`),
+            hoverinfo: 'text'
+        };
+
+        const layout = {
+            title: { text: 'Engine Thermal Load (Max CHT & Oil Temp) vs. Outside Air Temp (OAT)', font: { color: textColor, size: 15 } },
+            xaxis: { title: 'Outside Air Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
+            yaxis: { title: 'Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
+            paper_bgcolor: 'transparent',
+            plot_bgcolor: 'transparent',
+            margin: { l: 60, r: 40, t: 50, b: 50 },
+            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+        };
+
+        Plotly.newPlot(div, [traceCHT, traceFit, traceOil], layout, { responsive: true });
+
+    } else if (tabKey === 'altitude') {
+        // --- TAB 2: Density Altitude & TAS ---
+        const div = document.getElementById("enginePlotDiv2");
+        if (!div) return;
+
+        const validDA = flights.filter(f => f.density_alt !== null && f.max_cht !== null);
+        const das = validDA.map(f => f.density_alt);
+        const chts = validDA.map(f => f.max_cht);
+        const tass = validDA.map(f => f.tas || 120);
+
+        const traceDA = {
+            x: das,
+            y: chts,
+            mode: 'markers',
+            name: 'Flight Density Alt vs CHT',
+            marker: {
+                size: 10,
+                color: tass,
+                colorscale: 'Viridis',
+                colorbar: { title: { text: 'TAS (kt)', font: { color: textColor } }, tickfont: { color: textColor } },
+                showscale: true,
+                opacity: 0.9
+            },
+            text: validDA.map(f => `Date: ${f.date}<br>Density Alt: ${Math.round(f.density_alt).toLocaleString()} ft<br>Max CHT: ${f.max_cht}°F<br>TAS: ${f.tas || '--'} kt`),
+            hoverinfo: 'text'
+        };
+
+        const layout = {
+            title: { text: 'Max CHT vs. Density Altitude (Color-Coded by True Airspeed)', font: { color: textColor, size: 15 } },
+            xaxis: { title: 'Density Altitude (feet)', gridcolor: gridColor, font: { color: textColor } },
+            yaxis: { title: 'Max CHT (°F)', gridcolor: gridColor, font: { color: textColor } },
+            paper_bgcolor: 'transparent',
+            plot_bgcolor: 'transparent',
+            margin: { l: 60, r: 40, t: 50, b: 50 },
+            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+        };
+
+        Plotly.newPlot(div, [traceDA], layout, { responsive: true });
+
+    } else if (tabKey === 'cylinders') {
+        // --- TAB 3: Individual Cylinder Balance (CHT 1-4) ---
+        const div = document.getElementById("enginePlotDiv3");
+        if (!div) return;
+
+        const dates = flights.map(f => f.date);
+        const c1 = flights.map(f => f.cht1);
+        const c2 = flights.map(f => f.cht2);
+        const c3 = flights.map(f => f.cht3);
+        const c4 = flights.map(f => f.cht4);
+
+        const traceC1 = { x: dates, y: c1, mode: 'lines+markers', name: 'CHT 1', line: { color: '#00f0ff', width: 2 }, marker: { size: 6 } };
+        const traceC2 = { x: dates, y: c2, mode: 'lines+markers', name: 'CHT 2', line: { color: '#198754', width: 2 }, marker: { size: 6 } };
+        const traceC3 = { x: dates, y: c3, mode: 'lines+markers', name: 'CHT 3', line: { color: '#ff5500', width: 2 }, marker: { size: 6 } };
+        const traceC4 = { x: dates, y: c4, mode: 'lines+markers', name: 'CHT 4', line: { color: '#9d4edd', width: 2 }, marker: { size: 6 } };
+
+        const layout = {
+            title: { text: 'Individual Cylinder Head Temperatures (CHT 1, 2, 3, 4) Across Flights', font: { color: textColor, size: 15 } },
+            xaxis: { title: 'Flight Date', gridcolor: gridColor, font: { color: textColor } },
+            yaxis: { title: 'Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
+            paper_bgcolor: 'transparent',
+            plot_bgcolor: 'transparent',
+            margin: { l: 60, r: 40, t: 50, b: 50 },
+            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+        };
+
+        Plotly.newPlot(div, [traceC1, traceC2, traceC3, traceC4], layout, { responsive: true });
+
+    } else if (tabKey === 'power') {
+        // --- TAB 4: Engine Power & Fuel Flow ---
+        const div = document.getElementById("enginePlotDiv4");
+        if (!div) return;
+
+        const validPwr = flights.filter(f => f.percent_power !== null && f.max_cht !== null);
+        const pwrs = validPwr.map(f => f.percent_power);
+        const chts = validPwr.map(f => f.max_cht);
+        const oils = validPwr.map(f => f.oil_temp).filter(v => v !== null);
+        const oilPwrs = validPwr.filter(f => f.oil_temp !== null).map(f => f.percent_power);
+
+        const traceCHT = {
+            x: pwrs,
+            y: chts,
+            mode: 'markers',
+            name: 'Max CHT vs % Power',
+            marker: { size: 9, color: '#e63946' },
+            text: validPwr.map(f => `Date: ${f.date}<br>Power: ${f.percent_power}%<br>Max CHT: ${f.max_cht}°F`),
+            hoverinfo: 'text'
+        };
+
+        const traceOil = {
+            x: oilPwrs,
+            y: oils,
+            mode: 'markers',
+            name: 'Oil Temp vs % Power',
+            marker: { size: 8, color: '#f4a261', symbol: 'square' },
+            text: validPwr.filter(f => f.oil_temp !== null).map(f => `Date: ${f.date}<br>Power: ${f.percent_power}%<br>Oil Temp: ${f.oil_temp}°F`),
+            hoverinfo: 'text'
+        };
+
+        const layout = {
+            title: { text: 'Cylinder Head & Oil Temperature vs. Engine Percent Power (%)', font: { color: textColor, size: 15 } },
+            xaxis: { title: 'Percent Power (%)', gridcolor: gridColor, font: { color: textColor } },
+            yaxis: { title: 'Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
+            paper_bgcolor: 'transparent',
+            plot_bgcolor: 'transparent',
+            margin: { l: 60, r: 40, t: 50, b: 50 },
+            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+        };
+
+        Plotly.newPlot(div, [traceCHT, traceOil], layout, { responsive: true });
+
+    } else if (tabKey === 'summary') {
+        // --- TAB 5: Diagnostic Summary Cards ---
+        const container = document.getElementById("engineSummaryCards");
+        if (!container) return;
+
+        const validOat = flights.filter(f => f.oat_f !== null && f.max_cht !== null);
+        let slopeStr = "--";
+        if (validOat.length > 2) {
+            const oats = validOat.map(f => f.oat_f);
+            const chts = validOat.map(f => f.max_cht);
+            const n = oats.length;
+            const sumX = oats.reduce((a, b) => a + b, 0);
+            const sumY = chts.reduce((a, b) => a + b, 0);
+            const sumXY = oats.reduce((a, b, i) => a + b * chts[i], 0);
+            const sumXX = oats.reduce((a, b) => a + b * b, 0);
+            const denom = (n * sumXX - sumX * sumX);
+            if (denom !== 0) {
+                const slope = (n * sumXY - sumX * sumY) / denom;
+                slopeStr = `+${(slope * 10).toFixed(1)}°F CHT per +10°F OAT`;
+            }
+        }
+
+        const spreads = flights.map(f => f.cht_spread).filter(v => v !== null);
+        const avgSpread = spreads.length ? (spreads.reduce((a, b) => a + b, 0) / spreads.length).toFixed(1) : "--";
+
+        container.innerHTML = `
+            <div class="col-md-4">
+                <div class="card p-3 border-danger shadow-sm h-100">
+                    <h6 class="text-danger fw-bold"><i class="bi bi-thermometer-high"></i> Ambient Thermal Sensitivity</h6>
+                    <div class="display-6 fw-bold my-2 text-danger">${slopeStr}</div>
+                    <div class="small text-muted">Linear regression rate of cylinder head temperature rise per degree of ambient temperature increase.</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 border-warning shadow-sm h-100">
+                    <h6 class="text-warning text-dark fw-bold"><i class="bi bi-fire"></i> Hottest Running Cylinder</h6>
+                    <div class="display-6 fw-bold my-2 text-warning text-dark">${summary.hottest_cylinder || 'N/A'}</div>
+                    <div class="small text-muted">Identified as peak operating CHT across ${summary.total_flights || 0} fleet flights.</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 border-info shadow-sm h-100">
+                    <h6 class="text-info fw-bold"><i class="bi bi-arrows-expand"></i> Average Cylinder Spread</h6>
+                    <div class="display-6 fw-bold my-2 text-info">${avgSpread}°F</div>
+                    <div class="small text-muted">Mean temperature delta across all 4 cylinders during cruise flight.</div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+window.openEngineHealthModal = openEngineHealthModal;
+window.renderEngineHealthTab = renderEngineHealthTab;
+
+

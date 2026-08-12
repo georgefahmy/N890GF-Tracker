@@ -841,3 +841,22 @@ class TestFlightMapTelemetryAPI:
             assert len(data["lon"]) > 0
 
 
+class TestEngineHealthTrendsAPI:
+    """Tests for /api/engine_health_trends."""
+
+    def test_engine_health_trends(self, app, auth_client):
+        with app.app_context():
+            res = auth_client.get("/api/engine_health_trends")
+            assert res.status_code == 200
+            data = res.get_json()
+            assert "flights" in data
+            assert "summary" in data
+            assert len(data["flights"]) > 0
+            f0 = data["flights"][0]
+            assert "max_cht" in f0
+            assert "oil_temp" in f0
+            assert "oat_f" in f0
+            assert "density_alt" in f0
+
+
+
