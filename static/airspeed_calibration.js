@@ -5,8 +5,14 @@
    ========================================================================== */
 
 function getAsCalElem(id) {
+    if (!id) return null;
     const prefixed = 'asCal' + id.charAt(0).toUpperCase() + id.slice(1);
-    return document.getElementById(prefixed) || document.getElementById(id);
+    const calPrefixed = 'cal' + id.charAt(0).toUpperCase() + id.slice(1);
+    return document.getElementById(id) || 
+           document.getElementById(prefixed) || 
+           document.getElementById(calPrefixed) || 
+           document.getElementById('cal' + id) || 
+           document.getElementById('asCal' + id);
 }
 
 let asCalCurrentData = null;
@@ -263,8 +269,8 @@ function renderAirspeedCalPlot(data) {
         }
 
         // Sync input boxes
-        const startInput = document.getElementById('calStartTime');
-        const endInput = document.getElementById('calEndTime');
+        const startInput = getAsCalElem('calStartTime') || getAsCalElem('startTime');
+        const endInput = getAsCalElem('calEndTime') || getAsCalElem('endTime');
         if (startInput && asCalSelectionState.start !== null) {
             startInput.value = Math.round(asCalSelectionState.start * 10) / 10;
         }
@@ -279,7 +285,7 @@ function renderAirspeedCalPlot(data) {
 
         // If both start & end are set, run calibration automatically
         if (asCalSelectionState.start !== null && asCalSelectionState.end !== null) {
-            submitAirspeedCalibration();
+            submitAirspeedCalibration(asCalSelectionState.start, asCalSelectionState.end);
         }
     });
 }
@@ -333,9 +339,12 @@ function drawAsCalShapes() {
     Plotly.relayout(graphDiv, { shapes });
 }
 
-function submitAirspeedCalibration() {
-    let start = parseFloat(document.getElementById('calStartTime').value);
-    let end = parseFloat(document.getElementById('calEndTime').value);
+function submitAirspeedCalibration(optStart, optEnd) {
+    const startInput = getAsCalElem('calStartTime') || getAsCalElem('startTime');
+    const endInput = getAsCalElem('calEndTime') || getAsCalElem('endTime');
+
+    let start = (optStart !== undefined && optStart !== null) ? parseFloat(optStart) : (startInput ? parseFloat(startInput.value) : NaN);
+    let end = (optEnd !== undefined && optEnd !== null) ? parseFloat(optEnd) : (endInput ? parseFloat(endInput.value) : NaN);
 
     // Fall back to selection state if inputs are blank
     if (isNaN(start) && asCalSelectionState.start !== null) start = asCalSelectionState.start;
@@ -690,10 +699,14 @@ function renderAsCalMap(data, startTime, endTime) {
     }
 
     // Identify indices for selected maneuver segment
+    const sTime = (startTime !== null && startTime !== undefined) ? parseFloat(startTime) : null;
+    const eTime = (endTime !== null && endTime !== undefined) ? parseFloat(endTime) : null;
+
     let segIndices = [];
-    if (startTime !== null && endTime !== null) {
+    if (sTime !== null && eTime !== null && !isNaN(sTime) && !isNaN(eTime)) {
         for (let i = 0; i < sessionTimes.length; i++) {
-            if (sessionTimes[i] >= startTime && sessionTimes[i] <= endTime) {
+            const t = parseFloat(sessionTimes[i]);
+            if (t >= sTime && t <= eTime) {
                 segIndices.push(i);
             }
         }
