@@ -948,7 +948,17 @@ window.activeEngineHealthTab = 'thermal';
 function openEngineHealthModal() {
     const modalEl = document.getElementById("engineHealthModal");
     if (!modalEl) return;
-    const modal = new bootstrap.Modal(modalEl);
+
+    if (!modalEl._hasShownListener) {
+        modalEl._hasShownListener = true;
+        modalEl.addEventListener('shown.bs.modal', () => {
+            if (window.engineHealthData) {
+                renderEngineHealthTab(window.activeEngineHealthTab || 'thermal');
+            }
+        });
+    }
+
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
     modal.show();
 
     if (!window.engineHealthData) {
