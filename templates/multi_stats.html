@@ -192,13 +192,43 @@
                         ✈️ Airspeed Calibration Comparative Analysis
                     </h5>
                     <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-outline-light btn-sm fw-bold shadow-sm" onclick="toggleAirspeedCalMap()">
+                            <i class="bi bi-geo-alt-fill"></i> 🗺️ Interactive Track Map
+                        </button>
                         <button class="btn btn-outline-light btn-sm fw-bold shadow-sm" onclick="toggleAirspeedPowerPlot()">
-                            <i class="bi bi-graph-up"></i> 📈 Plot TAS vs % Power (Density Alt Normalized)
+                            <i class="bi bi-graph-up"></i> 📈 Plot TAS vs % Power
                         </button>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                 </div>
                 <div class="modal-body p-3">
+                    <!-- COLLAPSIBLE INTERACTIVE FLIGHT TRACK MAP CARD WITH CURSOR FOLLOW -->
+                    <div id="airspeedCalMapCard" class="card shadow-sm mb-3 d-none">
+                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold small" id="airspeedCalMapTitle">
+                                    🗺️ Calibration Maneuver Track & Position Cursor
+                                </span>
+                                <span class="badge bg-info text-dark extra-small" id="airspeedCalMapSegmentBadge">Select segment below</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <button class="btn btn-sm btn-outline-light py-0 px-2" onclick="toggleAirspeedCalMap()">✖ Close Map</button>
+                            </div>
+                        </div>
+                        <div class="card-body p-2">
+                            <div id="airspeedCalMapDiv" style="height: 380px; width: 100%;"></div>
+                            <div class="d-flex align-items-center gap-3 mt-2 px-2 bg-light rounded py-1 border">
+                                <div class="flex-grow-1 d-flex align-items-center gap-2">
+                                    <span class="extra-small text-muted text-nowrap">Timeline Scrub:</span>
+                                    <input type="range" class="form-range" id="airspeedCalMapSlider" min="0" max="100" value="0" oninput="onAirspeedCalMapSliderChange(this.value)">
+                                </div>
+                                <div id="airspeedCalMapCursorBanner" class="extra-small font-monospace text-nowrap text-dark">
+                                    Hover table or scrub slider to follow position cursor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- COLLAPSIBLE TAS VS POWER PLOT -->
                     <div id="airspeedPowerPlotCard" class="card shadow-sm mb-3 d-none">
                         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">

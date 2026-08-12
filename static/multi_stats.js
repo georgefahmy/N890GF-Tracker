@@ -454,7 +454,7 @@ function renderAirspeedCalsModalTable() {
             : 'N/A';
 
         return `
-            <tr>
+            <tr onmouseenter="highlightAirspeedCalSegment('${c.filename}', ${c.start_time}, ${c.end_time})" style="cursor: pointer;">
                 <td class="text-nowrap"><strong>${c.flight_date}</strong><br><span class="extra-small text-muted">${c.filename}</span></td>
                 <td class="text-nowrap">${formatMMSS(c.start_time)}-${formatMMSS(c.end_time)}</td>
                 <td class="text-nowrap">${res.average_indicated_airspeed_kts || '--'}</td>
@@ -468,6 +468,9 @@ function renderAirspeedCalsModalTable() {
                 <td><span class="extra-small text-muted text-nowrap">${mapStr} | ${rpmStr} | ${ffStr} | ${powerStr}</span></td>
                 <td class="text-nowrap">
                     <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-info py-0 px-1" onclick="viewCalOnMap('${c.filename}', ${c.start_time}, ${c.end_time})" title="View Maneuver Track on Map">
+                            <i class="bi bi-geo-alt-fill"></i> Map
+                        </button>
                         <button class="btn btn-outline-primary py-0 px-1" onclick="openFlightInAnalyzer('${c.filename}')" title="Analyze Flight">
                             <i class="bi bi-play-circle"></i>
                         </button>
@@ -674,3 +677,250 @@ function renderAirspeedPowerPlot() {
 
 window.toggleAirspeedPowerPlot = toggleAirspeedPowerPlot;
 window.renderAirspeedPowerPlot = renderAirspeedPowerPlot;
+
+// --- INTERACTIVE AIRSPEED CALIBRATION FLIGHT TRACK MAP WITH CURSOR FOLLOW ---
+window.calMapState = {
+    activeFilename: null,
+    telemetry: null,
+    segStart: 0,
+    segEnd: 0,
+    cursorIndex: 0
+};
+
+function toggleAirspeedCalMap() {
+    const card = document.getElementById("airspeedCalMapCard");
+    if (!card) return;
+    const isHidden = card.classList.contains("d-none");
+    if (isHidden) {
+        card.classList.remove("d-none");
+        if (!window.calMapState.telemetry) {
+            // Find first available calibration to display by default
+            const flights = window.globalFlights || [];
+            for (let f of flights) {
+                if (f.saved_calibrations && f.saved_calibrations.length > 0) {
+                    const c = f.saved_calibrations[0];
+                    viewCalOnMap(c.filename, c.start_time, c.end_time);
+                    break;
+                }
+            }
+        }
+    } else {
+        card.classList.add("d-none");
+    }
+}
+
+function viewCalOnMap(filename, startTime, endTime) {
+    const card = document.getElementById("airspeedCalMapCard");
+    if (card && card.classList.contains("d-none")) {
+        card.classList.remove("d-none");
+    }
+    highlightAirspeedCalSegment(filename, startTime, endTime, true);
+}
+
+function highlightAirspeedCalSegment(filename, startTime, endTime, forceRecenter = false) {
+    const card = document.getElementById("airspeedCalMapCard");
+    if (!card || card.classList.contains("d-none")) return;
+
+    if (window.calMapState.activeFilename !== filename) {
+        // Fetch new flight map telemetry
+        fetch(`/api/flight_map_telemetry?filename=${encodeURIComponent(filename)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    console.warn("Map telemetry fetch error:", data.error);
+                    return;
+                }
+                window.calMapState.activeFilename = filename;
+                window.calMapState.telemetry = data;
+                renderAirspeedCalMapPlot(startTime, endTime, forceRecenter);
+            })
+            .catch(err => console.error("Error fetching map telemetry:", err));
+    } else {
+        renderAirspeedCalMapPlot(startTime, endTime, forceRecenter);
+    }
+}
+
+function renderAirspeedCalMapPlot(startTime, endTime, forceRecenter = false) {
+    const div = document.getElementById("airspeedCalMapDiv");
+    const titleEl = document.getElementById("airspeedCalMapTitle");
+    const badgeEl = document.getElementById("airspeedCalMapSegmentBadge");
+    const sliderEl = document.getElementById("airspeedCalMapSlider");
+    if (!div || !window.calMapState.telemetry) return;
+
+    const data = window.calMapState.telemetry;
+    const lats = data.lat || [];
+    const lons = data.lon || [];
+    const times = data.time || [];
+    const alts = data.alt || [];
+    const iass = data.ias || [];
+    const tass = data.tas || [];
+    const hdgs = data.heading || [];
+
+    if (lats.length === 0 || lons.length === 0) {
+        div.innerHTML = '<div class="text-center text-muted p-5">No GPS coordinate track logged for this flight file.</div>';
+        return;
+    }
+
+    window.calMapState.segStart = startTime;
+    window.calMapState.segEnd = endTime;
+
+    // Filter segment indices
+    let segIndices = [];
+    for (let i = 0; i < times.length; i++) {
+        if (times[i] >= startTime && times[i] <= endTime) {
+            segIndices.push(i);
+        }
+    }
+    if (segIndices.length === 0) {
+        segIndices = [0];
+    }
+
+    const segLats = segIndices.map(i => lats[i]);
+    const segLons = segIndices.map(i => lons[i]);
+    const segTimes = segIndices.map(i => times[i]);
+    const segAlts = segIndices.map(i => alts[i]);
+    const segIass = segIndices.map(i => iass[i]);
+    const segTass = segIndices.map(i => tass[i]);
+
+    // Update Slider
+    if (sliderEl) {
+        sliderEl.min = 0;
+        sliderEl.max = lats.length - 1;
+        // Default cursor to start of maneuver segment
+        const initCursorIdx = segIndices[0] || 0;
+        sliderEl.value = initCursorIdx;
+        window.calMapState.cursorIndex = initCursorIdx;
+    }
+
+    if (titleEl) {
+        titleEl.innerHTML = `🗺️ Flight Track: <strong>${data.filename}</strong>`;
+    }
+    if (badgeEl) {
+        badgeEl.innerHTML = `Maneuver Segment: ${formatMMSS(startTime)} - ${formatMMSS(endTime)}`;
+    }
+
+    // Traces:
+    // 1. Full flight path line
+    const fullPathTrace = {
+        type: 'scattermapbox',
+        mode: 'lines',
+        lat: lats,
+        lon: lons,
+        line: { width: 3, color: '#6c757d' },
+        name: 'Full Flight Track',
+        hoverinfo: 'none'
+    };
+
+    // 2. Maneuver segment track line (bright cyan with yellow point markers)
+    const segmentTrace = {
+        type: 'scattermapbox',
+        mode: 'lines+markers',
+        lat: segLats,
+        lon: segLons,
+        line: { width: 6, color: '#00f0ff' },
+        marker: { size: 7, color: '#ffc107' },
+        name: 'Maneuver Segment',
+        text: segTimes.map((t, idx) => 
+            `<b>Calibration Segment</b><br>` +
+            `Time: ${formatMMSS(t)}<br>` +
+            `Alt: ${Math.round(segAlts[idx] || 0).toLocaleString()} ft<br>` +
+            `IAS: ${Math.round(segIass[idx] || 0)} kt | TAS: ${Math.round(segTass[idx] || 0)} kt`
+        ),
+        hoverinfo: 'text'
+    };
+
+    // 3. Cursor Follow Marker (Red Target Circle)
+    const initIdx = window.calMapState.cursorIndex || segIndices[0] || 0;
+    const cursorTrace = {
+        type: 'scattermapbox',
+        mode: 'markers',
+        lat: [lats[initIdx]],
+        lon: [lons[initIdx]],
+        marker: {
+            size: 16,
+            color: '#ff0055',
+            symbol: 'circle',
+            opacity: 0.9
+        },
+        name: 'Position Cursor',
+        text: [`<b>Cursor Position</b><br>Time: ${formatMMSS(times[initIdx])}`],
+        hoverinfo: 'text'
+    };
+
+    // Map Center & Zoom
+    const centerLat = segLats.reduce((a, b) => a + b, 0) / segLats.length;
+    const centerLon = segLons.reduce((a, b) => a + b, 0) / segLons.length;
+
+    const isDarkMode = document.body.classList.contains("dark-mode") || document.documentElement.getAttribute("data-bs-theme") === "dark";
+
+    const layout = {
+        mapbox: {
+            style: 'open-street-map',
+            center: { lat: centerLat, lon: centerLon },
+            zoom: 13
+        },
+        margin: { l: 0, r: 0, t: 0, b: 0 },
+        showlegend: false,
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent'
+    };
+
+    Plotly.newPlot(div, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true });
+
+    // Update banner text
+    updateAirspeedCalMapCursor(initIdx);
+}
+
+function updateAirspeedCalMapCursor(index) {
+    if (!window.calMapState.telemetry) return;
+    const data = window.calMapState.telemetry;
+    const idx = Math.min(Math.max(0, parseInt(index)), (data.lat || []).length - 1);
+    window.calMapState.cursorIndex = idx;
+
+    const lat = data.lat[idx];
+    const lon = data.lon[idx];
+    const t = data.time[idx];
+    const alt = data.alt[idx];
+    const ias = data.ias[idx];
+    const tas = data.tas[idx];
+    const hdg = data.heading[idx];
+
+    // Update position marker trace on Plotly map
+    const div = document.getElementById("airspeedCalMapDiv");
+    if (div && div.data && div.data.length >= 3) {
+        Plotly.restyle(div, {
+            lat: [[lat]],
+            lon: [[lon]],
+            text: [[
+                `<b>Position Cursor</b><br>` +
+                `Time: ${formatMMSS(t)}<br>` +
+                `Alt: ${Math.round(alt || 0).toLocaleString()} ft<br>` +
+                `IAS: ${Math.round(ias || 0)} kt | TAS: ${Math.round(tas || 0)} kt<br>` +
+                `HDG: ${Math.round(hdg || 0)}°`
+            ]]
+        }, [2]).catch(e => console.debug("Map cursor update notice:", e));
+    }
+
+    // Update banner text
+    const bannerEl = document.getElementById("airspeedCalMapCursorBanner");
+    if (bannerEl) {
+        bannerEl.innerHTML = `
+            📍 <strong>${formatMMSS(t)}</strong> 
+            | Lat: <strong>${lat.toFixed(5)}°</strong>, Lon: <strong>${lon.toFixed(5)}°</strong> 
+            | Alt: <strong>${Math.round(alt || 0).toLocaleString()} ft</strong> 
+            | IAS: <strong>${Math.round(ias || 0)} kt</strong> 
+            | TAS: <strong>${Math.round(tas || 0)} kt</strong>
+            ${hdg !== undefined ? `| HDG: <strong>${Math.round(hdg)}°</strong>` : ''}
+        `;
+    }
+}
+
+function onAirspeedCalMapSliderChange(val) {
+    updateAirspeedCalMapCursor(val);
+}
+
+window.toggleAirspeedCalMap = toggleAirspeedCalMap;
+window.viewCalOnMap = viewCalOnMap;
+window.highlightAirspeedCalSegment = highlightAirspeedCalSegment;
+window.onAirspeedCalMapSliderChange = onAirspeedCalMapSliderChange;
+

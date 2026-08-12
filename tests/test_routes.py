@@ -825,3 +825,19 @@ class TestAirspeedCalibrationDB:
 
             assert db.session.get(AirspeedCalibration, cal_id) is None
 
+
+class TestFlightMapTelemetryAPI:
+    """Tests for /api/flight_map_telemetry."""
+
+    def test_flight_map_telemetry(self, app, auth_client):
+        with app.app_context():
+            res = auth_client.get("/api/flight_map_telemetry?filename=2026-04-09%2015-15-49.csv")
+            assert res.status_code == 200
+            data = res.get_json()
+            assert "lat" in data
+            assert "lon" in data
+            assert "time" in data
+            assert len(data["lat"]) > 0
+            assert len(data["lon"]) > 0
+
+

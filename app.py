@@ -2843,6 +2843,60 @@ def delete_airspeed_calibration(cal_id):
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/flight_map_telemetry", methods=["GET", "POST"])
+def api_flight_map_telemetry():
+    """Returns GPS coordinates, time, altitude, and speeds for modal map rendering."""
+    filename = request.values.get("filename")
+    if not filename:
+        return jsonify({"error": "Filename required"}), 400
+
+    filepath = os.path.join(SAVE_DIR, filename)
+    if not os.path.exists(filepath):
+        return jsonify({"error": "File not found"}), 404
+
+    try:
+        df = load_cached_flight_df(filename)
+        lat_col = next((c for c in df.columns if "latitude" in c.lower()), None)
+        lon_col = next((c for c in df.columns if "longitude" in c.lower()), None)
+
+        if not lat_col or not lon_col:
+            return jsonify({"error": "No GPS coordinates found in this flight log"}), 404
+
+        alt_col = "GPS Altitude (feet)" if "GPS Altitude (feet)" in df.columns else next((c for c in df.columns if "altitude" in c.lower()), None)
+        time_col = "Session Time" if "Session Time" in df.columns else df.columns[0]
+        ias_col = "Indicated Airspeed (knots)" if "Indicated Airspeed (knots)" in df.columns else None
+        tas_col = "Corrected TAS (knots)" if "Corrected TAS (knots)" in df.columns else ("True Airspeed (knots)" if "True Airspeed (knots)" in df.columns else None)
+        hdg_col = next((c for c in df.columns if "heading" in c.lower()), None)
+
+        def get_clean_list(col):
+            if not col or col not in df.columns:
+                return []
+            s = pd.to_numeric(df[col], errors="coerce").replace([np.inf, -np.inf], np.nan)
+            return s.fillna(0).tolist()
+
+        lats = get_clean_list(lat_col)
+        lons = get_clean_list(lon_col)
+        times = get_clean_list(time_col)
+        alts = get_clean_list(alt_col)
+        iass = get_clean_list(ias_col)
+        tass = get_clean_list(tas_col)
+        hdgs = get_clean_list(hdg_col)
+
+        return jsonify(sanitize_for_json({
+            "filename": filename,
+            "lat": lats,
+            "lon": lons,
+            "time": times,
+            "alt": alts,
+            "ias": iass,
+            "tas": tass,
+            "heading": hdgs
+        }))
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+
 @app.route("/export/flights")
 @login_required
 def export_flights():
