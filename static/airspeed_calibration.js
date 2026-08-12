@@ -747,18 +747,31 @@ function renderAsCalMap(data, startTime, endTime) {
         text: [`<b>Position Cursor</b><br>Time: ${Math.round(sessionTimes[initIdx] || 0)}s`]
     };
 
-    const minLat = Math.min(...segLats);
-    const maxLat = Math.max(...segLats);
-    const minLon = Math.min(...segLons);
-    const maxLon = Math.max(...segLons);
+    const isMapInitialized = mapDiv.data && mapDiv.data.length > 0;
 
-    const centerLat = (minLat + maxLat) / 2;
-    const centerLon = (minLon + maxLon) / 2;
-    const maxDiff = Math.max(Math.abs(maxLat - minLat), Math.abs(maxLon - minLon));
+    let centerLat, centerLon, fitZoom;
 
-    let fitZoom = 11;
-    if (maxDiff > 0.0001) {
-        fitZoom = Math.min(13, Math.max(8, Math.log2(360 / maxDiff) - 2.8));
+    if (isMapInitialized && !forceRecenter && mapDiv.layout && mapDiv.layout.mapbox) {
+        centerLat = mapDiv.layout.mapbox.center ? mapDiv.layout.mapbox.center.lat : 0;
+        centerLon = mapDiv.layout.mapbox.center ? mapDiv.layout.mapbox.center.lon : 0;
+        fitZoom = mapDiv.layout.mapbox.zoom || 11;
+    } else {
+        const calcLats = segLats.length > 1 ? segLats : lats;
+        const calcLons = segLons.length > 1 ? segLons : lons;
+
+        const minLat = Math.min(...calcLats);
+        const maxLat = Math.max(...calcLats);
+        const minLon = Math.min(...calcLons);
+        const maxLon = Math.max(...calcLons);
+
+        centerLat = (minLat + maxLat) / 2;
+        centerLon = (minLon + maxLon) / 2;
+        const maxDiff = Math.max(Math.abs(maxLat - minLat), Math.abs(maxLon - minLon));
+
+        fitZoom = 11;
+        if (maxDiff > 0.0001) {
+            fitZoom = Math.min(13, Math.max(8, Math.log2(360 / maxDiff) - 2.8));
+        }
     }
 
     const layout = {
@@ -773,17 +786,19 @@ function renderAsCalMap(data, startTime, endTime) {
         plot_bgcolor: 'transparent'
     };
 
-    Plotly.newPlot(mapDiv, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true });
+    Plotly.react(mapDiv, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true });
 
-    // Enable hover sync from map to time graph
-    mapDiv.on('plotly_hover', (eventData) => {
-        if (!eventData || !eventData.points || !eventData.points.length) return;
-        const pt = eventData.points[0];
-        // Ignore hover events on the cursor marker itself to prevent hover loops/glitches
-        if (pt.curveNumber === 2) return;
-        const ptIdx = pt.pointIndex;
-        updateAsCalMapCursor(data, ptIdx);
-    });
+    if (!isMapInitialized) {
+        // Enable hover sync from map to time graph
+        mapDiv.on('plotly_hover', (eventData) => {
+            if (!eventData || !eventData.points || !eventData.points.length) return;
+            const pt = eventData.points[0];
+            // Ignore hover events on the cursor marker itself to prevent hover loops/glitches
+            if (pt.curveNumber === 2) return;
+            const ptIdx = pt.pointIndex;
+            updateAsCalMapCursor(data, ptIdx);
+        });
+    }
 
     updateAsCalMapCursor(data, initIdx);
 }
