@@ -767,7 +767,10 @@ function renderAsCalMap(data, startTime, endTime) {
     // Enable hover sync from map to time graph
     mapDiv.on('plotly_hover', (eventData) => {
         if (!eventData || !eventData.points || !eventData.points.length) return;
-        const ptIdx = eventData.points[0].pointIndex;
+        const pt = eventData.points[0];
+        // Ignore hover events on the cursor marker itself to prevent hover loops/glitches
+        if (pt.curveNumber === 2) return;
+        const ptIdx = pt.pointIndex;
         updateAsCalMapCursor(data, ptIdx);
     });
 
@@ -776,6 +779,8 @@ function renderAsCalMap(data, startTime, endTime) {
 
 function updateAsCalMapCursor(data, pointIdx) {
     if (!data) return;
+    if (window._lastAsCalCursorIdx === pointIdx) return;
+    window._lastAsCalCursorIdx = pointIdx;
 
     function getSeries(colNames) {
         if (Array.isArray(data)) {

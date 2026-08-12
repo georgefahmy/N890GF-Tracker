@@ -867,6 +867,13 @@ function renderAirspeedCalMapPlot(startTime, endTime, forceRecenter = false) {
 
     Plotly.newPlot(div, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true });
 
+    div.on('plotly_hover', (eventData) => {
+        if (!eventData || !eventData.points || !eventData.points.length) return;
+        const pt = eventData.points[0];
+        if (pt.curveNumber === 2) return;
+        updateAirspeedCalMapCursor(pt.pointIndex);
+    });
+
     // Update banner text
     updateAirspeedCalMapCursor(initIdx);
 }
@@ -875,6 +882,7 @@ function updateAirspeedCalMapCursor(index) {
     if (!window.calMapState.telemetry) return;
     const data = window.calMapState.telemetry;
     const idx = Math.min(Math.max(0, parseInt(index)), (data.lat || []).length - 1);
+    if (window.calMapState.cursorIndex === idx && document.getElementById("airspeedCalMapDiv")?.data?.[2]?.lat?.[0] === data.lat[idx]) return;
     window.calMapState.cursorIndex = idx;
 
     const lat = data.lat[idx];
