@@ -43,7 +43,12 @@ from werkzeug.utils import secure_filename
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
-from src.fuel_estimate_simple import calculate_fuel
+from src.fuel_estimate_simple import (
+    calculate_fuel,
+    calculate_fuel_fast,
+    calculate_usable_fuel,
+    calculate_endurance,
+)
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
 from src.sw_db_updates import download_dynon_databases_only
@@ -1675,24 +1680,40 @@ def get_oil_trends():
 
 
 @app.route("/api/estimate_fuel", methods=["POST"])
-# @login_required  <-- Uncomment if your app uses login_required
 def estimate_fuel():
-    data = request.json
+    data = request.json or {}
 
     # Get slider heights (defaulting to 0 if missing)
     left_height = float(data.get("left_height", 0))
     right_height = float(data.get("right_height", 0))
-    print(left_height, right_height)
+    pitch_angle = float(data.get("pitch_angle", 11.0))
+    roll_angle = float(data.get("roll_angle", 0.0))
+    cruise_gph = float(data.get("cruise_gph", 10.5))
 
-    # Calculate using defaults (TILT_DEG, CHORD_TILT_DEG) from your script
-    left_gal, _ = calculate_fuel(left_height)
-    right_gal, _ = calculate_fuel(right_height)
+    # Calculate using fast solver with optional pitch and roll adjustments
+    left_gal, _ = calculate_fuel_fast(left_height, pitch_angle=pitch_angle, roll_angle=roll_angle)
+    right_gal, _ = calculate_fuel_fast(right_height, pitch_angle=pitch_angle, roll_angle=roll_angle)
+    total_gal = left_gal + right_gal
+
+    left_gal_r = round(left_gal, 2)
+    right_gal_r = round(right_gal, 2)
+    total_gal_r = round(left_gal_r + right_gal_r, 2)
+
+    left_usable = calculate_usable_fuel(left_gal_r, unusable_per_tank=0.5, num_tanks=1)
+    right_usable = calculate_usable_fuel(right_gal_r, unusable_per_tank=0.5, num_tanks=1)
+    usable_total = round(left_usable + right_usable, 2)
+
+    endurance_info = calculate_endurance(usable_total, cruise_gph=cruise_gph)
 
     return jsonify(
         {
-            "left_gallons": left_gal,
-            "right_gallons": right_gal,
-            "total_gallons": left_gal + right_gal,
+            "left_gallons": left_gal_r,
+            "right_gallons": right_gal_r,
+            "total_gallons": total_gal_r,
+            "usable_gallons": usable_total,
+            "endurance_hours": endurance_info["hours"],
+            "endurance_fmt": endurance_info["fmt"],
+            "reserve_status": endurance_info["reserve_status"],
         }
     )
 

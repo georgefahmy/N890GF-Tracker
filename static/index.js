@@ -58,12 +58,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const leftGalDisp = document.getElementById('leftGalDisplay');
     const rightGalDisp = document.getElementById('rightGalDisplay');
     const totalGalDisp = document.getElementById('totalGalDisplay');
+    const usableGalDisp = document.getElementById('usableGalDisplay');
+    const enduranceDisp = document.getElementById('enduranceDisplay');
 
     function updateFuelEstimate() {
+        if (!leftSlider || !rightSlider) return;
         const leftVal = leftSlider.value;
         const rightVal = rightSlider.value;
 
-        // Fetch the calculation from the backend
         fetch('/api/estimate_fuel', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -71,28 +73,50 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
-            leftGalDisp.textContent = data.left_gallons.toFixed(2);
-            rightGalDisp.textContent = data.right_gallons.toFixed(2);
-            totalGalDisp.textContent = data.total_gallons.toFixed(2);
+            if (leftGalDisp) leftGalDisp.textContent = data.left_gallons.toFixed(2);
+            if (rightGalDisp) rightGalDisp.textContent = data.right_gallons.toFixed(2);
+            if (totalGalDisp) totalGalDisp.textContent = data.total_gallons.toFixed(2);
+            if (usableGalDisp) usableGalDisp.textContent = (data.usable_gallons || 0).toFixed(2);
+
+            if (enduranceDisp) {
+                enduranceDisp.textContent = data.endurance_fmt || "0h 00m";
+                enduranceDisp.className = "badge " + (
+                    data.reserve_status === "OK" ? "bg-success" :
+                    data.reserve_status === "CAUTION" ? "bg-warning text-dark" : "bg-danger"
+                );
+            }
         })
         .catch(err => console.error("Error fetching fuel estimate:", err));
     }
-    function updateFuelEstimateText(){
-        const leftVal = leftSlider.value;
-        const rightVal = rightSlider.value;
 
-        // Update the UI height text immediately
-        leftHeightDisp.textContent = leftVal;
-        rightHeightDisp.textContent = rightVal;
-
+    function updateFuelEstimateText() {
+        if (!leftSlider || !rightSlider) return;
+        if (leftHeightDisp) leftHeightDisp.textContent = leftSlider.value;
+        if (rightHeightDisp) rightHeightDisp.textContent = rightSlider.value;
     }
 
-    // Trigger calculation when sliders are moved
-    if(leftSlider && rightSlider) {
+    window.setFuelPreset = function(preset) {
+        if (!leftSlider || !rightSlider) return;
+        if (preset === 'full') {
+            leftSlider.value = 6.5;
+            rightSlider.value = 6.5;
+        } else if (preset === 'tabs') {
+            leftSlider.value = 4.25;
+            rightSlider.value = 4.25;
+        } else if (preset === 'half') {
+            leftSlider.value = 3.0;
+            rightSlider.value = 3.0;
+        }
+        updateFuelEstimateText();
+        updateFuelEstimate();
+    };
+
+    if (leftSlider && rightSlider) {
         leftSlider.addEventListener('change', updateFuelEstimate);
         rightSlider.addEventListener('change', updateFuelEstimate);
         leftSlider.addEventListener('input', updateFuelEstimateText);
         rightSlider.addEventListener('input', updateFuelEstimateText);
+        updateFuelEstimate();
     }
 
     // ====== FUEL PRICE LOGIC ======

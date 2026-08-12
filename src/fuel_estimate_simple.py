@@ -193,3 +193,74 @@ def calculate_fuel(height_at_filler, angle=TILT_DEG, pitch_angle=CHORD_TILT_DEG)
         fuel_height_inboard = MAX_THICK
 
     return gallons, fuel_height_inboard
+
+
+# --- 1D FAST LOOKUP TABLE INTERPOLATION ---
+_LUT_HEIGHTS = np.linspace(0.0, 7.5, 76)
+_LUT_GALLONS_DEFAULT = None
+
+
+def _get_default_lut():
+    global _LUT_GALLONS_DEFAULT
+    if _LUT_GALLONS_DEFAULT is None:
+        _LUT_GALLONS_DEFAULT = np.array([calculate_fuel(h)[0] for h in _LUT_HEIGHTS])
+    return _LUT_GALLONS_DEFAULT
+
+
+def calculate_fuel_fast(height_at_filler, angle=TILT_DEG, pitch_angle=CHORD_TILT_DEG, roll_angle=0.0):
+    """
+    Fast $O(1)$ fuel estimation with support for pitch and roll slope adjustments.
+    """
+    # Adjust effective angles for roll/pitch ground slope inclination
+    effective_angle = angle + roll_angle
+    effective_pitch = pitch_angle
+
+    if effective_angle == TILT_DEG and effective_pitch == CHORD_TILT_DEG:
+        lut_gals = _get_default_lut()
+        h_clamped = float(np.clip(height_at_filler, 0.0, 7.5))
+        gal = float(np.interp(h_clamped, _LUT_HEIGHTS, lut_gals))
+        inboard_h = min(height_at_filler + 2.5, MAX_THICK)
+        return gal, inboard_h
+
+    return calculate_fuel(height_at_filler, angle=effective_angle, pitch_angle=effective_pitch)
+
+
+def calculate_usable_fuel(gallons, unusable_per_tank=0.5, num_tanks=2):
+    """
+    Calculates usable fuel volume by subtracting unusable fuel.
+    """
+    unusable_total = unusable_per_tank * num_tanks
+    return max(float(gallons) - unusable_total, 0.0)
+
+
+def calculate_endurance(usable_gallons, cruise_gph=10.5):
+    """
+    Calculates endurance hours, formatted string (HH:MM), and reserve alert status.
+    Returns:
+        dict: {
+            "hours": float,
+            "fmt": str,
+            "reserve_status": str ("OK", "CAUTION", "WARNING")
+        }
+    """
+    if cruise_gph <= 0:
+        return {"hours": 0.0, "fmt": "0h 00m", "reserve_status": "WARNING"}
+
+    hours = float(usable_gallons) / float(cruise_gph)
+    total_minutes = int(round(hours * 60))
+    h_part = total_minutes // 60
+    m_part = total_minutes % 60
+
+    if total_minutes >= 45:
+        status = "OK"
+    elif total_minutes >= 30:
+        status = "CAUTION"
+    else:
+        status = "WARNING"
+
+    return {
+        "hours": round(hours, 2),
+        "fmt": f"{h_part}h {m_part:02d}m",
+        "reserve_status": status
+    }
+

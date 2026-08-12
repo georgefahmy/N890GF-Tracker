@@ -167,6 +167,37 @@ class TestCalculateFuel:
         assert gal_default > 0
         assert gal_flat > 0
 
+    def test_calculate_fuel_fast(self):
+        from src.fuel_estimate_simple import calculate_fuel, calculate_fuel_fast
+
+        gal_slow, _ = calculate_fuel(3.5)
+        gal_fast, _ = calculate_fuel_fast(3.5)
+        assert abs(gal_slow - gal_fast) < 0.05
+
+    def test_calculate_usable_fuel(self):
+        from src.fuel_estimate_simple import calculate_usable_fuel
+
+        assert calculate_usable_fuel(20.0, unusable_per_tank=0.5, num_tanks=2) == 19.0
+        assert calculate_usable_fuel(0.5, unusable_per_tank=0.5, num_tanks=2) == 0.0
+
+    def test_calculate_endurance(self):
+        from src.fuel_estimate_simple import calculate_endurance
+
+        res = calculate_endurance(21.0, cruise_gph=10.5)
+        assert res["hours"] == 2.0
+        assert res["fmt"] == "2h 00m"
+        assert res["reserve_status"] == "OK"
+
+    def test_reconcile_fuel_burn(self):
+        from src.fuel_reconciliation import reconcile_fuel_burn
+        import pandas as pd
+
+        df = pd.DataFrame({"Fuel Flow Integral": [0.0, 5.0, 10.0]})
+        rec = reconcile_fuel_burn(pre_flight_gallons=30.0, post_flight_gallons=20.0, df_telemetry=df)
+        assert rec["measured_burn_sight_gauge"] == 10.0
+        assert rec["telemetry_burn_integral"] == 10.0
+        assert rec["status"] == "EXCELLENT"
+
 
 # =============================================================================
 # Airspeed Calibration (src/airspeed_calibration.py)
