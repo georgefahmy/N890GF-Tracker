@@ -818,21 +818,22 @@ function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
         plot_bgcolor: 'transparent'
     };
 
-    Plotly.react(mapDiv, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true });
-
-    if (!isMapInitialized) {
-        // Enable hover sync from map to time graph
-        mapDiv.on('plotly_hover', (eventData) => {
-            if (!eventData || !eventData.points || !eventData.points.length) return;
-            const pt = eventData.points[0];
-            // Ignore hover events on the cursor marker itself to prevent hover loops/glitches
-            if (pt.curveNumber === 2) return;
-            const ptIdx = pt.pointIndex;
-            updateAsCalMapCursor(data, ptIdx);
-        });
-    }
-
-    updateAsCalMapCursor(data, initIdx);
+    Plotly.react(mapDiv, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true })
+        .then(() => {
+            if (!isMapInitialized) {
+                // Enable hover sync from map to time graph
+                mapDiv.on('plotly_hover', (eventData) => {
+                    if (!eventData || !eventData.points || !eventData.points.length) return;
+                    const pt = eventData.points[0];
+                    // Ignore hover events on the cursor marker itself to prevent hover loops/glitches
+                    if (pt.curveNumber === 2) return;
+                    const ptIdx = pt.pointIndex;
+                    updateAsCalMapCursor(data, ptIdx);
+                });
+            }
+            updateAsCalMapCursor(data, initIdx);
+        })
+        .catch(e => console.debug("Map style loading notice:", e));
 }
 
 function updateAsCalMapCursor(data, pointIdx) {
@@ -841,14 +842,17 @@ function updateAsCalMapCursor(data, pointIdx) {
     window._lastAsCalCursorIdx = pointIdx;
 
     function getSeries(colNames) {
-        if (Array.isArray(data)) {
+        if (!data) return [];
+        const records = (typeof data === 'object' && data !== null && (data.rawData || data.data || data.dataframe)) ? (data.rawData || data.data || data.dataframe) : data;
+
+        if (Array.isArray(records)) {
             for (const col of colNames) {
-                if (data.length > 0 && col in data[0]) return data.map(row => row[col]);
-                }
+                if (records.length > 0 && col in records[0]) return records.map(row => row[col]);
+            }
         }
-        if (typeof data === 'object') {
+        if (typeof records === 'object' && records !== null) {
             for (const col of colNames) {
-                if (data[col] && Array.isArray(data[col])) return data[col];
+                if (records[col] && Array.isArray(records[col])) return records[col];
             }
         }
         return [];
