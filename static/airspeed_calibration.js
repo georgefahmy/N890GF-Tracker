@@ -82,12 +82,18 @@ function openAirspeedCalModal() {
     // Sync modal dropdown with main select choices safely
     const mainSelect = document.getElementById('savedFlights');
     const calSelect = document.getElementById('asCalSavedFlights');
+
+    let activeFile = null;
+    if (window.AppState && AppState.file && AppState.file.currentName) {
+        activeFile = AppState.file.currentName;
+    } else if (mainSelect && mainSelect.value) {
+        activeFile = mainSelect.value;
+    }
+
     if (mainSelect && calSelect && mainSelect !== calSelect) {
         calSelect.innerHTML = mainSelect.innerHTML;
-        if (window.AppState && AppState.file && AppState.file.currentName) {
-            calSelect.value = AppState.file.currentName;
-        } else if (mainSelect.value) {
-            calSelect.value = mainSelect.value;
+        if (activeFile) {
+            calSelect.value = activeFile;
         }
     }
 
@@ -95,10 +101,15 @@ function openAirspeedCalModal() {
 }
 
 function loadAirspeedCalFlight() {
-    const sel = getAsCalElem('savedFlights');
-    let selectedFile = sel ? sel.value : null;
+    let selectedFile = null;
+    const calSel = document.getElementById('asCalSavedFlights');
+    const mainSel = document.getElementById('savedFlights');
 
-    if (!selectedFile && window.AppState && AppState.file && AppState.file.currentName) {
+    if (calSel && calSel.value && calSel.value !== "") {
+        selectedFile = calSel.value;
+    } else if (mainSel && mainSel.value && mainSel.value !== "") {
+        selectedFile = mainSel.value;
+    } else if (window.AppState && AppState.file && AppState.file.currentName) {
         selectedFile = AppState.file.currentName;
     }
 
