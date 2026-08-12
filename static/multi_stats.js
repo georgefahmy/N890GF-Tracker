@@ -1057,13 +1057,13 @@ function renderEngineHealthTab(tabKey) {
         };
 
         const layout = {
-            title: { text: 'Engine Thermal Load (Max CHT & Oil Temp) vs. Outside Air Temp (OAT)', font: { color: textColor, size: 15 } },
+            title: { text: 'Engine Thermal Load (Max CHT & Oil Temp) vs. Outside Air Temp (OAT)', y: 0.96, x: 0.5, xanchor: 'center', font: { color: textColor, size: 15 } },
             xaxis: { title: 'Outside Air Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
             yaxis: { title: 'Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
-            margin: { l: 60, r: 40, t: 50, b: 50 },
-            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+            margin: { l: 60, r: 40, t: 80, b: 50 },
+            legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: 1.15, font: { color: textColor } }
         };
 
         Plotly.newPlot(div, [traceCHT, traceFit, traceOil], layout, { responsive: true });
@@ -1096,13 +1096,13 @@ function renderEngineHealthTab(tabKey) {
         };
 
         const layout = {
-            title: { text: 'Max CHT vs. Density Altitude (Color-Coded by True Airspeed)', font: { color: textColor, size: 15 } },
+            title: { text: 'Max CHT vs. Density Altitude (Color-Coded by True Airspeed)', y: 0.96, x: 0.5, xanchor: 'center', font: { color: textColor, size: 15 } },
             xaxis: { title: 'Density Altitude (feet)', gridcolor: gridColor, font: { color: textColor } },
             yaxis: { title: 'Max CHT (°F)', gridcolor: gridColor, font: { color: textColor } },
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
-            margin: { l: 60, r: 40, t: 50, b: 50 },
-            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+            margin: { l: 60, r: 40, t: 80, b: 50 },
+            legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: 1.15, font: { color: textColor } }
         };
 
         Plotly.newPlot(div, [traceDA], layout, { responsive: true });
@@ -1124,13 +1124,13 @@ function renderEngineHealthTab(tabKey) {
         const traceC4 = { x: dates, y: c4, mode: 'lines+markers', name: 'CHT 4', line: { color: '#9d4edd', width: 2 }, marker: { size: 6 } };
 
         const layout = {
-            title: { text: 'Individual Cylinder Head Temperatures (CHT 1, 2, 3, 4) Across Flights', font: { color: textColor, size: 15 } },
+            title: { text: 'Individual Cylinder Head Temperatures (CHT 1, 2, 3, 4) Across Flights', y: 0.96, x: 0.5, xanchor: 'center', font: { color: textColor, size: 15 } },
             xaxis: { title: 'Flight Date', gridcolor: gridColor, font: { color: textColor } },
             yaxis: { title: 'Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
-            margin: { l: 60, r: 40, t: 50, b: 50 },
-            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+            margin: { l: 60, r: 40, t: 80, b: 50 },
+            legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: 1.15, font: { color: textColor } }
         };
 
         Plotly.newPlot(div, [traceC1, traceC2, traceC3, traceC4], layout, { responsive: true });
@@ -1167,13 +1167,13 @@ function renderEngineHealthTab(tabKey) {
         };
 
         const layout = {
-            title: { text: 'Cylinder Head & Oil Temperature vs. Engine Percent Power (%)', font: { color: textColor, size: 15 } },
+            title: { text: 'Cylinder Head & Oil Temperature vs. Engine Percent Power (%)', y: 0.96, x: 0.5, xanchor: 'center', font: { color: textColor, size: 15 } },
             xaxis: { title: 'Percent Power (%)', gridcolor: gridColor, font: { color: textColor } },
             yaxis: { title: 'Temperature (°F)', gridcolor: gridColor, font: { color: textColor } },
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
-            margin: { l: 60, r: 40, t: 50, b: 50 },
-            legend: { orientation: 'h', y: 1.12, font: { color: textColor } }
+            margin: { l: 60, r: 40, t: 80, b: 50 },
+            legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: 1.15, font: { color: textColor } }
         };
 
         Plotly.newPlot(div, [traceCHT, traceOil], layout, { responsive: true });
