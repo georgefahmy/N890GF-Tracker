@@ -242,17 +242,48 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
 
 def calculate_landings(df: pd.DataFrame) -> int:
     """
-    Counts landings / touch-and-goes by detecting ground speed dips below 35 kts after flight.
+    Counts landings and touch-and-goes accurately using speed smoothing and hysteresis.
+    Eliminates noise, micro-flickers, and taxiway false positives.
     """
-    if "Ground Speed (knots)" not in df.columns:
+    gs_col = None
+    for c in ["Ground Speed (knots)", "Ground Speed", "GPS GS", "gps_gs"]:
+        if c in df.columns:
+            gs_col = c
+            break
+    if not gs_col:
         return 1
 
     try:
-        gs = pd.to_numeric(df["Ground Speed (knots)"], errors="coerce").fillna(0)
-        in_air = gs > 45
-        transitions = (in_air.astype(int).diff() == -1)
-        landing_count = int(transitions.sum())
-        return max(landing_count, 1)
+        gs = pd.to_numeric(df[gs_col], errors="coerce").fillna(0)
+        if gs.max() < 35:
+            return 0  # Ground test / taxi only
+
+        # Smooth ground speed with rolling window to remove micro-flickers
+        gs_smooth = gs.rolling(window=5, min_periods=1, center=True).mean()
+
+        state = "GROUND"
+        airborne_ticks = 0
+        landings = 0
+
+        for speed in gs_smooth:
+            if state == "GROUND":
+                if speed > 45:
+                    airborne_ticks += 1
+                    if airborne_ticks >= 10:  # Must be >45 kts for at least 10 consecutive ticks
+                        state = "AIRBORNE"
+                else:
+                    airborne_ticks = 0
+            elif state == "AIRBORNE":
+                if speed < 30:
+                    landings += 1
+                    state = "GROUND"
+                    airborne_ticks = 0
+
+        # If flight ended while airborne or decelerating at flight end
+        if state == "AIRBORNE" and landings == 0:
+            landings = 1
+
+        return max(landings, 0 if gs.max() < 35 else 1)
     except Exception:
         return 1
 

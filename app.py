@@ -1814,12 +1814,24 @@ def api_multi_flight_stats():
                         avg_mpg = round(float(valid_mpg.mean()), 1)
 
                 dist_miles = 0.0
-                if "Distance Traveled" in flight_data.columns:
+                gs_col = None
+                for c in ["Ground Speed (knots)", "Ground Speed", "GPS GS", "gps_gs"]:
+                    if c in flight_data.columns:
+                        gs_col = c
+                        break
+
+                if gs_col and "Session Time" in flight_data.columns:
+                    gs_s = pd.to_numeric(flight_data[gs_col], errors="coerce").fillna(0)
+                    t_s = pd.to_numeric(flight_data["Session Time"], errors="coerce").fillna(0)
+                    dt_s = t_s.diff().fillna(0).clip(lower=0, upper=10)
+                    dist_miles = round(float((gs_s * 1.15078 * (dt_s / 3600.0)).sum()), 1)
+
+                if dist_miles <= 0.1 and "Distance Traveled" in flight_data.columns:
                     dt_series = pd.to_numeric(
                         flight_data["Distance Traveled"], errors="coerce"
                     ).dropna()
                     if not dt_series.empty:
-                        dist_miles = round(float(dt_series.iloc[-1] / 5280.0), 1)
+                        dist_miles = round(float(dt_series.max() / 5280.0), 1)
 
                 def safe_max_col(col):
                     if col in flight_data.columns:

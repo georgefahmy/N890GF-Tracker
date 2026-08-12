@@ -38,52 +38,85 @@ data_dir = cwd + "/clean_flights/"
 files = os.listdir(data_dir)
 stats_file = cwd + "/static/stats.csv"
 
-df = load_flights(data_dir, files)
-flight_ids = sorted(
-    [fid for fid in df["Flight ID"].unique() if fid not in (None, 0, "", "nan")]
-)
-
-for fid in flight_ids:
-    flight_data = df[df["Flight ID"] == fid].copy()
-    # Extract date from Flight ID (assumes format: "YYYY-MM-DD ... - Flight X")
-    fid_str = "-".join(str(fid).split("-")[:-1])
-    safe_name = fid_str.replace("/", "-").replace(":", "-")
-
-    total_duration = (
-        flight_data["Session Time"].iloc[-1] - flight_data["Session Time"].iloc[-0]
-    )
+rows = []
+for file in sorted(files):
+    if not file.endswith(".csv"):
+        continue
+    filepath = os.path.join(data_dir, file)
     try:
-        air_time = (
-            flight_data[flight_data["Transponder Status"] == 3]["Session Time"].iloc[-1]
-            - flight_data[flight_data["Transponder Status"] == 3]["Session Time"].iloc[
-                0
-            ]
-        )
-    except:
+        flight_data = pd.read_csv(filepath, low_memory=False)
+        if flight_data.empty or "Session Time" not in flight_data.columns:
+            continue
+
+        safe_name = os.path.splitext(file)[0]
+        total_duration = flight_data["Session Time"].iloc[-1] - flight_data["Session Time"].iloc[0]
+
         air_time = 0
-    distance_traveled = flight_data["Distance Traveled"].iloc[-1] / 5280
-    gallons_used = flight_data["Fuel Flow Integral"].iloc[-1]
-    max_cht = flight_data["Max CHT"].iloc[-1]
-    max_rpm = flight_data["RPM"].max()
-    avg_mpg = flight_data["MPG"].mean()
-    avg_speed = (
-        flight_data[flight_data["Transponder Status"] == 3][
-            "Ground Speed (knots)"
-        ].mean()
-        * 1.15
-    )
-    data = [
-        safe_name,
-        total_duration,
-        air_time,
-        distance_traveled,
-        gallons_used,
-        max_cht,
-        max_rpm,
-        avg_mpg,
-        avg_speed,
-    ]
-    append_unique_row(stats_file, data)
+        if "Transponder Status" in flight_data.columns:
+            tx_data = flight_data[flight_data["Transponder Status"] == 3]["Session Time"]
+            if not tx_data.empty:
+                air_time = tx_data.iloc[-1] - tx_data.iloc[0]
+
+        # Calculate distance
+        dist_miles = 0.0
+        gs_col = None
+        for c in ["Ground Speed (knots)", "Ground Speed", "GPS GS", "gps_gs"]:
+            if c in flight_data.columns:
+                gs_col = c
+                break
+
+        if gs_col and "Session Time" in flight_data.columns:
+            gs_s = pd.to_numeric(flight_data[gs_col], errors="coerce").fillna(0)
+            t_s = pd.to_numeric(flight_data["Session Time"], errors="coerce").fillna(0)
+            dt_s = t_s.diff().fillna(0).clip(lower=0, upper=10)
+            dist_miles = float((gs_s * 1.15078 * (dt_s / 3600.0)).sum())
+
+        if dist_miles <= 0.1 and "Distance Traveled" in flight_data.columns:
+            dt_series = pd.to_numeric(flight_data["Distance Traveled"], errors="coerce").dropna()
+            if not dt_series.empty:
+                dist_miles = float(dt_series.max() / 5280.0)
+
+        gallons_used = 0.0
+        if "Fuel Flow Integral" in flight_data.columns:
+            ff_series = pd.to_numeric(flight_data["Fuel Flow Integral"], errors="coerce").dropna()
+            if not ff_series.empty:
+                gallons_used = float(ff_series.max())
+
+        max_cht = float(flight_data["Max CHT"].max()) if "Max CHT" in flight_data.columns else 0.0
+        max_rpm = float(flight_data["RPM"].max()) if "RPM" in flight_data.columns else 0.0
+
+        avg_mpg = 0.0
+        if "MPG" in flight_data.columns:
+            valid_mpg = pd.to_numeric(flight_data["MPG"], errors="coerce").dropna()
+            if not valid_mpg.empty:
+                avg_mpg = float(valid_mpg.mean())
+
+        avg_speed = 0.0
+        if gs_col and "Transponder Status" in flight_data.columns:
+            tx_speed = flight_data[flight_data["Transponder Status"] == 3][gs_col]
+            if not tx_speed.empty:
+                avg_speed = float(tx_speed.mean() * 1.15)
+
+        rows.append([
+            safe_name,
+            total_duration,
+            air_time,
+            dist_miles,
+            gallons_used,
+            max_cht,
+            max_rpm,
+            avg_mpg,
+            avg_speed
+        ])
+        print(f"Processed {safe_name}: Distance={dist_miles:.1f} mi, Duration={total_duration/60:.1f} min")
+    except Exception as e:
+        print(f"Error processing {file}: {e}")
+
+# Write static/stats.csv cleanly from scratch
+with open(stats_file, "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerows(rows)
+print(f"Regenerated {stats_file} cleanly with {len(rows)} flight entries.")
 
 
 # final_mask = pd.Series(True, index=flight_data.index)
