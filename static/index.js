@@ -61,10 +61,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const usableGalDisp = document.getElementById('usableGalDisplay');
     const enduranceDisp = document.getElementById('enduranceDisplay');
 
+    let fuelEstimateSeq = 0;
+
     function updateFuelEstimate() {
         if (!leftSlider || !rightSlider) return;
-        const leftVal = leftSlider.value;
-        const rightVal = rightSlider.value;
+        const leftVal = parseFloat(leftSlider.value) || 0;
+        const rightVal = parseFloat(rightSlider.value) || 0;
+
+        if (leftHeightDisp) leftHeightDisp.textContent = leftVal;
+        if (rightHeightDisp) rightHeightDisp.textContent = rightVal;
+
+        const seq = ++fuelEstimateSeq;
 
         fetch('/api/estimate_fuel', {
             method: 'POST',
@@ -73,10 +80,12 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
-            if (leftGalDisp) leftGalDisp.textContent = data.left_gallons.toFixed(2);
-            if (rightGalDisp) rightGalDisp.textContent = data.right_gallons.toFixed(2);
-            if (totalGalDisp) totalGalDisp.textContent = data.total_gallons.toFixed(2);
-            if (usableGalDisp) usableGalDisp.textContent = (data.usable_gallons || 0).toFixed(2);
+            if (seq !== fuelEstimateSeq) return;
+
+            if (leftGalDisp) leftGalDisp.textContent = Number(data.left_gallons || 0).toFixed(2);
+            if (rightGalDisp) rightGalDisp.textContent = Number(data.right_gallons || 0).toFixed(2);
+            if (totalGalDisp) totalGalDisp.textContent = Number(data.total_gallons || 0).toFixed(2);
+            if (usableGalDisp) usableGalDisp.textContent = Number(data.usable_gallons || 0).toFixed(2);
 
             if (enduranceDisp) {
                 enduranceDisp.textContent = data.endurance_fmt || "0h 00m";
@@ -86,13 +95,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 );
             }
         })
-        .catch(err => console.error("Error fetching fuel estimate:", err));
-    }
-
-    function updateFuelEstimateText() {
-        if (!leftSlider || !rightSlider) return;
-        if (leftHeightDisp) leftHeightDisp.textContent = leftSlider.value;
-        if (rightHeightDisp) rightHeightDisp.textContent = rightSlider.value;
+        .catch(err => {
+            if (seq === fuelEstimateSeq) {
+                console.error("Error fetching fuel estimate:", err);
+            }
+        });
     }
 
     window.setFuelPreset = function(preset) {
@@ -107,15 +114,14 @@ document.addEventListener("DOMContentLoaded", function() {
             leftSlider.value = 3.0;
             rightSlider.value = 3.0;
         }
-        updateFuelEstimateText();
         updateFuelEstimate();
     };
 
     if (leftSlider && rightSlider) {
+        leftSlider.addEventListener('input', updateFuelEstimate);
+        rightSlider.addEventListener('input', updateFuelEstimate);
         leftSlider.addEventListener('change', updateFuelEstimate);
         rightSlider.addEventListener('change', updateFuelEstimate);
-        leftSlider.addEventListener('input', updateFuelEstimateText);
-        rightSlider.addEventListener('input', updateFuelEstimateText);
         updateFuelEstimate();
     }
 
