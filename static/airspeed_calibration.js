@@ -160,21 +160,22 @@ function renderAirspeedCalPlot(data) {
     // Helper to safely fetch numeric arrays from row array or column dict
     function getSeries(colNames) {
         if (!data) return [];
+        const records = (typeof data === 'object' && data !== null && (data.rawData || data.data || data.dataframe)) ? (data.rawData || data.data || data.dataframe) : data;
 
         // Case 1: Array of record objects [{ col1: v1, col2: v2 }, ...]
-        if (Array.isArray(data)) {
+        if (Array.isArray(records)) {
             for (const col of colNames) {
-                if (data.length > 0 && col in data[0]) {
-                    return data.map(row => row[col]);
+                if (records.length > 0 && col in records[0]) {
+                    return records.map(row => row[col]);
                 }
             }
         }
 
         // Case 2: Column dictionary { col1: [v1, v2], col2: [...] }
-        if (typeof data === 'object') {
+        if (typeof records === 'object' && records !== null) {
             for (const col of colNames) {
-                if (data[col] && Array.isArray(data[col])) {
-                    return data[col];
+                if (records[col] && Array.isArray(records[col])) {
+                    return records[col];
                 }
             }
         }
@@ -684,17 +685,19 @@ function renderAsCalMap(data, startTime, endTime) {
 
     function getSeries(colNames) {
         if (!data) return [];
-        if (Array.isArray(data)) {
+        const records = (typeof data === 'object' && data !== null && (data.rawData || data.data || data.dataframe)) ? (data.rawData || data.data || data.dataframe) : data;
+
+        if (Array.isArray(records)) {
             for (const col of colNames) {
-                if (data.length > 0 && col in data[0]) {
-                    return data.map(row => row[col]);
+                if (records.length > 0 && col in records[0]) {
+                    return records.map(row => row[col]);
                 }
             }
         }
-        if (typeof data === 'object') {
+        if (typeof records === 'object' && records !== null) {
             for (const col of colNames) {
-                if (data[col] && Array.isArray(data[col])) {
-                    return data[col];
+                if (records[col] && Array.isArray(records[col])) {
+                    return records[col];
                 }
             }
         }
