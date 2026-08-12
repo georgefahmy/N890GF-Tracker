@@ -232,6 +232,17 @@ function renderAirspeedCalPlot(data) {
 
     Plotly.newPlot(graphDiv, [traceIAS, traceGS, traceHDG, traceAlt], layout, { responsive: true });
 
+    // Render side-by-side interactive map
+    renderAsCalMap(data, asCalSelectionState.start, asCalSelectionState.end);
+
+    // Hover listener to follow cursor on map & banner
+    graphDiv.on('plotly_hover', (eventData) => {
+        if (!eventData || !eventData.points || !eventData.points.length) return;
+        const pt = eventData.points[0];
+        const pointIdx = pt.pointIndex;
+        updateAsCalMapCursor(data, pointIdx);
+    });
+
     // Handle 2-click maneuver selection
     graphDiv.on('plotly_click', (eventData) => {
         if (!eventData || !eventData.points || !eventData.points.length) return;
@@ -262,6 +273,9 @@ function renderAirspeedCalPlot(data) {
         }
 
         drawAsCalShapes();
+
+        // Update map maneuver segment highlight
+        renderAsCalMap(data, asCalSelectionState.start, asCalSelectionState.end);
 
         // If both start & end are set, run calibration automatically
         if (asCalSelectionState.start !== null && asCalSelectionState.end !== null) {
@@ -627,12 +641,204 @@ function deleteAirspeedCalibration(calId) {
                     if (window.filterAndRenderTable) window.filterAndRenderTable();
                     if (window.renderAirspeedCalsModalTable) window.renderAirspeedCalsModalTable();
                 }
-            } else if (data.error) {
-                alert("Error deleting calibration: " + data.error);
+            } else {
+                alert("Error deleting calibration: " + (data.error || "Unknown error"));
             }
         })
-        .catch(err => console.error("Error deleting calibration:", err));
+        .catch(err => {
+            console.error("Delete calibration error:", err);
+            alert("Error deleting calibration.");
+        });
 }
+
+
+// --- INTERACTIVE AIRSPEED CALIBRATION MAP & CURSOR FOLLOW ---
+function renderAsCalMap(data, startTime, endTime) {
+    const mapDiv = getAsCalElem('mapDiv');
+    if (!mapDiv || !data) return;
+
+    function getSeries(colNames) {
+        if (!data) return [];
+        if (Array.isArray(data)) {
+            for (const col of colNames) {
+                if (data.length > 0 && col in data[0]) {
+                    return data.map(row => row[col]);
+                }
+            }
+        }
+        if (typeof data === 'object') {
+            for (const col of colNames) {
+                if (data[col] && Array.isArray(data[col])) {
+                    return data[col];
+                }
+            }
+        }
+        return [];
+    }
+
+    const sessionTimes = getSeries(['Session Time', 'session_time']);
+    const lats = getSeries(['Latitude (deg)', 'latitude', 'LAT', 'Lat']);
+    const lons = getSeries(['Longitude (deg)', 'longitude', 'LON', 'Lon']);
+    const alts = getSeries(['GPS Altitude (feet)', 'Pressure Altitude (ft)', 'press_alt', 'ALT']);
+    const iass = getSeries(['Indicated Airspeed (knots)', 'ias', 'IAS']);
+    const tass = getSeries(['Corrected TAS (knots)', 'True Airspeed (knots)', 'tas', 'TAS']);
+    const hdgs = getSeries(['Magnetic Heading (deg)', 'hdg', 'HDG']);
+
+    if (!lats.length || !lons.length) {
+        mapDiv.innerHTML = '<div class="text-center text-muted p-4">No GPS coordinate track logged for this flight.</div>';
+        return;
+    }
+
+    // Identify indices for selected maneuver segment
+    let segIndices = [];
+    if (startTime !== null && endTime !== null) {
+        for (let i = 0; i < sessionTimes.length; i++) {
+            if (sessionTimes[i] >= startTime && sessionTimes[i] <= endTime) {
+                segIndices.push(i);
+            }
+        }
+    }
+    if (segIndices.length === 0) segIndices = [0];
+
+    const segLats = segIndices.map(i => lats[i]);
+    const segLons = segIndices.map(i => lons[i]);
+    const segTimes = segIndices.map(i => sessionTimes[i]);
+
+    // Traces:
+    // 1. Full Flight Path
+    const fullPathTrace = {
+        type: 'scattermapbox',
+        mode: 'lines',
+        lat: lats,
+        lon: lons,
+        line: { width: 3, color: '#6c757d' },
+        name: 'Full Flight Track',
+        hoverinfo: 'none'
+    };
+
+    // 2. Highlighted Maneuver Segment (Cyan line with Gold markers)
+    const segmentTrace = {
+        type: 'scattermapbox',
+        mode: 'lines+markers',
+        lat: segLats,
+        lon: segLons,
+        line: { width: 6, color: '#00f0ff' },
+        marker: { size: 7, color: '#ffc107' },
+        name: 'Calibration Segment',
+        text: segTimes.map((t, idx) => 
+            `<b>Calibration Segment</b><br>` +
+            `Time: ${Math.round(t)}s<br>` +
+            `Alt: ${Math.round(alts[segIndices[idx]] || 0).toLocaleString()} ft<br>` +
+            `IAS: ${Math.round(iass[segIndices[idx]] || 0)} kt`
+        ),
+        hoverinfo: 'text'
+    };
+
+    // 3. Cursor Follow Marker (Pulsing Red Circle)
+    const initIdx = segIndices[0] || 0;
+    const cursorTrace = {
+        type: 'scattermapbox',
+        mode: 'markers',
+        lat: [lats[initIdx]],
+        lon: [lons[initIdx]],
+        marker: { size: 16, color: '#ff0055', symbol: 'circle', opacity: 0.9 },
+        name: 'Position Cursor',
+        hoverinfo: 'text',
+        text: [`<b>Position Cursor</b><br>Time: ${Math.round(sessionTimes[initIdx] || 0)}s`]
+    };
+
+    const centerLat = segLats.reduce((a, b) => a + b, 0) / segLats.length;
+    const centerLon = segLons.reduce((a, b) => a + b, 0) / segLons.length;
+
+    const layout = {
+        mapbox: {
+            style: 'open-street-map',
+            center: { lat: centerLat, lon: centerLon },
+            zoom: 13
+        },
+        margin: { l: 0, r: 0, t: 0, b: 0 },
+        showlegend: false,
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent'
+    };
+
+    Plotly.newPlot(mapDiv, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true });
+
+    // Enable hover sync from map to time graph
+    mapDiv.on('plotly_hover', (eventData) => {
+        if (!eventData || !eventData.points || !eventData.points.length) return;
+        const ptIdx = eventData.points[0].pointIndex;
+        updateAsCalMapCursor(data, ptIdx);
+    });
+
+    updateAsCalMapCursor(data, initIdx);
+}
+
+function updateAsCalMapCursor(data, pointIdx) {
+    if (!data) return;
+
+    function getSeries(colNames) {
+        if (Array.isArray(data)) {
+            for (const col of colNames) {
+                if (data.length > 0 && col in data[0]) return data.map(row => row[col]);
+                }
+        }
+        if (typeof data === 'object') {
+            for (const col of colNames) {
+                if (data[col] && Array.isArray(data[col])) return data[col];
+            }
+        }
+        return [];
+    }
+
+    const sessionTimes = getSeries(['Session Time', 'session_time']);
+    const lats = getSeries(['Latitude (deg)', 'latitude', 'LAT', 'Lat']);
+    const lons = getSeries(['Longitude (deg)', 'longitude', 'LON', 'Lon']);
+    const alts = getSeries(['GPS Altitude (feet)', 'Pressure Altitude (ft)', 'press_alt', 'ALT']);
+    const iass = getSeries(['Indicated Airspeed (knots)', 'ias', 'IAS']);
+    const tass = getSeries(['Corrected TAS (knots)', 'True Airspeed (knots)', 'tas', 'TAS']);
+    const hdgs = getSeries(['Magnetic Heading (deg)', 'hdg', 'HDG']);
+
+    if (!lats.length || pointIdx < 0 || pointIdx >= lats.length) return;
+
+    const lat = lats[pointIdx];
+    const lon = lons[pointIdx];
+    const t = sessionTimes[pointIdx];
+    const alt = alts[pointIdx];
+    const ias = iass[pointIdx];
+    const tas = tass[pointIdx];
+    const hdg = hdgs[pointIdx];
+
+    // Restyle cursor marker on Plotly map
+    const mapDiv = getAsCalElem('mapDiv');
+    if (mapDiv && mapDiv.data && mapDiv.data.length >= 3) {
+        Plotly.restyle(mapDiv, {
+            lat: [[lat]],
+            lon: [[lon]],
+            text: [[
+                `<b>Position Cursor</b><br>` +
+                `Time: ${Math.round(t || 0)}s<br>` +
+                `Alt: ${Math.round(alt || 0).toLocaleString()} ft<br>` +
+                `IAS: ${Math.round(ias || 0)} kt | TAS: ${Math.round(tas || 0)} kt<br>` +
+                `HDG: ${Math.round(hdg || 0)}°`
+            ]]
+        }, [2]).catch(e => console.debug("Map cursor update notice:", e));
+    }
+
+    // Update banner text
+    const bannerEl = document.getElementById('asCalCursorBanner');
+    if (bannerEl) {
+        bannerEl.innerHTML = `
+            📍 Time: <strong>${Math.round(t || 0)}s</strong> 
+            | Lat: <strong>${lat.toFixed(5)}°</strong>, Lon: <strong>${lon.toFixed(5)}°</strong> 
+            | Alt: <strong>${Math.round(alt || 0).toLocaleString()} ft</strong> 
+            | IAS: <strong>${Math.round(ias || 0)} kt</strong> 
+            | TAS: <strong>${Math.round(tas || 0)} kt</strong>
+            ${hdg !== undefined ? `| HDG: <strong>${Math.round(hdg)}°</strong>` : ''}
+        `;
+    }
+}
+
 
 function formatMMSS(seconds) {
     if (seconds === null || seconds === undefined || isNaN(seconds)) return "--:--";

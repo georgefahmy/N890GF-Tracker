@@ -345,8 +345,35 @@
           </div>
         </div>
 
-        <div class="card p-2 shadow-sm mb-3">
-          <div id="asCalTimeGraph" style="height:380px;"></div>
+        <div class="row g-3 mb-3">
+          <div class="col-lg-6">
+            <div class="card p-2 shadow-sm h-100">
+              <div class="card-header bg-dark text-white py-1 px-2 d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">📈 Telemetry Graph</span>
+                <span class="extra-small text-white-50">Click 2 points to set range</span>
+              </div>
+              <div class="card-body p-1">
+                <div id="asCalTimeGraph" style="height:320px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card p-2 shadow-sm h-100">
+              <div class="card-header bg-dark text-white py-1 px-2 d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">🗺️ Flight Track & Position Cursor</span>
+                <span class="badge bg-info text-dark extra-small" id="asCalMapBadge">Maneuver Track</span>
+              </div>
+              <div class="card-body p-1">
+                <div id="asCalMapDiv" style="height:320px; width:100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-2 bg-light border-0 shadow-sm mb-3">
+          <div id="asCalCursorBanner" class="extra-small font-monospace text-dark text-center">
+            📍 Hover over graph or map to follow aircraft position cursor
+          </div>
         </div>
 
         <div id="asCalResultsContainer" class="d-none">
