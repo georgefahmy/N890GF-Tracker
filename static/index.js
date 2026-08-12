@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalGalDisp = document.getElementById('totalGalDisplay');
     const usableGalDisp = document.getElementById('usableGalDisplay');
     const enduranceDisp = document.getElementById('enduranceDisplay');
+    const enduranceGphDisp = document.getElementById('enduranceGphDisplay');
 
     let fuelEstimateSeq = 0;
 
@@ -86,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (rightGalDisp) rightGalDisp.textContent = Number(data.right_gallons || 0).toFixed(2);
             if (totalGalDisp) totalGalDisp.textContent = Number(data.total_gallons || 0).toFixed(2);
             if (usableGalDisp) usableGalDisp.textContent = Number(data.usable_gallons || 0).toFixed(2);
+            if (enduranceGphDisp && data.cruise_gph) enduranceGphDisp.textContent = Number(data.cruise_gph).toFixed(2);
 
             if (enduranceDisp) {
                 enduranceDisp.textContent = data.endurance_fmt || "0h 00m";

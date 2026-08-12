@@ -1688,7 +1688,19 @@ def estimate_fuel():
     right_height = float(data.get("right_height", 0))
     pitch_angle = float(data.get("pitch_angle", 11.0))
     roll_angle = float(data.get("roll_angle", 0.0))
-    cruise_gph = float(data.get("cruise_gph", 10.5))
+
+    # Derive average GPH from stats file if not explicitly passed
+    stats_gph = 10.5
+    try:
+        stats_df = load_stats_file()
+        tot_gal = calc_total_gallons(stats_df)
+        tot_air_sec = calc_total_air_time(stats_df)
+        if tot_air_sec > 0:
+            stats_gph = round(tot_gal / (tot_air_sec / 3600.0), 2)
+    except Exception as e:
+        print("Error deriving avg GPH from stats:", e)
+
+    cruise_gph = float(data.get("cruise_gph", stats_gph))
 
     # Calculate using fast solver with optional pitch and roll adjustments
     left_gal, _ = calculate_fuel_fast(left_height, pitch_angle=pitch_angle, roll_angle=roll_angle)
@@ -1714,6 +1726,7 @@ def estimate_fuel():
             "endurance_hours": endurance_info["hours"],
             "endurance_fmt": endurance_info["fmt"],
             "reserve_status": endurance_info["reserve_status"],
+            "cruise_gph": cruise_gph,
         }
     )
 
