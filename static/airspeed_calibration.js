@@ -679,7 +679,7 @@ function deleteAirspeedCalibration(calId) {
 
 
 // --- INTERACTIVE AIRSPEED CALIBRATION MAP & CURSOR FOLLOW ---
-function renderAsCalMap(data, startTime, endTime) {
+function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
     const mapDiv = getAsCalElem('mapDiv');
     if (!mapDiv || !data) return;
 
