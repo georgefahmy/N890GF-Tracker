@@ -747,14 +747,25 @@ function renderAsCalMap(data, startTime, endTime) {
         text: [`<b>Position Cursor</b><br>Time: ${Math.round(sessionTimes[initIdx] || 0)}s`]
     };
 
-    const centerLat = segLats.reduce((a, b) => a + b, 0) / segLats.length;
-    const centerLon = segLons.reduce((a, b) => a + b, 0) / segLons.length;
+    const minLat = Math.min(...segLats);
+    const maxLat = Math.max(...segLats);
+    const minLon = Math.min(...segLons);
+    const maxLon = Math.max(...segLons);
+
+    const centerLat = (minLat + maxLat) / 2;
+    const centerLon = (minLon + maxLon) / 2;
+    const maxDiff = Math.max(Math.abs(maxLat - minLat), Math.abs(maxLon - minLon));
+
+    let fitZoom = 11;
+    if (maxDiff > 0.0001) {
+        fitZoom = Math.min(13, Math.max(8, Math.log2(360 / maxDiff) - 2.8));
+    }
 
     const layout = {
         mapbox: {
             style: 'open-street-map',
             center: { lat: centerLat, lon: centerLon },
-            zoom: 13
+            zoom: fitZoom
         },
         margin: { l: 0, r: 0, t: 0, b: 0 },
         showlegend: false,
@@ -824,23 +835,9 @@ function updateAsCalMapCursor(data, pointIdx) {
                 `<b>Position Cursor</b><br>` +
                 `Time: ${Math.round(t || 0)}s<br>` +
                 `Alt: ${Math.round(alt || 0).toLocaleString()} ft<br>` +
-                `IAS: ${Math.round(ias || 0)} kt | TAS: ${Math.round(tas || 0)} kt<br>` +
-                `HDG: ${Math.round(hdg || 0)}°`
+                `IAS: ${Math.round(ias || 0)} kt | TAS: ${Math.round(tas || 0)} kt<br>`
             ]]
         }, [2]).catch(e => console.debug("Map cursor update notice:", e));
-    }
-
-    // Update banner text
-    const bannerEl = document.getElementById('asCalCursorBanner');
-    if (bannerEl) {
-        bannerEl.innerHTML = `
-            📍 Time: <strong>${Math.round(t || 0)}s</strong> 
-            | Lat: <strong>${lat.toFixed(5)}°</strong>, Lon: <strong>${lon.toFixed(5)}°</strong> 
-            | Alt: <strong>${Math.round(alt || 0).toLocaleString()} ft</strong> 
-            | IAS: <strong>${Math.round(ias || 0)} kt</strong> 
-            | TAS: <strong>${Math.round(tas || 0)} kt</strong>
-            ${hdg !== undefined ? `| HDG: <strong>${Math.round(hdg)}°</strong>` : ''}
-        `;
     }
 }
 

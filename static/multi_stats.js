@@ -847,17 +847,25 @@ function renderAirspeedCalMapPlot(startTime, endTime, forceRecenter = false) {
         hoverinfo: 'text'
     };
 
-    // Map Center & Zoom
-    const centerLat = segLats.reduce((a, b) => a + b, 0) / segLats.length;
-    const centerLon = segLons.reduce((a, b) => a + b, 0) / segLons.length;
+    const minLat = Math.min(...segLats);
+    const maxLat = Math.max(...segLats);
+    const minLon = Math.min(...segLons);
+    const maxLon = Math.max(...segLons);
 
-    const isDarkMode = document.body.classList.contains("dark-mode") || document.documentElement.getAttribute("data-bs-theme") === "dark";
+    const centerLat = (minLat + maxLat) / 2;
+    const centerLon = (minLon + maxLon) / 2;
+    const maxDiff = Math.max(Math.abs(maxLat - minLat), Math.abs(maxLon - minLon));
+
+    let fitZoom = 11;
+    if (maxDiff > 0.0001) {
+        fitZoom = Math.min(13, Math.max(8, Math.log2(360 / maxDiff) - 2.8));
+    }
 
     const layout = {
         mapbox: {
             style: 'open-street-map',
             center: { lat: centerLat, lon: centerLon },
-            zoom: 13
+            zoom: fitZoom
         },
         margin: { l: 0, r: 0, t: 0, b: 0 },
         showlegend: false,
@@ -874,7 +882,6 @@ function renderAirspeedCalMapPlot(startTime, endTime, forceRecenter = false) {
         updateAirspeedCalMapCursor(pt.pointIndex);
     });
 
-    // Update banner text
     updateAirspeedCalMapCursor(initIdx);
 }
 
@@ -907,19 +914,6 @@ function updateAirspeedCalMapCursor(index) {
                 `HDG: ${Math.round(hdg || 0)}°`
             ]]
         }, [2]).catch(e => console.debug("Map cursor update notice:", e));
-    }
-
-    // Update banner text
-    const bannerEl = document.getElementById("airspeedCalMapCursorBanner");
-    if (bannerEl) {
-        bannerEl.innerHTML = `
-            📍 <strong>${formatMMSS(t)}</strong> 
-            | Lat: <strong>${lat.toFixed(5)}°</strong>, Lon: <strong>${lon.toFixed(5)}°</strong> 
-            | Alt: <strong>${Math.round(alt || 0).toLocaleString()} ft</strong> 
-            | IAS: <strong>${Math.round(ias || 0)} kt</strong> 
-            | TAS: <strong>${Math.round(tas || 0)} kt</strong>
-            ${hdg !== undefined ? `| HDG: <strong>${Math.round(hdg)}°</strong>` : ''}
-        `;
     }
 }
 
