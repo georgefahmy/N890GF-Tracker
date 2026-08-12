@@ -8,11 +8,11 @@ function getAsCalElem(id) {
     if (!id) return null;
     const prefixed = 'asCal' + id.charAt(0).toUpperCase() + id.slice(1);
     const calPrefixed = 'cal' + id.charAt(0).toUpperCase() + id.slice(1);
-    return document.getElementById(id) || 
-           document.getElementById(prefixed) || 
+    return document.getElementById(prefixed) || 
            document.getElementById(calPrefixed) || 
+           document.getElementById('asCal' + id) || 
            document.getElementById('cal' + id) || 
-           document.getElementById('asCal' + id);
+           document.getElementById(id);
 }
 
 let asCalCurrentData = null;
@@ -22,11 +22,11 @@ let asCalSelectionState = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Populate saved flights dropdown if present
+    // Populate airspeed calibration modal saved flights dropdown if present
     fetch('/api/saved_flights')
         .then(r => r.json())
         .then(data => {
-            const sel = getAsCalElem('savedFlights');
+            const sel = document.getElementById('asCalSavedFlights');
             if (!sel) return;
 
             const files = Array.isArray(data)
@@ -62,8 +62,8 @@ function openAirspeedCalModal() {
     asCalSelectionState = { start: null, end: null };
 
     // Clear previous inputs
-    const startInput = document.getElementById('calStartTime');
-    const endInput = document.getElementById('calEndTime');
+    const startInput = getAsCalElem('calStartTime') || getAsCalElem('startTime');
+    const endInput = getAsCalElem('calEndTime') || getAsCalElem('endTime');
     if (startInput) startInput.value = '';
     if (endInput) endInput.value = '';
 
@@ -79,10 +79,10 @@ function openAirspeedCalModal() {
     const modal = new bootstrap.Modal(modalEl);
     modal.show();
 
-    // Populate dropdown with main select choices
+    // Sync modal dropdown with main select choices safely
     const mainSelect = document.getElementById('savedFlights');
-    const calSelect = getAsCalElem('savedFlights');
-    if (mainSelect && calSelect) {
+    const calSelect = document.getElementById('asCalSavedFlights');
+    if (mainSelect && calSelect && mainSelect !== calSelect) {
         calSelect.innerHTML = mainSelect.innerHTML;
         if (window.AppState && AppState.file && AppState.file.currentName) {
             calSelect.value = AppState.file.currentName;
