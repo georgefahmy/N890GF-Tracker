@@ -359,10 +359,15 @@ function submitAirspeedCalibration(optStart, optEnd) {
         return;
     }
 
-    const sel = getAsCalElem('savedFlights');
-    let selectedFile = sel ? sel.value : null;
+    let selectedFile = null;
+    const calSel = document.getElementById('asCalSavedFlights');
+    const mainSel = document.getElementById('savedFlights');
 
-    if (!selectedFile && window.AppState && AppState.file && AppState.file.currentName) {
+    if (calSel && calSel.value && calSel.value !== "") {
+        selectedFile = calSel.value;
+    } else if (mainSel && mainSel.value && mainSel.value !== "") {
+        selectedFile = mainSel.value;
+    } else if (window.AppState && AppState.file && AppState.file.currentName) {
         selectedFile = AppState.file.currentName;
     }
 
