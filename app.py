@@ -1133,8 +1133,8 @@ def index():
     total_months = (years_diff * 12) + months_diff
     total_months = max(total_months, 1)
     hours_per_month = total_hobbs / total_months
-
-    avg_gph = round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0
+    air_time_hours = total_air_time / 3600.0 if total_air_time > 0 else 0.0
+    avg_gph = round(total_gallons / air_time_hours, 2) if air_time_hours > 0 else (round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0)
 
     # average fuel cost per hour and maintenance costs per hour of operation included below
     per_hour_cost, mx_costs_per_hour, hourly_fuel_cost = calc_per_hour_cost()

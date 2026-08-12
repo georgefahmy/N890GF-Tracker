@@ -60,9 +60,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalGalDisp = document.getElementById('totalGalDisplay');
     const usableGalDisp = document.getElementById('usableGalDisplay');
     const enduranceDisp = document.getElementById('enduranceDisplay');
-    const enduranceGphDisp = document.getElementById('enduranceGphDisplay');
+    const cruiseGphInput = document.getElementById('cruiseGphInput');
 
     let fuelEstimateSeq = 0;
+    let userHasCustomGph = false;
 
     function updateFuelEstimate() {
         if (!leftSlider || !rightSlider) return;
@@ -72,12 +73,20 @@ document.addEventListener("DOMContentLoaded", function() {
         if (leftHeightDisp) leftHeightDisp.textContent = leftVal;
         if (rightHeightDisp) rightHeightDisp.textContent = rightVal;
 
+        const payload = { left_height: leftVal, right_height: rightVal };
+        if (cruiseGphInput && cruiseGphInput.value) {
+            const customGph = parseFloat(cruiseGphInput.value);
+            if (!isNaN(customGph) && customGph > 0) {
+                payload.cruise_gph = customGph;
+            }
+        }
+
         const seq = ++fuelEstimateSeq;
 
         fetch('/api/estimate_fuel', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ left_height: leftVal, right_height: rightVal })
+            body: JSON.stringify(payload)
         })
         .then(response => response.json())
         .then(data => {
@@ -87,7 +96,10 @@ document.addEventListener("DOMContentLoaded", function() {
             if (rightGalDisp) rightGalDisp.textContent = Number(data.right_gallons || 0).toFixed(2);
             if (totalGalDisp) totalGalDisp.textContent = Number(data.total_gallons || 0).toFixed(2);
             if (usableGalDisp) usableGalDisp.textContent = Number(data.usable_gallons || 0).toFixed(2);
-            if (enduranceGphDisp && data.cruise_gph) enduranceGphDisp.textContent = Number(data.cruise_gph).toFixed(2);
+            
+            if (cruiseGphInput && !userHasCustomGph && data.cruise_gph) {
+                cruiseGphInput.value = Number(data.cruise_gph).toFixed(2);
+            }
 
             if (enduranceDisp) {
                 enduranceDisp.textContent = data.endurance_fmt || "0h 00m";
@@ -124,6 +136,16 @@ document.addEventListener("DOMContentLoaded", function() {
         rightSlider.addEventListener('input', updateFuelEstimate);
         leftSlider.addEventListener('change', updateFuelEstimate);
         rightSlider.addEventListener('change', updateFuelEstimate);
+        if (cruiseGphInput) {
+            cruiseGphInput.addEventListener('input', () => {
+                userHasCustomGph = true;
+                updateFuelEstimate();
+            });
+            cruiseGphInput.addEventListener('change', () => {
+                userHasCustomGph = true;
+                updateFuelEstimate();
+            });
+        }
         updateFuelEstimate();
     }
 
