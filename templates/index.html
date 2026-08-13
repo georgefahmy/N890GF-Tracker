@@ -419,7 +419,7 @@
                             <td class="no-wrap-col">{{ row.tach_delta }} <span class="text-muted">({{ row.tach }})</span></td>
                             <td>{{ row.landings }}</td>
                             <td>{{ row.notes }}</td>
-                            <td class="text-center action-btns">
+                            <td class="text-center action-btns no-wrap-col">
                                 {% if row.matching_csv %}
                                 <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" class="btn btn-sm btn-outline-info">📊</a>
                                 {% endif %}
