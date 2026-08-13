@@ -194,7 +194,7 @@
         <a class="navbar-brand" href="#">✈️ N890GF</a>
         <div class="d-flex align-items-center ms-auto gap-2 gap-sm-3">
             <span class="text-white fw-bold me-1">Hobbs: <span class="text-info">{{ "%.1f"|format(total_hobbs) }}</span></span>
-            
+
             <div class="dropdown">
                 <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-1" type="button" id="statsMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
                     📊 Stats
@@ -421,7 +421,7 @@
                             <td>{{ row.notes }}</td>
                             <td class="text-center action-btns">
                                 {% if row.matching_csv %}
-                                <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" class="btn btn-sm btn-outline-info">📊 Analyze</a>
+                                <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" class="btn btn-sm btn-outline-info">📊</a>
                                 {% endif %}
                                 <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editFlightModal{{ row.id }}">Edit</button>
                                 <a href="/delete_flight/{{ row.id }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this flight entry?');">Del</a>
