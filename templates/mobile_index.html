@@ -196,7 +196,7 @@
             <div class="modal fade" id="editFlightModal{{ row.id }}" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="/edit_flight/{{ row.id }}" method="POST">
+                        <form action="/edit_flight/{{ row.id }}" method="POST" enctype="multipart/form-data">
                             <div class="modal-header bg-primary text-white">
                                 <h5 class="modal-title">Edit Flight</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -209,11 +209,11 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Takeoff</label>
-                                        <input type="text" name="takeoff" class="form-control" value="{{ row.takeoff_airport }}" required>
+                                        <input type="text" name="takeoff" class="form-control text-uppercase" value="{{ row.takeoff_airport }}" required>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Landing</label>
-                                        <input type="text" name="landing" class="form-control" value="{{ row.landing_airport }}" required>
+                                        <input type="text" name="landing" class="form-control text-uppercase" value="{{ row.landing_airport }}" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -234,6 +234,28 @@
                                     <label class="form-label">Notes</label>
                                     <textarea name="notes" class="form-control" rows="2">{{ row.notes }}</textarea>
                                 </div>
+                                {% if row.matching_csv %}
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Associated Telemetry File</label>
+                                    <div class="p-2 border rounded bg-light d-flex align-items-center justify-content-between">
+                                        <div class="text-truncate me-2">
+                                            <span class="badge bg-info text-dark me-1">📊 CSV Log</span>
+                                            <small class="fw-semibold text-break">{{ row.matching_csv }}</small>
+                                        </div>
+                                        <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" class="btn btn-sm btn-outline-info text-nowrap">
+                                            📊 View Analyzer
+                                        </a>
+                                    </div>
+                                    <div class="form-text mt-1">Replace or upload a new telemetry CSV for this flight:</div>
+                                    <input class="form-control form-control-sm mt-1" type="file" name="flight_csv" accept=".csv">
+                                </div>
+                                {% else %}
+                                <div class="mb-3">
+                                    <label class="form-label">Flight Telemetry CSV <span class="text-muted fw-normal">(Optional)</span></label>
+                                    <input class="form-control" type="file" name="flight_csv" accept=".csv">
+                                    <div class="form-text">Attach raw flight telemetry CSV. Telemetry data will be processed in the background.</div>
+                                </div>
+                                {% endif %}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

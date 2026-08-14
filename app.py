@@ -1435,8 +1435,8 @@ def edit_flight(id):
 
     # Update the object attributes directly
     flight.date = parse_date_obj(request.form.get("date"))
-    flight.takeoff_airport = request.form.get("takeoff").upper()
-    flight.landing_airport = request.form.get("landing").upper()
+    flight.takeoff_airport = request.form.get("takeoff").upper() if request.form.get("takeoff") else ""
+    flight.landing_airport = request.form.get("landing").upper() if request.form.get("landing") else ""
     flight.hobbs = validate_float(request.form.get("hobbs"))
     flight.tach = validate_float(request.form.get("tach"))
     flight.landings = int(request.form.get("landings", 0))
@@ -1448,6 +1448,22 @@ def edit_flight(id):
     # Call updated helpers (no connection object required)
     recompute_flight_history()
     check_auto_maintenance()
+
+    # Process optional background flight telemetry CSV
+    if "flight_csv" in request.files:
+        file = request.files["flight_csv"]
+        if file and file.filename and file.filename.endswith(".csv"):
+            temp_dir = tempfile.gettempdir()
+            temp_filename = f"upload_{int(time.time())}_{secure_filename(file.filename)}"
+            temp_path = os.path.join(temp_dir, temp_filename)
+            file.save(temp_path)
+
+            thread = threading.Thread(
+                target=process_flight_csv_file,
+                args=(temp_path,)
+            )
+            thread.daemon = True
+            thread.start()
 
     # Trigger external synchronization
     git_push_data()
