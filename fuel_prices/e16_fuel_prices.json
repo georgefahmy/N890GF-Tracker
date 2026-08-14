@@ -41,7 +41,7 @@
         "fbos": [
             {
                 "fbo_name": "Watsonville Municipal Airport",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -83,7 +83,7 @@
         "fbos": [
             {
                 "fbo_name": "Hollister Jet Center, Inc",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -151,7 +151,7 @@
         "fbos": [
             {
                 "fbo_name": "Atlantic Aviation",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -162,14 +162,14 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$11.92"
+                            "price": "$11.59"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "Signature Aviation",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -186,7 +186,7 @@
                     "SAF": [
                         {
                             "service": "FS",
-                            "price": "$13.30"
+                            "price": "$13.33"
                         }
                     ]
                 }
@@ -203,7 +203,7 @@
         "fbos": [
             {
                 "fbo_name": "Jet West GateOne",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -265,7 +265,7 @@
         "fbos": [
             {
                 "fbo_name": "City of Marina (FBO)",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -293,12 +293,12 @@
         "fbos": [
             {
                 "fbo_name": "Avports Moffett Field",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$10.20"
+                            "price": "$9.88"
                         }
                     ]
                 }
@@ -339,7 +339,7 @@
             },
             {
                 "fbo_name": "Monterey Jet Center, LLC",
-                "last_updated": "31-Jul",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -354,7 +354,7 @@
                     "UL94": [
                         {
                             "service": "SS",
-                            "price": "$6.99"
+                            "price": "$8.99"
                         }
                     ],
                     "Jet A": [
@@ -383,7 +383,7 @@
         "fbos": [
             {
                 "fbo_name": "Rossi Aircraft",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -515,7 +515,7 @@
         "fbos": [
             {
                 "fbo_name": "APP Jet Center Hayward",
-                "last_updated": "28-Jul",
+                "last_updated": "13-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -532,14 +532,14 @@
                     "Jet A": [
                         {
                             "service": "FS",
-                            "price": "$7.15"
+                            "price": "$6.46"
                         }
                     ]
                 }
             },
             {
                 "fbo_name": "Signature Aviation (formerly Meridian Hayward)",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -567,7 +567,7 @@
         "fbos": [
             {
                 "fbo_name": "Modesto Jet Center",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
@@ -599,7 +599,7 @@
         "fbos": [
             {
                 "fbo_name": "Contra Costa County (FBO)",
-                "last_updated": "11-Aug",
+                "last_updated": "14-Aug",
                 "prices": {
                     "100LL": [
                         {
