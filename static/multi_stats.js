@@ -1050,9 +1050,9 @@ function renderEngineHealthTab(tabKey) {
             x: oilOats,
             y: oils,
             mode: 'markers',
-            name: 'Oil Temp (°F)',
+            name: 'Max Oil Temp (°F)',
             marker: { size: 8, color: '#ffc107', symbol: 'diamond', opacity: 0.85 },
-            text: validOat.filter(f => f.oil_temp !== null).map(f => `Date: ${f.date}<br>OAT: ${f.oat_f}°F<br>Oil Temp: ${f.oil_temp}°F`),
+            text: validOat.filter(f => f.oil_temp !== null).map(f => `Date: ${f.date}<br>OAT: ${f.oat_f}°F<br>Max Oil Temp: ${f.max_oil_temp || f.oil_temp}°F${f.avg_oil_temp ? ` (${f.avg_oil_temp}°F avg)` : ''}`),
             hoverinfo: 'text'
         };
 
@@ -1160,9 +1160,9 @@ function renderEngineHealthTab(tabKey) {
             x: oilPwrs,
             y: oils,
             mode: 'markers',
-            name: 'Oil Temp vs % Power',
+            name: 'Max Oil Temp vs % Power',
             marker: { size: 8, color: '#f4a261', symbol: 'square' },
-            text: validPwr.filter(f => f.oil_temp !== null).map(f => `Date: ${f.date}<br>Power: ${f.percent_power}%<br>Oil Temp: ${f.oil_temp}°F`),
+            text: validPwr.filter(f => f.oil_temp !== null).map(f => `Date: ${f.date}<br>Power: ${f.percent_power}%<br>Max Oil Temp: ${f.max_oil_temp || f.oil_temp}°F${f.avg_oil_temp ? ` (${f.avg_oil_temp}°F avg)` : ''}`),
             hoverinfo: 'text'
         };
 

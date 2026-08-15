@@ -78,7 +78,8 @@ def test_thermal_durations():
 def test_oil_metrics():
     df = create_sample_flight_df()
     oil = calculate_oil_metrics(df)
-    assert "oil_temp_delta" in oil
+    assert "max_oil_temp" in oil
+    assert "avg_oil_temp" in oil
     assert "min_oil_press" in oil
 
 

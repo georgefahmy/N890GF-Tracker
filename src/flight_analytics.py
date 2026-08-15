@@ -128,16 +128,22 @@ def calculate_cht_thermal_durations(df: pd.DataFrame) -> dict:
 
 def calculate_oil_metrics(df: pd.DataFrame) -> dict:
     """
-    Extracts oil temperature delta vs OAT and minimum oil pressure at operating temp.
+    Extracts max oil temperature, average oil temperature, and minimum oil pressure at operating temp.
     """
-    res = {"oil_temp_delta": "N/A", "min_oil_press": "N/A"}
+    res = {"max_oil_temp": "N/A", "avg_oil_temp": "N/A", "min_oil_press": "N/A"}
     try:
-        if "OIL TEMPERATURE (deg F)" in df.columns and "OAT (deg F)" in df.columns:
-            oil_temp = pd.to_numeric(df["OIL TEMPERATURE (deg F)"], errors="coerce")
-            oat = pd.to_numeric(df["OAT (deg F)"], errors="coerce")
-            delta = (oil_temp - oat).dropna()
-            if not delta.empty:
-                res["oil_temp_delta"] = round(float(delta.max()), 1)
+        oil_temp = None
+        oil_cols = [c for c in df.columns if "oil" in c.lower() and ("temp" in c.lower() or "temperature" in c.lower())]
+        if oil_cols:
+            series = pd.to_numeric(df[oil_cols[0]], errors="coerce").dropna()
+            if not series.empty:
+                if series.max() < 120 and "c" in oil_cols[0].lower():
+                    series = series * 9/5 + 32
+                oil_temp = series
+
+        if oil_temp is not None and not oil_temp.empty:
+            res["max_oil_temp"] = round(float(oil_temp.max()), 1)
+            res["avg_oil_temp"] = round(float(oil_temp.mean()), 1)
 
         oil_press_cols = [c for c in df.columns if "oil" in c.lower() and "press" in c.lower()]
         if oil_press_cols:

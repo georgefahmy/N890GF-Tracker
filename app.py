@@ -1810,7 +1810,7 @@ def api_multi_flight_stats():
     for filename in csv_files:
         filepath = os.path.join(SAVE_DIR, filename)
         mtime = os.path.getmtime(filepath)
-        CACHE_VERSION = "v6"
+        CACHE_VERSION = "v7"
         cache_key = f"{CACHE_VERSION}_{filename}_{mtime}"
 
         if cache_key in cache_data:
@@ -2039,10 +2039,14 @@ def api_engine_health_trends():
             if oat_c is None and oat_f is not None:
                 oat_c = round((oat_f - 32) * 5/9, 2)
 
-            oil_temp_f = safe_val(["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"])
-            oil_temp_c = safe_val(["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"])
-            if oil_temp_f is None and oil_temp_c is not None:
-                oil_temp_f = round(oil_temp_c * 9/5 + 32, 2)
+            max_oil_temp = safe_val(["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"], agg="max")
+            avg_oil_temp = safe_val(["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"], agg="mean")
+            oil_temp_c_max = safe_val(["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"], agg="max")
+            oil_temp_c_mean = safe_val(["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"], agg="mean")
+            if max_oil_temp is None and oil_temp_c_max is not None:
+                max_oil_temp = round(oil_temp_c_max * 9/5 + 32, 2)
+            if avg_oil_temp is None and oil_temp_c_mean is not None:
+                avg_oil_temp = round(oil_temp_c_mean * 9/5 + 32, 2)
 
             cht1_f = safe_val(["CHT 1 (deg F)", "CHT 1"])
             cht2_f = safe_val(["CHT 2 (deg F)", "CHT 2"])
@@ -2076,7 +2080,6 @@ def api_engine_health_trends():
             rpm = safe_val(["RPM"])
 
             cht_delta_oat = round(max_cht - oat_f, 2) if (max_cht is not None and oat_f is not None) else None
-            oil_delta_oat = round(oil_temp_f - oat_f, 2) if (oil_temp_f is not None and oat_f is not None) else None
             cooling_index = round(max_cht / tas, 3) if (max_cht is not None and tas and tas > 0) else None
 
             date_str = filename[:10] if len(filename) >= 10 else filename
@@ -2090,7 +2093,9 @@ def api_engine_health_trends():
                 "press_alt": press_alt,
                 "tas": tas,
                 "ias": ias,
-                "oil_temp": oil_temp_f,
+                "oil_temp": max_oil_temp,
+                "max_oil_temp": max_oil_temp,
+                "avg_oil_temp": avg_oil_temp,
                 "avg_cht": avg_cht,
                 "max_cht": max_cht,
                 "cht1": cht1_f,
@@ -2102,7 +2107,6 @@ def api_engine_health_trends():
                 "fuel_flow": ff,
                 "rpm": rpm,
                 "cht_delta_oat": cht_delta_oat,
-                "oil_delta_oat": oil_delta_oat,
                 "cooling_index": cooling_index
             })
         except Exception as e:

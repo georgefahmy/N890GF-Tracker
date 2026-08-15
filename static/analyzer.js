@@ -1140,8 +1140,8 @@ function updateGlobalUI(data) {
             <div>${s.above_410_min !== undefined ? s.above_410_min + ' min' : '0 min'}</div>
         </div>
         <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Oil Temp Delta</div>
-            <div>${s.oil_temp_delta !== undefined && s.oil_temp_delta !== 'N/A' ? '+' + s.oil_temp_delta + ' °F vs OAT' : 'N/A'}</div>
+            <div class="small fw-bold text-body-emphasis">Max Oil Temp</div>
+            <div>${(s.max_oil_temp !== undefined && s.max_oil_temp !== 'N/A') ? (s.max_oil_temp + ' °F' + (s.avg_oil_temp !== undefined && s.avg_oil_temp !== 'N/A' ? ' (' + s.avg_oil_temp + ' °F)' : '')) : 'N/A'}</div>
         </div>
         <div class="col-6 col-md-4 col-xl-2 mb-2">
             <div class="small fw-bold text-body-emphasis">Min Oil Pressure</div>
