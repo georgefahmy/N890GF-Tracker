@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AeroFuel IQ — Airport Fuel Price Radar</title>
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+</head>
+<body>
+
+  <div id="app-container">
+    
+    <!-- Top Navigation HUD -->
+    <header id="top-nav">
+      <!-- Brand Section -->
+      <div class="brand-section">
+        <span class="brand-logo">✈️</span>
+        <div class="brand-text">
+          <h1>AeroFuel IQ <span class="brand-badge">Radar v2.4</span></h1>
+        </div>
+      </div>
+
+      <!-- Quick Search Bar with Autocomplete -->
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="airport-search" placeholder="Search Airport (e.g. KOSH, SQL, Sedona)..." autocomplete="off" />
+        </div>
+        <div id="search-dropdown" class="search-results-dropdown"></div>
+      </div>
+
+      <!-- Filters & Actions -->
+      <div class="nav-controls">
+        <!-- Fuel Type Selector -->
+        <div class="filter-group">
+          <div class="select-wrapper">
+            <select id="fuel-type-select" class="hud-select" title="Filter Piston Fuel Type">
+              <option value="all">⛽ All Avgas (Best Price)</option>
+              <option value="100LL">100LL (Low Lead Avgas)</option>
+              <option value="94UL">94UL / UL94 (Unleaded)</option>
+              <option value="100UL">100UL (G100UL Unleaded)</option>
+              <option value="100R">100R (Swift Avgas)</option>
+              <option value="Mogas">Mogas (Ethanol-Free)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Service Mode Selector -->
+        <div class="filter-group">
+          <div class="select-wrapper">
+            <select id="service-type-select" class="hud-select" title="Filter Service Type">
+              <option value="any">Any Service</option>
+              <option value="self">Self-Serve ($)</option>
+              <option value="full">Full-Serve ($$)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Load / Refresh Fuel Prices Button -->
+        <button id="btn-load-prices" class="btn-hud" title="Load Latest Fuel Prices / Sync Data Source">
+          <span>⚡ Sync Prices</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Interactive Map Canvas -->
+    <div id="map-wrapper">
+      <div id="map" class="crosshair-cursor"></div>
+    </div>
+
+    <!-- Floating Search Radius HUD (Top Left) -->
+    <aside id="radius-control-hud">
+      <div class="hud-header">
+        <span class="hud-title">📡 Search Radius Radar</span>
+        <div class="unit-toggle-group">
+          <button class="unit-btn active" data-unit="mi" title="Statute Miles">mi</button>
+          <button class="unit-btn" data-unit="NM" title="Nautical Miles">NM</button>
+          <button class="unit-btn" data-unit="km" title="Kilometers">km</button>
+        </div>
+      </div>
+
+      <!-- Origin Airport Selector -->
+      <div class="origin-airport-container">
+        <label for="origin-airport-input" class="origin-label">
+          <span>🛫 Origin Airport (Distance Ref)</span>
+        </label>
+        <div class="origin-input-wrapper">
+          <span class="origin-icon">🛫</span>
+          <input type="text" id="origin-airport-input" placeholder="Set Origin (e.g. KSQL, PAO)..." autocomplete="off" spellcheck="false" />
+          <button id="btn-clear-origin" class="btn-clear-origin" title="Clear Origin Airport" style="display: none;">&times;</button>
+        </div>
+        <div id="origin-search-dropdown" class="search-results-dropdown origin-dropdown" style="display: none;"></div>
+        <div id="origin-vector-readout" class="origin-vector-readout" style="display: none;"></div>
+      </div>
+
+      <div class="radius-value-display">
+        <div>
+          <span id="radius-display-num" class="radius-num">50</span>
+          <span id="radius-display-unit" class="radius-unit-label">mi</span>
+        </div>
+        <div id="lock-status-badge" class="lock-status-badge following">
+          <span>📡 Following Mouse</span>
+        </div>
+      </div>
+
+      <!-- Variable Radius Slider (10 to 500) -->
+      <div class="slider-container">
+        <input type="range" id="radius-slider" class="hud-slider" min="10" max="500" step="5" value="50" />
+      </div>
+
+      <!-- Quick Preset Chips -->
+      <div class="radius-preset-chips">
+        <button class="chip-btn" data-val="25">25</button>
+        <button class="chip-btn active" data-val="50">50</button>
+        <button class="chip-btn" data-val="100">100</button>
+        <button class="chip-btn" data-val="250">250</button>
+        <button class="chip-btn" data-val="500">500</button>
+      </div>
+
+      <!-- Lock/Unlock Toggle Row -->
+      <div class="lock-toggle-row">
+        <button id="btn-lock-toggle" class="btn-hud btn-lock" title="Lock circle in place (Shortcut: Space)">
+          <span>📍 Lock Position</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Floating "Best Deal in Radius" Banner (Bottom Center) -->
+    <div id="best-deal-hud" style="display: none;"></div>
+
+    <!-- Right Sidebar: Radius Inspector & Ranked List -->
+    <aside id="radar-sidebar">
+      <div class="sidebar-header">
+        <span class="hud-title">📊 Radar Airports</span>
+        <button id="sidebar-close-btn" class="modal-close-btn" style="font-size: 1.1rem;">&times;</button>
+      </div>
+
+      <!-- Stats Summary -->
+      <div class="sidebar-stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Airports</div>
+          <div id="stat-airports-count" class="stat-val">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Lowest</div>
+          <div id="stat-min-price" class="stat-val highlight">--</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Average</div>
+          <div id="stat-avg-price" class="stat-val">--</div>
+        </div>
+      </div>
+
+      <!-- Scrollable Airport List -->
+      <div id="radar-airports-list" class="sidebar-list-container"></div>
+    </aside>
+
+    <!-- Floating Fuel Price Color Legend HUD (Collapsible) -->
+    <aside id="fuel-legend-hud" class="hud-card" aria-label="Fuel Price Color Legend">
+      <div class="legend-header" id="legend-header-toggle" title="Click to Collapse / Expand Fuel Price Legend">
+        <div class="legend-header-title">
+          <span class="legend-icon">🏷️</span>
+          <span class="hud-title">Fuel Price Tiers</span>
+        </div>
+        <button id="legend-toggle-btn" class="legend-toggle-btn" title="Collapse / Expand Legend" aria-label="Toggle Legend">▼</button>
+      </div>
+      <div id="legend-body" class="legend-body">
+        <div class="legend-tier-row tier-ultra-cheap" data-tier="ultra-cheap" title="Bottom 20% lowest prices in network">
+          <div class="legend-color-dot" style="background: #10b981; border-color: #34d399; box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);"></div>
+          <div class="legend-tier-info">
+            <span class="legend-tier-name">Ultra-Cheap <span class="legend-tier-sub">Best Value</span></span>
+            <span class="legend-tier-val" id="legend-range-ultra-cheap">≤ $5.20</span>
+          </div>
+        </div>
+        <div class="legend-tier-row tier-budget" data-tier="budget" title="20%–40% price range">
+          <div class="legend-color-dot" style="background: #06b6d4; border-color: #22d3ee; box-shadow: 0 0 8px rgba(6, 182, 212, 0.7);"></div>
+          <div class="legend-tier-info">
+            <span class="legend-tier-name">Budget <span class="legend-tier-sub">Cheap</span></span>
+            <span class="legend-tier-val" id="legend-range-budget">$5.21 – $5.80</span>
+          </div>
+        </div>
+        <div class="legend-tier-row tier-avg" data-tier="avg" title="40%–60% median price range">
+          <div class="legend-color-dot" style="background: #38bdf8; border-color: #7dd3fc; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);"></div>
+          <div class="legend-tier-info">
+            <span class="legend-tier-name">Moderate <span class="legend-tier-sub">Average</span></span>
+            <span class="legend-tier-val" id="legend-range-avg">$5.81 – $6.40</span>
+          </div>
+        </div>
+        <div class="legend-tier-row tier-high" data-tier="high" title="60%–80% price range">
+          <div class="legend-color-dot" style="background: #f59e0b; border-color: #fbbf24; box-shadow: 0 0 8px rgba(245, 158, 11, 0.7);"></div>
+          <div class="legend-tier-info">
+            <span class="legend-tier-name">High <span class="legend-tier-sub">Above Avg</span></span>
+            <span class="legend-tier-val" id="legend-range-high">$6.41 – $7.00</span>
+          </div>
+        </div>
+        <div class="legend-tier-row tier-exp" data-tier="exp" title="Top 20% highest prices in network">
+          <div class="legend-color-dot" style="background: #ef4444; border-color: #f87171; box-shadow: 0 0 8px rgba(239, 68, 68, 0.7);"></div>
+          <div class="legend-tier-info">
+            <span class="legend-tier-name">Expensive <span class="legend-tier-sub">Premium</span></span>
+            <span class="legend-tier-val" id="legend-range-exp">> $7.00</span>
+          </div>
+        </div>
+        <div class="legend-tier-row tier-unpriced" data-tier="unpriced" title="Airports without live fuel reports">
+          <div class="legend-color-dot" style="background: #64748b; border-color: #94a3b8;"></div>
+          <div class="legend-tier-info">
+            <span class="legend-tier-name">Unpriced <span class="legend-tier-sub">Unfetched</span></span>
+            <span class="legend-tier-val legend-unpriced-val">Click to fetch</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Toggle button when sidebar is closed on mobile -->
+    <button id="sidebar-toggle-btn">📋 List</button>
+
+    <!-- Airport Details Modal Backdrop -->
+    <div id="airport-modal-backdrop" class="modal-backdrop"></div>
+
+    <!-- Data Source / Load Latest Fuel Prices Modal Backdrop -->
+    <div id="data-source-modal-backdrop" class="modal-backdrop"></div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+  </div>
+
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Embedded Static Fuel Dataset (Zero-Server / Offline Resilience) -->
+  <script src="fuel_data.js"></script>
+  
+  <!-- Application JS -->
+  <script src="app.js"></script>
+
+</body>
+</html>
