@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import re
+import shutil
 import subprocess
 import tempfile
 import threading
@@ -43,25 +44,23 @@ from werkzeug.utils import secure_filename
 
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
+from src.flight_analytics import extract_comprehensive_flight_stats
 from src.fuel_estimate_simple import (
+    calculate_endurance,
     calculate_fuel,
     calculate_fuel_fast,
     calculate_usable_fuel,
-    calculate_endurance,
 )
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
+from src.process_telemetry import calculate_flight_summary, process_flights
 from src.sw_db_updates import download_dynon_databases_only
-from src.process_telemetry import process_flights, calculate_flight_summary
-from src.flight_analytics import extract_comprehensive_flight_stats
 from src.tool_functions import (
     calc_total_air_time,
     calc_total_distance,
     calc_total_gallons,
     load_stats_file,
 )
-
-import shutil
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
@@ -85,7 +84,9 @@ if not os.path.exists(db_path) or os.path.getsize(db_path) == 0:
 
 env_db_uri = os.getenv("DATABASE_URL") or os.getenv("DB_PATH")
 if env_db_uri:
-    if not env_db_uri.startswith("sqlite://") and not env_db_uri.startswith("postgresql://"):
+    if not env_db_uri.startswith("sqlite://") and not env_db_uri.startswith(
+        "postgresql://"
+    ):
         env_db_uri = f"sqlite:///{env_db_uri}"
     app.config["SQLALCHEMY_DATABASE_URI"] = env_db_uri
 else:
@@ -182,7 +183,7 @@ def load_cached_flight_df(saved_filename):
 
 
 # Constants
-OIL_CHANGE_INTERVAL_HOURS = 25
+OIL_CHANGE_INTERVAL_HOURS = 50
 MAINTENANCE_RULES = {
     "Condition Inspection": {"type": "date", "days": 365},
     "ELT Test": {"type": "date", "days": 90},
@@ -358,7 +359,9 @@ with app.app_context():
         engine = db.engine
         inspector = db.inspect(engine)
         if "airspeed_calibration_records" in inspector.get_table_names():
-            existing_cols = [c["name"] for c in inspector.get_columns("airspeed_calibration_records")]
+            existing_cols = [
+                c["name"] for c in inspector.get_columns("airspeed_calibration_records")
+            ]
             new_cols = {
                 "pressure_altitude_ft": "FLOAT",
                 "density_altitude_ft": "FLOAT",
@@ -366,7 +369,11 @@ with app.app_context():
             with engine.connect() as conn:
                 for col_name, col_type in new_cols.items():
                     if col_name not in existing_cols:
-                        conn.execute(db.text(f"ALTER TABLE airspeed_calibration_records ADD COLUMN {col_name} {col_type}"))
+                        conn.execute(
+                            db.text(
+                                f"ALTER TABLE airspeed_calibration_records ADD COLUMN {col_name} {col_type}"
+                            )
+                        )
                 conn.commit()
     except Exception as mig_err:
         print("Auto-migration notice for airspeed_calibration_records:", mig_err)
@@ -726,9 +733,6 @@ def get_upcoming_maintenance():
     }
 
 
-
-
-
 def append_unique_row(filename, new_row):
     # Read existing rows to check for duplicates
     with open(filename, "r", newline="") as f:
@@ -969,7 +973,11 @@ def find_matching_csv_map(flight_logs_raw):
                 except ValueError:
                     pass
 
-        date_key = dt_obj.strftime("%Y-%m-%d") if dt_obj else (str(dt_val)[:10] if dt_val else "")
+        date_key = (
+            dt_obj.strftime("%Y-%m-%d")
+            if dt_obj
+            else (str(dt_val)[:10] if dt_val else "")
+        )
         logs_by_date.setdefault(date_key, []).append((dt_obj, log))
 
     result = {}
@@ -985,12 +993,16 @@ def find_matching_csv_map(flight_logs_raw):
             sorted_logs = sorted(log_list, key=lambda x: x[0] if x[0] else datetime.min)
             for idx, (log_dt, log) in enumerate(sorted_logs):
                 matched_csv = None
-                if log_dt and (log_dt.hour != 0 or log_dt.minute != 0 or log_dt.second != 0):
+                if log_dt and (
+                    log_dt.hour != 0 or log_dt.minute != 0 or log_dt.second != 0
+                ):
                     min_diff = float("inf")
                     for csv_f in matching_csvs:
                         try:
                             time_str = csv_f[11:-4].replace("-", ":")
-                            csv_dt = datetime.strptime(f"{date_key} {time_str}", "%Y-%m-%d %H:%M:%S")
+                            csv_dt = datetime.strptime(
+                                f"{date_key} {time_str}", "%Y-%m-%d %H:%M:%S"
+                            )
                             diff = abs((log_dt - csv_dt).total_seconds())
                             if diff < min_diff:
                                 min_diff = diff
@@ -1134,7 +1146,11 @@ def index():
     total_months = max(total_months, 1)
     hours_per_month = total_hobbs / total_months
     air_time_hours = total_air_time / 3600.0 if total_air_time > 0 else 0.0
-    avg_gph = round(total_gallons / air_time_hours, 2) if air_time_hours > 0 else (round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0)
+    avg_gph = (
+        round(total_gallons / air_time_hours, 2)
+        if air_time_hours > 0
+        else (round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0)
+    )
 
     # average fuel cost per hour and maintenance costs per hour of operation included below
     per_hour_cost, mx_costs_per_hour, hourly_fuel_cost = calc_per_hour_cost()
@@ -1252,9 +1268,7 @@ def process_flight_csv_file(filepath):
             return
 
         flight_ids = [
-            fid
-            for fid in df["Flight ID"].unique()
-            if fid not in (None, 0, "", "nan")
+            fid for fid in df["Flight ID"].unique() if fid not in (None, 0, "", "nan")
         ]
 
         stats_file = os.path.join(BASE_DIR, "static", "stats.csv")
@@ -1315,7 +1329,9 @@ def process_flight_csv_file(filepath):
     except Exception as e:
         print(f"Error processing flight CSV in background: {e}")
     finally:
-        if os.path.exists(filepath) and ("tmp" in filepath or "temp" in filepath or "upload_" in filepath):
+        if os.path.exists(filepath) and (
+            "tmp" in filepath or "temp" in filepath or "upload_" in filepath
+        ):
             try:
                 os.remove(filepath)
             except Exception:
@@ -1328,8 +1344,12 @@ def add_flight():
     # Create a new FlightLog object using values from the form
     new_flight = FlightLog(
         date=parse_date_obj(request.form.get("date")),
-        takeoff_airport=request.form.get("takeoff").upper() if request.form.get("takeoff") else "",
-        landing_airport=request.form.get("landing").upper() if request.form.get("landing") else "",
+        takeoff_airport=(
+            request.form.get("takeoff").upper() if request.form.get("takeoff") else ""
+        ),
+        landing_airport=(
+            request.form.get("landing").upper() if request.form.get("landing") else ""
+        ),
         hobbs=validate_float(request.form.get("hobbs")),
         tach=validate_float(request.form.get("tach")),
         landings=int(request.form.get("landings", 0)),
@@ -1349,14 +1369,13 @@ def add_flight():
         file = request.files["flight_csv"]
         if file and file.filename and file.filename.endswith(".csv"):
             temp_dir = tempfile.gettempdir()
-            temp_filename = f"upload_{int(time.time())}_{secure_filename(file.filename)}"
+            temp_filename = (
+                f"upload_{int(time.time())}_{secure_filename(file.filename)}"
+            )
             temp_path = os.path.join(temp_dir, temp_filename)
             file.save(temp_path)
 
-            thread = threading.Thread(
-                target=process_flight_csv_file,
-                args=(temp_path,)
-            )
+            thread = threading.Thread(target=process_flight_csv_file, args=(temp_path,))
             thread.daemon = True
             thread.start()
 
@@ -1435,8 +1454,12 @@ def edit_flight(id):
 
     # Update the object attributes directly
     flight.date = parse_date_obj(request.form.get("date"))
-    flight.takeoff_airport = request.form.get("takeoff").upper() if request.form.get("takeoff") else ""
-    flight.landing_airport = request.form.get("landing").upper() if request.form.get("landing") else ""
+    flight.takeoff_airport = (
+        request.form.get("takeoff").upper() if request.form.get("takeoff") else ""
+    )
+    flight.landing_airport = (
+        request.form.get("landing").upper() if request.form.get("landing") else ""
+    )
     flight.hobbs = validate_float(request.form.get("hobbs"))
     flight.tach = validate_float(request.form.get("tach"))
     flight.landings = int(request.form.get("landings", 0))
@@ -1454,14 +1477,13 @@ def edit_flight(id):
         file = request.files["flight_csv"]
         if file and file.filename and file.filename.endswith(".csv"):
             temp_dir = tempfile.gettempdir()
-            temp_filename = f"upload_{int(time.time())}_{secure_filename(file.filename)}"
+            temp_filename = (
+                f"upload_{int(time.time())}_{secure_filename(file.filename)}"
+            )
             temp_path = os.path.join(temp_dir, temp_filename)
             file.save(temp_path)
 
-            thread = threading.Thread(
-                target=process_flight_csv_file,
-                args=(temp_path,)
-            )
+            thread = threading.Thread(target=process_flight_csv_file, args=(temp_path,))
             thread.daemon = True
             thread.start()
 
@@ -1719,8 +1741,12 @@ def estimate_fuel():
     cruise_gph = float(data.get("cruise_gph", stats_gph))
 
     # Calculate using fast solver with optional pitch and roll adjustments
-    left_gal, _ = calculate_fuel_fast(left_height, pitch_angle=pitch_angle, roll_angle=roll_angle)
-    right_gal, _ = calculate_fuel_fast(right_height, pitch_angle=pitch_angle, roll_angle=roll_angle)
+    left_gal, _ = calculate_fuel_fast(
+        left_height, pitch_angle=pitch_angle, roll_angle=roll_angle
+    )
+    right_gal, _ = calculate_fuel_fast(
+        right_height, pitch_angle=pitch_angle, roll_angle=roll_angle
+    )
     total_gal = left_gal + right_gal
 
     left_gal_r = round(left_gal, 2)
@@ -1728,7 +1754,9 @@ def estimate_fuel():
     total_gal_r = round(left_gal_r + right_gal_r, 2)
 
     left_usable = calculate_usable_fuel(left_gal_r, unusable_per_tank=0.5, num_tanks=1)
-    right_usable = calculate_usable_fuel(right_gal_r, unusable_per_tank=0.5, num_tanks=1)
+    right_usable = calculate_usable_fuel(
+        right_gal_r, unusable_per_tank=0.5, num_tanks=1
+    )
     usable_total = round(left_usable + right_usable, 2)
 
     endurance_info = calculate_endurance(usable_total, cruise_gph=cruise_gph)
@@ -1822,7 +1850,9 @@ def api_multi_flight_stats():
                     continue
 
                 flight_ids = [
-                    fid for fid in df["Flight ID"].unique() if pd.notna(fid) and fid != ""
+                    fid
+                    for fid in df["Flight ID"].unique()
+                    if pd.notna(fid) and fid != ""
                 ]
                 if not flight_ids:
                     continue
@@ -1841,9 +1871,15 @@ def api_multi_flight_stats():
 
                 dt = numeric_times.diff().fillna(0)
                 if "RPM" in flight_data.columns:
-                    rpm_series = pd.to_numeric(flight_data["RPM"], errors="coerce").fillna(0)
-                    engine_mask = (rpm_series > 0)
-                    duration = float(dt[engine_mask].sum()) if engine_mask.any() else float(tot_duration)
+                    rpm_series = pd.to_numeric(
+                        flight_data["RPM"], errors="coerce"
+                    ).fillna(0)
+                    engine_mask = rpm_series > 0
+                    duration = (
+                        float(dt[engine_mask].sum())
+                        if engine_mask.any()
+                        else float(tot_duration)
+                    )
                 else:
                     duration = float(tot_duration)
 
@@ -1872,9 +1908,13 @@ def api_multi_flight_stats():
 
                 if gs_col and "Session Time" in flight_data.columns:
                     gs_s = pd.to_numeric(flight_data[gs_col], errors="coerce").fillna(0)
-                    t_s = pd.to_numeric(flight_data["Session Time"], errors="coerce").fillna(0)
+                    t_s = pd.to_numeric(
+                        flight_data["Session Time"], errors="coerce"
+                    ).fillna(0)
                     dt_s = t_s.diff().fillna(0).clip(lower=0, upper=10)
-                    dist_miles = round(float((gs_s * 1.15078 * (dt_s / 3600.0)).sum()), 1)
+                    dist_miles = round(
+                        float((gs_s * 1.15078 * (dt_s / 3600.0)).sum()), 1
+                    )
 
                 if dist_miles <= 0.1 and "Distance Traveled" in flight_data.columns:
                     dt_series = pd.to_numeric(
@@ -1898,14 +1938,18 @@ def api_multi_flight_stats():
                 stats = {
                     "filename": filename,
                     "flight_id": str(target_flight),
-                    "date": filename[:10]
-                    if len(filename) >= 10
-                    else str(target_flight)[:10],
+                    "date": (
+                        filename[:10]
+                        if len(filename) >= 10
+                        else str(target_flight)[:10]
+                    ),
                     "duration_min": round(float(duration / 60.0), 1),
                     "duration_hours": round(float(duration / 3600.0), 2),
-                    "total_fuel": round(float(total_fuel), 1)
-                    if isinstance(total_fuel, (int, float))
-                    else 0.0,
+                    "total_fuel": (
+                        round(float(total_fuel), 1)
+                        if isinstance(total_fuel, (int, float))
+                        else 0.0
+                    ),
                     "avg_fuel_flow": round(float(avg_flow), 1),
                     "avg_mpg": avg_mpg,
                     "distance_traveled_mi": dist_miles,
@@ -1939,7 +1983,11 @@ def api_multi_flight_stats():
         fname = stats.get("filename")
         if fname:
             try:
-                cals = AirspeedCalibration.query.filter_by(filename=fname).order_by(AirspeedCalibration.start_time).all()
+                cals = (
+                    AirspeedCalibration.query.filter_by(filename=fname)
+                    .order_by(AirspeedCalibration.start_time)
+                    .all()
+                )
                 stats["saved_calibrations"] = [c.to_dict() for c in cals]
                 stats["has_calibration"] = len(cals) > 0
             except Exception:
@@ -1956,7 +2004,11 @@ def api_multi_flight_stats():
         dur_h = f.get("duration_hours", 0.0) or 0.0
         air_h = f.get("airborne_hours", 0.0)
         if air_h is None or air_h == "N/A":
-            air_min = (f.get("climb_min", 0.0) or 0.0) + (f.get("cruise_min", 0.0) or 0.0) + (f.get("descent_min", 0.0) or 0.0)
+            air_min = (
+                (f.get("climb_min", 0.0) or 0.0)
+                + (f.get("cruise_min", 0.0) or 0.0)
+                + (f.get("descent_min", 0.0) or 0.0)
+            )
             air_h = round(air_min / 60.0, 2)
             f["airborne_hours"] = air_h
         else:
@@ -1992,7 +2044,9 @@ def api_multi_flight_stats():
     }
 
     # Sort flights newest to oldest for default UI view
-    flight_stats_list.sort(key=lambda x: (x.get("date", ""), x.get("filename", "")), reverse=True)
+    flight_stats_list.sort(
+        key=lambda x: (x.get("date", ""), x.get("filename", "")), reverse=True
+    )
 
     return jsonify(sanitize_for_json({"flights": flight_stats_list, "totals": totals}))
 
@@ -2016,9 +2070,24 @@ def api_engine_health_trends():
             if df is None or df.empty:
                 continue
 
-            rpm_series = pd.to_numeric(df["RPM"], errors="coerce").fillna(0) if "RPM" in df.columns else pd.Series(2000, index=df.index)
-            gs_col = next((c for c in df.columns if "ground speed" in c.lower() or "gps gs" in c.lower()), None)
-            gs_series = pd.to_numeric(df[gs_col], errors="coerce").fillna(0) if gs_col else pd.Series(50, index=df.index)
+            rpm_series = (
+                pd.to_numeric(df["RPM"], errors="coerce").fillna(0)
+                if "RPM" in df.columns
+                else pd.Series(2000, index=df.index)
+            )
+            gs_col = next(
+                (
+                    c
+                    for c in df.columns
+                    if "ground speed" in c.lower() or "gps gs" in c.lower()
+                ),
+                None,
+            )
+            gs_series = (
+                pd.to_numeric(df[gs_col], errors="coerce").fillna(0)
+                if gs_col
+                else pd.Series(50, index=df.index)
+            )
 
             cruise_mask = (rpm_series > 1800) & (gs_series > 40)
             target_df = df[cruise_mask] if cruise_mask.sum() > 20 else df
@@ -2035,18 +2104,26 @@ def api_engine_health_trends():
             oat_f = safe_val(["OAT (deg F)", "OAT_F", "OAT"])
             oat_c = safe_val(["OAT (deg C)", "OAT_C"])
             if oat_f is None and oat_c is not None:
-                oat_f = round(oat_c * 9/5 + 32, 2)
+                oat_f = round(oat_c * 9 / 5 + 32, 2)
             if oat_c is None and oat_f is not None:
-                oat_c = round((oat_f - 32) * 5/9, 2)
+                oat_c = round((oat_f - 32) * 5 / 9, 2)
 
-            max_oil_temp = safe_val(["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"], agg="max")
-            avg_oil_temp = safe_val(["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"], agg="mean")
-            oil_temp_c_max = safe_val(["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"], agg="max")
-            oil_temp_c_mean = safe_val(["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"], agg="mean")
+            max_oil_temp = safe_val(
+                ["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"], agg="max"
+            )
+            avg_oil_temp = safe_val(
+                ["Oil Temp (deg F)", "OIL TEMPERATURE (deg F)", "Oil Temp"], agg="mean"
+            )
+            oil_temp_c_max = safe_val(
+                ["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"], agg="max"
+            )
+            oil_temp_c_mean = safe_val(
+                ["Oil Temp (deg C)", "OIL TEMPERATURE (deg C)"], agg="mean"
+            )
             if max_oil_temp is None and oil_temp_c_max is not None:
-                max_oil_temp = round(oil_temp_c_max * 9/5 + 32, 2)
+                max_oil_temp = round(oil_temp_c_max * 9 / 5 + 32, 2)
             if avg_oil_temp is None and oil_temp_c_mean is not None:
-                avg_oil_temp = round(oil_temp_c_mean * 9/5 + 32, 2)
+                avg_oil_temp = round(oil_temp_c_mean * 9 / 5 + 32, 2)
 
             cht1_f = safe_val(["CHT 1 (deg F)", "CHT 1"])
             cht2_f = safe_val(["CHT 2 (deg F)", "CHT 2"])
@@ -2058,78 +2135,114 @@ def api_engine_health_trends():
             cht3_c = safe_val(["CHT 3 (deg C)"])
             cht4_c = safe_val(["CHT 4 (deg C)"])
 
-            if cht1_f is None and cht1_c is not None: cht1_f = round(cht1_c * 9/5 + 32, 2)
-            if cht2_f is None and cht2_c is not None: cht2_f = round(cht2_c * 9/5 + 32, 2)
-            if cht3_f is None and cht3_c is not None: cht3_f = round(cht3_c * 9/5 + 32, 2)
-            if cht4_f is None and cht4_c is not None: cht4_f = round(cht4_c * 9/5 + 32, 2)
+            if cht1_f is None and cht1_c is not None:
+                cht1_f = round(cht1_c * 9 / 5 + 32, 2)
+            if cht2_f is None and cht2_c is not None:
+                cht2_f = round(cht2_c * 9 / 5 + 32, 2)
+            if cht3_f is None and cht3_c is not None:
+                cht3_f = round(cht3_c * 9 / 5 + 32, 2)
+            if cht4_f is None and cht4_c is not None:
+                cht4_f = round(cht4_c * 9 / 5 + 32, 2)
 
             all_chts = [c for c in [cht1_f, cht2_f, cht3_f, cht4_f] if c is not None]
-            avg_cht = round(sum(all_chts) / len(all_chts), 2) if all_chts else safe_val(["AVG_CHT (deg F)", "AVG_CHT", "Max CHT"])
+            avg_cht = (
+                round(sum(all_chts) / len(all_chts), 2)
+                if all_chts
+                else safe_val(["AVG_CHT (deg F)", "AVG_CHT", "Max CHT"])
+            )
             max_cht = safe_val(["Max CHT", "AVG_CHT (deg F)", "AVG_CHT"], agg="max")
             if max_cht is None and all_chts:
                 max_cht = max(all_chts)
 
-            cht_spread = round(max(all_chts) - min(all_chts), 2) if len(all_chts) >= 2 else None
+            cht_spread = (
+                round(max(all_chts) - min(all_chts), 2) if len(all_chts) >= 2 else None
+            )
 
-            density_alt = safe_val(["Density Altitude (ft)", "Density Altitude (feet)", "Density Altitude"])
-            press_alt = safe_val(["Pressure Altitude (ft)", "Pressure Altitude (feet)", "GPS Altitude (feet)"])
+            density_alt = safe_val(
+                ["Density Altitude (ft)", "Density Altitude (feet)", "Density Altitude"]
+            )
+            press_alt = safe_val(
+                [
+                    "Pressure Altitude (ft)",
+                    "Pressure Altitude (feet)",
+                    "GPS Altitude (feet)",
+                ]
+            )
             tas = safe_val(["Corrected TAS (knots)", "True Airspeed (knots)", "TAS"])
             ias = safe_val(["Indicated Airspeed (knots)", "IAS"])
             power = safe_val(["Percent Power", "Engine Power"])
             ff = safe_val(["Total Fuel Flow (gal/hr)", "Fuel Flow 1 (gal/hr)"])
             rpm = safe_val(["RPM"])
 
-            cht_delta_oat = round(max_cht - oat_f, 2) if (max_cht is not None and oat_f is not None) else None
-            cooling_index = round(max_cht / tas, 3) if (max_cht is not None and tas and tas > 0) else None
+            cht_delta_oat = (
+                round(max_cht - oat_f, 2)
+                if (max_cht is not None and oat_f is not None)
+                else None
+            )
+            cooling_index = (
+                round(max_cht / tas, 3)
+                if (max_cht is not None and tas and tas > 0)
+                else None
+            )
 
             date_str = filename[:10] if len(filename) >= 10 else filename
 
-            engine_data.append({
-                "filename": filename,
-                "date": date_str,
-                "oat_f": oat_f,
-                "oat_c": oat_c,
-                "density_alt": density_alt,
-                "press_alt": press_alt,
-                "tas": tas,
-                "ias": ias,
-                "oil_temp": max_oil_temp,
-                "max_oil_temp": max_oil_temp,
-                "avg_oil_temp": avg_oil_temp,
-                "avg_cht": avg_cht,
-                "max_cht": max_cht,
-                "cht1": cht1_f,
-                "cht2": cht2_f,
-                "cht3": cht3_f,
-                "cht4": cht4_f,
-                "cht_spread": cht_spread,
-                "percent_power": power,
-                "fuel_flow": ff,
-                "rpm": rpm,
-                "cht_delta_oat": cht_delta_oat,
-                "cooling_index": cooling_index
-            })
+            engine_data.append(
+                {
+                    "filename": filename,
+                    "date": date_str,
+                    "oat_f": oat_f,
+                    "oat_c": oat_c,
+                    "density_alt": density_alt,
+                    "press_alt": press_alt,
+                    "tas": tas,
+                    "ias": ias,
+                    "oil_temp": max_oil_temp,
+                    "max_oil_temp": max_oil_temp,
+                    "avg_oil_temp": avg_oil_temp,
+                    "avg_cht": avg_cht,
+                    "max_cht": max_cht,
+                    "cht1": cht1_f,
+                    "cht2": cht2_f,
+                    "cht3": cht3_f,
+                    "cht4": cht4_f,
+                    "cht_spread": cht_spread,
+                    "percent_power": power,
+                    "fuel_flow": ff,
+                    "rpm": rpm,
+                    "cht_delta_oat": cht_delta_oat,
+                    "cooling_index": cooling_index,
+                }
+            )
         except Exception as e:
             print(f"Error extracting engine health for {filename}: {e}")
 
     hottest_counts = {"CHT 1": 0, "CHT 2": 0, "CHT 3": 0, "CHT 4": 0}
     for d in engine_data:
-        c_vals = {"CHT 1": d.get("cht1"), "CHT 2": d.get("cht2"), "CHT 3": d.get("cht3"), "CHT 4": d.get("cht4")}
+        c_vals = {
+            "CHT 1": d.get("cht1"),
+            "CHT 2": d.get("cht2"),
+            "CHT 3": d.get("cht3"),
+            "CHT 4": d.get("cht4"),
+        }
         valid_c = {k: v for k, v in c_vals.items() if v is not None}
         if valid_c:
             hottest = max(valid_c, key=valid_c.get)
             hottest_counts[hottest] += 1
 
-    hottest_cyl = max(hottest_counts, key=hottest_counts.get) if any(hottest_counts.values()) else "N/A"
+    hottest_cyl = (
+        max(hottest_counts, key=hottest_counts.get)
+        if any(hottest_counts.values())
+        else "N/A"
+    )
 
     summary = {
         "total_flights": len(engine_data),
         "hottest_cylinder": hottest_cyl,
-        "hottest_counts": hottest_counts
+        "hottest_counts": hottest_counts,
     }
 
     return jsonify(sanitize_for_json({"flights": engine_data, "summary": summary}))
-
 
 
 # --- GAMI Spread Page Route ---
@@ -2142,7 +2255,6 @@ def gami():
 @app.route("/painting")
 def painting():
     return render_template("painting.html")
-
 
 
 @app.route("/api/saved_flights", methods=["GET"])
@@ -2292,7 +2404,10 @@ def api_get_signals():
             signals.append("CHT")
         if "EGT" not in signals:
             signals.append("EGT")
-        if "Corrected TAS (knots)" not in signals and "Corrected TAS (knots)" in df.columns:
+        if (
+            "Corrected TAS (knots)" not in signals
+            and "Corrected TAS (knots)" in df.columns
+        ):
             signals.append("Corrected TAS (knots)")
         if "CAS (knots)" not in signals and "CAS (knots)" in df.columns:
             signals.append("CAS (knots)")
@@ -2429,7 +2544,8 @@ def api_analyze_flight():
         flight_data = flight_data.fillna(0)
         try:
             flight_date = datetime.strptime(
-                "-".join(flight_data["Flight ID"].iloc[0].split("-")[:-1]), "%Y-%m-%d %H:%M:%S"
+                "-".join(flight_data["Flight ID"].iloc[0].split("-")[:-1]),
+                "%Y-%m-%d %H:%M:%S",
             )
         except Exception:
             flight_date = datetime.now()
@@ -2464,7 +2580,9 @@ def api_analyze_flight():
                 print(f"didnt work: {e}")
 
         # Sanitize data for JSON (convert Session Time from seconds to minutes)
-        session_times = pd.to_numeric(flight_data["Session Time"], errors="coerce").fillna(0)
+        session_times = pd.to_numeric(
+            flight_data["Session Time"], errors="coerce"
+        ).fillna(0)
         x_data = [round(float(t) / 60.0, 2) for t in session_times]
 
         def extract_traces(sig):
@@ -2658,8 +2776,12 @@ def api_analyze_flight():
         dt = numeric_times.diff().fillna(0)
         if "RPM" in flight_data.columns:
             rpm_series = pd.to_numeric(flight_data["RPM"], errors="coerce").fillna(0)
-            engine_mask = (rpm_series > 0)
-            duration = float(dt[engine_mask].sum()) if engine_mask.any() else float(tot_duration)
+            engine_mask = rpm_series > 0
+            duration = (
+                float(dt[engine_mask].sum())
+                if engine_mask.any()
+                else float(tot_duration)
+            )
         else:
             duration = float(tot_duration)
 
@@ -2697,11 +2819,21 @@ def api_analyze_flight():
             for fuel_log in fuel_logs
             if fuel_log.date <= flight_date
         ]
-        fuel_price = validate_float(matching_fuel_prices[0]) if matching_fuel_prices else 0.0
-        distance_traveled_miles = distance_traveled[-1] / 5280 if len(distance_traveled) > 0 else 0.0
-        avg_speed_mph = round(distance_traveled_miles / (duration / 3600), 2) if duration > 0 else 0.0
+        fuel_price = (
+            validate_float(matching_fuel_prices[0]) if matching_fuel_prices else 0.0
+        )
+        distance_traveled_miles = (
+            distance_traveled[-1] / 5280 if len(distance_traveled) > 0 else 0.0
+        )
+        avg_speed_mph = (
+            round(distance_traveled_miles / (duration / 3600), 2)
+            if duration > 0
+            else 0.0
+        )
         per_hour_cost, _, _ = calc_per_hour_cost()
-        actual_cost_per_hour = round(per_hour_cost * (duration / 3600), 2) if duration > 0 else 0.0
+        actual_cost_per_hour = (
+            round(per_hour_cost * (duration / 3600), 2) if duration > 0 else 0.0
+        )
         stats = {
             "flight_id": target_flight,
             "duration_min": round(duration / 60, 2),
@@ -2726,11 +2858,15 @@ def api_analyze_flight():
         saved_calibrations = []
         try:
             base_fname = os.path.basename(saved_filename)
-            cals = AirspeedCalibration.query.filter(
-                (AirspeedCalibration.filename == saved_filename) |
-                (AirspeedCalibration.filename == base_fname) |
-                (AirspeedCalibration.filename == target_flight)
-            ).order_by(AirspeedCalibration.start_time).all()
+            cals = (
+                AirspeedCalibration.query.filter(
+                    (AirspeedCalibration.filename == saved_filename)
+                    | (AirspeedCalibration.filename == base_fname)
+                    | (AirspeedCalibration.filename == target_flight)
+                )
+                .order_by(AirspeedCalibration.start_time)
+                .all()
+            )
             saved_calibrations = [c.to_dict() for c in cals]
         except Exception as cal_err:
             print("Error querying saved calibrations:", cal_err)
@@ -2747,6 +2883,7 @@ def api_analyze_flight():
 
     except Exception as e:
         import traceback
+
         traceback.print_exc()
         print(f"Analysis Error: {e}")
         return jsonify({"error": str(e)}), 500
@@ -2804,12 +2941,38 @@ def api_airspeed_calibration():
 
         # Retain optional engine setting columns if present in flight_data
         possible_engine_cols = [
-            "Manifold Pressure (inHg)", "MAP (inHg)", "MAP", "map_inhg", "Manifold Pressure", "Engine MAP", "MAP 1",
-            "RPM", "rpm", "RPM L", "RPM R", "Engine Speed", "RPM 1", "Propeller RPM", "TACH",
-            "Total Fuel Flow (gal/hr)", "Fuel Flow (gal/hr)", "Fuel Flow 1 (gal/hr)", "fuel_flow", "Fuel Flow", "FF (gal/hr)", "FF",
-            "Percent Power", "percent_power", "Power (%)", "POWER", "Engine Power (%)", "Power"
+            "Manifold Pressure (inHg)",
+            "MAP (inHg)",
+            "MAP",
+            "map_inhg",
+            "Manifold Pressure",
+            "Engine MAP",
+            "MAP 1",
+            "RPM",
+            "rpm",
+            "RPM L",
+            "RPM R",
+            "Engine Speed",
+            "RPM 1",
+            "Propeller RPM",
+            "TACH",
+            "Total Fuel Flow (gal/hr)",
+            "Fuel Flow (gal/hr)",
+            "Fuel Flow 1 (gal/hr)",
+            "fuel_flow",
+            "Fuel Flow",
+            "FF (gal/hr)",
+            "FF",
+            "Percent Power",
+            "percent_power",
+            "Power (%)",
+            "POWER",
+            "Engine Power (%)",
+            "Power",
         ]
-        engine_cols = [col for col in possible_engine_cols if col in flight_data.columns]
+        engine_cols = [
+            col for col in possible_engine_cols if col in flight_data.columns
+        ]
 
         # Extract OAT column safely (°C vs °F)
         oat_c_series = None
@@ -2850,26 +3013,43 @@ def api_airspeed_calibration():
             as_cal_df["oat"] = 15.0
 
         possible_mag_cols = [
-            "Mag Var (deg)", "Mag Variation (deg)", "Magnetic Variation (deg)", "MagVar (deg)", "MAGVAR", "Mag Var", "MagVar", "mag_var"
+            "Mag Var (deg)",
+            "Mag Variation (deg)",
+            "Magnetic Variation (deg)",
+            "MagVar (deg)",
+            "MAGVAR",
+            "Mag Var",
+            "MagVar",
+            "mag_var",
         ]
-        mag_cols = [col for col in possible_mag_cols if col in flight_data.columns or col in as_cal_df.columns]
+        mag_cols = [
+            col
+            for col in possible_mag_cols
+            if col in flight_data.columns or col in as_cal_df.columns
+        ]
 
-        essential_columns = [
-            "session_time",
-            "ias",
-            "press_alt",
-            "hdg",
-            "gps_gs",
-            "gps_trk",
-            "oat_c",
-            "oat",
-            "baro",
-            "Wind Speed (knots)",
-            "Wind Direction (deg)",
-        ] + [c for c in engine_cols if c in as_cal_df.columns] + [c for c in mag_cols if c in as_cal_df.columns]
+        essential_columns = (
+            [
+                "session_time",
+                "ias",
+                "press_alt",
+                "hdg",
+                "gps_gs",
+                "gps_trk",
+                "oat_c",
+                "oat",
+                "baro",
+                "Wind Speed (knots)",
+                "Wind Direction (deg)",
+            ]
+            + [c for c in engine_cols if c in as_cal_df.columns]
+            + [c for c in mag_cols if c in as_cal_df.columns]
+        )
 
         as_cal_df = as_cal_df[essential_columns].copy()
-        as_cal_df = as_cal_df.dropna(subset=["session_time", "ias", "press_alt", "hdg", "gps_gs", "gps_trk"])
+        as_cal_df = as_cal_df.dropna(
+            subset=["session_time", "ias", "press_alt", "hdg", "gps_gs", "gps_trk"]
+        )
         as_cal_df = as_cal_df[as_cal_df["ias"] > 55.0]
         as_cal_df = as_cal_df.reset_index(drop=True)
 
@@ -2934,7 +3114,8 @@ def api_airspeed_calibration():
             filename = os.path.basename(saved_filename) if saved_filename else ""
             if filename:
                 existing_cal = AirspeedCalibration.query.filter(
-                    (AirspeedCalibration.filename == filename) | (AirspeedCalibration.filename == saved_filename),
+                    (AirspeedCalibration.filename == filename)
+                    | (AirspeedCalibration.filename == saved_filename),
                     db.func.abs(AirspeedCalibration.start_time - start_time) < 1.0,
                     db.func.abs(AirspeedCalibration.end_time - end_time) < 1.0,
                 ).first()
@@ -2945,14 +3126,22 @@ def api_airspeed_calibration():
                 cal_record.start_time = float(start_time)
                 cal_record.end_time = float(end_time)
                 cal_record.airspeed_error_kts = output.get("airspeed_error_kts")
-                cal_record.cas_correction_kts = output.get("calibrated_airspeed_correction_kts")
+                cal_record.cas_correction_kts = output.get(
+                    "calibrated_airspeed_correction_kts"
+                )
                 cal_record.avg_ias_kts = output.get("average_indicated_airspeed_kts")
                 cal_record.avg_cas_kts = output.get("average_calibrated_airspeed_kts")
-                cal_record.uncorrected_tas_kts = output.get("uncorrected_average_true_airspeed_kts")
-                cal_record.corrected_tas_kts = output.get("corrected_average_true_airspeed_kts")
+                cal_record.uncorrected_tas_kts = output.get(
+                    "uncorrected_average_true_airspeed_kts"
+                )
+                cal_record.corrected_tas_kts = output.get(
+                    "corrected_average_true_airspeed_kts"
+                )
                 cal_record.pressure_altitude_ft = output.get("pressure_altitude_ft")
                 cal_record.density_altitude_ft = output.get("density_altitude_ft")
-                cal_record.compass_hdg_bias_deg = output.get("calibrated_heading_correction_deg")
+                cal_record.compass_hdg_bias_deg = output.get(
+                    "calibrated_heading_correction_deg"
+                )
                 cal_record.mag_variation_deg = output.get("magnetic_variation_deg")
                 cal_record.wind_direction_deg = output.get("wind_direction_deg")
                 cal_record.wind_speed_kts = output.get("wind_speed_kts")
@@ -2967,20 +3156,27 @@ def api_airspeed_calibration():
                 db.session.add(cal_record)
                 db.session.commit()
 
-                cals = AirspeedCalibration.query.filter(
-                    (AirspeedCalibration.filename == filename) | (AirspeedCalibration.filename == saved_filename)
-                ).order_by(AirspeedCalibration.start_time).all()
+                cals = (
+                    AirspeedCalibration.query.filter(
+                        (AirspeedCalibration.filename == filename)
+                        | (AirspeedCalibration.filename == saved_filename)
+                    )
+                    .order_by(AirspeedCalibration.start_time)
+                    .all()
+                )
                 saved_calibrations = [c.to_dict() for c in cals]
         except Exception as db_err:
             print("Error saving airspeed calibration record to DB:", db_err)
             db.session.rollback()
 
-        return jsonify({
-            "summary": summary,
-            "results": sanitize_for_json(output),
-            "engine_settings": sanitize_for_json(eng),
-            "saved_calibrations": sanitize_for_json(saved_calibrations),
-        })
+        return jsonify(
+            {
+                "summary": summary,
+                "results": sanitize_for_json(output),
+                "engine_settings": sanitize_for_json(eng),
+                "saved_calibrations": sanitize_for_json(saved_calibrations),
+            }
+        )
 
     except Exception as e:
         print("Airspeed calibration error:", e)
@@ -2998,10 +3194,16 @@ def delete_airspeed_calibration(cal_id):
         db.session.delete(cal)
         db.session.commit()
 
-        cals = AirspeedCalibration.query.filter_by(filename=filename).order_by(AirspeedCalibration.start_time).all()
+        cals = (
+            AirspeedCalibration.query.filter_by(filename=filename)
+            .order_by(AirspeedCalibration.start_time)
+            .all()
+        )
         remaining = [c.to_dict() for c in cals]
 
-        return jsonify({"success": True, "remaining_calibrations": sanitize_for_json(remaining)})
+        return jsonify(
+            {"success": True, "remaining_calibrations": sanitize_for_json(remaining)}
+        )
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
@@ -3024,18 +3226,39 @@ def api_flight_map_telemetry():
         lon_col = next((c for c in df.columns if "longitude" in c.lower()), None)
 
         if not lat_col or not lon_col:
-            return jsonify({"error": "No GPS coordinates found in this flight log"}), 404
+            return (
+                jsonify({"error": "No GPS coordinates found in this flight log"}),
+                404,
+            )
 
-        alt_col = "GPS Altitude (feet)" if "GPS Altitude (feet)" in df.columns else next((c for c in df.columns if "altitude" in c.lower()), None)
+        alt_col = (
+            "GPS Altitude (feet)"
+            if "GPS Altitude (feet)" in df.columns
+            else next((c for c in df.columns if "altitude" in c.lower()), None)
+        )
         time_col = "Session Time" if "Session Time" in df.columns else df.columns[0]
-        ias_col = "Indicated Airspeed (knots)" if "Indicated Airspeed (knots)" in df.columns else None
-        tas_col = "Corrected TAS (knots)" if "Corrected TAS (knots)" in df.columns else ("True Airspeed (knots)" if "True Airspeed (knots)" in df.columns else None)
+        ias_col = (
+            "Indicated Airspeed (knots)"
+            if "Indicated Airspeed (knots)" in df.columns
+            else None
+        )
+        tas_col = (
+            "Corrected TAS (knots)"
+            if "Corrected TAS (knots)" in df.columns
+            else (
+                "True Airspeed (knots)"
+                if "True Airspeed (knots)" in df.columns
+                else None
+            )
+        )
         hdg_col = next((c for c in df.columns if "heading" in c.lower()), None)
 
         def get_clean_list(col):
             if not col or col not in df.columns:
                 return []
-            s = pd.to_numeric(df[col], errors="coerce").replace([np.inf, -np.inf], np.nan)
+            s = pd.to_numeric(df[col], errors="coerce").replace(
+                [np.inf, -np.inf], np.nan
+            )
             return s.fillna(0).tolist()
 
         lats = get_clean_list(lat_col)
@@ -3046,19 +3269,22 @@ def api_flight_map_telemetry():
         tass = get_clean_list(tas_col)
         hdgs = get_clean_list(hdg_col)
 
-        return jsonify(sanitize_for_json({
-            "filename": filename,
-            "lat": lats,
-            "lon": lons,
-            "time": times,
-            "alt": alts,
-            "ias": iass,
-            "tas": tass,
-            "heading": hdgs
-        }))
+        return jsonify(
+            sanitize_for_json(
+                {
+                    "filename": filename,
+                    "lat": lats,
+                    "lon": lons,
+                    "time": times,
+                    "alt": alts,
+                    "ias": iass,
+                    "tas": tass,
+                    "heading": hdgs,
+                }
+            )
+        )
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 
 @app.route("/export/flights")
