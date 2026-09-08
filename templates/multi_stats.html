@@ -45,6 +45,20 @@
         .extra-small {
             font-size: 0.72rem;
         }
+        .airspeed-cal-selected-row {
+            background-color: rgba(13, 110, 253, 0.16) !important;
+            box-shadow: inset 3px 0 0 #0d6efd;
+        }
+        [data-bs-theme="dark"] .airspeed-cal-selected-row,
+        body.dark-mode .airspeed-cal-selected-row {
+            background-color: rgba(13, 110, 253, 0.28) !important;
+            box-shadow: inset 3px 0 0 #3d8bfd;
+        }
+        .airspeed-cal-checkbox {
+            cursor: pointer;
+            width: 1.05rem;
+            height: 1.05rem;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </head>
@@ -244,16 +258,24 @@
                             </div>
                         </div>
                         <div class="card-body p-2">
-                            <div id="airspeedPowerPlotDiv" style="height: 400px; width: 100%;"></div>
+                            <div id="airspeedPowerPlotDiv" style="height: 430px; width: 100%;"></div>
                             <div id="airspeedPowerPlotStats" class="mt-2 text-center text-muted extra-small"></div>
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="text-muted small">
-                            Comparing all saved flight maneuver calibrations across your fleet. Click column headers to sort.
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="text-muted small">
+                                Comparing all saved flight maneuver calibrations across your fleet. Select rows to highlight them on the plot.
+                            </span>
+                            <div class="d-none align-items-center gap-2" id="airspeedCalSelectionBar">
+                                <span class="badge bg-primary px-2 py-1" id="airspeedCalSelectedCount">0 selected</span>
+                                <button class="btn btn-outline-secondary btn-sm py-0 px-2 extra-small" onclick="clearAirspeedCalSelection()">
+                                    <i class="bi bi-x-circle"></i> Clear Selection
+                                </button>
+                            </div>
                         </div>
-                        <div>
+                        <div class="d-flex align-items-center gap-2">
                             <input type="text" id="searchAirspeedCalsInput" class="form-control form-control-sm" placeholder="🔍 Search date, filename..." style="width: 250px;">
                         </div>
                     </div>
@@ -262,6 +284,9 @@
                         <table class="table table-sm table-hover table-striped align-middle w-100 mb-0" id="allAirspeedCalsTable">
                             <thead class="table-dark">
                                 <tr>
+                                    <th style="width: 38px;" class="text-center">
+                                        <input class="form-check-input airspeed-cal-checkbox" type="checkbox" id="selectAllAirspeedCals" onchange="toggleSelectAllAirspeedCals(this.checked)" title="Select all visible / Deselect all">
+                                    </th>
                                     <th role="button" onclick="sortAirspeedCalsTable('date')">Date & Flight <i class="bi bi-arrow-down-up small"></i></th>
                                     <th role="button" onclick="sortAirspeedCalsTable('segment')">Segment <i class="bi bi-arrow-down-up small"></i></th>
                                     <th role="button" onclick="sortAirspeedCalsTable('ias')">IAS <i class="bi bi-arrow-down-up small"></i></th>
@@ -277,7 +302,7 @@
                                 </tr>
                             </thead>
                             <tbody id="allAirspeedCalsTbody">
-                                <tr><td colspan="12" class="text-center text-muted p-4">Loading calibrations...</td></tr>
+                                <tr><td colspan="13" class="text-center text-muted p-4">Loading calibrations...</td></tr>
                             </tbody>
                         </table>
                     </div>

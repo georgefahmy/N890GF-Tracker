@@ -351,9 +351,17 @@ function openFlightInAnalyzer(filename) {
 
 window.filterAndRenderTable = filterAndRenderTable;
 
-// --- ALL AIRSPEED CALIBRATIONS COMPARATIVE MODAL ---
+// --- ALL AIRSPEED CALIBRATIONS COMPARATIVE MODAL & MULTI-ROW SELECTION ---
 let airspeedCalsSortKey = 'date';
 let airspeedCalsSortAsc = false;
+window.selectedAirspeedCalKeys = window.selectedAirspeedCalKeys || new Set();
+
+function getAirspeedCalKey(c) {
+    if (c.id !== undefined && c.id !== null) {
+        return String(c.id);
+    }
+    return `${c.filename || ''}_${c.start_time || 0}_${c.end_time || 0}`;
+}
 
 function openAirspeedCalibrationsModal() {
     renderAirspeedCalsModalTable();
@@ -432,9 +440,12 @@ function renderAirspeedCalsModalTable() {
     });
 
     if (allCals.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="12" class="text-center text-muted p-4">No saved airspeed calibrations found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="13" class="text-center text-muted p-4">No saved airspeed calibrations found.</td></tr>';
+        updateAirspeedCalSelectionUI();
         return;
     }
+
+    const selectedKeys = window.selectedAirspeedCalKeys || new Set();
 
     tbody.innerHTML = allCals.map(c => {
         const res = c.results || {};
@@ -453,8 +464,14 @@ function renderAirspeedCalsModalTable() {
             ? `${res.wind_direction_deg}°@${res.wind_speed_kts}kt`
             : 'N/A';
 
+        const calKey = getAirspeedCalKey(c);
+        const isSelected = selectedKeys.has(calKey);
+
         return `
-            <tr onmouseenter="highlightAirspeedCalSegment('${c.filename}', ${c.start_time}, ${c.end_time})" style="cursor: pointer;">
+            <tr data-cal-key="${calKey}" class="${isSelected ? 'airspeed-cal-selected-row' : ''}" onclick="onAirspeedCalRowClick(event, '${calKey}')" onmouseenter="highlightAirspeedCalSegment('${c.filename}', ${c.start_time}, ${c.end_time})" style="cursor: pointer;">
+                <td class="text-center" onclick="event.stopPropagation()">
+                    <input class="form-check-input airspeed-cal-checkbox" type="checkbox" data-cal-key="${calKey}" ${isSelected ? 'checked' : ''} onchange="toggleAirspeedCalSelection('${calKey}')">
+                </td>
                 <td class="text-nowrap"><strong>${c.flight_date}</strong><br><span class="extra-small text-muted">${c.filename}</span></td>
                 <td class="text-nowrap">${formatMMSS(c.start_time)}-${formatMMSS(c.end_time)}</td>
                 <td class="text-nowrap">${res.average_indicated_airspeed_kts || '--'}</td>
@@ -466,7 +483,7 @@ function renderAirspeedCalsModalTable() {
                 <td class="text-nowrap">${windStr}</td>
                 <td class="text-nowrap">${da}</td>
                 <td><span class="extra-small text-muted text-nowrap">${mapStr} | ${rpmStr} | ${ffStr} | ${powerStr}</span></td>
-                <td class="text-nowrap">
+                <td class="text-nowrap" onclick="event.stopPropagation()">
                     <div class="btn-group btn-group-sm">
                         <button class="btn btn-outline-info py-0 px-1" onclick="viewCalOnMap('${c.filename}', ${c.start_time}, ${c.end_time})" title="View Maneuver Track on Map">
                             <i class="bi bi-geo-alt-fill"></i> Map
@@ -482,6 +499,113 @@ function renderAirspeedCalsModalTable() {
             </tr>
         `;
     }).join('');
+
+    updateAirspeedCalSelectionUI();
+}
+
+function onAirspeedCalRowClick(event, calKey) {
+    if (event && (event.target.closest('button') || event.target.closest('a') || event.target.closest('input'))) {
+        return;
+    }
+    toggleAirspeedCalSelection(calKey);
+}
+
+function toggleAirspeedCalSelection(calKey) {
+    if (!window.selectedAirspeedCalKeys) {
+        window.selectedAirspeedCalKeys = new Set();
+    }
+    if (window.selectedAirspeedCalKeys.has(calKey)) {
+        window.selectedAirspeedCalKeys.delete(calKey);
+    } else {
+        window.selectedAirspeedCalKeys.add(calKey);
+    }
+    updateAirspeedCalSelectionUI();
+    const card = document.getElementById("airspeedPowerPlotCard");
+    if (card && !card.classList.contains("d-none")) {
+        renderAirspeedPowerPlot();
+    }
+}
+
+function toggleSelectAllAirspeedCals(checked) {
+    if (!window.selectedAirspeedCalKeys) {
+        window.selectedAirspeedCalKeys = new Set();
+    }
+    const visibleCheckboxes = document.querySelectorAll("#allAirspeedCalsTbody .airspeed-cal-checkbox");
+    visibleCheckboxes.forEach(cb => {
+        const key = cb.getAttribute("data-cal-key");
+        if (!key) return;
+        if (checked) {
+            window.selectedAirspeedCalKeys.add(key);
+        } else {
+            window.selectedAirspeedCalKeys.delete(key);
+        }
+    });
+    updateAirspeedCalSelectionUI();
+    const card = document.getElementById("airspeedPowerPlotCard");
+    if (card && !card.classList.contains("d-none")) {
+        renderAirspeedPowerPlot();
+    }
+}
+
+function clearAirspeedCalSelection() {
+    if (window.selectedAirspeedCalKeys) {
+        window.selectedAirspeedCalKeys.clear();
+    }
+    updateAirspeedCalSelectionUI();
+    const card = document.getElementById("airspeedPowerPlotCard");
+    if (card && !card.classList.contains("d-none")) {
+        renderAirspeedPowerPlot();
+    }
+}
+
+function updateAirspeedCalSelectionUI() {
+    const selectedKeys = window.selectedAirspeedCalKeys || new Set();
+    const rows = document.querySelectorAll("#allAirspeedCalsTbody tr[data-cal-key]");
+    let visibleSelected = 0;
+    let visibleTotal = rows.length;
+
+    rows.forEach(row => {
+        const key = row.getAttribute("data-cal-key");
+        const cb = row.querySelector(".airspeed-cal-checkbox");
+        const isSel = selectedKeys.has(key);
+        if (isSel) {
+            row.classList.add("airspeed-cal-selected-row");
+            if (cb) cb.checked = true;
+            visibleSelected++;
+        } else {
+            row.classList.remove("airspeed-cal-selected-row");
+            if (cb) cb.checked = false;
+        }
+    });
+
+    const selectAllCb = document.getElementById("selectAllAirspeedCals");
+    if (selectAllCb) {
+        if (visibleTotal > 0 && visibleSelected === visibleTotal) {
+            selectAllCb.checked = true;
+            selectAllCb.indeterminate = false;
+        } else if (visibleSelected > 0) {
+            selectAllCb.checked = false;
+            selectAllCb.indeterminate = true;
+        } else {
+            selectAllCb.checked = false;
+            selectAllCb.indeterminate = false;
+        }
+    }
+
+    const bar = document.getElementById("airspeedCalSelectionBar");
+    const countBadge = document.getElementById("airspeedCalSelectedCount");
+    if (bar && countBadge) {
+        const totalCount = selectedKeys.size;
+        if (totalCount > 0) {
+            bar.classList.remove("d-none");
+            bar.classList.add("d-flex");
+            countBadge.textContent = `${totalCount} selected`;
+        } else {
+            bar.classList.remove("d-flex");
+            bar.classList.add("d-none");
+            countBadge.textContent = `0 selected`;
+        }
+    }
 }
 
 function sortAirspeedCalsTable(key) {
@@ -497,6 +621,12 @@ function sortAirspeedCalsTable(key) {
 window.openAirspeedCalibrationsModal = openAirspeedCalibrationsModal;
 window.renderAirspeedCalsModalTable = renderAirspeedCalsModalTable;
 window.sortAirspeedCalsTable = sortAirspeedCalsTable;
+window.getAirspeedCalKey = getAirspeedCalKey;
+window.onAirspeedCalRowClick = onAirspeedCalRowClick;
+window.toggleAirspeedCalSelection = toggleAirspeedCalSelection;
+window.toggleSelectAllAirspeedCals = toggleSelectAllAirspeedCals;
+window.clearAirspeedCalSelection = clearAirspeedCalSelection;
+window.updateAirspeedCalSelectionUI = updateAirspeedCalSelectionUI;
 
 // --- TAS VS % POWER (DENSITY ALTITUDE NORMALIZED) PLOT ---
 function toggleAirspeedPowerPlot() {
@@ -535,7 +665,10 @@ function renderAirspeedPowerPlot() {
                     const sigma = Math.pow(Math.max(0.1, 1 - 6.87559e-6 * da), 4.25588);
                     const normTas = corrTas * Math.sqrt(sigma);
 
+                    const calKey = getAirspeedCalKey(c);
+
                     dataPoints.push({
+                        calKey: calKey,
                         power: Number(power),
                         corrTas: Number(corrTas),
                         normTas: Number(normTas.toFixed(1)),
@@ -566,15 +699,10 @@ function renderAirspeedPowerPlot() {
     const yVals = dataPoints.map(p => useNormalized ? p.normTas : p.corrTas);
     const daVals = dataPoints.map(p => p.da);
 
-    const hoverTexts = dataPoints.map(p => 
-        `<b>${p.flight_date}</b> (${p.segment})<br>` +
-        `<b>% Power:</b> ${p.power}%<br>` +
-        `<b>Corrected TAS:</b> ${p.corrTas} kts<br>` +
-        `<b>Normalized TAS (Sea Level):</b> ${p.normTas} kts<br>` +
-        `<b>Density Altitude:</b> ${p.da.toLocaleString()} ft<br>` +
-        `<b>CAS / IAS:</b> ${p.cas || '--'} / ${p.ias || '--'} kts`
-    );
+    const minDA = Math.min(...daVals);
+    const maxDA = Math.max(...daVals);
 
+    // Fleet linear fit across all points
     let n = xVals.length;
     let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0, sumYY = 0;
     for (let i = 0; i < n; i++) {
@@ -597,45 +725,206 @@ function renderAirspeedPowerPlot() {
     const fitX = [minX, maxX];
     const fitY = [minX * slope + intercept, maxX * slope + intercept];
 
-    const scatterTrace = {
-        x: xVals,
-        y: yVals,
-        mode: 'markers',
-        type: 'scatter',
-        name: 'Calibration Points',
-        text: hoverTexts,
-        hoverinfo: 'text',
-        marker: {
-            size: 12,
-            color: daVals,
-            colorscale: 'Viridis',
-            colorbar: {
-                title: 'Density Alt (ft)',
-                titleside: 'right',
-                len: 0.8
-            },
-            showscale: true,
-            line: { color: '#ffffff', width: 1.5 }
-        }
-    };
-
-    const fitTrace = {
-        x: fitX,
-        y: fitY,
-        mode: 'lines',
-        type: 'scatter',
-        name: `Trendline (R² = ${r2.toFixed(3)})`,
-        line: { color: '#dc3545', width: 2, dash: 'dash' }
-    };
-
     const isDarkMode = document.body.classList.contains("dark-mode") || document.documentElement.getAttribute("data-bs-theme") === "dark";
+
+    function makeHoverText(p, isSelected = false) {
+        return `<b>${p.flight_date}</b> (${p.segment})${isSelected ? ' <b style="color:#ff1744;">★ SELECTED</b>' : ''}<br>` +
+            `<b>% Power:</b> ${p.power}%<br>` +
+            `<b>Corrected TAS:</b> ${p.corrTas} kts<br>` +
+            `<b>Normalized TAS (Sea Level):</b> ${p.normTas} kts<br>` +
+            `<b>Density Altitude:</b> ${p.da.toLocaleString()} ft<br>` +
+            `<b>CAS / IAS:</b> ${p.cas || '--'} / ${p.ias || '--'} kts<br>` +
+            `<span style="font-size:0.8em; color:#888;">(Click point to toggle selection)</span>`;
+    }
+
+    const selectedKeys = window.selectedAirspeedCalKeys || new Set();
+    const hasSelection = selectedKeys.size > 0;
+    const selectedPoints = hasSelection ? dataPoints.filter(p => selectedKeys.has(p.calKey)) : [];
+    const unselectedPoints = hasSelection ? dataPoints.filter(p => !selectedKeys.has(p.calKey)) : dataPoints;
+    const isHighlightActive = selectedPoints.length > 0;
+
+    let traces = [];
+
+    if (isHighlightActive) {
+        // Trace for unselected/background points (dimmed)
+        if (unselectedPoints.length > 0) {
+            traces.push({
+                x: unselectedPoints.map(p => p.power),
+                y: unselectedPoints.map(p => useNormalized ? p.normTas : p.corrTas),
+                mode: 'markers',
+                type: 'scatter',
+                name: `Other Calibrations (${unselectedPoints.length})`,
+                text: unselectedPoints.map(p => makeHoverText(p, false)),
+                hoverinfo: 'text',
+                customdata: unselectedPoints.map(p => p.calKey),
+                marker: {
+                    size: 10,
+                    color: unselectedPoints.map(p => p.da),
+                    cmin: minDA,
+                    cmax: maxDA,
+                    colorscale: 'Viridis',
+                    opacity: 0.35,
+                    colorbar: {
+                        title: 'Density Alt (ft)',
+                        titleside: 'right',
+                        len: 0.8
+                    },
+                    showscale: true,
+                    line: { color: isDarkMode ? '#555555' : '#cccccc', width: 1 }
+                }
+            });
+        }
+
+        // Trace for highlighted selected points (prominent, bold crimson ring, full opacity)
+        traces.push({
+            x: selectedPoints.map(p => p.power),
+            y: selectedPoints.map(p => useNormalized ? p.normTas : p.corrTas),
+            mode: 'markers',
+            type: 'scatter',
+            name: `Selected (${selectedPoints.length})`,
+            text: selectedPoints.map(p => makeHoverText(p, true)),
+            hoverinfo: 'text',
+            customdata: selectedPoints.map(p => p.calKey),
+            marker: {
+                size: 16,
+                color: selectedPoints.map(p => p.da),
+                cmin: minDA,
+                cmax: maxDA,
+                colorscale: 'Viridis',
+                opacity: 1.0,
+                showscale: unselectedPoints.length === 0,
+                colorbar: unselectedPoints.length === 0 ? {
+                    title: 'Density Alt (ft)',
+                    titleside: 'right',
+                    len: 0.8
+                } : undefined,
+                line: { color: '#ff1744', width: 3.5 }
+            }
+        });
+
+        // Fleet trendline (subtler dashed line when selection is active)
+        traces.push({
+            x: fitX,
+            y: fitY,
+            mode: 'lines',
+            type: 'scatter',
+            name: `Fleet Trendline (R² = ${r2.toFixed(3)})`,
+            line: { color: isDarkMode ? '#6c757d' : '#adb5bd', width: 1.5, dash: 'dash' }
+        });
+
+        // If >= 2 points selected, calculate and plot selected points trendline
+        let selSlope = 0, selIntercept = 0, selR2 = null;
+        if (selectedPoints.length >= 2) {
+            const selX = selectedPoints.map(p => p.power);
+            const selY = selectedPoints.map(p => useNormalized ? p.normTas : p.corrTas);
+            const selN = selX.length;
+            let sX = 0, sY = 0, sXY = 0, sXX = 0, sYY = 0;
+            for (let i = 0; i < selN; i++) {
+                sX += selX[i];
+                sY += selY[i];
+                sXY += selX[i] * selY[i];
+                sXX += selX[i] * selX[i];
+                sYY += selY[i] * selY[i];
+            }
+            selSlope = selN > 1 && (selN * sXX - sX * sX) !== 0 ? (selN * sXY - sX * sY) / (selN * sXX - sX * sX) : 0;
+            selIntercept = selN > 1 ? (sY - selSlope * sX) / selN : 0;
+            const sNum = (selN * sXY - sX * sY);
+            const sDen = Math.sqrt((selN * sXX - sX * sX) * (selN * sYY - sY * sY));
+            if (sDen !== 0) selR2 = Math.pow(sNum / sDen, 2);
+
+            const selMinX = Math.min(...selX) - 3;
+            const selMaxX = Math.max(...selX) + 3;
+            traces.push({
+                x: [selMinX, selMaxX],
+                y: [selMinX * selSlope + selIntercept, selMaxX * selSlope + selIntercept],
+                mode: 'lines',
+                type: 'scatter',
+                name: `Selected Fit ${selR2 !== null ? `(R² = ${selR2.toFixed(3)})` : ''}`,
+                line: { color: '#0d6efd', width: 2.5 }
+            });
+        }
+
+        if (statsDiv) {
+            const avgSelPower = (selectedPoints.reduce((sum, p) => sum + p.power, 0) / selectedPoints.length).toFixed(1);
+            const avgSelTAS = (selectedPoints.reduce((sum, p) => sum + (useNormalized ? p.normTas : p.corrTas), 0) / selectedPoints.length).toFixed(1);
+            const avgSelDA = Math.round(selectedPoints.reduce((sum, p) => sum + p.da, 0) / selectedPoints.length);
+
+            let selFitStr = '';
+            if (selectedPoints.length >= 2 && selR2 !== null) {
+                selFitStr = ` | <strong>Selected Fit:</strong> TAS = <strong>${selSlope.toFixed(2)}</strong> × (% Power) ${selIntercept >= 0 ? '+' : '-'} <strong>${Math.abs(selIntercept).toFixed(1)}</strong> kts (R²: <strong>${selR2.toFixed(3)}</strong>)`;
+            }
+
+            statsDiv.innerHTML = `
+                <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
+                    <span class="badge bg-primary px-2 py-1"><i class="bi bi-check2-circle"></i> ${selectedPoints.length} Selected</span>
+                    <span><strong>Avg Power:</strong> ${avgSelPower}%</span> | 
+                    <span><strong>Avg TAS:</strong> ${avgSelTAS} kts</span> | 
+                    <span><strong>Avg DA:</strong> ${avgSelDA.toLocaleString()} ft</span>
+                    ${selFitStr}
+                    <span class="text-muted ms-1">(Fleet: TAS = ${slope.toFixed(2)} × Power ${intercept >= 0 ? '+' : '-'} ${Math.abs(intercept).toFixed(1)}, R²: ${r2.toFixed(3)}, ${n} total pts)</span>
+                </div>
+            `;
+        }
+    } else {
+        // Standard plot when no calibrations are selected
+        const hoverTexts = dataPoints.map(p => makeHoverText(p, false));
+
+        const scatterTrace = {
+            x: xVals,
+            y: yVals,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Calibration Points',
+            text: hoverTexts,
+            hoverinfo: 'text',
+            customdata: dataPoints.map(p => p.calKey),
+            marker: {
+                size: 12,
+                color: daVals,
+                colorscale: 'Viridis',
+                colorbar: {
+                    title: 'Density Alt (ft)',
+                    titleside: 'right',
+                    len: 0.8
+                },
+                showscale: true,
+                line: { color: '#ffffff', width: 1.5 }
+            }
+        };
+
+        const fitTrace = {
+            x: fitX,
+            y: fitY,
+            mode: 'lines',
+            type: 'scatter',
+            name: `Trendline (R² = ${r2.toFixed(3)})`,
+            line: { color: '#dc3545', width: 2, dash: 'dash' }
+        };
+
+        traces = [scatterTrace, fitTrace];
+
+        if (statsDiv) {
+            const avgDA = Math.round(daVals.reduce((a, b) => a + b, 0) / n);
+            statsDiv.innerHTML = `
+                <strong>Performance Linear Fit:</strong> 
+                TAS = <strong>${slope.toFixed(2)}</strong> × (% Power) ${intercept >= 0 ? '+' : '-'} <strong>${Math.abs(intercept).toFixed(1)}</strong> kts 
+                | Correlation (R²): <strong>${r2.toFixed(3)}</strong> 
+                | Avg Density Alt: <strong>${avgDA.toLocaleString()} ft</strong> 
+                | Total Data Points: <strong>${n}</strong>
+            `;
+        }
+    }
 
     const layout = {
         title: {
             text: useNormalized 
                 ? 'Sea-Level Normalized TAS vs. Engine % Power (Density Altitude Normalized)' 
                 : 'Corrected TAS vs. Engine % Power (Color-Coded by Density Altitude)',
-            font: { size: 14, color: isDarkMode ? '#f8f9fa' : '#212529' }
+            font: { size: 13, color: isDarkMode ? '#f8f9fa' : '#212529' },
+            x: 0.5,
+            xanchor: 'center',
+            y: 0.97,
+            yanchor: 'top'
         },
         xaxis: {
             title: 'Engine % Power (%)',
@@ -651,28 +940,30 @@ function renderAirspeedPowerPlot() {
         },
         paper_bgcolor: 'transparent',
         plot_bgcolor: 'transparent',
-        margin: { l: 60, r: 60, t: 40, b: 50 },
+        margin: { l: 60, r: 60, t: 80, b: 50 },
         showlegend: true,
         legend: {
             orientation: 'h',
-            y: 1.15,
-            x: 0,
-            font: { color: isDarkMode ? '#f8f9fa' : '#212529' }
+            x: 0.5,
+            xanchor: 'center',
+            y: 1.04,
+            yanchor: 'bottom',
+            font: { size: 11, color: isDarkMode ? '#f8f9fa' : '#212529' }
         }
     };
 
-    Plotly.newPlot(div, [scatterTrace, fitTrace], layout, { responsive: true });
+    Plotly.react(div, traces, layout, { responsive: true });
 
-    if (statsDiv) {
-        const avgDA = Math.round(daVals.reduce((a, b) => a + b, 0) / n);
-        statsDiv.innerHTML = `
-            <strong>Performance Linear Fit:</strong> 
-            TAS = <strong>${slope.toFixed(2)}</strong> × (% Power) ${intercept >= 0 ? '+' : '-'} <strong>${Math.abs(intercept).toFixed(1)}</strong> kts 
-            | Correlation (R²): <strong>${r2.toFixed(3)}</strong> 
-            | Avg Density Alt: <strong>${avgDA.toLocaleString()} ft</strong> 
-            | Total Data Points: <strong>${n}</strong>
-        `;
-    }
+    div.removeAllListeners && div.removeAllListeners('plotly_click');
+    div.on('plotly_click', (eventData) => {
+        if (eventData && eventData.points && eventData.points.length > 0) {
+            const pt = eventData.points[0];
+            const calKey = pt.customdata;
+            if (calKey) {
+                toggleAirspeedCalSelection(calKey);
+            }
+        }
+    });
 }
 
 window.toggleAirspeedPowerPlot = toggleAirspeedPowerPlot;
