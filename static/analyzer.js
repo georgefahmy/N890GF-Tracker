@@ -1093,59 +1093,71 @@ function updateGlobalUI(data) {
     document.getElementById('statsList').innerHTML = `
         <!-- General & Fuel Performance -->
         <div class="col-12"><div class="fw-bold text-primary border-bottom pb-1 mb-2 small"><i class="bi bi-speedometer2"></i> Flight & Fuel Performance</div></div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Duration (Trip Cost)</div>
-            <div>${s.duration_min || 0} min ($${costVal})</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Total Fuel</div>
-            <div>${s.total_fuel || 0} gal ($${fuelCostVal})</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Avg Fuel Flow</div>
-            <div>${s.avg_fuel_flow || 0} GPH</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Avg MPG</div>
-            <div><span class="text-success fw-bold">${s.avg_mpg || 'N/A'}</span> nm/gal</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Distance Traveled</div>
-            <div>${distVal} mi</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Avg Speed</div>
-            <div><span class="text-success fw-bold">${s.avg_speed_mph || 0} mph</span></div>
+        <div class="col-12 mb-2">
+            <div class="d-flex flex-nowrap align-items-start justify-content-between gap-2 overflow-x-auto pb-1">
+                <div style="flex: 1 1 0; min-width: 0;" title="Duration (Trip Cost)">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Duration (Cost)</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.duration_min || 0}m <span class="text-muted fw-normal" style="font-size: 0.75rem;">($${costVal})</span></div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Total Fuel">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Total Fuel</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.total_fuel || 0} gal <span class="text-muted fw-normal" style="font-size: 0.75rem;">($${fuelCostVal})</span></div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Avg Fuel Flow">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg Fuel Flow</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.avg_fuel_flow || 0} GPH</div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Avg MPG">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg MPG</div>
+                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_mpg || 'N/A'} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Distance Traveled">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Distance</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${distVal} mi</div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Avg Speed">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg Speed</div>
+                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_speed_mph || 0} mph</div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Average ground speed during cruise (${s.avg_cruise_speed_mph || 0} mph) and descent (${s.avg_descent_speed_mph || 0} mph)">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Cruise &amp; Descent</div>
+                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_cruise_descent_speed_mph !== undefined ? s.avg_cruise_descent_speed_mph : 0} mph</div>
+                </div>
+            </div>
         </div>
 
         <!-- Engine Thermal & Health -->
         <div class="col-12 mt-1"><div class="fw-bold text-danger border-bottom pb-1 mb-2 small"><i class="bi bi-thermometer-high"></i> Engine Thermal Health</div></div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Max Shock Cooling</div>
-            <div>${shockBadge}</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Cruise CHT Spread</div>
-            <div>${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Max CHT / RPM</div>
-            <div>
-                <span style="${s.max_cht > 430 ? 'color: red; font-weight: bold;' : s.max_cht >= 410 ? 'color: orange; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'} °F</span> / 
-                <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : s.max_rpm >= 2600 ? 'color: orange;' : 'color: green;'}">${s.max_rpm || '--'} RPM</span>
+        <div class="col-12 mb-2">
+            <div class="d-flex flex-nowrap align-items-start justify-content-between gap-2 overflow-x-auto pb-1">
+                <div style="flex: 1 1 0; min-width: 0;" title="Max Shock Cooling">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Shock Cooling</div>
+                    <div class="text-truncate" style="font-size: 0.82rem;">${shockBadge}</div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Cruise CHT Spread">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Cruise CHT Spread</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Max CHT / RPM">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Max CHT / RPM</div>
+                    <div class="fw-bold text-truncate" style="font-size: 0.82rem;">
+                        <span style="${s.max_cht > 430 ? 'color: red; font-weight: bold;' : s.max_cht >= 410 ? 'color: orange; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'}°F</span> / 
+                        <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : s.max_rpm >= 2600 ? 'color: orange;' : 'color: green;'}">${s.max_rpm || '--'}</span>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Time CHT > 410°F">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Time CHT > 410°F</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.above_410_min !== undefined ? s.above_410_min + ' min' : '0 min'}</div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Max Oil Temp">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Max Oil Temp</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${(s.max_oil_temp !== undefined && s.max_oil_temp !== 'N/A') ? (s.max_oil_temp + ' °F' + (s.avg_oil_temp !== undefined && s.avg_oil_temp !== 'N/A' ? ' (' + s.avg_oil_temp + '°)' : '')) : 'N/A'}</div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Min Oil Pressure">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Min Oil Press</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
+                </div>
             </div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Time CHT > 410°F</div>
-            <div>${s.above_410_min !== undefined ? s.above_410_min + ' min' : '0 min'}</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Max Oil Temp</div>
-            <div>${(s.max_oil_temp !== undefined && s.max_oil_temp !== 'N/A') ? (s.max_oil_temp + ' °F' + (s.avg_oil_temp !== undefined && s.avg_oil_temp !== 'N/A' ? ' (' + s.avg_oil_temp + ' °F)' : '')) : 'N/A'}</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis">Min Oil Pressure</div>
-            <div>${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
         </div>
 
         <!-- Flight Phases & Dynamics -->
@@ -1155,8 +1167,8 @@ function updateGlobalUI(data) {
             <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
                 <div><span class="fw-bold text-body-emphasis">Taxi:</span> ${s.taxi_min || 0}m</div>
                 <div><span class="fw-bold text-body-emphasis">Climb:</span> ${s.climb_min || 0}m</div>
-                <div><span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m</div>
-                <div><span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m</div>
+                <div><span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m${s.avg_cruise_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_cruise_speed_mph} mph)</span>` : ''}</div>
+                <div><span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m${s.avg_descent_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_descent_speed_mph} mph)</span>` : ''}</div>
             </div>
         </div>
         <div class="col-6 col-md-4 col-xl-2 mb-2">

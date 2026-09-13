@@ -89,6 +89,11 @@ def test_flight_phases():
     assert "taxi_min" in phases
     assert "climb_min" in phases
     assert "cruise_min" in phases
+    assert "avg_cruise_descent_speed_mph" in phases
+    assert "avg_cruise_speed_mph" in phases
+    assert "avg_descent_speed_mph" in phases
+    assert phases["avg_cruise_speed_mph"] > 0.0
+    assert phases["avg_cruise_descent_speed_mph"] > 0.0
 
 
 def test_landings():
@@ -121,3 +126,31 @@ def test_comprehensive_stats():
     assert "cht_spread" in stats
     assert "taxi_min" in stats
     assert "landing_count" in stats
+    assert "avg_cruise_descent_speed_mph" in stats
+
+
+def test_cruise_descent_speed_calculation():
+    # 300s climb at 100 kts (+500 fpm)
+    # 300s cruise at 150 kts (0 fpm)
+    # 300s descent at 120 kts (-500 fpm)
+    times = np.arange(0, 900, 1)
+    gs = np.concatenate([np.full(300, 100.0), np.full(300, 150.0), np.full(300, 120.0)])
+    vs = np.concatenate([np.full(300, 500.0), np.full(300, 0.0), np.full(300, -500.0)])
+    rpm = np.full(900, 2400.0)
+
+    df = pd.DataFrame({
+        "Session Time": times,
+        "Ground Speed (knots)": gs,
+        "Vertical Speed (ft/min)": vs,
+        "RPM": rpm,
+    })
+
+    phases = calculate_flight_phases(df)
+    # Expected cruise speed: 150 * 1.15078 = 172.6 mph
+    # Expected descent speed: 120 * 1.15078 = 138.1 mph
+    # Expected combined cruise + descent: average of 150 and 120 = 135 kts * 1.15078 = 155.4 mph
+    assert phases["cruise_min"] > 0
+    assert phases["descent_min"] > 0
+    assert abs(phases["avg_cruise_speed_mph"] - 172.6) < 1.0
+    assert abs(phases["avg_descent_speed_mph"] - 138.1) < 1.0
+    assert abs(phases["avg_cruise_descent_speed_mph"] - 155.4) < 1.0

@@ -169,14 +169,27 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         "cruise_min": 0.0,
         "descent_min": 0.0,
         "landing_phase_min": 0.0,
+        "airborne_min": 0.0,
+        "airborne_hours": 0.0,
+        "avg_cruise_descent_speed_mph": 0.0,
+        "avg_cruise_speed_mph": 0.0,
+        "avg_descent_speed_mph": 0.0,
         "phase_intervals": [],
     }
     if "Session Time" not in df.columns:
         return phases
 
     try:
-        dt = pd.to_numeric(df["Session Time"], errors="coerce").diff().fillna(0)
-        gs = pd.to_numeric(df.get("Ground Speed (knots)", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
+        dt = pd.to_numeric(df["Session Time"], errors="coerce").diff().fillna(0).clip(lower=0)
+        gs_col = None
+        for c in ["Ground Speed (knots)", "Ground Speed", "GPS GS", "gps_gs"]:
+            if c in df.columns:
+                gs_col = c
+                break
+        if gs_col:
+            gs = pd.to_numeric(df[gs_col], errors="coerce").fillna(0)
+        else:
+            gs = pd.Series(0, index=df.index)
         rpm = pd.to_numeric(df.get("RPM", pd.Series(0, index=df.index)), errors="coerce").fillna(0)
 
         if "Vertical Speed (ft/min)" in df.columns:
@@ -205,6 +218,38 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         phases["landing_phase_min"] = round(float(dt[landing_mask].sum() / 60.0), 1)
         phases["airborne_min"] = round(float(dt[airborne_mask].sum() / 60.0), 1)
         phases["airborne_hours"] = round(float(dt[airborne_mask].sum() / 3600.0), 2)
+
+        # Average ground speed during cruise and descent combined (in mph)
+        cd_mask = cruise_mask | descent_mask
+        dt_cd = dt[cd_mask]
+        gs_cd = gs[cd_mask]
+        if dt_cd.sum() > 0:
+            avg_cd_mph = float((gs_cd * dt_cd).sum() / dt_cd.sum() * 1.15078)
+        elif len(gs_cd) > 0 and (gs[cd_mask] > 0).any():
+            avg_cd_mph = float(gs_cd[gs_cd > 0].mean() * 1.15078)
+        else:
+            avg_cd_mph = 0.0
+        phases["avg_cruise_descent_speed_mph"] = round(avg_cd_mph, 1)
+
+        dt_crz = dt[cruise_mask]
+        gs_crz = gs[cruise_mask]
+        if dt_crz.sum() > 0:
+            avg_crz_mph = float((gs_crz * dt_crz).sum() / dt_crz.sum() * 1.15078)
+        elif len(gs_crz) > 0 and (gs[cruise_mask] > 0).any():
+            avg_crz_mph = float(gs_crz[gs_crz > 0].mean() * 1.15078)
+        else:
+            avg_crz_mph = 0.0
+        phases["avg_cruise_speed_mph"] = round(avg_crz_mph, 1)
+
+        dt_dsc = dt[descent_mask]
+        gs_dsc = gs[descent_mask]
+        if dt_dsc.sum() > 0:
+            avg_dsc_mph = float((gs_dsc * dt_dsc).sum() / dt_dsc.sum() * 1.15078)
+        elif len(gs_dsc) > 0 and (gs[descent_mask] > 0).any():
+            avg_dsc_mph = float(gs_dsc[gs_dsc > 0].mean() * 1.15078)
+        else:
+            avg_dsc_mph = 0.0
+        phases["avg_descent_speed_mph"] = round(avg_dsc_mph, 1)
 
         # Build contiguous phase intervals (merging adjacent phase blocks and filtering out micro-flickers under 30s)
         phase_labels = pd.Series("Ground", index=df.index)
