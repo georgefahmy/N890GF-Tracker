@@ -174,6 +174,8 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         "avg_cruise_descent_speed_mph": 0.0,
         "avg_cruise_speed_mph": 0.0,
         "avg_descent_speed_mph": 0.0,
+        "avg_climb_cruise_descent_mpg": 0.0,
+        "avg_flight_mpg": 0.0,
         "phase_intervals": [],
     }
     if "Session Time" not in df.columns:
@@ -250,6 +252,43 @@ def calculate_flight_phases(df: pd.DataFrame) -> dict:
         else:
             avg_dsc_mph = 0.0
         phases["avg_descent_speed_mph"] = round(avg_dsc_mph, 1)
+
+        # Average MPG during climb, cruise, and descent combined
+        ccd_mask = climb_mask | cruise_mask | descent_mask
+        mpg_col = None
+        for c in ["MPG", "mpg"]:
+            if c in df.columns:
+                mpg_col = c
+                break
+
+        if mpg_col:
+            mpg = pd.to_numeric(df[mpg_col], errors="coerce").fillna(0)
+        else:
+            ff_col = None
+            for c in ["Total Fuel Flow (gal/hr)", "Fuel Flow 1 (gal/hr)", "fuel_flow"]:
+                if c in df.columns:
+                    ff_col = c
+                    break
+            if ff_col:
+                ff = pd.to_numeric(df[ff_col], errors="coerce").fillna(0)
+                mpg = gs / ff.replace(0, np.nan)
+                mpg = mpg.replace([np.inf, -np.inf], 0).fillna(0)
+            else:
+                mpg = pd.Series(0, index=df.index)
+
+        valid_ccd = ccd_mask & (mpg > 0)
+        dt_ccd = dt[valid_ccd]
+        mpg_ccd = mpg[valid_ccd]
+
+        if dt_ccd.sum() > 0:
+            avg_ccd_mpg = float((mpg_ccd * dt_ccd).sum() / dt_ccd.sum())
+        elif len(mpg_ccd) > 0 and (mpg[ccd_mask] > 0).any():
+            avg_ccd_mpg = float(mpg_ccd[mpg_ccd > 0].mean())
+        else:
+            avg_ccd_mpg = 0.0
+
+        phases["avg_climb_cruise_descent_mpg"] = round(avg_ccd_mpg, 1)
+        phases["avg_flight_mpg"] = round(avg_ccd_mpg, 1)
 
         # Build contiguous phase intervals (merging adjacent phase blocks and filtering out micro-flickers under 30s)
         phase_labels = pd.Series("Ground", index=df.index)

@@ -154,3 +154,31 @@ def test_cruise_descent_speed_calculation():
     assert abs(phases["avg_cruise_speed_mph"] - 172.6) < 1.0
     assert abs(phases["avg_descent_speed_mph"] - 138.1) < 1.0
     assert abs(phases["avg_cruise_descent_speed_mph"] - 155.4) < 1.0
+
+
+def test_climb_cruise_descent_mpg_calculation():
+    # 300s taxi at 15 kts, 3 GPH -> 5 MPG
+    # 300s climb at 100 kts (+500 fpm), 10 GPH -> 10 MPG
+    # 300s cruise at 150 kts (0 fpm), 10 GPH -> 15 MPG
+    # 300s descent at 120 kts (-500 fpm), 6 GPH -> 20 MPG
+    times = np.arange(0, 1200, 1)
+    gs = np.concatenate([np.full(300, 15.0), np.full(300, 100.0), np.full(300, 150.0), np.full(300, 120.0)])
+    vs = np.concatenate([np.full(300, 0.0), np.full(300, 500.0), np.full(300, 0.0), np.full(300, -500.0)])
+    rpm = np.concatenate([np.full(300, 1000.0), np.full(900, 2400.0)])
+    mpg = np.concatenate([np.full(300, 5.0), np.full(300, 10.0), np.full(300, 15.0), np.full(300, 20.0)])
+
+    df = pd.DataFrame({
+        "Session Time": times,
+        "Ground Speed (knots)": gs,
+        "Vertical Speed (ft/min)": vs,
+        "RPM": rpm,
+        "MPG": mpg,
+    })
+
+    phases = calculate_flight_phases(df)
+    # Expected climb+cruise+descent MPG: equal 300s durations at 10, 15, 20 MPG -> average is (10+15+20)/3 = 15.0
+    # Taxi at 5 MPG should be excluded!
+    assert "avg_climb_cruise_descent_mpg" in phases
+    assert abs(phases["avg_climb_cruise_descent_mpg"] - 15.0) < 0.5
+    assert abs(phases["avg_flight_mpg"] - 15.0) < 0.5
+

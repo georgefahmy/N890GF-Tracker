@@ -586,19 +586,23 @@ function renderGami(data) {
         egtTraces.forEach((t, i) => {
             const color = colors[i % colors.length];
 
-            // main line
+            // main scatter trace
             scatter.push({
                 x: fuelTrace.y.filter((_, idx) => mask[idx]),
                 y: t.y.filter((_, idx) => mask[idx]),
-                mode: 'lines',
+                mode: 'markers',
                 type: 'scatter',
                 name: t.name,
-                hoverinfo: 'none',
-                line: {
-                    shape: 'spline',
-                    width: 2,
-                    color: color
-                }
+                marker: {
+                    size: 9,
+                    color: color,
+                    opacity: 0.85,
+                    line: {
+                        width: 1,
+                        color: 'rgba(0, 0, 0, 0.35)'
+                    }
+                },
+                hovertemplate: `<b>${t.name}</b><br>Fuel Flow: %{x:.2f} GPH<br>EGT: %{y:.0f} °${tempUnit}<extra></extra>`
             });
 
             // peak dot (only if window selected)
@@ -626,15 +630,16 @@ function renderGami(data) {
                         y: [maxY],
                         mode: 'markers',
                         marker: {
-                            size: 8,
+                            size: 14,
                             color: color,
                             line: {
-                                width: 1,
-                                color: 'black'
+                                width: 2.5,
+                                color: '#000000'
                             }
                         },
+                        name: `${t.name} Peak`,
                         showlegend: false,
-                        hoverinfo: 'skip'
+                        hovertemplate: `<b>Peak ${t.name}</b><br>Fuel Flow: ${fuelTrace.y[maxIdx].toFixed(2)} GPH<br>Peak EGT: ${maxY.toFixed(0)} °${tempUnit}<extra></extra>`
                     });
                 }
             }
@@ -694,12 +699,20 @@ function renderGami(data) {
         if (scatterDiv) {
             const scatterLayout = {
                 title: "EGT vs Fuel Flow",
-                xaxis: { title: "Fuel Flow", autorange: 'reversed' },
+                xaxis: {
+                    title: { text: "Fuel Flow (GPH)", standoff: 15 },
+                    autorange: 'reversed'
+                },
                 yaxis: { title: `EGT (°${tempUnit})` },
                 annotations: annotations,
                 hovermode: 'closest',
-                margin: { l: 60, r: 60, t: 40, b: 40 },
-                legend: { orientation: "h", y: -0.15 }
+                margin: { l: 60, r: 40, t: 40, b: 65 },
+                legend: {
+                    orientation: "h",
+                    y: -0.22,
+                    x: 0.5,
+                    xanchor: 'center'
+                }
             };
 
             // ZOOM TO SELECTED REGION AFTER SELECTING START AND END MARKS

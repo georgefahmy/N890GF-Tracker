@@ -2617,7 +2617,7 @@ def api_analyze_flight():
                 "left_name": left_signal,
                 "right_name": right_signal,
             }
-            return jsonify({"plot_data": plot_data})
+            return jsonify(sanitize_for_json({"plot_data": plot_data}))
 
         # --- Extract Latitude / Longitude (supports Dynon naming) ---
         lat_col = next(

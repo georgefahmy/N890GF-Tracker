@@ -92,8 +92,23 @@ function toggleFollowAircraft(state) {
 
 function toggleXYTab() {
     const tab = document.getElementById('xyTab');
-    tab.classList.toggle('d-none');
-    populateXYDropdowns();
+    if (!tab) return;
+    const isNowVisible = tab.classList.toggle('d-none') === false;
+    const btn = document.getElementById('xyTabToggleBtn');
+    if (btn) btn.innerText = isNowVisible ? 'Hide XY Plot' : 'Show XY Plot';
+
+    if (isNowVisible) {
+        populateXYDropdowns();
+        if (AppState.file.currentName) {
+            plotXY();
+        }
+        setTimeout(() => {
+            const graphDiv = document.getElementById('xyGraph');
+            if (graphDiv && graphDiv.data) {
+                Plotly.Plots.resize(graphDiv);
+            }
+        }, 150);
+    }
 }
 
 function generateBandShapes(signalName, yAxisRef) {
@@ -123,9 +138,9 @@ function populateXYDropdowns() {
     const xSelect = document.getElementById('xyXSelect');
     const ySelect = document.getElementById('xyYSelect');
 
-    if (!xSelect || AppState.file.signalList.length === 0) return;
+    if (!xSelect || !ySelect || !AppState.file.signalList || AppState.file.signalList.length === 0) return;
 
-    const unitF = document.getElementById('unitF').checked;
+    const unitF = document.getElementById('unitF')?.checked ?? true;
     const hideString = unitF ? "(deg C)" : "(deg F)";
 
     // Apply same filtering logic as main plots
@@ -145,18 +160,27 @@ function populateXYDropdowns() {
     xSelect.innerHTML = optionsHtml;
     ySelect.innerHTML = optionsHtml;
 
-    // Restore previous selections if possible
+    // Restore previous selections if possible, or choose intuitive defaults
     if (filteredSignals.includes(currentX)) {
         xSelect.value = currentX;
+    } else if (filteredSignals.includes("RPM")) {
+        xSelect.value = "RPM";
     } else {
-        xSelect.value = filteredSignals[0];
+        xSelect.value = filteredSignals[0] || "";
     }
 
     if (filteredSignals.includes(currentY)) {
         ySelect.value = currentY;
+    } else if (filteredSignals.includes("Indicated Airspeed (knots)")) {
+        ySelect.value = "Indicated Airspeed (knots)";
+    } else if (filteredSignals.includes("Ground Speed (knots)")) {
+        ySelect.value = "Ground Speed (knots)";
+    } else if (filteredSignals.includes("Manifold Pressure (inHg)")) {
+        ySelect.value = "Manifold Pressure (inHg)";
     } else {
-        ySelect.value = filteredSignals.length > 1 ? filteredSignals[1] : filteredSignals[0];
+        ySelect.value = filteredSignals.length > 1 ? filteredSignals[1] : (filteredSignals[0] || "");
     }
+
     // Populate XY filter dropdown
     const xySelect = document.getElementById('xyFilterSignal');
     if (xySelect) {
@@ -236,6 +260,11 @@ function loadSignals(formData) {
             localStorage.setItem(STORAGE_KEY, data.saved_filename);
         }
         AppState.file.signalList = data.signals;
+        populateXYDropdowns();
+        const xyTab = document.getElementById('xyTab');
+        if (xyTab && !xyTab.classList.contains('d-none')) {
+            plotXY();
+        }
 
         // Hide placeholders, show relevant UI
         document.getElementById('statsPlaceholder').classList.add('d-none');
@@ -1107,9 +1136,13 @@ function updateGlobalUI(data) {
                     <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg Fuel Flow</div>
                     <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.avg_fuel_flow || 0} GPH</div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Avg MPG">
+                <div style="flex: 1 1 0; min-width: 0;" title="Overall Average MPG across entire flight (including ground operations)">
                     <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg MPG</div>
                     <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_mpg || 'N/A'} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
+                </div>
+                <div style="flex: 1 1 0; min-width: 0;" title="Average MPG during climb, cruise, and descent combined (excluding taxi)">
+                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Climb/Crz/Dsc</div>
+                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_climb_cruise_descent_mpg !== undefined && s.avg_climb_cruise_descent_mpg !== 0 ? s.avg_climb_cruise_descent_mpg : (s.avg_flight_mpg || 'N/A')} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
                 </div>
                 <div style="flex: 1 1 0; min-width: 0;" title="Distance Traveled">
                     <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Distance</div>
@@ -1169,6 +1202,7 @@ function updateGlobalUI(data) {
                 <div><span class="fw-bold text-body-emphasis">Climb:</span> ${s.climb_min || 0}m</div>
                 <div><span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m${s.avg_cruise_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_cruise_speed_mph} mph)</span>` : ''}</div>
                 <div><span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m${s.avg_descent_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_descent_speed_mph} mph)</span>` : ''}</div>
+                ${s.avg_climb_cruise_descent_mpg ? `<div><span class="fw-bold text-body-emphasis">Flight MPG:</span> ${s.avg_climb_cruise_descent_mpg} <span class="text-muted extra-small">nm/g</span></div>` : ''}
             </div>
         </div>
         <div class="col-6 col-md-4 col-xl-2 mb-2">
@@ -1261,13 +1295,29 @@ function removePlotFilter(plotId, index) {
 }
 
 function plotXY() {
-    if (!AppState.file.currentName) return;
+    const graphDiv = document.getElementById('xyGraph');
 
-    const xSignal = document.getElementById('xyXSelect').value;
-    const ySignal = document.getElementById('xyYSelect').value;
-    const tempUnit = document.getElementById('unitF').checked ? 'F' : 'C';
+    if (!AppState.file.currentName) {
+        if (graphDiv) {
+            graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-muted small">Please select or load a flight to view XY plot.</div>';
+        }
+        return;
+    }
 
+    const xSelect = document.getElementById('xyXSelect');
+    const ySelect = document.getElementById('xyYSelect');
+    if (!xSelect || !ySelect) return;
+
+    const xSignal = xSelect.value;
+    const ySignal = ySelect.value;
+    if (!xSignal || !ySignal) return;
+
+    const tempUnit = document.getElementById('unitF')?.checked ? 'F' : 'C';
     const overlay = document.getElementById('xyOverlayToggle')?.checked;
+
+    if (graphDiv && !graphDiv.data) {
+        graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100"><div class="spinner-border text-primary spinner-border-sm me-2" role="status"></div><span class="text-muted small">Rendering XY Plot...</span></div>';
+    }
 
     const requestData = (filters) => {
         const formData = new FormData();
@@ -1275,6 +1325,7 @@ function plotXY() {
         formData.append('left_signal', xSignal);
         formData.append('right_signal', ySignal);
         formData.append('temp_unit', tempUnit);
+        formData.append('only_traces', 'true');
         formData.append('filters', JSON.stringify(filters || []));
 
         return fetch('/api/analyze_flight', { method: 'POST', body: formData })
@@ -1284,59 +1335,110 @@ function plotXY() {
     const renderPlot = (rawData, filteredData) => {
         const traces = [];
 
-        if (overlay) {
-            const rx = rawData.plot_data.left_traces[0].y;
-            const ry = rawData.plot_data.right_traces[0].y;
-
-            traces.push({
-                x: rx,
-                y: ry,
-                mode: 'markers',
-                type: 'scattergl',
-                name: 'Raw',
-                marker: { size: 3, color: 'rgba(150,150,150,0.5)' }
-            });
-
-            const fx = filteredData.plot_data.left_traces[0].y;
-            const fy = filteredData.plot_data.right_traces[0].y;
-
-            traces.push({
-                x: fx,
-                y: fy,
-                mode: 'markers',
-                type: 'scatter',
-                name: 'Filtered',
-                marker: { size: 4, color: '#0d6efd' }
-            });
-
-        } else {
-            const data = filteredData;
-
-            traces.push({
-                x: data.plot_data.left_traces[0].y,
-                y: data.plot_data.right_traces[0].y,
-                mode: 'markers',
-                type: 'scattergl',
-                marker: { size: 4 }
-            });
-        }
-
-        const layout = {
-            xaxis: { title: xSignal },
-            yaxis: { title: ySignal },
-            margin: { l: 60, r: 20, t: 20, b: 40 },
-            legend: { orientation: "h" },
-            template: 'plotly_dark',
+        const getSeries = (traceObj) => {
+            if (!traceObj || !Array.isArray(traceObj.y)) return [];
+            return traceObj.y;
         };
 
-        Plotly.newPlot('xyGraph', traces, layout, { responsive: true });
+        const leftFiltered = filteredData?.plot_data?.left_traces || [];
+        const rightFiltered = filteredData?.plot_data?.right_traces || [];
+
+        if (leftFiltered.length === 0 || rightFiltered.length === 0) {
+            if (graphDiv) {
+                graphDiv.innerHTML = `<div class="d-flex align-items-center justify-content-center h-100 text-muted small">No data available for "${xSignal}" vs "${ySignal}".</div>`;
+            }
+            return;
+        }
+
+        if (overlay && rawData) {
+            const leftRaw = rawData?.plot_data?.left_traces || [];
+            const rightRaw = rawData?.plot_data?.right_traces || [];
+
+            const rx = getSeries(leftRaw[0]);
+            const ry = getSeries(rightRaw[0]);
+
+            if (rx.length > 0 && ry.length > 0) {
+                traces.push({
+                    x: rx,
+                    y: ry,
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: 'Raw (' + (leftRaw[0]?.name || xSignal) + ')',
+                    marker: { size: 4, color: 'rgba(150,150,150,0.45)' }
+                });
+            }
+
+            const fx = getSeries(leftFiltered[0]);
+            const fy = getSeries(rightFiltered[0]);
+
+            if (fx.length > 0 && fy.length > 0) {
+                traces.push({
+                    x: fx,
+                    y: fy,
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: 'Filtered (' + (leftFiltered[0]?.name || xSignal) + ')',
+                    marker: { size: 5, color: '#0d6efd' }
+                });
+            }
+        } else {
+            const fx = getSeries(leftFiltered[0]);
+            const fy = getSeries(rightFiltered[0]);
+
+            if (fx.length > 0 && fy.length > 0) {
+                traces.push({
+                    x: fx,
+                    y: fy,
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: `${leftFiltered[0]?.name || xSignal} vs ${rightFiltered[0]?.name || ySignal}`,
+                    marker: { size: 5, color: '#0d6efd' }
+                });
+            }
+        }
+
+        if (traces.length === 0) {
+            if (graphDiv) {
+                graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-muted small">No data points match the active filters.</div>';
+            }
+            return;
+        }
+
+        const isDark = document.body.classList.contains('dark-theme') || document.documentElement.getAttribute('data-bs-theme') === 'dark';
+
+        const layout = {
+            xaxis: {
+                title: { text: xSignal, font: { color: isDark ? '#adb5bd' : '#495057' } },
+                gridcolor: isDark ? '#343a40' : '#e9ecef',
+                zerolinecolor: isDark ? '#495057' : '#ced4da'
+            },
+            yaxis: {
+                title: { text: ySignal, font: { color: isDark ? '#adb5bd' : '#495057' } },
+                gridcolor: isDark ? '#343a40' : '#e9ecef',
+                zerolinecolor: isDark ? '#495057' : '#ced4da'
+            },
+            margin: { l: 65, r: 30, t: 25, b: 45 },
+            legend: { orientation: "h", y: -0.2 },
+            template: isDark ? 'plotly_dark' : 'plotly_white',
+            paper_bgcolor: 'transparent',
+            plot_bgcolor: 'transparent',
+        };
+
+        Plotly.newPlot('xyGraph', traces, layout, { responsive: true, displayModeBar: true });
     };
 
     if (!overlay) {
         requestData(AppState.ui.xyFilters)
             .then(data => {
-                if (data.error) return alert(data.error);
+                if (data.error) {
+                    alert("Analysis Error: " + data.error);
+                    return;
+                }
                 renderPlot(null, data);
+            })
+            .catch(err => {
+                console.error("XY Plot Error:", err);
+                if (graphDiv) graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-danger small">Error plotting data.</div>';
             });
     } else {
         Promise.all([
@@ -1344,10 +1446,13 @@ function plotXY() {
             requestData(AppState.ui.xyFilters)
         ]).then(([rawData, filteredData]) => {
             if (rawData.error || filteredData.error) {
-                alert("Error generating overlay plot.");
+                alert("Error: " + (rawData.error || filteredData.error || "Error generating overlay plot."));
                 return;
             }
             renderPlot(rawData, filteredData);
+        }).catch(err => {
+            console.error("XY Plot Error:", err);
+            if (graphDiv) graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-danger small">Error plotting data.</div>';
         });
     }
 }
