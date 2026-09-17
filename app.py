@@ -1843,6 +1843,10 @@ def api_multi_flight_stats():
 
         if cache_key in cache_data:
             stats = cache_data[cache_key]
+            if "avg_speed_mph" not in stats:
+                dur = stats.get("duration_hours", 0) or 0
+                dist = stats.get("distance_traveled_mi", 0) or 0
+                stats["avg_speed_mph"] = round(float(dist / dur), 1) if dur > 0 else 0.0
         else:
             try:
                 df = load_cached_flight_df(filename)

@@ -30,6 +30,7 @@ def test_api_multi_flight_stats(client):
         assert "cum_airborne_hours" in first_flight
         assert "max_shock_cooling" in first_flight
         assert "cht_spread" in first_flight
+        assert "avg_speed_mph" in first_flight
 
     assert "total_airborne_hours" in data["totals"]
 
@@ -38,3 +39,4 @@ def test_multi_flight_stats_page_route(client):
     response = client.get("/multi_flight_stats")
     assert response.status_code == 200
     assert b"Multi-Flight" in response.data
+    assert b"Avg Speed" in response.data

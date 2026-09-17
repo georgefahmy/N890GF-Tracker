@@ -281,7 +281,7 @@ function renderTableRows(flights) {
     if (!tbody) return;
 
     if (!flights || flights.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="13" class="text-center text-muted">No flight logs found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="14" class="text-center text-muted">No flight logs found.</td></tr>';
         return;
     }
 
@@ -319,6 +319,7 @@ function renderTableRows(flights) {
                 <td>${f.total_fuel || 0} gal</td>
                 <td>${f.avg_fuel_flow || 0} GPH</td>
                 <td><span class="text-success fw-bold">${f.avg_mpg || 'N/A'}</span></td>
+                <td>${(f.avg_speed_mph !== undefined && f.avg_speed_mph !== null && f.avg_speed_mph !== 'N/A') ? `${f.avg_speed_mph} mph` : 'N/A'}</td>
                 <td><span class="${chtColor}">${f.max_cht || '--'} °F</span> / ${f.max_rpm || '--'}</td>
                 <td>${shockBadge}</td>
                 <td>${f.cht_spread !== undefined ? f.cht_spread + ' °F' : 'N/A'}</td>
