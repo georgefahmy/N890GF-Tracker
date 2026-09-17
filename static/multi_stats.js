@@ -313,7 +313,7 @@ function renderTableRows(flights) {
 
         return `
             <tr>
-                <td><strong>${f.date}</strong><br><span class="small text-muted">${f.filename}</span></td>
+                <td><strong>${f.date}</strong></td>
                 <td>${f.duration_hours || 0} hrs (${f.duration_min || 0}m)<br><span class="small text-muted">Airborne: ${f.airborne_hours || 0} hrs</span></td>
                 <td>${f.distance_traveled_mi || 0} mi</td>
                 <td>${f.total_fuel || 0} gal</td>
@@ -393,7 +393,7 @@ function renderAirspeedCalsModalTable() {
     const searchInput = document.getElementById("searchAirspeedCalsInput");
     const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
     if (query) {
-        allCals = allCals.filter(c => 
+        allCals = allCals.filter(c =>
             (c.filename && c.filename.toLowerCase().includes(query)) ||
             (c.flight_date && c.flight_date.toLowerCase().includes(query))
         );
@@ -714,7 +714,7 @@ function renderAirspeedPowerPlot() {
     }
     let slope = n > 1 && (n * sumXX - sumX * sumX) !== 0 ? (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX) : 0;
     let intercept = n > 1 ? (sumY - slope * sumX) / n : 0;
-    
+
     let r2 = 0;
     let num = (n * sumXY - sumX * sumY);
     let den = Math.sqrt((n * sumXX - sumX * sumX) * (n * sumYY - sumY * sumY));
@@ -857,8 +857,8 @@ function renderAirspeedPowerPlot() {
             statsDiv.innerHTML = `
                 <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
                     <span class="badge bg-primary px-2 py-1"><i class="bi bi-check2-circle"></i> ${selectedPoints.length} Selected</span>
-                    <span><strong>Avg Power:</strong> ${avgSelPower}%</span> | 
-                    <span><strong>Avg TAS:</strong> ${avgSelTAS} kts</span> | 
+                    <span><strong>Avg Power:</strong> ${avgSelPower}%</span> |
+                    <span><strong>Avg TAS:</strong> ${avgSelTAS} kts</span> |
                     <span><strong>Avg DA:</strong> ${avgSelDA.toLocaleString()} ft</span>
                     ${selFitStr}
                     <span class="text-muted ms-1">(Fleet: TAS = ${slope.toFixed(2)} × Power ${intercept >= 0 ? '+' : '-'} ${Math.abs(intercept).toFixed(1)}, R²: ${r2.toFixed(3)}, ${n} total pts)</span>
@@ -906,10 +906,10 @@ function renderAirspeedPowerPlot() {
         if (statsDiv) {
             const avgDA = Math.round(daVals.reduce((a, b) => a + b, 0) / n);
             statsDiv.innerHTML = `
-                <strong>Performance Linear Fit:</strong> 
-                TAS = <strong>${slope.toFixed(2)}</strong> × (% Power) ${intercept >= 0 ? '+' : '-'} <strong>${Math.abs(intercept).toFixed(1)}</strong> kts 
-                | Correlation (R²): <strong>${r2.toFixed(3)}</strong> 
-                | Avg Density Alt: <strong>${avgDA.toLocaleString()} ft</strong> 
+                <strong>Performance Linear Fit:</strong>
+                TAS = <strong>${slope.toFixed(2)}</strong> × (% Power) ${intercept >= 0 ? '+' : '-'} <strong>${Math.abs(intercept).toFixed(1)}</strong> kts
+                | Correlation (R²): <strong>${r2.toFixed(3)}</strong>
+                | Avg Density Alt: <strong>${avgDA.toLocaleString()} ft</strong>
                 | Total Data Points: <strong>${n}</strong>
             `;
         }
@@ -917,8 +917,8 @@ function renderAirspeedPowerPlot() {
 
     const layout = {
         title: {
-            text: useNormalized 
-                ? 'Sea-Level Normalized TAS vs. Engine % Power (Density Altitude Normalized)' 
+            text: useNormalized
+                ? 'Sea-Level Normalized TAS vs. Engine % Power (Density Altitude Normalized)'
                 : 'Corrected TAS vs. Engine % Power (Color-Coded by Density Altitude)',
             font: { size: 13, color: isDarkMode ? '#f8f9fa' : '#212529' },
             x: 0.5,
@@ -1111,7 +1111,7 @@ function renderAirspeedCalMapPlot(startTime, endTime, forceRecenter = false) {
         line: { width: 6, color: '#00f0ff' },
         marker: { size: 7, color: '#ffc107' },
         name: 'Maneuver Segment',
-        text: segTimes.map((t, idx) => 
+        text: segTimes.map((t, idx) =>
             `<b>Calibration Segment</b><br>` +
             `Time: ${formatMMSS(t)}<br>` +
             `Alt: ${Math.round(segAlts[idx] || 0).toLocaleString()} ft<br>` +
