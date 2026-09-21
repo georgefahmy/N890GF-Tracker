@@ -740,7 +740,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 fetch('/api/oil_trends')
                     .then(res => res.json())
                     .then(data => {
-                        if (!data || data.length === 0) return;
+                        if (!data || data.length === 0) {
+                            plotDiv.innerHTML = '<div class="text-center p-5 text-muted">No oil analysis reports found. Upload a report to see wear trends.</div>';
+                            return;
+                        }
 
                         const engineHrs = data.map(row => parseFloat(row.engine_hrs));
                         const metals = ['iron', 'copper', 'chromium', 'aluminum', 'nickel', 'lead'];
@@ -753,10 +756,26 @@ document.addEventListener('DOMContentLoaded', function() {
                             mode: 'lines+markers'
                         }));
 
+                        // Determine current total Hobbs + 5 hours for the x-axis range
+                        let totalHobbs = 0;
+                        if (data.length > 0 && typeof data[0].current_total_hobbs === 'number') {
+                            totalHobbs = data[0].current_total_hobbs;
+                        }
+                        if (!totalHobbs && plotDiv && plotDiv.dataset.totalHobbs) {
+                            totalHobbs = parseFloat(plotDiv.dataset.totalHobbs) || 0;
+                        }
+
+                        const maxEngineHr = engineHrs.length > 0 ? Math.max(...engineHrs.filter(h => !isNaN(h))) : 0;
+                        const xMax = Math.max(totalHobbs, maxEngineHr) + 5;
+
                         const layout = {
                             title: 'Wear Metals Trend',
                             margin: { l: 50, r: 30, t: 50, b: 80 },
-                            xaxis: { title: 'Engine Hours' },
+                            xaxis: {
+                                title: 'Engine Hours',
+                                range: [0, xMax],
+                                autorange: false
+                            },
                             yaxis: { title: 'PPM' , type: 'log'},
                             legend: { orientation: 'h', y: -0.3 },
                             autosize: true // Let CSS handle the dimensions

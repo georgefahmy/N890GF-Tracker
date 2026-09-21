@@ -1700,6 +1700,9 @@ def upload_oil_analysis():
 @app.route("/api/oil_trends")
 def get_oil_trends():
     logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
+    latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
+    total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
+
     history = []
     for log in logs:
         history.append(
@@ -1712,6 +1715,8 @@ def get_oil_trends():
                 "nickel": log.nickel,
                 "lead": log.lead,
                 "date": log.date_sampled.strftime("%Y-%m-%d"),
+                "sample_no": log.sample_no,
+                "current_total_hobbs": total_hobbs,
             }
         )
     return jsonify(history)

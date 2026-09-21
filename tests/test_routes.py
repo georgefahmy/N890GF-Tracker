@@ -484,6 +484,41 @@ class TestOilTrendsAPI:
             assert len(data) == 1
             assert data[0]["iron"] == 5.0
             assert data[0]["engine_hrs"] == 500.0
+            assert "current_total_hobbs" in data[0]
+
+    def test_oil_trends_with_flight_hobbs(self, app, client):
+        from app import db, OilAnalysis, FlightLog
+
+        with app.app_context():
+            flight = FlightLog(
+                date=datetime(2024, 6, 1),
+                hobbs=125.5,
+                tach=120.0,
+                takeoff_airport="KPAO",
+                landing_airport="KSQL",
+            )
+            entry = OilAnalysis(
+                date_sampled=datetime(2024, 6, 1).date(),
+                sample_no=2.0,
+                oil_hrs=25.0,
+                engine_hrs=120.0,
+                iron=6.0,
+                copper=2.5,
+                chromium=0.6,
+                aluminum=3.2,
+                nickel=0.2,
+                lead=1.1,
+                diagnosis="Normal",
+            )
+            db.session.add(flight)
+            db.session.add(entry)
+            db.session.commit()
+
+            response = client.get("/api/oil_trends")
+            data = response.get_json()
+            assert len(data) >= 1
+            sample = [d for d in data if d["sample_no"] == 2.0 or d.get("engine_hrs") == 120.0][0]
+            assert sample["current_total_hobbs"] == 125.5
 
 
 class TestSavedFlightsAPI:
