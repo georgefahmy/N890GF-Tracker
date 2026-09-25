@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014757.213804,
+  "_cached_at": 1790312334.5688868,
   "icao": "KMFR",
   "data": {
     "icao": "KMFR",
@@ -76,57 +76,42 @@
     "fbos": [
       {
         "name": "Million Air Medford",
-        "brand": "AVFUEL",
-        "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "brand": "Avfuel",
+        "phone": "541-842-2254",
+        "notes": "Avfuel \u2022 Quote: 24-Sep-2026",
+        "quote_date": "24-Sep-2026",
         "fuels": {
-          "100LL_SS": {
-            "price": 6.88,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
           "100LL_FS": {
-            "price": 8.63,
+            "price": 9.26,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.88,
-            "type": "Jet-A",
-            "service": "Full-Serve",
-            "label": "Jet-A Turbine Fuel (Full-Serve)"
-          }
-        }
-      },
-      {
-        "name": "Jet Center MFR",
-        "brand": "",
-        "phone": "N/A",
-        "notes": "Quote: 24-Aug",
-        "quote_date": "24-Aug",
-        "fuels": {
-          "JET_A": {
             "price": 8.28,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 7.51,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 6.88,
+    "best_price": 7.51,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMFR",
     "airport_ref": "3679",
-    "fetched_at": "2026-08-29T14:45:57Z"
+    "fetched_at": "2026-09-25T04:58:52Z"
   }
 }

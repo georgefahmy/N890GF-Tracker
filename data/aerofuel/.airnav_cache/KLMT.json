@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787864649.153281,
+  "_cached_at": 1790312335.2548604,
   "icao": "KLMT",
   "data": {
     "icao": "KLMT",
@@ -100,7 +100,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 5.53,
+            "price": 5.79,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -141,10 +141,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-27",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KLMT",
     "airport_ref": "3646",
-    "fetched_at": "2026-08-27T21:04:09Z"
+    "fetched_at": "2026-09-25T04:58:52Z"
   }
 }

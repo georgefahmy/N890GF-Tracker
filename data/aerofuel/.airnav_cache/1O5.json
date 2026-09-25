@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787760805.286834,
+  "_cached_at": 1790312334.9815173,
   "icao": "1O5",
   "data": {
     "icao": "1O5",
@@ -13,8 +13,20 @@
     "lon": -122.546,
     "elevation_ft": 2527,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "FSS",
@@ -65,8 +77,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T16:13:25Z"
+    "raw_ident": "K1O5",
+    "airport_ref": "18504",
+    "fetched_at": "2026-09-25T04:58:52Z"
   }
 }

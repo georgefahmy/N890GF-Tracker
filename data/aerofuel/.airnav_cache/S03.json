@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787864649.153002,
+  "_cached_at": 1790312334.5696225,
   "icao": "S03",
   "data": {
     "icao": "S03",
@@ -48,8 +48,8 @@
         "name": "Skinner Aviation",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 20-Aug",
-        "quote_date": "20-Aug",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.99,
@@ -78,10 +78,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-27",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KS03",
     "airport_ref": "20987",
-    "fetched_at": "2026-08-27T21:04:09Z"
+    "fetched_at": "2026-09-25T04:58:52Z"
   }
 }

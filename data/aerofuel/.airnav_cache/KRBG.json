@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014757.2122052,
+  "_cached_at": 1790312335.3943498,
   "icao": "KRBG",
   "data": {
     "icao": "KRBG",
@@ -63,11 +63,11 @@
         "name": "Western Oregon Flying Services LLC",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 20-Aug",
-        "quote_date": "20-Aug",
+        "notes": "Titan \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.69,
+            "price": 6.99,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -79,7 +79,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 6.49,
+            "price": 6.89,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -87,16 +87,16 @@
         }
       }
     ],
-    "best_price": 6.69,
+    "best_price": 6.99,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KRBG",
     "airport_ref": "20912",
-    "fetched_at": "2026-08-29T14:45:57Z"
+    "fetched_at": "2026-09-25T04:58:52Z"
   }
 }

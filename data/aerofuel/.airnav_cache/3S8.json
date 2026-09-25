@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014757.212687,
+  "_cached_at": 1790312334.706325,
   "icao": "3S8",
   "data": {
     "icao": "3S8",
@@ -53,8 +53,8 @@
         "name": "Pacific Aviation Northwest, Inc.",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 24-Aug",
-        "quote_date": "24-Aug",
+        "notes": "AVFUEL \u2022 Quote: 18-Sep",
+        "quote_date": "18-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.19,
@@ -77,10 +77,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "K3S8",
     "airport_ref": "18737",
-    "fetched_at": "2026-08-29T14:45:57Z"
+    "fetched_at": "2026-09-25T04:58:52Z"
   }
 }
