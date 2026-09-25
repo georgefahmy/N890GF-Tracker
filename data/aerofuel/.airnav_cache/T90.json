@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787718609.455731,
+  "icao": "T90",
+  "data": {
+    "icao": "T90",
+    "faa": "T90",
+    "iata": "",
+    "name": "Chambers County Winnie Stowell Airport",
+    "city": "Winnie",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.8195,
+    "lon": -94.4311,
+    "elevation_ft": 25,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3600,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "409-267-2719",
+        "notes": "Quote: 29-Jul-2026",
+        "quote_date": "29-Jul-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:30:06Z"
+  }
+}

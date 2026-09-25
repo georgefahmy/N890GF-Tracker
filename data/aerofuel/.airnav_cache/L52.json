@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788202697.068188,
+  "icao": "L52",
+  "data": {
+    "icao": "L52",
+    "faa": "L52",
+    "iata": "",
+    "name": "Oceano County Airport",
+    "city": "Oceano",
+    "state": "CA",
+    "country": "US",
+    "lat": 35.1014,
+    "lon": -120.622,
+    "elevation_ft": 15,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 118.375,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS-3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS-3",
+        "frequency_mhz": 118.375
+      },
+      {
+        "type": "CTAF",
+        "description": "Oceano Traffic",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 2325,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "ACI Jet - Oceano",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.34,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.34,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "L52",
+    "airport_ref": "21453",
+    "fetched_at": "2026-08-31T18:58:17Z"
+  }
+}

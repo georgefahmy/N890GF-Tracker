@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1790302580.778867,
+  "icao": "KMHR",
+  "data": {
+    "icao": "KMHR",
+    "faa": "MHR",
+    "iata": "MHR",
+    "name": "Sacramento Mather Airport",
+    "city": "Sacramento",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.5547,
+    "lon": -121.298,
+    "elevation_ft": 98,
+    "tower": true,
+    "tower_freq": 120.65,
+    "ctaf_freq": 123.075,
+    "unicom_freq": 123.075,
+    "weather_freq": 118.325,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 127.4,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 127.4,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": 121.85,
+    "ground_desc": "GND",
+    "clearance_freq": 121.85,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 127.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "OPS",
+        "description": "SPARTAN OPS",
+        "frequency_mhz": 34.1
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.65
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "04R/22L",
+        "length": 11301,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04L/22R",
+        "length": 6081,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Modern Aviation Mather",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.76,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 7.8,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Mather Jet Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.73,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.73,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMHR",
+    "airport_ref": "20506",
+    "fetched_at": "2026-09-10T20:44:42Z"
+  }
+}

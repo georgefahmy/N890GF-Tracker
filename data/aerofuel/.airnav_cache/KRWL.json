@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787517326.783782,
+  "icao": "KRWL",
+  "data": {
+    "icao": "KRWL",
+    "faa": "RWL",
+    "iata": "RWL",
+    "name": "Rawlins Municipal Airport/Harvey Field",
+    "city": "Rawlins",
+    "state": "WY",
+    "country": "US",
+    "lat": 41.8056,
+    "lon": -107.2,
+    "elevation_ft": 6813,
+    "tower": true,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 7790,
+        "surface": "Asphalt/Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Classic Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.2,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 132.1
+      },
+      {
+        "type": "RDO",
+        "description": "CASPER RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "fetched_at": "2026-08-23T20:35:26Z"
+  }
+}

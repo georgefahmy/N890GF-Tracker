@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1787864058.27549,
+  "icao": "PASX",
+  "data": {
+    "icao": "PASX",
+    "faa": "SXQ",
+    "iata": "SXQ",
+    "name": "Soldotna Airport",
+    "city": "Soldotna",
+    "state": "AK",
+    "country": "US",
+    "lat": 60.4749,
+    "lon": -151.0385,
+    "elevation_ft": 113,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.5,
+    "unicom_freq": 122.5,
+    "weather_freq": 135.45,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.45
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "FSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "MISC",
+        "description": "TWEB",
+        "frequency_mhz": 117.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5001,
+        "width": 130,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Missionary Aviation Repair Center",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 9.54,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.21,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.54,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "PASX",
+    "airport_ref": "5412",
+    "fetched_at": "2026-08-27T20:54:18Z"
+  }
+}

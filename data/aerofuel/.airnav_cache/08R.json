@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788218510.1369011,
+  "icao": "08R",
+  "data": {
+    "icao": "08R",
+    "faa": "08R",
+    "iata": "",
+    "name": "Richmond Airport",
+    "city": "West Kingston",
+    "state": "RI",
+    "country": "US",
+    "lat": 41.4895,
+    "lon": -71.6206,
+    "elevation_ft": 130,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 2129,
+        "width": 30,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Richmond Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "08R",
+    "airport_ref": "7006",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

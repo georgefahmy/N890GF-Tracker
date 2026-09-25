@@ -1,0 +1,162 @@
+{
+  "_cached_at": 1787787707.3203478,
+  "icao": "KBOS",
+  "data": {
+    "icao": "KBOS",
+    "faa": "BOS",
+    "iata": "BOS",
+    "name": "Boston Logan International Airport",
+    "city": "Boston",
+    "state": "MA",
+    "country": "US",
+    "lat": 42.362,
+    "lon": -71.0079,
+    "elevation_ft": 20,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "BOSTON APP NORTH",
+        "frequency_mhz": 118.25
+      },
+      {
+        "type": "APP",
+        "description": "BOSTON APP WEST",
+        "frequency_mhz": 120.6
+      },
+      {
+        "type": "APP",
+        "description": "BOSTON APP SOUTH",
+        "frequency_mhz": 127.2
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.0
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "DEP",
+        "description": "BOSTON DEP",
+        "frequency_mhz": 133.0
+      },
+      {
+        "type": "GND",
+        "description": "BOSTON GROUND",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "GTE",
+        "description": "GATE",
+        "frequency_mhz": 134.05
+      },
+      {
+        "type": "RDO",
+        "description": "BRIDGEPORT RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "TWR",
+        "description": "BOSTON TWR WEST",
+        "frequency_mhz": 128.8
+      },
+      {
+        "type": "TWR",
+        "description": "BOSTON TWR EAST",
+        "frequency_mhz": 132.225
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "15R/33L",
+        "length": 10083,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04R/22L",
+        "length": 10006,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04L/22R",
+        "length": 7864,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 7001,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 5000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "15L/33R",
+        "length": 2557,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 11.58,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:41:47Z"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788215030.3617878,
+  "icao": "KYKN",
+  "data": {
+    "icao": "KYKN",
+    "faa": "YKN",
+    "iata": "YKN",
+    "name": "Chan Gurney Municipal Airport",
+    "city": "Yankton",
+    "state": "SD",
+    "country": "US",
+    "lat": 42.9167,
+    "lon": -97.3859,
+    "elevation_ft": 1306,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 111.4,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 111.4
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "RDO",
+        "description": "HURON RDO",
+        "frequency_mhz": 111.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 6094,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 3380,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Yankton (FBO)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 31-Aug",
+        "quote_date": "31-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.83,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KYKN",
+    "airport_ref": "3959",
+    "fetched_at": "2026-08-31T22:23:50Z"
+  }
+}

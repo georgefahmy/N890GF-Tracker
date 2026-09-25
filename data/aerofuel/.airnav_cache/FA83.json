@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787544331.828767,
+  "icao": "FA83",
+  "data": {
+    "icao": "FA83",
+    "faa": "FA83",
+    "name": "49",
+    "city": "E Orlando North Airpark Zellwood",
+    "state": "FL",
+    "distance_nm": 49.0,
+    "bearing": "E",
+    "fbos": [
+      {
+        "name": "Van Anda Aviation, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-24T04:05:31Z",
+    "source": "AirNav Local Fuel"
+  }
+}

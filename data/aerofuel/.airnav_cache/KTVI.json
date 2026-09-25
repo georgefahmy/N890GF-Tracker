@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1787793798.7931101,
+  "icao": "KTVI",
+  "data": {
+    "icao": "KTVI",
+    "faa": "TVI",
+    "iata": "TVI",
+    "name": "Thomasville Regional Airport",
+    "city": "Thomasville",
+    "state": "GA",
+    "country": "US",
+    "lat": 30.9016,
+    "lon": -83.8813,
+    "elevation_ft": 264,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.075,
+    "unicom_freq": 123.075,
+    "weather_freq": 119.175,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.525,
+    "approach_desc": "VALDOSTA APP/DEP",
+    "departure_freq": 119.525,
+    "departure_desc": "VALDOSTA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "VALDOSTA APP/DEP",
+        "frequency_mhz": 119.525
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.175
+      },
+      {
+        "type": "FSS",
+        "description": "MACON RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 6004,
+        "width": 101,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 4999,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Thomasville Regional Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.78,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.86,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTVI",
+    "airport_ref": "21233",
+    "fetched_at": "2026-08-27T01:23:18Z"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "_cached_at": 1787718642.959371,
+  "icao": "KRYY",
+  "data": {
+    "icao": "KRYY",
+    "faa": "RYY",
+    "iata": "",
+    "name": "Cobb County International Airport-McCollum Field",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 34.0132,
+    "lon": -84.5972,
+    "elevation_ft": 1040,
+    "tower": true,
+    "ctaf_freq": 125.9,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ATLANTA  APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.125
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "TWR",
+        "description": "MC COLLUM TWR",
+        "frequency_mhz": 125.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 6295,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ascension FBO",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:42Z"
+  }
+}

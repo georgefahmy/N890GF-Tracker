@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787718633.26993,
+  "icao": "2R5",
+  "data": {
+    "icao": "2R5",
+    "faa": "2R5",
+    "iata": "",
+    "name": "St Elmo Airport",
+    "city": "St Elmo",
+    "state": "AL",
+    "country": "US",
+    "lat": 30.5019,
+    "lon": -88.2751,
+    "elevation_ft": 132,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MOBILE APP/DEP",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3998,
+        "width": 80,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mobile Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.68,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.75,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.68,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:33Z"
+  }
+}

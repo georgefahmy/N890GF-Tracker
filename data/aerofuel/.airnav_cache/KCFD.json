@@ -1,0 +1,85 @@
+{
+  "_cached_at": 1787525630.978753,
+  "icao": "KCFD",
+  "data": {
+    "icao": "KCFD",
+    "faa": "CFD",
+    "iata": "CFD",
+    "name": "Coulter Field",
+    "city": "Bryan",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.7157,
+    "lon": -96.3314,
+    "elevation_ft": 367,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 123.0,
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 1330,
+        "width": 40,
+        "surface": "Grass",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Bryan (FBO)",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 4.7,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "fetched_at": "2026-08-23T22:53:50Z"
+  }
+}

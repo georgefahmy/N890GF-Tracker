@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787787654.0528,
+  "icao": "04A",
+  "data": {
+    "icao": "04A",
+    "faa": "04A",
+    "iata": "",
+    "name": "Frank Sikes Airport",
+    "city": "Luverne",
+    "state": "AL",
+    "country": "US",
+    "lat": 31.7363,
+    "lon": -86.2625,
+    "elevation_ft": 300,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4649,
+        "width": 80,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Frank Sikes Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:40:54Z"
+  }
+}

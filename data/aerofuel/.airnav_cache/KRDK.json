@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1787788220.687586,
+  "icao": "KRDK",
+  "data": {
+    "icao": "KRDK",
+    "faa": "RDK",
+    "iata": "",
+    "name": "Red Oak Municipal Airport",
+    "city": "Red Oak",
+    "state": "IA",
+    "country": "US",
+    "lat": 41.0105,
+    "lon": -95.2599,
+    "elevation_ft": 1045,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "OMAHA APP/DEP",
+        "frequency_mhz": 124.5
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.775
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5100,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 2901,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 2050,
+        "width": 210,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Red Oak Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Jun",
+        "quote_date": "24-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:20Z"
+  }
+}

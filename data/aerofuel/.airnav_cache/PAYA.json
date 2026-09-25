@@ -1,0 +1,83 @@
+{
+  "_cached_at": 1787527410.776084,
+  "icao": "PAYA",
+  "data": {
+    "icao": "PAYA",
+    "faa": "YAK",
+    "iata": "YAK",
+    "name": "Yakutat Airport",
+    "city": "Yakutat",
+    "state": "AK",
+    "country": "US",
+    "lat": 59.5087,
+    "lon": -139.6604,
+    "elevation_ft": 33,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 7732,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "02/20",
+        "length": 6475,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Yakutat Aviation Services",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 12.82,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Airport Fuel Facility",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 02-Jul",
+        "quote_date": "02-Jul",
+        "fuels": {
+          "JET_A": {
+            "price": 8.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 12.82,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:23:30Z"
+  }
+}

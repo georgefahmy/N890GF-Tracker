@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787788062.1280441,
+  "icao": "KBDH",
+  "data": {
+    "icao": "KBDH",
+    "faa": "BDH",
+    "iata": "ILL",
+    "name": "Willmar Municipal Airport John L Rice Field (2006)",
+    "city": "Willmar",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.1176,
+    "lon": -95.1323,
+    "elevation_ft": 1126,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2980,
+        "width": 250,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "320-214-9669",
+        "notes": "Quote: 20-Aug-2026",
+        "quote_date": "20-Aug-2026",
+        "fuels": {
+          "JET_A": {
+            "price": 6.97,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "JET_A": {
+            "price": 6.97,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:47:40Z"
+  }
+}

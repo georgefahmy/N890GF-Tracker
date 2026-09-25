@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787525641.3166132,
+  "icao": "KLXY",
+  "data": {
+    "icao": "KLXY",
+    "faa": "LXY",
+    "iata": "",
+    "name": "Mexia Limestone County Airport",
+    "city": "Mexia",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.6398,
+    "lon": -96.5147,
+    "elevation_ft": 544,
+    "tower": true,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Trim-Aire Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "WACO APP/DEP",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

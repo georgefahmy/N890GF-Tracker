@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787786356.395208,
+  "icao": "53U",
+  "data": {
+    "icao": "53U",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-26T23:19:16Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

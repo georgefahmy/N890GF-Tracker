@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1789073082.076819,
+  "icao": "E36",
+  "data": {
+    "icao": "E36",
+    "faa": "E36",
+    "iata": "",
+    "name": "Georgetown Airport",
+    "city": "Georgetown",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.9211,
+    "lon": -120.865,
+    "elevation_ft": 2623,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 2979,
+        "width": 62,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Georgetown Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Sep",
+        "quote_date": "03-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.14,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.14,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "E36",
+    "airport_ref": "17160",
+    "fetched_at": "2026-09-10T20:44:42Z"
+  }
+}

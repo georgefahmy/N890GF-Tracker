@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787518838.307082,
+  "icao": "1D7",
+  "data": {
+    "icao": "1D7",
+    "faa": "1D7",
+    "iata": "",
+    "name": "The Sigurd Anderson Airport",
+    "city": "Webster",
+    "state": "SD",
+    "country": "US",
+    "lat": 45.2926,
+    "lon": -97.5114,
+    "elevation_ft": 1854,
+    "tower": false,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 8090,
+        "surface": "Asphalt/Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Webster",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T21:00:38Z"
+  }
+}

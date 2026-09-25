@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787527548.6662579,
+  "icao": "1KC",
+  "data": {
+    "icao": "1KC",
+    "faa": "1KC",
+    "iata": "KKK",
+    "name": "Kalakaket Creek AS Airport",
+    "city": "Kalakaket Creek",
+    "state": "AK",
+    "country": "US",
+    "lat": 64.4166,
+    "lon": -156.8204,
+    "elevation_ft": 1598,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4000,
+        "width": 140,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "SAF": {
+            "price": 32.0,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "SAF"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:25:47Z"
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "_cached_at": 1788218638.553833,
+  "icao": "TIST",
+  "data": {
+    "icao": "TIST",
+    "faa": "STT",
+    "iata": "STT",
+    "name": "Cyril E. King Airport",
+    "city": "Charlotte Amalie",
+    "state": "VI",
+    "country": "US",
+    "lat": 18.3371,
+    "lon": -64.9773,
+    "elevation_ft": 23,
+    "tower": true,
+    "tower_freq": 118.1,
+    "ctaf_freq": 118.8,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.0,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 128.65,
+    "approach_desc": "SAN JUAN CNTR",
+    "departure_freq": 118.8,
+    "departure_desc": "ST THOMAS DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SAN JUAN CNTR",
+        "frequency_mhz": 128.65
+      },
+      {
+        "type": "APP",
+        "description": "ST THOMAS APP",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "DEP",
+        "description": "ST THOMAS DEP",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "SAN JUAN RDO",
+        "frequency_mhz": 108.6
+      },
+      {
+        "type": "TWR",
+        "description": "ST THOMAS TWR",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 7000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Standard Aviation, LLC",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.32,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Execujet Flight Services Call for volume discounts",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 7.42,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "St. Thomas Jet Center",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 01-Jul",
+        "quote_date": "01-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.15,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "TIST",
+    "airport_ref": "6369",
+    "fetched_at": "2026-08-31T23:23:58Z"
+  }
+}

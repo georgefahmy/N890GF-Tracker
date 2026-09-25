@@ -1,0 +1,63 @@
+{
+  "_cached_at": 1787513527.497473,
+  "icao": "KISB",
+  "data": {
+    "icao": "KISB",
+    "faa": "ISB",
+    "iata": "",
+    "name": "Sibley Municipal Airport",
+    "city": "Sibley",
+    "state": "IA",
+    "country": "US",
+    "lat": 43.3695,
+    "lon": -95.7598,
+    "elevation_ft": 1538,
+    "tower": false,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3390,
+        "surface": "Asphalt/Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "O'Leary Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Jul",
+        "quote_date": "31-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 132.05
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T19:32:07Z"
+  }
+}

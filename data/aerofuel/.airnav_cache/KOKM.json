@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202662.864023,
+  "icao": "KOKM",
+  "data": {
+    "icao": "KOKM",
+    "faa": "OKM",
+    "iata": "OKM",
+    "name": "Okmulgee Regional Airport",
+    "city": "Okmulgee",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.6681,
+    "lon": -95.9487,
+    "elevation_ft": 720,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 118.225,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.85,
+    "approach_desc": "TULSA APP/DEP",
+    "departure_freq": 119.85,
+    "departure_desc": "TULSA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TULSA APP/DEP",
+        "frequency_mhz": 119.85
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.225
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5150,
+        "width": 101,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Okmulgee (FBO)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOKM",
+    "airport_ref": "20734",
+    "fetched_at": "2026-08-31T18:57:42Z"
+  }
+}

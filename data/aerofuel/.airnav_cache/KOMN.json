@@ -1,0 +1,115 @@
+{
+  "_cached_at": 1787544325.2737951,
+  "icao": "KOMN",
+  "data": {
+    "icao": "KOMN",
+    "faa": "OMN",
+    "iata": "",
+    "name": "Ormond Beach Municipal Airport",
+    "city": "Ormond Beach",
+    "state": "FL",
+    "country": "US",
+    "lat": 29.3006,
+    "lon": -81.1136,
+    "elevation_ft": 29,
+    "tower": true,
+    "ctaf_freq": 119.075,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTONA APP/DEP",
+        "frequency_mhz": 125.8
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.475
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.475
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "GCCD",
+        "description": "GND/CLNC DEL",
+        "frequency_mhz": 121.625
+      },
+      {
+        "type": "RDO",
+        "description": "ST PETERSBURG RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4005,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 3704,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sunrise Flight Academy",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.15,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:25Z"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787513527.497358,
+  "icao": "KLYV",
+  "data": {
+    "icao": "KLYV",
+    "faa": "LYV",
+    "iata": "",
+    "name": "Quentin Aanenson Airfield - Luverne Municipal Airport",
+    "city": "Luverne",
+    "state": "MN",
+    "country": "US",
+    "lat": 43.6162,
+    "lon": -96.2179,
+    "elevation_ft": 1431,
+    "tower": false,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 8630,
+        "surface": "Gravel"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "GeeUp, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.65,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.15,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T19:32:07Z"
+  }
+}

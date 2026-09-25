@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787718633.270875,
+  "icao": "KGPT",
+  "data": {
+    "icao": "KGPT",
+    "faa": "GPT",
+    "iata": "GPT",
+    "name": "Gulfport Biloxi International Airport",
+    "city": "Gulfport",
+    "state": "MS",
+    "country": "US",
+    "lat": 30.4056,
+    "lon": -89.0698,
+    "elevation_ft": 28,
+    "tower": true,
+    "ctaf_freq": 123.7,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.45
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 37.78
+      },
+      {
+        "type": "RDO",
+        "description": "GREENWOOD RDO",
+        "frequency_mhz": 109.0
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 123.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 9002,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 4935,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air Gulfport-Biloxi AEG Connect Network",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.68,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.68,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:33Z"
+  }
+}

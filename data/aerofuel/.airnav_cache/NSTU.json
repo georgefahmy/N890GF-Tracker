@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787718507.2849238,
+  "icao": "NSTU",
+  "data": {
+    "icao": "NSTU",
+    "faa": "PPG",
+    "iata": "PPG",
+    "name": "Pago Pago International Airport",
+    "city": "Pago Pago",
+    "state": "AS",
+    "country": "US",
+    "lat": -14.331,
+    "lon": -170.71,
+    "elevation_ft": 32,
+    "tower": true,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 118.3,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FALEOLO APP/DEP",
+        "frequency_mhz": 126.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 118.3
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 10000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 3800,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:28:27Z"
+  }
+}

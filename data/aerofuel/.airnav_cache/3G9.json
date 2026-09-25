@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787718720.53942,
+  "icao": "3G9",
+  "data": {
+    "icao": "3G9",
+    "faa": "3G9",
+    "iata": "",
+    "name": "Butler Farm Show Airport",
+    "city": "Butler",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.8526,
+    "lon": -79.9748,
+    "elevation_ft": 1333,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2580,
+        "width": 38,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Butler Farm Show Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:00Z"
+  }
+}

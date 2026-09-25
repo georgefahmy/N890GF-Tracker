@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1787793943.879745,
+  "icao": "3U8",
+  "data": {
+    "icao": "3U8",
+    "faa": "3U8",
+    "iata": "",
+    "name": "Big Sandy Airport",
+    "city": "Big Sandy",
+    "state": "MT",
+    "country": "US",
+    "lat": 48.1632,
+    "lon": -110.1157,
+    "elevation_ft": 2700,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3570,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 2100,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "18/36",
+        "length": 1430,
+        "width": 55,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Big Sandy Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3U8",
+    "airport_ref": "18746",
+    "fetched_at": "2026-08-27T01:25:43Z"
+  }
+}

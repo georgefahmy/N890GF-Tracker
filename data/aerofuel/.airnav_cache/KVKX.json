@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787705647.8701792,
+  "icao": "KVKX",
+  "data": {
+    "icao": "KVKX",
+    "faa": "VKX",
+    "iata": "",
+    "name": "Potomac Airfield",
+    "city": "Friendly",
+    "state": "MD",
+    "country": "US",
+    "lat": 38.7476,
+    "lon": -76.9572,
+    "elevation_ft": 118,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 2665,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Potomac Airfield",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Mar",
+        "quote_date": "26-Mar",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:54:07Z"
+  }
+}

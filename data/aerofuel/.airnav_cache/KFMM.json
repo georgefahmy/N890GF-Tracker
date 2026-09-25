@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787788088.758883,
+  "icao": "KFMM",
+  "data": {
+    "icao": "KFMM",
+    "faa": "FMM",
+    "iata": "",
+    "name": "Fort Morgan Municipal Airport",
+    "city": "Fort Morgan",
+    "state": "CO",
+    "country": "US",
+    "lat": 40.3358,
+    "lon": -103.8044,
+    "elevation_ft": 4569,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.95
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 5731,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 5216,
+        "width": 80,
+        "surface": "Gre",
+        "lighted": false
+      },
+      {
+        "id": "08/26",
+        "length": 2468,
+        "width": 100,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fort Morgan Aviation Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.82,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:08Z"
+  }
+}

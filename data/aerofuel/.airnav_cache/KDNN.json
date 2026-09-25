@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1787786466.058878,
+  "icao": "KDNN",
+  "data": {
+    "icao": "KDNN",
+    "faa": "DNN",
+    "iata": "DNN",
+    "name": "Dalton Municipal Airport",
+    "city": "Dalton",
+    "state": "GA",
+    "country": "US",
+    "lat": 34.7229,
+    "lon": -84.8702,
+    "elevation_ft": 709,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.975,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHATTANOOGA APP/DEP",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 127.65
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 5496,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dalton Municipal Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.19,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.29,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:21:06Z"
+  }
+}

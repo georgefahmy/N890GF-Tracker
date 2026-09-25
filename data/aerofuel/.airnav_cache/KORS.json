@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1789072488.4036438,
+  "icao": "KORS",
+  "data": {
+    "icao": "KORS",
+    "faa": "ORS",
+    "iata": "ESD",
+    "name": "Orcas Island Airport",
+    "city": "Eastsound",
+    "state": "WA",
+    "country": "US",
+    "lat": 48.7082,
+    "lon": -122.91,
+    "elevation_ft": 31,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 128.25,
+    "unicom_freq": 128.25,
+    "weather_freq": 135.425,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS",
+    "approach_freq": 118.2,
+    "approach_desc": "WHIDBEY  APP/DEP",
+    "departure_freq": 118.2,
+    "departure_desc": "WHIDBEY  APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS",
+        "frequency_mhz": 135.425
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 128.25
+      },
+      {
+        "type": "WHIDBEY  APP/DEP",
+        "description": "WHIDBEY  APP/DEP",
+        "frequency_mhz": 118.2
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 2901,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Port of Orcas",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 15-May",
+        "quote_date": "15-May",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KORS",
+    "airport_ref": "23952",
+    "fetched_at": "2026-09-10T20:34:48Z"
+  }
+}

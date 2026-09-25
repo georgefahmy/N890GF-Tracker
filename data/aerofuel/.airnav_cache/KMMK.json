@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1788218510.138826,
+  "icao": "KMMK",
+  "data": {
+    "icao": "KMMK",
+    "faa": "MMK",
+    "iata": "",
+    "name": "Meriden Markham Municipal Airport",
+    "city": "Meriden",
+    "state": "CT",
+    "country": "US",
+    "lat": 41.5087,
+    "lon": -72.8295,
+    "elevation_ft": 103,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": 134.925,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 127.8,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 127.8,
+    "departure_desc": "APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 120.65,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 134.925
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3100,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Meriden",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.34,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.34,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMMK",
+    "airport_ref": "20529",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

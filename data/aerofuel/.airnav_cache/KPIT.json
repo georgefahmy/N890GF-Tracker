@@ -1,0 +1,157 @@
+{
+  "_cached_at": 1787863971.8532832,
+  "icao": "KPIT",
+  "data": {
+    "icao": "KPIT",
+    "faa": "PIT",
+    "iata": "PIT",
+    "name": "Pittsburgh International Airport",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.4915,
+    "lon": -80.2329,
+    "elevation_ft": 1203,
+    "tower": true,
+    "tower_freq": 119.1,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 127.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 36.08,
+    "approach_desc": "APP",
+    "departure_freq": 118.65,
+    "departure_desc": "DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 126.75,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 36.08
+      },
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 120.875
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.25
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.75
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 118.65
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 31.1
+      },
+      {
+        "type": "POST",
+        "description": "PITT COMD POST",
+        "frequency_mhz": 25.21
+      },
+      {
+        "type": "RDO",
+        "description": "ALTOONA RDO",
+        "frequency_mhz": 112.0
+      },
+      {
+        "type": "RMP",
+        "description": "RAMP CON",
+        "frequency_mhz": 131.375
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10R/28L",
+        "length": 11500,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "10C/28C",
+        "length": 10775,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "10L/28R",
+        "length": 10502,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 8101,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.89,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPIT",
+    "airport_ref": "3778",
+    "fetched_at": "2026-08-27T20:52:51Z"
+  }
+}

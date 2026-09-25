@@ -1,0 +1,92 @@
+{
+  "_cached_at": 1787787774.0869892,
+  "icao": "KCSM",
+  "data": {
+    "icao": "KCSM",
+    "faa": "CSM",
+    "iata": "CSM",
+    "name": "Clinton Sherman Airport",
+    "city": "Clinton",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.3398,
+    "lon": -99.2005,
+    "elevation_ft": 1922,
+    "tower": true,
+    "ctaf_freq": 119.6,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 128.4
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.225
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "17R/35L",
+        "length": 13503,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17L/35R",
+        "length": 5193,
+        "width": 75,
+        "surface": "Con",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lux Air Jet Centers",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 5.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:54Z"
+  }
+}

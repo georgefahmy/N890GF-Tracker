@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1787528443.417928,
+  "icao": "KLOZ",
+  "data": {
+    "icao": "KLOZ",
+    "faa": "LOZ",
+    "iata": "LOZ",
+    "name": "London-Corbin Airport/Magee Field",
+    "city": "London",
+    "state": "KY",
+    "country": "US",
+    "lat": 37.0822,
+    "lon": -84.0849,
+    "elevation_ft": 1212,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "CNTR",
+        "description": "INDIANAPOLIS CNTR",
+        "frequency_mhz": 121.325
+      },
+      {
+        "type": "RDO",
+        "description": "LOUISVILLE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5750,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "London-Corbin Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.85,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:40:43Z"
+  }
+}

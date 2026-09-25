@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787787741.294786,
+  "icao": "KOXB",
+  "data": {
+    "icao": "KOXB",
+    "faa": "OXB",
+    "iata": "OCE",
+    "name": "Ocean City Municipal Airport",
+    "city": "Ocean City",
+    "state": "MD",
+    "country": "US",
+    "lat": 38.3104,
+    "lon": -75.124,
+    "elevation_ft": 11,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PATUXENT APP/DEP",
+        "frequency_mhz": 127.95
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.025
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4074,
+        "width": 75,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "02/20",
+        "length": 3204,
+        "width": 75,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ocean City Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:21Z"
+  }
+}

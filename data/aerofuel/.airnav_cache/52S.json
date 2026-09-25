@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787786357.862707,
+  "icao": "52S",
+  "data": {
+    "icao": "52S",
+    "faa": "52S",
+    "iata": "",
+    "name": "St Ignatius Airport",
+    "city": "St Ignatius",
+    "state": "MT",
+    "country": "US",
+    "lat": 47.325,
+    "lon": -114.081,
+    "elevation_ft": 3006,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 2610,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "St. Ignatius Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.34,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.34,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:19:17Z"
+  }
+}

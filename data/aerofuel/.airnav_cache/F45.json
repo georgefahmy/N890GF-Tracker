@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787523161.348959,
+  "icao": "F45",
+  "data": {
+    "icao": "F45",
+    "faa": "F45",
+    "iata": "",
+    "name": "North Palm Beach County General Aviation Airport",
+    "city": "West Palm Beach",
+    "state": "FL",
+    "country": "US",
+    "lat": 26.8444,
+    "lon": -80.2213,
+    "elevation_ft": 22,
+    "tower": false,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5640,
+        "surface": "Asphalt/Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.48,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:12:41Z"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787718617.669217,
+  "icao": "M11",
+  "data": {
+    "icao": "M11",
+    "faa": "M11",
+    "iata": "",
+    "name": "Copiah County Airport",
+    "city": "Hazlehurst",
+    "state": "MS",
+    "country": "US",
+    "lat": 31.9019,
+    "lon": -90.3667,
+    "elevation_ft": 443,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Chautauqua Aviation, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 02-Jul",
+        "quote_date": "02-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:17Z"
+  }
+}

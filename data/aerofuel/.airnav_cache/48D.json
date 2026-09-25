@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202507.124761,
+  "icao": "48D",
+  "data": {
+    "icao": "48D",
+    "faa": "48D",
+    "iata": "",
+    "name": "Clare Municipal Airport",
+    "city": "Clare",
+    "state": "MI",
+    "country": "US",
+    "lat": 43.8345,
+    "lon": -84.7402,
+    "elevation_ft": 857,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.45,
+    "approach_desc": "SAGINAW APP/DEP",
+    "departure_freq": 126.45,
+    "departure_desc": "SAGINAW APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SAGINAW APP/DEP",
+        "frequency_mhz": 126.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 2499,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Clare Municipal Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K48D",
+    "airport_ref": "18791",
+    "fetched_at": "2026-08-31T18:55:07Z"
+  }
+}

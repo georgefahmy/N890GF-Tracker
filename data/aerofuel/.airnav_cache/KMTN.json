@@ -1,0 +1,118 @@
+{
+  "_cached_at": 1787787741.2959151,
+  "icao": "KMTN",
+  "data": {
+    "icao": "KMTN",
+    "faa": "MTN",
+    "iata": "MTN",
+    "name": "Martin State Airport",
+    "city": "Baltimore",
+    "state": "MD",
+    "country": "US",
+    "lat": 39.3257,
+    "lon": -76.4138,
+    "elevation_ft": 21,
+    "tower": true,
+    "ctaf_freq": 121.3,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "POTOMAC APP/DEP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.925
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 124.925
+      },
+      {
+        "type": "CLD",
+        "description": "POTOMAC CLNC DEL",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "OPS",
+        "description": "135 AG COMD POST",
+        "frequency_mhz": 38.59
+      },
+      {
+        "type": "POST",
+        "description": "175 FG COMD POST",
+        "frequency_mhz": 34.72
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 6999,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Maryland Aviation Administration",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.82,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.02,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.3,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.82,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:21Z"
+  }
+}

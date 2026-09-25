@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787705624.943609,
+  "icao": "KAFN",
+  "data": {
+    "icao": "KAFN",
+    "faa": "AFN",
+    "iata": "AFN",
+    "name": "Jaffrey Airfield Silver Ranch Airport",
+    "city": "Jaffrey",
+    "state": "NH",
+    "country": "US",
+    "lat": 42.8051,
+    "lon": -72.003,
+    "elevation_ft": 1040,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.875
+      },
+      {
+        "type": "CNTR",
+        "description": "BOSTON CNTR",
+        "frequency_mhz": 123.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 2982,
+        "width": 134,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Silver Ranch Airpark",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.9,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:53:44Z"
+  }
+}

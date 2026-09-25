@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787787786.1070662,
+  "icao": "0V4",
+  "data": {
+    "icao": "0V4",
+    "faa": "0V4",
+    "iata": "",
+    "name": "Brookneal/Campbell County Airport",
+    "city": "Gladys",
+    "state": "VA",
+    "country": "US",
+    "lat": 37.1417,
+    "lon": -79.0164,
+    "elevation_ft": 596,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROANOKE APP/DEP",
+        "frequency_mhz": 125.47
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3798,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Freedom Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:06Z"
+  }
+}

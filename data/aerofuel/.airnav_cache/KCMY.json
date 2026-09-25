@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1787793902.846905,
+  "icao": "KCMY",
+  "data": {
+    "icao": "KCMY",
+    "faa": "CMY",
+    "iata": "CMY",
+    "name": "Sparta Fort McCoy Airport",
+    "city": "Sparta",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.958,
+    "lon": -90.7379,
+    "elevation_ft": 837,
+    "tower": true,
+    "tower_freq": 38.5,
+    "ctaf_freq": 124.6,
+    "unicom_freq": 124.6,
+    "weather_freq": 118.375,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 135.25,
+    "approach_desc": "VOLK APP/DEP",
+    "departure_freq": 135.25,
+    "departure_desc": "VOLK APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "VOLK APP/DEP",
+        "frequency_mhz": 135.25
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.375
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "MISC",
+        "description": "RANGE",
+        "frequency_mhz": 41.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 38.5
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 4697,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 3032,
+        "width": 95,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Sparta (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCMY",
+    "airport_ref": "19519",
+    "fetched_at": "2026-08-27T01:25:02Z"
+  }
+}

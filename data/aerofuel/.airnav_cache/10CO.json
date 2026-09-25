@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787705693.335381,
+  "icao": "10CO",
+  "data": {
+    "icao": "10CO",
+    "faa": "10CO",
+    "name": "Mack Mesa Airport",
+    "city": "Mack",
+    "state": "CO",
+    "distance_nm": 55.0,
+    "bearing": "WSW",
+    "fbos": [
+      {
+        "name": "Mack Mesa Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "fetched_at": "2026-08-26T00:54:53Z",
+    "source": "AirNav Local Fuel"
+  }
+}

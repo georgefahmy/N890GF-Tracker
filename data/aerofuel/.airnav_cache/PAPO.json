@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787527564.207647,
+  "icao": "PAPO",
+  "data": {
+    "icao": "PAPO",
+    "faa": "PHO",
+    "iata": "PHO",
+    "name": "Point Hope Airport",
+    "city": "Point Hope",
+    "state": "AK",
+    "country": "US",
+    "lat": 68.3488,
+    "lon": -166.799,
+    "elevation_ft": 12,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:26:04Z"
+  }
+}

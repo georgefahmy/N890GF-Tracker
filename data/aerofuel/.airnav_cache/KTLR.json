@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788542284.516355,
+  "icao": "KTLR",
+  "data": {
+    "icao": "KTLR",
+    "faa": "TLR",
+    "iata": "TLR",
+    "name": "Mefford Field",
+    "city": "Tulare",
+    "state": "CA",
+    "country": "US",
+    "lat": 36.1563,
+    "lon": -119.326,
+    "elevation_ft": 265,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.5,
+    "approach_desc": "FRESNO APP/DEP",
+    "departure_freq": 118.5,
+    "departure_desc": "FRESNO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FRESNO APP/DEP",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3901,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Valley Air Crafts",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 01-Sep",
+        "quote_date": "01-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTLR",
+    "airport_ref": "21202",
+    "fetched_at": "2026-09-04T17:18:04Z"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787528412.7809489,
+  "icao": "KBKT",
+  "data": {
+    "icao": "KBKT",
+    "faa": "BKT",
+    "iata": "BKT",
+    "name": "Allen C Perkinson Blackstone Army Air Field",
+    "city": "Blackstone",
+    "state": "VA",
+    "country": "US",
+    "lat": 37.0742,
+    "lon": -77.9575,
+    "elevation_ft": 439,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "WASHINGTON CNTR",
+        "frequency_mhz": 118.75
+      },
+      {
+        "type": "OPS",
+        "description": "RANGE OPS",
+        "frequency_mhz": 38.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 38.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5333,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Partner Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:40:12Z"
+  }
+}

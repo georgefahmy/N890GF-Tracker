@@ -1,0 +1,127 @@
+{
+  "_cached_at": 1788218597.1259992,
+  "icao": "KVQQ",
+  "data": {
+    "icao": "KVQQ",
+    "faa": "VQQ",
+    "iata": "VQQ",
+    "name": "Cecil Airport",
+    "city": "Jacksonville",
+    "state": "FL",
+    "country": "US",
+    "lat": 30.2187,
+    "lon": -81.8767,
+    "elevation_ft": 81,
+    "tower": true,
+    "tower_freq": 126.1,
+    "ctaf_freq": 126.1,
+    "unicom_freq": 122.95,
+    "weather_freq": 125.275,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 123.8,
+    "approach_desc": "JACKSONVILLE APP/DEP",
+    "departure_freq": 123.8,
+    "departure_desc": "JACKSONVILLE APP/DEP",
+    "ground_freq": 121.625,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "JACKSONVILLE APP/DEP",
+        "frequency_mhz": 123.8
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.275
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.625
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "18L/36R",
+        "length": 12504,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "09R/27L",
+        "length": 8003,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "18R/36L",
+        "length": 8001,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": false
+      },
+      {
+        "id": "09L/27R",
+        "length": 4439,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air Jacksonville-Cecil",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.13,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVQQ",
+    "airport_ref": "21335",
+    "fetched_at": "2026-08-31T23:23:17Z"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1787793721.554354,
+  "icao": "Y49",
+  "data": {
+    "icao": "Y49",
+    "faa": "Y49",
+    "iata": "",
+    "name": "Walker Municipal Airport",
+    "city": "Walker",
+    "state": "MN",
+    "country": "US",
+    "lat": 47.1583,
+    "lon": -94.6461,
+    "elevation_ft": 1364,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3220,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Walker Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "Y49",
+    "airport_ref": "26330",
+    "fetched_at": "2026-08-27T01:22:01Z"
+  }
+}

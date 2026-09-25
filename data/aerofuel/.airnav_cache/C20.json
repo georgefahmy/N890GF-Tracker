@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787786442.820127,
+  "icao": "C20",
+  "data": {
+    "icao": "C20",
+    "faa": "C20",
+    "iata": "",
+    "name": "Andrews University Airpark",
+    "city": "Berrien Springs",
+    "state": "MI",
+    "country": "US",
+    "lat": 41.9517,
+    "lon": -86.3677,
+    "elevation_ft": 668,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOUTH BEND APP/DEP",
+        "frequency_mhz": 118.55
+      },
+      {
+        "type": "MISC",
+        "description": "FLT SCH",
+        "frequency_mhz": 123.5
+      },
+      {
+        "type": "RCO",
+        "description": "BERRIEN SPRINGS",
+        "frequency_mhz": 121.625
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4148,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2298,
+        "width": 180,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Andrews University, Aviation Technology",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:20:42Z"
+  }
+}

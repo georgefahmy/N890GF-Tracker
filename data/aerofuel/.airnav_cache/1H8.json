@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1789073589.824998,
+  "icao": "1H8",
+  "data": {
+    "icao": "1H8",
+    "faa": "1H8",
+    "iata": "",
+    "name": "Casey Municipal Airport",
+    "city": "Casey",
+    "state": "IL",
+    "country": "US",
+    "lat": 39.3025,
+    "lon": -88.0041,
+    "elevation_ft": 654,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 125.45,
+    "approach_desc": "HULMAN APP/DEP",
+    "departure_freq": 125.45,
+    "departure_desc": "HULMAN APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HULMAN APP/DEP",
+        "frequency_mhz": 125.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 1943,
+        "width": 75,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Patchett Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Jul",
+        "quote_date": "07-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.67,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.67,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1H8",
+    "airport_ref": "18474",
+    "fetched_at": "2026-09-10T20:53:09Z"
+  }
+}

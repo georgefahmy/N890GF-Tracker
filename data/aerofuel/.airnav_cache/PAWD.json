@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1788014951.1809988,
+  "icao": "PAWD",
+  "data": {
+    "icao": "PAWD",
+    "faa": "SWD",
+    "iata": "SWD",
+    "name": "Seward Airport",
+    "city": "Seward",
+    "state": "AK",
+    "country": "US",
+    "lat": 60.1305,
+    "lon": -149.4186,
+    "elevation_ft": 22,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": 135.2,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "FSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4249,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 2289,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "S F Air LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 9.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 9.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "PAWD",
+    "airport_ref": "5420",
+    "fetched_at": "2026-08-29T14:49:11Z"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788647.052434,
+  "icao": "4A4",
+  "data": {
+    "icao": "4A4",
+    "faa": "4A4",
+    "iata": "",
+    "name": "Polk County Airport- Cornelius Moore Field",
+    "city": "Cedartown",
+    "state": "GA",
+    "country": "US",
+    "lat": 34.0187,
+    "lon": -85.1465,
+    "elevation_ft": 979,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "ATLANTA CNTR",
+        "frequency_mhz": 133.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5041,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Polk County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.25,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:57:27Z"
+  }
+}

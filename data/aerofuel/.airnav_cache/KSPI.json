@@ -1,0 +1,141 @@
+{
+  "_cached_at": 1788218357.530082,
+  "icao": "KSPI",
+  "data": {
+    "icao": "KSPI",
+    "faa": "SPI",
+    "iata": "SPI",
+    "name": "Abraham Lincoln Capital Airport",
+    "city": "Springfield",
+    "state": "IL",
+    "country": "US",
+    "lat": 39.8441,
+    "lon": -89.6779,
+    "elevation_ft": 598,
+    "tower": true,
+    "tower_freq": 121.3,
+    "ctaf_freq": 121.3,
+    "unicom_freq": 131.42,
+    "weather_freq": 127.65,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 118.6,
+    "approach_desc": "SPRINGFIELD APP/DEP",
+    "departure_freq": 118.6,
+    "departure_desc": "SPRINGFIELD APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 121.7,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SPRINGFIELD APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.65
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 27.217
+      },
+      {
+        "type": "RDO",
+        "description": "ST LOUIS RDO",
+        "frequency_mhz": 122.25
+      },
+      {
+        "type": "TWR",
+        "description": "SPRINGFIELD TWR",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 131.42
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 8001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 7399,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 5300,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Stellar Aviation of Springfield",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.03,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.44,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSPI",
+    "airport_ref": "3897",
+    "fetched_at": "2026-08-31T23:19:17Z"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787718334.152949,
+  "icao": "KPEZ",
+  "data": {
+    "icao": "KPEZ",
+    "faa": "PEZ",
+    "iata": "",
+    "name": "Pleasanton Municipal Airport",
+    "city": "Pleasanton",
+    "state": "TX",
+    "country": "US",
+    "lat": 28.9542,
+    "lon": -98.52,
+    "elevation_ft": 430,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SAN ANTONIO APP",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.55
+      },
+      {
+        "type": "DEP",
+        "description": "SAN ANTONIO DEP",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pleasanton Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.83,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.96,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:25:34Z"
+  }
+}

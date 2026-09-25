@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202461.9108422,
+  "icao": "0M4",
+  "data": {
+    "icao": "0M4",
+    "faa": "0M4",
+    "iata": "",
+    "name": "Benton County Airport",
+    "city": "Camden",
+    "state": "TN",
+    "country": "US",
+    "lat": 36.0111,
+    "lon": -88.1233,
+    "elevation_ft": 468,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 125.85
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Benton County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Aug",
+        "quote_date": "31-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.08,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K0M4",
+    "airport_ref": "18378",
+    "fetched_at": "2026-08-31T18:54:21Z"
+  }
+}

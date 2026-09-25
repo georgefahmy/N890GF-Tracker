@@ -1,0 +1,106 @@
+{
+  "_cached_at": 1787523161.349674,
+  "icao": "KSUA",
+  "data": {
+    "icao": "KSUA",
+    "faa": "SUA",
+    "iata": "SUA",
+    "name": "Witham Field",
+    "city": "Stuart",
+    "state": "FL",
+    "country": "US",
+    "lat": 27.1817,
+    "lon": -80.2211,
+    "elevation_ft": 16,
+    "tower": true,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 6960,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "APP Jet Center-Stuart",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 23-Aug",
+        "quote_date": "23-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.19,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.57,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PALM BEACH APP/DEP",
+        "frequency_mhz": 128.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 134.475
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "STUART TWR",
+        "frequency_mhz": 126.6
+      }
+    ],
+    "fetched_at": "2026-08-23T22:12:41Z"
+  }
+}

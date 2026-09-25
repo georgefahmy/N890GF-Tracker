@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787787527.8375611,
+  "icao": "KOQN",
+  "data": {
+    "icao": "KOQN",
+    "faa": "OQN",
+    "iata": "",
+    "name": "Brandywine Regional Airport",
+    "city": "West Chester",
+    "state": "PA",
+    "country": "US",
+    "lat": 39.9901,
+    "lon": -75.5819,
+    "elevation_ft": 466,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.075,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PHILADELPHIA APP/DEP",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3347,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "New Brandywine Aero",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:38:47Z"
+  }
+}

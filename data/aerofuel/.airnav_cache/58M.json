@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787787741.2957718,
+  "icao": "58M",
+  "data": {
+    "icao": "58M",
+    "faa": "58M",
+    "iata": "",
+    "name": "Cecil County Airport",
+    "city": "Elkton",
+    "state": "MD",
+    "country": "US",
+    "lat": 39.5742,
+    "lon": -75.8698,
+    "elevation_ft": 106,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PHILADELPHIA APP/DEP",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 2989,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Claremont Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 03-Aug",
+        "quote_date": "03-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:21Z"
+  }
+}

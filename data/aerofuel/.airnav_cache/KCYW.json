@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787863998.414558,
+  "icao": "KCYW",
+  "data": {
+    "icao": "KCYW",
+    "faa": "CYW",
+    "iata": "",
+    "name": "Clay Center Municipal Airport",
+    "city": "Clay Center",
+    "state": "KS",
+    "country": "US",
+    "lat": 39.3871,
+    "lon": -97.1572,
+    "elevation_ft": 1208,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 127.35,
+    "approach_desc": "KANSAS CITY CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4197,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Clay Center",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 09-Jul",
+        "quote_date": "09-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCYW",
+    "airport_ref": "19581",
+    "fetched_at": "2026-08-26T23:50:09Z"
+  }
+}

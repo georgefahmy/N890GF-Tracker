@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787608550.99937,
+  "icao": "1W1",
+  "data": {
+    "icao": "1W1",
+    "faa": "1W1",
+    "iata": "",
+    "name": "Grove Field",
+    "city": "Camas",
+    "state": "WA",
+    "country": "US",
+    "lat": 45.6278,
+    "lon": -122.404,
+    "elevation_ft": 429,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 2710,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Port of Camas/Washougal",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "FlyIt Academy",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Jul",
+        "quote_date": "20-Jul",
+        "fuels": {
+          "MOGAS_FS": {
+            "price": 6.75,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:55:50Z"
+  }
+}

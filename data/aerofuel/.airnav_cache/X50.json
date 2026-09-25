@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787544325.2748191,
+  "icao": "X50",
+  "data": {
+    "icao": "X50",
+    "faa": "X50",
+    "iata": "",
+    "name": "Massey Ranch Airpark",
+    "city": "New Smyrna Beach",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.9789,
+    "lon": -80.9251,
+    "elevation_ft": 12,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTONA APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4360,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airpark Aviation Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.29,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.79,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.29,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:25Z"
+  }
+}

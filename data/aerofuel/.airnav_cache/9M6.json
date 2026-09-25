@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787786384.5098639,
+  "icao": "9M6",
+  "data": {
+    "icao": "9M6",
+    "faa": "9M6",
+    "iata": "",
+    "name": "Kelly Airport",
+    "city": "Oak Grove",
+    "state": "LA",
+    "country": "US",
+    "lat": 32.8492,
+    "lon": -91.4039,
+    "elevation_ft": 112,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3799,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Kelly-Dumas Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 17-Jun",
+        "quote_date": "17-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 4.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:19:44Z"
+  }
+}

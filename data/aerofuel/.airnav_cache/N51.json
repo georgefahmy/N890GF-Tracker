@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787792807.716743,
+  "icao": "N51",
+  "data": {
+    "icao": "N51",
+    "faa": "N51",
+    "iata": "",
+    "name": "Solberg/Hunterdon Airport",
+    "city": "Whitehouse Station",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.5837,
+    "lon": -74.7362,
+    "elevation_ft": 195,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW YORK APP/DEP",
+        "frequency_mhz": 132.8
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 112.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3735,
+        "width": 120,
+        "surface": "Cop",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 3440,
+        "width": 200,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Solberg Aviation Co. Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.04,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.29,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.04,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:47Z"
+  }
+}

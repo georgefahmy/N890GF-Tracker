@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1787528566.814414,
+  "icao": "KMWO",
+  "data": {
+    "icao": "KMWO",
+    "faa": "MWO",
+    "iata": "MWO",
+    "name": "Middletown Regional Airport",
+    "city": "Middletown",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.531,
+    "lon": -84.3953,
+    "elevation_ft": 650,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "DAYTON APP",
+        "frequency_mhz": 118.85
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.025
+      },
+      {
+        "type": "CLD",
+        "description": "DAYTON CLNC DEL",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "DEP",
+        "description": "DAYTON DEP",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 6100,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 3026,
+        "width": 160,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Middletown Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.36,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.98,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1787705631.36202,
+  "icao": "K23",
+  "data": {
+    "icao": "K23",
+    "faa": "K23",
+    "iata": "COP",
+    "name": "Cooperstown-Westville Airport",
+    "city": "Cooperstown",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.6296,
+    "lon": -74.8904,
+    "elevation_ft": 1260,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 2337,
+        "width": 125,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cooperstown Aviation",
+        "brand": "",
+        "phone": "614-206-2198",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T00:53:49Z"
+  }
+}

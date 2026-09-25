@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1790309075.466004,
+  "icao": "E16",
+  "data": {
+    "icao": "E16",
+    "faa": "E16",
+    "iata": "",
+    "name": "San Martin Airport",
+    "city": "San Martin",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.0816,
+    "lon": -121.597,
+    "elevation_ft": 281,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 118.35,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS",
+    "approach_freq": 120.1,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 120.1,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3095,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "San Martin Aviation Corp",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
+        "fuels": {
+          "94UL_SS": {
+            "price": 8.39,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          },
+          "94UL_FS": {
+            "price": 8.59,
+            "type": "94UL",
+            "service": "Full-Serve",
+            "label": "94UL Unleaded (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.68,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.39,
+    "primary_fuel": "94UL",
+    "fuels_available": [
+      "94UL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KE16",
+    "airport_ref": "19688",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

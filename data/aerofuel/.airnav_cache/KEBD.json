@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787528538.918187,
+  "icao": "KEBD",
+  "data": {
+    "icao": "KEBD",
+    "faa": "EBD",
+    "iata": "",
+    "name": "Southern West Virginia Regional Airport",
+    "city": "Varney",
+    "state": "WV",
+    "country": "US",
+    "lat": 37.6818,
+    "lon": -82.1221,
+    "elevation_ft": 1883,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "surface": "Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mingo Co Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.17,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.72,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.17,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:18Z"
+  }
+}

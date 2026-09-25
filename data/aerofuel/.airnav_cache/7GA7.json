@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787718642.955519,
+  "icao": "7GA7",
+  "data": {
+    "icao": "7GA7",
+    "faa": "7GA7",
+    "name": "Berry Hill Airport",
+    "city": "Stockbridge",
+    "state": "GA",
+    "distance_nm": 23.0,
+    "bearing": "SE",
+    "fbos": [
+      {
+        "name": "Friends of Berry Hill",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Jun",
+        "quote_date": "26-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "fetched_at": "2026-08-26T04:30:42Z",
+    "source": "AirNav Local Fuel"
+  }
+}

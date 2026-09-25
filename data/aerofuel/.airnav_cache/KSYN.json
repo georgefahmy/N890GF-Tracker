@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1788202574.64859,
+  "icao": "KSYN",
+  "data": {
+    "icao": "KSYN",
+    "faa": "SYN",
+    "iata": "SYN",
+    "name": "Stanton Airfield",
+    "city": "Dennison",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.4756,
+    "lon": -93.0168,
+    "elevation_ft": 920,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2582,
+        "width": 200,
+        "surface": "Grass / Sod",
+        "lighted": false
+      },
+      {
+        "id": "09/27",
+        "length": 1996,
+        "width": 180,
+        "surface": "Grass / Sod",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Stanton Sport Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "94UL_SS": {
+            "price": 6.55,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSYN",
+    "airport_ref": "24681",
+    "fetched_at": "2026-08-31T18:56:14Z"
+  }
+}

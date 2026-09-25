@@ -1,0 +1,151 @@
+{
+  "_cached_at": 1787705542.348602,
+  "icao": "KDSM",
+  "data": {
+    "icao": "KDSM",
+    "faa": "DSM",
+    "iata": "DSM",
+    "name": "Des Moines International Airport",
+    "city": "Des Moines",
+    "state": "IA",
+    "country": "US",
+    "lat": 41.534,
+    "lon": -93.6567,
+    "elevation_ft": 958,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.55
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 134.15
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS MAINT",
+        "frequency_mhz": 138.15
+      },
+      {
+        "type": "RDO",
+        "description": "FORT DODGE RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "5/23",
+        "length": 9004,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 9001,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Modern Aviation",
+        "brand": "Titan",
+        "phone": "515-285-6551",
+        "notes": "Titan \u2022 Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.1,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "Avfuel",
+        "phone": "515-256-5330",
+        "notes": "Avfuel \u2022 Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.83,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 7.08,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Elliott Aviation",
+        "brand": "",
+        "phone": "515-285-6551",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": 7.08,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T00:52:20Z"
+  }
+}

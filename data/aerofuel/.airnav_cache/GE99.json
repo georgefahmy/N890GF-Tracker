@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1787787751.991943,
+  "icao": "GE99",
+  "data": {
+    "icao": "GE99",
+    "faa": "GE99",
+    "name": "Heaven's Landing Airport",
+    "city": "Clayton",
+    "state": "GA",
+    "distance_nm": 21.0,
+    "bearing": "NNW",
+    "fbos": [
+      {
+        "name": "Heaven's Landing",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-26T23:42:31Z",
+    "source": "AirNav Local Fuel"
+  }
+}

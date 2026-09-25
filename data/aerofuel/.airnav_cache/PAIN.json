@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787527458.9936619,
+  "icao": "PAIN",
+  "data": {
+    "icao": "PAIN",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T23:24:18Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

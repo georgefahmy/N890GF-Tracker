@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787788634.4265978,
+  "icao": "KPWD",
+  "data": {
+    "icao": "KPWD",
+    "faa": "PWD",
+    "iata": "PWD",
+    "name": "Sher-Wood Airport",
+    "city": "Plentywood",
+    "state": "MT",
+    "country": "US",
+    "lat": 48.7903,
+    "lon": -104.534,
+    "elevation_ft": 2250,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3900,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 2951,
+        "width": 60,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "16/34",
+        "length": 1600,
+        "width": 83,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sher-Wood Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:57:14Z"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1787793815.277569,
+  "icao": "KBHC",
+  "data": {
+    "icao": "KBHC",
+    "faa": "BHC",
+    "iata": "",
+    "name": "Baxley Municipal Airport",
+    "city": "Baxley",
+    "state": "GA",
+    "country": "US",
+    "lat": 31.7138,
+    "lon": -82.3938,
+    "elevation_ft": 201,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 37.6,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS A",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS A",
+        "frequency_mhz": 37.6
+      },
+      {
+        "type": "CNTR",
+        "description": "JAX CNTR",
+        "frequency_mhz": 132.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5003,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Baxley Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.17,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.58,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.17,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBHC",
+    "airport_ref": "19374",
+    "fetched_at": "2026-08-27T01:23:35Z"
+  }
+}

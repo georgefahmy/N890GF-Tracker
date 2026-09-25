@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787505204.4595299,
+  "icao": "KFLD",
+  "data": {
+    "icao": "KFLD",
+    "faa": "FLD",
+    "iata": "FLD",
+    "name": "Fond du Lac County Airport",
+    "city": "Fond du Lac",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.7712,
+    "lon": -88.4884,
+    "elevation_ft": 808,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5620,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fond du Lac Skyport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.69,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 134.0
+      },
+      {
+        "type": "CNTR",
+        "description": "CHICAGO CNTR",
+        "frequency_mhz": 127.0
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T17:13:22Z"
+  }
+}

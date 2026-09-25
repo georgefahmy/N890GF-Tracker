@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787525630.978932,
+  "icao": "KGYB",
+  "data": {
+    "icao": "KGYB",
+    "faa": "GYB",
+    "iata": "",
+    "name": "Giddings-Lee County Airport",
+    "city": "Giddings",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.1693,
+    "lon": -96.98,
+    "elevation_ft": 485,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Giddings-Lee County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 16-Jul",
+        "quote_date": "16-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.84,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.59,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.84,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 132.15
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.225
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "fetched_at": "2026-08-23T22:53:50Z"
+  }
+}

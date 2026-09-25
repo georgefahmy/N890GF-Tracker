@@ -1,0 +1,145 @@
+{
+  "_cached_at": 1788014951.179882,
+  "icao": "PAMR",
+  "data": {
+    "icao": "PAMR",
+    "faa": "MRI",
+    "iata": "MRI",
+    "name": "Merrill Field",
+    "city": "Anchorage",
+    "state": "AK",
+    "country": "US",
+    "lat": 61.2128,
+    "lon": -149.844,
+    "elevation_ft": 137,
+    "tower": true,
+    "tower_freq": 126.0,
+    "ctaf_freq": 126.0,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.1,
+    "approach_desc": "ANCHORAGE APP/DEP",
+    "departure_freq": 119.1,
+    "departure_desc": "ANCHORAGE APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ANCHORAGE APP/DEP",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.0
+      },
+      {
+        "type": "FSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RFSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 126.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 2640,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 2000,
+        "width": 60,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crowley",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.93,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.89,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Spernak Airways",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.34,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.93,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "PAMR",
+    "airport_ref": "5386",
+    "fetched_at": "2026-08-29T14:49:11Z"
+  }
+}

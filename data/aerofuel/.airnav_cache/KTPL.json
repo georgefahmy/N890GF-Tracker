@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1787525641.316215,
+  "icao": "KTPL",
+  "data": {
+    "icao": "KTPL",
+    "faa": "TPL",
+    "iata": "TPL",
+    "name": "Draughon Miller Central Texas Regional Airport",
+    "city": "Temple",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.1525,
+    "lon": -97.4078,
+    "elevation_ft": 682,
+    "tower": true,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.0,
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 7000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 4740,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Temple Executive Air Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.27,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.87,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.27,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRAY APP/DEP",
+        "frequency_mhz": 120.075
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 134.975
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.9
+      },
+      {
+        "type": "RDO",
+        "description": "SAN ANGELO RDO",
+        "frequency_mhz": 110.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

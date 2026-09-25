@@ -1,0 +1,126 @@
+{
+  "_cached_at": 1790309075.465608,
+  "icao": "KLVK",
+  "data": {
+    "icao": "KLVK",
+    "faa": "LVK",
+    "iata": "LVK",
+    "name": "Livermore Municipal Airport",
+    "city": "Livermore",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.6934,
+    "lon": -121.82,
+    "elevation_ft": 400,
+    "tower": true,
+    "tower_freq": 118.1,
+    "ctaf_freq": 118.1,
+    "unicom_freq": 122.95,
+    "weather_freq": 119.65,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 123.85,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 123.85,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 123.85
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.65
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "07L/25R",
+        "length": 5253,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07R/25L",
+        "length": 2699,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Five Rivers Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Sep",
+        "quote_date": "21-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.41,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.41,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "94UL_SS": {
+            "price": 8.99,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.2,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.41,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLVK",
+    "airport_ref": "20384",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

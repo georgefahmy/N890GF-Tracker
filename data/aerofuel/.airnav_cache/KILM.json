@@ -1,0 +1,144 @@
+{
+  "_cached_at": 1787793563.874818,
+  "icao": "KILM",
+  "data": {
+    "icao": "KILM",
+    "faa": "ILM",
+    "iata": "ILM",
+    "name": "Wilmington International Airport",
+    "city": "Wilmington",
+    "state": "NC",
+    "country": "US",
+    "lat": 34.2723,
+    "lon": -77.9051,
+    "elevation_ft": 32,
+    "tower": true,
+    "tower_freq": 119.9,
+    "ctaf_freq": 119.9,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.975,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 118.25,
+    "approach_desc": "WILMINGTON APP/DEP 164-343",
+    "departure_freq": 118.25,
+    "departure_desc": "WILMINGTON APP/DEP 164-343",
+    "ground_freq": 121.9,
+    "ground_desc": "GND/CLNC DEL",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "WILMINGTON APP/DEP 164-343",
+        "frequency_mhz": 118.25
+      },
+      {
+        "type": "A/D",
+        "description": "WILMINGTON APP/DEP 344-163",
+        "frequency_mhz": 135.75
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.975
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "GCCD",
+        "description": "GND/CLNC DEL",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "RALEIGH RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 8016,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 7754,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Modern Aviation (formerly Air Wilmington)",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.66,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Aero Center Wilmington",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.72,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.58,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.66,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KILM",
+    "airport_ref": "3609",
+    "fetched_at": "2026-08-27T01:19:23Z"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "_cached_at": 1788014637.4179578,
+  "icao": "KRAP",
+  "data": {
+    "icao": "KRAP",
+    "faa": "RAP",
+    "iata": "RAP",
+    "name": "Rapid City Regional Airport",
+    "city": "Rapid City",
+    "state": "SD",
+    "country": "US",
+    "lat": 44.0453,
+    "lon": -103.057,
+    "elevation_ft": 3204,
+    "tower": true,
+    "tower_freq": 125.85,
+    "ctaf_freq": 125.85,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.525,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 119.5,
+    "approach_desc": "ELLSWORTH APP",
+    "departure_freq": 119.5,
+    "departure_desc": "ELLSWORTH DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "ELLSWORTH APP",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.85
+      },
+      {
+        "type": "DEP",
+        "description": "ELLSWORTH DEP",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 41.5
+      },
+      {
+        "type": "RDO",
+        "description": "HURON RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 125.85
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 8701,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 3601,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rapid City Regional Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.59,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.59,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Westjet Air Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.29,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRAP",
+    "airport_ref": "3838",
+    "fetched_at": "2026-08-29T14:43:57Z"
+  }
+}

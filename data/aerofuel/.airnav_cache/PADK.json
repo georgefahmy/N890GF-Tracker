@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787531346.39211,
+  "icao": "PADK",
+  "data": {
+    "icao": "PADK",
+    "faa": "ADK",
+    "iata": "ADK",
+    "name": "Adak Airport",
+    "city": "Adak",
+    "state": "AK",
+    "country": "US",
+    "lat": 51.8836,
+    "lon": -176.6428,
+    "elevation_ft": 18,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 7790,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "907-223-0007",
+        "notes": "Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {
+          "JET_A": {
+            "price": 9.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "JET_A": {
+            "price": 9.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T00:29:05Z"
+  }
+}

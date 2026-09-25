@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1787793507.242522,
+  "icao": "KSTK",
+  "data": {
+    "icao": "KSTK",
+    "faa": "STK",
+    "iata": "STK",
+    "name": "Sterling Municipal Airport",
+    "city": "Sterling",
+    "state": "CO",
+    "country": "US",
+    "lat": 40.6135,
+    "lon": -103.2638,
+    "elevation_ft": 4040,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.525,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.475,
+    "approach_desc": "DENVER CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 118.475
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "RDO",
+        "description": "AKRON RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5201,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 2500,
+        "width": 150,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sterling Municipal Airport (Crosson Field)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.03,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSTK",
+    "airport_ref": "21113",
+    "fetched_at": "2026-08-27T01:18:27Z"
+  }
+}

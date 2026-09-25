@@ -1,0 +1,56 @@
+{
+  "_cached_at": 1787788138.1617038,
+  "icao": "2A1",
+  "data": {
+    "icao": "2A1",
+    "faa": "2A1",
+    "iata": "",
+    "name": "Jamestown Municipal Airport",
+    "city": "Jamestown",
+    "state": "TN",
+    "country": "US",
+    "lat": 36.3497,
+    "lon": -84.9467,
+    "elevation_ft": 1694,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "INDIANAPOLIS CNTR",
+        "frequency_mhz": 121.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3498,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "931-879-8948",
+        "notes": "Quote: 10-Aug-2026",
+        "quote_date": "10-Aug-2026",
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:48:56Z"
+  }
+}

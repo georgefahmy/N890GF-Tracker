@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787705579.810278,
+  "icao": "KFIG",
+  "data": {
+    "icao": "KFIG",
+    "faa": "FIG",
+    "iata": "",
+    "name": "Clearfield Lawrence Airport",
+    "city": "Clearfield",
+    "state": "PA",
+    "country": "US",
+    "lat": 41.049,
+    "lon": -78.415,
+    "elevation_ft": 1516,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.725,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.275
+      },
+      {
+        "type": "CNTR",
+        "description": "NEW YORK CNTR",
+        "frequency_mhz": 134.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 4499,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Clearfield-Lawrence Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.15,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:52:59Z"
+  }
+}

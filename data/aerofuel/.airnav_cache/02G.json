@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787863971.854209,
+  "icao": "02G",
+  "data": {
+    "icao": "02G",
+    "faa": "02G",
+    "iata": "",
+    "name": "Columbiana County Airport",
+    "city": "East Liverpool",
+    "state": "OH",
+    "country": "US",
+    "lat": 40.6733,
+    "lon": -80.6414,
+    "elevation_ft": 1160,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.75,
+    "approach_desc": "PITTSBURGH APP/DEP",
+    "departure_freq": 124.75,
+    "departure_desc": "PITTSBURGH APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PITTSBURGH APP/DEP",
+        "frequency_mhz": 124.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3503,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Columbiana County Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Jul",
+        "quote_date": "26-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.77,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.77,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K02G",
+    "airport_ref": "18312",
+    "fetched_at": "2026-08-27T20:52:51Z"
+  }
+}

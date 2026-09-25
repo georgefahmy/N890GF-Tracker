@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1788014670.6391711,
+  "icao": "KMGG",
+  "data": {
+    "icao": "KMGG",
+    "faa": "MGG",
+    "iata": "",
+    "name": "Maple Lake Municipal Airport",
+    "city": "Maple Lake",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.236,
+    "lon": -93.9856,
+    "elevation_ft": 1028,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "04W/22W",
+        "length": 8000,
+        "width": 2000,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "10/28",
+        "length": 2796,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Maple Lake",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.13,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.13,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMGG",
+    "airport_ref": "22012",
+    "fetched_at": "2026-08-29T14:44:30Z"
+  }
+}

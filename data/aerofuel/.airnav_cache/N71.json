@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787787527.833508,
+  "icao": "N71",
+  "data": {
+    "icao": "N71",
+    "faa": "N71",
+    "iata": "",
+    "name": "Donegal Springs Airpark",
+    "city": "Mount Joy/Marietta",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.0922,
+    "lon": -76.5744,
+    "elevation_ft": 458,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HARRISBURG APP/DEP",
+        "frequency_mhz": 126.45
+      },
+      {
+        "type": "CLD",
+        "description": "HARRISBURG CLNC DEL",
+        "frequency_mhz": 127.05
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3250,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": ", Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:38:47Z"
+  }
+}

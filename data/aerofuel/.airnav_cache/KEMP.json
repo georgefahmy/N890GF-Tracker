@@ -1,0 +1,117 @@
+{
+  "_cached_at": 1787528905.918124,
+  "icao": "KEMP",
+  "data": {
+    "icao": "KEMP",
+    "faa": "EMP",
+    "iata": "EMP",
+    "name": "Emporia Municipal Airport",
+    "city": "Emporia",
+    "state": "KS",
+    "country": "US",
+    "lat": 38.3321,
+    "lon": -96.1912,
+    "elevation_ft": 1208,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 127.725
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 124.675
+      },
+      {
+        "type": "RDO",
+        "description": "WICHITA RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5005,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 3881,
+        "width": 300,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airport Fuel Facility",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {
+          "MOGAS_SS": {
+            "price": 24.0,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "Phillips 66",
+        "phone": "620-343-5600",
+        "notes": "Phillips 66 \u2022 Quote: 05-Aug-2026",
+        "quote_date": "05-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.21,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.57,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 5.48,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.48,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:48:24Z"
+  }
+}

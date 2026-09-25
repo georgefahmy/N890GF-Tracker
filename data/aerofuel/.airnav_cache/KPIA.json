@@ -1,0 +1,128 @@
+{
+  "_cached_at": 1789073603.532524,
+  "icao": "KPIA",
+  "data": {
+    "icao": "KPIA",
+    "faa": "PIA",
+    "iata": "PIA",
+    "name": "General Wayne A. Downing Peoria International Airport",
+    "city": "Peoria",
+    "state": "IL",
+    "country": "US",
+    "lat": 40.6638,
+    "lon": -89.6926,
+    "elevation_ft": 660,
+    "tower": true,
+    "tower_freq": 119.1,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 126.1,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 124.675,
+    "approach_desc": "PEORIA APP/DEP",
+    "departure_freq": 124.675,
+    "departure_desc": "PEORIA APP/DEP",
+    "ground_freq": 121.85,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PEORIA APP/DEP",
+        "frequency_mhz": 124.675
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 32.3
+      },
+      {
+        "type": "POST",
+        "description": "ANG OPS",
+        "frequency_mhz": 141.55
+      },
+      {
+        "type": "RDO",
+        "description": "KANKAKEE RDO",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "TWR",
+        "description": "PEORIA TWR",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 10104,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 8004,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Byerly Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 08-Sep",
+        "quote_date": "08-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.52,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.16,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.52,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPIA",
+    "airport_ref": "3773",
+    "fetched_at": "2026-09-10T20:53:23Z"
+  }
+}

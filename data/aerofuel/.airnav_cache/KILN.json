@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787528524.690654,
+  "icao": "KILN",
+  "data": {
+    "icao": "KILN",
+    "faa": "ILN",
+    "iata": "ILN",
+    "name": "Wilmington Airpark",
+    "city": "Wilmington",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.4279,
+    "lon": -83.7921,
+    "elevation_ft": 1077,
+    "tower": true,
+    "ctaf_freq": 119.475,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTON APP/DEP",
+        "frequency_mhz": 118.85
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 126.675
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.925
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.475
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "TWR",
+        "description": "WILMINGTON TWR",
+        "frequency_mhz": 119.475
+      }
+    ],
+    "runways": [
+      {
+        "id": "04L/22R",
+        "length": 10701,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04R/22L",
+        "length": 9000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "LGSTX Services. Wilmington Air Park",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 6.59,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:04Z"
+  }
+}

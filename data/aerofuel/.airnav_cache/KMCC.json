@@ -1,0 +1,112 @@
+{
+  "_cached_at": 1790302580.779579,
+  "icao": "KMCC",
+  "data": {
+    "icao": "KMCC",
+    "faa": "MCC",
+    "iata": "MCC",
+    "name": "McClellan Airfield",
+    "city": "Sacramento",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.6676,
+    "lon": -121.401,
+    "elevation_ft": 77,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.975,
+    "weather_freq": 109.2,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 127.4,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 127.4,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 127.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 109.2
+      },
+      {
+        "type": "INFO",
+        "description": "USCG COMSTA SAN FRAN",
+        "frequency_mhz": 312.3
+      },
+      {
+        "type": "MISC",
+        "description": "USCG SACRAMENTO",
+        "frequency_mhz": 167.9
+      },
+      {
+        "type": "PMSV",
+        "description": "PMSV METRO",
+        "frequency_mhz": 34.46
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 10599,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "McClellan Jet Services",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.14,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.14,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.14,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KMCC",
+    "airport_ref": "3666",
+    "fetched_at": "2026-09-10T20:44:40Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787705624.9438772,
+  "icao": "5B9",
+  "data": {
+    "icao": "5B9",
+    "faa": "5B9",
+    "iata": "",
+    "name": "Dean Memorial Airport",
+    "city": "North Haverhill",
+    "state": "NH",
+    "country": "US",
+    "lat": 44.0806,
+    "lon": -72.0079,
+    "elevation_ft": 582,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 2511,
+        "width": 58,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dean Memorial Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Jun",
+        "quote_date": "19-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:53:44Z"
+  }
+}

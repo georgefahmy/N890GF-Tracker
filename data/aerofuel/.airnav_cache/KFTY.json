@@ -1,0 +1,125 @@
+{
+  "_cached_at": 1787718642.958735,
+  "icao": "KFTY",
+  "data": {
+    "icao": "KFTY",
+    "faa": "FTY",
+    "iata": "FTY",
+    "name": "Fulton County Airport Brown Field",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.7791,
+    "lon": -84.5214,
+    "elevation_ft": 841,
+    "tower": true,
+    "ctaf_freq": 118.45,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ATLANTA  APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.175
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.45
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "MACON RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "COUNTY TWR",
+        "frequency_mhz": 118.45
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5797,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hill Aircraft & Leasing",
+        "brand": "Phillips 66",
+        "phone": "404-691-3330",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.15,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.15,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "Titan",
+        "phone": "404-443-0231",
+        "notes": "Titan \u2022 Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.77,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.77,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:30:39Z"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "_cached_at": 1787504143.0807989,
+  "icao": "KSGU",
+  "data": {
+    "icao": "KSGU",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [
+      {
+        "name": "Million Air St. George",
+        "brand": "Avfuel",
+        "phone": "435-688-8009",
+        "notes": "Avfuel \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.62,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.17,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Sandstone Aviation FBO",
+        "brand": "World Fuel Services",
+        "phone": "435-674-1000",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.83,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Above View Jet Center",
+        "brand": "Titan",
+        "phone": "435-688-2111",
+        "notes": "Titan",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": 6.17,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T16:55:43Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

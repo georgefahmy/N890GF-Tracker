@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787788062.1294441,
+  "icao": "KLJF",
+  "data": {
+    "icao": "KLJF",
+    "faa": "LJF",
+    "iata": "",
+    "name": "Litchfield Municipal Airport",
+    "city": "Litchfield",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.0971,
+    "lon": -94.5073,
+    "elevation_ft": 1140,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 109.0
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 125.5
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 109.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Litchfield (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 15-Jul",
+        "quote_date": "15-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.1,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:47:42Z"
+  }
+}

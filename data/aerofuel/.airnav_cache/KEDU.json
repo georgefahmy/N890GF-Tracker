@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1790302580.777716,
+  "icao": "KEDU",
+  "data": {
+    "icao": "KEDU",
+    "faa": "EDU",
+    "iata": "",
+    "name": "University Airport",
+    "city": "Davis",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.5315,
+    "lon": -121.7865,
+    "elevation_ft": 69,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3176,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "University Airport Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Jul",
+        "quote_date": "10-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KEDU",
+    "airport_ref": "17175",
+    "fetched_at": "2026-09-10T20:44:42Z"
+  }
+}

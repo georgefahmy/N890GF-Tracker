@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787787678.28623,
+  "icao": "2B1",
+  "data": {
+    "icao": "2B1",
+    "faa": "2B1",
+    "iata": "",
+    "name": "Cape Cod Airport",
+    "city": "Marston Mills",
+    "state": "MA",
+    "country": "US",
+    "lat": 41.6853,
+    "lon": -70.4023,
+    "elevation_ft": 103,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 2700,
+        "width": 60,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "17/35",
+        "length": 2060,
+        "width": 60,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "05/23",
+        "length": 2035,
+        "width": 50,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "508-428-8732",
+        "notes": "Quote: 26-May-2026",
+        "quote_date": "26-May-2026",
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:41:16Z"
+  }
+}

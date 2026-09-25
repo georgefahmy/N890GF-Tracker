@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788218304.548295,
+  "icao": "KPYG",
+  "data": {
+    "icao": "KPYG",
+    "faa": "PYG",
+    "iata": "",
+    "name": "Pageland Airport",
+    "city": "Pageland",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.7421,
+    "lon": -80.3452,
+    "elevation_ft": 575,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.05,
+    "approach_desc": "CHARLOTTE APP/DEP",
+    "departure_freq": 120.05,
+    "departure_desc": "CHARLOTTE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHARLOTTE APP/DEP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3396,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pageland Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPYG",
+    "airport_ref": "20899",
+    "fetched_at": "2026-08-31T23:18:24Z"
+  }
+}

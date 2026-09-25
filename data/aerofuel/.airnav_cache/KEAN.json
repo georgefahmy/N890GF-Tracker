@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1788214957.860085,
+  "icao": "KEAN",
+  "data": {
+    "icao": "KEAN",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T22:22:37Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

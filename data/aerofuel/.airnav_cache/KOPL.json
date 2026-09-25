@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787718595.543509,
+  "icao": "KOPL",
+  "data": {
+    "icao": "KOPL",
+    "faa": "OPL",
+    "iata": "OPL",
+    "name": "St Landry Parish Ahart Field",
+    "city": "Opelousas",
+    "state": "LA",
+    "country": "US",
+    "lat": 30.5584,
+    "lon": -92.0994,
+    "elevation_ft": 75,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LAFAYETTE APP/DEP",
+        "frequency_mhz": 128.7
+      },
+      {
+        "type": "RCO",
+        "description": "DE RIDDER RDO",
+        "frequency_mhz": 135.075
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5999,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 4051,
+        "width": 100,
+        "surface": "Concrete",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "St. Landry Parish Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:29:55Z"
+  }
+}

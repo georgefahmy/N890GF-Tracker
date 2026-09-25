@@ -1,0 +1,87 @@
+{
+  "_cached_at": 1787718366.032165,
+  "icao": "KROG",
+  "data": {
+    "icao": "KROG",
+    "faa": "ROG",
+    "iata": "ROG",
+    "name": "Rogers Municipal Airport-Carter Field",
+    "city": "Rogers",
+    "state": "AR",
+    "country": "US",
+    "lat": 36.3723,
+    "lon": -94.1069,
+    "elevation_ft": 1359,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 119.375,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "RAZORBACK APP/DEP",
+        "frequency_mhz": 128.15
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 134.375
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "TWR",
+        "description": "RAZORBACK TWR",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 119.375
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 6011,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Beaver Lake Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.03,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.03,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:06Z"
+  }
+}

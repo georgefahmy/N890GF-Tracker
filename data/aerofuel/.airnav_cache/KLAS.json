@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1787604243.180486,
+  "icao": "KLAS",
+  "data": {
+    "icao": "KLAS",
+    "faa": "LAS",
+    "iata": "LAS",
+    "name": "Harry Reid International Airport",
+    "city": "Las Vegas",
+    "state": "NV",
+    "country": "US",
+    "lat": 36.0834,
+    "lon": -115.1518,
+    "elevation_ft": 2181,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "LAS VEGAS APP",
+        "frequency_mhz": 125.025
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 132.4
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "DEP",
+        "description": "LAS VEGAS DEP",
+        "frequency_mhz": 125.02
+      },
+      {
+        "type": "GND",
+        "description": "Ground",
+        "frequency_mhz": 121.1
+      },
+      {
+        "type": "TWR",
+        "description": "Tower",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08L/26R",
+        "length": 14835,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08R/26L",
+        "length": 10526,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01L/19R",
+        "length": 9770,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "01R/19L",
+        "length": 9769,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.89,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.96,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 22-Aug",
+        "quote_date": "22-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.89,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.17,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 12.12,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:44:03Z"
+  }
+}

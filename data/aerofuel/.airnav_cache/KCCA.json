@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787788270.52987,
+  "icao": "KCCA",
+  "data": {
+    "icao": "KCCA",
+    "faa": "CCA",
+    "iata": "",
+    "name": "Clinton Municipal Airport",
+    "city": "Clinton",
+    "state": "AR",
+    "country": "US",
+    "lat": 35.5978,
+    "lon": -92.4516,
+    "elevation_ft": 514,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4007,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dawson Aircraft",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:51:10Z"
+  }
+}

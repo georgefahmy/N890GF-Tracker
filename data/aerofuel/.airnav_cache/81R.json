@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787718353.953023,
+  "icao": "81R",
+  "data": {
+    "icao": "81R",
+    "faa": "81R",
+    "iata": "",
+    "name": "San Saba County Municipal Airport",
+    "city": "San Saba",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.2352,
+    "lon": -98.717,
+    "elevation_ft": 1249,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4206,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "San Saba County Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.72,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.72,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:25:53Z"
+  }
+}

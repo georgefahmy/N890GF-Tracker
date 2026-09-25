@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788014798.668247,
+  "icao": "KACP",
+  "data": {
+    "icao": "KACP",
+    "faa": "ACP",
+    "iata": "",
+    "name": "Allen Parish Airport",
+    "city": "Oakdale",
+    "state": "LA",
+    "country": "US",
+    "lat": 30.7503,
+    "lon": -92.6883,
+    "elevation_ft": 107,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.275,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 123.7,
+    "approach_desc": "POLK APP/DEP",
+    "departure_freq": 123.7,
+    "departure_desc": "POLK APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "POLK APP/DEP",
+        "frequency_mhz": 123.7
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.275
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Allen Parish Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 04-Jun",
+        "quote_date": "04-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KACP",
+    "airport_ref": "19230",
+    "fetched_at": "2026-08-29T14:46:38Z"
+  }
+}

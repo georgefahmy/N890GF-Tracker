@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787793835.8438048,
+  "icao": "VA02",
+  "data": {
+    "icao": "VA02",
+    "faa": "VA02",
+    "name": "Pace Airport",
+    "city": "Ridgeway",
+    "state": "VA",
+    "distance_nm": 18.0,
+    "bearing": "NNW",
+    "fbos": [
+      {
+        "name": "Pace Flying",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-27T01:23:55Z",
+    "source": "AirNav Local Fuel"
+  }
+}

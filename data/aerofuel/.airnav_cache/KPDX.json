@@ -1,0 +1,127 @@
+{
+  "_cached_at": 1787608550.9984472,
+  "icao": "KPDX",
+  "data": {
+    "icao": "KPDX",
+    "faa": "PDX",
+    "iata": "PDX",
+    "name": "Portland International Airport",
+    "city": "Portland",
+    "state": "OR",
+    "country": "US",
+    "lat": 45.5887,
+    "lon": -122.598,
+    "elevation_ft": 31,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "ACP",
+        "description": "939 ARW COMD POST",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 129.92
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.625
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.125
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ANG BASE OPS",
+        "frequency_mhz": 128.05
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10R/28L",
+        "length": 11000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10L/28R",
+        "length": 9825,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "3/21",
+        "length": 6000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "Titan",
+        "phone": "503-331-4220",
+        "notes": "Titan \u2022 24/7 self-serve access \u2022 Guaranteed Price \u2022 Quote: 24-Aug-2026",
+        "quote_date": "24-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T21:55:46Z",
+    "from_cache": true
+  }
+}

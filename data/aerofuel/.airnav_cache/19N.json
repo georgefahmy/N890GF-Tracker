@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787787731.564675,
+  "icao": "19N",
+  "data": {
+    "icao": "19N",
+    "faa": "19N",
+    "iata": "",
+    "name": "Pine Valley Airport",
+    "city": "Berlin",
+    "state": "NJ",
+    "country": "US",
+    "lat": 39.7784,
+    "lon": -74.9478,
+    "elevation_ft": 149,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MC GUIRE APP/DEP",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 115.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 3094,
+        "width": 45,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pine Valley Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 6.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:11Z"
+  }
+}

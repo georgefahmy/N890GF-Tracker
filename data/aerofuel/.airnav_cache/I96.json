@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787788138.1657119,
+  "icao": "I96",
+  "data": {
+    "icao": "I96",
+    "faa": "I96",
+    "iata": "",
+    "name": "Columbia-Adair Co. Airport",
+    "city": "Columbia",
+    "state": "KY",
+    "country": "US",
+    "lat": 37.0847,
+    "lon": -85.3487,
+    "elevation_ft": 818,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 2600,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Columbia-Adair County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:58Z"
+  }
+}

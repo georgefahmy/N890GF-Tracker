@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787718671.846526,
+  "icao": "I93",
+  "data": {
+    "icao": "I93",
+    "faa": "I93",
+    "iata": "",
+    "name": "Breckinridge County Airport",
+    "city": "Hardinsburg",
+    "state": "KY",
+    "country": "US",
+    "lat": 37.7848,
+    "lon": -86.4413,
+    "elevation_ft": 735,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Breckinridge County Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:31:11Z"
+  }
+}

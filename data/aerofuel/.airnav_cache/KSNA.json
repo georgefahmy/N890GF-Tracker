@@ -1,0 +1,205 @@
+{
+  "_cached_at": 1787604227.9503272,
+  "icao": "KSNA",
+  "data": {
+    "icao": "KSNA",
+    "faa": "SNA",
+    "iata": "SNA",
+    "name": "John Wayne Orange County International Airport",
+    "city": "Santa Ana",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.6751,
+    "lon": -117.8693,
+    "elevation_ft": 56,
+    "tower": true,
+    "ctaf_freq": 126.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SOCAL APP",
+        "frequency_mhz": 38.02
+      },
+      {
+        "type": "APP",
+        "description": "SOCAL APP",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.0
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL SECONDARY",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.8
+      },
+      {
+        "type": "DEP",
+        "description": "SOCAL DEP",
+        "frequency_mhz": 128.1
+      },
+      {
+        "type": "DEP",
+        "description": "SOCAL DEP",
+        "frequency_mhz": 132.7
+      },
+      {
+        "type": "GND",
+        "description": "JOHN WAYNE GROUND",
+        "frequency_mhz": 120.8
+      },
+      {
+        "type": "GND",
+        "description": "JOHN WAYNE GROUND SECONDARY",
+        "frequency_mhz": 132.25
+      },
+      {
+        "type": "RDO",
+        "description": "RIVERSIDE RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "TWR",
+        "description": "RWY 02-20",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "TWR",
+        "description": "02L-20R",
+        "frequency_mhz": 126.8
+      },
+      {
+        "type": "TWR",
+        "description": "JOHN WAYNE TOWER SECONDARY",
+        "frequency_mhz": 128.35
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "02L/20R",
+        "length": 5700,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "02R/20L",
+        "length": 2886,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "ACI Jet North",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.93,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.67,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 9.38,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "ACI Jet South",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.93,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.67,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 9.38,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Clay Lacy Aviation Air Elite",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.63,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 8.8,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.63,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:43:47Z"
+  }
+}

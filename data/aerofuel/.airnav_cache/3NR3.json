@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1788218308.851236,
+  "icao": "3NR3",
+  "data": {
+    "icao": "3NR3",
+    "faa": "3NR3",
+    "name": "Transylvania Community Airport",
+    "city": "Brevard",
+    "state": "NC",
+    "distance_nm": 31.0,
+    "bearing": "NW",
+    "fbos": [
+      {
+        "name": "Transylvania Community Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.39,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T23:18:28Z",
+    "source": "AirNav Local Fuel"
+  }
+}

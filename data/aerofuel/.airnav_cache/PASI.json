@@ -1,0 +1,111 @@
+{
+  "_cached_at": 1788014981.0498712,
+  "icao": "PASI",
+  "data": {
+    "icao": "PASI",
+    "faa": "SIT",
+    "iata": "SIT",
+    "name": "Sitka Rocky Gutierrez Airport",
+    "city": "Sitka",
+    "state": "AK",
+    "country": "US",
+    "lat": 57.0471,
+    "lon": -135.362,
+    "elevation_ft": 21,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 135.9,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.9
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "FSS",
+        "description": "RDO",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "MISC",
+        "description": "TWEB",
+        "frequency_mhz": 113.8
+      },
+      {
+        "type": "OPS",
+        "description": "SITKA AIR",
+        "frequency_mhz": 34.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 7200,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aero Services",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 12.9,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 11.72,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 12.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "PASI",
+    "airport_ref": "5408",
+    "fetched_at": "2026-08-29T14:49:41Z"
+  }
+}

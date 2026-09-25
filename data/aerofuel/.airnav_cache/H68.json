@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1788202662.861413,
+  "icao": "H68",
+  "data": {
+    "icao": "H68",
+    "faa": "H68",
+    "iata": "",
+    "name": "Hefner Easley Airport",
+    "city": "Wagoner",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.9626,
+    "lon": -95.3419,
+    "elevation_ft": 609,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.1,
+    "approach_desc": "TULSA APP/DEP",
+    "departure_freq": 119.1,
+    "departure_desc": "TULSA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TULSA APP/DEP",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3401,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Integrity Airmotive, LLC",
+        "brand": "",
+        "phone": "918-640-7817",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KH68",
+    "airport_ref": "20013",
+    "fetched_at": "2026-08-31T18:57:41Z"
+  }
+}

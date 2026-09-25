@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787504535.514264,
+  "icao": "KPSP",
+  "data": {
+    "icao": "KPSP",
+    "faa": "PSP",
+    "name": "Palm Springs International Airport",
+    "city": "Palm Springs",
+    "state": "CA",
+    "distance_nm": 33.0,
+    "bearing": "SSW",
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 23-Aug",
+        "quote_date": "23-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.94,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 11.91,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T17:02:15Z",
+    "source": "AirNav Local Fuel"
+  }
+}

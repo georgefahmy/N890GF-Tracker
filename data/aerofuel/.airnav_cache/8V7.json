@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787793418.263157,
+  "icao": "8V7",
+  "data": {
+    "icao": "8V7",
+    "faa": "8V7",
+    "iata": "",
+    "name": "Springfield Municipal Airport",
+    "city": "Springfield",
+    "state": "CO",
+    "country": "US",
+    "lat": 37.4587,
+    "lon": -102.618,
+    "elevation_ft": 4390,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5000,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Town of Springfield",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Aug",
+        "quote_date": "03-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K8V7",
+    "airport_ref": "19150",
+    "fetched_at": "2026-08-27T01:16:58Z"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1787525309.42978,
+  "icao": "KSEM",
+  "data": {
+    "icao": "KSEM",
+    "faa": "SEM",
+    "iata": "SEM",
+    "name": "Craig Field",
+    "city": "Selma",
+    "state": "AL",
+    "country": "US",
+    "lat": 32.3439,
+    "lon": -86.9878,
+    "elevation_ft": 166,
+    "tower": false,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 6510,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Selma FBO",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.28,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MONTGOMERY APP/DEP",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "RDO",
+        "description": "ANNISTON RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "fetched_at": "2026-08-23T22:48:29Z"
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "_cached_at": 1790303582.472631,
+  "icao": "KDFW",
+  "data": {
+    "icao": "KDFW",
+    "faa": "DFW",
+    "iata": "DFW",
+    "name": "Dallas Fort Worth International Airport",
+    "city": "Dallas-Fort Worth",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.8968,
+    "lon": -97.038,
+    "elevation_ft": 607,
+    "tower": true,
+    "tower_freq": 124.15,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 123.775,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 28.465,
+    "approach_desc": "RGNL APP",
+    "departure_freq": 31.985,
+    "departure_desc": "RGNL DEP",
+    "ground_freq": 121.65,
+    "ground_desc": "RGNL GND",
+    "clearance_freq": 128.25,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "RGNL APP",
+        "frequency_mhz": 28.465
+      },
+      {
+        "type": "APP",
+        "description": "RGNL APP",
+        "frequency_mhz": 119.875
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 123.775
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 128.25
+      },
+      {
+        "type": "DEP",
+        "description": "RGNL DEP",
+        "frequency_mhz": 31.985
+      },
+      {
+        "type": "DEP",
+        "description": "RGNL DEP",
+        "frequency_mhz": 118.55
+      },
+      {
+        "type": "GND",
+        "description": "RGNL GND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "TWR",
+        "description": "RGNL TWR",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "18L/36R",
+        "length": 13401,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17C/35C",
+        "length": 13400,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17R/35L",
+        "length": 13400,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "18R/36L",
+        "length": 13400,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13R/31L",
+        "length": 9300,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13L/31R",
+        "length": 9000,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17L/35R",
+        "length": 8500,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "972-973-3700",
+        "notes": "Quote: 23-Sep-2026",
+        "quote_date": "23-Sep-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.18,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Airport Fuel Facility",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 22-Sep-2026",
+        "quote_date": "22-Sep-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDFW",
+    "airport_ref": "3488",
+    "fetched_at": "2026-08-29T14:46:28Z"
+  }
+}

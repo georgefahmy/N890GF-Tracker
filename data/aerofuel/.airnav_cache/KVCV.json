@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788202672.304928,
+  "icao": "KVCV",
+  "data": {
+    "icao": "KVCV",
+    "faa": "VCV",
+    "iata": "VCV",
+    "name": "Southern California Logistics Airport",
+    "city": "Victorville",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.5975,
+    "lon": -117.383,
+    "elevation_ft": 2885,
+    "tower": true,
+    "tower_freq": 118.35,
+    "ctaf_freq": 118.35,
+    "unicom_freq": 122.95,
+    "weather_freq": 109.4,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 124.55,
+    "approach_desc": "JOSHUA APP/DEP",
+    "departure_freq": 124.55,
+    "departure_desc": "JOSHUA APP/DEP",
+    "ground_freq": 124.45,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "JOSHUA APP/DEP",
+        "frequency_mhz": 124.55
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 109.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 124.45
+      },
+      {
+        "type": "TWR",
+        "description": "VICTORVILLE TWR",
+        "frequency_mhz": 118.35
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 13052,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 9138,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air Victorville",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.36,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.36,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVCV",
+    "airport_ref": "21315",
+    "fetched_at": "2026-08-31T18:57:52Z"
+  }
+}

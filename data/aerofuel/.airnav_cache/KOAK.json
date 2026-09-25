@@ -1,0 +1,170 @@
+{
+  "_cached_at": 1790309075.465251,
+  "icao": "KOAK",
+  "data": {
+    "icao": "KOAK",
+    "faa": "OAK",
+    "iata": "OAK",
+    "name": "Oakland San Francisco Bay Airport",
+    "city": "Oakland",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.7201,
+    "lon": -122.2212,
+    "elevation_ft": 9,
+    "tower": true,
+    "tower_freq": 118.3,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 133.775,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 31.76,
+    "approach_desc": "NORCAL APP",
+    "departure_freq": 120.9,
+    "departure_desc": "NORCAL DEP",
+    "ground_freq": 121.75,
+    "ground_desc": "GND",
+    "clearance_freq": 121.1,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 31.76
+      },
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 133.775
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.1
+      },
+      {
+        "type": "DEP",
+        "description": "NORCAL DEP",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "RDO",
+        "description": "OAKLAND RDO",
+        "frequency_mhz": 122.0
+      },
+      {
+        "type": "TWR",
+        "description": "OAKLAND TWR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 10520,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10R/28L",
+        "length": 6213,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10L/28R",
+        "length": 5457,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 3376,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "KaiserAir, Inc.",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.59,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.24,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.77,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 10.39,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOAK",
+    "airport_ref": "3744",
+    "fetched_at": "2026-09-10T20:44:13Z"
+  }
+}

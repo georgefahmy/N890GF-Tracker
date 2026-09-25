@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787528566.814564,
+  "icao": "KHLB",
+  "data": {
+    "icao": "KHLB",
+    "faa": "HLB",
+    "iata": "HLB",
+    "name": "Batesville Airport",
+    "city": "Batesville",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.3429,
+    "lon": -85.2584,
+    "elevation_ft": 973,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.725,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5933,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Batesville Aviation Services",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 6.28,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

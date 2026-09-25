@@ -1,0 +1,106 @@
+{
+  "_cached_at": 1788218308.8564868,
+  "icao": "KGSP",
+  "data": {
+    "icao": "KGSP",
+    "faa": "GSP",
+    "iata": "GSP",
+    "name": "Greenville-Spartanburg International Airport",
+    "city": "Greenville/Greer/Spartanburg",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.8957,
+    "lon": -82.2189,
+    "elevation_ft": 964,
+    "tower": true,
+    "tower_freq": 120.1,
+    "ctaf_freq": 120.1,
+    "unicom_freq": 122.95,
+    "weather_freq": 134.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 120.6,
+    "approach_desc": "GREER APP/DEP",
+    "departure_freq": 120.6,
+    "departure_desc": "GREER APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GREER GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREER APP/DEP",
+        "frequency_mhz": 120.6
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 134.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "GND",
+        "description": "GREER GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "GREER TWR",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 11001,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cerulean General Aviation",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.38,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGSP",
+    "airport_ref": "3569",
+    "fetched_at": "2026-08-29T14:47:09Z"
+  }
+}

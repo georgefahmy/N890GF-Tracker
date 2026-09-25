@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787608550.999607,
+  "icao": "KTTD",
+  "data": {
+    "icao": "KTTD",
+    "faa": "TTD",
+    "iata": "TTD",
+    "name": "Portland Troutdale Airport",
+    "city": "Portland",
+    "state": "OR",
+    "country": "US",
+    "lat": 45.5494,
+    "lon": -122.401,
+    "elevation_ft": 39,
+    "tower": true,
+    "ctaf_freq": 120.9,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.625
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "TWR",
+        "description": "TROUTDALE TWR",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5399,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Gorge Winds Aviation",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:55:50Z"
+  }
+}

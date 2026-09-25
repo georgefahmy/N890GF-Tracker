@@ -1,0 +1,152 @@
+{
+  "_cached_at": 1790303755.607002,
+  "icao": "KSPS",
+  "data": {
+    "icao": "KSPS",
+    "faa": "SPS",
+    "iata": "SPS",
+    "name": "Wichita Falls Municipal Airport / Sheppard Air Force Base",
+    "city": "Wichita Falls",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.9888,
+    "lon": -98.4919,
+    "elevation_ft": 1019,
+    "tower": true,
+    "tower_freq": 119.75,
+    "ctaf_freq": 119.75,
+    "unicom_freq": 122.95,
+    "weather_freq": 132.05,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 118.2,
+    "approach_desc": "APP",
+    "departure_freq": 120.4,
+    "departure_desc": "DEP",
+    "ground_freq": 125.5,
+    "ground_desc": "GND",
+    "clearance_freq": 121.2,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 132.05
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.75
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 125.5
+      },
+      {
+        "type": "PMSV",
+        "description": "PMSV METRO",
+        "frequency_mhz": 34.46
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 37.22
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.75
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "15R/33L",
+        "length": 13100,
+        "width": 300,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "15C/33C",
+        "length": 10003,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 7021,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15L/33R",
+        "length": 6000,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wichita Falls Regional Airport",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.37,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.88,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.37,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSPS",
+    "airport_ref": "3898",
+    "fetched_at": "2026-08-26T23:21:45Z"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788542163.4376042,
+  "icao": "O43",
+  "data": {
+    "icao": "O43",
+    "faa": "O43",
+    "iata": "EYR",
+    "name": "Yerington Municipal Airport",
+    "city": "Yerington",
+    "state": "NV",
+    "country": "US",
+    "lat": 39.0041,
+    "lon": -119.158,
+    "elevation_ft": 4378,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5800,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Yerington",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Sep",
+        "quote_date": "03-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KO43",
+    "airport_ref": "20689",
+    "fetched_at": "2026-09-04T17:16:03Z"
+  }
+}

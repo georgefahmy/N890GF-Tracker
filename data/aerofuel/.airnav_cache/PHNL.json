@@ -1,0 +1,157 @@
+{
+  "_cached_at": 1787718478.222071,
+  "icao": "PHNL",
+  "data": {
+    "icao": "PHNL",
+    "faa": "HNL",
+    "iata": "HNL",
+    "name": "Daniel K. Inouye International Airport",
+    "city": "Honolulu, Oahu",
+    "state": "HI",
+    "country": "US",
+    "lat": 21.3184,
+    "lon": -157.9257,
+    "elevation_ft": 13,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APPR",
+        "description": "APPR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.9
+      },
+      {
+        "type": "CLRN",
+        "description": "CLRN",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "DEPT",
+        "description": "DEPT",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.1
+      }
+    ],
+    "runways": [
+      {
+        "id": "08L/26R",
+        "length": 12360,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "08R/26L",
+        "length": 12000,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "04R/22L",
+        "length": 9002,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "04L/22R",
+        "length": 6955,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "08W/26W",
+        "length": 5090,
+        "width": 300,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "04W/22W",
+        "length": 3000,
+        "width": 150,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Castle & Cooke Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 7.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 11.57,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.65,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 9.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 11.57,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:27:58Z"
+  }
+}

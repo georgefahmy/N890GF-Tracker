@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1788202625.746965,
+  "icao": "KTNU",
+  "data": {
+    "icao": "KTNU",
+    "faa": "TNU",
+    "iata": "TNU",
+    "name": "Newton Municipal Airport",
+    "city": "Newton",
+    "state": "IA",
+    "country": "US",
+    "lat": 41.6744,
+    "lon": -93.0217,
+    "elevation_ft": 953,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 132.275,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 123.9,
+    "approach_desc": "DES MOINES APP/DEP",
+    "departure_freq": 123.9,
+    "departure_desc": "DES MOINES APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 126.3,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DES MOINES APP/DEP",
+        "frequency_mhz": 123.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.275
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.3
+      },
+      {
+        "type": "RDO",
+        "description": "FORT DODGE RDO",
+        "frequency_mhz": 112.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 5600,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Johnson Aviation / Midland Aircraft",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Jun",
+        "quote_date": "19-Jun",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.39,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTNU",
+    "airport_ref": "21207",
+    "fetched_at": "2026-08-31T18:57:05Z"
+  }
+}

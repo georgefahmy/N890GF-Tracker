@@ -1,0 +1,87 @@
+{
+  "_cached_at": 1787788696.591221,
+  "icao": "KFTT",
+  "data": {
+    "icao": "KFTT",
+    "faa": "FTT",
+    "iata": "",
+    "name": "Elton Hensley Memorial Airport",
+    "city": "Fulton",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.8381,
+    "lon": -92.0026,
+    "elevation_ft": 886,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MIZZU APP/DEP",
+        "frequency_mhz": 124.375
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4001,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 3203,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "12/30",
+        "length": 2488,
+        "width": 100,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Fulton",
+        "brand": "",
+        "phone": "573-544-6906",
+        "notes": "Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.93,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Myers Aviation",
+        "brand": "Titan",
+        "phone": "573-826-2520",
+        "notes": "Titan",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": 5.93,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:58:15Z"
+  }
+}

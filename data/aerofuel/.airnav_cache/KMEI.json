@@ -1,0 +1,127 @@
+{
+  "_cached_at": 1787788321.618546,
+  "icao": "KMEI",
+  "data": {
+    "icao": "KMEI",
+    "faa": "MEI",
+    "iata": "MEI",
+    "name": "Key Field / Meridian Regional Airport",
+    "city": "Meridian",
+    "state": "MS",
+    "country": "US",
+    "lat": 32.3326,
+    "lon": -88.7519,
+    "elevation_ft": 297,
+    "tower": true,
+    "ctaf_freq": 119.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MERIDIAN APP/DEP",
+        "frequency_mhz": 120.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.475
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "GCA",
+        "description": "GCA",
+        "frequency_mhz": 125.125
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "POST",
+        "description": "ANG OPS COMD POST",
+        "frequency_mhz": 29.23
+      },
+      {
+        "type": "RDO",
+        "description": "GREENWOOD RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 10003,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 5052,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Meridian Aviation",
+        "brand": "Titan",
+        "phone": "601-693-7282",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 UNICOM: 122.95",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.52,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.97,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.02,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.02,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:52:00Z"
+  }
+}

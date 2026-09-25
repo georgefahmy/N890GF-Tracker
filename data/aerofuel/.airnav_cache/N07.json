@@ -1,0 +1,76 @@
+{
+  "_cached_at": 1787792807.7176478,
+  "icao": "N07",
+  "data": {
+    "icao": "N07",
+    "faa": "N07",
+    "iata": "",
+    "name": "Lincoln Park Airport",
+    "city": "Lincoln Park",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.9475,
+    "lon": -74.3145,
+    "elevation_ft": 182,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 2767,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lincoln Park Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Jun",
+        "quote_date": "12-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.75,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Lincoln Park Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.29,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:47Z"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "_cached_at": 1788218295.0688481,
+  "icao": "KISO",
+  "data": {
+    "icao": "KISO",
+    "faa": "ISO",
+    "iata": "ISO",
+    "name": "Kinston Regional Jetport At Stallings Field",
+    "city": "Kinston",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.3314,
+    "lon": -77.6088,
+    "elevation_ft": 93,
+    "tower": true,
+    "tower_freq": 120.6,
+    "ctaf_freq": 120.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 132.75,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 127.3,
+    "approach_desc": "SEYMOUR JOHN APP/DEP",
+    "departure_freq": 127.3,
+    "departure_desc": "SEYMOUR JOHN APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SEYMOUR JOHN APP/DEP",
+        "frequency_mhz": 127.3
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.75
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "RALEIGH RDO",
+        "frequency_mhz": 109.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 11498,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Kinston Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.06,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.06,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KISO",
+    "airport_ref": "20189",
+    "fetched_at": "2026-08-31T23:18:15Z"
+  }
+}

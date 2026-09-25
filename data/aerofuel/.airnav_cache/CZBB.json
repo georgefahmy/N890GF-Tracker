@@ -1,0 +1,51 @@
+{
+  "_cached_at": 1787608578.91556,
+  "icao": "CZBB",
+  "data": {
+    "icao": "CZBB",
+    "faa": "CZBB",
+    "name": "Vancouver/Boundary Bay Airport",
+    "city": "Boundary Bay",
+    "state": "BC",
+    "distance_nm": 7.0,
+    "bearing": "NNE",
+    "fbos": [
+      {
+        "name": "Alpha Aviation, Inc",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Jul",
+        "quote_date": "07-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.17,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.27,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.17,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "fetched_at": "2026-08-24T21:56:18Z",
+    "source": "AirNav Local Fuel"
+  }
+}

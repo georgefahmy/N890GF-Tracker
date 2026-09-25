@@ -1,0 +1,111 @@
+{
+  "_cached_at": 1787793805.442562,
+  "icao": "KAAF",
+  "data": {
+    "icao": "KAAF",
+    "faa": "AAF",
+    "iata": "AAF",
+    "name": "Apalachicola Regional Airport",
+    "city": "Apalachicola",
+    "state": "FL",
+    "country": "US",
+    "lat": 29.7275,
+    "lon": -85.0275,
+    "elevation_ft": 20,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 119.925,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 119.75,
+    "approach_desc": "TYNDALL APP/DEP",
+    "departure_freq": 119.75,
+    "departure_desc": "TYNDALL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TYNDALL APP/DEP",
+        "frequency_mhz": 119.75
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.925
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 5425,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 5271,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 5251,
+        "width": 150,
+        "surface": "Con",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Centric Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.19,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAAF",
+    "airport_ref": "19224",
+    "fetched_at": "2026-08-27T01:23:25Z"
+  }
+}

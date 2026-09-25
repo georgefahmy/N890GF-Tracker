@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787788270.531564,
+  "icao": "4M3",
+  "data": {
+    "icao": "4M3",
+    "faa": "4M3",
+    "iata": "",
+    "name": "Carlisle Municipal Airport",
+    "city": "Carlisle",
+    "state": "AR",
+    "country": "US",
+    "lat": 34.8082,
+    "lon": -91.7121,
+    "elevation_ft": 241,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LITTLE ROCK APP/DEP",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "CLD",
+        "description": "LITTLE ROCK CLNC DEL",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4501,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 4494,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Carlisle Municipal Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:51:10Z"
+  }
+}

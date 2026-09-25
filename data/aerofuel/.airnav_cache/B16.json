@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788218666.849726,
+  "icao": "B16",
+  "data": {
+    "icao": "B16",
+    "faa": "B16",
+    "iata": "",
+    "name": "Whitfords Airport",
+    "city": "Weedsport",
+    "state": "NY",
+    "country": "US",
+    "lat": 43.0803,
+    "lon": -76.5384,
+    "elevation_ft": 400,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 134.275,
+    "approach_desc": "SYRACUSE APP/DEP",
+    "departure_freq": 134.275,
+    "departure_desc": "SYRACUSE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SYRACUSE APP/DEP",
+        "frequency_mhz": 134.275
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "10L/28R",
+        "length": 3630,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10R/28L",
+        "length": 2800,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Whitford's Airport, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KB16",
+    "airport_ref": "19346",
+    "fetched_at": "2026-08-31T23:24:26Z"
+  }
+}

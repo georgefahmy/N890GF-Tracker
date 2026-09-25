@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787528566.81423,
+  "icao": "KOXD",
+  "data": {
+    "icao": "KOXD",
+    "faa": "OXD",
+    "iata": "OXD",
+    "name": "Miami University Airport",
+    "city": "Oxford",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.5023,
+    "lon": -84.7844,
+    "elevation_ft": 1041,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CINCINNATI APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 4011,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Miami University Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 18-Jun",
+        "quote_date": "18-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.59,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

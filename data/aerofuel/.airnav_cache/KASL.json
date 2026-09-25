@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787525683.786079,
+  "icao": "KASL",
+  "data": {
+    "icao": "KASL",
+    "faa": "ASL",
+    "iata": "ASL",
+    "name": "Harrison County Airport",
+    "city": "Marshall",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.5205,
+    "lon": -94.3078,
+    "elevation_ft": 357,
+    "tower": false,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "02/20",
+        "length": 3299,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Central Jet Service",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.59,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.69,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SHREVEPORT APP/DEP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.675
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:43Z"
+  }
+}

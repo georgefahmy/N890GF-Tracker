@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1787523153.499706,
+  "icao": "KTIX",
+  "data": {
+    "icao": "KTIX",
+    "faa": "TIX",
+    "iata": "TIX",
+    "name": "Space Coast Regional Airport",
+    "city": "Titusville",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.5148,
+    "lon": -80.7992,
+    "elevation_ft": 34,
+    "tower": true,
+    "ctaf_freq": 118.9,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3910,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Space Coast Executive Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.47,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.35,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.8,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.47,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ORLANDO APP/DEP",
+        "frequency_mhz": 134.95
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.625
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "RDO",
+        "description": "ST PETERSBURG RDO",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T22:12:33Z"
+  }
+}

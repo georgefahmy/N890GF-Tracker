@@ -1,0 +1,87 @@
+{
+  "_cached_at": 1787788647.050878,
+  "icao": "KANB",
+  "data": {
+    "icao": "KANB",
+    "faa": "ANB",
+    "iata": "ANB",
+    "name": "Anniston Regional Airport",
+    "city": "Anniston",
+    "state": "AL",
+    "country": "US",
+    "lat": 33.5882,
+    "lon": -85.8581,
+    "elevation_ft": 612,
+    "tower": true,
+    "ctaf_freq": 123.6,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BIRMINGHAM APP/DEP",
+        "frequency_mhz": 125.45
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.675
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 7002,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "ALair Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 15-Aug",
+        "quote_date": "15-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.63,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.63,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:57:27Z"
+  }
+}

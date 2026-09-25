@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1789073595.846344,
+  "icao": "KDCY",
+  "data": {
+    "icao": "KDCY",
+    "faa": "DCY",
+    "iata": "",
+    "name": "Daviess County Airport",
+    "city": "Washington",
+    "state": "IN",
+    "country": "US",
+    "lat": 38.7004,
+    "lon": -87.1297,
+    "elevation_ft": 473,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 125.6,
+    "approach_desc": "EVANSVILLE APP/DEP",
+    "departure_freq": 125.6,
+    "departure_desc": "EVANSVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "EVANSVILLE APP/DEP",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5002,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Daviess County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 02-Sep",
+        "quote_date": "02-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDCY",
+    "airport_ref": "19619",
+    "fetched_at": "2026-09-10T20:53:15Z"
+  }
+}

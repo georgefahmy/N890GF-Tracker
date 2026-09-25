@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1788218347.393066,
+  "icao": "3G3",
+  "data": {
+    "icao": "3G3",
+    "faa": "3G3",
+    "iata": "",
+    "name": "Wadsworth Municipal Airport",
+    "city": "Wadsworth",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.0031,
+    "lon": -81.7565,
+    "elevation_ft": 974,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.6,
+    "approach_desc": "AKRON CANTON APP/DEP",
+    "departure_freq": 118.6,
+    "departure_desc": "AKRON CANTON APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "AKRON CANTON APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 3530,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10/28",
+        "length": 2155,
+        "width": 35,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Flight Services of Wadsworth",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.37,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.1,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.37,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3G3",
+    "airport_ref": "18694",
+    "fetched_at": "2026-08-31T23:19:07Z"
+  }
+}

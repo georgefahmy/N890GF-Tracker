@@ -1,0 +1,125 @@
+{
+  "_cached_at": 1788014670.6397572,
+  "icao": "KMIC",
+  "data": {
+    "icao": "KMIC",
+    "faa": "MIC",
+    "iata": "MIC",
+    "name": "Crystal Airport",
+    "city": "Minneapolis",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.062,
+    "lon": -93.3539,
+    "elevation_ft": 869,
+    "tower": true,
+    "tower_freq": 120.7,
+    "ctaf_freq": 120.7,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.475,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 126.5,
+    "approach_desc": "MINNEAPOLIS APP/DEP",
+    "departure_freq": 126.5,
+    "departure_desc": "MINNEAPOLIS APP/DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": 121.6,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MINNEAPOLIS APP/DEP",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.475
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3751,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06L/24R",
+        "length": 2500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06R/24L",
+        "length": 1669,
+        "width": 137,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Metropolitan Airports Commission",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMIC",
+    "airport_ref": "20508",
+    "fetched_at": "2026-08-29T14:44:30Z"
+  }
+}

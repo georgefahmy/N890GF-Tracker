@@ -1,0 +1,108 @@
+{
+  "_cached_at": 1788218666.850235,
+  "icao": "0G7",
+  "data": {
+    "icao": "0G7",
+    "faa": "0G7",
+    "iata": "",
+    "name": "Finger Lakes Regional Airport",
+    "city": "Seneca Falls",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.8836,
+    "lon": -76.7822,
+    "elevation_ft": 492,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 120.0,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 126.125,
+    "approach_desc": "SYRACUSE APP DEP",
+    "departure_freq": 126.125,
+    "departure_desc": "SYRACUSE APP DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SYRACUSE APP DEP",
+        "frequency_mhz": 126.125
+      },
+      {
+        "type": "APP",
+        "description": "ROCHESTER APP",
+        "frequency_mhz": 119.55
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.0
+      },
+      {
+        "type": "MISC",
+        "description": "ELMIRA APP",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4592,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10/28",
+        "length": 1850,
+        "width": 60,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Finger Lakes Regional Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.6,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K0G7",
+    "airport_ref": "18365",
+    "fetched_at": "2026-08-31T23:24:26Z"
+  }
+}

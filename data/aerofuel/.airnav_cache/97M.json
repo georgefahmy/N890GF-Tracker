@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787705739.8012202,
+  "icao": "97M",
+  "data": {
+    "icao": "97M",
+    "faa": "97M",
+    "iata": "",
+    "name": "Ekalaka Airport",
+    "city": "Ekalaka",
+    "state": "MT",
+    "country": "US",
+    "lat": 45.8778,
+    "lon": -104.537,
+    "elevation_ft": 3503,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3798,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ekalaka Airport",
+        "brand": "",
+        "phone": "406-975-9791",
+        "notes": "Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.47,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.47,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T00:55:38Z"
+  }
+}

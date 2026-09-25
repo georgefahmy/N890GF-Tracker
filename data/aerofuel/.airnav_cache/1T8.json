@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787718334.1535082,
+  "icao": "1T8",
+  "data": {
+    "icao": "1T8",
+    "faa": "1T8",
+    "iata": "",
+    "name": "Bulverde Airpark",
+    "city": "Bulverde",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.7391,
+    "lon": -98.4513,
+    "elevation_ft": 1080,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 2890,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Anderson Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:25:34Z"
+  }
+}

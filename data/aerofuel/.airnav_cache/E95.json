@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787518884.75757,
+  "icao": "E95",
+  "data": {
+    "icao": "E95",
+    "faa": "E95",
+    "iata": "",
+    "name": "Benson Municipal Airport/Paul Kerchum Field",
+    "city": "Benson",
+    "state": "AZ",
+    "country": "US",
+    "lat": 31.9994,
+    "lon": -110.3582,
+    "elevation_ft": 3829,
+    "tower": false,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 8560,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Southwestern Aviation, LLC",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "City of Benson",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.06,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.55,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T21:01:24Z"
+  }
+}

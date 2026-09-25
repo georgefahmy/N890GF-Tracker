@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1788014981.050522,
+  "icao": "PAWG",
+  "data": {
+    "icao": "PAWG",
+    "faa": "WRG",
+    "iata": "WRG",
+    "name": "Wrangell Airport",
+    "city": "Wrangell",
+    "state": "AK",
+    "country": "US",
+    "lat": 56.4843,
+    "lon": -132.37,
+    "elevation_ft": 49,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.6,
+    "unicom_freq": 122.6,
+    "weather_freq": 128.5,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.5
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "FSS",
+        "description": "SITKA RDO",
+        "frequency_mhz": 122.45
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 6000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Petro Marine Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 16-Jun",
+        "quote_date": "16-Jun",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.43,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.43,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "PAWG",
+    "airport_ref": "5421",
+    "fetched_at": "2026-08-29T14:49:41Z"
+  }
+}

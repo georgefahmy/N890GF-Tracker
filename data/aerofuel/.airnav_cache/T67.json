@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1790303582.474977,
+  "icao": "T67",
+  "data": {
+    "icao": "T67",
+    "faa": "T67",
+    "iata": "",
+    "name": "Hicks Air Field",
+    "city": "Fort Worth",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.9305,
+    "lon": -97.4123,
+    "elevation_ft": 855,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 125.9,
+    "clearance_desc": "REGIONAL CLNC DEL",
+    "frequencies": [
+      {
+        "type": "CLD",
+        "description": "REGIONAL CLNC DEL",
+        "frequency_mhz": 125.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3740,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rio Concho Aviation, Inc.",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 08-Sep",
+        "quote_date": "08-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.83,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KT67",
+    "airport_ref": "21162",
+    "fetched_at": "2026-08-29T14:46:28Z"
+  }
+}

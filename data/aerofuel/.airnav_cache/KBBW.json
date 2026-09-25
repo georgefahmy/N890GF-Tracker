@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787705746.3004842,
+  "icao": "KBBW",
+  "data": {
+    "icao": "KBBW",
+    "faa": "BBW",
+    "iata": "BBW",
+    "name": "Broken Bow Municipal Airport",
+    "city": "Broken Bow",
+    "state": "NE",
+    "country": "US",
+    "lat": 41.4365,
+    "lon": -99.6422,
+    "elevation_ft": 2547,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.0
+      },
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 132.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4203,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Broken Bow Airport Authority",
+        "brand": "Titan",
+        "phone": "308-872-2875",
+        "notes": "Titan \u2022 Quote: 07-Aug-2026",
+        "quote_date": "07-Aug-2026",
+        "fuels": {
+          "JET_A": {
+            "price": 7.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "JET_A": {
+            "price": 1.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          },
+          "100LL_SS": {
+            "price": 24.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 24.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T00:55:44Z"
+  }
+}

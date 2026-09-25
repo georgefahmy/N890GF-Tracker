@@ -1,0 +1,164 @@
+{
+  "_cached_at": 1790309075.4647932,
+  "icao": "KSFO",
+  "data": {
+    "icao": "KSFO",
+    "faa": "SFO",
+    "iata": "SFO",
+    "name": "San Francisco International Airport",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.6198,
+    "lon": -122.3748,
+    "elevation_ft": 13,
+    "tower": true,
+    "tower_freq": 120.5,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 113.7,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 128.325,
+    "approach_desc": "NORCAL APP",
+    "departure_freq": 120.9,
+    "departure_desc": "NORCAL DEP NW-EAST",
+    "ground_freq": 121.8,
+    "ground_desc": "GND",
+    "clearance_freq": 118.2,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 128.325
+      },
+      {
+        "type": "APP",
+        "description": "NORCAL APP SECONDARY",
+        "frequency_mhz": 133.95
+      },
+      {
+        "type": "APP",
+        "description": "NORCAL APP INITIAL CONTACT",
+        "frequency_mhz": 134.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 113.7
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 1",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "DEP",
+        "description": "NORCAL DEP NW-EAST",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "DEP",
+        "description": "NORCAL DEP SE-WEST",
+        "frequency_mhz": 135.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "MISC",
+        "description": "USCG",
+        "frequency_mhz": 34.5
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10L/28R",
+        "length": 11870,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10R/28L",
+        "length": 11381,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "1R/19L",
+        "length": 8660,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "1L/19R",
+        "length": 7650,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.28,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 12.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 13.8,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.28,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSFO",
+    "airport_ref": "3878",
+    "fetched_at": "2026-09-10T20:44:13Z"
+  }
+}

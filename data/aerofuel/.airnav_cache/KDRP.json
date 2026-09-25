@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787792778.598778,
+  "icao": "KDRP",
+  "data": {
+    "icao": "KDRP",
+    "faa": "DRP",
+    "iata": "",
+    "name": "Delta Regional Airport",
+    "city": "Colt",
+    "state": "AR",
+    "country": "US",
+    "lat": 35.1201,
+    "lon": -90.8265,
+    "elevation_ft": 239,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "surface": "Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Delta Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.99,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:18Z"
+  }
+}

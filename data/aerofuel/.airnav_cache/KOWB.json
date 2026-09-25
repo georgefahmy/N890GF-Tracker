@@ -1,0 +1,143 @@
+{
+  "_cached_at": 1789073595.843989,
+  "icao": "KOWB",
+  "data": {
+    "icao": "KOWB",
+    "faa": "OWB",
+    "iata": "OWB",
+    "name": "Owensboro Daviess County Airport",
+    "city": "Owensboro",
+    "state": "KY",
+    "country": "US",
+    "lat": 37.7401,
+    "lon": -87.1668,
+    "elevation_ft": 407,
+    "tower": true,
+    "tower_freq": 120.7,
+    "ctaf_freq": 120.7,
+    "unicom_freq": 122.95,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.4,
+    "approach_desc": "EVANSVILLE APP/DEP",
+    "departure_freq": 126.4,
+    "departure_desc": "EVANSVILLE APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "EVANSVILLE APP/DEP",
+        "frequency_mhz": 126.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "LOUISVILLE RDO",
+        "frequency_mhz": 108.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 8000,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 5000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "MidAmerica Jet",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 02-Sep",
+        "quote_date": "02-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.82,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Owensboro-Daviess County Regional Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 10-Sep",
+        "quote_date": "10-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.04,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Modern Jet Center",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 01-Sep",
+        "quote_date": "01-Sep",
+        "fuels": {
+          "JET_A": {
+            "price": 8.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.04,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOWB",
+    "airport_ref": "3761",
+    "fetched_at": "2026-09-10T20:53:15Z"
+  }
+}

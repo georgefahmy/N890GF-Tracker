@@ -1,0 +1,99 @@
+{
+  "_cached_at": 1787527548.666603,
+  "icao": "PAGA",
+  "data": {
+    "icao": "PAGA",
+    "faa": "GAL",
+    "iata": "GAL",
+    "name": "Edward G. Pitka Sr Airport",
+    "city": "Galena",
+    "state": "AK",
+    "country": "US",
+    "lat": 64.7362,
+    "lon": -156.937,
+    "elevation_ft": 153,
+    "tower": true,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.525
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 127.0
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.0
+      },
+      {
+        "type": "FSS",
+        "description": "FAIRBANKS RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "OPS",
+        "description": "GALENA OPS",
+        "frequency_mhz": 39.12
+      },
+      {
+        "type": "PMSV",
+        "description": "PMSV METRO",
+        "frequency_mhz": 134.5
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 6000,
+        "width": 100,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 2600,
+        "width": 50,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crowley",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 29-May",
+        "quote_date": "29-May",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.83,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.12,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:25:48Z"
+  }
+}

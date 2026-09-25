@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1789073557.876908,
+  "icao": "Y63",
+  "data": {
+    "icao": "Y63",
+    "faa": "Y63",
+    "iata": "",
+    "name": "Elbow Lake Municipal - Pride of the Prairie Airport",
+    "city": "Elbow Lake",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.9847,
+    "lon": -95.9917,
+    "elevation_ft": 1205,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3401,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "218-685-6594",
+        "notes": "Quote: 21-Aug-2026",
+        "quote_date": "21-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.48,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.48,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "Y63",
+    "airport_ref": "26332",
+    "fetched_at": "2026-09-10T20:52:36Z"
+  }
+}

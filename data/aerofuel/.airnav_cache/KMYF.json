@@ -1,0 +1,139 @@
+{
+  "_cached_at": 1787513430.225975,
+  "icao": "KMYF",
+  "data": {
+    "icao": "KMYF",
+    "faa": "MYF",
+    "iata": "MYF",
+    "name": "Montgomery-Gibbs Executive Airport",
+    "city": "San Diego",
+    "state": "CA",
+    "country": "US",
+    "lat": 32.8157,
+    "lon": -117.14,
+    "elevation_ft": 427,
+    "tower": true,
+    "ctaf_freq": 119.2,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "10L/28R",
+        "length": 4577,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crownair Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.39,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 9.51,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "94UL_FS": {
+            "price": 10.99,
+            "type": "94UL",
+            "service": "Full-Serve",
+            "label": "94UL Unleaded (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.13,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Coast Air Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.41,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SOCAL APP",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.9
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 123.725
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "DEP",
+        "description": "SOCAL DEP",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 118.22
+      },
+      {
+        "type": "RDO",
+        "description": "SAN DIEGO RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T19:30:30Z"
+  }
+}

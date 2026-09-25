@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787786428.022809,
+  "icao": "KGWR",
+  "data": {
+    "icao": "KGWR",
+    "faa": "GWR",
+    "iata": "",
+    "name": "Gwinner Roger Melroe Field",
+    "city": "Gwinner",
+    "state": "ND",
+    "country": "US",
+    "lat": 46.2187,
+    "lon": -97.6432,
+    "elevation_ft": 1266,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPLOIS CNTR",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 2991,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hoistad Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:20:28Z"
+  }
+}

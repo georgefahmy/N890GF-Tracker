@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787608578.923209,
+  "icao": "KBVS",
+  "data": {
+    "icao": "KBVS",
+    "faa": "BVS",
+    "iata": "MVW",
+    "name": "Skagit Regional Airport",
+    "city": "Burlington",
+    "state": "WA",
+    "country": "US",
+    "lat": 48.4709,
+    "lon": -122.421,
+    "elevation_ft": 144,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.075,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "WHIDBEY APP/DEP",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 121.125
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 5480,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 3000,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Corporate Air Center LLC AEG Connect Network",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.16,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.36,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.98,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.16,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:56:18Z"
+  }
+}

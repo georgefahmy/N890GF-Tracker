@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788218510.138449,
+  "icao": "KUUU",
+  "data": {
+    "icao": "KUUU",
+    "faa": "UUU",
+    "iata": "NPT",
+    "name": "Newport State Airport",
+    "city": "Newport",
+    "state": "RI",
+    "country": "US",
+    "lat": 41.5322,
+    "lon": -71.281,
+    "elevation_ft": 172,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 132.075,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 128.7,
+    "approach_desc": "PROVIDENCE APP/DEP",
+    "departure_freq": 128.7,
+    "departure_desc": "PROVIDENCE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 127.25,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PROVIDENCE APP/DEP",
+        "frequency_mhz": 128.7
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 132.075
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 127.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 2999,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 2623,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FlightLevel Rhode Island",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.02,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.02,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KUUU",
+    "airport_ref": "21305",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

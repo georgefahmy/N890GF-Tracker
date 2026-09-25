@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202662.861853,
+  "icao": "H71",
+  "data": {
+    "icao": "H71",
+    "faa": "H71",
+    "iata": "",
+    "name": "Mid America Industrial Airport",
+    "city": "Pryor",
+    "state": "OK",
+    "country": "US",
+    "lat": 36.2254,
+    "lon": -95.3301,
+    "elevation_ft": 622,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.1,
+    "approach_desc": "TULSA APP/DEP",
+    "departure_freq": 119.1,
+    "departure_desc": "TULSA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TULSA APP/DEP",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5001,
+        "width": 72,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mid-America Industrial Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.95,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KH71",
+    "airport_ref": "20015",
+    "fetched_at": "2026-08-31T18:57:42Z"
+  }
+}

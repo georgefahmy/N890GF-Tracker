@@ -1,0 +1,110 @@
+{
+  "_cached_at": 1788202714.772501,
+  "icao": "KEPH",
+  "data": {
+    "icao": "KEPH",
+    "faa": "EPH",
+    "iata": "EPH",
+    "name": "Ephrata Municipal Airport",
+    "city": "Ephrata",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.3076,
+    "lon": -119.516,
+    "elevation_ft": 1276,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 135.775,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 126.4,
+    "approach_desc": "GRANT CO APP/DEP",
+    "departure_freq": 126.4,
+    "departure_desc": "GRANT CO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRANT CO APP/DEP",
+        "frequency_mhz": 126.4
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.775
+      },
+      {
+        "type": "RDO",
+        "description": "SEATTLE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "11/29",
+        "length": 3843,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 3467,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Port of Ephrata",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.73,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KEPH",
+    "airport_ref": "19764",
+    "fetched_at": "2026-08-31T18:58:34Z"
+  }
+}

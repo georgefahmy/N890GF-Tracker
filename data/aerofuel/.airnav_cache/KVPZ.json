@@ -1,0 +1,119 @@
+{
+  "_cached_at": 1789073607.59041,
+  "icao": "KVPZ",
+  "data": {
+    "icao": "KVPZ",
+    "faa": "VPZ",
+    "iata": "VPZ",
+    "name": "Porter County Municipal Airport",
+    "city": "Valparaiso",
+    "state": "IN",
+    "country": "US",
+    "lat": 41.454,
+    "lon": -87.0071,
+    "elevation_ft": 770,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.725,
+    "weather_freq": 125.875,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 132.05,
+    "approach_desc": "SOUTH BEND APP/DEP",
+    "departure_freq": 132.05,
+    "departure_desc": "SOUTH BEND APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 135.2,
+    "clearance_desc": "SOUTH BEND CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOUTH BEND APP/DEP",
+        "frequency_mhz": 132.05
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 125.875
+      },
+      {
+        "type": "CLD",
+        "description": "SOUTH BEND CLNC DEL",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.725
+      },
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 123.65
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 7001,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Porter County Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVPZ",
+    "airport_ref": "3949",
+    "fetched_at": "2026-09-10T20:53:27Z"
+  }
+}

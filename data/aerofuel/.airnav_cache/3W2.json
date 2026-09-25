@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1788014701.778691,
+  "icao": "3W2",
+  "data": {
+    "icao": "3W2",
+    "faa": "3W2",
+    "iata": "",
+    "name": "Put In Bay Airport",
+    "city": "Put In Bay",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.6367,
+    "lon": -82.8283,
+    "elevation_ft": 595,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 2870,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Erie Island Carts",
+        "brand": "",
+        "phone": "419-285-5278",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Live Feed",
+    "raw_ident": "3W2",
+    "airport_ref": "10857",
+    "fetched_at": "2026-08-29T14:44:59Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787542648.360666,
+  "icao": "07K",
+  "data": {
+    "icao": "07K",
+    "faa": "07K",
+    "iata": "",
+    "name": "Central City Municipal - Larry Reineke Field",
+    "city": "Central City",
+    "state": "NE",
+    "country": "US",
+    "lat": 41.1126,
+    "lon": -98.0517,
+    "elevation_ft": 1717,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3700,
+        "width": 60,
+        "surface": "Concrete",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Central Nebraska Airmotive",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:37:28Z"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788014778.785578,
+  "icao": "3O4",
+  "data": {
+    "icao": "3O4",
+    "faa": "3O4",
+    "iata": "",
+    "name": "Sayre Municipal Airport",
+    "city": "Sayre",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.1676,
+    "lon": -99.6579,
+    "elevation_ft": 1937,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "MC ALESTER RDO",
+        "frequency_mhz": 115.2
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4276,
+        "width": 130,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sayre Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 4.59,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3O4",
+    "airport_ref": "18726",
+    "fetched_at": "2026-08-29T14:46:18Z"
+  }
+}

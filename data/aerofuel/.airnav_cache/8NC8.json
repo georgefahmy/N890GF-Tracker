@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787793835.845506,
+  "icao": "8NC8",
+  "data": {
+    "icao": "8NC8",
+    "faa": "8NC8",
+    "name": "Lake Ridge Aero Park Airport",
+    "city": "Durham",
+    "state": "NC",
+    "distance_nm": 48.0,
+    "bearing": "ESE",
+    "fbos": [
+      {
+        "name": "Lake Ridge Aero Park",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-27T01:23:55Z",
+    "source": "AirNav Local Fuel"
+  }
+}

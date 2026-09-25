@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1789073595.843072,
+  "icao": "3EV",
+  "data": {
+    "icao": "3EV",
+    "faa": "3EV",
+    "iata": "",
+    "name": "Skylane Airport",
+    "city": "Evansville",
+    "state": "IN",
+    "country": "US",
+    "lat": 38.0117,
+    "lon": -87.5947,
+    "elevation_ft": 380,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2227,
+        "width": 142,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "812-423-5755",
+        "notes": "Quote: 21-Aug-2026",
+        "quote_date": "21-Aug-2026",
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "3EV",
+    "airport_ref": "10437",
+    "fetched_at": "2026-09-10T20:53:14Z"
+  }
+}

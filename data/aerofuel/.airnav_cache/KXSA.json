@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787787820.658624,
+  "icao": "KXSA",
+  "data": {
+    "icao": "KXSA",
+    "faa": "XSA",
+    "iata": "",
+    "name": "Tappahannock-Essex County Airport",
+    "city": "Tappahannock",
+    "state": "VA",
+    "country": "US",
+    "lat": 37.8596,
+    "lon": -76.8941,
+    "elevation_ft": 135,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 4300,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Tappahannock-Essex County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.06,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:40Z"
+  }
+}

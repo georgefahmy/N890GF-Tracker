@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787527533.666979,
+  "icao": "KWP",
+  "data": {
+    "icao": "KWP",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T23:25:33Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

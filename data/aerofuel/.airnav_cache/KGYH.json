@@ -1,0 +1,127 @@
+{
+  "_cached_at": 1788218308.857316,
+  "icao": "KGYH",
+  "data": {
+    "icao": "KGYH",
+    "faa": "GYH",
+    "iata": "GDC",
+    "name": "Donaldson Field Airport",
+    "city": "Greenville",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.7583,
+    "lon": -82.3764,
+    "elevation_ft": 955,
+    "tower": true,
+    "tower_freq": 133.325,
+    "ctaf_freq": 133.325,
+    "unicom_freq": 133.325,
+    "weather_freq": 127.325,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.8,
+    "approach_desc": "GREER APP/DEP",
+    "departure_freq": 118.8,
+    "departure_desc": "GREER APP/DEP",
+    "ground_freq": 121.4,
+    "ground_desc": "GND",
+    "clearance_freq": 121.4,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREER APP/DEP",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 127.325
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 133.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 133.325
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 8000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Vantage Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 9.02,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.06,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Stevens Aerospace and Defense Systems LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 7.83,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGYH",
+    "airport_ref": "19996",
+    "fetched_at": "2026-08-31T23:18:28Z"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787531423.276612,
+  "icao": "PAUN",
+  "data": {
+    "icao": "PAUN",
+    "faa": "UNK",
+    "iata": "UNK",
+    "name": "Unalakleet Airport",
+    "city": "Unalakleet",
+    "state": "AK",
+    "country": "US",
+    "lat": 63.8884,
+    "lon": -160.799,
+    "elevation_ft": 27,
+    "tower": true,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.25
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 135.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.0
+      },
+      {
+        "type": "FSS",
+        "description": "NOME RDO",
+        "frequency_mhz": 122.3
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5900,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 1900,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "West Coast Aviation Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 12.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 10.75,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 12.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:30:23Z"
+  }
+}

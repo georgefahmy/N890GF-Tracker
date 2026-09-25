@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1787863998.415196,
+  "icao": "3JC",
+  "data": {
+    "icao": "3JC",
+    "faa": "3JC",
+    "iata": "",
+    "name": "Freeman Field",
+    "city": "Junction City",
+    "state": "KS",
+    "country": "US",
+    "lat": 39.0445,
+    "lon": -96.8446,
+    "elevation_ft": 1101,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 127.35,
+    "approach_desc": "KANSAS CITY CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3498,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 1903,
+        "width": 140,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "05/23",
+        "length": 1834,
+        "width": 200,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Freeman Field",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 22-Aug",
+        "quote_date": "22-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3JC",
+    "airport_ref": "18710",
+    "fetched_at": "2026-08-27T20:53:18Z"
+  }
+}

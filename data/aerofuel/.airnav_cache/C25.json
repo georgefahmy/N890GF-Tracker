@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788202625.7466838,
+  "icao": "C25",
+  "data": {
+    "icao": "C25",
+    "faa": "C25",
+    "iata": "",
+    "name": "Waverly Municipal Airport",
+    "city": "Waverly",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.742,
+    "lon": -92.5079,
+    "elevation_ft": 992,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 3200,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Waverly Air Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "C25",
+    "airport_ref": "16512",
+    "fetched_at": "2026-08-31T18:57:05Z"
+  }
+}

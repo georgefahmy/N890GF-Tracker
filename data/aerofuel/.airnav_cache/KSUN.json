@@ -1,0 +1,122 @@
+{
+  "_cached_at": 1788214950.8773272,
+  "icao": "KSUN",
+  "data": {
+    "icao": "KSUN",
+    "faa": "SUN",
+    "iata": "SUN",
+    "name": "Friedman Memorial Airport",
+    "city": "Hailey",
+    "state": "ID",
+    "country": "US",
+    "lat": 43.5044,
+    "lon": -114.296,
+    "elevation_ft": 5318,
+    "tower": true,
+    "tower_freq": 125.6,
+    "ctaf_freq": 125.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 128.225,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.225
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS",
+        "frequency_mhz": 128.225
+      },
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CITY CNTR",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "BOISE RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "TWR",
+        "description": "HAILEY TWR",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 7550,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.21,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.21,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 11.14,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.21,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSUN",
+    "airport_ref": "21118",
+    "fetched_at": "2026-08-31T22:22:30Z"
+  }
+}

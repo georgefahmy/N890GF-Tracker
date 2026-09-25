@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787528566.8146932,
+  "icao": "40I",
+  "data": {
+    "icao": "40I",
+    "faa": "40I",
+    "iata": "",
+    "name": "Red Stewart Airfield",
+    "city": "Waynesville",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.5053,
+    "lon": -84.1219,
+    "elevation_ft": 955,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3142,
+        "width": 150,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Stewart's Aircraft Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.18,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.18,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

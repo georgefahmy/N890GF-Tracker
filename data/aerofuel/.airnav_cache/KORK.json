@@ -1,0 +1,105 @@
+{
+  "_cached_at": 1787788270.531179,
+  "icao": "KORK",
+  "data": {
+    "icao": "KORK",
+    "faa": "ORK",
+    "iata": "",
+    "name": "North Little Rock Municipal Airport",
+    "city": "North Little Rock",
+    "state": "AR",
+    "country": "US",
+    "lat": 34.8331,
+    "lon": -92.2541,
+    "elevation_ft": 545,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.07,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LITTLE ROCK APP/DEP",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "CLD",
+        "description": "LITTLE ROCK CLNC DEL",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.07
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5002,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 3019,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "North Little Rock Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.38,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.72,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "North Little Rock Air",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.41,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:51:10Z"
+  }
+}

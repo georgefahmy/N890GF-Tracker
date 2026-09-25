@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787705574.10807,
+  "icao": "KELZ",
+  "data": {
+    "icao": "KELZ",
+    "faa": "ELZ",
+    "iata": "ELZ",
+    "name": "Wellsville Municipal Airport - Tarantine Field",
+    "city": "Wellsville",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.1095,
+    "lon": -77.99,
+    "elevation_ft": 2124,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.275
+      },
+      {
+        "type": "CNTR",
+        "description": "CLEVELAND CNTR",
+        "frequency_mhz": 124.325
+      },
+      {
+        "type": "RDO",
+        "description": "BUFFALO RDO",
+        "frequency_mhz": 111.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 5300,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wellsville Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:52:54Z"
+  }
+}

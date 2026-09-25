@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1789073124.85264,
+  "icao": "6F1",
+  "data": {
+    "icao": "6F1",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-09-10",
+    "fetched_at": "2026-09-10T20:45:24Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

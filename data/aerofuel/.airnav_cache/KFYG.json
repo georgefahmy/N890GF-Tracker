@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787793549.429227,
+  "icao": "KFYG",
+  "data": {
+    "icao": "KFYG",
+    "faa": "FYG",
+    "iata": "",
+    "name": "Washington Regional Airport",
+    "city": "Washington",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.5876,
+    "lon": -90.9938,
+    "elevation_ft": 488,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.5,
+    "approach_desc": "ST LOUIS APP/DEP",
+    "departure_freq": 126.5,
+    "departure_desc": "ST LOUIS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ST LOUIS APP/DEP",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5002,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Washington Aviation Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMO6",
+    "airport_ref": "20541",
+    "fetched_at": "2026-08-27T01:19:09Z"
+  }
+}

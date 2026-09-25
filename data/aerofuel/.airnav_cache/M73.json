@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718927.294181,
+  "icao": "M73",
+  "data": {
+    "icao": "M73",
+    "faa": "M73",
+    "iata": "",
+    "name": "Almyra Municipal Airport",
+    "city": "Almyra",
+    "state": "AR",
+    "country": "US",
+    "lat": 34.4123,
+    "lon": -91.4663,
+    "elevation_ft": 211,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LITTLE ROCK APP/DEP",
+        "frequency_mhz": 119.85
+      },
+      {
+        "type": "CLD",
+        "description": "LITTLE ROCK CLNC DEL",
+        "frequency_mhz": 119.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3494,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10/28",
+        "length": 3000,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Grand Prairie Dusters",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Aug",
+        "quote_date": "03-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:35:27Z"
+  }
+}

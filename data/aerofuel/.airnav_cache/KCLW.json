@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787523222.978801,
+  "icao": "KCLW",
+  "data": {
+    "icao": "KCLW",
+    "faa": "CLW",
+    "iata": "CLW",
+    "name": "Clearwater Air Park",
+    "city": "Clearwater",
+    "state": "FL",
+    "country": "US",
+    "lat": 27.9767,
+    "lon": -82.7587,
+    "elevation_ft": 71,
+    "tower": false,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.0,
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 8560,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FlyUSA",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.38,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TAMPA APP/DEP",
+        "frequency_mhz": 125.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "fetched_at": "2026-08-23T22:13:42Z"
+  }
+}

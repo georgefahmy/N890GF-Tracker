@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788014670.639926,
+  "icao": "25D",
+  "data": {
+    "icao": "25D",
+    "faa": "25D",
+    "iata": "",
+    "name": "Forest Lake Airport",
+    "city": "Forest Lake",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.2477,
+    "lon": -92.9944,
+    "elevation_ft": 925,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 2700,
+        "width": 75,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Forest Lake",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.46,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.46,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K25D",
+    "airport_ref": "18548",
+    "fetched_at": "2026-08-29T14:44:30Z"
+  }
+}

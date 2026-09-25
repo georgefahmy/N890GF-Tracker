@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787718609.45737,
+  "icao": "6R3",
+  "data": {
+    "icao": "6R3",
+    "faa": "6R3",
+    "iata": "",
+    "name": "Cleveland Municipal Airport",
+    "city": "Cleveland",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.3564,
+    "lon": -95.008,
+    "elevation_ft": 150,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HOUSTON APP/DEP",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 4998,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cleveland Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.75,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:09Z"
+  }
+}

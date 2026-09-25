@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787525630.978267,
+  "icao": "KRWV",
+  "data": {
+    "icao": "KRWV",
+    "faa": "RWV",
+    "iata": "",
+    "name": "Caldwell Municipal Airport",
+    "city": "Caldwell",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.5155,
+    "lon": -96.7041,
+    "elevation_ft": 391,
+    "tower": false,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3252,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aviators Plus",
+        "brand": "Phillips 66",
+        "phone": "281-769-8626",
+        "notes": "Phillips 66 \u2022 24/7 self-serve access \u2022 Quote: 07-Aug-2026",
+        "quote_date": "07-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "fetched_at": "2026-08-23T22:53:49Z"
+  }
+}

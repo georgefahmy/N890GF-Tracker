@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1788014670.638187,
+  "icao": "KPNM",
+  "data": {
+    "icao": "KPNM",
+    "faa": "PNM",
+    "iata": "",
+    "name": "Princeton Municipal Airport",
+    "city": "Princeton",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.5599,
+    "lon": -93.6082,
+    "elevation_ft": 980,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 119.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.025
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 121.05
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3900,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Princeton",
+        "brand": "Titan",
+        "phone": "763-389-2040",
+        "notes": "Titan \u2022 Quote: 26-Aug-2026",
+        "quote_date": "26-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KPNM",
+    "airport_ref": "20851",
+    "fetched_at": "2026-08-29T14:44:28Z"
+  }
+}

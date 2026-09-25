@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787718609.457222,
+  "icao": "KGLS",
+  "data": {
+    "icao": "KGLS",
+    "faa": "GLS",
+    "iata": "GLS",
+    "name": "Scholes International At Galveston Airport",
+    "city": "Galveston",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.2653,
+    "lon": -94.8604,
+    "elevation_ft": 6,
+    "tower": true,
+    "ctaf_freq": 120.575,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HOUSTON APP/DEP",
+        "frequency_mhz": 134.45
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.275
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 135.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.575
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 118.625
+      },
+      {
+        "type": "RDO",
+        "description": "MONTGOMERY CO RDO",
+        "frequency_mhz": 122.15
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.575
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 6001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 6000,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Island Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.47,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:09Z"
+  }
+}

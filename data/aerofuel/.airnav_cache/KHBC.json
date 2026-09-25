@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787544783.199291,
+  "icao": "KHBC",
+  "data": {
+    "icao": "KHBC",
+    "faa": "HBC",
+    "iata": "",
+    "name": "Mohall Municipal Airport",
+    "city": "Mohall",
+    "state": "ND",
+    "country": "US",
+    "lat": 48.7684,
+    "lon": -101.537,
+    "elevation_ft": 1649,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "MINOT APP",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "DEP",
+        "description": "MINOT DEP",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3599,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mohall Municipal Airport Authority",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:13:03Z"
+  }
+}

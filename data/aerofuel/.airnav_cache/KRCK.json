@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787525630.978486,
+  "icao": "KRCK",
+  "data": {
+    "icao": "KRCK",
+    "faa": "RCK",
+    "iata": "RCK",
+    "name": "H H Coffield Regional Airport",
+    "city": "Rockdale",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.6316,
+    "lon": -96.9897,
+    "elevation_ft": 474,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 2962,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Rockdale",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "fetched_at": "2026-08-23T22:53:50Z"
+  }
+}

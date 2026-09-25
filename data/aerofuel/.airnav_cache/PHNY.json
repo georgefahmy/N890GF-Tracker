@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1787718478.2217228,
+  "icao": "PHNY",
+  "data": {
+    "icao": "PHNY",
+    "faa": "LNY",
+    "iata": "LNY",
+    "name": "Lanai Airport",
+    "city": "Lanai City",
+    "state": "HI",
+    "country": "US",
+    "lat": 20.7857,
+    "lon": -156.9513,
+    "elevation_ft": 1308,
+    "tower": true,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.375
+      },
+      {
+        "type": "CNTR",
+        "description": "HONOLULU CNTR",
+        "frequency_mhz": 119.3
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RCO",
+        "description": "RDO",
+        "frequency_mhz": 117.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5001,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 10.41,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:27:58Z"
+  }
+}

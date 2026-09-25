@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787525569.237515,
+  "icao": "T54",
+  "data": {
+    "icao": "T54",
+    "faa": "T54",
+    "iata": "",
+    "name": "Lane Airpark",
+    "city": "Rosenberg",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.5226,
+    "lon": -95.7771,
+    "elevation_ft": 94,
+    "tower": false,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3013,
+        "width": 35,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lane Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.2,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:52:49Z"
+  }
+}

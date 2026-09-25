@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1787793643.2483258,
+  "icao": "KMVI",
+  "data": {
+    "icao": "KMVI",
+    "faa": "MVI",
+    "iata": "",
+    "name": "Monte Vista Municipal Airport",
+    "city": "Monte Vista",
+    "state": "CO",
+    "country": "US",
+    "lat": 37.5273,
+    "lon": -106.048,
+    "elevation_ft": 7611,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 128.375
+      },
+      {
+        "type": "RCO",
+        "description": "ALAMOSA RDO",
+        "frequency_mhz": 122.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5902,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 2300,
+        "width": 30,
+        "surface": "Gre",
+        "lighted": false
+      },
+      {
+        "id": "10/28",
+        "length": 2100,
+        "width": 50,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Alpine Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMVI",
+    "airport_ref": "20574",
+    "fetched_at": "2026-08-27T01:20:42Z"
+  }
+}

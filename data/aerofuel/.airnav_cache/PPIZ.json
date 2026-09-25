@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787527559.678451,
+  "icao": "PPIZ",
+  "data": {
+    "icao": "PPIZ",
+    "faa": "PIZ",
+    "iata": "PIZ",
+    "name": "Point Lay LRRS Airport",
+    "city": "Point Lay",
+    "state": "AK",
+    "country": "US",
+    "lat": 69.7329,
+    "lon": -163.005,
+    "elevation_ft": 22,
+    "tower": true,
+    "ctaf_freq": 122.4,
+    "unicom_freq": 126.2,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.65
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 119.65
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "FSS",
+        "description": "FAIRBANKS RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "MISC",
+        "description": "MISC",
+        "frequency_mhz": 122.8
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 126.2
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 3519,
+        "width": 80,
+        "surface": "Gravel",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:25:59Z"
+  }
+}

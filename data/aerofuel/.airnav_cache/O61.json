@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1789073082.067159,
+  "icao": "O61",
+  "data": {
+    "icao": "O61",
+    "faa": "O61",
+    "name": "Cameron Park Airport",
+    "city": "Cameron Park",
+    "state": "CA",
+    "distance_nm": 19.0,
+    "bearing": "E",
+    "fbos": [
+      {
+        "name": "Cameron Park Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "fetched_at": "2026-09-10T20:44:42Z",
+    "source": "AirNav Local Fuel"
+  }
+}

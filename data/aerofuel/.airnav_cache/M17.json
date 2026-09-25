@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202652.260185,
+  "icao": "M17",
+  "data": {
+    "icao": "M17",
+    "faa": "M17",
+    "iata": "",
+    "name": "Bolivar Municipal Airport",
+    "city": "Bolivar",
+    "state": "MO",
+    "country": "US",
+    "lat": 37.5961,
+    "lon": -93.3477,
+    "elevation_ft": 1092,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.95,
+    "approach_desc": "SPRINGFIELD APP/DEP",
+    "departure_freq": 124.95,
+    "departure_desc": "SPRINGFIELD APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SPRINGFIELD APP/DEP",
+        "frequency_mhz": 124.95
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Service Oriented Aviation Readiness (S.O.A.R.)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.01,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.78,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.01,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KM17",
+    "airport_ref": "20413",
+    "fetched_at": "2026-08-31T18:57:32Z"
+  }
+}

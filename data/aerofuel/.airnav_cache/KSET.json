@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787718383.481215,
+  "icao": "KSET",
+  "data": {
+    "icao": "KSET",
+    "faa": "SET",
+    "iata": "",
+    "name": "St Charles County Regional Airport/Smartt Field",
+    "city": "St Charles",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.9297,
+    "lon": -90.43,
+    "elevation_ft": 437,
+    "tower": false,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ST LOUIS APP/DEP",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.075
+      },
+      {
+        "type": "CLD",
+        "description": "ST LOUIS CLNC DEL",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3800,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 2000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Commemorative Air Force, Missouri Wing",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 22-Aug",
+        "quote_date": "22-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.72,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "St. Charles Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.29,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.72,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:23Z"
+  }
+}

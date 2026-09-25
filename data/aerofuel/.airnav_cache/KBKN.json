@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787793537.7922702,
+  "icao": "KBKN",
+  "data": {
+    "icao": "KBKN",
+    "faa": "BKN",
+    "iata": "BWL",
+    "name": "Blackwell Tonkawa Municipal Airport",
+    "city": "Blackwell",
+    "state": "OK",
+    "country": "US",
+    "lat": 36.7452,
+    "lon": -97.3496,
+    "elevation_ft": 1030,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3501,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "580-363-4242",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KBKN",
+    "airport_ref": "18839",
+    "fetched_at": "2026-08-27T01:18:56Z"
+  }
+}

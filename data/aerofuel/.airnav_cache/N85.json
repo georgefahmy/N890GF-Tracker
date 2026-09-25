@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787792807.716324,
+  "icao": "N85",
+  "data": {
+    "icao": "N85",
+    "faa": "N85",
+    "iata": "",
+    "name": "Alexandria Field Airport",
+    "city": "Pittstown",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.5876,
+    "lon": -75.0184,
+    "elevation_ft": 480,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 2550,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "13/31",
+        "length": 1804,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Alexandria Field",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.39,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:47Z"
+  }
+}

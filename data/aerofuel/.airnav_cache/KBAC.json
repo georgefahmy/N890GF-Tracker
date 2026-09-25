@@ -1,0 +1,107 @@
+{
+  "_cached_at": 1787793700.584909,
+  "icao": "KBAC",
+  "data": {
+    "icao": "KBAC",
+    "faa": "BAC",
+    "iata": "",
+    "name": "Barnes County Municipal Airport",
+    "city": "Valley City",
+    "state": "ND",
+    "country": "US",
+    "lat": 46.941,
+    "lon": -98.0176,
+    "elevation_ft": 1402,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4201,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 3539,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "05/23",
+        "length": 2525,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "08/26",
+        "length": 2520,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Barnes County Municipal Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K6D8",
+    "airport_ref": "18981",
+    "fetched_at": "2026-08-27T01:21:40Z"
+  }
+}

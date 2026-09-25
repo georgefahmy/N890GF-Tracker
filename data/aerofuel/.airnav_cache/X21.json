@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787523153.500022,
+  "icao": "X21",
+  "data": {
+    "icao": "X21",
+    "faa": "X21",
+    "iata": "",
+    "name": "Arthur Dunn Air Park",
+    "city": "Titusville",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.6226,
+    "lon": -80.8353,
+    "elevation_ft": 30,
+    "tower": false,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 4030,
+        "surface": "Gravel"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Skydive Space Center",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.75,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:12:33Z"
+  }
+}

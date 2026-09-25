@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788218654.259061,
+  "icao": "70B",
+  "data": {
+    "icao": "70B",
+    "faa": "70B",
+    "iata": "",
+    "name": "Millinocket Seaplane Base",
+    "city": "Millinocket",
+    "state": "ME",
+    "country": "US",
+    "lat": 45.7284,
+    "lon": -68.8445,
+    "elevation_ft": 492,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "ALL/WAY",
+        "length": 4000,
+        "width": 500,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Katahdin Air Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.19,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "70B",
+    "airport_ref": "13639",
+    "fetched_at": "2026-08-31T23:24:14Z"
+  }
+}

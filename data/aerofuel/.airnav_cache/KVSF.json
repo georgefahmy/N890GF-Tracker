@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788218488.345885,
+  "icao": "KVSF",
+  "data": {
+    "icao": "KVSF",
+    "faa": "VSF",
+    "iata": "VSF",
+    "name": "Hartness State Airport",
+    "city": "North Springfield",
+    "state": "VT",
+    "country": "US",
+    "lat": 43.3436,
+    "lon": -72.5173,
+    "elevation_ft": 577,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 121.425,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 121.425
+      },
+      {
+        "type": "CNTR",
+        "description": "BOSTON CNTR",
+        "frequency_mhz": 134.7
+      },
+      {
+        "type": "RDO",
+        "description": "BURLINGTON RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5501,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 3000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Springfield Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Jul",
+        "quote_date": "27-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVSF",
+    "airport_ref": "21336",
+    "fetched_at": "2026-08-31T23:21:28Z"
+  }
+}

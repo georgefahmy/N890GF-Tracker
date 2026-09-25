@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1787787741.295119,
+  "icao": "KEVY",
+  "data": {
+    "icao": "KEVY",
+    "faa": "EVY",
+    "iata": "",
+    "name": "Summit Airport",
+    "city": "Middletown",
+    "state": "DE",
+    "country": "US",
+    "lat": 39.5204,
+    "lon": -75.7204,
+    "elevation_ft": 70,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.725,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PHILADELPHIA APP/DEP",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.325
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.3
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 114.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4488,
+        "width": 65,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 3601,
+        "width": 200,
+        "surface": "Gre",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Summit Aviation, Inc.",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:21Z"
+  }
+}

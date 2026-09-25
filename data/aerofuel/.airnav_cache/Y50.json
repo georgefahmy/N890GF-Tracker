@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1787793896.915848,
+  "icao": "Y50",
+  "data": {
+    "icao": "Y50",
+    "faa": "Y50",
+    "iata": "",
+    "name": "Wautoma Municipal Airport",
+    "city": "Wautoma",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.0416,
+    "lon": -89.3045,
+    "elevation_ft": 859,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "CHICAGO CNTR",
+        "frequency_mhz": 127.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3300,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 2334,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "05/23",
+        "length": 1190,
+        "width": 35,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Wautoma (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KY50",
+    "airport_ref": "21422",
+    "fetched_at": "2026-08-27T01:24:56Z"
+  }
+}

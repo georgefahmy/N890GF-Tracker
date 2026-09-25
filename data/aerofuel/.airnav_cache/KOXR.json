@@ -1,0 +1,122 @@
+{
+  "_cached_at": 1788202697.069387,
+  "icao": "KOXR",
+  "data": {
+    "icao": "KOXR",
+    "faa": "OXR",
+    "iata": "OXR",
+    "name": "Oxnard Airport",
+    "city": "Oxnard",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.2008,
+    "lon": -119.207,
+    "elevation_ft": 45,
+    "tower": true,
+    "tower_freq": 134.95,
+    "ctaf_freq": 134.95,
+    "unicom_freq": 134.95,
+    "weather_freq": 118.05,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.7,
+    "approach_desc": "PT MUGU APP/DEP",
+    "departure_freq": 124.7,
+    "departure_desc": "PT MUGU APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PT MUGU APP/DEP",
+        "frequency_mhz": 124.7
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 134.95
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 134.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5953,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Oxnard Aircraft & Jet Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.3,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Axis Air",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOXR",
+    "airport_ref": "20785",
+    "fetched_at": "2026-08-31T18:58:17Z"
+  }
+}

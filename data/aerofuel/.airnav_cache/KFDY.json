@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787544396.1677282,
+  "icao": "KFDY",
+  "data": {
+    "icao": "KFDY",
+    "faa": "FDY",
+    "iata": "FDY",
+    "name": "Findlay Airport",
+    "city": "Findlay",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.0135,
+    "lon": -83.6687,
+    "elevation_ft": 813,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.725,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TOLEDO APP/DEP",
+        "frequency_mhz": 120.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 124.425
+      },
+      {
+        "type": "RDO",
+        "description": "CLEVELAND RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 6499,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 5883,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Findlay (FBO)",
+        "brand": "",
+        "phone": "419-422-4182",
+        "notes": "Quote: 19-Aug-2026",
+        "quote_date": "19-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.15,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T04:06:31Z",
+    "from_cache": true
+  }
+}

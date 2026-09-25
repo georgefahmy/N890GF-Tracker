@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787604231.3463502,
+  "icao": "KNTD",
+  "data": {
+    "icao": "KNTD",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-24",
+    "fetched_at": "2026-08-24T20:43:51Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

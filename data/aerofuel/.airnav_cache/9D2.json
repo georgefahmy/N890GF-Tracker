@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787705739.8020139,
+  "icao": "9D2",
+  "data": {
+    "icao": "9D2",
+    "faa": "9D2",
+    "iata": "",
+    "name": "Harding County Airport",
+    "city": "Buffalo",
+    "state": "SD",
+    "country": "US",
+    "lat": 45.5806,
+    "lon": -103.53,
+    "elevation_ft": 2889,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "FSS",
+        "description": "HURON RDO",
+        "frequency_mhz": 122.15
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3900,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 2250,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Harding County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:55:39Z"
+  }
+}

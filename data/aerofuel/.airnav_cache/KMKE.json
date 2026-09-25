@@ -1,0 +1,197 @@
+{
+  "_cached_at": 1787787849.4116669,
+  "icao": "KMKE",
+  "data": {
+    "icao": "KMKE",
+    "faa": "MKE",
+    "iata": "MKE",
+    "name": "General Mitchell International Airport",
+    "city": "Milwaukee",
+    "state": "WI",
+    "country": "US",
+    "lat": 42.9472,
+    "lon": -87.8966,
+    "elevation_ft": 723,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "MILWAUKEE APP",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS",
+        "frequency_mhz": 148.35
+      },
+      {
+        "type": "CLD",
+        "description": "MILWAUKEE CLNC DEL",
+        "frequency_mhz": 120.8
+      },
+      {
+        "type": "DEP",
+        "description": "MILWAUKEE DEP",
+        "frequency_mhz": 119.65
+      },
+      {
+        "type": "GND",
+        "description": "MILWAUKEE GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "MISC",
+        "description": "128ARW ANG COMD POST",
+        "frequency_mhz": 32.1
+      },
+      {
+        "type": "OPS",
+        "description": "440 BASE OPS",
+        "frequency_mhz": 31.42
+      },
+      {
+        "type": "POST",
+        "description": "440 AW COMD POST",
+        "frequency_mhz": 37.61
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 37.61
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "TWR",
+        "description": "MILWAUKEE TWR",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "01L/19R",
+        "length": 9990,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "07R/25L",
+        "length": 8300,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 5537,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07L/25R",
+        "length": 4797,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01R/19L",
+        "length": 4182,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.06,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.69,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Avflight Milwaukee",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.01,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Jet Aviation",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.06,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:44:09Z"
+  }
+}

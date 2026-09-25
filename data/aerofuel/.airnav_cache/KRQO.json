@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787693120.120748,
+  "icao": "KRQO",
+  "data": {
+    "icao": "KRQO",
+    "faa": "RQO",
+    "iata": "RQO",
+    "name": "El Reno Regional Airport",
+    "city": "El Reno",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.4727,
+    "lon": -98.0058,
+    "elevation_ft": 1420,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5600,
+        "width": 75,
+        "surface": "Concrete",
+        "lighted": false
+      },
+      {
+        "id": "18/36",
+        "length": 4017,
+        "width": 190,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "El Reno Flight Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.45,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-25T21:25:20Z"
+  }
+}

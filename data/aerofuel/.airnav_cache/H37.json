@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787510474.09811,
+  "icao": "H37",
+  "data": {
+    "icao": "H37",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T18:41:14Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

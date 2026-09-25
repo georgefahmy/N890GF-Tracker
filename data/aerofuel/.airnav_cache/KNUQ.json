@@ -1,0 +1,126 @@
+{
+  "_cached_at": 1790309075.465055,
+  "icao": "KNUQ",
+  "data": {
+    "icao": "KNUQ",
+    "faa": "NUQ",
+    "iata": "NUQ",
+    "name": "Moffett Federal Airfield",
+    "city": "Mountain View",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.4161,
+    "lon": -122.049,
+    "elevation_ft": 32,
+    "tower": true,
+    "tower_freq": 119.55,
+    "ctaf_freq": 119.55,
+    "unicom_freq": 119.55,
+    "weather_freq": 124.175,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS/ASOS",
+    "approach_freq": 31.76,
+    "approach_desc": "NORCAL APP",
+    "departure_freq": 121.3,
+    "departure_desc": "NORCAL DEP",
+    "ground_freq": 121.85,
+    "ground_desc": "GND",
+    "clearance_freq": 38.08,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 31.76
+      },
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS/ASOS",
+        "frequency_mhz": 124.175
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 38.08
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.55
+      },
+      {
+        "type": "DEP",
+        "description": "NORCAL DEP",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "MISC",
+        "description": "ANG",
+        "frequency_mhz": 39.09
+      },
+      {
+        "type": "OPS",
+        "description": "BASE OPS",
+        "frequency_mhz": 25.17
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.55
+      }
+    ],
+    "runways": [
+      {
+        "id": "14L/32R",
+        "length": 9197,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "14R/32L",
+        "length": 8121,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Avports Moffett Field",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 10.81,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KNUQ",
+    "airport_ref": "3741",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

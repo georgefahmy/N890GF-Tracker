@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787788119.321053,
+  "icao": "42C",
+  "data": {
+    "icao": "42C",
+    "faa": "42C",
+    "iata": "",
+    "name": "White Cloud Airport",
+    "city": "White Cloud",
+    "state": "MI",
+    "country": "US",
+    "lat": 43.5597,
+    "lon": -85.7742,
+    "elevation_ft": 914,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2916,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "White Cloud Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-May",
+        "quote_date": "20-May",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:39Z"
+  }
+}

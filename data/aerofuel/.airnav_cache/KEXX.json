@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1787793835.849914,
+  "icao": "KEXX",
+  "data": {
+    "icao": "KEXX",
+    "faa": "EXX",
+    "iata": "",
+    "name": "Davidson County Executive Airport",
+    "city": "Lexington",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.7811,
+    "lon": -80.3038,
+    "elevation_ft": 733,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 119.825,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.5,
+    "approach_desc": "GREENSBORO APP/DEP",
+    "departure_freq": 118.5,
+    "departure_desc": "GREENSBORO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 135.075,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREENSBORO APP/DEP",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.825
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 135.075
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5004,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fly High Lexington, LLC",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.65,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KEXX",
+    "airport_ref": "19785",
+    "fetched_at": "2026-08-27T01:23:55Z"
+  }
+}

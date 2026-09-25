@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787525630.978672,
+  "icao": "KLHB",
+  "data": {
+    "icao": "KLHB",
+    "faa": "LHB",
+    "iata": "",
+    "name": "Hearne Municipal Airport",
+    "city": "Hearne",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.8718,
+    "lon": -96.6222,
+    "elevation_ft": 285,
+    "tower": false,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Hearne",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.675
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "fetched_at": "2026-08-23T22:53:50Z"
+  }
+}

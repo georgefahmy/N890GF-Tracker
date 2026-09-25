@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787787764.859712,
+  "icao": "KJYL",
+  "data": {
+    "icao": "KJYL",
+    "faa": "JYL",
+    "iata": "",
+    "name": "Plantation Airpark",
+    "city": "Sylvania",
+    "state": "GA",
+    "country": "US",
+    "lat": 32.6453,
+    "lon": -81.5971,
+    "elevation_ft": 188,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.875
+      },
+      {
+        "type": "CNTR",
+        "description": "JACKSONVILLE CNTR",
+        "frequency_mhz": 132.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5501,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 3787,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sylvania-Screven Airport Authority",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:44Z"
+  }
+}

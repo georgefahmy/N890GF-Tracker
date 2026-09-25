@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787718478.221092,
+  "icao": "PHLU",
+  "data": {
+    "icao": "PHLU",
+    "faa": "LUP",
+    "iata": "LUP",
+    "name": "Kalaupapa Airport",
+    "city": "Kalaupapa",
+    "state": "HI",
+    "country": "US",
+    "lat": 21.211,
+    "lon": -156.974,
+    "elevation_ft": 24,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 2700,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "SAF": {
+            "price": 2.0,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "SAF"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:27:56Z"
+  }
+}

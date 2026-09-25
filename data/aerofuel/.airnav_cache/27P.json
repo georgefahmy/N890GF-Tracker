@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1788014657.8337002,
+  "icao": "27P",
+  "data": {
+    "icao": "27P",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-29",
+    "fetched_at": "2026-08-29T14:44:17Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

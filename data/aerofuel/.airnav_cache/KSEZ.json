@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1787788736.812716,
+  "icao": "KSEZ",
+  "data": {
+    "icao": "KSEZ",
+    "faa": "SEZ",
+    "iata": "SDX",
+    "name": "Sedona Airport",
+    "city": "Sedona",
+    "state": "AZ",
+    "country": "US",
+    "lat": 34.8486,
+    "lon": -111.788,
+    "elevation_ft": 4830,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "A/D PHOENIX",
+        "frequency_mhz": 126.375
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 2",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CTR",
+        "description": "CTR ALBUQUERQUE",
+        "frequency_mhz": 124.325
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5132,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Red Rock Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 8.34,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:56Z"
+  }
+}

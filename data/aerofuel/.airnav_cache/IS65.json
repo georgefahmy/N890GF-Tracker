@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1788218353.62011,
+  "icao": "IS65",
+  "data": {
+    "icao": "IS65",
+    "faa": "IS65",
+    "name": "Woodlake Landing Airport",
+    "city": "Sandwich",
+    "state": "IL",
+    "distance_nm": 8.0,
+    "bearing": "SSE",
+    "fbos": [
+      {
+        "name": "Woodlake Landing Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 02-Jul",
+        "quote_date": "02-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.96,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.96,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T23:19:13Z",
+    "source": "AirNav Local Fuel"
+  }
+}

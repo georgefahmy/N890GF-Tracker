@@ -1,0 +1,113 @@
+{
+  "_cached_at": 1790303582.474303,
+  "icao": "KAFW",
+  "data": {
+    "icao": "KAFW",
+    "faa": "AFW",
+    "iata": "AFW",
+    "name": "Perot Field/Fort Worth Alliance Airport",
+    "city": "Fort Worth",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.9904,
+    "lon": -97.3195,
+    "elevation_ft": 722,
+    "tower": true,
+    "tower_freq": 120.825,
+    "ctaf_freq": 120.825,
+    "unicom_freq": 122.95,
+    "weather_freq": 126.925,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 118.1,
+    "approach_desc": "RGNL APP/DEP",
+    "departure_freq": 118.1,
+    "departure_desc": "RGNL APP/DEP",
+    "ground_freq": 132.65,
+    "ground_desc": "GND",
+    "clearance_freq": 128.725,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "RGNL APP/DEP",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 126.925
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.925
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 128.725
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 132.65
+      },
+      {
+        "type": "TWR",
+        "description": "ALLIANCE TWR",
+        "frequency_mhz": 120.825
+      }
+    ],
+    "runways": [
+      {
+        "id": "16R/34L",
+        "length": 11125,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "16L/34R",
+        "length": 11000,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Alliance Aviation Services",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAFW",
+    "airport_ref": "3366",
+    "fetched_at": "2026-08-29T14:46:28Z"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1790309075.4663942,
+  "icao": "0Q3",
+  "data": {
+    "icao": "0Q3",
+    "faa": "0Q3",
+    "iata": "",
+    "name": "Sonoma Valley Airport",
+    "city": "Schellville/Sonoma",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.2235,
+    "lon": -122.45,
+    "elevation_ft": 10,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 2700,
+        "width": 45,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "17/35",
+        "length": 1513,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Vintage Aircraft",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-May",
+        "quote_date": "18-May",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "0Q3",
+    "airport_ref": "7506",
+    "fetched_at": "2026-09-10T20:44:13Z"
+  }
+}

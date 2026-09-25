@@ -1,0 +1,125 @@
+{
+  "_cached_at": 1789073603.532775,
+  "icao": "KDEC",
+  "data": {
+    "icao": "KDEC",
+    "faa": "DEC",
+    "iata": "DEC",
+    "name": "Decatur Airport",
+    "city": "Decatur",
+    "state": "IL",
+    "country": "US",
+    "lat": 39.8346,
+    "lon": -88.8657,
+    "elevation_ft": 682,
+    "tower": true,
+    "tower_freq": 118.9,
+    "ctaf_freq": 118.9,
+    "unicom_freq": 122.95,
+    "weather_freq": 126.35,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 132.85,
+    "approach_desc": "CHAMPAIGN APP/DEP",
+    "departure_freq": 132.85,
+    "departure_desc": "CHAMPAIGN APP/DEP",
+    "ground_freq": 121.75,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHAMPAIGN APP/DEP",
+        "frequency_mhz": 132.85
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "RDO",
+        "description": "ST LOUIS RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 8496,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 6799,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 5298,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Gaitros Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDEC",
+    "airport_ref": "3485",
+    "fetched_at": "2026-09-10T20:53:23Z"
+  }
+}

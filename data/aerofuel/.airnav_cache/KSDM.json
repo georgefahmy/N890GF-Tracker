@@ -1,0 +1,127 @@
+{
+  "_cached_at": 1787513430.225048,
+  "icao": "KSDM",
+  "data": {
+    "icao": "KSDM",
+    "faa": "SDM",
+    "iata": "SDM",
+    "name": "Brown Field Municipal Airport",
+    "city": "San Diego",
+    "state": "CA",
+    "country": "US",
+    "lat": 32.5726,
+    "lon": -116.98,
+    "elevation_ft": 526,
+    "tower": true,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 4650,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Air Center San Diego",
+        "brand": "Avfuel",
+        "phone": "619-671-9222",
+        "notes": "Avfuel \u2022 Quote: 18-Aug-2026 \u2022 UNICOM: 122.95",
+        "quote_date": "18-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.38,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "First Flight",
+        "brand": "Titan",
+        "phone": "619-661-6522",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Quote: 19-Aug-2026 \u2022 UNICOM: 122.975",
+        "quote_date": "19-Aug-2026",
+        "fuels": {
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 5.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.3,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOCAL APP",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 132.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "DEP",
+        "description": "SOCAL DEP",
+        "frequency_mhz": 125.15
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 124.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T19:30:28Z"
+  }
+}

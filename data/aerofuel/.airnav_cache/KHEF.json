@@ -1,0 +1,140 @@
+{
+  "_cached_at": 1787705647.868959,
+  "icao": "KHEF",
+  "data": {
+    "icao": "KHEF",
+    "faa": "HEF",
+    "iata": "MNZ",
+    "name": "Washington Manassas Harry P. Davis Field",
+    "city": "Manassas",
+    "state": "VA",
+    "country": "US",
+    "lat": 38.723,
+    "lon": -77.5154,
+    "elevation_ft": 192,
+    "tower": true,
+    "ctaf_freq": 133.1,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "POTOMAC APP/DEP",
+        "frequency_mhz": 128.525
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.175
+      },
+      {
+        "type": "AWOS",
+        "description": "KHWY AWOS-3 (12nm SW)",
+        "frequency_mhz": 120.35
+      },
+      {
+        "type": "CLD",
+        "description": "POTOMAC CLNC DEL",
+        "frequency_mhz": 120.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 133.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 133.1
+      }
+    ],
+    "runways": [
+      {
+        "id": "16L/34R",
+        "length": 6200,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16R/34L",
+        "length": 3715,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "APP Jet Center - Manassas",
+        "brand": "Titan",
+        "phone": "703-392-5387",
+        "notes": "Titan \u2022 24/7 self-serve access \u2022 Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.84,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.24,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Chantilly Jet Center",
+        "brand": "Titan",
+        "phone": "703-574-0700",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.18,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.2,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "SkyWorld Aviation",
+        "brand": "Titan",
+        "phone": "540-788-9300",
+        "notes": "Titan",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": 7.18,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T00:54:05Z"
+  }
+}

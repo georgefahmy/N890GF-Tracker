@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1787794342.745992,
+  "icao": "K58",
+  "data": {
+    "icao": "K58",
+    "faa": "K58",
+    "iata": "",
+    "name": "Harold Krier Field",
+    "city": "Ashland",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.1671,
+    "lon": -99.7725,
+    "elevation_ft": 1951,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3135,
+        "width": 300,
+        "surface": "Grs",
+        "lighted": true
+      },
+      {
+        "id": "02/20",
+        "length": 3125,
+        "width": 300,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Ashland",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.37,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.37,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KK58",
+    "airport_ref": "20257",
+    "fetched_at": "2026-08-27T01:32:22Z"
+  }
+}

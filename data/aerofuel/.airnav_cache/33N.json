@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787787741.2939332,
+  "icao": "33N",
+  "data": {
+    "icao": "33N",
+    "faa": "33N",
+    "iata": "",
+    "name": "Delaware Airpark",
+    "city": "Dover/Cheswold",
+    "state": "DE",
+    "country": "US",
+    "lat": 39.2187,
+    "lon": -75.6004,
+    "elevation_ft": 56,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "DOVER APP",
+        "frequency_mhz": 132.425
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.55
+      },
+      {
+        "type": "DEP",
+        "description": "DOVER DEP",
+        "frequency_mhz": 32.3
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 111.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4201,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Delaware River & Bay Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:21Z"
+  }
+}

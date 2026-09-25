@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788218347.393295,
+  "icao": "KPOV",
+  "data": {
+    "icao": "KPOV",
+    "faa": "POV",
+    "iata": "",
+    "name": "Portage County Regional Airport",
+    "city": "Ravenna",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.2102,
+    "lon": -81.2516,
+    "elevation_ft": 1197,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.6,
+    "approach_desc": "AKRON CANTON APP/DEP",
+    "departure_freq": 118.6,
+    "departure_desc": "AKRON CANTON APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 125.65,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "AKRON CANTON APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3499,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Portage County Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.19,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPOV",
+    "airport_ref": "18563",
+    "fetched_at": "2026-08-31T23:19:07Z"
+  }
+}

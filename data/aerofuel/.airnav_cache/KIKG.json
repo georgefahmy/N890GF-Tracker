@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787718770.999543,
+  "icao": "KIKG",
+  "data": {
+    "icao": "KIKG",
+    "faa": "IKG",
+    "iata": "",
+    "name": "Kleberg County Airport",
+    "city": "Kingsville",
+    "state": "TX",
+    "country": "US",
+    "lat": 27.5509,
+    "lon": -98.0309,
+    "elevation_ft": 130,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "KINGSVILLE APP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "DEP",
+        "description": "KINGSVILLE DEP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 6000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mike's Aircraft Shop",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:50Z"
+  }
+}

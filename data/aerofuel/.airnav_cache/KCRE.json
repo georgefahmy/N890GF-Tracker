@@ -1,0 +1,117 @@
+{
+  "_cached_at": 1787793563.874484,
+  "icao": "KCRE",
+  "data": {
+    "icao": "KCRE",
+    "faa": "CRE",
+    "iata": "CRE",
+    "name": "Grand Strand Airport",
+    "city": "North Myrtle Beach",
+    "state": "SC",
+    "country": "US",
+    "lat": 33.8117,
+    "lon": -78.7239,
+    "elevation_ft": 32,
+    "tower": true,
+    "tower_freq": 124.6,
+    "ctaf_freq": 124.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 119.625,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.2,
+    "approach_desc": "MYRTLE BEACH APP/DEP",
+    "departure_freq": 119.2,
+    "departure_desc": "MYRTLE BEACH APP/DEP",
+    "ground_freq": 121.8,
+    "ground_desc": "STRAND GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MYRTLE BEACH APP/DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.625
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "GND",
+        "description": "STRAND GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "RDO",
+        "description": "ANDERSON RDO",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "TWR",
+        "description": "STRAND TWR",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5997,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Beach Aviation Services",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.14,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.41,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.13,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.14,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCRE",
+    "airport_ref": "19549",
+    "fetched_at": "2026-08-27T01:19:23Z"
+  }
+}

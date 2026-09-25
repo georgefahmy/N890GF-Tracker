@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787787654.052416,
+  "icao": "0J4",
+  "data": {
+    "icao": "0J4",
+    "faa": "0J4",
+    "iata": "",
+    "name": "Florala Municipal Airport",
+    "city": "Florala",
+    "state": "AL",
+    "country": "US",
+    "lat": 31.0425,
+    "lon": -86.3116,
+    "elevation_ft": 314,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CAIRNS APP/DEP",
+        "frequency_mhz": 133.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3197,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sunshine Aero Industries",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 5.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:40:54Z"
+  }
+}

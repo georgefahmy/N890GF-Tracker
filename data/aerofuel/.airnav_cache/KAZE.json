@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1789073639.9605381,
+  "icao": "KAZE",
+  "data": {
+    "icao": "KAZE",
+    "faa": "AZE",
+    "iata": "",
+    "name": "Hazlehurst Airport",
+    "city": "Hazlehurst",
+    "state": "GA",
+    "country": "US",
+    "lat": 31.8847,
+    "lon": -82.6474,
+    "elevation_ft": 255,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "JACKSONVILLE CNTR",
+        "frequency_mhz": 132.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4508,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Hazlehurst (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 09-Sep",
+        "quote_date": "09-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAZE",
+    "airport_ref": "19344",
+    "fetched_at": "2026-09-10T20:53:59Z"
+  }
+}

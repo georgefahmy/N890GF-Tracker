@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1788202644.580527,
+  "icao": "M04",
+  "data": {
+    "icao": "M04",
+    "faa": "M04",
+    "iata": "",
+    "name": "Covington Municipal Airport",
+    "city": "Covington",
+    "state": "TN",
+    "country": "US",
+    "lat": 35.5834,
+    "lon": -89.5872,
+    "elevation_ft": 280,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 118.575,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.07,
+    "approach_desc": "MEMPHIS APP",
+    "departure_freq": 124.15,
+    "departure_desc": "MEMPHIS DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "MEMPHIS APP",
+        "frequency_mhz": 120.07
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.575
+      },
+      {
+        "type": "DEP",
+        "description": "MEMPHIS DEP",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5003,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Covington Municipal Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.58,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.2,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.58,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KM04",
+    "airport_ref": "20405",
+    "fetched_at": "2026-08-31T18:57:24Z"
+  }
+}

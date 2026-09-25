@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1787760805.287327,
+  "icao": "KACV",
+  "data": {
+    "icao": "KACV",
+    "faa": "ACV",
+    "iata": "ACV",
+    "name": "California Redwood Coast-Humboldt County Airport",
+    "city": "Arcata/Eureka",
+    "state": "CA",
+    "country": "US",
+    "lat": 40.9781,
+    "lon": -124.109,
+    "elevation_ft": 221,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CNTR",
+        "description": "SEATTLE CNTR",
+        "frequency_mhz": 124.85
+      },
+      {
+        "type": "OPS",
+        "description": "COAST GUARD AIR OPS",
+        "frequency_mhz": 34.5
+      },
+      {
+        "type": "RDO",
+        "description": "OAKLAND RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 6046,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 4501,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "County of Humboldt, Department of Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.15,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T16:13:25Z"
+  }
+}

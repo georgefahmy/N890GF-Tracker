@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787787731.5632079,
+  "icao": "31E",
+  "data": {
+    "icao": "31E",
+    "faa": "31E",
+    "iata": "",
+    "name": "Eagles Nest Airport",
+    "city": "West Creek",
+    "state": "NJ",
+    "country": "US",
+    "lat": 39.6654,
+    "lon": -74.3079,
+    "elevation_ft": 35,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3670,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Eagles Nest Airport",
+        "brand": "Titan",
+        "phone": "609-296-1229",
+        "notes": "Titan \u2022 Quote: 18-Aug-2026",
+        "quote_date": "18-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:42:09Z"
+  }
+}

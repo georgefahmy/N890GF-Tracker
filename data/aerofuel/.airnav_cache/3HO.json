@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1789073607.591105,
+  "icao": "3HO",
+  "data": {
+    "icao": "3HO",
+    "faa": "3HO",
+    "iata": "",
+    "name": "Hobart Sky Ranch Airport",
+    "city": "Hobart",
+    "state": "IN",
+    "country": "US",
+    "lat": 41.5542,
+    "lon": -87.2625,
+    "elevation_ft": 644,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 123.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3125,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Niemeyer Aviation, Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3HO",
+    "airport_ref": "18702",
+    "fetched_at": "2026-09-10T20:53:27Z"
+  }
+}

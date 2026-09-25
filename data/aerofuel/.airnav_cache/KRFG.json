@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787718770.999254,
+  "icao": "KRFG",
+  "data": {
+    "icao": "KRFG",
+    "faa": "RFG",
+    "iata": "RFG",
+    "name": "Rooke Field",
+    "city": "Refugio",
+    "state": "TX",
+    "country": "US",
+    "lat": 28.2936,
+    "lon": -97.323,
+    "elevation_ft": 56,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4361,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Refugio County Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100UL_SS": {
+            "price": 6.8,
+            "type": "100UL",
+            "service": "Self-Serve",
+            "label": "100UL Unleaded (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "100UL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:50Z"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "_cached_at": 1787705599.8267572,
+  "icao": "87B",
+  "data": {
+    "icao": "87B",
+    "faa": "87B",
+    "iata": "",
+    "name": "Portage Lake Municipal Seaplane Base",
+    "city": "Portage Lake",
+    "state": "ME",
+    "country": "US",
+    "lat": 46.7603,
+    "lon": -68.4808,
+    "elevation_ft": 608,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5000,
+        "width": 500,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "15/33",
+        "length": 5000,
+        "width": 500,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T00:53:17Z"
+  }
+}

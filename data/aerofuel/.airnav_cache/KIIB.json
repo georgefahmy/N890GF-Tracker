@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202557.3244119,
+  "icao": "KIIB",
+  "data": {
+    "icao": "KIIB",
+    "faa": "IIB",
+    "iata": "",
+    "name": "Independence Municipal Airport",
+    "city": "Independence",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.4568,
+    "lon": -91.9477,
+    "elevation_ft": 979,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.275,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.9,
+    "approach_desc": "WATERLOO APP/DEP",
+    "departure_freq": 118.9,
+    "departure_desc": "WATERLOO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "WATERLOO APP/DEP",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.275
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5500,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Independence",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.63,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.45,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.63,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KIIB",
+    "airport_ref": "20164",
+    "fetched_at": "2026-08-31T18:55:57Z"
+  }
+}

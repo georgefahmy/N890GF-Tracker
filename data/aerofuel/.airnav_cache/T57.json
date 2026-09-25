@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1790303582.4673622,
+  "icao": "T57",
+  "data": {
+    "icao": "T57",
+    "faa": "T57",
+    "name": "Garland/",
+    "city": "DFW Heloplex Garland",
+    "state": "TX",
+    "distance_nm": 18.0,
+    "bearing": "E",
+    "fbos": [
+      {
+        "name": "Sky Helicopters",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 11-Sep",
+        "quote_date": "11-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.39,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.29,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "fetched_at": "2026-09-25T02:33:02Z",
+    "source": "AirNav Local Fuel"
+  }
+}

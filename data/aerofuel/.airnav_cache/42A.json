@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788270.530281,
+  "icao": "42A",
+  "data": {
+    "icao": "42A",
+    "faa": "42A",
+    "iata": "",
+    "name": "Melbourne Municipal John E Miller Field",
+    "city": "Melbourne",
+    "state": "AR",
+    "country": "US",
+    "lat": 36.071,
+    "lon": -91.8301,
+    "elevation_ft": 735,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "DEP",
+        "description": "MEMPHIS CTR",
+        "frequency_mhz": 126.85
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 4003,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Melbourne Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.23,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.27,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.23,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:51:10Z"
+  }
+}

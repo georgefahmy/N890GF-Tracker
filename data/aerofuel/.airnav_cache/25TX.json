@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787525635.637682,
+  "icao": "25TX",
+  "data": {
+    "icao": "25TX",
+    "faa": "25TX",
+    "name": "Chennault Airfield",
+    "city": "Cut And Shoot",
+    "state": "TX",
+    "distance_nm": 47.0,
+    "bearing": "S",
+    "fbos": [
+      {
+        "name": "Chennault Airfield",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 31-Jul",
+        "quote_date": "31-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T22:53:55Z",
+    "source": "AirNav Local Fuel"
+  }
+}

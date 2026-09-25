@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788202536.241264,
+  "icao": "6P3",
+  "data": {
+    "icao": "6P3",
+    "faa": "6P3",
+    "iata": "",
+    "name": "Waunakee Airport",
+    "city": "Waunakee",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.1787,
+    "lon": -89.4513,
+    "elevation_ft": 954,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 2223,
+        "width": 30,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Waunakee Airpark, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.29,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.29,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "6P3",
+    "airport_ref": "13498",
+    "fetched_at": "2026-08-31T18:55:36Z"
+  }
+}

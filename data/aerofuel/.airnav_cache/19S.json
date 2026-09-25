@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1788218538.788725,
+  "icao": "19S",
+  "data": {
+    "icao": "19S",
+    "faa": "19S",
+    "iata": "",
+    "name": "Sublette Municipal Airport",
+    "city": "Sublette",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.497,
+    "lon": -100.8343,
+    "elevation_ft": 2908,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4500,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 2300,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Prairiewind Air Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Jul",
+        "quote_date": "31-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 4.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K19S",
+    "airport_ref": "18442",
+    "fetched_at": "2026-08-31T23:22:18Z"
+  }
+}

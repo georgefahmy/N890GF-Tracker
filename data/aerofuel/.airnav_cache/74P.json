@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1787604243.177005,
+  "icao": "74P",
+  "data": {
+    "icao": "74P",
+    "faa": "74P",
+    "name": "Calvada Meadows Airport",
+    "city": "Pahrump",
+    "state": "NV",
+    "distance_nm": 39.0,
+    "bearing": "W",
+    "fbos": [
+      {
+        "name": "The Airport Club",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 03-Aug",
+        "quote_date": "03-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "fetched_at": "2026-08-24T20:44:03Z",
+    "source": "AirNav Local Fuel"
+  }
+}

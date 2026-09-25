@@ -1,0 +1,118 @@
+{
+  "_cached_at": 1787527525.957131,
+  "icao": "PAIL",
+  "data": {
+    "icao": "PAIL",
+    "faa": "ILI",
+    "iata": "ILI",
+    "name": "Iliamna Airport",
+    "city": "Iliamna",
+    "state": "AK",
+    "country": "US",
+    "lat": 59.7544,
+    "lon": -154.911,
+    "elevation_ft": 192,
+    "tower": true,
+    "ctaf_freq": 123.6,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 134.95
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 134.95
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "FSS",
+        "description": "RDO",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "RCO",
+        "description": "KENAI RDO",
+        "frequency_mhz": 121.2
+      },
+      {
+        "type": "RFSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.2
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5086,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 4800,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "E/W",
+        "length": 2998,
+        "width": 400,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "N/S",
+        "length": 2892,
+        "width": 400,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Iliamna Development Corporation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 10.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.99,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:25:25Z"
+  }
+}

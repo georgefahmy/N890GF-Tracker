@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787787741.295615,
+  "icao": "KANP",
+  "data": {
+    "icao": "KANP",
+    "faa": "ANP",
+    "iata": "ANP",
+    "name": "Lee Airport",
+    "city": "Annapolis",
+    "state": "MD",
+    "country": "US",
+    "lat": 38.9429,
+    "lon": -76.5684,
+    "elevation_ft": 34,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "POTOMAC APP/DEP",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 2505,
+        "width": 48,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lee Runway Manager, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:21Z"
+  }
+}

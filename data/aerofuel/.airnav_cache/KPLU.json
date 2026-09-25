@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1787864711.40063,
+  "icao": "KPLU",
+  "data": {
+    "icao": "KPLU",
+    "faa": "PLU",
+    "iata": "",
+    "name": "Pierce County-Thun Field",
+    "city": "Puyallup",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.1039,
+    "lon": -122.287,
+    "elevation_ft": 538,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3651,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pierce County Airport - Thun Field",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPLU",
+    "airport_ref": "24101",
+    "fetched_at": "2026-08-27T21:05:11Z"
+  }
+}

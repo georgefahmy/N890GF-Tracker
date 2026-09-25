@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787544192.132554,
+  "icao": "01M",
+  "data": {
+    "icao": "01M",
+    "faa": "01M",
+    "iata": "",
+    "name": "Tishomingo County Airport",
+    "city": "Belmont",
+    "state": "MS",
+    "country": "US",
+    "lat": 34.4909,
+    "lon": -88.201,
+    "elevation_ft": 578,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4007,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Tishomingo County Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 01-Aug",
+        "quote_date": "01-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:03:12Z"
+  }
+}

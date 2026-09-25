@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788014646.948815,
+  "icao": "KCKN",
+  "data": {
+    "icao": "KCKN",
+    "faa": "CKN",
+    "iata": "CKN",
+    "name": "Crookston Municipal Kirkwood Field",
+    "city": "Crookston",
+    "state": "MN",
+    "country": "US",
+    "lat": 47.8417,
+    "lon": -96.6216,
+    "elevation_ft": 899,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 40.0,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.1,
+    "approach_desc": "GRAND FORKS APP/DEP",
+    "departure_freq": 118.1,
+    "departure_desc": "GRAND FORKS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 118.15,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRAND FORKS APP/DEP",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 40.0
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4300,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 2977,
+        "width": 200,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crookston Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.1,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCKN",
+    "airport_ref": "19508",
+    "fetched_at": "2026-08-29T14:44:06Z"
+  }
+}

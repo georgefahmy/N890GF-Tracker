@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1790303582.474124,
+  "icao": "KGKY",
+  "data": {
+    "icao": "KGKY",
+    "faa": "GKY",
+    "iata": "",
+    "name": "Arlington Municipal Airport",
+    "city": "Arlington",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.6639,
+    "lon": -97.0943,
+    "elevation_ft": 628,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.075,
+    "unicom_freq": 123.075,
+    "weather_freq": 127.375,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 135.975,
+    "approach_desc": "RGNL APP/DEP",
+    "departure_freq": 135.975,
+    "departure_desc": "RGNL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 118.85,
+    "clearance_desc": "RGNL CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "RGNL APP/DEP",
+        "frequency_mhz": 135.975
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 127.375
+      },
+      {
+        "type": "CLD",
+        "description": "RGNL CLNC DEL",
+        "frequency_mhz": 118.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 6080,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Arlington Air Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.76,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.36,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.62,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.76,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGKY",
+    "airport_ref": "19955",
+    "fetched_at": "2026-08-27T20:54:39Z"
+  }
+}

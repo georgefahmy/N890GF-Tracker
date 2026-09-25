@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787705669.084099,
+  "icao": "Y19",
+  "data": {
+    "icao": "Y19",
+    "faa": "Y19",
+    "iata": "",
+    "name": "Mandan Municipal Airport",
+    "city": "Mandan",
+    "state": "ND",
+    "country": "US",
+    "lat": 46.7682,
+    "lon": -100.894,
+    "elevation_ft": 1944,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BISMARCK APP/DEP",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4399,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 2921,
+        "width": 140,
+        "surface": "Grs",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mandan Regional Airport - Lawler Field",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:54:29Z"
+  }
+}

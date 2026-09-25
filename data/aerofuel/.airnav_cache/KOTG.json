@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787513527.498208,
+  "icao": "KOTG",
+  "data": {
+    "icao": "KOTG",
+    "faa": "OTG",
+    "iata": "OTG",
+    "name": "Worthington Municipal Airport",
+    "city": "Worthington",
+    "state": "MN",
+    "country": "US",
+    "lat": 43.6548,
+    "lon": -95.5774,
+    "elevation_ft": 1574,
+    "tower": false,
+    "ctaf_freq": 125.2,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5290,
+        "surface": "Asphalt/Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Integrity Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Aug",
+        "quote_date": "03-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 110.6
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 132.05
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 110.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T19:32:07Z"
+  }
+}

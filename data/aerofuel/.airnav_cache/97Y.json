@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787542648.3603258,
+  "icao": "97Y",
+  "data": {
+    "icao": "97Y",
+    "faa": "97Y",
+    "iata": "",
+    "name": "Genoa Municipal Airport",
+    "city": "Genoa",
+    "state": "NE",
+    "country": "US",
+    "lat": 41.4042,
+    "lon": -97.7087,
+    "elevation_ft": 1570,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 2517,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Genoa Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:37:28Z"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "_cached_at": 1788215030.358999,
+  "icao": "0B4",
+  "data": {
+    "icao": "0B4",
+    "faa": "0B4",
+    "iata": "",
+    "name": "Hartington Municipal Airport / Bud Becker Field",
+    "city": "Hartington",
+    "state": "NE",
+    "country": "US",
+    "lat": 42.6036,
+    "lon": -97.2526,
+    "elevation_ft": 1387,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3950,
+        "width": 60,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2150,
+        "width": 125,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Becker Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K0B4",
+    "airport_ref": "18349",
+    "fetched_at": "2026-08-31T22:23:50Z"
+  }
+}

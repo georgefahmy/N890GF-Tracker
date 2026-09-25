@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1787793805.443486,
+  "icao": "2J9",
+  "data": {
+    "icao": "2J9",
+    "faa": "2J9",
+    "iata": "",
+    "name": "Quincy Municipal Airport",
+    "city": "Quincy",
+    "state": "FL",
+    "country": "US",
+    "lat": 30.5979,
+    "lon": -84.5574,
+    "elevation_ft": 221,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 2974,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Quincy-Gadsden Airport Authority",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "2J9",
+    "airport_ref": "9478",
+    "fetched_at": "2026-08-27T01:23:25Z"
+  }
+}

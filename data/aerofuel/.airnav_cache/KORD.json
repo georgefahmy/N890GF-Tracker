@@ -1,0 +1,170 @@
+{
+  "_cached_at": 1788218353.6354518,
+  "icao": "KORD",
+  "data": {
+    "icao": "KORD",
+    "faa": "ORD",
+    "iata": "ORD",
+    "name": "Chicago O'Hare International Airport",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.9786,
+    "lon": -87.9048,
+    "elevation_ft": 680,
+    "tower": true,
+    "tower_freq": 126.9,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 135.4,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 119.0,
+    "approach_desc": "APP",
+    "departure_freq": 125.0,
+    "departure_desc": "DEP",
+    "ground_freq": 121.675,
+    "ground_desc": "GND",
+    "clearance_freq": 121.6,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 125.0
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.675
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 126.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 126.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10L/28R",
+        "length": 13000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09R/27L",
+        "length": 11260,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09C/27C",
+        "length": 11245,
+        "width": 200,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "10C/28C",
+        "length": 10800,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04R/22L",
+        "length": 8075,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04L/22R",
+        "length": 7500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09L/27R",
+        "length": 7500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10R/28L",
+        "length": 7500,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.58,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.58,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KORD",
+    "airport_ref": "3754",
+    "fetched_at": "2026-08-31T23:19:13Z"
+  }
+}

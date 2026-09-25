@@ -1,0 +1,156 @@
+{
+  "_cached_at": 1788202512.626318,
+  "icao": "KGRR",
+  "data": {
+    "icao": "KGRR",
+    "faa": "GRR",
+    "iata": "GRR",
+    "name": "Gerald R. Ford International Airport",
+    "city": "Grand Rapids",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.8808,
+    "lon": -85.5228,
+    "elevation_ft": 794,
+    "tower": true,
+    "tower_freq": 135.65,
+    "ctaf_freq": 135.65,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.725,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.6,
+    "approach_desc": "GRAND RAPIDS APP/DEP N",
+    "departure_freq": 124.6,
+    "departure_desc": "GRAND RAPIDS APP/DEP N",
+    "ground_freq": 121.8,
+    "ground_desc": "GND",
+    "clearance_freq": 119.3,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRAND RAPIDS APP/DEP N",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "A/D",
+        "description": "GRAND RAPIDS APP/DEP S",
+        "frequency_mhz": 128.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.725
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 119.3
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 135.65
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 122.25
+      },
+      {
+        "type": "TWR",
+        "description": "GRAND RAPIDS TWR",
+        "frequency_mhz": 135.65
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08R/26L",
+        "length": 10001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 8501,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "08L/26R",
+        "length": 5001,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Avflight Grand Rapids",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.05,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.74,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.12,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGRR",
+    "airport_ref": "3566",
+    "fetched_at": "2026-08-31T18:55:12Z"
+  }
+}

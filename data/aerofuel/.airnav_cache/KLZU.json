@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787787752.0011652,
+  "icao": "KLZU",
+  "data": {
+    "icao": "KLZU",
+    "faa": "LZU",
+    "iata": "LZU",
+    "name": "Gwinnett County Briscoe Field",
+    "city": "Lawrenceville",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.9781,
+    "lon": -83.9624,
+    "elevation_ft": 1061,
+    "tower": true,
+    "ctaf_freq": 124.1,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ATLANTA APP/DEP",
+        "frequency_mhz": 126.975
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 132.275
+      },
+      {
+        "type": "CLD",
+        "description": "ATLANTA CLNC DEL",
+        "frequency_mhz": 134.0
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 6001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aircraft Specialists Jet Center",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.24,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.97,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.24,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:31Z"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787718671.846236,
+  "icao": "M20",
+  "data": {
+    "icao": "M20",
+    "faa": "M20",
+    "iata": "",
+    "name": "Grayson County Airport",
+    "city": "Leitchfield",
+    "state": "KY",
+    "country": "US",
+    "lat": 37.3995,
+    "lon": -86.2602,
+    "elevation_ft": 760,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 4000,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "270-242-7700",
+        "notes": "Quote: 17-Jul-2026",
+        "quote_date": "17-Jul-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:31:09Z"
+  }
+}

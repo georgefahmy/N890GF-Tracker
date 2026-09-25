@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788218563.544843,
+  "icao": "2L0",
+  "data": {
+    "icao": "2L0",
+    "faa": "2L0",
+    "iata": "",
+    "name": "Pineville Municipal Airport",
+    "city": "Pineville",
+    "state": "LA",
+    "country": "US",
+    "lat": 31.3419,
+    "lon": -92.4436,
+    "elevation_ft": 100,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Flightline Air Service, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Aug",
+        "quote_date": "31-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.66,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.66,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K2L0",
+    "airport_ref": "18601",
+    "fetched_at": "2026-08-31T23:22:43Z"
+  }
+}

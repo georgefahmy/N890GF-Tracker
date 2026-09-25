@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787787723.862784,
+  "icao": "N89",
+  "data": {
+    "icao": "N89",
+    "faa": "N89",
+    "iata": "",
+    "name": "Joseph Y Resnick Airport",
+    "city": "Ellenville",
+    "state": "NY",
+    "country": "US",
+    "lat": 41.7288,
+    "lon": -74.3769,
+    "elevation_ft": 292,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW YORK APP/DEP",
+        "frequency_mhz": 132.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3839,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Town of Wawarsing",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Jul",
+        "quote_date": "03-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:03Z"
+  }
+}

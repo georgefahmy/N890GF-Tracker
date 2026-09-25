@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788202574.649163,
+  "icao": "10D",
+  "data": {
+    "icao": "10D",
+    "faa": "10D",
+    "iata": "",
+    "name": "Winsted Municipal Airport",
+    "city": "Winsted",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.9538,
+    "lon": -94.0651,
+    "elevation_ft": 1030,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3248,
+        "width": 200,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Winsted",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Jul",
+        "quote_date": "31-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.09,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.09,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "10D",
+    "airport_ref": "7656",
+    "fetched_at": "2026-08-31T18:56:14Z"
+  }
+}

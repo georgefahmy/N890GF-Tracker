@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1787718366.032413,
+  "icao": "KXNA",
+  "data": {
+    "icao": "KXNA",
+    "faa": "XNA",
+    "iata": "XNA",
+    "name": "Northwest Arkansas National Airport",
+    "city": "Fayetteville/Springdale/Rogers",
+    "state": "AR",
+    "country": "US",
+    "lat": 36.2819,
+    "lon": -94.3068,
+    "elevation_ft": 1287,
+    "tower": true,
+    "ctaf_freq": 127.1,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "RAZORBACK APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.425
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 127.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "JONESBORO RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 127.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "16L/34R",
+        "length": 8801,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "16R/34L",
+        "length": 8800,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Regional Jet Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.83,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.44,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:06Z"
+  }
+}

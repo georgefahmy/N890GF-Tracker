@@ -1,0 +1,157 @@
+{
+  "_cached_at": 1788202574.649794,
+  "icao": "KMSP",
+  "data": {
+    "icao": "KMSP",
+    "faa": "MSP",
+    "iata": "MSP",
+    "name": "Minneapolis\u2013Saint Paul International Airport / Wold\u2013Chamberlain Field",
+    "city": "Minneapolis",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.8801,
+    "lon": -93.2217,
+    "elevation_ft": 841,
+    "tower": true,
+    "tower_freq": 123.675,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.8,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 118.72,
+    "approach_desc": "APP",
+    "departure_freq": 132.975,
+    "departure_desc": "DEP",
+    "ground_freq": 121.8,
+    "ground_desc": "GND",
+    "clearance_freq": 133.2,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 118.72
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.8
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 133.2
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 132.975
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "MISC",
+        "description": "934 AW BASE OPS",
+        "frequency_mhz": 28.267
+      },
+      {
+        "type": "OPS",
+        "description": "133 AW COMD POST",
+        "frequency_mhz": 31.12
+      },
+      {
+        "type": "POST",
+        "description": "934 AW COMD POST",
+        "frequency_mhz": 25.21
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 28.267
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 123.675
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 11006,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "12R/30L",
+        "length": 10000,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "12L/30R",
+        "length": 8200,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 8000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMSP",
+    "airport_ref": "3709",
+    "fetched_at": "2026-08-31T18:56:14Z"
+  }
+}

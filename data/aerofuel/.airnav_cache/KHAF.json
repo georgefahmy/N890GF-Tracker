@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1790309075.465166,
+  "icao": "KHAF",
+  "data": {
+    "icao": "KHAF",
+    "faa": "HAF",
+    "iata": "HAF",
+    "name": "Half Moon Bay Airport",
+    "city": "Half Moon Bay",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.5134,
+    "lon": -122.501,
+    "elevation_ft": 66,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 135.1,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 135.1,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 135.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 5000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "County of San Mateo (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.19,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-22",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KHAF",
+    "airport_ref": "20023",
+    "fetched_at": "2026-08-29T14:58:44Z"
+  }
+}

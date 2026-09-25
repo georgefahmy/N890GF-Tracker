@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1789073639.9596019,
+  "icao": "KMAC",
+  "data": {
+    "icao": "KMAC",
+    "faa": "MAC",
+    "iata": "MAC",
+    "name": "Macon Downtown Airport",
+    "city": "Macon",
+    "state": "GA",
+    "country": "US",
+    "lat": 32.8221,
+    "lon": -83.562,
+    "elevation_ft": 437,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.2,
+    "approach_desc": "ATLANTA APP/DEP",
+    "departure_freq": 124.2,
+    "departure_desc": "ATLANTA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ATLANTA APP/DEP",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 4694,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Middle Georgia State University",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 03-Sep",
+        "quote_date": "03-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMAC",
+    "airport_ref": "20468",
+    "fetched_at": "2026-09-10T20:53:59Z"
+  }
+}

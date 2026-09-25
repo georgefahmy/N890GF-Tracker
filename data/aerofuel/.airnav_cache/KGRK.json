@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1787525641.316701,
+  "icao": "KGRK",
+  "data": {
+    "icao": "KGRK",
+    "faa": "GRK",
+    "iata": "GRK",
+    "name": "Killeen Regional Airport / Robert Gray Army Airfield",
+    "city": "Fort Cavazos",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.0672,
+    "lon": -97.8289,
+    "elevation_ft": 1015,
+    "tower": true,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 9997,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Killeen-Fort Hood Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRAY APP/DEP",
+        "frequency_mhz": 120.075
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 111.8
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "GND",
+        "description": "GRAY GND",
+        "frequency_mhz": 126.2
+      },
+      {
+        "type": "INFO",
+        "description": "RANGE CTL",
+        "frequency_mhz": 30.45
+      },
+      {
+        "type": "MISC",
+        "description": "FT HOOD FLT FLW",
+        "frequency_mhz": 38.75
+      },
+      {
+        "type": "PMSV",
+        "description": "PMSV GRAY METRO",
+        "frequency_mhz": 41.2
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 38.7
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.75
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

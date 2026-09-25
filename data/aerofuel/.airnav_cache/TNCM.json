@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1788218620.944706,
+  "icao": "TNCM",
+  "data": {
+    "icao": "TNCM",
+    "faa": "TNCM",
+    "name": "Airport",
+    "city": "",
+    "state": "",
+    "distance_nm": 99.0,
+    "bearing": "ENE",
+    "fbos": [
+      {
+        "name": "ExecuJet by Atlantic",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 01-Jul",
+        "quote_date": "01-Jul",
+        "fuels": {
+          "JET_A": {
+            "price": 7.18,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Quote: 16-Jun",
+        "quote_date": "16-Jun",
+        "fuels": {
+          "100LL_FS": {
+            "price": 15.61,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.66,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 15.61,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T23:23:40Z",
+    "source": "AirNav Local Fuel"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788202637.192794,
+  "icao": "68Y",
+  "data": {
+    "icao": "68Y",
+    "faa": "68Y",
+    "iata": "",
+    "name": "Wells Municipal Airport",
+    "city": "Wells",
+    "state": "MN",
+    "country": "US",
+    "lat": 43.7412,
+    "lon": -93.7772,
+    "elevation_ft": 1119,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 2897,
+        "width": 165,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wells Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "68Y",
+    "airport_ref": "13134",
+    "fetched_at": "2026-08-31T18:57:17Z"
+  }
+}

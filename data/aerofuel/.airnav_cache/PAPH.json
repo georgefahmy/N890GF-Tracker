@@ -1,0 +1,64 @@
+{
+  "_cached_at": 1787527519.056252,
+  "icao": "PAPH",
+  "data": {
+    "icao": "PAPH",
+    "faa": "PTH",
+    "iata": "PTH",
+    "name": "Port Heiden Airport",
+    "city": "Port Heiden",
+    "state": "AK",
+    "country": "US",
+    "lat": 56.9579,
+    "lon": -158.6302,
+    "elevation_ft": 95,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 132.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.8
+      },
+      {
+        "type": "FSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5000,
+        "width": 100,
+        "surface": "Gravel",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 4000,
+        "width": 100,
+        "surface": "Gravel",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:25:19Z"
+  }
+}

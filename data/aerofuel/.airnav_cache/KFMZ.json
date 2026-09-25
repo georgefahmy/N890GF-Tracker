@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788209.2950048,
+  "icao": "KFMZ",
+  "data": {
+    "icao": "KFMZ",
+    "faa": "FMZ",
+    "iata": "",
+    "name": "Fairmont State Airport",
+    "city": "Fairmont",
+    "state": "NE",
+    "country": "US",
+    "lat": 40.5861,
+    "lon": -97.5731,
+    "elevation_ft": 1636,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4317,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 3021,
+        "width": 60,
+        "surface": "Con",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fairmont State Airfield",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:09Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "_cached_at": 1787531456.201596,
+  "icao": "FXM",
+  "data": {
+    "icao": "FXM",
+    "faa": "FXM",
+    "iata": "",
+    "name": "Flaxman Island Airstrip",
+    "city": "Flaxman Island",
+    "state": "AK",
+    "country": "US",
+    "lat": 70.1895,
+    "lon": -146.0209,
+    "elevation_ft": 20,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "surface": "Paved"
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T00:30:54Z"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "_cached_at": 1787793507.2418828,
+  "icao": "KOKS",
+  "data": {
+    "icao": "KOKS",
+    "faa": "OKS",
+    "iata": "OKS",
+    "name": "Garden County Airport/King Rhiley Field",
+    "city": "Oshkosh",
+    "state": "NE",
+    "country": "US",
+    "lat": 41.401,
+    "lon": -102.355,
+    "elevation_ft": 3394,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 118.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 4699,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Flag R Aviation Services LLC.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Jun",
+        "quote_date": "19-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.25,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Garden County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 08-Jun",
+        "quote_date": "08-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOKS",
+    "airport_ref": "20735",
+    "fetched_at": "2026-08-27T01:18:27Z"
+  }
+}

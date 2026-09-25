@@ -1,0 +1,108 @@
+{
+  "_cached_at": 1789073567.643758,
+  "icao": "KHIB",
+  "data": {
+    "icao": "KHIB",
+    "faa": "HIB",
+    "iata": "HIB",
+    "name": "Range Regional Airport",
+    "city": "Hibbing",
+    "state": "MN",
+    "country": "US",
+    "lat": 47.3848,
+    "lon": -92.8369,
+    "elevation_ft": 1354,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 126.425,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 125.45,
+    "approach_desc": "DULUTH APP/DEP",
+    "departure_freq": 125.45,
+    "departure_desc": "DULUTH APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 127.4,
+    "clearance_desc": "DULUTH CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DULUTH APP/DEP",
+        "frequency_mhz": 125.45
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 126.425
+      },
+      {
+        "type": "CLD",
+        "description": "DULUTH CLNC DEL",
+        "frequency_mhz": 127.4
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 6758,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 3075,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Range Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 09-Sep",
+        "quote_date": "09-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.89,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.14,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KHIB",
+    "airport_ref": "3579",
+    "fetched_at": "2026-09-10T20:52:47Z"
+  }
+}

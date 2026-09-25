@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787787675.1825018,
+  "icao": "4B9",
+  "data": {
+    "icao": "4B9",
+    "faa": "4B9",
+    "iata": "",
+    "name": "Simsbury Airport",
+    "city": "Simsbury",
+    "state": "CT",
+    "country": "US",
+    "lat": 41.9158,
+    "lon": -72.7771,
+    "elevation_ft": 195,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 2205,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Simsbury Airport Association",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:41:15Z"
+  }
+}

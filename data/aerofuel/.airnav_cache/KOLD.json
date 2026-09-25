@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1788218654.2620318,
+  "icao": "KOLD",
+  "data": {
+    "icao": "KOLD",
+    "faa": "OLD",
+    "iata": "OLD",
+    "name": "Dewitt Field - Old Town Municipal Airport",
+    "city": "Old Town",
+    "state": "ME",
+    "country": "US",
+    "lat": 44.9528,
+    "lon": -68.6743,
+    "elevation_ft": 126,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.5,
+    "approach_desc": "BANGOR APP/DEP",
+    "departure_freq": 124.5,
+    "departure_desc": "BANGOR APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BANGOR APP/DEP",
+        "frequency_mhz": 124.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17W/35W",
+        "length": 8400,
+        "width": 100,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "12/30",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 2802,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City Of Old Town",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.3,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOLD",
+    "airport_ref": "3748",
+    "fetched_at": "2026-08-31T23:24:14Z"
+  }
+}

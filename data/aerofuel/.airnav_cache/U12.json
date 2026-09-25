@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787544560.947961,
+  "icao": "U12",
+  "data": {
+    "icao": "U12",
+    "faa": "U12",
+    "iata": "",
+    "name": "Stanford Field",
+    "city": "St Anthony",
+    "state": "ID",
+    "country": "US",
+    "lat": 43.9505,
+    "lon": -111.6834,
+    "elevation_ft": 4966,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4500,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Shupe Flying Service Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:09:20Z"
+  }
+}

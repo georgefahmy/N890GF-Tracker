@@ -1,0 +1,87 @@
+{
+  "_cached_at": 1789073574.785377,
+  "icao": "KPBH",
+  "data": {
+    "icao": "KPBH",
+    "faa": "PBH",
+    "iata": "",
+    "name": "Price County Airport",
+    "city": "Phillips",
+    "state": "WI",
+    "country": "US",
+    "lat": 45.709,
+    "lon": -90.4025,
+    "elevation_ft": 1497,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 125.875,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 133.65,
+    "approach_desc": "MINNEAPOLIS APP/DEP",
+    "departure_freq": 133.65,
+    "departure_desc": "MINNEAPOLIS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MINNEAPOLIS APP/DEP",
+        "frequency_mhz": 133.65
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 125.875
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 122.05
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5220,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 3951,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "715-339-3701",
+        "notes": "Quote: 24-Aug-2026",
+        "quote_date": "24-Aug-2026",
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KPBH",
+    "airport_ref": "20809",
+    "fetched_at": "2026-09-10T20:52:53Z"
+  }
+}

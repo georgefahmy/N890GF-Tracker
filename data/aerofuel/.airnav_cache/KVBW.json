@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787787798.089087,
+  "icao": "KVBW",
+  "data": {
+    "icao": "KVBW",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-26T23:43:18Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1787527460.522898,
+  "icao": "PANN",
+  "data": {
+    "icao": "PANN",
+    "faa": "ENN",
+    "iata": "ENN",
+    "name": "Nenana Municipal Airport",
+    "city": "Nenana",
+    "state": "AK",
+    "country": "US",
+    "lat": 64.5488,
+    "lon": -149.0745,
+    "elevation_ft": 362,
+    "tower": true,
+    "ctaf_freq": 122.1,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FAIRBANKS APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 125.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.1
+      },
+      {
+        "type": "FSS",
+        "description": "FAIRBANKS RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "MISC",
+        "description": "TWEB",
+        "frequency_mhz": 115.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04L/22R",
+        "length": 4600,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04W/22W",
+        "length": 3601,
+        "width": 100,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "04R/22L",
+        "length": 1980,
+        "width": 80,
+        "surface": "Grs",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Alaska Aerofuel",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 9.37,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:24:20Z"
+  }
+}

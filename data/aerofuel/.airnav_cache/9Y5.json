@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1789073567.644525,
+  "icao": "9Y5",
+  "data": {
+    "icao": "9Y5",
+    "faa": "9Y5",
+    "iata": "",
+    "name": "Sky Harbor Seaplane Base",
+    "city": "Eveleth",
+    "state": "MN",
+    "country": "US",
+    "lat": 47.4596,
+    "lon": -92.4766,
+    "elevation_ft": 1376,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 6500,
+        "width": 1000,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "07/25",
+        "length": 6500,
+        "width": 1000,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "14/32",
+        "length": 4500,
+        "width": 1000,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Eveleth Seaplane Base",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "9Y5",
+    "airport_ref": "16065",
+    "fetched_at": "2026-09-10T20:52:47Z"
+  }
+}

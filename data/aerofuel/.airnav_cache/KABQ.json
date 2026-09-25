@@ -1,0 +1,137 @@
+{
+  "_cached_at": 1787788247.550924,
+  "icao": "KABQ",
+  "data": {
+    "icao": "KABQ",
+    "faa": "ABQ",
+    "iata": "ABQ",
+    "name": "Albuquerque International Sunport",
+    "city": "Albuquerque",
+    "state": "NM",
+    "country": "US",
+    "lat": 35.04,
+    "lon": -106.6089,
+    "elevation_ft": 5355,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 123.9
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "CLD",
+        "description": "Clearance",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 123.9
+      },
+      {
+        "type": "GND",
+        "description": "Ground",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "Tower",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "TWR",
+        "description": "Tower",
+        "frequency_mhz": 123.775
+      },
+      {
+        "type": "UNICOM",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 13793,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": false
+      },
+      {
+        "id": "03/21",
+        "length": 10000,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": false
+      },
+      {
+        "id": "12/30",
+        "length": 6000,
+        "width": 150,
+        "surface": "Concrete",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cutter Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:47Z"
+  }
+}

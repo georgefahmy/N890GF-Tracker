@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787608550.999039,
+  "icao": "KVUO",
+  "data": {
+    "icao": "KVUO",
+    "faa": "VUO",
+    "iata": "",
+    "name": "Pearson Field",
+    "city": "Vancouver",
+    "state": "WA",
+    "country": "US",
+    "lat": 45.6205,
+    "lon": -122.656,
+    "elevation_ft": 25,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "AAS",
+        "description": "VFR ADVSY SVC",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "APP",
+        "description": "PORTLAND APP",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.125
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "DEP",
+        "description": "PORTLAND DEP",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "RDO",
+        "description": "SEATTLE RDO",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3275,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aero Maintenance Flight Center",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:55:50Z"
+  }
+}

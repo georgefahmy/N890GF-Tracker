@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202468.95722,
+  "icao": "KMOR",
+  "data": {
+    "icao": "KMOR",
+    "faa": "MOR",
+    "iata": "MOR",
+    "name": "Morristown Regional Airport",
+    "city": "Morristown",
+    "state": "TN",
+    "country": "US",
+    "lat": 36.1794,
+    "lon": -83.3755,
+    "elevation_ft": 1313,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 126.725,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 132.8,
+    "approach_desc": "KNOXVILLE APP/DEP",
+    "departure_freq": 132.8,
+    "departure_desc": "KNOXVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KNOXVILLE APP/DEP",
+        "frequency_mhz": 132.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 126.725
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5718,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Morristown Air Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.74,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.93,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.74,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMOR",
+    "airport_ref": "20544",
+    "fetched_at": "2026-08-31T18:54:28Z"
+  }
+}

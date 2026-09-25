@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1788218347.3936808,
+  "icao": "1G5",
+  "data": {
+    "icao": "1G5",
+    "faa": "1G5",
+    "iata": "",
+    "name": "Medina Municipal Airport",
+    "city": "Medina",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.1319,
+    "lon": -81.7674,
+    "elevation_ft": 1190,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 125.35,
+    "approach_desc": "CLEVELAND APP/DEP",
+    "departure_freq": 125.35,
+    "departure_desc": "CLEVELAND APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CLEVELAND APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3556,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 2868,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cold Stream Air Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.3,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1G5",
+    "airport_ref": "18469",
+    "fetched_at": "2026-08-31T23:19:07Z"
+  }
+}

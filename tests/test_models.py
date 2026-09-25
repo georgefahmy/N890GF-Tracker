@@ -177,13 +177,16 @@ class TestCheckAutoMaintenance:
         from app import db, check_auto_maintenance, MaintenanceLog, FlightLog
 
         with app.app_context():
-            # Add a flight that pushes tach past the 25hr interval
+            from app import MAINTENANCE_RULES
+
+            # Add a flight that pushes tach past the oil change interval
+            oil_interval = MAINTENANCE_RULES["Oil Change"]["hours"]
             high_tach_flight = FlightLog(
                 date=datetime(2024, 6, 1),
                 takeoff_airport="KSJC",
                 landing_airport="KRHV",
-                hobbs=130.0,
-                tach=120.0,  # 120 - 90 = 30 hrs since oil change
+                hobbs=180.0,
+                tach=90.0 + oil_interval + 5.0,  # 5 hrs past oil change due
                 landings=1,
             )
             db.session.add(high_tach_flight)
@@ -272,12 +275,13 @@ class TestGetUpcomingMaintenance:
             assert "oil_status_class" in result
 
     def test_oil_due_shows_hours(self, app, seed_db):
-        from app import get_upcoming_maintenance
+        from app import get_upcoming_maintenance, MAINTENANCE_RULES
 
         with app.app_context():
             result = get_upcoming_maintenance()
-            # Oil change at 90.0, interval 25hrs => next due at 115.0
-            assert "115.0 hrs" in result["oil_due"]
+            # Oil change at 90.0
+            expected_due = 90.0 + MAINTENANCE_RULES["Oil Change"]["hours"]
+            assert f"{expected_due:.1f} hrs" in result["oil_due"]
 
     def test_defaults_when_no_data(self, app):
         from app import get_upcoming_maintenance

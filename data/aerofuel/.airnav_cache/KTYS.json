@@ -1,0 +1,133 @@
+{
+  "_cached_at": 1788202468.955641,
+  "icao": "KTYS",
+  "data": {
+    "icao": "KTYS",
+    "faa": "TYS",
+    "iata": "TYS",
+    "name": "McGhee Tyson Airport",
+    "city": "Knoxville/Maryville",
+    "state": "TN",
+    "country": "US",
+    "lat": 35.811,
+    "lon": -83.994,
+    "elevation_ft": 981,
+    "tower": true,
+    "tower_freq": 121.2,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 128.35,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 36.08,
+    "approach_desc": "KNOXVILLE APP/DEP",
+    "departure_freq": 36.08,
+    "departure_desc": "KNOXVILLE APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "KNOXVILLE GND",
+    "clearance_freq": 121.65,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KNOXVILLE APP/DEP",
+        "frequency_mhz": 36.08
+      },
+      {
+        "type": "A/D",
+        "description": "KNOXVILLE APP/DEP",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "GND",
+        "description": "KNOXVILLE GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "MISC",
+        "description": "ARNG OPS",
+        "frequency_mhz": 41.5
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 30.3
+      },
+      {
+        "type": "RDO",
+        "description": "NASHVILLE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "KNOXVILLE TWR",
+        "frequency_mhz": 121.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05L/23R",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "05R/23L",
+        "length": 9000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "",
+        "phone": "865-970-9000",
+        "notes": "Quote: 29-Aug-2026",
+        "quote_date": "29-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.84,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.71,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.84,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KTYS",
+    "airport_ref": "3938",
+    "fetched_at": "2026-08-31T18:54:27Z"
+  }
+}

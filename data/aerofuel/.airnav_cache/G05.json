@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1787863971.852776,
+  "icao": "G05",
+  "data": {
+    "icao": "G05",
+    "faa": "G05",
+    "iata": "",
+    "name": "Finleyville Airpark",
+    "city": "Finleyville",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.2459,
+    "lon": -80.0123,
+    "elevation_ft": 1240,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 2497,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Finleyville Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "G05",
+    "airport_ref": "17472",
+    "fetched_at": "2026-08-27T20:52:51Z"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "_cached_at": 1787527605.125077,
+  "icao": "KPDT",
+  "data": {
+    "icao": "KPDT",
+    "faa": "PDT",
+    "iata": "PDT",
+    "name": "Eastern Oregon Regional Airport at Pendleton",
+    "city": "Pendleton",
+    "state": "OR",
+    "country": "US",
+    "lat": 45.6951,
+    "lon": -118.841,
+    "elevation_ft": 1497,
+    "tower": true,
+    "ctaf_freq": 119.7,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHINOOK APP/DEP",
+        "frequency_mhz": 133.15
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 40.9
+      },
+      {
+        "type": "RDO",
+        "description": "MC MINNVILLE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "PENDLETON TWR",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 6301,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 4808,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wildhorse Aviation",
+        "brand": "Avfuel",
+        "phone": "541-310-9542",
+        "notes": "Avfuel \u2022 Quote: 28-Jul-2026",
+        "quote_date": "28-Jul-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:26:43Z"
+  }
+}

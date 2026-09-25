@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787787731.560548,
+  "icao": "P72",
+  "data": {
+    "icao": "P72",
+    "faa": "P72",
+    "name": "Penn's Landing Heliport",
+    "city": "Philadelphia",
+    "state": "PA",
+    "distance_nm": 42.0,
+    "bearing": "WNW",
+    "fbos": [
+      {
+        "name": "Sterling Helicopter",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 8.65,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-26T23:42:11Z",
+    "source": "AirNav Local Fuel"
+  }
+}

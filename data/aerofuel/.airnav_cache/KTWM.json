@@ -1,0 +1,105 @@
+{
+  "_cached_at": 1787793711.071881,
+  "icao": "KTWM",
+  "data": {
+    "icao": "KTWM",
+    "faa": "TWM",
+    "iata": "",
+    "name": "Richard B Helgeson Airport",
+    "city": "Two Harbors",
+    "state": "MN",
+    "country": "US",
+    "lat": 47.0492,
+    "lon": -91.7451,
+    "elevation_ft": 1073,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": 119.325,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 125.45,
+    "approach_desc": "DULUTH APP/DEP",
+    "departure_freq": 125.45,
+    "departure_desc": "DULUTH APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DULUTH APP/DEP",
+        "frequency_mhz": 125.45
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.325
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 4400,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 2581,
+        "width": 150,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Two Harbors Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Jul",
+        "quote_date": "21-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.76,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.73,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 4.95,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTWM",
+    "airport_ref": "21237",
+    "fetched_at": "2026-08-27T01:21:51Z"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "_cached_at": 1787528412.78134,
+  "icao": "KFCI",
+  "data": {
+    "icao": "KFCI",
+    "faa": "FCI",
+    "iata": "",
+    "name": "Richmond Executive-Chesterfield County Airport",
+    "city": "North Chesterfield",
+    "state": "VA",
+    "country": "US",
+    "lat": 37.4065,
+    "lon": -77.525,
+    "elevation_ft": 236,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "POTOMAC APP",
+        "frequency_mhz": 134.7
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.625
+      },
+      {
+        "type": "CLD",
+        "description": "POTOMAC CLNC DEL",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "DEP",
+        "description": "POTOMAC DEP",
+        "frequency_mhz": 134.7
+      },
+      {
+        "type": "RDO",
+        "description": "LEESBURG RDO",
+        "frequency_mhz": 113.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Vantage Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.33,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.84,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.33,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:40:12Z"
+  }
+}

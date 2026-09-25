@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1788218304.5456388,
+  "icao": "KUZA",
+  "data": {
+    "icao": "KUZA",
+    "faa": "UZA",
+    "iata": "RKH",
+    "name": "Rock Hill - York County Airport",
+    "city": "Rock Hill",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.9878,
+    "lon": -81.0572,
+    "elevation_ft": 666,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": 120.775,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 120.05,
+    "approach_desc": "CHARLOTTE APP/DEP",
+    "departure_freq": 120.05,
+    "departure_desc": "CHARLOTTE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 126.85,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHARLOTTE APP/DEP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.775
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pilatus Aircraft USA, Ltd",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KUZA",
+    "airport_ref": "21310",
+    "fetched_at": "2026-08-29T14:47:09Z"
+  }
+}

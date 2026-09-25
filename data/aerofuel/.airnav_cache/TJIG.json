@@ -1,0 +1,121 @@
+{
+  "_cached_at": 1788218638.5542378,
+  "icao": "TJIG",
+  "data": {
+    "icao": "TJIG",
+    "faa": "SIG",
+    "iata": "SIG",
+    "name": "Fernando Luis Ribas Dominicci Airport",
+    "city": "San Juan",
+    "state": "PR",
+    "country": "US",
+    "lat": 18.4568,
+    "lon": -66.0981,
+    "elevation_ft": 10,
+    "tower": true,
+    "tower_freq": 135.875,
+    "ctaf_freq": 135.875,
+    "unicom_freq": 135.875,
+    "weather_freq": 120.4,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.4,
+    "approach_desc": "SAN JUAN CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SAN JUAN CNTR",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 135.875
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "OPS",
+        "description": "PRARNG OPS",
+        "frequency_mhz": 30.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 135.875
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5317,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Modern Aviation - TJIG",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.78,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.56,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Isla Grande Flying School",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "TJIG",
+    "airport_ref": "6381",
+    "fetched_at": "2026-08-31T23:23:58Z"
+  }
+}

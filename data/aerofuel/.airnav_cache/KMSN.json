@@ -1,0 +1,145 @@
+{
+  "_cached_at": 1788202536.240799,
+  "icao": "KMSN",
+  "data": {
+    "icao": "KMSN",
+    "faa": "MSN",
+    "iata": "MSN",
+    "name": "Dane County Regional Truax Field",
+    "city": "Madison",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.1399,
+    "lon": -89.3375,
+    "elevation_ft": 887,
+    "tower": true,
+    "tower_freq": 119.3,
+    "ctaf_freq": 119.3,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.65,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 120.1,
+    "approach_desc": "MADISON APP",
+    "departure_freq": 126.85,
+    "departure_desc": "MADISON DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "MADISON GND",
+    "clearance_freq": 121.62,
+    "clearance_desc": "MADISON CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "MADISON APP",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "CLD",
+        "description": "MADISON CLNC DEL",
+        "frequency_mhz": 121.62
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.3
+      },
+      {
+        "type": "DEP",
+        "description": "MADISON DEP",
+        "frequency_mhz": 126.85
+      },
+      {
+        "type": "GND",
+        "description": "MADISON GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "MISC",
+        "description": "ARNG OPS",
+        "frequency_mhz": 40.8
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 138.25
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "TWR",
+        "description": "MADISON TWR",
+        "frequency_mhz": 119.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 9006,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 7200,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 5846,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wisconsin Aviation-Madison",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMSN",
+    "airport_ref": "3707",
+    "fetched_at": "2026-08-31T18:55:36Z"
+  }
+}

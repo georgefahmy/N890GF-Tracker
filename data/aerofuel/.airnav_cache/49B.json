@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788014637.41774,
+  "icao": "49B",
+  "data": {
+    "icao": "49B",
+    "faa": "49B",
+    "iata": "",
+    "name": "Sturgis Municipal Airport",
+    "city": "Sturgis",
+    "state": "SD",
+    "country": "US",
+    "lat": 44.418,
+    "lon": -103.375,
+    "elevation_ft": 3243,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.5,
+    "approach_desc": "ELLSWORTH APP/DEP",
+    "departure_freq": 119.5,
+    "departure_desc": "ELLSWORTH APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ELLSWORTH APP/DEP",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 5100,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "CB&B Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.6,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K49B",
+    "airport_ref": "18797",
+    "fetched_at": "2026-08-29T14:43:57Z"
+  }
+}

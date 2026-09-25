@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787504127.095237,
+  "icao": "KJRA",
+  "data": {
+    "icao": "KJRA",
+    "faa": "JRA",
+    "name": "West 30th St Heliport",
+    "city": "New York",
+    "state": "NY",
+    "distance_nm": 12.0,
+    "bearing": "WNW",
+    "fbos": [
+      {
+        "name": "Air Pegasus",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Mar",
+        "quote_date": "05-Mar",
+        "fuels": {
+          "JET_A": {
+            "price": 8.74,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T16:55:27Z",
+    "source": "AirNav Local Fuel"
+  }
+}

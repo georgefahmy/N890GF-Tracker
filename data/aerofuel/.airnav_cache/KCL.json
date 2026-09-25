@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787531308.7280278,
+  "icao": "KCL",
+  "data": {
+    "icao": "KCL",
+    "faa": "KCL",
+    "iata": "KCL",
+    "name": "Chignik Lagoon Airport",
+    "city": "Chignik Flats",
+    "state": "AK",
+    "country": "US",
+    "lat": 56.3108,
+    "lon": -158.5348,
+    "elevation_ft": 25,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 2200,
+        "width": 90,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:28:28Z"
+  }
+}

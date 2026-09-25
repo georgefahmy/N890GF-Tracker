@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787530818.968462,
+  "icao": "1L7",
+  "data": {
+    "icao": "1L7",
+    "faa": "1L7",
+    "iata": "",
+    "name": "Escalante Municipal Airport",
+    "city": "Escalante",
+    "state": "UT",
+    "country": "US",
+    "lat": 37.7453,
+    "lon": -111.57,
+    "elevation_ft": 5733,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 5032,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "GateOne Escalante formerly Sphere One Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:20:18Z"
+  }
+}

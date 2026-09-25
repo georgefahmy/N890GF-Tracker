@@ -1,0 +1,140 @@
+{
+  "_cached_at": 1789073595.843442,
+  "icao": "KEVV",
+  "data": {
+    "icao": "KEVV",
+    "faa": "EVV",
+    "iata": "EVV",
+    "name": "Evansville Regional Airport",
+    "city": "Evansville",
+    "state": "IN",
+    "country": "US",
+    "lat": 38.037,
+    "lon": -87.5324,
+    "elevation_ft": 418,
+    "tower": true,
+    "tower_freq": 118.7,
+    "ctaf_freq": 118.7,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.2,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.025,
+    "approach_desc": "041-219\u00b0",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 126.6,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "041-219\u00b0",
+        "frequency_mhz": 124.025
+      },
+      {
+        "type": "APP",
+        "description": "220-040\u00b0",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.2
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "CTR",
+        "description": "INDIANAPOLIS CENTER",
+        "frequency_mhz": 128.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 8021,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 6286,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 3497,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "United Companies Air Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.35,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.1,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KEVV",
+    "airport_ref": "3518",
+    "fetched_at": "2026-09-10T20:53:15Z"
+  }
+}

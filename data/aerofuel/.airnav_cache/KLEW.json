@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1787705620.464749,
+  "icao": "KLEW",
+  "data": {
+    "icao": "KLEW",
+    "faa": "LEW",
+    "iata": "LEW",
+    "name": "Auburn Lewiston Municipal Airport",
+    "city": "Auburn/Lewiston",
+    "state": "ME",
+    "country": "US",
+    "lat": 44.0485,
+    "lon": -70.2835,
+    "elevation_ft": 288,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "PORTLAND APP",
+        "frequency_mhz": 124.05
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.025
+      },
+      {
+        "type": "CLD",
+        "description": "PORTLAND CLNC DEL",
+        "frequency_mhz": 124.05
+      },
+      {
+        "type": "DEP",
+        "description": "PORTLAND DEP",
+        "frequency_mhz": 125.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 2750,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Auburn/Lewiston Airport Air Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:53:40Z"
+  }
+}

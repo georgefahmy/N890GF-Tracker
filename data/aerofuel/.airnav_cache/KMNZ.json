@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787525641.316441,
+  "icao": "KMNZ",
+  "data": {
+    "icao": "KMNZ",
+    "faa": "MNZ",
+    "iata": "",
+    "name": "Hamilton Municipal Airport",
+    "city": "Hamilton",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.6659,
+    "lon": -98.1486,
+    "elevation_ft": 1299,
+    "tower": false,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 122.7,
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5012,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Hamilton",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRAY APP/DEP",
+        "frequency_mhz": 120.075
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

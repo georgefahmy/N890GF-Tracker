@@ -1,0 +1,128 @@
+{
+  "_cached_at": 1790302580.778688,
+  "icao": "KSCK",
+  "data": {
+    "icao": "KSCK",
+    "faa": "SCK",
+    "iata": "SCK",
+    "name": "Stockton Metropolitan Airport",
+    "city": "Stockton",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.8933,
+    "lon": -121.2381,
+    "elevation_ft": 33,
+    "tower": true,
+    "tower_freq": 120.3,
+    "ctaf_freq": 120.3,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 123.85,
+    "approach_desc": "NORCAL APP",
+    "departure_freq": 125.1,
+    "departure_desc": "NORCAL DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 123.85
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "DEP",
+        "description": "NORCAL DEP",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 49.0
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "11L/29R",
+        "length": 10245,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11R/29L",
+        "length": 4448,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.31,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.93,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.31,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSCK",
+    "airport_ref": "3872",
+    "fetched_at": "2026-08-27T01:05:10Z"
+  }
+}

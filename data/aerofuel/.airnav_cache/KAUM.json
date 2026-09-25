@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1788202637.193144,
+  "icao": "KAUM",
+  "data": {
+    "icao": "KAUM",
+    "faa": "AUM",
+    "iata": "AUM",
+    "name": "Austin Municipal Airport",
+    "city": "Austin",
+    "state": "MN",
+    "country": "US",
+    "lat": 43.665,
+    "lon": -92.9334,
+    "elevation_ft": 1234,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 119.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.8,
+    "approach_desc": "ROCHESTER APP/DEP",
+    "departure_freq": 119.8,
+    "departure_desc": "ROCHESTER APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROCHESTER APP/DEP",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.025
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5800,
+        "width": 100,
+        "surface": "Concrete",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Austin Aeroflight",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 15-May",
+        "quote_date": "15-May",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.46,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.26,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.46,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAUM",
+    "airport_ref": "19323",
+    "fetched_at": "2026-08-31T18:57:17Z"
+  }
+}

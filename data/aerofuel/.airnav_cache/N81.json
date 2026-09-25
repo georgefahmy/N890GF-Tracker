@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787787731.563964,
+  "icao": "N81",
+  "data": {
+    "icao": "N81",
+    "faa": "N81",
+    "iata": "",
+    "name": "Hammonton Municipal Airport",
+    "city": "Hammonton",
+    "state": "NJ",
+    "country": "US",
+    "lat": 39.6675,
+    "lon": -74.7577,
+    "elevation_ft": 65,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 134.25
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 115.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 3601,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Star Aero Avionics LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Aug",
+        "quote_date": "03-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:11Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787525641.3156722,
+  "icao": "7F7",
+  "data": {
+    "icao": "7F7",
+    "faa": "7F7",
+    "iata": "",
+    "name": "Clifton Municipal Isenhower Field",
+    "city": "Clifton",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.8173,
+    "lon": -97.5697,
+    "elevation_ft": 760,
+    "tower": false,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3000,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Clifton Aero",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

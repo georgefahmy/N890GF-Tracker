@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787793902.848657,
+  "icao": "63C",
+  "data": {
+    "icao": "63C",
+    "faa": "63C",
+    "iata": "",
+    "name": "Adams County Legion Field",
+    "city": "Adams",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.9601,
+    "lon": -89.7892,
+    "elevation_ft": 976,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 135.25,
+    "approach_desc": "VOLK APP/DEP",
+    "departure_freq": 135.25,
+    "departure_desc": "VOLK APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "VOLK APP/DEP",
+        "frequency_mhz": 135.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3400,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 2825,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Adams County Airport-Legion Field",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K63C",
+    "airport_ref": "18953",
+    "fetched_at": "2026-08-27T01:25:02Z"
+  }
+}

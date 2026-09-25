@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787517326.784697,
+  "icao": "KLND",
+  "data": {
+    "icao": "KLND",
+    "faa": "LND",
+    "iata": "LND",
+    "name": "Hunt Field",
+    "city": "Lander",
+    "state": "WY",
+    "country": "US",
+    "lat": 42.8152,
+    "lon": -108.73,
+    "elevation_ft": 5586,
+    "tower": true,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 6810,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Lander",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.86,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.97,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.86,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T20:35:26Z"
+  }
+}

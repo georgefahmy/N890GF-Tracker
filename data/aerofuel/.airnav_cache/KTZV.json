@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787788138.164767,
+  "icao": "KTZV",
+  "data": {
+    "icao": "KTZV",
+    "faa": "TZV",
+    "iata": "",
+    "name": "Tompkinsville Monroe County Airport",
+    "city": "Tompkinsville",
+    "state": "KY",
+    "country": "US",
+    "lat": 36.729,
+    "lon": -85.6524,
+    "elevation_ft": 1036,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Tompkinsville-Monroe County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 04-May",
+        "quote_date": "04-May",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:58Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787792778.5911522,
+  "icao": "MS9",
+  "data": {
+    "icao": "MS9",
+    "faa": "MS9",
+    "name": "Eagles Ridge Airport",
+    "city": "Hernando",
+    "state": "MS",
+    "distance_nm": 22.0,
+    "bearing": "ENE",
+    "fbos": [
+      {
+        "name": "Eagles Ridge Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-27T01:06:18Z",
+    "source": "AirNav Local Fuel"
+  }
+}

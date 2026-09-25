@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788015609.784456,
+  "icao": "F92",
+  "data": {
+    "icao": "F92",
+    "faa": "F92",
+    "iata": "",
+    "name": "Kingfisher Airport",
+    "city": "Kingfisher",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.8765,
+    "lon": -97.9529,
+    "elevation_ft": 1067,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 2580,
+        "width": 375,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Kingfisher (FBO)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.08,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.08,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "F92",
+    "airport_ref": "17194",
+    "fetched_at": "2026-08-29T15:00:09Z"
+  }
+}

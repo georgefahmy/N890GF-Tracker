@@ -1,0 +1,142 @@
+{
+  "_cached_at": 1787718400.183211,
+  "icao": "PAKN",
+  "data": {
+    "icao": "PAKN",
+    "faa": "AKN",
+    "iata": "AKN",
+    "name": "King Salmon Airport",
+    "city": "King Salmon",
+    "state": "AK",
+    "country": "US",
+    "lat": 58.6778,
+    "lon": -156.652,
+    "elevation_ft": 73,
+    "tower": true,
+    "ctaf_freq": 121.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/G",
+        "description": "HARMONY",
+        "frequency_mhz": 140.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.8
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 124.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "FSS",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "OPS",
+        "frequency_mhz": 37.22
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 37.22
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.3
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 8901,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "18/36",
+        "length": 4017,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "NW/SE",
+        "length": 4000,
+        "width": 500,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "King Salmon Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 10.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.36,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Egli Air Haul",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 12.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:40Z"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1789073574.785814,
+  "icao": "KPKF",
+  "data": {
+    "icao": "KPKF",
+    "faa": "PKF",
+    "iata": "PKF",
+    "name": "Park Falls Municipal Airport",
+    "city": "Park Falls",
+    "state": "WI",
+    "country": "US",
+    "lat": 45.955,
+    "lon": -90.4244,
+    "elevation_ft": 1500,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 133.65,
+    "approach_desc": "MINNEAPOLIS APP/DEP",
+    "departure_freq": 133.65,
+    "departure_desc": "MINNEAPOLIS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MINNEAPOLIS APP/DEP",
+        "frequency_mhz": 133.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3200,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Park Falls Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 15-Jun",
+        "quote_date": "15-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPKF",
+    "airport_ref": "20837",
+    "fetched_at": "2026-09-10T20:52:54Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787792807.718884,
+  "icao": "N30",
+  "data": {
+    "icao": "N30",
+    "faa": "N30",
+    "iata": "",
+    "name": "Cherry Ridge Airport",
+    "city": "Honesdale",
+    "state": "PA",
+    "country": "US",
+    "lat": 41.5153,
+    "lon": -75.2515,
+    "elevation_ft": 1357,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2986,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Earlynn Aviation Inc",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.65,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:47Z"
+  }
+}

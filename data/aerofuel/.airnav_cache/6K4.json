@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788015609.782753,
+  "icao": "6K4",
+  "data": {
+    "icao": "6K4",
+    "faa": "6K4",
+    "iata": "",
+    "name": "Fairview Municipal Airport",
+    "city": "Fairview",
+    "state": "OK",
+    "country": "US",
+    "lat": 36.2901,
+    "lon": -98.4758,
+    "elevation_ft": 1272,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.525,
+    "approach_desc": "VANCE APP/DEP",
+    "departure_freq": 120.525,
+    "departure_desc": "VANCE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "VANCE APP/DEP",
+        "frequency_mhz": 120.525
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4400,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Regier Aerial LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K6K4",
+    "airport_ref": "18997",
+    "fetched_at": "2026-08-29T15:00:09Z"
+  }
+}

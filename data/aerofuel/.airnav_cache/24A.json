@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788202468.957936,
+  "icao": "24A",
+  "data": {
+    "icao": "24A",
+    "faa": "24A",
+    "iata": "",
+    "name": "Jackson County Airport",
+    "city": "Sylva",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.3174,
+    "lon": -83.2099,
+    "elevation_ft": 2857,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3210,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Jackson County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K24A",
+    "airport_ref": "18543",
+    "fetched_at": "2026-08-31T18:54:28Z"
+  }
+}

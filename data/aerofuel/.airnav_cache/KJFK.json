@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1787504127.094612,
+  "icao": "KJFK",
+  "data": {
+    "icao": "KJFK",
+    "faa": "JFK",
+    "name": "John F Kennedy International Airport",
+    "city": "New York",
+    "state": "NY",
+    "distance_nm": null,
+    "bearing": null,
+    "fbos": [
+      {
+        "name": "Modern Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 11.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 12.2,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 11.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T16:55:27Z",
+    "source": "AirNav Local Fuel"
+  }
+}

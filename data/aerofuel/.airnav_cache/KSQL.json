@@ -1,0 +1,123 @@
+{
+  "_cached_at": 1790309075.464459,
+  "icao": "KSQL",
+  "data": {
+    "icao": "KSQL",
+    "faa": "SQL",
+    "iata": "SQL",
+    "name": "San Carlos Airport",
+    "city": "San Carlos",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.5131,
+    "lon": -122.2508,
+    "elevation_ft": 5,
+    "tower": true,
+    "tower_freq": 119.0,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.95,
+    "weather_freq": 125.9,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 33.82,
+    "approach_desc": "NORCAL APP",
+    "departure_freq": 135.65,
+    "departure_desc": "NORCAL DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 33.82
+      },
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 133.95
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "DEP",
+        "description": "NORCAL DEP",
+        "frequency_mhz": 135.65
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 2621,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "San Carlos Flight Center",
+        "brand": "",
+        "phone": "650-946-1700",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      },
+      {
+        "name": "West Valley Flying Club",
+        "brand": "",
+        "phone": "650-856-2030",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      },
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "SAF": {
+            "price": 7.0,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "SAF"
+    ],
+    "last_updated": "2026-08-22",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KSQL",
+    "airport_ref": "21105",
+    "fetched_at": "2026-08-29T14:58:44Z"
+  }
+}

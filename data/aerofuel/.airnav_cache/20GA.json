@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787718642.955356,
+  "icao": "20GA",
+  "data": {
+    "icao": "20GA",
+    "faa": "20GA",
+    "name": "Earl L. Small Jr. Field/Stockmar Airport",
+    "city": "Villa Rica",
+    "state": "GA",
+    "distance_nm": 18.0,
+    "bearing": "W",
+    "fbos": [
+      {
+        "name": "Flying S Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "fetched_at": "2026-08-26T04:30:42Z",
+    "source": "AirNav Local Fuel"
+  }
+}

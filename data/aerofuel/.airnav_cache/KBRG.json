@@ -1,0 +1,99 @@
+{
+  "_cached_at": 1789072486.238391,
+  "icao": "KBRG",
+  "data": {
+    "icao": "KBRG",
+    "faa": "BRG",
+    "iata": "",
+    "name": "Belen Regional Airport",
+    "city": "Belen",
+    "state": "NM",
+    "country": "US",
+    "lat": 34.6452,
+    "lon": -106.834,
+    "elevation_ft": 5194,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 123.9,
+    "approach_desc": "ALBUQUERQUE APP/DEP",
+    "departure_freq": 123.9,
+    "departure_desc": "ALBUQUERQUE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ALBUQUERQUE APP/DEP",
+        "frequency_mhz": 123.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 6601,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 5280,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "The City of Belen",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 04-Sep",
+        "quote_date": "04-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.72,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.87,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.7,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.72,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KE80",
+    "airport_ref": "19709",
+    "fetched_at": "2026-09-10T20:34:45Z"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787793812.098669,
+  "icao": "KAPS",
+  "data": {
+    "icao": "KAPS",
+    "faa": "APS",
+    "iata": "",
+    "name": "Port of South Louisiana Executive Regional Airport",
+    "city": "Reserve",
+    "state": "LA",
+    "country": "US",
+    "lat": 30.087,
+    "lon": -90.5826,
+    "elevation_ft": 7,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 125.5,
+    "approach_desc": "NEW ORLEANS APP/DEP",
+    "departure_freq": 125.5,
+    "departure_desc": "NEW ORLEANS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW ORLEANS APP/DEP",
+        "frequency_mhz": 125.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5151,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Port of South Louisiana Executive Regional Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.07,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1L0",
+    "airport_ref": "18483",
+    "fetched_at": "2026-08-27T01:23:32Z"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787705542.349901,
+  "icao": "KGCT",
+  "data": {
+    "icao": "KGCT",
+    "faa": "GCT",
+    "iata": "",
+    "name": "Guthrie County Regional Airport",
+    "city": "Guthrie Center",
+    "state": "IA",
+    "country": "US",
+    "lat": 41.6878,
+    "lon": -94.4352,
+    "elevation_ft": 1230,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DES MOINES APP/DEP",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3400,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Guthrie County Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.65,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:52:22Z"
+  }
+}

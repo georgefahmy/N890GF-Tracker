@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787544553.605042,
+  "icao": "8U8",
+  "data": {
+    "icao": "8U8",
+    "faa": "8U8",
+    "iata": "",
+    "name": "Townsend Airport",
+    "city": "Townsend",
+    "state": "MT",
+    "country": "US",
+    "lat": 46.3312,
+    "lon": -111.483,
+    "elevation_ft": 3893,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3999,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Townsend City/County",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.17,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.17,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:09:13Z"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1788202591.7630599,
+  "icao": "3D2",
+  "data": {
+    "icao": "3D2",
+    "faa": "3D2",
+    "iata": "",
+    "name": "Ephraim-Gibraltar Airport",
+    "city": "Fish Creek",
+    "state": "WI",
+    "country": "US",
+    "lat": 45.1354,
+    "lon": -87.1859,
+    "elevation_ft": 773,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 2697,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 1941,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ephraim-Gibraltar Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.24,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.24,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "3D2",
+    "airport_ref": "10433",
+    "fetched_at": "2026-08-31T18:56:31Z"
+  }
+}

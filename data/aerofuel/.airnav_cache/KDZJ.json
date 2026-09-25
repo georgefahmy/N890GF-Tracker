@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787787751.9994528,
+  "icao": "KDZJ",
+  "data": {
+    "icao": "KDZJ",
+    "faa": "DZJ",
+    "iata": "",
+    "name": "Blairsville Airport",
+    "city": "Blairsville",
+    "state": "GA",
+    "country": "US",
+    "lat": 34.8551,
+    "lon": -83.9969,
+    "elevation_ft": 1911,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5004,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Blairsville Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 15-Aug",
+        "quote_date": "15-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.7,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:31Z"
+  }
+}

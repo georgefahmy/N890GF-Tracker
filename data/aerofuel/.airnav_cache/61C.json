@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202536.240532,
+  "icao": "61C",
+  "data": {
+    "icao": "61C",
+    "faa": "61C",
+    "iata": "",
+    "name": "Fort Atkinson Municipal Airport",
+    "city": "Jefferson",
+    "state": "WI",
+    "country": "US",
+    "lat": 42.9632,
+    "lon": -88.8176,
+    "elevation_ft": 800,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.1,
+    "approach_desc": "MADISON APP/DEP",
+    "departure_freq": 120.1,
+    "departure_desc": "MADISON APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MADISON APP/DEP",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 3800,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fort Atkinson Municipal Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.05,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K61C",
+    "airport_ref": "18946",
+    "fetched_at": "2026-08-31T18:55:36Z"
+  }
+}

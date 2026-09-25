@@ -1,0 +1,154 @@
+{
+  "_cached_at": 1790309075.4657128,
+  "icao": "KCCR",
+  "data": {
+    "icao": "KCCR",
+    "faa": "CCR",
+    "iata": "CCR",
+    "name": "Buchanan Field",
+    "city": "Concord",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.9897,
+    "lon": -122.057,
+    "elevation_ft": 26,
+    "tower": true,
+    "tower_freq": 119.7,
+    "ctaf_freq": 119.7,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.7,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.9,
+    "approach_desc": "TRAVIS APP/DEP",
+    "departure_freq": 119.9,
+    "departure_desc": "TRAVIS APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 118.75,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TRAVIS APP/DEP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.7
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.75
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "CONCORD TWR",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "01L/19R",
+        "length": 5001,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "14L/32R",
+        "length": 4602,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "14R/32L",
+        "length": 2798,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "01R/19L",
+        "length": 2770,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pacific States Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "94UL_FS": {
+            "price": 12.16,
+            "type": "94UL",
+            "service": "Full-Serve",
+            "label": "94UL Unleaded (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.17,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Concord Jet Center",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 6.67,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCCR",
+    "airport_ref": "19469",
+    "fetched_at": "2026-09-10T20:44:13Z"
+  }
+}

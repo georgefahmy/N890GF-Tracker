@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1789073621.589077,
+  "icao": "KSOP",
+  "data": {
+    "icao": "KSOP",
+    "faa": "SOP",
+    "iata": "SOP",
+    "name": "Moore County Airport",
+    "city": "Carthage",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.2372,
+    "lon": -79.3894,
+    "elevation_ft": 455,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": 127.575,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 127.8,
+    "approach_desc": "FAYETTEVILLE APP/DEP",
+    "departure_freq": 127.8,
+    "departure_desc": "FAYETTEVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 127.0,
+    "clearance_desc": "FAYETTEVILLE CLNCDEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FAYETTEVILLE APP/DEP",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 127.575
+      },
+      {
+        "type": "CLD",
+        "description": "FAYETTEVILLE CLNCDEL",
+        "frequency_mhz": 127.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 6503,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Moore County Airport",
+        "brand": "Titan",
+        "phone": "910-692-3212",
+        "notes": "Titan \u2022 Quote: 09-Sep-2026 \u2022 UNICOM: 123.05",
+        "quote_date": "09-Sep-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.11,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KSOP",
+    "airport_ref": "21096",
+    "fetched_at": "2026-09-10T20:53:40Z"
+  }
+}

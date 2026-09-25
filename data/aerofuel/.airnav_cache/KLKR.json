@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788218304.547159,
+  "icao": "KLKR",
+  "data": {
+    "icao": "KLKR",
+    "faa": "LKR",
+    "iata": "",
+    "name": "Lancaster County-Mc Whirter Field",
+    "city": "Lancaster",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.7229,
+    "lon": -80.8546,
+    "elevation_ft": 486,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.725,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.05,
+    "approach_desc": "CHARLOTTE APP/DEP",
+    "departure_freq": 120.05,
+    "departure_desc": "CHARLOTTE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHARLOTTE APP/DEP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 6004,
+        "width": 101,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lancaster County Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLKR",
+    "airport_ref": "20349",
+    "fetched_at": "2026-08-31T23:18:24Z"
+  }
+}

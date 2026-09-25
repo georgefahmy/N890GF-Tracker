@@ -1,0 +1,111 @@
+{
+  "_cached_at": 1788218638.554508,
+  "icao": "TISX",
+  "data": {
+    "icao": "TISX",
+    "faa": "STX",
+    "iata": "STX",
+    "name": "Henry E. Rohlsen Airport",
+    "city": "Christiansted",
+    "state": "VI",
+    "country": "US",
+    "lat": 17.7014,
+    "lon": -64.8026,
+    "elevation_ft": 74,
+    "tower": true,
+    "tower_freq": 118.6,
+    "ctaf_freq": 118.6,
+    "unicom_freq": 123.0,
+    "weather_freq": 135.65,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 128.65,
+    "approach_desc": "SAN JUAN CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SAN JUAN CNTR",
+        "frequency_mhz": 128.65
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.65
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "SAN JUAN RDO",
+        "frequency_mhz": 108.2
+      },
+      {
+        "type": "TWR",
+        "description": "ST CROIX TWR",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 10002,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bohlke International Aviation Call for volume discounts",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.41,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.41,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "TISX",
+    "airport_ref": "6370",
+    "fetched_at": "2026-08-31T23:23:58Z"
+  }
+}

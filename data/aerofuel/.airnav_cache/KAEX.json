@@ -1,0 +1,112 @@
+{
+  "_cached_at": 1788218563.544289,
+  "icao": "KAEX",
+  "data": {
+    "icao": "KAEX",
+    "faa": "AEX",
+    "iata": "AEX",
+    "name": "Alexandria International Airport",
+    "city": "Alexandria",
+    "state": "LA",
+    "country": "US",
+    "lat": 31.3258,
+    "lon": -92.5467,
+    "elevation_ft": 89,
+    "tower": true,
+    "tower_freq": 127.35,
+    "ctaf_freq": 127.35,
+    "unicom_freq": 127.35,
+    "weather_freq": 123.975,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 132.05,
+    "approach_desc": "POLK APP/DEP",
+    "departure_freq": 132.05,
+    "departure_desc": "POLK APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 121.9,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "POLK APP/DEP",
+        "frequency_mhz": 132.05
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 123.975
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 127.35
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 9352,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air Alexandria",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.81,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.28,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.88,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.81,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAEX",
+    "airport_ref": "3365",
+    "fetched_at": "2026-08-31T23:22:43Z"
+  }
+}

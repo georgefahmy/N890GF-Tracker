@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787718366.031369,
+  "icao": "H34",
+  "data": {
+    "icao": "H34",
+    "faa": "H34",
+    "iata": "",
+    "name": "Huntsville Municipal Airport",
+    "city": "Huntsville",
+    "state": "AR",
+    "country": "US",
+    "lat": 36.0782,
+    "lon": -93.7548,
+    "elevation_ft": 1749,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "RAZORBACK APP/DEP",
+        "frequency_mhz": 128.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3646,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 1250,
+        "width": 60,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "479-738-6607",
+        "notes": "Quote: 05-Aug-2026",
+        "quote_date": "05-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:26:04Z"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788202564.1257799,
+  "icao": "I75",
+  "data": {
+    "icao": "I75",
+    "faa": "I75",
+    "iata": "",
+    "name": "Osceola Municipal Airport",
+    "city": "Osceola",
+    "state": "IA",
+    "country": "US",
+    "lat": 41.0522,
+    "lon": -93.6897,
+    "elevation_ft": 1110,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 135.2,
+    "approach_desc": "DES MOINES APP/DEP",
+    "departure_freq": 135.2,
+    "departure_desc": "DES MOINES APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DES MOINES APP/DEP",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4001,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Osceola Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KI75",
+    "airport_ref": "20145",
+    "fetched_at": "2026-08-31T18:56:04Z"
+  }
+}
