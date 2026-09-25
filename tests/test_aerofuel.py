@@ -284,9 +284,53 @@ class TestAeroFuelIntegration:
             assert "mobile-airports-badge" in js
             assert "syncNavControlsPlacement" in js
 
+    def test_mobile_scale_toggle_and_collapsible_scale(self, app, client):
+        """Verify the scale is collapsible, has toggle control button, and starts collapsed on mobile."""
+        with app.app_context():
+            # 1. JS verification
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "AeroScaleControl" in js
+            assert "ScaleToggleControl" in js
+            assert "leaflet-control-scale-toggle" in js
+            assert "leaflet-control-scale-btn" in js
+            assert "isCollapsed" in js
+            assert "aeroScaleControl.collapse()" in js
 
+            # 2. CSS verification
+            res_css = client.get("/static/aerofuel/css/style.css")
+            assert res_css.status_code == 200
+            css = res_css.data.decode("utf-8")
+            assert ".leaflet-control-scale-toggle" in css
+            assert ".scale-collapsed" in css
+            assert ".aero-scale-close-btn" in css
+            assert "has-active-airport-hud" in css
 
+    def test_mobile_map_controls_positioning(self, app, client):
+        """Verify map controls on mobile are indented from left edge and desktop offsets are scoped."""
+        with app.app_context():
+            res_css = client.get("/static/aerofuel/css/style.css")
+            assert res_css.status_code == 200
+            css = res_css.data.decode("utf-8")
+            # Verify desktop right: 368px is scoped inside min-width: 861px
+            assert "@media (min-width: 861px)" in css
+            assert "right: 368px !important;" in css
+            # Verify mobile controls have safe margins from screen edge
+            assert "left: 16px !important;" in css
+            assert "right: auto !important;" in css
 
-
-
-
+    def test_selected_airport_hud_when_radar_off(self, app, client):
+        """Verify airport selection HUD works when radar is off and shows airport specs and rates."""
+        with app.app_context():
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "showSelectedAirportHUD" in js
+            assert "STATE.selectedAirport" in js
+            assert "btn-fly-selected" in js
+            assert "btn-details-selected" in js
+            assert "btn-close-selected" in js
+            assert "has-active-airport-hud" in js
+            # Verify recalculateRadiusAirports renders selectedAirport HUD when radar is off
+            assert "showSelectedAirportHUD(STATE.selectedAirport)" in js

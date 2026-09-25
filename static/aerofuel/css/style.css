@@ -423,6 +423,22 @@ html, body {
   color: #34d399;
 }
 
+.btn-hud-close {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-muted);
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  justify-content: center;
+}
+
+.btn-hud-close:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #f87171;
+}
+
+
 /* --------------------------------------------------------------------------
    Map Container
    -------------------------------------------------------------------------- */
@@ -1568,6 +1584,27 @@ html, body {
   font-size: 0.65rem;
   font-weight: 600;
   opacity: 0.95;
+}
+
+.best-deal-badge.unsearched {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.best-deal-badge.unsearched .best-deal-price {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.best-deal-badge.no-fuel {
+  background: linear-gradient(135deg, #64748b, #475569);
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+}
+
+.best-deal-badge.no-fuel .best-deal-price {
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .best-deal-info {
@@ -2850,28 +2887,48 @@ html, body {
 
   /* 10. Map Controls on Mobile */
   .leaflet-top.leaflet-right {
-    top: 60px !important;
-    right: 12px !important;
+    top: 14px !important;
+    left: 16px !important;
+    right: auto !important;
+    z-index: 850 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
   }
 
-  .leaflet-control-zoom {
+  .leaflet-control-zoom,
+  .leaflet-control-layers,
+  .leaflet-control-scale-toggle {
     border-radius: var(--radius-md) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
   }
 
-  .leaflet-control-zoom a {
-    width: 34px !important;
-    height: 34px !important;
-    line-height: 34px !important;
+  .leaflet-control-zoom a,
+  .leaflet-control-scale-btn {
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
     font-size: 18px !important;
   }
 
+  .leaflet-control-layers-toggle {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
   .leaflet-bottom.leaflet-left {
-    bottom: 68px !important;
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .leaflet-bottom.leaflet-right {
-    bottom: 68px !important;
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 12px !important;
+    transition: bottom 0.25s ease !important;
+  }
+
+  body.has-active-airport-hud .leaflet-bottom.leaflet-right {
+    bottom: calc(180px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .specs-grid {
@@ -3223,26 +3280,30 @@ html, body {
 /* --------------------------------------------------------------------------
    Leaflet Zoom & Layer Controls HUD Customization
    -------------------------------------------------------------------------- */
-.leaflet-top.leaflet-right {
-  top: 16px !important;
-  right: 368px !important;
-  z-index: 850 !important;
-  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), top 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-end !important;
-  gap: 8px !important;
-}
+@media (min-width: 861px) {
+  .leaflet-top.leaflet-right {
+    top: 16px !important;
+    right: 368px !important;
+    left: auto !important;
+    z-index: 850 !important;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), top 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 8px !important;
+  }
 
-body.sidebar-minimized .leaflet-top.leaflet-right,
-body.sidebar-collapsed .leaflet-top.leaflet-right,
-.sidebar-minimized .leaflet-top.leaflet-right {
-  top: 72px !important;
-  right: 16px !important;
+  body.sidebar-minimized .leaflet-top.leaflet-right,
+  body.sidebar-collapsed .leaflet-top.leaflet-right,
+  .sidebar-minimized .leaflet-top.leaflet-right {
+    top: 72px !important;
+    right: 16px !important;
+  }
 }
 
 .leaflet-control-zoom,
-.leaflet-control-layers {
+.leaflet-control-layers,
+.leaflet-control-scale-toggle {
   background: var(--panel-bg) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
@@ -3254,16 +3315,33 @@ body.sidebar-collapsed .leaflet-top.leaflet-right,
 }
 
 .leaflet-control-zoom a,
-.leaflet-control-layers-toggle {
+.leaflet-control-layers-toggle,
+.leaflet-control-scale-btn {
   background-color: transparent !important;
   color: var(--text-main) !important;
   border-bottom: 1px solid var(--panel-border) !important;
 }
 
 .leaflet-control-zoom a:hover,
-.leaflet-control-layers-toggle:hover {
+.leaflet-control-layers-toggle:hover,
+.leaflet-control-scale-btn:hover,
+.leaflet-control-scale-btn.active {
   background-color: rgba(56, 189, 248, 0.25) !important;
   color: var(--accent-cyan) !important;
+}
+
+.leaflet-control-scale-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  font-size: 16px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  border-bottom: none !important;
+  transition: all 0.2s ease !important;
 }
 
 .leaflet-control-layers-expanded {
@@ -3291,6 +3369,11 @@ body.sidebar-collapsed .leaflet-top.leaflet-right,
   user-select: none;
   min-width: 175px;
   z-index: 800;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.leaflet-control-aero-scale.scale-collapsed {
+  display: none !important;
 }
 
 .aero-scale-hud {
@@ -3306,6 +3389,30 @@ body.sidebar-collapsed .leaflet-top.leaflet-right,
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: 3px;
   margin-bottom: 1px;
+  cursor: pointer;
+}
+
+.aero-scale-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.aero-scale-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.aero-scale-close-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.2);
 }
 
 .aero-scale-title {

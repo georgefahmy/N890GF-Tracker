@@ -26,6 +26,7 @@
     selectedService: 'any', // 'any', 'self', 'full'
     selectedPriceTier: 'all', // 'all', 'ultra-cheap', 'budget', 'avg', 'high', 'exp', 'priced-only', 'unpriced', 'no-fuel'
     activeAirportModal: null,
+    selectedAirport: null, // User-selected airport for info card when radar is off or focused
     lowestAirport: null,
     airportsInRadius: [],
     markers: new Map(), // icao -> { marker, apt, tierClass, fuelInfo }
@@ -701,6 +702,8 @@
   let mousePendingPos = null;
   let airportCanvasEl = null;
   let airportCanvasCtx = null;
+  let aeroScaleControl = null;
+  let scaleToggleBtn = null;
 
   // --- Spatial Grid Indexing ---
   function buildSpatialGridIndex() {
@@ -1084,12 +1087,42 @@
       }
     },
 
+    collapse: function () {
+      if (this._container) {
+        this._container.classList.add('scale-collapsed');
+      }
+      updateScaleButtonState(false);
+    },
+
+    expand: function () {
+      if (this._container) {
+        this._container.classList.remove('scale-collapsed');
+      }
+      updateScaleButtonState(true);
+      this._update();
+    },
+
+    toggle: function () {
+      if (this.isCollapsed()) {
+        this.expand();
+      } else {
+        this.collapse();
+      }
+    },
+
+    isCollapsed: function () {
+      return this._container ? this._container.classList.contains('scale-collapsed') : false;
+    },
+
     _buildDom: function () {
       this._container.innerHTML = `
         <div class="aero-scale-hud">
-          <div class="aero-scale-header">
-            <span class="aero-scale-title">RADAR SCALE</span>
-            <span class="aero-scale-lat-indicator" id="aero-scale-lat-ind">--°</span>
+          <div class="aero-scale-header" id="aero-scale-header-toggle" title="Click to collapse scale">
+            <div class="aero-scale-header-left">
+              <span class="aero-scale-title">RADAR SCALE</span>
+              <span class="aero-scale-lat-indicator" id="aero-scale-lat-ind">--°</span>
+            </div>
+            <button type="button" class="aero-scale-close-btn" id="aero-scale-close-btn" title="Collapse Scale" aria-label="Collapse Scale">&times;</button>
           </div>
           <div class="aero-scale-row aero-scale-mi">
             <span class="aero-scale-unit-label">mi</span>
@@ -1121,6 +1154,15 @@
       this._valNm = this._container.querySelector('#aero-scale-val-nm');
       this._barKm = this._container.querySelector('#aero-scale-bar-km');
       this._valKm = this._container.querySelector('#aero-scale-val-km');
+
+      const closeBtn = this._container.querySelector('#aero-scale-close-btn');
+      if (closeBtn) {
+        L.DomEvent.on(closeBtn, 'click', (e) => {
+          L.DomEvent.preventDefault(e);
+          L.DomEvent.stopPropagation(e);
+          this.collapse();
+        });
+      }
     },
 
     _update: function () {
@@ -1214,6 +1256,18 @@
       zoomAnimationThreshold: 8
     });
 
+    function updateScaleButtonState(isExpanded) {
+      if (scaleToggleBtn) {
+        if (isExpanded) {
+          scaleToggleBtn.classList.add('active');
+          scaleToggleBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          scaleToggleBtn.classList.remove('active');
+          scaleToggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+
     // Custom zoom control that performs animated zoom transitions for + / - buttons
     const customZoomControl = L.Control.extend({
       options: { position: 'topright' },
@@ -1253,7 +1307,7 @@
     new customZoomControl().addTo(map);
 
     // Tri-unit Map Scale Control in bottom-right (Statute Miles, Nautical Miles, Kilometers)
-    const aeroScaleControl = L.control.aeroScale({
+    aeroScaleControl = L.control.aeroScale({
       position: 'bottomright',
       maxWidth: 110
     }).addTo(map);
@@ -1266,6 +1320,40 @@
     };
 
     L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
+
+    // Scale Toggle Button under Map Layers Control
+    const ScaleToggleControl = L.Control.extend({
+      options: { position: 'topright' },
+      onAdd: function () {
+        const container = L.DomUtil.create('div', 'leaflet-control-scale-toggle leaflet-bar leaflet-control');
+        const btn = L.DomUtil.create('a', 'leaflet-control-scale-btn', container);
+        btn.href = '#';
+        btn.title = 'Toggle Distance Scale (mi / NM / km)';
+        btn.role = 'button';
+        btn.ariaLabel = 'Toggle Distance Scale';
+        btn.innerHTML = '<span class="scale-btn-icon" aria-hidden="true">📏</span>';
+        scaleToggleBtn = btn;
+
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.disableScrollPropagation(container);
+
+        L.DomEvent.on(btn, 'click', function (e) {
+          L.DomEvent.preventDefault(e);
+          if (aeroScaleControl) {
+            aeroScaleControl.toggle();
+          }
+        });
+
+        return container;
+      }
+    });
+    new ScaleToggleControl().addTo(map);
+
+    if (window.innerWidth <= 860) {
+      aeroScaleControl.collapse();
+    } else {
+      updateScaleButtonState(true);
+    }
 
     // Markers layer
     markersLayerGroup = L.layerGroup().addTo(map);
@@ -1715,6 +1803,11 @@
         fetchAirportFuelAndHighlight(clickedApt);
         return;
       }
+      if (!STATE.radarEnabled && STATE.selectedAirport) {
+        STATE.selectedAirport = null;
+        updateBestDealHUD(null, []);
+        recalculateRadiusAirports();
+      }
     });
 
     // Keyboard shortcuts
@@ -1917,6 +2010,7 @@
     clearRadarOffHoverMarker();
 
     if (STATE.radarEnabled) {
+      STATE.selectedAirport = null;
       if (radiusCircle) {
         radiusCircle.setStyle({ opacity: 0.85, fillOpacity: 0.12 });
       }
@@ -1950,7 +2044,11 @@
 
       recalculateRadiusAirports();
       redrawAirportCanvas();
-      updateBestDealHUD(null, []);
+      if (STATE.selectedAirport) {
+        showSelectedAirportHUD(STATE.selectedAirport);
+      } else {
+        updateBestDealHUD(null, []);
+      }
       updateSidebarRadarList([], null);
 
       const sidebar = document.getElementById('radar-sidebar');
@@ -2217,9 +2315,13 @@
       STATE.lowestAirport = null;
       if (vectorLine) vectorLine.setLatLngs([]);
       updateOriginVectorLine();
-      updateBestDealHUD(null, []);
+      if (STATE.selectedAirport) {
+        showSelectedAirportHUD(STATE.selectedAirport);
+      } else {
+        updateBestDealHUD(null, []);
+      }
       updateSidebarRadarList([], null);
-      // NOTE: Do not return early. Persistent markers (Origin, Destination, and active Route Stops)
+      // NOTE: Do not return early. Persistent markers (Origin, Destination, and active Route Stops), and selected airport
       // will still be accepted and rendered below even with radar disabled.
     } else {
       const radiusMilesLimit = getRadiusInMiles();
@@ -2369,6 +2471,15 @@
           acceptedHighlightList.push(popupAptCanonical);
           acceptedScreenPoints.push(ptPopup);
         }
+      }
+    // #0.6 Priority: Explicitly Selected Airport is ALWAYS accepted and rendered (Pin Selected Airport Marker)
+    if (STATE.selectedAirport && map) {
+      const selIcao = (STATE.selectedAirport.icao || STATE.selectedAirport.faa || '').toUpperCase().trim();
+      const selApt = STATE.airportsMap.get(selIcao) || STATE.selectedAirport;
+      if (selApt && !acceptedHighlightList.some(a => (a.icao && a.icao.toUpperCase().trim() === selIcao) || (a.faa && a.faa.toUpperCase().trim() === selIcao))) {
+        const ptSel = map.latLngToContainerPoint([selApt.lat, selApt.lon]);
+        acceptedHighlightList.push(selApt);
+        acceptedScreenPoints.push(ptSel);
       }
     }
 
@@ -3226,6 +3337,9 @@
         openAirportModal(targetApt, false);
       }
       updateMarkerBadgeContent(targetApt);
+      if (!STATE.radarEnabled || window.innerWidth <= 860) {
+        showSelectedAirportHUD(targetApt);
+      }
       return targetApt;
     }
 
@@ -3235,6 +3349,9 @@
 
     // 2. Open rich Leaflet popup attached to marker with loading state
     openAirportPopup(targetApt, true);
+    if (!STATE.radarEnabled || window.innerWidth <= 860) {
+      showSelectedAirportHUD(targetApt);
+    }
 
     // 3. Open modal directly only if explicitly requested (e.g. from popup button or direct trigger)
     if (openModalDirectly) {
@@ -3456,6 +3573,9 @@
       setMarkerLoadingState(icao, false);
       setMarkerLoadingState(cleanIcao, false);
       updateActivePopupContent(targetApt);
+      if (!STATE.radarEnabled || window.innerWidth <= 860) {
+        showSelectedAirportHUD(targetApt);
+      }
       if (STATE.activeAirportModal && (STATE.activeAirportModal.icao === cleanIcao || STATE.activeAirportModal.faa === cleanFaa)) {
         openAirportModal(targetApt, false);
       }
@@ -3469,15 +3589,17 @@
 
     if (!lowest) {
       hud.style.display = 'none';
+      document.body.classList.remove('has-active-airport-hud');
       STATE.prevBestDealSignature = '';
       return;
     }
 
     hud.style.display = 'flex';
+    document.body.classList.add('has-active-airport-hud');
 
     // Calculate average price in radius for savings calculation (only among priced airports)
     const pricedInRadius = inRadiusList.filter(a => a.hasFuel);
-    const avgPrice = pricedInRadius.reduce((acc, a) => acc + a.effectiveFuel.price, 0) / pricedInRadius.length;
+    const avgPrice = pricedInRadius.reduce((acc, a) => acc + a.effectiveFuel.price, 0) / (pricedInRadius.length || 1);
     const savingsPerGal = Math.max(0, avgPrice - lowest.effectiveFuel.price);
     const savings50Gal = savingsPerGal * 50;
 
@@ -3508,11 +3630,14 @@
         </div>
       </div>
       <div class="best-deal-actions">
-        <button class="btn-hud btn-hud-primary" id="btn-fly-lowest">
+        <button class="btn-hud btn-hud-primary" id="btn-fly-lowest" title="Center map on airport">
           <span>🎯 Center</span>
         </button>
-        <button class="btn-hud" id="btn-details-lowest">
+        <button class="btn-hud" id="btn-details-lowest" title="Open airport specs & fuel modal">
           <span>📋 Specs</span>
+        </button>
+        <button class="btn-hud btn-hud-close" id="btn-close-best-deal" title="Dismiss" aria-label="Dismiss">
+          <span>✕</span>
         </button>
       </div>
     `;
@@ -3529,6 +3654,138 @@
     document.getElementById('btn-details-lowest').addEventListener('click', () => {
       openAirportModal(lowest);
     });
+
+    const closeBtn = document.getElementById('btn-close-best-deal');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hud.style.display = 'none';
+        document.body.classList.remove('has-active-airport-hud');
+        STATE.prevBestDealSignature = '';
+      });
+    }
+  }
+
+  function showSelectedAirportHUD(apt) {
+    const hud = document.getElementById('best-deal-hud');
+    if (!hud || !apt) return;
+
+    STATE.selectedAirport = apt;
+    hud.style.display = 'flex';
+    document.body.classList.add('has-active-airport-hud');
+
+    const cleanIcao = (apt.icao || '').toUpperCase().trim();
+    const cleanFaa = (apt.faa || cleanIcao).toUpperCase().trim();
+    const canonical = STATE.airportsMap.get(cleanIcao) || (cleanFaa ? STATE.airportsMap.get(cleanFaa) : null) || apt;
+
+    const isFetched = hasFetchedPrice(canonical);
+    const fuelInfo = isFetched ? getEffectiveFuelInfo(canonical) : null;
+
+    // Distance calculation from Origin or Circle Center
+    let distDisplay = '';
+    const refPoint = STATE.originAirport || STATE.circleCenter;
+    if (refPoint && canonical.lat && canonical.lon) {
+      const distMiles = haversineMiles(refPoint.lat, refPoint.lon || refPoint.lng, canonical.lat, canonical.lon);
+      const bearing = calculateBearing(refPoint.lat, refPoint.lon || refPoint.lng, canonical.lat, canonical.lon);
+      const dir = getCompassDirection(bearing);
+      distDisplay = `<span>•</span><span class="best-deal-dist">📍 ${formatDistance(distMiles)} (${bearing}° ${dir})</span>`;
+    }
+
+    // Price badge display
+    let badgeClass = 'best-deal-badge';
+    let badgeTitle = '📍 Airport Info';
+    let priceDisplay = '--';
+    let fuelTypeDisplay = 'Avgas';
+
+    if (fuelInfo && typeof fuelInfo.price === 'number') {
+      badgeTitle = '⛽ Avgas Rate';
+      priceDisplay = `$${fuelInfo.price.toFixed(2)}`;
+      fuelTypeDisplay = fuelInfo.label || fuelInfo.type || '100LL';
+      badgeClass += ' has-price';
+    } else if (canonical.best_price !== null && canonical.best_price !== undefined) {
+      badgeTitle = '⛽ Best Price';
+      priceDisplay = `$${Number(canonical.best_price).toFixed(2)}`;
+      fuelTypeDisplay = 'Avgas';
+      badgeClass += ' has-price';
+    } else if (isFetched) {
+      badgeTitle = '⛽ No Fuel';
+      priceDisplay = 'No Avgas';
+      fuelTypeDisplay = 'Commercial';
+      badgeClass += ' no-fuel';
+    } else {
+      badgeTitle = '📍 Unsearched';
+      priceDisplay = 'Click Rates';
+      fuelTypeDisplay = 'AirNav Lookup';
+      badgeClass += ' unsearched';
+    }
+
+    const fboName = (fuelInfo && fuelInfo.fboName) || (canonical.fbos && canonical.fbos[0] && canonical.fbos[0].name) || 'Airport';
+
+    // Specs line: runways, CTAF, elevation
+    const elev = canonical.elevation_ft ? `${canonical.elevation_ft} ft elev` : '';
+    const freq = (canonical.ctaf_freq || canonical.unicom_freq) ? `CTAF ${canonical.ctaf_freq || canonical.unicom_freq} MHz` : '';
+    const rwy = (canonical.runways && canonical.runways.length > 0) ? `${canonical.runways.length} Rwy${canonical.runways.length > 1 ? 's' : ''}` : '';
+    const specsLine = [elev, freq, rwy].filter(Boolean).join(' • ') || 'Aviation Fuel & Facilities';
+
+    hud.innerHTML = `
+      <div class="${badgeClass}">
+        <span class="best-deal-badge-title">${badgeTitle}</span>
+        <span class="best-deal-price">${priceDisplay}</span>
+        <span class="best-deal-fuel-type">${fuelTypeDisplay}</span>
+      </div>
+      <div class="best-deal-info">
+        <div class="best-deal-header">
+          <span class="best-deal-icao">${canonical.icao || canonical.faa}</span>
+          <span class="best-deal-name" title="${canonical.name}">${canonical.name}</span>
+        </div>
+        <div class="best-deal-sub">
+          <span>${canonical.city || ''}${canonical.state ? ', ' + canonical.state : ''}</span>
+          ${distDisplay}
+          <span>•</span>
+          <span>${fboName}</span>
+        </div>
+        <div class="best-deal-savings">
+          ${specsLine}
+        </div>
+      </div>
+      <div class="best-deal-actions">
+        <button class="btn-hud btn-hud-primary" id="btn-fly-selected" title="Center map on airport">
+          <span>🎯 Center</span>
+        </button>
+        <button class="btn-hud" id="btn-details-selected" title="Open airport specs & fuel modal">
+          <span>📋 Specs</span>
+        </button>
+        <button class="btn-hud btn-hud-close" id="btn-close-selected" title="Dismiss" aria-label="Dismiss">
+          <span>✕</span>
+        </button>
+      </div>
+    `;
+
+    document.getElementById('btn-fly-selected').addEventListener('click', () => {
+      map.flyTo([canonical.lat, canonical.lon], Math.max(map.getZoom(), 11), { duration: 1.0 });
+      if (STATE.radarEnabled) {
+        STATE.circleCenter = { lat: canonical.lat, lng: canonical.lon };
+        STATE.isLocked = true;
+        updateCirclePosition(canonical.lat, canonical.lon);
+        updateUIControls();
+        recalculateRadiusAirports();
+      }
+    });
+
+    document.getElementById('btn-details-selected').addEventListener('click', () => {
+      openAirportModal(canonical);
+    });
+
+    const closeBtn = document.getElementById('btn-close-selected');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        STATE.selectedAirport = null;
+        hud.style.display = 'none';
+        document.body.classList.remove('has-active-airport-hud');
+        recalculateRadiusAirports();
+      });
+    }
   }
 
   function updateSidebarRadarList(inRadiusList, lowest) {
