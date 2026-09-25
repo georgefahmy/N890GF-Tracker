@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202703.279476,
+  "_cached_at": 1790311378.5414798,
   "icao": "KCXL",
   "data": {
     "icao": "KCXL",
@@ -48,8 +48,8 @@
         "name": "Calexico International Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "notes": "AVFUEL \u2022 Quote: 14-Sep",
+        "quote_date": "14-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 7.2,
@@ -72,10 +72,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KCXL",
     "airport_ref": "3474",
-    "fetched_at": "2026-08-31T18:58:23Z"
+    "fetched_at": "2026-09-25T04:42:56Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202703.279836,
+  "_cached_at": 1790311378.5462224,
   "icao": "KTRM",
   "data": {
     "icao": "KTRM",
@@ -80,7 +80,7 @@
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 5.67,
+            "price": 6.06,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -95,19 +95,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_FS": {
-            "price": 9.31,
+            "price": 9.54,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.79,
+            "price": 10.25,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
           },
           "SAF": {
-            "price": 10.79,
+            "price": 11.25,
             "type": "SAF",
             "service": "Full-Serve",
             "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
@@ -118,23 +118,23 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 31-Aug",
-        "quote_date": "31-Aug",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 8.45,
+            "price": 9.45,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.01,
+            "price": 10.46,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
           },
           "SAF": {
-            "price": 12.01,
+            "price": 12.13,
             "type": "SAF",
             "service": "Full-Serve",
             "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
@@ -149,10 +149,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTRM",
     "airport_ref": "21222",
-    "fetched_at": "2026-08-31T18:58:23Z"
+    "fetched_at": "2026-09-25T04:42:56Z"
   }
 }

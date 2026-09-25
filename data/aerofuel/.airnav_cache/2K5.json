@@ -1,8 +1,8 @@
 {
-  "_cached_at": 1790311374.2609994,
-  "icao": "KCLR",
+  "_cached_at": 1790309699.9775453,
+  "icao": "2K5",
   "data": {
-    "icao": "KCLR",
+    "icao": "2K5",
     "name": "",
     "ctaf_freq": null,
     "unicom_freq": null,
@@ -11,7 +11,7 @@
     "primary_fuel": "None",
     "fuels_available": [],
     "last_updated": "2026-09-24",
-    "fetched_at": "2026-09-25T04:42:54Z",
+    "fetched_at": "2026-09-25T04:14:59Z",
     "source": "AirNav Live Feed",
     "from_cache": false
   }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202703.280437,
+  "_cached_at": 1790311378.5497682,
   "icao": "KNYL",
   "data": {
     "icao": "KNYL",
@@ -117,23 +117,23 @@
         "name": "Million Air Yuma",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "World Fuel Services \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 5.96,
+            "price": 6.62,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 8.31,
+            "price": 8.97,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.14,
+            "price": 7.54,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -141,16 +141,16 @@
         }
       }
     ],
-    "best_price": 5.96,
+    "best_price": 6.62,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KNYL",
     "airport_ref": "3961",
-    "fetched_at": "2026-08-31T18:58:23Z"
+    "fetched_at": "2026-09-25T04:42:56Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202703.27966,
+  "_cached_at": 1790311378.542668,
   "icao": "L08",
   "data": {
     "icao": "L08",
@@ -58,8 +58,8 @@
         "name": "Borrego Valley Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 31-Jul",
-        "quote_date": "31-Jul",
+        "notes": "Quote: 31-Aug",
+        "quote_date": "31-Aug",
         "fuels": {
           "100LL_SS": {
             "price": 6.32,
@@ -75,10 +75,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-24",
     "source": "AirNav Local Fuel",
     "raw_ident": "KL08",
     "airport_ref": "20284",
-    "fetched_at": "2026-08-31T18:58:23Z"
+    "fetched_at": "2026-09-25T04:42:56Z"
   }
 }

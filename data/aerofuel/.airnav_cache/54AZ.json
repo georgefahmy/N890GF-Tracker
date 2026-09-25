@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202703.2753978,
+  "_cached_at": 1790311376.1413429,
   "icao": "54AZ",
   "data": {
     "icao": "54AZ",
@@ -14,11 +14,11 @@
         "name": "Imperial Flying Service",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 19-Aug",
-        "quote_date": "19-Aug",
+        "notes": "independent \u2022 Quote: 17-Sep",
+        "quote_date": "17-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.13,
+            "price": 6.88,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -26,13 +26,13 @@
         }
       }
     ],
-    "best_price": 6.13,
+    "best_price": 6.88,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-31",
-    "fetched_at": "2026-08-31T18:58:23Z",
+    "last_updated": "2026-09-24",
+    "fetched_at": "2026-09-25T04:42:56Z",
     "source": "AirNav Local Fuel"
   }
 }
