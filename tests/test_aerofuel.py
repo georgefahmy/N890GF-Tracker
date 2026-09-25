@@ -11,14 +11,14 @@ class TestAeroFuelIntegration:
     """Tests for AeroFuel IQ radar dashboard and API endpoints."""
 
     def test_fuel_map_button_in_index(self, app, auth_client):
-        """Verify the 'Fuel $$ Map' button is rendered next to 'Check $$' on the main dashboard."""
+        """Verify the 'Fuel $$ Map' button is rendered on the main dashboard and 'Check $$' is removed."""
         with app.app_context():
             response = auth_client.get("/")
             assert response.status_code == 200
             html = response.data.decode("utf-8")
             assert "Fuel $$ Map" in html
             assert 'href="/fuel_map"' in html
-            assert "Check $$" in html
+            assert "Check $$" not in html
 
     def test_fuel_map_dashboard_route(self, app, client):
         """Verify /fuel_map returns 200, renders the dashboard, and includes back link to tracker."""
