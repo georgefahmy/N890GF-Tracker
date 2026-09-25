@@ -387,6 +387,20 @@
 
   </div>
 
+  <!-- Immediate pre-render placement for mobile filter drawer to prevent layout flash -->
+  <script>
+    (function() {
+      if (window.innerWidth <= 860) {
+        var nc = document.getElementById('nav-controls');
+        var mw = document.getElementById('map-wrapper');
+        if (nc && mw) {
+          nc.classList.add('mobile-drawer');
+          mw.appendChild(nc);
+        }
+      }
+    })();
+  </script>
+
   <!-- Leaflet Map JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   

@@ -3907,6 +3907,9 @@
   // --- Airport Detail Modal ---
   function openAirportModal(apt, isLoading = false) {
     if (!apt) return;
+    if (typeof window.closeAllMobileDrawers === 'function') {
+      window.closeAllMobileDrawers();
+    }
     if (activeAirportPopup && map) {
       map.closePopup(activeAirportPopup);
       activeAirportPopup = null;
@@ -4530,6 +4533,9 @@
   }
 
   function openDataSourceModal() {
+    if (typeof window.closeAllMobileDrawers === 'function') {
+      window.closeAllMobileDrawers();
+    }
     const modalBackdrop = document.getElementById('data-source-modal-backdrop');
     if (!modalBackdrop) return;
 
@@ -4917,14 +4923,32 @@
     const btnAirports = document.getElementById('mobile-btn-airports');
     const btnLegend = document.getElementById('mobile-btn-legend');
 
-    const radiusHud = document.getElementById('radius-control-hud');
+    const topNav = document.getElementById('top-nav');
+    const mapWrapper = document.getElementById('map-wrapper');
     const navControls = document.getElementById('nav-controls');
+    const radiusHud = document.getElementById('radius-control-hud');
     const sidebar = document.getElementById('radar-sidebar');
     const legendHud = document.getElementById('fuel-legend-hud');
 
     const closeFilters = document.getElementById('btn-close-mobile-filters');
     const closeRadius = document.getElementById('btn-close-mobile-radius');
     const closeSidebar = document.getElementById('btn-close-mobile-sidebar');
+
+    function syncNavControlsPlacement() {
+      if (window.innerWidth <= 860) {
+        if (navControls && mapWrapper && navControls.parentElement !== mapWrapper) {
+          navControls.classList.add('mobile-drawer');
+          mapWrapper.appendChild(navControls);
+        }
+      } else {
+        if (navControls && topNav && navControls.parentElement !== topNav) {
+          navControls.classList.remove('mobile-drawer', 'mobile-open');
+          topNav.appendChild(navControls);
+        }
+      }
+    }
+
+    syncNavControlsPlacement();
 
     function closeAllDrawers() {
       if (radiusHud) radiusHud.classList.remove('mobile-open');
@@ -4938,8 +4962,11 @@
       });
     }
 
+    window.closeAllMobileDrawers = closeAllDrawers;
+
     function toggleDrawer(targetDrawer, triggerBtn) {
       if (!targetDrawer) return;
+      syncNavControlsPlacement();
       const isOpen = targetDrawer.classList.contains('mobile-open');
       closeAllDrawers();
 
@@ -5025,6 +5052,13 @@
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && window.innerWidth <= 860) {
+        closeAllDrawers();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      syncNavControlsPlacement();
+      if (window.innerWidth > 860) {
         closeAllDrawers();
       }
     });

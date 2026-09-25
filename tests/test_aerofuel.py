@@ -260,6 +260,7 @@ class TestAeroFuelIntegration:
             assert 'id="mobile-btn-legend"' in html
             assert 'id="mobile-drawer-backdrop"' in html
             assert 'class="mobile-sheet-header"' in html
+            assert "syncNavControlsPlacement" in html or "mobile-drawer" in html
 
             # 2. CSS verification
             res_css = client.get("/static/aerofuel/css/style.css")
@@ -269,6 +270,9 @@ class TestAeroFuelIntegration:
             assert ".mobile-drawer-backdrop" in css
             assert ".mobile-open" in css
             assert "@media (max-width: 860px)" in css
+            assert "#top-nav .nav-controls" in css
+            assert "display: none !important;" in css
+            assert ".nav-controls.mobile-drawer" in css
 
             # 3. JavaScript verification
             res_js = client.get("/static/aerofuel/js/app.js")
@@ -278,6 +282,7 @@ class TestAeroFuelIntegration:
             assert "closeAllDrawers" in js
             assert "toggleDrawer" in js
             assert "mobile-airports-badge" in js
+            assert "syncNavControlsPlacement" in js
 
 
 
