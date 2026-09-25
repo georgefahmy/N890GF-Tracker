@@ -1619,29 +1619,35 @@
     airportCanvasCtx.globalAlpha = 1.0;
   }
 
+  function isTouchDevice() {
+    return (window.innerWidth <= 860) || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  }
+
   /**
    * Spatial hit testing: finds closest airport to map click coordinates.
    * Performs oriented capsule/bounding box hit-testing in screen space:
-   * 1. Dot distance: within 20px of coordinate center dot
-   * 2. Badge bounding box: horizontal distance |dx| <= 65px, vertical distance -45px <= dy <= 15px
+   * 1. Dot distance: within 20px (36px on mobile/touch) of coordinate center dot
+   * 2. Badge bounding box: horizontal distance |dx| <= 65px (80px on touch), vertical distance -45px <= dy <= 15px (-55px to 22px on touch)
    */
   function findAirportNearPoint(latlng, maxPixelDist = 20) {
     if (!map || !latlng || latlng.lat === undefined || latlng.lng === undefined || !STATE.airports || STATE.airports.length === 0) return null;
+    const isMobile = isTouchDevice();
+    const hitTolerance = isMobile ? Math.max(maxPixelDist, 36) : Math.max(maxPixelDist, 20);
     const clickPt = map.latLngToContainerPoint(latlng);
     let closestApt = null;
     let bestDist = Infinity;
 
-    // Search candidates with zoom-adaptive geographic radius (converting ~85px screen distance to miles)
-    let searchRadiusMiles = 40;
+    // Search candidates with zoom-adaptive geographic radius (converting ~95px screen distance to miles)
+    let searchRadiusMiles = isMobile ? 60 : 40;
     try {
       const p1 = clickPt;
-      const p2 = map.containerPointToLatLng([p1.x + 85, p1.y]);
-      const p3 = map.containerPointToLatLng([p1.x, p1.y - 65]);
+      const p2 = map.containerPointToLatLng([p1.x + 95, p1.y]);
+      const p3 = map.containerPointToLatLng([p1.x, p1.y - 75]);
       const r1 = haversineMiles(latlng.lat, latlng.lng, p2.lat, p2.lng);
       const r2 = haversineMiles(latlng.lat, latlng.lng, p3.lat, p3.lng);
-      searchRadiusMiles = Math.max(40, r1 * 1.5, r2 * 1.5);
+      searchRadiusMiles = Math.max(isMobile ? 60 : 40, r1 * 1.5, r2 * 1.5);
     } catch (e) {
-      searchRadiusMiles = 60;
+      searchRadiusMiles = 70;
     }
 
     const candidates = querySpatialCandidates(latlng.lat, latlng.lng, searchRadiusMiles);
@@ -1652,11 +1658,13 @@
       const dy = clickPt.y - pt.y;
       const dotDist = Math.sqrt(dx * dx + dy * dy);
 
-      // Hit test 1: Within dot radius (default 20px)
-      const isDotHit = dotDist <= Math.max(maxPixelDist, 20);
+      // Hit test 1: Within dot radius (adaptive tolerance for touch / mouse)
+      const isDotHit = dotDist <= hitTolerance;
 
-      // Hit test 2: Within bubble badge bounding area (horizontal |dx| <= 65px, vertical -45px <= dy <= 15px)
-      const isBadgeHit = Math.abs(dx) <= 65 && dy >= -45 && dy <= 15;
+      // Hit test 2: Within bubble badge bounding area (wider touch area for mobile)
+      const isBadgeHit = isMobile
+        ? (Math.abs(dx) <= 80 && dy >= -55 && dy <= 22)
+        : (Math.abs(dx) <= 65 && dy >= -45 && dy <= 15);
 
       if (isDotHit || isBadgeHit) {
         // Distance to badge center (approx 18px above coordinate point) or dot
@@ -1784,8 +1792,22 @@
 
     // Smooth map panning & dragging without jumping to center
     map.on('move', function () {
-      if (!STATE.isLocked && mousePendingPos && map) {
+      if (isTouchDevice() && STATE.radarEnabled && !STATE.isLocked && map) {
+        const center = map.getCenter();
+        STATE.circleCenter = { lat: center.lat, lng: center.lng };
+        updateCirclePosition(center.lat, center.lng);
         updateOriginVectorLine();
+      } else if (!STATE.isLocked && mousePendingPos && map) {
+        updateOriginVectorLine();
+      }
+    });
+
+    map.on('moveend zoomend', function () {
+      if (isTouchDevice() && STATE.radarEnabled && !STATE.isLocked && map) {
+        const center = map.getCenter();
+        STATE.circleCenter = { lat: center.lat, lng: center.lng };
+        updateCirclePosition(center.lat, center.lng);
+        recalculateRadiusAirports();
       }
     });
 
@@ -1798,12 +1820,16 @@
     // Click map to inspect clicked airport (or do nothing if empty map canvas is clicked)
     map.on('click', function (e) {
       // Spatial hit test for canvas airport dots & bubble badge offsets
-      const clickedApt = findAirportNearPoint(e.latlng, 20);
+      const clickedApt = findAirportNearPoint(e.latlng, isTouchDevice() ? 36 : 20);
       if (clickedApt) {
         fetchAirportFuelAndHighlight(clickedApt);
         return;
       }
-      if (!STATE.radarEnabled && STATE.selectedAirport) {
+      if (isTouchDevice() && STATE.radarEnabled && !STATE.isLocked) {
+        STATE.circleCenter = { lat: e.latlng.lat, lng: e.latlng.lng };
+        updateCirclePosition(e.latlng.lat, e.latlng.lng);
+        recalculateRadiusAirports();
+      } else if (!STATE.radarEnabled && STATE.selectedAirport) {
         STATE.selectedAirport = null;
         updateBestDealHUD(null, []);
         recalculateRadiusAirports();
