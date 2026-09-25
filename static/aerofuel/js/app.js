@@ -1055,6 +1055,18 @@
     return val >= 1 ? Math.round(val) : parseFloat(val.toPrecision(2));
   }
 
+  function updateScaleButtonState(isExpanded) {
+    if (scaleToggleBtn) {
+      if (isExpanded) {
+        scaleToggleBtn.classList.add('active');
+        scaleToggleBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        scaleToggleBtn.classList.remove('active');
+        scaleToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  }
+
   const AeroScaleControl = L.Control.extend({
     options: {
       position: 'bottomright',
@@ -1255,18 +1267,6 @@
       zoomAnimation: true,
       zoomAnimationThreshold: 8
     });
-
-    function updateScaleButtonState(isExpanded) {
-      if (scaleToggleBtn) {
-        if (isExpanded) {
-          scaleToggleBtn.classList.add('active');
-          scaleToggleBtn.setAttribute('aria-expanded', 'true');
-        } else {
-          scaleToggleBtn.classList.remove('active');
-          scaleToggleBtn.setAttribute('aria-expanded', 'false');
-        }
-      }
-    }
 
     // Custom zoom control that performs animated zoom transitions for + / - buttons
     const customZoomControl = L.Control.extend({
@@ -5733,20 +5733,42 @@
 
   // --- App Initialization ---
   async function init() {
-    initMap();
-    setupControls();
-    setupSearch();
-    setupOriginSearch();
-    setupDestinationSearch();
-    setupRoutePlanner();
-    setupDataSourceModal();
-    initLegendHUD();
-    await loadFuelData();
-    buildSpatialGridIndex();
-    renderAllAirportMarkers();
-    updateUIControls();
-    updateOriginUI();
-    updateDestinationUI();
+    try {
+      initMap();
+    } catch (e) {
+      console.error('Error initializing map:', e);
+    }
+    try {
+      setupControls();
+    } catch (e) {
+      console.error('Error setting up controls:', e);
+    }
+    try {
+      setupSearch();
+      setupOriginSearch();
+      setupDestinationSearch();
+      setupRoutePlanner();
+      setupDataSourceModal();
+      initLegendHUD();
+    } catch (e) {
+      console.error('Error setting up UI components:', e);
+    }
+
+    try {
+      await loadFuelData();
+    } catch (e) {
+      console.error('Error loading fuel data:', e);
+    }
+
+    try {
+      buildSpatialGridIndex();
+      renderAllAirportMarkers();
+      updateUIControls();
+      updateOriginUI();
+      updateDestinationUI();
+    } catch (e) {
+      console.error('Error rendering airport data:', e);
+    }
 
     // Global Click Delegation for Popup Buttons
     document.addEventListener('click', function (e) {
