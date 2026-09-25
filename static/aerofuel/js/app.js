@@ -2472,6 +2472,8 @@
           acceptedScreenPoints.push(ptPopup);
         }
       }
+    }
+
     // #0.6 Priority: Explicitly Selected Airport is ALWAYS accepted and rendered (Pin Selected Airport Marker)
     if (STATE.selectedAirport && map) {
       const selIcao = (STATE.selectedAirport.icao || STATE.selectedAirport.faa || '').toUpperCase().trim();
@@ -3240,12 +3242,16 @@
 
     const popupHtml = generateAirportPopupHtml(canonical, isLoading);
 
+    const isMobile = window.innerWidth <= 860;
+    const popupMaxWidth = isMobile ? Math.min(350, window.innerWidth - 32) : 380;
+    const popupMinWidth = isMobile ? Math.min(260, window.innerWidth - 48) : 290;
+
     const popupOptions = {
       className: 'aerofuel-rich-popup',
-      maxWidth: 380,
-      minWidth: 290,
+      maxWidth: popupMaxWidth,
+      minWidth: popupMinWidth,
       autoPan: true,
-      autoPanPadding: [20, 80],
+      autoPanPadding: isMobile ? [12, 75] : [20, 80],
       offset: [0, -12],
       closeOnClick: false,
       autoClose: false,
@@ -3265,6 +3271,10 @@
         .setLatLng([canonical.lat, canonical.lon])
         .setContent(popupHtml)
         .openOn(map);
+    }
+
+    if (isMobile && canonical.lat && canonical.lon) {
+      map.panTo([canonical.lat, canonical.lon], { animate: true, duration: 0.35 });
     }
 
     if (activeAirportPopup) {

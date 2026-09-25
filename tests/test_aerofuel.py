@@ -334,3 +334,24 @@ class TestAeroFuelIntegration:
             assert "has-active-airport-hud" in js
             # Verify recalculateRadiusAirports renders selectedAirport HUD when radar is off
             assert "showSelectedAirportHUD(STATE.selectedAirport)" in js
+
+    def test_app_js_syntax_validation(self):
+        """Verify static/aerofuel/js/app.js contains strictly valid JavaScript without syntax errors."""
+        import shutil
+        import subprocess
+        node_bin = shutil.which("node")
+        if node_bin:
+            res = subprocess.run([node_bin, "-c", "static/aerofuel/js/app.js"], capture_output=True, text=True)
+            assert res.returncode == 0, f"JavaScript syntax error in static/aerofuel/js/app.js: {res.stderr}"
+
+    def test_mobile_airport_hud_and_popup_centered(self, app, client):
+        """Verify the airport HUD and popup cards are horizontally centered on mobile."""
+        with app.app_context():
+            res_css = client.get("/static/aerofuel/css/style.css")
+            assert res_css.status_code == 200
+            css = res_css.data.decode("utf-8")
+            assert "left: 50% !important;" in css
+            assert "transform: translateX(-50%) !important;" in css
+            assert "max-width: calc(100vw - 24px) !important;" in css
+
+

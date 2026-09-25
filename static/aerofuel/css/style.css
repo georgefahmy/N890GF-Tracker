@@ -2711,18 +2711,57 @@ html, body {
     pointer-events: auto;
   }
 
-  /* 6. Best Deal Banner on Mobile */
+  /* 6. Best Deal Banner on Mobile - Centered */
   #best-deal-hud {
     position: fixed;
     bottom: 72px;
-    left: 12px;
-    right: 12px;
-    width: auto;
-    max-width: 440px;
-    margin: 0 auto;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 24px) !important;
+    max-width: 440px !important;
+    margin: 0 !important;
     z-index: 1000;
-    padding: 8px 12px;
+    padding: 8px 10px;
+    gap: 8px;
+    box-sizing: border-box;
   }
+
+  #best-deal-hud .best-deal-badge {
+    min-width: 78px;
+    padding: 4px 8px;
+    flex-shrink: 0;
+  }
+
+  #best-deal-hud .best-deal-name {
+    max-width: 140px;
+    font-size: 0.8rem;
+  }
+
+  #best-deal-hud .best-deal-actions {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  #best-deal-hud .btn-hud {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+  }
+
+  /* Mobile Leaflet Rich Popup Bounds & Centering */
+  .aerofuel-rich-popup {
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  .aerofuel-rich-popup .leaflet-popup-content-wrapper {
+    max-width: calc(100vw - 24px) !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .aerofuel-rich-popup .leaflet-popup-content {
+    margin: 10px 12px !important;
+  }
+
 
   /* 7. Floating Mobile Action Bar Dock */
   .mobile-only-bar,
