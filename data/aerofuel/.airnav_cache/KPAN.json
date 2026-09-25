@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787543355.376918,
+  "icao": "KPAN",
+  "data": {
+    "icao": "KPAN",
+    "faa": "PAN",
+    "iata": "PJB",
+    "name": "Payson Airport",
+    "city": "Payson",
+    "state": "AZ",
+    "country": "US",
+    "lat": 34.2568,
+    "lon": -111.339,
+    "elevation_ft": 5157,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.325
+      },
+      {
+        "type": "FSS",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5504,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "MPG East, Inc.",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.8,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:49:15Z"
+  }
+}

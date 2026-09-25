@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1788202528.590425,
+  "icao": "3TE",
+  "data": {
+    "icao": "3TE",
+    "faa": "3TE",
+    "iata": "",
+    "name": "Al Meyers Airport",
+    "city": "Tecumseh",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.0251,
+    "lon": -83.9392,
+    "elevation_ft": 815,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2660,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 1820,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Meyers-Diver's Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "3TE",
+    "airport_ref": "10798",
+    "fetched_at": "2026-08-31T18:55:28Z"
+  }
+}

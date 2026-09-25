@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787705647.865433,
+  "icao": "09W",
+  "data": {
+    "icao": "09W",
+    "faa": "09W",
+    "name": "25 ENE South Capitol Street Heliport",
+    "city": "Washington",
+    "state": "DC",
+    "distance_nm": 9.0,
+    "bearing": "W",
+    "fbos": [
+      {
+        "name": "South Capitol Street Heliport FBO",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 9.52,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "fetched_at": "2026-08-26T00:54:07Z",
+    "source": "AirNav Local Fuel"
+  }
+}

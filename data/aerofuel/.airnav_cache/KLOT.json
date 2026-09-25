@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1788218353.633918,
+  "icao": "KLOT",
+  "data": {
+    "icao": "KLOT",
+    "faa": "LOT",
+    "iata": "LOT",
+    "name": "Lewis University Airport",
+    "city": "Chicago/Romeoville",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.6073,
+    "lon": -88.0962,
+    "elevation_ft": 679,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.525,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.35,
+    "approach_desc": "CHICAGO APP/DEP",
+    "departure_freq": 119.35,
+    "departure_desc": "CHICAGO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHICAGO APP/DEP",
+        "frequency_mhz": 119.35
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "FSS",
+        "description": "KANKAKEE RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 6500,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 5500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lewis University Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 9.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.65,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLOT",
+    "airport_ref": "20366",
+    "fetched_at": "2026-08-31T23:19:13Z"
+  }
+}

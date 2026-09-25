@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1787793643.2469409,
+  "icao": "KTAD",
+  "data": {
+    "icao": "KTAD",
+    "faa": "TAD",
+    "iata": "TAD",
+    "name": "Perry Stokes Airport",
+    "city": "Trinidad",
+    "state": "CO",
+    "country": "US",
+    "lat": 37.2594,
+    "lon": -104.341,
+    "elevation_ft": 5762,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 119.025,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.025
+      },
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 128.375
+      },
+      {
+        "type": "RDO",
+        "description": "DENVER RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 5500,
+        "width": 100,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pinnacle Jet Centers - Trinidad",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 09-Aug",
+        "quote_date": "09-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.42,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTAD",
+    "airport_ref": "21176",
+    "fetched_at": "2026-08-27T01:20:42Z"
+  }
+}

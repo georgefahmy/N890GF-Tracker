@@ -1,0 +1,150 @@
+{
+  "_cached_at": 1787718642.959009,
+  "icao": "KATL",
+  "data": {
+    "icao": "KATL",
+    "faa": "ATL",
+    "iata": "ATL",
+    "name": "Hartsfield Jackson Atlanta International Airport",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.6367,
+    "lon": -84.4281,
+    "elevation_ft": 1026,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "ATLANTA APP (090\u00b0-269\u00b0)",
+        "frequency_mhz": 127.9
+      },
+      {
+        "type": "APP",
+        "description": "ATLANTA APPROACH",
+        "frequency_mhz": 128.0
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.65
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "DEP",
+        "description": "ATLANTA DEP (RWAY 10-28)",
+        "frequency_mhz": 121.225
+      },
+      {
+        "type": "DEP",
+        "description": "ATLANTA DEP (RWAY 09-27)",
+        "frequency_mhz": 125.65
+      },
+      {
+        "type": "DEP",
+        "description": "ATLANTA DEP (RWY 08-26)",
+        "frequency_mhz": 133.475
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "RDO",
+        "description": "MACON RDO",
+        "frequency_mhz": 116.9
+      },
+      {
+        "type": "SFA",
+        "description": "SFA",
+        "frequency_mhz": 30.697
+      },
+      {
+        "type": "TWR",
+        "description": "ATLANTA TWR",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "09L/27R",
+        "length": 12390,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "08R/26L",
+        "length": 9999,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "08L/26R",
+        "length": 9000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09R/27L",
+        "length": 9000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "10/28",
+        "length": 9000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.05,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 12.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:42Z"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787787678.2872,
+  "icao": "KMVY",
+  "data": {
+    "icao": "KMVY",
+    "faa": "MVY",
+    "iata": "MVY",
+    "name": "Martha's Vineyard Airport",
+    "city": "Martha's Vineyard",
+    "state": "MA",
+    "country": "US",
+    "lat": 41.3931,
+    "lon": -70.6143,
+    "elevation_ft": 67,
+    "tower": true,
+    "ctaf_freq": 121.4,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CAPE APP/DEP",
+        "frequency_mhz": 133.75
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.25
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 134.65
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "RDO",
+        "description": "BRIDGEPORT RDO",
+        "frequency_mhz": 114.5
+      },
+      {
+        "type": "TWR",
+        "description": "VINEYARD TWR",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5504,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 3327,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Martha's Vineyard Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.68,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.68,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:41:18Z"
+  }
+}

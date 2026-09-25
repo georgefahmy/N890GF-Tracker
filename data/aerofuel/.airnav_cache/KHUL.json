@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788218654.2615008,
+  "icao": "KHUL",
+  "data": {
+    "icao": "KHUL",
+    "faa": "HUL",
+    "iata": "HUL",
+    "name": "Houlton International Airport",
+    "city": "Houlton",
+    "state": "ME",
+    "country": "US",
+    "lat": 46.1231,
+    "lon": -67.7921,
+    "elevation_ft": 489,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 132.025,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 132.025
+      },
+      {
+        "type": "CNTR",
+        "description": "BOSTON CNTR",
+        "frequency_mhz": 120.25
+      },
+      {
+        "type": "RDO",
+        "description": "BANGOR RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5015,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 2700,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Town of Houlton FBO No ramp fees",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KHUL",
+    "airport_ref": "20095",
+    "fetched_at": "2026-08-31T23:24:14Z"
+  }
+}

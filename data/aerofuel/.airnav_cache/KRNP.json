@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1788014680.375286,
+  "icao": "KRNP",
+  "data": {
+    "icao": "KRNP",
+    "faa": "RNP",
+    "iata": "",
+    "name": "Owosso Community Airport",
+    "city": "Owosso",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.993,
+    "lon": -84.1389,
+    "elevation_ft": 736,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 118.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.8,
+    "approach_desc": "FLINT APP/DEP",
+    "departure_freq": 118.8,
+    "departure_desc": "FLINT APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FLINT APP/DEP",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.025
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 4300,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2509,
+        "width": 260,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "06/24",
+        "length": 2446,
+        "width": 130,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Owosso Community Airport",
+        "brand": "Avfuel",
+        "phone": "989-725-1969",
+        "notes": "Avfuel",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KRNP",
+    "airport_ref": "20946",
+    "fetched_at": "2026-08-29T14:44:38Z"
+  }
+}

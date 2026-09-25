@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787760805.2875369,
+  "icao": "KEKA",
+  "data": {
+    "icao": "KEKA",
+    "faa": "EKA",
+    "iata": "EKA",
+    "name": "Murray Field",
+    "city": "Eureka",
+    "state": "CA",
+    "country": "US",
+    "lat": 40.8034,
+    "lon": -124.113,
+    "elevation_ft": 7,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SEATTLE CNTR",
+        "frequency_mhz": 124.85
+      },
+      {
+        "type": "FSS",
+        "description": "OAKLAND RDO",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3011,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "County of Humboldt, Department of Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T16:13:25Z"
+  }
+}

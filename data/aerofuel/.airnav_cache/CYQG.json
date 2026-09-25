@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1788014701.77482,
+  "icao": "CYQG",
+  "data": {
+    "icao": "CYQG",
+    "faa": "CYQG",
+    "name": "Windsor Airport",
+    "city": "Windsor",
+    "state": "ON",
+    "distance_nm": 39.0,
+    "bearing": "N",
+    "fbos": [
+      {
+        "name": "Gateway Aviation Windsor",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "fetched_at": "2026-08-29T14:45:01Z",
+    "source": "AirNav Local Fuel"
+  }
+}

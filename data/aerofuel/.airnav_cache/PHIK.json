@@ -1,0 +1,34 @@
+{
+  "_cached_at": 1787718420.4938061,
+  "icao": "PHIK",
+  "data": {
+    "icao": "PHIK",
+    "faa": "HIK",
+    "iata": "",
+    "name": "Hickam Air Force Base",
+    "city": "Honolulu",
+    "state": "HI",
+    "country": "US",
+    "lat": 21.3353,
+    "lon": -157.9483,
+    "elevation_ft": 13,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "surface": "Paved"
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:26:58Z"
+  }
+}

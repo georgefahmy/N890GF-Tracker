@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787544396.1701949,
+  "icao": "KVNW",
+  "data": {
+    "icao": "KVNW",
+    "faa": "VNW",
+    "iata": "",
+    "name": "Van Wert County Airport",
+    "city": "Van Wert",
+    "state": "OH",
+    "country": "US",
+    "lat": 40.8647,
+    "lon": -84.6094,
+    "elevation_ft": 785,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT WAYNE APP/DEP",
+        "frequency_mhz": 127.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 125.175
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2558,
+        "width": 95,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Van Wert County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.22,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.72,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.84,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.22,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:06:36Z"
+  }
+}

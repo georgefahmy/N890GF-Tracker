@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1787788119.323066,
+  "icao": "KMKG",
+  "data": {
+    "icao": "KMKG",
+    "faa": "MKG",
+    "iata": "MKG",
+    "name": "Muskegon County Airport",
+    "city": "Muskegon",
+    "state": "MI",
+    "country": "US",
+    "lat": 43.1695,
+    "lon": -86.2382,
+    "elevation_ft": 629,
+    "tower": true,
+    "ctaf_freq": 126.25,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.25
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 126.25
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 6500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 6100,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Executive Air Transport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.19,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:39Z"
+  }
+}

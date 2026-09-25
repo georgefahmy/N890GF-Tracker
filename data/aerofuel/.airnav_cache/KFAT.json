@@ -1,0 +1,147 @@
+{
+  "_cached_at": 1787604257.3632672,
+  "icao": "KFAT",
+  "data": {
+    "icao": "KFAT",
+    "faa": "FAT",
+    "iata": "FAT",
+    "name": "Fresno Yosemite International Airport",
+    "city": "Fresno",
+    "state": "CA",
+    "country": "US",
+    "lat": 36.7758,
+    "lon": -119.718,
+    "elevation_ft": 336,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 35.195
+      },
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 121.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "MISC",
+        "description": "ANG OPS",
+        "frequency_mhz": 138.15
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 40.95
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "11L/29R",
+        "length": 9539,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11R/29L",
+        "length": 8008,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 22-Aug",
+        "quote_date": "22-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.02,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.71,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 10.49,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:44:17Z"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1790302580.779068,
+  "icao": "O41",
+  "data": {
+    "icao": "O41",
+    "faa": "O41",
+    "iata": "",
+    "name": "Watts Woodland Airport",
+    "city": "Woodland",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.6739,
+    "lon": -121.872,
+    "elevation_ft": 125,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.6,
+    "approach_desc": "TRAVIS APP/DEP",
+    "departure_freq": 126.6,
+    "departure_desc": "TRAVIS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TRAVIS APP/DEP",
+        "frequency_mhz": 126.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3770,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Watts-Woodland Airport, Inc.",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.63,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KO41",
+    "airport_ref": "20687",
+    "fetched_at": "2026-09-10T20:44:42Z"
+  }
+}

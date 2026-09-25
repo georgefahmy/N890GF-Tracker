@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787786505.807455,
+  "icao": "F01",
+  "data": {
+    "icao": "F01",
+    "faa": "F01",
+    "iata": "",
+    "name": "Quanah Municipal Airport",
+    "city": "Quanah",
+    "state": "TX",
+    "country": "US",
+    "lat": 34.2771,
+    "lon": -99.7593,
+    "elevation_ft": 1602,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4445,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 2340,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "06/24",
+        "length": 2268,
+        "width": 70,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Quanah Municipal Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:21:45Z"
+  }
+}

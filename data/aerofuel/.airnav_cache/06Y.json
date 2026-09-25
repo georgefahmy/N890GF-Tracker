@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1789073557.877544,
+  "icao": "06Y",
+  "data": {
+    "icao": "06Y",
+    "faa": "06Y",
+    "iata": "",
+    "name": "Herman Municipal Airport",
+    "city": "Herman",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.83,
+    "lon": -96.1606,
+    "elevation_ft": 1068,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 2997,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Herman Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 4.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "06Y",
+    "airport_ref": "6914",
+    "fetched_at": "2026-09-10T20:52:37Z"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788095.465201,
+  "icao": "KPOH",
+  "data": {
+    "icao": "KPOH",
+    "faa": "POH",
+    "iata": "POH",
+    "name": "Pocahontas Municipal Airport",
+    "city": "Pocahontas",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.7428,
+    "lon": -94.6473,
+    "elevation_ft": 1226,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 134.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 4100,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 1999,
+        "width": 135,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Pocahontas",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:15Z"
+  }
+}

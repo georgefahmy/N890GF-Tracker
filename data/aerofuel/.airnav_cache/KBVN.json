@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787542648.359997,
+  "icao": "KBVN",
+  "data": {
+    "icao": "KBVN",
+    "faa": "BVN",
+    "iata": "",
+    "name": "Albion Municipal Airport",
+    "city": "Albion",
+    "state": "NE",
+    "country": "US",
+    "lat": 41.7286,
+    "lon": -98.0558,
+    "elevation_ft": 1806,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.575
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 128.0
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3700,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "402-395-2001",
+        "notes": "Quote: 21-Aug-2026",
+        "quote_date": "21-Aug-2026",
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T03:37:26Z"
+  }
+}

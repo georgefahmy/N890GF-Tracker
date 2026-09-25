@@ -1,0 +1,66 @@
+{
+  "_cached_at": 1788014773.595797,
+  "icao": "T93",
+  "data": {
+    "icao": "T93",
+    "faa": "T93",
+    "iata": "",
+    "name": "Follett Lipscomb County Airport",
+    "city": "Follett",
+    "state": "TX",
+    "country": "US",
+    "lat": 36.4408,
+    "lon": -100.124,
+    "elevation_ft": 2601,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.95,
+    "approach_desc": "KANSAS CITY CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 126.95
+      },
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4073,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KT93",
+    "airport_ref": "21175",
+    "fetched_at": "2026-08-29T14:46:11Z"
+  }
+}

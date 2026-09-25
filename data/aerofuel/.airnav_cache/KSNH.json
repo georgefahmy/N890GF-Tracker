@@ -1,0 +1,83 @@
+{
+  "_cached_at": 1787544192.131055,
+  "icao": "KSNH",
+  "data": {
+    "icao": "KSNH",
+    "faa": "SNH",
+    "iata": "",
+    "name": "Savannah Hardin County Airport",
+    "city": "Savannah",
+    "state": "TN",
+    "country": "US",
+    "lat": 35.1704,
+    "lon": -88.2159,
+    "elevation_ft": 473,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 133.925
+      },
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5002,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "731-925-6380",
+        "notes": "Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T04:03:10Z"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788270.5288792,
+  "icao": "KHBZ",
+  "data": {
+    "icao": "KHBZ",
+    "faa": "HBZ",
+    "iata": "",
+    "name": "Heber Springs Municipal Airport/Charlie Evans Field",
+    "city": "Heber Springs",
+    "state": "AR",
+    "country": "US",
+    "lat": 35.5117,
+    "lon": -92.013,
+    "elevation_ft": 632,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 126.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 4002,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "501-365-3915",
+        "notes": "Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.83,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.77,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:51:08Z"
+  }
+}

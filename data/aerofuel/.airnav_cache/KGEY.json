@@ -1,0 +1,107 @@
+{
+  "_cached_at": 1788218582.799061,
+  "icao": "KGEY",
+  "data": {
+    "icao": "KGEY",
+    "faa": "GEY",
+    "iata": "GEY",
+    "name": "South Big Horn County Airport",
+    "city": "Greybull",
+    "state": "WY",
+    "country": "US",
+    "lat": 44.5168,
+    "lon": -108.083,
+    "elevation_ft": 3939,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 135.325,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.325
+      },
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CITY CNTR",
+        "frequency_mhz": 133.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 7003,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "8/26",
+        "length": 6953,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "B & G Industries, LLC",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 23-Jul",
+        "quote_date": "23-Jul",
+        "fuels": {
+          "JET_A": {
+            "price": 6.2,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "South Big Horn County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 02-Jul",
+        "quote_date": "02-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.78,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGEY",
+    "airport_ref": "19942",
+    "fetched_at": "2026-08-31T23:23:02Z"
+  }
+}

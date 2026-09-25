@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788014701.7793589,
+  "icao": "I64",
+  "data": {
+    "icao": "I64",
+    "faa": "I64",
+    "iata": "",
+    "name": "Ortner Airport",
+    "city": "Wakeman",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.2934,
+    "lon": -82.3725,
+    "elevation_ft": 848,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 3800,
+        "width": 55,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ortner Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KI64",
+    "airport_ref": "20137",
+    "fetched_at": "2026-08-29T14:45:01Z"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787787549.14935,
+  "icao": "KPDC",
+  "data": {
+    "icao": "KPDC",
+    "faa": "PDC",
+    "iata": "PCD",
+    "name": "Prairie Du Chien Municipal Airport",
+    "city": "Prairie Du Chien",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.0193,
+    "lon": -91.1237,
+    "elevation_ft": 661,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHICAGO APP/DEP",
+        "frequency_mhz": 133.95
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.925
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 122.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 3999,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Prairie du Chien Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.65,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:39:09Z"
+  }
+}

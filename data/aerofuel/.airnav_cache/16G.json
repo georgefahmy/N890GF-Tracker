@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788014701.780017,
+  "icao": "16G",
+  "data": {
+    "icao": "16G",
+    "faa": "16G",
+    "iata": "",
+    "name": "Seneca County Airport",
+    "city": "Tiffin",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.0941,
+    "lon": -83.2125,
+    "elevation_ft": 786,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.8,
+    "approach_desc": "TOLEDO APP/DEP",
+    "departure_freq": 120.8,
+    "departure_desc": "TOLEDO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TOLEDO APP/DEP",
+        "frequency_mhz": 120.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Tiffin Aire",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.98,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.14,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K16G",
+    "airport_ref": "18427",
+    "fetched_at": "2026-08-29T14:45:01Z"
+  }
+}

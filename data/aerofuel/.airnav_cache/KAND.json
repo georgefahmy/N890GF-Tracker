@@ -1,0 +1,114 @@
+{
+  "_cached_at": 1788218308.8584561,
+  "icao": "KAND",
+  "data": {
+    "icao": "KAND",
+    "faa": "AND",
+    "iata": "AND",
+    "name": "Anderson Regional Airport",
+    "city": "Anderson",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.4946,
+    "lon": -82.7094,
+    "elevation_ft": 782,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.675,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 118.8,
+    "approach_desc": "GREER APP/DEP",
+    "departure_freq": 118.8,
+    "departure_desc": "GREER APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREER APP/DEP",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.675
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 6002,
+        "width": 149,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 4996,
+        "width": 149,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Anderson Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.05,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.7,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAND",
+    "airport_ref": "3379",
+    "fetched_at": "2026-08-31T23:18:28Z"
+  }
+}

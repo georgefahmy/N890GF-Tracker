@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787718691.360666,
+  "icao": "KMZZ",
+  "data": {
+    "icao": "KMZZ",
+    "faa": "MZZ",
+    "iata": "MZZ",
+    "name": "Marion Municipal Airport",
+    "city": "Marion",
+    "state": "IN",
+    "country": "US",
+    "lat": 40.4899,
+    "lon": -85.6797,
+    "elevation_ft": 859,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRISSOM APP/DEP",
+        "frequency_mhz": 121.05
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 108.6
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 6011,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 3456,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Air Marion",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.98,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:31:31Z"
+  }
+}

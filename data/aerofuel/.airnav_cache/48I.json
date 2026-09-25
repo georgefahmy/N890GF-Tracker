@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787787534.8664901,
+  "icao": "48I",
+  "data": {
+    "icao": "48I",
+    "faa": "48I",
+    "iata": "",
+    "name": "Braxton County Airport",
+    "city": "Sutton",
+    "state": "WV",
+    "country": "US",
+    "lat": 38.687,
+    "lon": -80.6518,
+    "elevation_ft": 1276,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 121.15
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 3995,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Braxton County Airport",
+        "brand": "Titan",
+        "phone": "304-765-0186",
+        "notes": "Titan \u2022 Quote: 27-Jul-2026",
+        "quote_date": "27-Jul-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.99,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:38:53Z"
+  }
+}

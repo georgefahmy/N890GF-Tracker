@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787525695.9701262,
+  "icao": "T13",
+  "data": {
+    "icao": "T13",
+    "faa": "T13",
+    "iata": "",
+    "name": "Dallas South Port Airport",
+    "city": "Palmer",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.4824,
+    "lon": -96.686,
+    "elevation_ft": 474,
+    "tower": false,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3800,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dallas Southport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 15-Aug",
+        "quote_date": "15-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:54:55Z"
+  }
+}

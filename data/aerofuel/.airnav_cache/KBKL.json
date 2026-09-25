@@ -1,0 +1,118 @@
+{
+  "_cached_at": 1788218347.3954182,
+  "icao": "KBKL",
+  "data": {
+    "icao": "KBKL",
+    "faa": "BKL",
+    "iata": "BKL",
+    "name": "Burke Lakefront Airport",
+    "city": "Cleveland",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.5175,
+    "lon": -81.6833,
+    "elevation_ft": 583,
+    "tower": true,
+    "tower_freq": 124.3,
+    "ctaf_freq": 124.3,
+    "unicom_freq": 122.95,
+    "weather_freq": 125.25,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 125.35,
+    "approach_desc": "CLEVELAND APP/DEP",
+    "departure_freq": 125.35,
+    "departure_desc": "CLEVELAND APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CLEVELAND APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 125.25
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "LAKEFRONT TWR",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06L/24R",
+        "length": 6604,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06R/24L",
+        "length": 5197,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.62,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.74,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.62,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBKL",
+    "airport_ref": "3414",
+    "fetched_at": "2026-08-31T23:19:07Z"
+  }
+}

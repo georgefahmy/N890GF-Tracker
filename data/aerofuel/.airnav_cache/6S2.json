@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788014757.212446,
+  "icao": "6S2",
+  "data": {
+    "icao": "6S2",
+    "faa": "6S2",
+    "iata": "FMU",
+    "name": "Florence Municipal Airport",
+    "city": "Florence",
+    "state": "OR",
+    "country": "US",
+    "lat": 43.9828,
+    "lon": -124.111,
+    "elevation_ft": 51,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.225,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS",
+        "frequency_mhz": 118.225
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 2916,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Florence Airport Volunteer Group",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.05,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K6S2",
+    "airport_ref": "19010",
+    "fetched_at": "2026-08-29T14:45:57Z"
+  }
+}

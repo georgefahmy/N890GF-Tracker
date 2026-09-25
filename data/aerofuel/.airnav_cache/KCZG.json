@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1787705574.1084611,
+  "icao": "KCZG",
+  "data": {
+    "icao": "KCZG",
+    "faa": "CZG",
+    "iata": "",
+    "name": "Tri Cities Airport",
+    "city": "Endicott",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.0785,
+    "lon": -76.0963,
+    "elevation_ft": 833,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BINGHAMTON APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 3900,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Village of Endicott",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:52:54Z"
+  }
+}

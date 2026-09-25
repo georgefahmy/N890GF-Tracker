@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787705620.464567,
+  "icao": "KOWK",
+  "data": {
+    "icao": "KOWK",
+    "faa": "OWK",
+    "iata": "OWK",
+    "name": "Central Maine/Norridgewock Airport",
+    "city": "Norridgewock",
+    "state": "ME",
+    "country": "US",
+    "lat": 44.7155,
+    "lon": -69.8665,
+    "elevation_ft": 270,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PORTLAND APP/DEP",
+        "frequency_mhz": 128.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 3998,
+        "width": 80,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Central Maine Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 6.19,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:53:40Z"
+  }
+}

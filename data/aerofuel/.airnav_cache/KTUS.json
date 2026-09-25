@@ -1,0 +1,163 @@
+{
+  "_cached_at": 1787518884.756177,
+  "icao": "KTUS",
+  "data": {
+    "icao": "KTUS",
+    "faa": "TUS",
+    "iata": "TUS",
+    "name": "Tucson International Airport",
+    "city": "Tucson",
+    "state": "AZ",
+    "country": "US",
+    "lat": 32.115,
+    "lon": -110.9381,
+    "elevation_ft": 2643,
+    "tower": true,
+    "ctaf_freq": 124.8,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 6260,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air Tucson",
+        "brand": "Titan",
+        "phone": "520-445-6300",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 UNICOM: 122.95",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.45,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Executive Air Tucson",
+        "brand": "Avfuel",
+        "phone": "520-445-6375",
+        "notes": "Avfuel \u2022 Guaranteed Price \u2022 UNICOM: 122.95",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Tucson Jet Center",
+        "brand": "World Fuel Services",
+        "phone": "520-746-1411",
+        "notes": "World Fuel Services \u2022 24/7 self-serve access \u2022 Guaranteed Price \u2022 Quote: 24/7 \u2022 UNICOM: 122.95",
+        "quote_date": "24/7",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "",
+        "phone": "520-889-0593",
+        "notes": "Quote: 23-Aug-2026 \u2022 UNICOM: 122.95",
+        "quote_date": "23-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.68,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 123.8
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.65
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 124.4
+      },
+      {
+        "type": "POST",
+        "description": "ANG COMD POST",
+        "frequency_mhz": 39.22
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T21:01:22Z"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "_cached_at": 1787787654.050061,
+  "icao": "KHDL",
+  "data": {
+    "icao": "KHDL",
+    "faa": "HDL",
+    "iata": "",
+    "name": "Headland Municipal Airport",
+    "city": "Headland",
+    "state": "AL",
+    "country": "US",
+    "lat": 31.3643,
+    "lon": -85.3118,
+    "elevation_ft": 359,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CAIRNS APP/DEP",
+        "frequency_mhz": 125.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5002,
+        "width": 80,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 2865,
+        "width": 162,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Headland Municipal Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 30-Jun",
+        "quote_date": "30-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 4.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:40:54Z"
+  }
+}

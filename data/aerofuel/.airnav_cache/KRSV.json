@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1789073589.825537,
+  "icao": "KRSV",
+  "data": {
+    "icao": "KRSV",
+    "faa": "RSV",
+    "iata": "",
+    "name": "Robinson Municipal Airport",
+    "city": "Robinson",
+    "state": "IL",
+    "country": "US",
+    "lat": 39.016,
+    "lon": -87.6498,
+    "elevation_ft": 462,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 120.5,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.25,
+    "approach_desc": "HULMAN APP/DEP",
+    "departure_freq": 119.25,
+    "departure_desc": "HULMAN APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HULMAN APP/DEP",
+        "frequency_mhz": 119.25
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5108,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 3398,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sky's the Limit",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 08-Sep",
+        "quote_date": "08-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRSV",
+    "airport_ref": "20964",
+    "fetched_at": "2026-09-10T20:53:09Z"
+  }
+}

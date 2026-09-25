@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787786373.0419688,
+  "icao": "H35",
+  "data": {
+    "icao": "H35",
+    "faa": "H35",
+    "iata": "",
+    "name": "Clarksville Municipal Airport",
+    "city": "Clarksville",
+    "state": "AR",
+    "country": "US",
+    "lat": 35.4707,
+    "lon": -93.4272,
+    "elevation_ft": 481,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 128.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4504,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Clarksville",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.39,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 3.99,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:19:33Z"
+  }
+}

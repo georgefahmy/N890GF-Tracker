@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787792755.282235,
+  "icao": "KHTS",
+  "data": {
+    "icao": "KHTS",
+    "faa": "HTS",
+    "iata": "HTS",
+    "name": "Tri-State Airport / Milton J. Ferguson Field",
+    "city": "Huntington",
+    "state": "WV",
+    "country": "US",
+    "lat": 38.3667,
+    "lon": -82.558,
+    "elevation_ft": 828,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HUNTINGTON APP/DEP",
+        "frequency_mhz": 119.75
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.2
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "ELKINS RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "HUNTINGTON TWR",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 7017,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Huntington Jet Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.59,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.88,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:05:55Z"
+  }
+}

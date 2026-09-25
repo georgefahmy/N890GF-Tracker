@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1787793537.7933528,
+  "icao": "KWLD",
+  "data": {
+    "icao": "KWLD",
+    "faa": "WLD",
+    "iata": "WLD",
+    "name": "Strother Field",
+    "city": "Winfield / Arkansas City",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.1686,
+    "lon": -97.0376,
+    "elevation_ft": 1160,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.025,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.025
+      },
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "RDO",
+        "description": "WICHITA RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5506,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 3137,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Strother Field Commission",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.65,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KWLD",
+    "airport_ref": "21377",
+    "fetched_at": "2026-08-27T01:18:57Z"
+  }
+}

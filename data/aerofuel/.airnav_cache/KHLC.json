@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1789073117.453232,
+  "icao": "KHLC",
+  "data": {
+    "icao": "KHLC",
+    "faa": "HLC",
+    "iata": "HLC",
+    "name": "Hill City Municipal Airport",
+    "city": "Hill City",
+    "state": "KS",
+    "country": "US",
+    "lat": 39.3788,
+    "lon": -99.8315,
+    "elevation_ft": 2238,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.425,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.425
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.8
+      },
+      {
+        "type": "FSS",
+        "description": "WICHITA RDO",
+        "frequency_mhz": 122.65
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5001,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Hill City",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 08-Sep",
+        "quote_date": "08-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KHLC",
+    "airport_ref": "20060",
+    "fetched_at": "2026-09-10T20:45:17Z"
+  }
+}

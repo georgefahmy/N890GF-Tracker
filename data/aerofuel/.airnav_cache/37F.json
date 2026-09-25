@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1790303755.606795,
+  "icao": "37F",
+  "data": {
+    "icao": "37F",
+    "faa": "37F",
+    "iata": "",
+    "name": "Munday Municipal Airport",
+    "city": "Munday",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.468,
+    "lon": -99.5861,
+    "elevation_ft": 1473,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3200,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Petty Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K37F",
+    "airport_ref": "18658",
+    "fetched_at": "2026-08-26T23:21:45Z"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1790302594.600564,
+  "icao": "O09",
+  "data": {
+    "icao": "O09",
+    "faa": "O09",
+    "iata": "",
+    "name": "Round Valley Airport",
+    "city": "Covelo",
+    "state": "CA",
+    "country": "US",
+    "lat": 39.7902,
+    "lon": -123.266,
+    "elevation_ft": 1434,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3670,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mendocino County",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KO09",
+    "airport_ref": "20674",
+    "fetched_at": "2026-09-10T20:44:24Z"
+  }
+}

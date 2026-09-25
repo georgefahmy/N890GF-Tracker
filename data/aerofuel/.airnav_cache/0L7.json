@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787604243.181312,
+  "icao": "0L7",
+  "data": {
+    "icao": "0L7",
+    "faa": "0L7",
+    "iata": "",
+    "name": "Jean Airport",
+    "city": "Jean",
+    "state": "NV",
+    "country": "US",
+    "lat": 35.7683,
+    "lon": -115.33,
+    "elevation_ft": 2832,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "02L/20R",
+        "length": 4600,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "02R/20L",
+        "length": 3700,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Jean Airport",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.74,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:44:03Z"
+  }
+}

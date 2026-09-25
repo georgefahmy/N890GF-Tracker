@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787788130.288716,
+  "icao": "KCEV",
+  "data": {
+    "icao": "KCEV",
+    "faa": "CEV",
+    "iata": "CEV",
+    "name": "Mettel Field",
+    "city": "Connersville",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.6985,
+    "lon": -85.1297,
+    "elevation_ft": 867,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTON APP/DEP",
+        "frequency_mhz": 134.45
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 6503,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 2601,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Connersville (FBO)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.94,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.94,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.94,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:50Z"
+  }
+}

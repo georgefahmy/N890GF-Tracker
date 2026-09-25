@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1789072486.238119,
+  "icao": "KALM",
+  "data": {
+    "icao": "KALM",
+    "faa": "ALM",
+    "iata": "ALM",
+    "name": "Alamogordo White Sands Regional Airport",
+    "city": "Alamogordo",
+    "state": "NM",
+    "country": "US",
+    "lat": 32.8378,
+    "lon": -105.9931,
+    "elevation_ft": 4200,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 127.825,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.6,
+    "approach_desc": "HOLLOMAN APP",
+    "departure_freq": 128.1,
+    "departure_desc": "HOLLOMAN DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "HOLLOMAN APP",
+        "frequency_mhz": 120.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 127.825
+      },
+      {
+        "type": "DEP",
+        "description": "HOLLOMAN DEP",
+        "frequency_mhz": 128.1
+      },
+      {
+        "type": "RDO",
+        "description": "ALBUQUERQUE RDO",
+        "frequency_mhz": 122.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 9207,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Exile Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.38,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.08,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KALM",
+    "airport_ref": "3373",
+    "fetched_at": "2026-09-10T20:34:45Z"
+  }
+}

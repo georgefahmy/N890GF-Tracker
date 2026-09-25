@@ -1,0 +1,131 @@
+{
+  "_cached_at": 1787788736.813901,
+  "icao": "KPGA",
+  "data": {
+    "icao": "KPGA",
+    "faa": "PGA",
+    "iata": "PGA",
+    "name": "Page Municipal Airport",
+    "city": "Page",
+    "state": "AZ",
+    "country": "US",
+    "lat": 36.9242,
+    "lon": -111.4477,
+    "elevation_ft": 4316,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.625
+      },
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 127.55
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5950,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 2201,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Classic Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Million Air Lake Powell",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.88,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "American Aviation FBO",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:56Z"
+  }
+}

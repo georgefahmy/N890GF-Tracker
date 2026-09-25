@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1787718991.356925,
+  "icao": "KPRX",
+  "data": {
+    "icao": "KPRX",
+    "faa": "PRX",
+    "iata": "PRX",
+    "name": "Cox Field",
+    "city": "Paris",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.6366,
+    "lon": -95.4508,
+    "elevation_ft": 547,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.975,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.675
+      },
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 123.925
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 6002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 4624,
+        "width": 150,
+        "surface": "Con",
+        "lighted": false
+      },
+      {
+        "id": "14/32",
+        "length": 4624,
+        "width": 150,
+        "surface": "Con",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Paris",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:36:31Z"
+  }
+}

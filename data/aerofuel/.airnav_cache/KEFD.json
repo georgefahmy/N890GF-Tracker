@@ -1,0 +1,129 @@
+{
+  "_cached_at": 1787718609.457064,
+  "icao": "KEFD",
+  "data": {
+    "icao": "KEFD",
+    "faa": "EFD",
+    "iata": "EFD",
+    "name": "Ellington Airport",
+    "city": "Houston",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.6073,
+    "lon": -95.1588,
+    "elevation_ft": 32,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HOUSTON APP DEP",
+        "frequency_mhz": 134.45
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.575
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "MISC",
+        "description": "HOUSTON AIR",
+        "frequency_mhz": 38.18
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 41.0
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 142.2
+      },
+      {
+        "type": "POST",
+        "description": "COMD POST",
+        "frequency_mhz": 142.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 126.05
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "17R/35L",
+        "length": 9001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17L/35R",
+        "length": 4609,
+        "width": 80,
+        "surface": "Con",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.22,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.87,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Airport Fuel Facility",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.38,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:09Z"
+  }
+}

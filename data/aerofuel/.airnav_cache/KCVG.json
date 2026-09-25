@@ -1,0 +1,245 @@
+{
+  "_cached_at": 1787528566.813291,
+  "icao": "KCVG",
+  "data": {
+    "icao": "KCVG",
+    "faa": "CVG",
+    "iata": "CVG",
+    "name": "Cincinnati Northern Kentucky International Airport",
+    "city": "Cincinnati / Covington",
+    "state": "KY",
+    "country": "US",
+    "lat": 39.0488,
+    "lon": -84.6678,
+    "elevation_ft": 896,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "Cincinnati Approach 090-269\u00b0",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "APP",
+        "description": "Cincinnati Approach 270-089\u00b0",
+        "frequency_mhz": 123.875
+      },
+      {
+        "type": "APP",
+        "description": "Cincinnati Approach UHF",
+        "frequency_mhz": 363.15
+      },
+      {
+        "type": "ATIS",
+        "description": "Cincinnati D-ATIS ARR",
+        "frequency_mhz": 134.375
+      },
+      {
+        "type": "ATIS",
+        "description": "Cincinnati D-ATIS DEP",
+        "frequency_mhz": 135.3
+      },
+      {
+        "type": "CLD",
+        "description": "Clearance Delivery",
+        "frequency_mhz": 127.175
+      },
+      {
+        "type": "CLSB",
+        "description": "Cincinnati Class B 001-180\u00b0",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "CLSB",
+        "description": "Cincinnati Class B 181-360\u00b0",
+        "frequency_mhz": 128.7
+      },
+      {
+        "type": "CLSB",
+        "description": "Cincinnati Class B UHF",
+        "frequency_mhz": 254.25
+      },
+      {
+        "type": "DEP",
+        "description": "Cincinnati Departure 001-180\u00b0",
+        "frequency_mhz": 126.65
+      },
+      {
+        "type": "DEP",
+        "description": "Cincinnati Departure 181-360\u00b0",
+        "frequency_mhz": 128.7
+      },
+      {
+        "type": "DEP",
+        "description": "Cincinnati Departure UHF",
+        "frequency_mhz": 254.25
+      },
+      {
+        "type": "EMERG",
+        "description": "Emergancy",
+        "frequency_mhz": 121.5
+      },
+      {
+        "type": "EMERG",
+        "description": "Emergancy",
+        "frequency_mhz": 243.0
+      },
+      {
+        "type": "GND",
+        "description": "Cincinnati Ground",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "STAR",
+        "description": "SHELBYVILLE STAR 090\u00b0-269\u00b0",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "STAR",
+        "description": "HARDU STAR 090\u00b0-269\u00b0",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "STAR",
+        "description": "Jakie Star",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "STAR",
+        "description": "SHELBYVILLE STAR 270\u00b0-089\u00b0",
+        "frequency_mhz": 123.875
+      },
+      {
+        "type": "STAR",
+        "description": "HARDU STAR 270\u00b0-089\u00b0",
+        "frequency_mhz": 123.875
+      },
+      {
+        "type": "STAR",
+        "description": "CINCE STAR",
+        "frequency_mhz": 123.875
+      },
+      {
+        "type": "STAR",
+        "description": "JAKIE STAR UHF",
+        "frequency_mhz": 254.25
+      },
+      {
+        "type": "STAR",
+        "description": "CINCE STAR UHF",
+        "frequency_mhz": 254.25
+      },
+      {
+        "type": "STAR",
+        "description": "SHELBYVILLE STAR UHF",
+        "frequency_mhz": 363.15
+      },
+      {
+        "type": "STAR",
+        "description": "HARDU STAR UHF",
+        "frequency_mhz": 363.15
+      },
+      {
+        "type": "TWR",
+        "description": "Cincinnati Tower Runway 09-27 & 18C-36C",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "TWR",
+        "description": "Cincinnati Tower Runway 18L-36R",
+        "frequency_mhz": 118.975
+      },
+      {
+        "type": "TWR",
+        "description": "Cincinnati Tower Runway 18R-36L",
+        "frequency_mhz": 133.325
+      },
+      {
+        "type": "TWR",
+        "description": "Cincinnati Tower Runway 18L-36R",
+        "frequency_mhz": 360.85
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      },
+      {
+        "type": "WXAS",
+        "description": "WX ASOS: (859-767-8210)",
+        "frequency_mhz": 134.375
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 12001,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "18C/36C",
+        "length": 11000,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "18L/36R",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "18R/36L",
+        "length": 8000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "PremierFBO",
+        "brand": "Titan",
+        "phone": "859-534-4301",
+        "notes": "Titan \u2022 Quote: 19-Aug-2026",
+        "quote_date": "19-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.72,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.88,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.72,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:42:45Z"
+  }
+}

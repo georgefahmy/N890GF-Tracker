@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787792732.223767,
+  "icao": "I23",
+  "data": {
+    "icao": "I23",
+    "faa": "I23",
+    "iata": "",
+    "name": "Fayette County Airport",
+    "city": "Washington Court House",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.5704,
+    "lon": -83.4205,
+    "elevation_ft": 980,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "COLUMBUS APP/DEP",
+        "frequency_mhz": 132.3
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.775
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5097,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fayette County (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.6,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:05:32Z"
+  }
+}

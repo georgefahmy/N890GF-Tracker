@@ -1,0 +1,158 @@
+{
+  "_cached_at": 1787718600.1429708,
+  "icao": "KBTR",
+  "data": {
+    "icao": "KBTR",
+    "faa": "BTR",
+    "iata": "BTR",
+    "name": "Baton Rouge Metropolitan Airport",
+    "city": "Baton Rouge",
+    "state": "LA",
+    "country": "US",
+    "lat": 30.5332,
+    "lon": -91.1496,
+    "elevation_ft": 70,
+    "tower": true,
+    "ctaf_freq": 118.45,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.2
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.45
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "DE RIDDER RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.45
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04L/22R",
+        "length": 7500,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 7005,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04R/22L",
+        "length": 3799,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Velocity BTR",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.23,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.78,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Williams Jet Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 19-Jun",
+        "quote_date": "19-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.48,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.28,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.48,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:00Z"
+  }
+}

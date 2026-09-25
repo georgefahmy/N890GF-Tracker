@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787786428.0199082,
+  "icao": "5N8",
+  "data": {
+    "icao": "5N8",
+    "faa": "5N8",
+    "iata": "",
+    "name": "Casselton Robert Miller Regional Airport",
+    "city": "Casselton",
+    "state": "ND",
+    "country": "US",
+    "lat": 46.854,
+    "lon": -97.2087,
+    "elevation_ft": 933,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FARGO APP/DEP",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3901,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airport Fuel Facility",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 24.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "701-347-4680",
+        "notes": "Quote: 09-Jul-2026",
+        "quote_date": "09-Jul-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:20:26Z"
+  }
+}

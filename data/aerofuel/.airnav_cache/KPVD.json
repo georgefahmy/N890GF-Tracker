@@ -1,0 +1,118 @@
+{
+  "_cached_at": 1788218510.139016,
+  "icao": "KPVD",
+  "data": {
+    "icao": "KPVD",
+    "faa": "PVD",
+    "iata": "PVD",
+    "name": "Rhode Island T. F. Green International Airport",
+    "city": "Providence/Warwick",
+    "state": "RI",
+    "country": "US",
+    "lat": 41.725,
+    "lon": -71.4257,
+    "elevation_ft": 55,
+    "tower": true,
+    "tower_freq": 120.7,
+    "ctaf_freq": 120.7,
+    "unicom_freq": 120.7,
+    "weather_freq": 124.2,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 135.4,
+    "approach_desc": "PROVIDENCE APP/DEP",
+    "departure_freq": 135.4,
+    "departure_desc": "PROVIDENCE APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "PROVIDENCE GND",
+    "clearance_freq": 126.65,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PROVIDENCE APP/DEP",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.65
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "GND",
+        "description": "PROVIDENCE GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "BRIDGEPORT RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "TWR",
+        "description": "PROVIDENCE TWR",
+        "frequency_mhz": 120.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 8700,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 6081,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 31-Aug",
+        "quote_date": "31-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.64,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPVD",
+    "airport_ref": "3795",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

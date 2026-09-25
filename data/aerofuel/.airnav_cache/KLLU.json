@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1788202652.261735,
+  "icao": "KLLU",
+  "data": {
+    "icao": "KLLU",
+    "faa": "LLU",
+    "iata": "",
+    "name": "Lamar Municipal Airport",
+    "city": "Lamar",
+    "state": "MO",
+    "country": "US",
+    "lat": 37.4872,
+    "lon": -94.3133,
+    "elevation_ft": 1009,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 128.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4000,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2900,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "MBMB",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.3,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLLU",
+    "airport_ref": "20355",
+    "fetched_at": "2026-08-31T18:57:32Z"
+  }
+}

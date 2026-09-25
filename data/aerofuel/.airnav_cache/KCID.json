@@ -1,0 +1,141 @@
+{
+  "_cached_at": 1787788718.530347,
+  "icao": "KCID",
+  "data": {
+    "icao": "KCID",
+    "faa": "CID",
+    "iata": "CID",
+    "name": "The Eastern Iowa Airport",
+    "city": "Cedar Rapids",
+    "state": "IA",
+    "country": "US",
+    "lat": 41.8847,
+    "lon": -91.7108,
+    "elevation_ft": 869,
+    "tower": true,
+    "ctaf_freq": 118.7,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP (091-269)",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "A/D",
+        "description": "APP/DEP  (270-090)",
+        "frequency_mhz": 134.05
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.45
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "RDO",
+        "description": "FORT DODGE RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 8600,
+        "width": 150,
+        "surface": "Per",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 6200,
+        "width": 150,
+        "surface": "Per",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "",
+        "phone": "319-366-1925",
+        "notes": "Quote: 26-Aug-2026",
+        "quote_date": "26-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.08,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.82,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "The Eastern Iowa Airport",
+        "brand": "Titan",
+        "phone": "319-362-8336",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Quote: 12-Aug-2026 \u2022 UNICOM: 122.80",
+        "quote_date": "12-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.29,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.29,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:58:36Z"
+  }
+}

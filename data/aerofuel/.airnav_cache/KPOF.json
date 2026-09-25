@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202644.581135,
+  "icao": "KPOF",
+  "data": {
+    "icao": "KPOF",
+    "faa": "POF",
+    "iata": "POF",
+    "name": "Poplar Bluff Municipal Airport",
+    "city": "Poplar Bluff",
+    "state": "MO",
+    "country": "US",
+    "lat": 36.7739,
+    "lon": -90.3249,
+    "elevation_ft": 331,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 124.225,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 124.225
+      },
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 120.075
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5008,
+        "width": 100,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Poplar Bluff",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPOF",
+    "airport_ref": "20855",
+    "fetched_at": "2026-08-31T18:57:24Z"
+  }
+}

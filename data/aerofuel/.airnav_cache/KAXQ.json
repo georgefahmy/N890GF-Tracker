@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718720.540818,
+  "icao": "KAXQ",
+  "data": {
+    "icao": "KAXQ",
+    "faa": "AXQ",
+    "iata": "",
+    "name": "Clarion County Airport",
+    "city": "Clarion",
+    "state": "PA",
+    "country": "US",
+    "lat": 41.2258,
+    "lon": -79.441,
+    "elevation_ft": 1458,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.275
+      },
+      {
+        "type": "CNTR",
+        "description": "CLEVELAND CNTR APP",
+        "frequency_mhz": 126.72
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5003,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Clarion County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 22-Jul",
+        "quote_date": "22-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.75,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:00Z"
+  }
+}

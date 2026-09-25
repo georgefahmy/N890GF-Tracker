@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787787565.6841128,
+  "icao": "KBXG",
+  "data": {
+    "icao": "KBXG",
+    "faa": "BXG",
+    "iata": "",
+    "name": "Burke County Airport",
+    "city": "Waynesboro",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.0413,
+    "lon": -82.0027,
+    "elevation_ft": 302,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "AUGUSTA APP/DEP",
+        "frequency_mhz": 126.8
+      },
+      {
+        "type": "CNTR",
+        "description": "ATLANTA CNTR",
+        "frequency_mhz": 128.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5003,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Burke County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.55,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:39:25Z"
+  }
+}

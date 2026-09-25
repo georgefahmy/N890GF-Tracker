@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1788202652.261322,
+  "icao": "KLBO",
+  "data": {
+    "icao": "KLBO",
+    "faa": "LBO",
+    "iata": "",
+    "name": "Floyd W. Jones Lebanon Airport",
+    "city": "Lebanon",
+    "state": "MO",
+    "country": "US",
+    "lat": 37.6483,
+    "lon": -92.6524,
+    "elevation_ft": 1321,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.975,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 121.1,
+    "approach_desc": "SPRINGFIELD APP/DEP",
+    "departure_freq": 121.1,
+    "departure_desc": "SPRINGFIELD APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SPRINGFIELD APP/DEP",
+        "frequency_mhz": 121.1
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.975
+      },
+      {
+        "type": "RDO",
+        "description": "COLUMBIA RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Lebanon (FBO)",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLBO",
+    "airport_ref": "20320",
+    "fetched_at": "2026-08-31T18:57:32Z"
+  }
+}

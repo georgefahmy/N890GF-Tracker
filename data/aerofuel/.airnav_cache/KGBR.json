@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788218381.602307,
+  "icao": "KGBR",
+  "data": {
+    "icao": "KGBR",
+    "faa": "GBR",
+    "iata": "GBR",
+    "name": "Walter J. Koladza Airport",
+    "city": "Great Barrington",
+    "state": "MA",
+    "country": "US",
+    "lat": 42.1842,
+    "lon": -73.4032,
+    "elevation_ft": 739,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 125.0,
+    "approach_desc": "ALBANY APP/DEP",
+    "departure_freq": 125.0,
+    "departure_desc": "ALBANY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ALBANY APP/DEP",
+        "frequency_mhz": 125.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 2579,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Berkshire Aviation Enterprises",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGBR",
+    "airport_ref": "19928",
+    "fetched_at": "2026-08-31T23:19:41Z"
+  }
+}

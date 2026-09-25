@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787544581.5397801,
+  "icao": "15J",
+  "data": {
+    "icao": "15J",
+    "faa": "15J",
+    "iata": "",
+    "name": "Cook County Airport",
+    "city": "Adel",
+    "state": "GA",
+    "country": "US",
+    "lat": 31.1378,
+    "lon": -83.4533,
+    "elevation_ft": 236,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "VALDOSTA APP/DEP",
+        "frequency_mhz": 119.525
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5502,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 3999,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cook County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.21,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:09:41Z"
+  }
+}

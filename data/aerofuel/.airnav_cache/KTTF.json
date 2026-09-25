@@ -1,0 +1,95 @@
+{
+  "_cached_at": 1788202528.592156,
+  "icao": "KTTF",
+  "data": {
+    "icao": "KTTF",
+    "faa": "TTF",
+    "iata": "",
+    "name": "Custer Airport",
+    "city": "Monroe",
+    "state": "MI",
+    "country": "US",
+    "lat": 41.9399,
+    "lon": -83.4347,
+    "elevation_ft": 616,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 119.075,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 134.3,
+    "approach_desc": "DETROIT APP/DEP",
+    "departure_freq": 134.3,
+    "departure_desc": "DETROIT APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DETROIT APP/DEP",
+        "frequency_mhz": 134.3
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 115.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 4997,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Monroe Custer Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTTF",
+    "airport_ref": "21229",
+    "fetched_at": "2026-08-31T18:55:28Z"
+  }
+}

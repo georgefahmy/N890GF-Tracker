@@ -1,0 +1,131 @@
+{
+  "_cached_at": 1790302580.777973,
+  "icao": "KSAC",
+  "data": {
+    "icao": "KSAC",
+    "faa": "SAC",
+    "iata": "SAC",
+    "name": "Sacramento Executive Airport",
+    "city": "Sacramento",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.5125,
+    "lon": -121.493,
+    "elevation_ft": 24,
+    "tower": true,
+    "tower_freq": 119.5,
+    "ctaf_freq": 119.5,
+    "unicom_freq": 122.95,
+    "weather_freq": 125.5,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 125.25,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 125.25,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": 125.0,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 125.25
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.5
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 125.0
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.05
+      },
+      {
+        "type": "TWR",
+        "description": "EXEC TWR",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5503,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 3837,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 3485,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Modern Aviation Executive",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.13,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.13,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.26,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.13,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSAC",
+    "airport_ref": "3861",
+    "fetched_at": "2026-09-10T20:44:42Z"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787718983.511782,
+  "icao": "3F9",
+  "data": {
+    "icao": "3F9",
+    "faa": "3F9",
+    "iata": "",
+    "name": "Mineola Wisener Field",
+    "city": "Mineola",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.6767,
+    "lon": -95.5108,
+    "elevation_ft": 429,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LONGVIEW APP/DEP",
+        "frequency_mhz": 128.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3203,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wisener Field Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Jul",
+        "quote_date": "31-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:36:23Z"
+  }
+}

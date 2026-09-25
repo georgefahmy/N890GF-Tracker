@@ -1,0 +1,122 @@
+{
+  "_cached_at": 1788014731.080248,
+  "icao": "KGEU",
+  "data": {
+    "icao": "KGEU",
+    "faa": "GEU",
+    "iata": "",
+    "name": "Glendale Municipal Airport",
+    "city": "Glendale",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.5269,
+    "lon": -112.295,
+    "elevation_ft": 1071,
+    "tower": true,
+    "tower_freq": 121.0,
+    "ctaf_freq": 121.0,
+    "unicom_freq": 122.95,
+    "weather_freq": 119.425,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 120.5,
+    "approach_desc": "LUKE APP/DEP",
+    "departure_freq": 120.5,
+    "departure_desc": "LUKE APP/DEP",
+    "ground_freq": 118.0,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LUKE APP/DEP",
+        "frequency_mhz": 120.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.425
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.425
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 7150,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Glendale Aero Services",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.77,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGEU",
+    "airport_ref": "19940",
+    "fetched_at": "2026-08-29T14:45:31Z"
+  }
+}

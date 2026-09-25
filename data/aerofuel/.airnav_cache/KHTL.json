@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787786437.704256,
+  "icao": "KHTL",
+  "data": {
+    "icao": "KHTL",
+    "faa": "HTL",
+    "iata": "HTL",
+    "name": "Roscommon County - Blodgett Memorial Airport",
+    "city": "Houghton Lake",
+    "state": "MI",
+    "country": "US",
+    "lat": 44.3598,
+    "lon": -84.6711,
+    "elevation_ft": 1150,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 111.6
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 132.9
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2200,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Roscommon County-Blodgett Memorial Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Jul",
+        "quote_date": "12-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.21,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.21,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:20:37Z"
+  }
+}

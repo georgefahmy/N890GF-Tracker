@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1789073574.787576,
+  "icao": "KHYR",
+  "data": {
+    "icao": "KHYR",
+    "faa": "HYR",
+    "iata": "HYR",
+    "name": "Sawyer County Airport",
+    "city": "Hayward",
+    "state": "WI",
+    "country": "US",
+    "lat": 46.0252,
+    "lon": -91.4443,
+    "elevation_ft": 1216,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 113.4,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 126.45,
+    "approach_desc": "MINNEAPOLIS CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 126.45
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 113.4
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 113.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5003,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 1088,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hayward Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KHYR",
+    "airport_ref": "20108",
+    "fetched_at": "2026-09-10T20:52:54Z"
+  }
+}

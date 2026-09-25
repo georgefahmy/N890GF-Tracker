@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787544357.511034,
+  "icao": "X01",
+  "data": {
+    "icao": "X01",
+    "faa": "X01",
+    "iata": "",
+    "name": "Everglades Airpark",
+    "city": "Everglades",
+    "state": "FL",
+    "country": "US",
+    "lat": 25.8487,
+    "lon": -81.3901,
+    "elevation_ft": 5,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 2400,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Collier County Airports",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.01,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.01,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:57Z"
+  }
+}

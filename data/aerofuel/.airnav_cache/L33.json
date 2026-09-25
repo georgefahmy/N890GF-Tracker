@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787718617.668376,
+  "icao": "L33",
+  "data": {
+    "icao": "L33",
+    "faa": "L33",
+    "iata": "",
+    "name": "Tensas Parish Airport",
+    "city": "St Joseph",
+    "state": "LA",
+    "country": "US",
+    "lat": 31.9774,
+    "lon": -91.2405,
+    "elevation_ft": 74,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "FSS",
+        "description": "DE RIDDER RDO",
+        "frequency_mhz": 122.2
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3509,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Tensas Parish Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Jun",
+        "quote_date": "18-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:17Z"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1788014689.249557,
+  "icao": "7N4",
+  "data": {
+    "icao": "7N4",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-29",
+    "fetched_at": "2026-08-29T14:44:49Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787787565.684999,
+  "icao": "52A",
+  "data": {
+    "icao": "52A",
+    "faa": "52A",
+    "iata": "",
+    "name": "Madison Municipal Airport",
+    "city": "Madison",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.6121,
+    "lon": -83.4604,
+    "elevation_ft": 694,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "ATLANTA APP/DEP",
+        "frequency_mhz": 127.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3806,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Reynolds Aviation Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:39:25Z"
+  }
+}

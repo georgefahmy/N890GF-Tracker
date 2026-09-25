@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787788258.1889,
+  "icao": "KTDW",
+  "data": {
+    "icao": "KTDW",
+    "faa": "TDW",
+    "iata": "TDW",
+    "name": "Tradewind Airport",
+    "city": "Amarillo",
+    "state": "TX",
+    "country": "US",
+    "lat": 35.1699,
+    "lon": -101.826,
+    "elevation_ft": 3649,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "AMARILLO APP/DEP",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5098,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 3000,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Tradewind Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.11,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.96,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.65,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.11,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:58Z"
+  }
+}

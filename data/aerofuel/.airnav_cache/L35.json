@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788014738.766859,
+  "icao": "L35",
+  "data": {
+    "icao": "L35",
+    "faa": "L35",
+    "iata": "RBF",
+    "name": "Big Bear City Airport",
+    "city": "Big Bear",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.2638,
+    "lon": -116.856,
+    "elevation_ft": 6752,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.725,
+    "weather_freq": 135.925,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.925
+      },
+      {
+        "type": "CNTR",
+        "description": "LOS ANGELES CNTR",
+        "frequency_mhz": 126.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "8/26",
+        "length": 5850,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Big Bear City Airport District",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KL35",
+    "airport_ref": "20296",
+    "fetched_at": "2026-08-29T14:45:38Z"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "_cached_at": 1787544357.510512,
+  "icao": "KEYW",
+  "data": {
+    "icao": "KEYW",
+    "faa": "EYW",
+    "iata": "EYW",
+    "name": "Key West International Airport",
+    "city": "Key West",
+    "state": "FL",
+    "country": "US",
+    "lat": 24.5561,
+    "lon": -81.7596,
+    "elevation_ft": 3,
+    "tower": true,
+    "ctaf_freq": 118.2,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NAVY KEY WEST",
+        "frequency_mhz": 124.45
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.65
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.675
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "FSS",
+        "description": "MIAMI RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5076,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 11.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.65,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 11.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:57Z"
+  }
+}

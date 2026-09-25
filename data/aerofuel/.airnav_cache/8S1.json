@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787793943.879596,
+  "icao": "8S1",
+  "data": {
+    "icao": "8S1",
+    "faa": "8S1",
+    "iata": "",
+    "name": "Polson Airport",
+    "city": "Polson",
+    "state": "MT",
+    "country": "US",
+    "lat": 47.6954,
+    "lon": -114.185,
+    "elevation_ft": 2941,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 133.4,
+    "approach_desc": "SALT LAKE CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ARR",
+        "description": "SALT LAKE CNTR",
+        "frequency_mhz": 133.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4194,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lake Aero / Ronan Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.34,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.6,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.34,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K8S1",
+    "airport_ref": "19141",
+    "fetched_at": "2026-08-27T01:25:43Z"
+  }
+}

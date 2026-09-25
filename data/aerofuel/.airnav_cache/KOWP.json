@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1788202662.865828,
+  "icao": "KOWP",
+  "data": {
+    "icao": "KOWP",
+    "faa": "OWP",
+    "iata": "",
+    "name": "William R. Pogue Municipal Airport",
+    "city": "Sand Springs",
+    "state": "OK",
+    "country": "US",
+    "lat": 36.1753,
+    "lon": -96.1518,
+    "elevation_ft": 892,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 118.325,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 124.0,
+    "approach_desc": "TULSA APP/DEP",
+    "departure_freq": 124.0,
+    "departure_desc": "TULSA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TULSA APP/DEP",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5799,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Sand Springs (FBO)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOWP",
+    "airport_ref": "18361",
+    "fetched_at": "2026-08-31T18:57:42Z"
+  }
+}

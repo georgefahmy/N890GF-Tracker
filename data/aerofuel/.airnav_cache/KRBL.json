@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1790302594.60007,
+  "icao": "KRBL",
+  "data": {
+    "icao": "KRBL",
+    "faa": "RBL",
+    "iata": "RBL",
+    "name": "Red Bluff Municipal Airport",
+    "city": "Red Bluff",
+    "state": "CA",
+    "country": "US",
+    "lat": 40.1507,
+    "lon": -122.252,
+    "elevation_ft": 352,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 120.775,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.775
+      },
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 132.2
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 5431,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cardan Aircraft Services",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.69,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.84,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.95,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRBL",
+    "airport_ref": "3839",
+    "fetched_at": "2026-09-10T20:44:24Z"
+  }
+}

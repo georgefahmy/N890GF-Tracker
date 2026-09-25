@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787528524.689827,
+  "icao": "I66",
+  "data": {
+    "icao": "I66",
+    "faa": "I66",
+    "iata": "",
+    "name": "Clinton County Airport",
+    "city": "Wilmington",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.5033,
+    "lon": -83.8628,
+    "elevation_ft": 1033,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTON APP/DEP",
+        "frequency_mhz": 118.85
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 124.175
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 3579,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Great Plains Enterprises, LLC",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 01-Jul",
+        "quote_date": "01-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.21,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.21,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:04Z"
+  }
+}

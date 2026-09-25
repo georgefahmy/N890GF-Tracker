@@ -1,0 +1,50 @@
+{
+  "_cached_at": 1788014957.852236,
+  "icao": "KMYK",
+  "data": {
+    "icao": "KMYK",
+    "faa": "MYK",
+    "iata": "MYK",
+    "name": "May Creek Airport",
+    "city": "May Creek",
+    "state": "AK",
+    "country": "US",
+    "lat": 61.3357,
+    "lon": -142.687,
+    "elevation_ft": 1650,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 2700,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Live Feed",
+    "raw_ident": "MYK",
+    "airport_ref": "22655",
+    "fetched_at": "2026-08-29T14:49:15Z"
+  }
+}

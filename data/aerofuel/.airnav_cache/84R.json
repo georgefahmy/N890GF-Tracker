@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787525630.979192,
+  "icao": "84R",
+  "data": {
+    "icao": "84R",
+    "faa": "84R",
+    "iata": "",
+    "name": "Smithville Crawford Municipal Airport",
+    "city": "Smithville",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.0282,
+    "lon": -97.167,
+    "elevation_ft": 323,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Smithville Crawford Municipal Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.02,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.02,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:53:50Z"
+  }
+}

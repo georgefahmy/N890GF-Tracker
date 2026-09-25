@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1787793896.915346,
+  "icao": "KPCZ",
+  "data": {
+    "icao": "KPCZ",
+    "faa": "PCZ",
+    "iata": "",
+    "name": "Waupaca Municipal Airport",
+    "city": "Waupaca",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.3333,
+    "lon": -89.0198,
+    "elevation_ft": 840,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.625,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 124.4,
+    "approach_desc": "MINNEAPOLIS CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 124.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.625
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 5200,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 3899,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "KlattAero",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.62,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.83,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.62,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPCZ",
+    "airport_ref": "20813",
+    "fetched_at": "2026-08-27T01:24:56Z"
+  }
+}

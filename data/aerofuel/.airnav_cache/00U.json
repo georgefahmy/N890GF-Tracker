@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1788218576.25323,
+  "icao": "00U",
+  "data": {
+    "icao": "00U",
+    "faa": "00U",
+    "name": "Big Horn County Airport",
+    "city": "Hardin",
+    "state": "MT",
+    "distance_nm": 65.0,
+    "bearing": "NNW",
+    "fbos": [
+      {
+        "name": "Big Horn County Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T23:22:56Z",
+    "source": "AirNav Local Fuel"
+  }
+}

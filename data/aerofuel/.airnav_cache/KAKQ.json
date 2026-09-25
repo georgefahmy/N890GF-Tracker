@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1787528412.780739,
+  "icao": "KAKQ",
+  "data": {
+    "icao": "KAKQ",
+    "faa": "AKQ",
+    "iata": "",
+    "name": "Wakefield Municipal Airport",
+    "city": "Wakefield",
+    "state": "VA",
+    "country": "US",
+    "lat": 36.9872,
+    "lon": -77.0011,
+    "elevation_ft": 113,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORFOLK APP/DEP",
+        "frequency_mhz": 127.9
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 128.325
+      },
+      {
+        "type": "RDO",
+        "description": "LEESBURG RDO",
+        "frequency_mhz": 110.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 4337,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Town of Wakefield Airport Commission",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:40:12Z"
+  }
+}

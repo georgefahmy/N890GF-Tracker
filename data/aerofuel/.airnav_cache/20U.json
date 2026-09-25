@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787705739.8023732,
+  "icao": "20U",
+  "data": {
+    "icao": "20U",
+    "faa": "20U",
+    "iata": "",
+    "name": "Beach Airport",
+    "city": "Beach",
+    "state": "ND",
+    "country": "US",
+    "lat": 46.9252,
+    "lon": -103.982,
+    "elevation_ft": 2756,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 4200,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Golden Valley Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.95,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:55:39Z"
+  }
+}

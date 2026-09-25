@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787794350.1638541,
+  "icao": "KGYI",
+  "data": {
+    "icao": "KGYI",
+    "faa": "GYI",
+    "iata": "PNX",
+    "name": "North Texas Regional Airport Perrin Field",
+    "city": "Denison",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.7141,
+    "lon": -96.6737,
+    "elevation_ft": 749,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 118.775,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 124.75,
+    "approach_desc": "FORT WORTH APP/DEP",
+    "departure_freq": 124.75,
+    "departure_desc": "FORT WORTH APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT WORTH APP/DEP",
+        "frequency_mhz": 124.75
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.775
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "18L/36R",
+        "length": 9000,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "18R/36L",
+        "length": 4008,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rise Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.74,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.29,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.74,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGYI",
+    "airport_ref": "19997",
+    "fetched_at": "2026-08-27T01:32:30Z"
+  }
+}

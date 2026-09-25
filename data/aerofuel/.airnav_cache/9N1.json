@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787792807.717241,
+  "icao": "9N1",
+  "data": {
+    "icao": "9N1",
+    "faa": "9N1",
+    "iata": "",
+    "name": "Van Sant Airport",
+    "city": "Erwinna",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.4836,
+    "lon": -75.1009,
+    "elevation_ft": 390,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3058,
+        "width": 120,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "05G/23G",
+        "length": 1340,
+        "width": 200,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "The Bird of Paradise at Van Sant",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:47Z"
+  }
+}

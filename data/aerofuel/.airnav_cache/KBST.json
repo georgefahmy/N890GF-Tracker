@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787705613.947027,
+  "icao": "KBST",
+  "data": {
+    "icao": "KBST",
+    "faa": "BST",
+    "iata": "",
+    "name": "Belfast Municipal Airport",
+    "city": "Belfast",
+    "state": "ME",
+    "country": "US",
+    "lat": 44.4094,
+    "lon": -69.0119,
+    "elevation_ft": 198,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "BANGOR APP/DEP",
+        "frequency_mhz": 118.925
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.975
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Belfast Municipal Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.16,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:53:33Z"
+  }
+}

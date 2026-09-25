@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788218347.3934898,
+  "icao": "15G",
+  "data": {
+    "icao": "15G",
+    "faa": "15G",
+    "iata": "",
+    "name": "Weltzien Skypark Airport",
+    "city": "Wadsworth",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.0283,
+    "lon": -81.7981,
+    "elevation_ft": 1210,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 2410,
+        "width": 37,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Weltzien Skypark",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "15G",
+    "airport_ref": "7935",
+    "fetched_at": "2026-08-31T23:19:07Z"
+  }
+}

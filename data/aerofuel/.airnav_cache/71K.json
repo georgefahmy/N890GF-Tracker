@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787788183.691193,
+  "icao": "71K",
+  "data": {
+    "icao": "71K",
+    "faa": "71K",
+    "iata": "",
+    "name": "Westport Airport",
+    "city": "Wichita",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.6475,
+    "lon": -97.3845,
+    "elevation_ft": 1290,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 2520,
+        "width": 30,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Westport Ag Sales and Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:49:43Z"
+  }
+}

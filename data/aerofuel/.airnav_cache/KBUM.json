@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787528899.3163462,
+  "icao": "KBUM",
+  "data": {
+    "icao": "KBUM",
+    "faa": "BUM",
+    "iata": "BUM",
+    "name": "Butler Memorial Airport",
+    "city": "Butler",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.2898,
+    "lon": -94.3401,
+    "elevation_ft": 892,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 125.55
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "COLUMBIA RDO",
+        "frequency_mhz": 115.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3999,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "816-529-5867",
+        "notes": "Quote: 20-Aug-2026",
+        "quote_date": "20-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.61,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.61,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:48:17Z"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787705593.959881,
+  "icao": "2B7",
+  "data": {
+    "icao": "2B7",
+    "faa": "2B7",
+    "iata": "",
+    "name": "Pittsfield Municipal Airport",
+    "city": "Pittsfield",
+    "state": "ME",
+    "country": "US",
+    "lat": 44.7685,
+    "lon": -69.3744,
+    "elevation_ft": 198,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BANGOR APP/DEP",
+        "frequency_mhz": 118.925
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Curtis Air",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.09,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.91,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.09,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:53:13Z"
+  }
+}

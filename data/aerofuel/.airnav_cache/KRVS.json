@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1788202662.863801,
+  "icao": "KRVS",
+  "data": {
+    "icao": "KRVS",
+    "faa": "RVS",
+    "iata": "RVS",
+    "name": "Tulsa Riverside Airport",
+    "city": "Tulsa",
+    "state": "OK",
+    "country": "US",
+    "lat": 36.0396,
+    "lon": -95.9846,
+    "elevation_ft": 638,
+    "tower": true,
+    "tower_freq": 119.2,
+    "ctaf_freq": 120.3,
+    "unicom_freq": 122.95,
+    "weather_freq": 126.5,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.85,
+    "approach_desc": "TULSA APP/DEP",
+    "departure_freq": 119.85,
+    "departure_desc": "TULSA APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": 124.5,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TULSA APP/DEP",
+        "frequency_mhz": 119.85
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.5
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "RIVERSIDE TWR",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "01L/19R",
+        "length": 5101,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01R/19L",
+        "length": 4205,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 2639,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Christiansen Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.64,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Riverside Jet Center AEG Connect Network",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.44,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRVS",
+    "airport_ref": "20972",
+    "fetched_at": "2026-08-31T18:57:42Z"
+  }
+}

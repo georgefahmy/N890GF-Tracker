@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788130.2877948,
+  "icao": "KUWL",
+  "data": {
+    "icao": "KUWL",
+    "faa": "UWL",
+    "iata": "",
+    "name": "New Castle-Henry County Municipal Airport",
+    "city": "New Castle",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.8759,
+    "lon": -85.3265,
+    "elevation_ft": 1088,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "INDIANAPOLIS APP/DEP",
+        "frequency_mhz": 135.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4002,
+        "width": 65,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sky Castle Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:50Z"
+  }
+}

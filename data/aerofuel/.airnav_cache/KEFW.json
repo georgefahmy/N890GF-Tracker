@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787705542.35009,
+  "icao": "KEFW",
+  "data": {
+    "icao": "KEFW",
+    "faa": "EFW",
+    "iata": "EFW",
+    "name": "Jefferson Municipal Airport",
+    "city": "Jefferson",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.0099,
+    "lon": -94.3417,
+    "elevation_ft": 1044,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 134.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4100,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 1696,
+        "width": 150,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Jefferson",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Jul",
+        "quote_date": "07-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:52:22Z"
+  }
+}

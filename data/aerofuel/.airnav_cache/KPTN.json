@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787718600.142136,
+  "icao": "KPTN",
+  "data": {
+    "icao": "KPTN",
+    "faa": "PTN",
+    "iata": "PTN",
+    "name": "Harry P Williams Memorial Airport",
+    "city": "Patterson",
+    "state": "LA",
+    "country": "US",
+    "lat": 29.7095,
+    "lon": -91.339,
+    "elevation_ft": 9,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW ORLEANS APP/DEP",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 134.575
+      },
+      {
+        "type": "RDO",
+        "description": "DE RIDDER RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5399,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04W/22W",
+        "length": 4500,
+        "width": 100,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Perry Flying Center",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.68,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:00Z"
+  }
+}

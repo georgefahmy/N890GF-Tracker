@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787788220.678079,
+  "icao": "91NE",
+  "data": {
+    "icao": "91NE",
+    "faa": "91NE",
+    "name": "5 SE North Omaha Airport",
+    "city": "Omaha",
+    "state": "NE",
+    "distance_nm": 91.0,
+    "bearing": "NE",
+    "fbos": [
+      {
+        "name": "North Omaha Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Nov-2025",
+        "quote_date": "21-Nov-2025",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-26T23:50:20Z",
+    "source": "AirNav Local Fuel"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787792732.222741,
+  "icao": "KCYO",
+  "data": {
+    "icao": "KCYO",
+    "faa": "CYO",
+    "iata": "",
+    "name": "Pickaway County Memorial Airport",
+    "city": "Circleville",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.516,
+    "lon": -82.9821,
+    "elevation_ft": 684,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "COLUMBUS APP/DEP",
+        "frequency_mhz": 132.3
+      },
+      {
+        "type": "RDO",
+        "description": "DAYTON RDO",
+        "frequency_mhz": 112.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4346,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pickaway County Memorial Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.32,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.23,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.32,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:05:32Z"
+  }
+}

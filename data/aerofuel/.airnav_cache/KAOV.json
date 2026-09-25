@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788202652.260896,
+  "icao": "KAOV",
+  "data": {
+    "icao": "KAOV",
+    "faa": "AOV",
+    "iata": "",
+    "name": "Ava Bill Martin Memorial Airport",
+    "city": "Ava",
+    "state": "MO",
+    "country": "US",
+    "lat": 36.9719,
+    "lon": -92.6819,
+    "elevation_ft": 1311,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.35,
+    "approach_desc": "SPRINGFIELD",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SPRINGFIELD",
+        "frequency_mhz": 126.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3634,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Ava, Missouri",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAOV",
+    "airport_ref": "19290",
+    "fetched_at": "2026-08-31T18:57:32Z"
+  }
+}

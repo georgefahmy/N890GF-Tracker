@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787792710.460778,
+  "icao": "KMPI",
+  "data": {
+    "icao": "KMPI",
+    "faa": "MPI",
+    "iata": "RMY",
+    "name": "Mariposa Yosemite Airport",
+    "city": "Mariposa",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.5109,
+    "lon": -120.04,
+    "elevation_ft": 2254,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 121.25
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3305,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mariposa County",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.48,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.48,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:05:10Z"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1788202662.866553,
+  "icao": "KSLG",
+  "data": {
+    "icao": "KSLG",
+    "faa": "SLG",
+    "iata": "SLG",
+    "name": "Smith Field",
+    "city": "Siloam Springs",
+    "state": "AR",
+    "country": "US",
+    "lat": 36.1919,
+    "lon": -94.49,
+    "elevation_ft": 1191,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.375,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 121.0,
+    "approach_desc": "RAZORBACK APP/DEP",
+    "departure_freq": 121.0,
+    "departure_desc": "RAZORBACK APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "RAZORBACK APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.375
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4997,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Siloam Springs (FBO)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.3,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSLG",
+    "airport_ref": "21079",
+    "fetched_at": "2026-08-31T18:57:42Z"
+  }
+}

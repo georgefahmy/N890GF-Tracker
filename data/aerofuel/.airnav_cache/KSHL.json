@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1787513527.4977012,
+  "icao": "KSHL",
+  "data": {
+    "icao": "KSHL",
+    "faa": "SHL",
+    "iata": "",
+    "name": "Sheldon Regional Airport",
+    "city": "Sheldon",
+    "state": "IA",
+    "country": "US",
+    "lat": 43.2084,
+    "lon": -95.8334,
+    "elevation_ft": 1419,
+    "tower": false,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 7220,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Midwest Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.35,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.775
+      },
+      {
+        "type": "RDO",
+        "description": "FORT DODGE RDO",
+        "frequency_mhz": 122.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T19:32:07Z"
+  }
+}

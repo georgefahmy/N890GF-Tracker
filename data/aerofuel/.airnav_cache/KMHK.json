@@ -1,0 +1,128 @@
+{
+  "_cached_at": 1787863998.415544,
+  "icao": "KMHK",
+  "data": {
+    "icao": "KMHK",
+    "faa": "MHK",
+    "iata": "MHK",
+    "name": "Manhattan Regional Airport",
+    "city": "Manhattan",
+    "state": "KS",
+    "country": "US",
+    "lat": 39.141,
+    "lon": -96.6708,
+    "elevation_ft": 1057,
+    "tower": true,
+    "tower_freq": 118.55,
+    "ctaf_freq": 118.55,
+    "unicom_freq": 118.55,
+    "weather_freq": 119.075,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 127.35,
+    "approach_desc": "KANSAS CITY CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.85,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.55
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "RDO",
+        "description": "WICHITA RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.55
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 7400,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 5001,
+        "width": 75,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Kansas Jet Center",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.48,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Heartland Aviation Inc",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.23,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.23,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMHK",
+    "airport_ref": "3683",
+    "fetched_at": "2026-08-27T20:53:18Z"
+  }
+}

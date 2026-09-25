@@ -1,0 +1,132 @@
+{
+  "_cached_at": 1788014757.213804,
+  "icao": "KMFR",
+  "data": {
+    "icao": "KMFR",
+    "faa": "MFR",
+    "iata": "MFR",
+    "name": "Rogue Valley International-Medford Airport",
+    "city": "Medford",
+    "state": "OR",
+    "country": "US",
+    "lat": 42.3742,
+    "lon": -122.873,
+    "elevation_ft": 1335,
+    "tower": true,
+    "tower_freq": 119.4,
+    "ctaf_freq": 119.4,
+    "unicom_freq": 122.95,
+    "weather_freq": 127.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.3,
+    "approach_desc": "CASCADE APP/DEP",
+    "departure_freq": 124.3,
+    "departure_desc": "CASCADE APP/DEP",
+    "ground_freq": 121.8,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CASCADE APP/DEP",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "RDO",
+        "description": "MC MINNVILLE RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "MEDFORD TWR",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 8800,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air Medford",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.88,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.63,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.88,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Jet Center MFR",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 8.28,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.88,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMFR",
+    "airport_ref": "3679",
+    "fetched_at": "2026-08-29T14:45:57Z"
+  }
+}

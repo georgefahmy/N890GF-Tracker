@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787544590.775163,
+  "icao": "MS82",
+  "data": {
+    "icao": "MS82",
+    "faa": "MS82",
+    "name": "Shade Tree Field Airport",
+    "city": "Gulfport",
+    "state": "MS",
+    "distance_nm": 35.0,
+    "bearing": "SSE",
+    "fbos": [
+      {
+        "name": "Shade Tree Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-24T04:09:50Z",
+    "source": "AirNav Local Fuel"
+  }
+}

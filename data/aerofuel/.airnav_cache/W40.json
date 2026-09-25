@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788218295.070818,
+  "icao": "W40",
+  "data": {
+    "icao": "W40",
+    "faa": "W40",
+    "iata": "",
+    "name": "Mount Olive Municipal Airport",
+    "city": "Mount Olive",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.2214,
+    "lon": -78.0387,
+    "elevation_ft": 168,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.7,
+    "approach_desc": "SEYM JOHNSON APP/DEP",
+    "departure_freq": 119.7,
+    "departure_desc": "SEYM JOHNSON APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SEYM JOHNSON APP/DEP",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5254,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bass Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.73,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.45,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.73,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KW40",
+    "airport_ref": "21354",
+    "fetched_at": "2026-08-31T23:18:15Z"
+  }
+}

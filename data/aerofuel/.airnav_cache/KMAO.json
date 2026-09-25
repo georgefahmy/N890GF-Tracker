@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787793563.874076,
+  "icao": "KMAO",
+  "data": {
+    "icao": "KMAO",
+    "faa": "MAO",
+    "iata": "",
+    "name": "Marion County Airport",
+    "city": "Mullins",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.1812,
+    "lon": -79.3347,
+    "elevation_ft": 92,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 135.25,
+    "approach_desc": "FLORENCE APP/DEP",
+    "departure_freq": 135.25,
+    "departure_desc": "FLORENCE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FLORENCE APP/DEP",
+        "frequency_mhz": 135.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4505,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Marion County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.38,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.02,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMAO",
+    "airport_ref": "20472",
+    "fetched_at": "2026-08-27T01:19:23Z"
+  }
+}

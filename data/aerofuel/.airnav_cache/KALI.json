@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1787718770.999346,
+  "icao": "KALI",
+  "data": {
+    "icao": "KALI",
+    "faa": "ALI",
+    "iata": "ALI",
+    "name": "Alice International Airport",
+    "city": "Alice",
+    "state": "TX",
+    "country": "US",
+    "lat": 27.7409,
+    "lon": -98.0269,
+    "elevation_ft": 178,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "KINGSVILLE APP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.225
+      },
+      {
+        "type": "DEP",
+        "description": "KINGSVILLE DEP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "RDO",
+        "description": "SAN ANGELO RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 5997,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 4490,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Alice",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:50Z"
+  }
+}

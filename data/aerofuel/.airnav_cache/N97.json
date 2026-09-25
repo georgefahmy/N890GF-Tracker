@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1789073621.5927958,
+  "icao": "N97",
+  "data": {
+    "icao": "N97",
+    "faa": "N97",
+    "iata": "",
+    "name": "Hiatt Airport",
+    "city": "Thomasville",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.8301,
+    "lon": -80.1095,
+    "elevation_ft": 855,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 2500,
+        "width": 75,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "09/27",
+        "length": 1160,
+        "width": 50,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hiatt Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "N97",
+    "airport_ref": "22696",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

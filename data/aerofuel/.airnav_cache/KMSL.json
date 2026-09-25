@@ -1,0 +1,95 @@
+{
+  "_cached_at": 1787544192.1321259,
+  "icao": "KMSL",
+  "data": {
+    "icao": "KMSL",
+    "faa": "MSL",
+    "iata": "MSL",
+    "name": "Northwest Alabama Regional Airport",
+    "city": "Muscle Shoals",
+    "state": "AL",
+    "country": "US",
+    "lat": 34.7451,
+    "lon": -87.613,
+    "elevation_ft": 551,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.425
+      },
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 120.8
+      },
+      {
+        "type": "RDO",
+        "description": "ANNISTON RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 6693,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Shoals Flight Center",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:03:12Z"
+  }
+}

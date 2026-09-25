@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787782639.333477,
+  "icao": "KPRS",
+  "data": {
+    "icao": "KPRS",
+    "faa": "PRS",
+    "iata": "",
+    "name": "Presidio Lely International Airport",
+    "city": "Presidio",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.6342,
+    "lon": -104.3615,
+    "elevation_ft": 100,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5200,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "832-588-8888",
+        "notes": "Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.49,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T22:17:18Z"
+  }
+}

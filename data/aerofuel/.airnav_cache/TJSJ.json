@@ -1,0 +1,149 @@
+{
+  "_cached_at": 1788218638.554057,
+  "icao": "TJSJ",
+  "data": {
+    "icao": "TJSJ",
+    "faa": "SJU",
+    "iata": "SJU",
+    "name": "Luis Munoz Marin International Airport",
+    "city": "San Juan",
+    "state": "PR",
+    "country": "US",
+    "lat": 18.4394,
+    "lon": -66.0018,
+    "elevation_ft": 9,
+    "tower": true,
+    "tower_freq": 132.05,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 125.8,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.4,
+    "approach_desc": "SAN JUAN APP",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 126.4,
+    "clearance_desc": "SAN JUAN CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SAN JUAN APP",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.8
+      },
+      {
+        "type": "CLD",
+        "description": "SAN JUAN CLNC DEL",
+        "frequency_mhz": 126.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "CORONET OAK OPS",
+        "frequency_mhz": 25.28
+      },
+      {
+        "type": "POST",
+        "description": "PRANG COMD POST",
+        "frequency_mhz": 139.9
+      },
+      {
+        "type": "RDO",
+        "description": "SAN JUAN RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "SAN JUAN TWR",
+        "frequency_mhz": 132.05
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 10002,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10/28",
+        "length": 8016,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Jet Aviation San Juan",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.61,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.86,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Airport Aviation Services",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "TJSJ",
+    "airport_ref": "6384",
+    "fetched_at": "2026-08-31T23:23:58Z"
+  }
+}

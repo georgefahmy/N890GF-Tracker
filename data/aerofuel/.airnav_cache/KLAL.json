@@ -1,0 +1,151 @@
+{
+  "_cached_at": 1788014935.870877,
+  "icao": "KLAL",
+  "data": {
+    "icao": "KLAL",
+    "faa": "LAL",
+    "iata": "LAL",
+    "name": "Lakeland Linder International Airport",
+    "city": "Lakeland",
+    "state": "FL",
+    "country": "US",
+    "lat": 27.9893,
+    "lon": -82.0207,
+    "elevation_ft": 142,
+    "tower": true,
+    "tower_freq": 124.5,
+    "ctaf_freq": 124.5,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.025,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.9,
+    "approach_desc": "TAMPA APP/DEP",
+    "departure_freq": 119.9,
+    "departure_desc": "TAMPA APP/DEP",
+    "ground_freq": 121.4,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TAMPA APP/DEP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.025
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.5
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "RDO",
+        "description": "ST PETERSBURG RDO",
+        "frequency_mhz": 116.0
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 124.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 8500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 5000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aero Center Lakeland",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.18,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Aero Center East (Formerly Sheltair)",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.18,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLAL",
+    "airport_ref": "3628",
+    "fetched_at": "2026-08-29T14:48:55Z"
+  }
+}

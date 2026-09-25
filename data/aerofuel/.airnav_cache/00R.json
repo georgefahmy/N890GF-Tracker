@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787525635.641331,
+  "icao": "00R",
+  "data": {
+    "icao": "00R",
+    "faa": "00R",
+    "iata": "",
+    "name": "Livingston Municipal Airport",
+    "city": "Livingston",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.6859,
+    "lon": -95.0179,
+    "elevation_ft": 151,
+    "tower": false,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3704,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Livingston, Texas",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.18,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.18,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:53:55Z"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787528566.8140779,
+  "icao": "I69",
+  "data": {
+    "icao": "I69",
+    "faa": "I69",
+    "iata": "",
+    "name": "Clermont County Airport",
+    "city": "Batavia",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.0784,
+    "lon": -84.2102,
+    "elevation_ft": 843,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.975,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CINCINNATI APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3567,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Eastern Cincinnati Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.74,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.18,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.74,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

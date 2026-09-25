@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787544325.2739499,
+  "icao": "KXFL",
+  "data": {
+    "icao": "KXFL",
+    "faa": "FIN",
+    "iata": "",
+    "name": "Flagler Executive Airport",
+    "city": "Palm Coast",
+    "state": "FL",
+    "country": "US",
+    "lat": 29.4674,
+    "lon": -81.2063,
+    "elevation_ft": 33,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTONA APP/DEP",
+        "frequency_mhz": 125.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 5001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18W/36W",
+        "length": 3001,
+        "width": 500,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Flagler County Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.92,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:25Z"
+  }
+}

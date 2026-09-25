@@ -1,0 +1,111 @@
+{
+  "_cached_at": 1787793932.8452969,
+  "icao": "KLVM",
+  "data": {
+    "icao": "KLVM",
+    "faa": "LVM",
+    "iata": "LVM",
+    "name": "Mission Field",
+    "city": "Livingston",
+    "state": "MT",
+    "country": "US",
+    "lat": 45.6994,
+    "lon": -110.448,
+    "elevation_ft": 4660,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 135.275,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.275
+      },
+      {
+        "type": "RDO",
+        "description": "GREAT FALLS RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5701,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 3762,
+        "width": 125,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "13/31",
+        "length": 2724,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Yellowstone Air Service",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.88,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLVM",
+    "airport_ref": "20386",
+    "fetched_at": "2026-08-27T01:25:32Z"
+  }
+}

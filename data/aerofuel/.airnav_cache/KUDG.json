@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787528396.836695,
+  "icao": "KUDG",
+  "data": {
+    "icao": "KUDG",
+    "faa": "UDG",
+    "iata": "",
+    "name": "Darlington County Airport",
+    "city": "Darlington",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.4494,
+    "lon": -79.8901,
+    "elevation_ft": 192,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FLORENCE APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.925
+      },
+      {
+        "type": "CLD",
+        "description": "FLORENCE CLNC DEL",
+        "frequency_mhz": 118.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Darlington County Jetport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.7,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:39:56Z"
+  }
+}

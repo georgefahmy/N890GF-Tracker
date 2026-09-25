@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1789073117.453611,
+  "icao": "KOEL",
+  "data": {
+    "icao": "KOEL",
+    "faa": "OEL",
+    "iata": "",
+    "name": "Oakley Municipal Airport",
+    "city": "Oakley",
+    "state": "KS",
+    "country": "US",
+    "lat": 39.1099,
+    "lon": -100.816,
+    "elevation_ft": 3045,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.325,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 132.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 2153,
+        "width": 110,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airtek Services LLC",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.8,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOEL",
+    "airport_ref": "20720",
+    "fetched_at": "2026-09-10T20:45:17Z"
+  }
+}

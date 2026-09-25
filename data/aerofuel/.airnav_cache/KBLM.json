@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1787787731.5650811,
+  "icao": "KBLM",
+  "data": {
+    "icao": "KBLM",
+    "faa": "BLM",
+    "iata": "BLM",
+    "name": "Monmouth Executive Airport",
+    "city": "Belmar/Farmingdale",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.1869,
+    "lon": -74.1249,
+    "elevation_ft": 153,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MC GUIRE APP/DEP",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 121.625
+      },
+      {
+        "type": "CLD",
+        "description": "MCGUIRE CLNC DEL",
+        "frequency_mhz": 120.95
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 113.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 7345,
+        "width": 85,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 3508,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Monmouth Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.29,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:11Z"
+  }
+}

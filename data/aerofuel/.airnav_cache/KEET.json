@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1787525309.430644,
+  "icao": "KEET",
+  "data": {
+    "icao": "KEET",
+    "faa": "EET",
+    "iata": "",
+    "name": "Shelby County Airport",
+    "city": "Alabaster",
+    "state": "AL",
+    "country": "US",
+    "lat": 33.177,
+    "lon": -86.7828,
+    "elevation_ft": 586,
+    "tower": true,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.7,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 7160,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Shelby County Airport",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.22,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.62,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.22,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BIRMINGHAM APP/DEP",
+        "frequency_mhz": 123.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 134.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "fetched_at": "2026-08-23T22:48:29Z"
+  }
+}

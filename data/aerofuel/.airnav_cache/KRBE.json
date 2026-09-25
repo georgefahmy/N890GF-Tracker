@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788230.263941,
+  "icao": "KRBE",
+  "data": {
+    "icao": "KRBE",
+    "faa": "RBE",
+    "iata": "",
+    "name": "Rock County Airport",
+    "city": "Bassett",
+    "state": "NE",
+    "country": "US",
+    "lat": 42.5697,
+    "lon": -99.5684,
+    "elevation_ft": 2349,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "FSS",
+        "description": "COLUMBUS RDO",
+        "frequency_mhz": 122.4
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4698,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "02/20",
+        "length": 2202,
+        "width": 120,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rock County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:30Z"
+  }
+}

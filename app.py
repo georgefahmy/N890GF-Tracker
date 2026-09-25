@@ -42,6 +42,7 @@ from werkzeug.exceptions import RequestEntityTooLarge
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
+from src.aerofuel.routes import aerofuel_bp
 from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
 from src.flight_analytics import extract_comprehensive_flight_stats
@@ -69,6 +70,7 @@ os.makedirs(INSTANCE_DIR, exist_ok=True)
 app = Flask(__name__, instance_path=INSTANCE_DIR)
 app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
+app.register_blueprint(aerofuel_bp)
 
 db_path = os.path.join(app.instance_path, "maintenance.db")
 

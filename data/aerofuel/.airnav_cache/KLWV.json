@@ -1,0 +1,105 @@
+{
+  "_cached_at": 1789073595.846155,
+  "icao": "KLWV",
+  "data": {
+    "icao": "KLWV",
+    "faa": "LWV",
+    "iata": "LWV",
+    "name": "Lawrenceville Vincennes International Airport",
+    "city": "Lawrenceville",
+    "state": "IL",
+    "country": "US",
+    "lat": 38.7643,
+    "lon": -87.6055,
+    "elevation_ft": 430,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.0,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 125.6,
+    "approach_desc": "EVANSVILLE APP/DEP",
+    "departure_freq": 125.6,
+    "departure_desc": "EVANSVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "EVANSVILLE APP/DEP",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5199,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 5198,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04U/22U",
+        "length": 1000,
+        "width": 200,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mid-American Air Center",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.78,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLWV",
+    "airport_ref": "20394",
+    "fetched_at": "2026-09-10T20:53:15Z"
+  }
+}

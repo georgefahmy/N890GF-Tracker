@@ -1,0 +1,129 @@
+{
+  "_cached_at": 1789073639.9597409,
+  "icao": "KMCN",
+  "data": {
+    "icao": "KMCN",
+    "faa": "MCN",
+    "iata": "MCN",
+    "name": "Middle Georgia Regional Airport",
+    "city": "Macon",
+    "state": "GA",
+    "country": "US",
+    "lat": 32.6928,
+    "lon": -83.6492,
+    "elevation_ft": 354,
+    "tower": true,
+    "tower_freq": 128.2,
+    "ctaf_freq": 128.2,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.775,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 118.95,
+    "approach_desc": "ATLANTA APP/DEP",
+    "departure_freq": 118.95,
+    "departure_desc": "ATLANTA APP/DEP",
+    "ground_freq": 121.65,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ATLANTA APP/DEP",
+        "frequency_mhz": 118.95
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.775
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.775
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 128.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "RDO",
+        "description": "MACON RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "MACON TWR",
+        "frequency_mhz": 128.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 6500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 5000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "HighNote Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.68,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.52,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.68,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMCN",
+    "airport_ref": "3669",
+    "fetched_at": "2026-09-10T20:53:59Z"
+  }
+}

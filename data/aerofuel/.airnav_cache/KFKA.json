@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787787549.147934,
+  "icao": "KFKA",
+  "data": {
+    "icao": "KFKA",
+    "faa": "FKA",
+    "iata": "",
+    "name": "Fillmore County Airport",
+    "city": "Preston",
+    "state": "MN",
+    "country": "US",
+    "lat": 43.6768,
+    "lon": -92.1797,
+    "elevation_ft": 1277,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROCHESTER APP/DEP",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.925
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fillmore County Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:39:09Z"
+  }
+}

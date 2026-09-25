@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787527408.5196989,
+  "icao": "PAGS",
+  "data": {
+    "icao": "PAGS",
+    "faa": "GST",
+    "iata": "GST",
+    "name": "Gustavus Airport",
+    "city": "Gustavus",
+    "state": "AK",
+    "country": "US",
+    "lat": 58.4253,
+    "lon": -135.707,
+    "elevation_ft": 35,
+    "tower": true,
+    "ctaf_freq": 122.5,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 125.9
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 133.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "RCO",
+        "description": "JUNEAU RDO",
+        "frequency_mhz": 122.65
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 6720,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "02/20",
+        "length": 3010,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Gustavus Dray, Inc.",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 10.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:23:28Z"
+  }
+}

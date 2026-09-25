@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1787788183.692082,
+  "icao": "KEQA",
+  "data": {
+    "icao": "KEQA",
+    "faa": "EQA",
+    "iata": "EDK",
+    "name": "Captain Jack Thomas El Dorado Airport",
+    "city": "El Dorado",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.7741,
+    "lon": -96.8176,
+    "elevation_ft": 1378,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "WICHITA APP/DEP",
+        "frequency_mhz": 134.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4204,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 4200,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "El Dorado Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.82,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.82,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.39,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 4.98,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          },
+          "MOGAS_FS": {
+            "price": 4.98,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:49:43Z"
+  }
+}

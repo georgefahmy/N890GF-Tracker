@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1788014646.948545,
+  "icao": "KGAF",
+  "data": {
+    "icao": "KGAF",
+    "faa": "GAF",
+    "iata": "",
+    "name": "Hutson Field",
+    "city": "Grafton",
+    "state": "ND",
+    "country": "US",
+    "lat": 48.4047,
+    "lon": -97.3709,
+    "elevation_ft": 824,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 132.3,
+    "approach_desc": "GRAND FORKS APP/DEP",
+    "departure_freq": 132.3,
+    "departure_desc": "GRAND FORKS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRAND FORKS APP/DEP",
+        "frequency_mhz": 132.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 4074,
+        "width": 115,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "17/35",
+        "length": 3898,
+        "width": 74,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hutson Field Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.1,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGAF",
+    "airport_ref": "19921",
+    "fetched_at": "2026-08-29T14:44:06Z"
+  }
+}

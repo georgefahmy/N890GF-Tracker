@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787513154.2105842,
+  "icao": "KMWL",
+  "data": {
+    "icao": "KMWL",
+    "faa": "MWL",
+    "iata": "MWL",
+    "name": "Mineral Wells Regional Airport",
+    "city": "Mineral Wells",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7816,
+    "lon": -98.0602,
+    "elevation_ft": 974,
+    "tower": true,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 4570,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Mineral Wells (FBO)",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.12,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.21,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.84,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.12,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.075
+      },
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 127.0
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "fetched_at": "2026-08-23T19:25:54Z"
+  }
+}

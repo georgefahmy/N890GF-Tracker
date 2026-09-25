@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1788215030.358025,
+  "icao": "KLCG",
+  "data": {
+    "icao": "KLCG",
+    "faa": "LCG",
+    "iata": "",
+    "name": "Wayne Municipal Airport / Stan Morris Field",
+    "city": "Wayne",
+    "state": "NE",
+    "country": "US",
+    "lat": 42.2419,
+    "lon": -96.9814,
+    "elevation_ft": 1431,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 120.125,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 124.6,
+    "approach_desc": "SIOUX CITY APP/DEP",
+    "departure_freq": 124.6,
+    "departure_desc": "SIOUX CITY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SIOUX CITY APP/DEP",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.125
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4201,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 3406,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 2070,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "402-369-6725",
+        "notes": "Quote: 14-Aug-2026",
+        "quote_date": "14-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KLCG",
+    "airport_ref": "20324",
+    "fetched_at": "2026-08-31T22:23:48Z"
+  }
+}

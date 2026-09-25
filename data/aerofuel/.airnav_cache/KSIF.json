@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787793835.847583,
+  "icao": "KSIF",
+  "data": {
+    "icao": "KSIF",
+    "faa": "SIF",
+    "iata": "",
+    "name": "Rockingham County NC Shiloh Airport",
+    "city": "Stoneville",
+    "state": "NC",
+    "country": "US",
+    "lat": 36.4372,
+    "lon": -79.851,
+    "elevation_ft": 694,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 119.775,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS3",
+    "approach_freq": 26.922,
+    "approach_desc": "GREENSBORO APP/DEP",
+    "departure_freq": 26.922,
+    "departure_desc": "GREENSBORO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREENSBORO APP/DEP",
+        "frequency_mhz": 26.922
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS3",
+        "frequency_mhz": 119.775
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 5200,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rockingham County / Shiloh Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.82,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.51,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSIF",
+    "airport_ref": "21069",
+    "fetched_at": "2026-08-27T01:23:55Z"
+  }
+}

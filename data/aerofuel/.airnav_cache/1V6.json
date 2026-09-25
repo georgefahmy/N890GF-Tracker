@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1788218551.6567302,
+  "icao": "1V6",
+  "data": {
+    "icao": "1V6",
+    "faa": "1V6",
+    "iata": "CNE",
+    "name": "Fremont County Airport",
+    "city": "Penrose",
+    "state": "CO",
+    "country": "US",
+    "lat": 38.4297,
+    "lon": -105.1086,
+    "elevation_ft": 5439,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 120.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.1,
+    "approach_desc": "PUEBLO APP/DEP",
+    "departure_freq": 120.1,
+    "departure_desc": "PUEBLO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PUEBLO APP/DEP",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.025
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 5399,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 1800,
+        "width": 35,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fremont County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.38,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.63,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1V6",
+    "airport_ref": "18522",
+    "fetched_at": "2026-08-31T23:22:31Z"
+  }
+}

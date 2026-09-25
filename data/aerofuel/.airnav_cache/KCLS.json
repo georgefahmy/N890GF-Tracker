@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1787864688.817041,
+  "icao": "KCLS",
+  "data": {
+    "icao": "KCLS",
+    "faa": "CLS",
+    "iata": "CLS",
+    "name": "Chehalis Centralia Airport",
+    "city": "Chehalis",
+    "state": "WA",
+    "country": "US",
+    "lat": 46.677,
+    "lon": -122.983,
+    "elevation_ft": 176,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 121.1,
+    "approach_desc": "SEATTLE APP",
+    "departure_freq": 124.2,
+    "departure_desc": "SEATTLE DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SEATTLE APP",
+        "frequency_mhz": 121.1
+      },
+      {
+        "type": "DEP",
+        "description": "SEATTLE DEP",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 5000,
+        "width": 140,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Chehalis-Centralia Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.68,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.53,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.68,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCLS",
+    "airport_ref": "19515",
+    "fetched_at": "2026-08-27T21:04:48Z"
+  }
+}

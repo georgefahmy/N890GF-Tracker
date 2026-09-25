@@ -1,0 +1,191 @@
+{
+  "_cached_at": 1788014731.0791261,
+  "icao": "KPHX",
+  "data": {
+    "icao": "KPHX",
+    "faa": "PHX",
+    "iata": "PHX",
+    "name": "Phoenix Sky Harbor International Airport",
+    "city": "Phoenix",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.4353,
+    "lon": -112.0059,
+    "elevation_ft": 1135,
+    "tower": true,
+    "tower_freq": 118.7,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 127.575,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.2,
+    "approach_desc": "319-057\u00b0 7500' AND ABOVE",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 119.75,
+    "ground_desc": "NORTH",
+    "clearance_freq": 118.1,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "319-057\u00b0 7500' AND ABOVE",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "A/D",
+        "description": "319-057\u00b0 BELOW 7500'",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "A/D",
+        "description": "139-191\u00b0 BELOW 8500'",
+        "frequency_mhz": 123.7
+      },
+      {
+        "type": "A/D",
+        "description": "192-263\u00b0 7500-12500'",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "A/D",
+        "description": "058-118\u00b0 BELOW 10,500'",
+        "frequency_mhz": 124.9
+      },
+      {
+        "type": "A/D",
+        "description": "119-138\u00b0 ABOVE 14,500'",
+        "frequency_mhz": 126.8
+      },
+      {
+        "type": "A/D",
+        "description": "340-079\u00b0 ABOVE 5500' INITIAL CONTACT",
+        "frequency_mhz": 128.65
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.575
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "GND",
+        "description": "NORTH",
+        "frequency_mhz": 119.75
+      },
+      {
+        "type": "GND",
+        "description": "SOUTH",
+        "frequency_mhz": 132.55
+      },
+      {
+        "type": "POST",
+        "description": "ANG COMD POST",
+        "frequency_mhz": 140.0
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "RWAY 08-26",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "TWR",
+        "description": "RWAY 07-25",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 11489,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "07L/25R",
+        "length": 10300,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07R/25L",
+        "length": 7800,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cutter Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Jackson Jet Center",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPHX",
+    "airport_ref": "3772",
+    "fetched_at": "2026-08-29T14:45:31Z"
+  }
+}

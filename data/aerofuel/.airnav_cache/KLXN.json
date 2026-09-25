@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787705746.301515,
+  "icao": "KLXN",
+  "data": {
+    "icao": "KLXN",
+    "faa": "LXN",
+    "iata": "LXN",
+    "name": "Jim Kelly Field",
+    "city": "Lexington",
+    "state": "NE",
+    "country": "US",
+    "lat": 40.791,
+    "lon": -99.7773,
+    "elevation_ft": 2413,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 121.025
+      },
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 132.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 5489,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 3200,
+        "width": 250,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lexington Airport Authority",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:55:46Z"
+  }
+}

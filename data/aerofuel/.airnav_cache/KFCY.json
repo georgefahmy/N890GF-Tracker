@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787792778.597972,
+  "icao": "KFCY",
+  "data": {
+    "icao": "KFCY",
+    "faa": "FCY",
+    "iata": "FCY",
+    "name": "Forrest City Municipal Airport",
+    "city": "Forrest City",
+    "state": "AR",
+    "country": "US",
+    "lat": 34.942,
+    "lon": -90.775,
+    "elevation_ft": 249,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 135.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3014,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hutcherson Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 6.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:18Z"
+  }
+}

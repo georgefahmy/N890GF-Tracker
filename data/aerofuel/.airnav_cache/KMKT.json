@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1788202574.646297,
+  "icao": "KMKT",
+  "data": {
+    "icao": "KMKT",
+    "faa": "MKT",
+    "iata": "MKT",
+    "name": "Mankato Regional Airport",
+    "city": "Mankato",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.2248,
+    "lon": -93.9191,
+    "elevation_ft": 1021,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.725,
+    "weather_freq": 110.8,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 110.8
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 135.0
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 110.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 6600,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "North Star Aviation",
+        "brand": "Titan",
+        "phone": "507-625-6006",
+        "notes": "Titan \u2022 Quote: 28-Aug-2026",
+        "quote_date": "28-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 7.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KMKT",
+    "airport_ref": "20519",
+    "fetched_at": "2026-08-31T18:56:12Z"
+  }
+}

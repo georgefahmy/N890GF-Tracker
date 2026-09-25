@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787590095.081084,
+  "icao": "KCPU",
+  "data": {
+    "icao": "KCPU",
+    "faa": "CPU",
+    "iata": "",
+    "name": "Calaveras Co Maury Rasmussen Field",
+    "city": "San Andreas",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.1461,
+    "lon": -120.648,
+    "elevation_ft": 1325,
+    "tower": false,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APRCH",
+        "description": "Norcal Approach/Departure",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 126.85
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      },
+      {
+        "type": "FSS",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.3
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3602,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Calaveras County (FBO)",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T16:48:15Z"
+  }
+}

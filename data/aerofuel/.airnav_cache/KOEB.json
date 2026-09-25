@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1787544388.037832,
+  "icao": "KOEB",
+  "data": {
+    "icao": "KOEB",
+    "faa": "OEB",
+    "iata": "",
+    "name": "Branch County Memorial Airport",
+    "city": "Coldwater",
+    "state": "MI",
+    "country": "US",
+    "lat": 41.9334,
+    "lon": -85.0526,
+    "elevation_ft": 959,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KALAMAZOO APP/DEP",
+        "frequency_mhz": 121.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.125
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 111.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5350,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 3500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 2399,
+        "width": 190,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Elite Air Service",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.9,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:06:28Z"
+  }
+}

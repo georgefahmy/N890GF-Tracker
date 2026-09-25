@@ -1,0 +1,150 @@
+{
+  "_cached_at": 1787604243.1799722,
+  "icao": "KVGT",
+  "data": {
+    "icao": "KVGT",
+    "faa": "VGT",
+    "iata": "VGT",
+    "name": "North Las Vegas Airport",
+    "city": "Las Vegas",
+    "state": "NV",
+    "country": "US",
+    "lat": 36.2091,
+    "lon": -115.194,
+    "elevation_ft": 2205,
+    "tower": true,
+    "ctaf_freq": 125.7,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LAS VEGAS APP",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "APP",
+        "description": "NELLIS APP",
+        "frequency_mhz": 118.125
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5005,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12R/30L",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12L/30R",
+        "length": 4199,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "North Las Vegas Airport",
+        "brand": "World Fuel Services",
+        "phone": "702-261-3803",
+        "notes": "World Fuel Services \u2022 Guaranteed Price \u2022 UNICOM: 122.95",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.28,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.24,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "All In Aviation",
+        "brand": "",
+        "phone": "702-255-4622",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      },
+      {
+        "name": "West Air Flight Training",
+        "brand": "",
+        "phone": "702-631-0229",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": 6.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T20:44:01Z"
+  }
+}

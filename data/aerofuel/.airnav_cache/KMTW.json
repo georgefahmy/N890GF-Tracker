@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1787505204.461063,
+  "icao": "KMTW",
+  "data": {
+    "icao": "KMTW",
+    "faa": "MTW",
+    "iata": "MTW",
+    "name": "Manitowoc County Airport",
+    "city": "Manitowoc",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.1271,
+    "lon": -87.682,
+    "elevation_ft": 651,
+    "tower": false,
+    "ctaf_freq": 125.2,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5410,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Manitowoc County Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 5.0,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREEN BAY APP/DEP",
+        "frequency_mhz": 120.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 111.0
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 111.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T17:13:22Z"
+  }
+}

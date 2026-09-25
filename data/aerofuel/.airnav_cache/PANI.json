@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787531423.2780411,
+  "icao": "PANI",
+  "data": {
+    "icao": "PANI",
+    "faa": "ANI",
+    "iata": "ANI",
+    "name": "Aniak Airport",
+    "city": "Aniak",
+    "state": "AK",
+    "country": "US",
+    "lat": 61.5816,
+    "lon": -159.543,
+    "elevation_ft": 88,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 6200,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crowley",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.77,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.45,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.77,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:30:23Z"
+  }
+}

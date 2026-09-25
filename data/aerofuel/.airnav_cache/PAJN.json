@@ -1,0 +1,119 @@
+{
+  "_cached_at": 1787527408.519538,
+  "icao": "PAJN",
+  "data": {
+    "icao": "PAJN",
+    "faa": "JNU",
+    "iata": "JNU",
+    "name": "Juneau International Airport",
+    "city": "Juneau",
+    "state": "AK",
+    "country": "US",
+    "lat": 58.3549,
+    "lon": -134.5744,
+    "elevation_ft": 21,
+    "tower": true,
+    "ctaf_freq": 118.7,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "AWOS",
+        "description": "TWEB",
+        "frequency_mhz": 114.0
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 133.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "FSS",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "MISC",
+        "description": "RDO",
+        "frequency_mhz": 122.15
+      },
+      {
+        "type": "OPS",
+        "description": "NAT GD OPS",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 8857,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08W/26W",
+        "length": 4800,
+        "width": 150,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aero Services",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 23-Aug",
+        "quote_date": "23-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 12.26,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 11.18,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 12.26,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:23:28Z"
+  }
+}

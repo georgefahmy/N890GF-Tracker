@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787718720.539642,
+  "icao": "6P7",
+  "data": {
+    "icao": "6P7",
+    "faa": "6P7",
+    "iata": "",
+    "name": "McVille Airport",
+    "city": "Freeport",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.7346,
+    "lon": -79.5957,
+    "elevation_ft": 1090,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "UNICOM",
+        "description": "McVille Traffic",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 2800,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "McVille Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "MOGAS_FS": {
+            "price": 6.0,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:00Z"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "_cached_at": 1787510612.388552,
+  "icao": "KCPM",
+  "data": {
+    "icao": "KCPM",
+    "faa": "CPM",
+    "iata": "CPM",
+    "name": "Compton Woodley Airport",
+    "city": "Compton",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.89,
+    "lon": -118.244,
+    "elevation_ft": 97,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 7190,
+        "surface": "Asphalt/Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "LA County Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Jul",
+        "quote_date": "31-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.08,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.08,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "fetched_at": "2026-08-23T18:43:32Z"
+  }
+}

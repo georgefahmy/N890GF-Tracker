@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787787647.628246,
+  "icao": "M40",
+  "data": {
+    "icao": "M40",
+    "faa": "M40",
+    "iata": "",
+    "name": "Monroe County Airport",
+    "city": "Aberdeen",
+    "state": "MS",
+    "country": "US",
+    "lat": 33.8737,
+    "lon": -88.4897,
+    "elevation_ft": 226,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "COLUMBUS APP/DEP",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4999,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Monroe County Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.36,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.36,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:40:47Z"
+  }
+}

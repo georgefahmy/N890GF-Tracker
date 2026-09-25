@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1788014738.768089,
+  "icao": "KAJO",
+  "data": {
+    "icao": "KAJO",
+    "faa": "AJO",
+    "iata": "",
+    "name": "Corona Municipal Airport",
+    "city": "Corona",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.8977,
+    "lon": -117.602,
+    "elevation_ft": 533,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 132.175,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 135.4,
+    "approach_desc": "SOCAL APP/DEP",
+    "departure_freq": 135.4,
+    "departure_desc": "SOCAL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOCAL APP/DEP",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.175
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3200,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "CW Transportation, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAJO",
+    "airport_ref": "19268",
+    "fetched_at": "2026-08-29T14:45:38Z"
+  }
+}

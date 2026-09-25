@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788202644.5799239,
+  "icao": "7M4",
+  "data": {
+    "icao": "7M4",
+    "faa": "7M4",
+    "iata": "",
+    "name": "Osceola Municipal Airport",
+    "city": "Osceola",
+    "state": "AR",
+    "country": "US",
+    "lat": 35.6911,
+    "lon": -90.0101,
+    "elevation_ft": 234,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 120.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 3799,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "North Delta Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K7M4",
+    "airport_ref": "19070",
+    "fetched_at": "2026-08-31T18:57:24Z"
+  }
+}

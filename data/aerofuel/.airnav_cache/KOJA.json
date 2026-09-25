@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787705679.185565,
+  "icao": "KOJA",
+  "data": {
+    "icao": "KOJA",
+    "faa": "OJA",
+    "iata": "",
+    "name": "Thomas P Stafford Airport",
+    "city": "Weatherford",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.5448,
+    "lon": -98.6685,
+    "elevation_ft": 1605,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.575
+      },
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 128.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5100,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Weatherford - Thomas P. Stafford Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 4.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:54:39Z"
+  }
+}

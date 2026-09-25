@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787793925.22819,
+  "icao": "KMKA",
+  "data": {
+    "icao": "KMKA",
+    "faa": "MKA",
+    "iata": "",
+    "name": "Miller Municipal Airport",
+    "city": "Miller",
+    "state": "SD",
+    "country": "US",
+    "lat": 44.5252,
+    "lon": -98.9581,
+    "elevation_ft": 1569,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3601,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Miller",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMKA",
+    "airport_ref": "20515",
+    "fetched_at": "2026-08-27T01:25:25Z"
+  }
+}

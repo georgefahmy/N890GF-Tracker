@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788202528.591585,
+  "icao": "1D2",
+  "data": {
+    "icao": "1D2",
+    "faa": "1D2",
+    "iata": "",
+    "name": "Canton-Plymouth-Mettetal Airport",
+    "city": "Plymouth",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.3482,
+    "lon": -83.4563,
+    "elevation_ft": 696,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2302,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "MDOT - Office of Aeronautics",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "1D2",
+    "airport_ref": "8258",
+    "fetched_at": "2026-08-31T18:55:28Z"
+  }
+}

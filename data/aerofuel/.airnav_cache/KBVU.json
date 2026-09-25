@@ -1,0 +1,95 @@
+{
+  "_cached_at": 1787604243.181026,
+  "icao": "KBVU",
+  "data": {
+    "icao": "KBVU",
+    "faa": "BVU",
+    "iata": "BLD",
+    "name": "Boulder City Municipal Airport",
+    "city": "Boulder City",
+    "state": "NV",
+    "country": "US",
+    "lat": 35.9472,
+    "lon": -114.8588,
+    "elevation_ft": 2201,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5103,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 3852,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Boulder City Aviation Services FBO",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.08,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.83,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "B.F.E. L.L.C.",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.07,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.33,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.07,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:44:03Z"
+  }
+}

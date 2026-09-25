@@ -1,0 +1,112 @@
+{
+  "_cached_at": 1788202520.759727,
+  "icao": "KVLL",
+  "data": {
+    "icao": "KVLL",
+    "faa": "VLL",
+    "iata": "",
+    "name": "Oakland Troy Airport",
+    "city": "Troy",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.5429,
+    "lon": -83.1779,
+    "elevation_ft": 727,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": 119.475,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 126.85,
+    "approach_desc": "DETROIT APP/DEP",
+    "departure_freq": 126.85,
+    "departure_desc": "DETROIT APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DETROIT APP/DEP",
+        "frequency_mhz": 126.85
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3550,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "24hrfuel",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.69,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "JDS Pump-N-Go",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 13-Jul",
+        "quote_date": "13-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.76,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.76,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVLL",
+    "airport_ref": "21329",
+    "fetched_at": "2026-08-31T18:55:20Z"
+  }
+}

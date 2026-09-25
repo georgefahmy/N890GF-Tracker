@@ -1,0 +1,83 @@
+{
+  "_cached_at": 1787527592.319249,
+  "icao": "KSZT",
+  "data": {
+    "icao": "KSZT",
+    "faa": "SZT",
+    "iata": "",
+    "name": "Sandpoint Airport",
+    "city": "Sandpoint",
+    "state": "ID",
+    "country": "US",
+    "lat": 48.2995,
+    "lon": -116.56,
+    "elevation_ft": 2131,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.425
+      },
+      {
+        "type": "CNTR",
+        "description": "SEATTLE CNTR",
+        "frequency_mhz": 123.95
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5501,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Granite Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.45,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:26:32Z"
+  }
+}

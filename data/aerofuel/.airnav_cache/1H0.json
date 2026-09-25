@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787718383.480901,
+  "icao": "1H0",
+  "data": {
+    "icao": "1H0",
+    "faa": "1H0",
+    "iata": "",
+    "name": "Creve Coeur Airport",
+    "city": "St Louis",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.7268,
+    "lon": -90.5083,
+    "elevation_ft": 463,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ST LOUIS APP/DEP",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 4500,
+        "width": 75,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 3079,
+        "width": 220,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Creve Coeur Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.03,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:23Z"
+  }
+}

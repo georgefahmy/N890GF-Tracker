@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787718564.188009,
+  "icao": "PLPA",
+  "data": {
+    "icao": "PLPA",
+    "faa": "P16",
+    "iata": "",
+    "name": "Palmyra (Cooper) Airport",
+    "city": "Palmyra Island Atoll",
+    "state": "UM",
+    "country": "US",
+    "lat": 5.8887,
+    "lon": -162.0779,
+    "elevation_ft": 5,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "6/24",
+        "length": 5000,
+        "width": 150,
+        "surface": "Coral/Soil",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:29:24Z"
+  }
+}

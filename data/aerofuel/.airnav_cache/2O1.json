@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788542181.6242602,
+  "icao": "2O1",
+  "data": {
+    "icao": "2O1",
+    "faa": "2O1",
+    "iata": "GNF",
+    "name": "Gansner Field",
+    "city": "Quincy",
+    "state": "CA",
+    "country": "US",
+    "lat": 39.9439,
+    "lon": -120.945,
+    "elevation_ft": 3415,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 4105,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Gansner Field Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.69,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K2O1",
+    "airport_ref": "18607",
+    "fetched_at": "2026-09-04T17:16:21Z"
+  }
+}

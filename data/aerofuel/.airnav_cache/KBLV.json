@@ -1,0 +1,135 @@
+{
+  "_cached_at": 1787718383.479699,
+  "icao": "KBLV",
+  "data": {
+    "icao": "KBLV",
+    "faa": "BLV",
+    "iata": "BLV",
+    "name": "Scott AFB/Midamerica Airport",
+    "city": "Belleville",
+    "state": "IL",
+    "country": "US",
+    "lat": 38.5452,
+    "lon": -89.8352,
+    "elevation_ft": 459,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ST LOUIS APP/DEP",
+        "frequency_mhz": 125.2
+      },
+      {
+        "type": "ACP",
+        "description": "126 ARW COMD POST",
+        "frequency_mhz": 138.55
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.7
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "PMSV",
+        "description": "PMSV METRO",
+        "frequency_mhz": 23.98
+      },
+      {
+        "type": "POST",
+        "description": "375 AW COMD POST",
+        "frequency_mhz": 130.65
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 139.85
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.65
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "14L/32R",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "14R/32L",
+        "length": 8006,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airport Fuel Facility",
+        "brand": "",
+        "phone": "618-566-5265",
+        "notes": "24/7 self-serve access \u2022 Quote: 24/7",
+        "quote_date": "24/7",
+        "fuels": {
+          "SAF": {
+            "price": 7.0,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "Phillips 66",
+        "phone": "618-566-5265",
+        "notes": "Phillips 66 \u2022 Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.05,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.22,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:26:21Z"
+  }
+}

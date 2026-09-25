@@ -1,0 +1,151 @@
+{
+  "_cached_at": 1788202528.591983,
+  "icao": "KDTW",
+  "data": {
+    "icao": "KDTW",
+    "faa": "DTW",
+    "iata": "DTW",
+    "name": "Detroit Metropolitan Wayne County Airport",
+    "city": "Detroit",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.2138,
+    "lon": -83.3538,
+    "elevation_ft": 645,
+    "tower": true,
+    "tower_freq": 118.4,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 133.675,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 118.575,
+    "approach_desc": "APP",
+    "departure_freq": 118.575,
+    "departure_desc": "DEP",
+    "ground_freq": 119.25,
+    "ground_desc": "GND",
+    "clearance_freq": 120.65,
+    "clearance_desc": "PRE TAXI CLNC",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 118.575
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 133.675
+      },
+      {
+        "type": "CLD",
+        "description": "PRE TAXI CLNC",
+        "frequency_mhz": 120.65
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 118.575
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 119.25
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 115.7
+      },
+      {
+        "type": "TWR",
+        "description": "METRO TWR",
+        "frequency_mhz": 118.4
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04R/22L",
+        "length": 12003,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "03R/21L",
+        "length": 10001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04L/22R",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09L/27R",
+        "length": 8708,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "03L/21R",
+        "length": 8501,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "09R/27L",
+        "length": 8500,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.29,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDTW",
+    "airport_ref": "3497",
+    "fetched_at": "2026-08-31T18:55:28Z"
+  }
+}

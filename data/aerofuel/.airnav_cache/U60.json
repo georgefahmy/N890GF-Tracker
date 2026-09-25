@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787793492.5805252,
+  "icao": "U60",
+  "data": {
+    "icao": "U60",
+    "faa": "U60",
+    "iata": "",
+    "name": "Big Creek Airport",
+    "city": "Big Creek",
+    "state": "ID",
+    "country": "US",
+    "lat": 45.1332,
+    "lon": -115.322,
+    "elevation_ft": 5743,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 3550,
+        "width": 110,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Big Creek Lodge",
+        "brand": "",
+        "phone": "208-362-6946",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "raw_ident": "U60",
+    "airport_ref": "25223",
+    "fetched_at": "2026-08-27T01:18:10Z"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "_cached_at": 1788014665.3233652,
+  "icao": "KENW",
+  "data": {
+    "icao": "KENW",
+    "faa": "ENW",
+    "iata": "ENW",
+    "name": "Kenosha Regional Airport",
+    "city": "Kenosha",
+    "state": "WI",
+    "country": "US",
+    "lat": 42.5957,
+    "lon": -87.9278,
+    "elevation_ft": 742,
+    "tower": true,
+    "tower_freq": 118.6,
+    "ctaf_freq": 118.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 127.175,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 120.15,
+    "approach_desc": "MILWAUKEE APP/DEP",
+    "departure_freq": 120.15,
+    "departure_desc": "MILWAUKEE APP/DEP",
+    "ground_freq": 121.875,
+    "ground_desc": "GND",
+    "clearance_freq": 118.6,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MILWAUKEE APP/DEP",
+        "frequency_mhz": 120.15
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 127.175
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.175
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.875
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 109.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "07L/25R",
+        "length": 6600,
+        "width": 100,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 4440,
+        "width": 100,
+        "surface": "Concrete",
+        "lighted": true
+      },
+      {
+        "id": "07R/25L",
+        "length": 3302,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Stein's Aircraft Services",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "AVP/Kenosha Aviation, LLC",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.29,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KENW",
+    "airport_ref": "3514",
+    "fetched_at": "2026-08-29T14:44:25Z"
+  }
+}

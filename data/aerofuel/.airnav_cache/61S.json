@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788014757.213114,
+  "icao": "61S",
+  "data": {
+    "icao": "61S",
+    "faa": "61S",
+    "iata": "",
+    "name": "Cottage Grove State Airport",
+    "city": "Cottage Grove",
+    "state": "OR",
+    "country": "US",
+    "lat": 43.7998,
+    "lon": -123.029,
+    "elevation_ft": 641,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3201,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "74 NE Cottage Grove State Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.29,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.29,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K61S",
+    "airport_ref": "18948",
+    "fetched_at": "2026-08-29T14:45:57Z"
+  }
+}

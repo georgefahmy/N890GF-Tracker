@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787608551.000653,
+  "icao": "KUAO",
+  "data": {
+    "icao": "KUAO",
+    "faa": "UAO",
+    "iata": "",
+    "name": "Aurora State Airport",
+    "city": "Aurora",
+    "state": "OR",
+    "country": "US",
+    "lat": 45.2471,
+    "lon": -122.77,
+    "elevation_ft": 200,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PORTLAND APP/DEP",
+        "frequency_mhz": 126.0
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CLD",
+        "description": "PORTLAND CLNC DEL",
+        "frequency_mhz": 119.95
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5003,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.94,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Pacific Flight LLC",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 22-Aug",
+        "quote_date": "22-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.53,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:55:50Z"
+  }
+}

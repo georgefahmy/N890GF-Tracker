@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788014712.994532,
+  "icao": "5G0",
+  "data": {
+    "icao": "5G0",
+    "faa": "5G0",
+    "iata": "",
+    "name": "Le Roy Airport",
+    "city": "Le Roy",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.9814,
+    "lon": -77.9375,
+    "elevation_ft": 780,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3854,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Le Roy Aviation Services, Inc.",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.12,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.12,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "5G0",
+    "airport_ref": "12358",
+    "fetched_at": "2026-08-29T14:45:12Z"
+  }
+}

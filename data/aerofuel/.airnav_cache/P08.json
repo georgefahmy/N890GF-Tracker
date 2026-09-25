@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1788014731.0789068,
+  "icao": "P08",
+  "data": {
+    "icao": "P08",
+    "faa": "P08",
+    "iata": "",
+    "name": "Coolidge Municipal Airport",
+    "city": "Coolidge",
+    "state": "AZ",
+    "country": "US",
+    "lat": 32.9359,
+    "lon": -111.427,
+    "elevation_ft": 1574,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.075,
+    "unicom_freq": 123.075,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "ALBUQUERQUE CNTR",
+        "frequency_mhz": 125.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5564,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 3872,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Skyflight Services",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.59,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.1,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KP08",
+    "airport_ref": "20794",
+    "fetched_at": "2026-08-29T14:45:31Z"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "_cached_at": 1788014753.0538769,
+  "icao": "KSLE",
+  "data": {
+    "icao": "KSLE",
+    "faa": "SLE",
+    "iata": "SLE",
+    "name": "Salem-Willamette Valley Airport/McNary Field",
+    "city": "Salem",
+    "state": "OR",
+    "country": "US",
+    "lat": 44.9095,
+    "lon": -123.003,
+    "elevation_ft": 214,
+    "tower": true,
+    "tower_freq": 119.1,
+    "ctaf_freq": 119.1,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.55,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.55
+      },
+      {
+        "type": "CNTR",
+        "description": "SEATTLE CNTR",
+        "frequency_mhz": 125.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "MC MINNVILLE RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "TWR",
+        "description": "SALEM TWR",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 5811,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 5146,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "McNary Field Airport",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.45,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSLE",
+    "airport_ref": "3888",
+    "fetched_at": "2026-08-29T14:45:53Z"
+  }
+}

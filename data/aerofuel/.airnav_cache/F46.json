@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1787525695.968599,
+  "icao": "F46",
+  "data": {
+    "icao": "F46",
+    "faa": "F46",
+    "iata": "",
+    "name": "Rockwall Municipal Airport",
+    "city": "Rockwall",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.9306,
+    "lon": -96.4355,
+    "elevation_ft": 574,
+    "tower": false,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3373,
+        "width": 45,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "F46 Aviation Services",
+        "brand": "Avfuel",
+        "phone": "972-771-0151",
+        "notes": "Avfuel \u2022 Quote: 14-Aug-2026",
+        "quote_date": "14-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:54:52Z",
+    "from_cache": true
+  }
+}

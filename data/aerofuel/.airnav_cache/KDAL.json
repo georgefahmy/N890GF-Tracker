@@ -1,0 +1,256 @@
+{
+  "_cached_at": 1790303582.4732108,
+  "icao": "KDAL",
+  "data": {
+    "icao": "KDAL",
+    "faa": "DAL",
+    "iata": "DAL",
+    "name": "Dallas Love Field",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.8448,
+    "lon": -96.8477,
+    "elevation_ft": 487,
+    "tower": true,
+    "tower_freq": 118.7,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.15,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.3,
+    "approach_desc": "RGNL APP",
+    "departure_freq": 118.55,
+    "departure_desc": "RGNL DEP",
+    "ground_freq": 121.75,
+    "ground_desc": "GND",
+    "clearance_freq": 127.9,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "RGNL APP",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.15
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 127.9
+      },
+      {
+        "type": "DEP",
+        "description": "RGNL DEP",
+        "frequency_mhz": 118.55
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "TWR",
+        "description": "LOVE TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "13R/31L",
+        "length": 8800,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13L/31R",
+        "length": 7752,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.07,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Business Jet",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.49,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.21,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Jet Aviation",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.57,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation (Terminal 1 at A2)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation (Terminal 2 at A1)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation (Terminal 3 at A3)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation (Terminal 4)",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 10.8,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDAL",
+    "airport_ref": "3479",
+    "fetched_at": "2026-08-29T14:46:28Z"
+  }
+}

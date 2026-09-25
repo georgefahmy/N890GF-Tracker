@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1789073126.191562,
+  "icao": "90F",
+  "data": {
+    "icao": "90F",
+    "faa": "90F",
+    "iata": "",
+    "name": "Jewel B Callaham Municipal Airport",
+    "city": "Broken Bow",
+    "state": "OK",
+    "country": "US",
+    "lat": 34.014,
+    "lon": -94.7586,
+    "elevation_ft": 404,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3200,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Broken Bow Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K90F",
+    "airport_ref": "19154",
+    "fetched_at": "2026-09-10T20:45:26Z"
+  }
+}

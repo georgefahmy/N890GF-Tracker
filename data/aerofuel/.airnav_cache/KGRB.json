@@ -1,0 +1,105 @@
+{
+  "_cached_at": 1787505204.460551,
+  "icao": "KGRB",
+  "data": {
+    "icao": "KGRB",
+    "faa": "GRB",
+    "iata": "GRB",
+    "name": "Austin Straubel International Airport",
+    "city": "Green Bay",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.4835,
+    "lon": -88.1308,
+    "elevation_ft": 695,
+    "tower": true,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 4170,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Jet Air Group",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.47,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.47,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.47,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "GREEN BAY APP",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "DEP",
+        "description": "GREEN BAY DEP",
+        "frequency_mhz": 126.55
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "GREEN BAY TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T17:13:22Z"
+  }
+}

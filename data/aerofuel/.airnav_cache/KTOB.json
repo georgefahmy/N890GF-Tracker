@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1788202574.649643,
+  "icao": "KTOB",
+  "data": {
+    "icao": "KTOB",
+    "faa": "TOB",
+    "iata": "",
+    "name": "Dodge Center Airport",
+    "city": "Dodge Center",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.018,
+    "lon": -92.8315,
+    "elevation_ft": 1305,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": 119.075,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.8,
+    "approach_desc": "ROCHESTER APP/DEP",
+    "departure_freq": 119.8,
+    "departure_desc": "ROCHESTER APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROCHESTER APP/DEP",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 4500,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 2383,
+        "width": 200,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wayne Trom",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTOB",
+    "airport_ref": "21210",
+    "fetched_at": "2026-08-31T18:56:14Z"
+  }
+}

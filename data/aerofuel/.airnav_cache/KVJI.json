@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1788218326.438518,
+  "icao": "KVJI",
+  "data": {
+    "icao": "KVJI",
+    "faa": "VJI",
+    "iata": "VJI",
+    "name": "Virginia Highlands Airport",
+    "city": "Abingdon",
+    "state": "VA",
+    "country": "US",
+    "lat": 36.6871,
+    "lon": -82.0333,
+    "elevation_ft": 2087,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 128.125,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 128.67,
+    "approach_desc": "TRI CITY APP/DEP",
+    "departure_freq": 128.67,
+    "departure_desc": "TRI CITY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TRI CITY APP/DEP",
+        "frequency_mhz": 128.67
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.125
+      },
+      {
+        "type": "FSS",
+        "description": "NASHVILLE RDO",
+        "frequency_mhz": 114.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Virginia Highlands Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.92,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.92,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVJI",
+    "airport_ref": "21326",
+    "fetched_at": "2026-08-31T23:18:46Z"
+  }
+}

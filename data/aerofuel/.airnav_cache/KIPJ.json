@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1788218304.54787,
+  "icao": "KIPJ",
+  "data": {
+    "icao": "KIPJ",
+    "faa": "IPJ",
+    "iata": "",
+    "name": "Lincolnton Lincoln County Regional Airport",
+    "city": "Lincolnton",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.4833,
+    "lon": -81.1613,
+    "elevation_ft": 877,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": 119.675,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 134.75,
+    "approach_desc": "CHARLOTTE APP/DEP",
+    "departure_freq": 134.75,
+    "departure_desc": "CHARLOTTE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 124.9,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHARLOTTE APP/DEP",
+        "frequency_mhz": 134.75
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.675
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5700,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lincolnton-Lincoln County Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.3,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KIPJ",
+    "airport_ref": "20183",
+    "fetched_at": "2026-08-31T23:18:24Z"
+  }
+}

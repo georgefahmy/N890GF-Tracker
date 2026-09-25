@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1789073607.587508,
+  "icao": "KIKK",
+  "data": {
+    "icao": "KIKK",
+    "faa": "IKK",
+    "iata": "IKK",
+    "name": "Greater Kankakee Airport",
+    "city": "Kankakee",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.0714,
+    "lon": -87.8463,
+    "elevation_ft": 630,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 111.6,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 111.6
+      },
+      {
+        "type": "CNTR",
+        "description": "CHICAGO CNTR",
+        "frequency_mhz": 132.5
+      },
+      {
+        "type": "FSS",
+        "description": "KANKAKEE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5981,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 4398,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Kankakee Valley Airport Authority",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.13,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.16,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.13,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KIKK",
+    "airport_ref": "3607",
+    "fetched_at": "2026-09-10T20:53:27Z"
+  }
+}

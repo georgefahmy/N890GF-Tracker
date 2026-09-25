@@ -1,0 +1,137 @@
+{
+  "_cached_at": 1787544325.274444,
+  "icao": "KEVB",
+  "data": {
+    "icao": "KEVB",
+    "faa": "EVB",
+    "iata": "",
+    "name": "New Smyrna Beach Municipal Airport",
+    "city": "New Smyrna Beach",
+    "state": "FL",
+    "country": "US",
+    "lat": 29.0557,
+    "lon": -80.9489,
+    "elevation_ft": 10,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTONA APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.625
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.325
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.675
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "11/29",
+        "length": 4319,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "02/20",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airgate Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.41,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Flight Academy",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.17,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "The City of New Smyrna Beach",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.27,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.31,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.17,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:25Z"
+  }
+}

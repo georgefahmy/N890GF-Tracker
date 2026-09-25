@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1787788706.5015512,
+  "icao": "KSTJ",
+  "data": {
+    "icao": "KSTJ",
+    "faa": "STJ",
+    "iata": "STJ",
+    "name": "Rosecrans Memorial Airport",
+    "city": "St Joseph",
+    "state": "MO",
+    "country": "US",
+    "lat": 39.7719,
+    "lon": -94.9097,
+    "elevation_ft": 826,
+    "tower": true,
+    "ctaf_freq": 126.9,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ST JOSEPH APP/DEP",
+        "frequency_mhz": 120.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "POST",
+        "description": "ANG COMD POST",
+        "frequency_mhz": 34.94
+      },
+      {
+        "type": "TWR",
+        "description": "ST JOSEPH TWR",
+        "frequency_mhz": 126.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 8061,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 4797,
+        "width": 75,
+        "surface": "Pem",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "PAN AM Flight Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.33,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.24,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.33,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:26Z"
+  }
+}

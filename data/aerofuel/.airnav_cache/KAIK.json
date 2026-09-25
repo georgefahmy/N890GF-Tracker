@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1787793827.9159,
+  "icao": "KAIK",
+  "data": {
+    "icao": "KAIK",
+    "faa": "AIK",
+    "iata": "AIK",
+    "name": "Aiken Regional Airport",
+    "city": "Aiken",
+    "state": "SC",
+    "country": "US",
+    "lat": 33.6494,
+    "lon": -81.685,
+    "elevation_ft": 528,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.15,
+    "approach_desc": "AUGUSTA APP/DEP",
+    "departure_freq": 119.15,
+    "departure_desc": "AUGUSTA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "AUGUSTA APP/DEP",
+        "frequency_mhz": 119.15
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.025
+      },
+      {
+        "type": "RDO",
+        "description": "ANDERSON RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "01/19",
+        "length": 3800,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aiken Aviation Enterprises",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.79,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAIK",
+    "airport_ref": "19261",
+    "fetched_at": "2026-08-27T01:23:47Z"
+  }
+}

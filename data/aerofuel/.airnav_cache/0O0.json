@@ -1,0 +1,34 @@
+{
+  "_cached_at": 1787506110.330296,
+  "icao": "0O0",
+  "data": {
+    "icao": "0O0",
+    "faa": "0O0",
+    "iata": "",
+    "name": "San Luis Reservoir Seaplane Base",
+    "city": "Los Banos",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.0583,
+    "lon": -121.126,
+    "elevation_ft": 544,
+    "tower": false,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 7150,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T17:28:28Z"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788215030.361349,
+  "icao": "KSCB",
+  "data": {
+    "icao": "KSCB",
+    "faa": "SCB",
+    "iata": "SCB",
+    "name": "Scribner State Airport",
+    "city": "Scribner",
+    "state": "NE",
+    "country": "US",
+    "lat": 41.6103,
+    "lon": -96.6299,
+    "elevation_ft": 1325,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.1,
+    "approach_desc": "OMAHA APP/DEP",
+    "departure_freq": 120.1,
+    "departure_desc": "OMAHA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "OMAHA APP/DEP",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4200,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 2820,
+        "width": 60,
+        "surface": "Con",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Scribner State Airfield",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.73,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.73,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSCB",
+    "airport_ref": "21041",
+    "fetched_at": "2026-08-31T22:23:50Z"
+  }
+}

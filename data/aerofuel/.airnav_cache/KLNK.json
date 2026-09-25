@@ -1,0 +1,147 @@
+{
+  "_cached_at": 1787788220.687274,
+  "icao": "KLNK",
+  "data": {
+    "icao": "KLNK",
+    "faa": "LNK",
+    "iata": "LNK",
+    "name": "Lincoln Airport",
+    "city": "Lincoln",
+    "state": "NE",
+    "country": "US",
+    "lat": 40.8449,
+    "lon": -96.7618,
+    "elevation_ft": 1219,
+    "tower": true,
+    "ctaf_freq": 118.5,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "MISC",
+        "description": "ARNG OPS",
+        "frequency_mhz": 123.075
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 25.96
+      },
+      {
+        "type": "RDO",
+        "description": "COLUMBUS RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 12901,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 8649,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 5801,
+        "width": 100,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Duncan Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.23,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.51,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:20Z"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1788014670.640834,
+  "icao": "KSTP",
+  "data": {
+    "icao": "KSTP",
+    "faa": "STP",
+    "iata": "STP",
+    "name": "Saint Paul Downtown Holman Field",
+    "city": "Saint Paul",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.9348,
+    "lon": -93.06,
+    "elevation_ft": 705,
+    "tower": true,
+    "tower_freq": 119.1,
+    "ctaf_freq": 119.1,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.35,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 121.2,
+    "approach_desc": "MINNEAPOLIS APP/DEP",
+    "departure_freq": 121.2,
+    "departure_desc": "MINNEAPOLIS APP/DEP",
+    "ground_freq": 121.675,
+    "ground_desc": "GND/CLNC DEL",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MINNEAPOLIS APP/DEP",
+        "frequency_mhz": 121.2
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "GCCD",
+        "description": "GND/CLNC DEL",
+        "frequency_mhz": 121.675
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 41.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 6491,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 4004,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 3642,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.35,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.91,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "St. Paul Flight Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.98,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.78,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSTP",
+    "airport_ref": "3906",
+    "fetched_at": "2026-08-29T14:44:30Z"
+  }
+}

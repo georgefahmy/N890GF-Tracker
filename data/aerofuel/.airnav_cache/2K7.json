@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788167.872279,
+  "icao": "2K7",
+  "data": {
+    "icao": "2K7",
+    "faa": "2K7",
+    "iata": "",
+    "name": "Neodesha Municipal Airport",
+    "city": "Neodesha",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.4354,
+    "lon": -95.6461,
+    "elevation_ft": 841,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 132.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 2998,
+        "width": 46,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 2100,
+        "width": 45,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Neodesha Airport Refueling Station - MoGas",
+        "brand": "",
+        "phone": "620-325-2828",
+        "notes": "Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {
+          "MOGAS_SS": {
+            "price": 4.0,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.0,
+    "primary_fuel": "Mogas",
+    "fuels_available": [
+      "Mogas"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:49:26Z"
+  }
+}

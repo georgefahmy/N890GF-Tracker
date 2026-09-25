@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1787528899.3187551,
+  "icao": "KLXT",
+  "data": {
+    "icao": "KLXT",
+    "faa": "LXT",
+    "iata": "",
+    "name": "Lee's Summit Municipal Airport",
+    "city": "Lee's Summit",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.9597,
+    "lon": -94.3714,
+    "elevation_ft": 1004,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY APP/DEP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 124.175
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5501,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 4000,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Summit Aero",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.24,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.59,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 5.06,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.06,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:48:18Z"
+  }
+}

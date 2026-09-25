@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202456.395653,
+  "icao": "1M5",
+  "data": {
+    "icao": "1M5",
+    "faa": "1M5",
+    "iata": "",
+    "name": "Portland Municipal Airport",
+    "city": "Portland",
+    "state": "TN",
+    "country": "US",
+    "lat": 36.5927,
+    "lon": -86.4769,
+    "elevation_ft": 818,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.175,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.35,
+    "approach_desc": "NASHVILLE APP/DEP",
+    "departure_freq": 119.35,
+    "departure_desc": "NASHVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NASHVILLE APP/DEP",
+        "frequency_mhz": 119.35
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.175
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5003,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "J.R. Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.65,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1M5",
+    "airport_ref": "18492",
+    "fetched_at": "2026-08-31T18:54:16Z"
+  }
+}

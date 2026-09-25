@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1788202697.068579,
+  "icao": "KSBP",
+  "data": {
+    "icao": "KSBP",
+    "faa": "SBP",
+    "iata": "SBP",
+    "name": "San Luis County Regional Airport",
+    "city": "San Luis Obispo",
+    "state": "CA",
+    "country": "US",
+    "lat": 35.2368,
+    "lon": -120.642,
+    "elevation_ft": 212,
+    "tower": true,
+    "tower_freq": 124.0,
+    "ctaf_freq": 124.0,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.6,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 127.725,
+    "approach_desc": "SANTA BARBARA APP/DEP",
+    "departure_freq": 127.725,
+    "departure_desc": "SANTA BARBARA APP/DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "Ground",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP/DEP",
+        "description": "SANTA BARBARA APP/DEP",
+        "frequency_mhz": 127.725
+      },
+      {
+        "type": "APP/DEP BACKUP",
+        "description": "LOS ANGELES ARTCC - USE WHEN SANTA BARBARA APP/DEP CLOSED.",
+        "frequency_mhz": 119.05
+      },
+      {
+        "type": "APP/DEP BACKUP2",
+        "description": "LOS ANGELES ARTCC - USE WHEN SANTA BARBARA APP/DEP CLOSED.",
+        "frequency_mhz": 269.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "CTR",
+        "description": "LOS ANGELES CENTER",
+        "frequency_mhz": 119.05
+      },
+      {
+        "type": "GND",
+        "description": "Ground",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "TWR",
+        "description": "Tower - Primary frequency",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "TWR2",
+        "description": "Tower - Secondary frequency",
+        "frequency_mhz": 379.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 6101,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 2500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "ACI Jet - San Luis Obispo",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.34,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.87,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.98,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 9.45,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.34,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSBP",
+    "airport_ref": "3869",
+    "fetched_at": "2026-08-31T18:58:17Z"
+  }
+}

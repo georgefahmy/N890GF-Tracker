@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787786456.872777,
+  "icao": "KZEF",
+  "data": {
+    "icao": "KZEF",
+    "faa": "ZEF",
+    "iata": "",
+    "name": "Elkin Municipal Airport",
+    "city": "Elkin",
+    "state": "NC",
+    "country": "US",
+    "lat": 36.28,
+    "lon": -80.7861,
+    "elevation_ft": 1068,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "ATLANTA  CNTR",
+        "frequency_mhz": 125.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Yadkin Valley Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.69,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.65,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:20:56Z"
+  }
+}

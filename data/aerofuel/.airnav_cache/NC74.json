@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1789073621.5837,
+  "icao": "NC74",
+  "data": {
+    "icao": "NC74",
+    "faa": "NC74",
+    "name": "Causey Airport",
+    "city": "Liberty",
+    "state": "NC",
+    "distance_nm": 42.0,
+    "bearing": "NNW",
+    "fbos": [
+      {
+        "name": "Causey Aviation Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Sep",
+        "quote_date": "03-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "fetched_at": "2026-09-10T20:53:41Z",
+    "source": "AirNav Local Fuel"
+  }
+}

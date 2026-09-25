@@ -1,0 +1,114 @@
+{
+  "_cached_at": 1787525641.3157709,
+  "icao": "KCNW",
+  "data": {
+    "icao": "KCNW",
+    "faa": "CNW",
+    "iata": "CNW",
+    "name": "TSTC Waco Airport",
+    "city": "Waco",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.6411,
+    "lon": -97.0733,
+    "elevation_ft": 470,
+    "tower": true,
+    "ctaf_freq": 124.8,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17L/35R",
+        "length": 8600,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17R/35L",
+        "length": 6291,
+        "width": 75,
+        "surface": "Con",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Servion of Waco",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.08,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.38,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.08,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "WACO APP",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 134.225
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "DEP",
+        "description": "WACO DEP",
+        "frequency_mhz": 126.125
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "MISC",
+        "description": "CTAS RDO",
+        "frequency_mhz": 123.55
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.15
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1787787647.627805,
+  "icao": "KSTF",
+  "data": {
+    "icao": "KSTF",
+    "faa": "STF",
+    "iata": "",
+    "name": "George M Bryan Airport",
+    "city": "Starkville",
+    "state": "MS",
+    "country": "US",
+    "lat": 33.4331,
+    "lon": -88.8486,
+    "elevation_ft": 333,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "COLUMBUS APP/DEP",
+        "frequency_mhz": 135.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.975
+      },
+      {
+        "type": "CLD",
+        "description": "COLUMBUS CLNC DEL",
+        "frequency_mhz": 126.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5550,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Starkville",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.95,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:40:47Z"
+  }
+}

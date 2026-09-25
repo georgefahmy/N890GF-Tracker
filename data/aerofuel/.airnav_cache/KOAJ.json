@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788218295.072112,
+  "icao": "KOAJ",
+  "data": {
+    "icao": "KOAJ",
+    "faa": "OAJ",
+    "iata": "OAJ",
+    "name": "Albert J Ellis Airport",
+    "city": "Richlands",
+    "state": "NC",
+    "country": "US",
+    "lat": 34.8292,
+    "lon": -77.6121,
+    "elevation_ft": 94,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 124.475,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 121.4,
+    "approach_desc": "WILMINGTON APP/DEP",
+    "departure_freq": 121.4,
+    "departure_desc": "WILMINGTON APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "WILMINGTON APP/DEP",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 124.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 7100,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Skyport Aviation",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.7,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOAJ",
+    "airport_ref": "20709",
+    "fetched_at": "2026-08-31T23:18:15Z"
+  }
+}

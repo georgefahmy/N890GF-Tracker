@@ -1,0 +1,150 @@
+{
+  "_cached_at": 1787787675.1828449,
+  "icao": "KBDL",
+  "data": {
+    "icao": "KBDL",
+    "faa": "BDL",
+    "iata": "BDL",
+    "name": "Bradley International Airport",
+    "city": "Hartford",
+    "state": "CT",
+    "country": "US",
+    "lat": 41.9386,
+    "lon": -72.688,
+    "elevation_ft": 173,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 32.58
+      },
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 123.95
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.15
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 35.9
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 123.95
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "MISC",
+        "description": "ARNG OPS",
+        "frequency_mhz": 41.9
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 138.55
+      },
+      {
+        "type": "RDO",
+        "description": "BRIDGEPORT RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 9510,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 6847,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.84,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.67,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.12,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:41:15Z"
+  }
+}

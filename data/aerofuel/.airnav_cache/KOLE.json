@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787787665.9248729,
+  "icao": "KOLE",
+  "data": {
+    "icao": "KOLE",
+    "faa": "OLE",
+    "iata": "OLE",
+    "name": "Cattaraugus County-Olean Airport",
+    "city": "Olean",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.2412,
+    "lon": -78.3714,
+    "elevation_ft": 2135,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "CLEVELAND CNTR",
+        "frequency_mhz": 124.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4800,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 2117,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cattaraugus County-Olean Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:41:05Z"
+  }
+}

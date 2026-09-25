@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1790302580.779914,
+  "icao": "0Q9",
+  "data": {
+    "icao": "0Q9",
+    "faa": "0Q9",
+    "iata": "",
+    "name": "Sonoma Skypark Airport",
+    "city": "Sonoma",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.2577,
+    "lon": -122.434,
+    "elevation_ft": 20,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 2490,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sonoma Skypark",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Sep",
+        "quote_date": "14-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "0Q9",
+    "airport_ref": "7509",
+    "fetched_at": "2026-09-10T20:44:11Z"
+  }
+}

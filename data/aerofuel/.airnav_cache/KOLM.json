@@ -1,0 +1,139 @@
+{
+  "_cached_at": 1787864711.401151,
+  "icao": "KOLM",
+  "data": {
+    "icao": "KOLM",
+    "faa": "OLM",
+    "iata": "OLM",
+    "name": "Olympia Regional Airport",
+    "city": "Olympia",
+    "state": "WA",
+    "country": "US",
+    "lat": 46.9694,
+    "lon": -122.903,
+    "elevation_ft": 209,
+    "tower": true,
+    "tower_freq": 124.4,
+    "ctaf_freq": 124.4,
+    "unicom_freq": 122.95,
+    "weather_freq": 135.725,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 121.1,
+    "approach_desc": "SEATTLE APP/DEP",
+    "departure_freq": 121.1,
+    "departure_desc": "SEATTLE APP/DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SEATTLE APP/DEP",
+        "frequency_mhz": 121.1
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.725
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.375
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 124.4
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 4157,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Safety-in-Motion Flight Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.31,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.02,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Glacier Jet Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.12,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.31,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOLM",
+    "airport_ref": "3749",
+    "fetched_at": "2026-08-27T21:05:11Z"
+  }
+}

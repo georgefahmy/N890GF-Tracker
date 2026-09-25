@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1787787774.087255,
+  "icao": "KHBR",
+  "data": {
+    "icao": "KHBR",
+    "faa": "HBR",
+    "iata": "HBR",
+    "name": "Hobart Regional Airport",
+    "city": "Hobart",
+    "state": "OK",
+    "country": "US",
+    "lat": 34.9913,
+    "lon": -99.0513,
+    "elevation_ft": 1563,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "ALTUS APP",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 133.325
+      },
+      {
+        "type": "DEP",
+        "description": "ALTUS DEP",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "RDO",
+        "description": "MC ALESTER RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5507,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2975,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Hobart",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:54Z"
+  }
+}

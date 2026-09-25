@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1790302594.600766,
+  "icao": "KWLW",
+  "data": {
+    "icao": "KWLW",
+    "faa": "WLW",
+    "iata": "WLW",
+    "name": "Willows Glenn County Airport",
+    "city": "Willows",
+    "state": "CA",
+    "country": "US",
+    "lat": 39.5164,
+    "lon": -122.218,
+    "elevation_ft": 141,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 132.2
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 110.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 4125,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 3788,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Glenn County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 23-Sep",
+        "quote_date": "23-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.14,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.14,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KWLW",
+    "airport_ref": "21378",
+    "fetched_at": "2026-09-10T20:44:24Z"
+  }
+}

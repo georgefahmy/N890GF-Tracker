@@ -1,0 +1,34 @@
+{
+  "_cached_at": 1787531448.33668,
+  "icao": "POLI",
+  "data": {
+    "icao": "POLI",
+    "faa": "OLI",
+    "iata": "",
+    "name": "Oliktok Point Long Range Radar Station Airport",
+    "city": "Oliktok Point",
+    "state": "AK",
+    "country": "US",
+    "lat": 70.4952,
+    "lon": -149.8871,
+    "elevation_ft": 16,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "surface": "Paved"
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T00:30:46Z"
+  }
+}

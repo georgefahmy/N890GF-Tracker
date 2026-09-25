@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202703.280254,
+  "icao": "KUDD",
+  "data": {
+    "icao": "KUDD",
+    "faa": "UDD",
+    "iata": "UDD",
+    "name": "Bermuda Dunes Airport",
+    "city": "Bermuda Dunes",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.7485,
+    "lon": -116.275,
+    "elevation_ft": 73,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 135.275,
+    "approach_desc": "PALM SPRINGS APP/DEP",
+    "departure_freq": 135.275,
+    "departure_desc": "PALM SPRINGS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PALM SPRINGS APP/DEP",
+        "frequency_mhz": 135.275
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 5002,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dunes Air",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.22,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.91,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.22,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KUDD",
+    "airport_ref": "21286",
+    "fetched_at": "2026-08-31T18:58:23Z"
+  }
+}

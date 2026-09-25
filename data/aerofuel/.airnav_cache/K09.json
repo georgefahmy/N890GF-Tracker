@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788218662.854648,
+  "icao": "K09",
+  "data": {
+    "icao": "K09",
+    "faa": "K09",
+    "iata": "",
+    "name": "Piseco Airport",
+    "city": "Piseco",
+    "state": "NY",
+    "country": "US",
+    "lat": 43.4534,
+    "lon": -74.5176,
+    "elevation_ft": 1703,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "RDO",
+        "description": "BUFFALO RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3016,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Piseco Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.39,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KK09",
+    "airport_ref": "20239",
+    "fetched_at": "2026-08-31T23:24:22Z"
+  }
+}

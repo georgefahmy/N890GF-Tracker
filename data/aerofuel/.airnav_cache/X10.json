@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787523159.088476,
+  "icao": "X10",
+  "data": {
+    "icao": "X10",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T22:12:39Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

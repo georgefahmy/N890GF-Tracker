@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1788218510.136652,
+  "icao": "KSNC",
+  "data": {
+    "icao": "KSNC",
+    "faa": "SNC",
+    "iata": "",
+    "name": "Chester Airport",
+    "city": "Chester",
+    "state": "CT",
+    "country": "US",
+    "lat": 41.3842,
+    "lon": -72.506,
+    "elevation_ft": 416,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.725,
+    "weather_freq": 118.325,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 124.075,
+    "approach_desc": "NEW YORK APP/DEP",
+    "departure_freq": 124.075,
+    "departure_desc": "NEW YORK APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW YORK APP/DEP",
+        "frequency_mhz": 124.075
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "RDO",
+        "description": "BRIDGEPORT RDO",
+        "frequency_mhz": 122.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 2722,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Chester Charter Inc",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSNC",
+    "airport_ref": "21090",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

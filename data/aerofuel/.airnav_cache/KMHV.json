@@ -1,0 +1,116 @@
+{
+  "_cached_at": 1788202672.303797,
+  "icao": "KMHV",
+  "data": {
+    "icao": "KMHV",
+    "faa": "MHV",
+    "iata": "MHV",
+    "name": "Mojave Air &  Space Port",
+    "city": "Mojave",
+    "state": "CA",
+    "country": "US",
+    "lat": 35.0564,
+    "lon": -118.1453,
+    "elevation_ft": 2801,
+    "tower": true,
+    "tower_freq": 127.6,
+    "ctaf_freq": 127.6,
+    "unicom_freq": 127.6,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 133.65,
+    "approach_desc": "JOSHUA APP/DEP",
+    "departure_freq": 133.65,
+    "departure_desc": "JOSHUA APP/DEP",
+    "ground_freq": 123.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "JOSHUA APP/DEP",
+        "frequency_mhz": 133.65
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 127.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 123.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 127.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 12503,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 7049,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 4747,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mojave Air & Space Port",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.04,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMHV",
+    "airport_ref": "20507",
+    "fetched_at": "2026-08-31T18:57:52Z"
+  }
+}

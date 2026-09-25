@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1790308492.204383,
+  "icao": "C83",
+  "data": {
+    "icao": "C83",
+    "faa": "C83",
+    "iata": "",
+    "name": "Byron Airport",
+    "city": "Byron",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.8265,
+    "lon": -121.6217,
+    "elevation_ft": 79,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": 123.775,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 123.85,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 123.85,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 123.85
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 123.775
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 4500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 3000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Contra Costa County (FBO)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.78,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KC83",
+    "airport_ref": "19456",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

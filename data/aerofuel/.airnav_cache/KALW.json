@@ -1,0 +1,106 @@
+{
+  "_cached_at": 1787793975.030797,
+  "icao": "KALW",
+  "data": {
+    "icao": "KALW",
+    "faa": "ALW",
+    "iata": "ALW",
+    "name": "Walla Walla Regional Airport",
+    "city": "Walla Walla",
+    "state": "WA",
+    "country": "US",
+    "lat": 46.0949,
+    "lon": -118.288,
+    "elevation_ft": 1194,
+    "tower": true,
+    "tower_freq": 118.5,
+    "ctaf_freq": 118.5,
+    "unicom_freq": 118.5,
+    "weather_freq": 135.875,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 133.15,
+    "approach_desc": "CHINOOK APP/DEP",
+    "departure_freq": 133.15,
+    "departure_desc": "CHINOOK APP/DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHINOOK APP/DEP",
+        "frequency_mhz": 133.15
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.875
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "RDO",
+        "description": "SEATTLE RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.5
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 6527,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Gorge Aviation Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KALW",
+    "airport_ref": "3376",
+    "fetched_at": "2026-08-27T01:26:15Z"
+  }
+}

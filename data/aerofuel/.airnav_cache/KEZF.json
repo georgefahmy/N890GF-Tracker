@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1787705647.870288,
+  "icao": "KEZF",
+  "data": {
+    "icao": "KEZF",
+    "faa": "EZF",
+    "iata": "",
+    "name": "Shannon Airport",
+    "city": "Fredericksburg",
+    "state": "VA",
+    "country": "US",
+    "lat": 38.2668,
+    "lon": -77.4492,
+    "elevation_ft": 85,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "POTOMAC APP/DEP",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "ARR",
+        "description": "QUANTICO ARRIVAL",
+        "frequency_mhz": 127.05
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.125
+      },
+      {
+        "type": "RDO",
+        "description": "LEESBURG RDO",
+        "frequency_mhz": 114.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 2902,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 1300,
+        "width": 100,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Shannon Airport LLC",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.89,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.49,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:54:07Z"
+  }
+}

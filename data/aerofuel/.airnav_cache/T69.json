@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718770.998841,
+  "icao": "T69",
+  "data": {
+    "icao": "T69",
+    "faa": "T69",
+    "iata": "",
+    "name": "Alfred C 'Bubba' Thomas Airport",
+    "city": "Sinton",
+    "state": "TX",
+    "country": "US",
+    "lat": 28.0392,
+    "lon": -97.5424,
+    "elevation_ft": 48,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CORPUS APP/DEP",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "RDO",
+        "description": "SAN ANGELO RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4323,
+        "width": 55,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Alfred C 'Bubba' Thomas Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.45,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:50Z"
+  }
+}

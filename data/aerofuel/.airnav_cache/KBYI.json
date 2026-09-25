@@ -1,0 +1,108 @@
+{
+  "_cached_at": 1788214950.87776,
+  "icao": "KBYI",
+  "data": {
+    "icao": "KBYI",
+    "faa": "BYI",
+    "iata": "BYI",
+    "name": "Burley Municipal Airport",
+    "city": "Burley",
+    "state": "ID",
+    "country": "US",
+    "lat": 42.5426,
+    "lon": -113.772,
+    "elevation_ft": 4150,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": 135.575,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 126.7,
+    "approach_desc": "TWIN FALLS APP/DEP",
+    "departure_freq": 126.7,
+    "departure_desc": "TWIN FALLS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TWIN FALLS APP/DEP",
+        "frequency_mhz": 126.7
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.575
+      },
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CITY CNTR",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "BOISE RDO",
+        "frequency_mhz": 122.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 4092,
+        "width": 80,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 4072,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "The Flight Line, Inc.",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.12,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.12,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBYI",
+    "airport_ref": "19429",
+    "fetched_at": "2026-08-31T22:22:30Z"
+  }
+}

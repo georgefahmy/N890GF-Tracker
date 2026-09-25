@@ -1,0 +1,42 @@
+{
+  "_cached_at": 1787788328.831109,
+  "icao": "71A",
+  "data": {
+    "icao": "71A",
+    "faa": "71A",
+    "iata": "",
+    "name": "Pine Hill Municipal Airport",
+    "city": "Pine Hill",
+    "state": "AL",
+    "country": "US",
+    "lat": 31.9668,
+    "lon": -87.5833,
+    "elevation_ft": 123,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4462,
+        "width": 80,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:52:06Z"
+  }
+}

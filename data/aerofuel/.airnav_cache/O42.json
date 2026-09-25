@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788542284.5152361,
+  "icao": "O42",
+  "data": {
+    "icao": "O42",
+    "faa": "O42",
+    "iata": "",
+    "name": "Woodlake Airport",
+    "city": "Woodlake",
+    "state": "CA",
+    "country": "US",
+    "lat": 36.3988,
+    "lon": -119.107,
+    "elevation_ft": 425,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 2203,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Woodlake Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KO42",
+    "airport_ref": "20688",
+    "fetched_at": "2026-09-04T17:18:04Z"
+  }
+}

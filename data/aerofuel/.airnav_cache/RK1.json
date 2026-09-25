@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787531460.734048,
+  "icao": "RK1",
+  "data": {
+    "icao": "RK1",
+    "faa": "RK1",
+    "iata": "",
+    "name": "Kavik Strip",
+    "city": "Kavik",
+    "state": "AK",
+    "country": "US",
+    "lat": 69.6768,
+    "lon": -146.9002,
+    "elevation_ft": 668,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "8/26",
+        "length": 5500,
+        "width": 150,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Kavik River Camp",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 15.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 14.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 15.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:31:00Z"
+  }
+}

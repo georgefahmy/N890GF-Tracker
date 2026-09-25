@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787543488.105089,
+  "icao": "2T1",
+  "data": {
+    "icao": "2T1",
+    "faa": "2T1",
+    "iata": "",
+    "name": "Muleshoe Municipal Airport",
+    "city": "Muleshoe",
+    "state": "TX",
+    "country": "US",
+    "lat": 34.1851,
+    "lon": -102.641,
+    "elevation_ft": 3779,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 126.45
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5100,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Muleshoe",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:51:28Z"
+  }
+}

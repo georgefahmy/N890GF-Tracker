@@ -1,0 +1,156 @@
+{
+  "_cached_at": 1789073621.592423,
+  "icao": "KRDU",
+  "data": {
+    "icao": "KRDU",
+    "faa": "RDU",
+    "iata": "RDU",
+    "name": "Raleigh-Durham International Airport",
+    "city": "Raleigh/Durham",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.8787,
+    "lon": -78.7873,
+    "elevation_ft": 435,
+    "tower": true,
+    "tower_freq": 119.3,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 123.8,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.8,
+    "approach_desc": "APP",
+    "departure_freq": 125.3,
+    "departure_desc": "DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": 120.1,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 124.8
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 123.8
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 125.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 49.15
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05L/23R",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "05R/23L",
+        "length": 7500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 3570,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 10-Sep",
+        "quote_date": "10-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.59,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.98,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 09-Sep",
+        "quote_date": "09-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.13,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.47,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.13,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRDU",
+    "airport_ref": "3844",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

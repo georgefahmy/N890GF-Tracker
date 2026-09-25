@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1787787807.4699788,
+  "icao": "KMRH",
+  "data": {
+    "icao": "KMRH",
+    "faa": "MRH",
+    "iata": "",
+    "name": "Michael J. Smith Field",
+    "city": "Beaufort",
+    "state": "NC",
+    "country": "US",
+    "lat": 34.7336,
+    "lon": -76.6606,
+    "elevation_ft": 11,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHERRY POINT APP/DEP",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.375
+      },
+      {
+        "type": "CLD",
+        "description": "CHERRY POINT CLNC",
+        "frequency_mhz": 125.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5004,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 4192,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 4001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crystal Coast Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.67,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:27Z"
+  }
+}

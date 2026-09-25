@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1787604257.363471,
+  "icao": "KFCH",
+  "data": {
+    "icao": "KFCH",
+    "faa": "FCH",
+    "iata": "FCH",
+    "name": "Fresno Chandler Executive Airport",
+    "city": "Fresno",
+    "state": "CA",
+    "country": "US",
+    "lat": 36.7324,
+    "lon": -119.82,
+    "elevation_ft": 279,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.225
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3627,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Flight Level Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.38,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.88,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.93,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:44:17Z"
+  }
+}

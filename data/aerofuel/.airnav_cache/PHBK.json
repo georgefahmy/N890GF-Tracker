@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787718424.823961,
+  "icao": "PHBK",
+  "data": {
+    "icao": "PHBK",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "fetched_at": "2026-08-26T04:27:04Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

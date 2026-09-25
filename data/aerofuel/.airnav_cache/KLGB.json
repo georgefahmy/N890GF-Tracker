@@ -1,0 +1,141 @@
+{
+  "_cached_at": 1787510612.388094,
+  "icao": "KLGB",
+  "data": {
+    "icao": "KLGB",
+    "faa": "LGB",
+    "iata": "LGB",
+    "name": "Long Beach International Airport",
+    "city": "Long Beach",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.8165,
+    "lon": -118.1499,
+    "elevation_ft": 60,
+    "tower": true,
+    "ctaf_freq": 119.4,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3310,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 23-Aug",
+        "quote_date": "23-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.33,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 11.01,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.59,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "94UL_FS": {
+            "price": 9.59,
+            "type": "94UL",
+            "service": "Full-Serve",
+            "label": "94UL Unleaded (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.92,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 10.88,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SOCAL APP",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.75
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.15
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "DEP",
+        "description": "SOCAL DEP",
+        "frequency_mhz": 127.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 133.0
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T18:43:32Z"
+  }
+}

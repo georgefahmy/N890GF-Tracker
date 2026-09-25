@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787863971.851815,
+  "icao": "KWAY",
+  "data": {
+    "icao": "KWAY",
+    "faa": "WAY",
+    "iata": "WAY",
+    "name": "Greene County Airport",
+    "city": "Waynesburg",
+    "state": "PA",
+    "country": "US",
+    "lat": 39.9011,
+    "lon": -80.1307,
+    "elevation_ft": 1069,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Greene County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KWAY",
+    "airport_ref": "21369",
+    "fetched_at": "2026-08-27T20:52:51Z"
+  }
+}

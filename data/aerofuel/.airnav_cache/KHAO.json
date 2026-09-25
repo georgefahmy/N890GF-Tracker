@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787528566.813996,
+  "icao": "KHAO",
+  "data": {
+    "icao": "KHAO",
+    "faa": "HAO",
+    "iata": "HAO",
+    "name": "Butler Co Regional Airport - Hogan Field",
+    "city": "Hamilton",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.3638,
+    "lon": -84.522,
+    "elevation_ft": 633,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CINCINNATI APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 121.425
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 5500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cincinnati Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.31,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.6,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.31,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

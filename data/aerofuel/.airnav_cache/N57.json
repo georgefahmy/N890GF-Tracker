@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1787787527.836234,
+  "icao": "N57",
+  "data": {
+    "icao": "N57",
+    "faa": "N57",
+    "iata": "",
+    "name": "New Garden Airport",
+    "city": "Toughkenamon",
+    "state": "PA",
+    "country": "US",
+    "lat": 39.8305,
+    "lon": -75.7697,
+    "elevation_ft": 436,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PHILADELPHIA APP/DEP",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "RDO",
+        "description": "WILLIAMSPORT RDO",
+        "frequency_mhz": 113.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3693,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "New Garden Flying Field",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:38:47Z"
+  }
+}

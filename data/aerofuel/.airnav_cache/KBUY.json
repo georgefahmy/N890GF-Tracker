@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1789073621.592627,
+  "icao": "KBUY",
+  "data": {
+    "icao": "KBUY",
+    "faa": "BUY",
+    "iata": "",
+    "name": "Burlington Alamance Regional Airport",
+    "city": "Burlington",
+    "state": "NC",
+    "country": "US",
+    "lat": 36.0485,
+    "lon": -79.4749,
+    "elevation_ft": 617,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.975,
+    "weather_freq": 135.325,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 118.5,
+    "approach_desc": "GREENSBORO APP/DEP",
+    "departure_freq": 118.5,
+    "departure_desc": "GREENSBORO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 120.25,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREENSBORO APP/DEP",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.325
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 6406,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "SkySouth Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 04-Sep",
+        "quote_date": "04-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.29,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.59,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.29,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBUY",
+    "airport_ref": "19416",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

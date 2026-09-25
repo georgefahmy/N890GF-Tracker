@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788014670.6386838,
+  "icao": "8Y6",
+  "data": {
+    "icao": "8Y6",
+    "faa": "8Y6",
+    "iata": "",
+    "name": "Leaders Clear Lake Airport",
+    "city": "Clear Lake",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.4437,
+    "lon": -93.9703,
+    "elevation_ft": 990,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3000,
+        "width": 150,
+        "surface": "Com",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Leaders St. Cloud Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K8Y6",
+    "airport_ref": "19153",
+    "fetched_at": "2026-08-29T14:44:30Z"
+  }
+}

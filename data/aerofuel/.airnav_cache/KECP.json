@@ -1,0 +1,117 @@
+{
+  "_cached_at": 1787793805.44303,
+  "icao": "KECP",
+  "data": {
+    "icao": "KECP",
+    "faa": "ECP",
+    "iata": "ECP",
+    "name": "Northwest Florida Beaches International Airport",
+    "city": "Panama City Beach",
+    "state": "FL",
+    "country": "US",
+    "lat": 30.3571,
+    "lon": -85.7954,
+    "elevation_ft": 69,
+    "tower": true,
+    "tower_freq": 118.95,
+    "ctaf_freq": 118.95,
+    "unicom_freq": 118.95,
+    "weather_freq": 119.975,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.65,
+    "ground_desc": "Panama City Ground",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.975
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.95
+      },
+      {
+        "type": "GND",
+        "description": "Panama City Ground",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "TWR",
+        "description": "Panama City Tower",
+        "frequency_mhz": 118.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sheltair",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.19,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Southern Sky Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.22,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.69,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KECP",
+    "airport_ref": "46530",
+    "fetched_at": "2026-08-27T01:23:25Z"
+  }
+}

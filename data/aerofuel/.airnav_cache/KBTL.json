@@ -1,0 +1,130 @@
+{
+  "_cached_at": 1788202512.627101,
+  "icao": "KBTL",
+  "data": {
+    "icao": "KBTL",
+    "faa": "BTL",
+    "iata": "BTL",
+    "name": "Battle Creek Executive Airport at Kellogg Field",
+    "city": "Battle Creek",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.3073,
+    "lon": -85.2515,
+    "elevation_ft": 952,
+    "tower": true,
+    "tower_freq": 126.825,
+    "ctaf_freq": 118.5,
+    "unicom_freq": 122.95,
+    "weather_freq": 128.325,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.2,
+    "approach_desc": "KALAMAZOO APP/DEP",
+    "departure_freq": 119.2,
+    "departure_desc": "KALAMAZOO APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KALAMAZOO APP/DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.325
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 32.35
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "BATTLE CREEK TWR",
+        "frequency_mhz": 126.825
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05L/23R",
+        "length": 10004,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 4837,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05R/23L",
+        "length": 4100,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Duncan Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.83,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.64,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBTL",
+    "airport_ref": "3427",
+    "fetched_at": "2026-08-31T18:55:12Z"
+  }
+}

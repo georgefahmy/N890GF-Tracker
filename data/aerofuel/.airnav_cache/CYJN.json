@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1787527385.1475708,
+  "icao": "CYJN",
+  "data": {
+    "icao": "CYJN",
+    "faa": "CYJN",
+    "name": "St Jean Airport",
+    "city": "St Jean",
+    "state": "QC",
+    "distance_nm": 45.0,
+    "bearing": "N",
+    "fbos": [
+      {
+        "name": "Association des Pilotes de St-Jean-sur-Richelieu",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 08-May",
+        "quote_date": "08-May",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.6,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T23:23:05Z",
+    "source": "AirNav Local Fuel"
+  }
+}

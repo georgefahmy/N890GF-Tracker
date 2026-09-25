@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787504141.372545,
+  "icao": "1L8",
+  "data": {
+    "icao": "1L8",
+    "faa": "1L8",
+    "name": "General Dick Stout Field Airport",
+    "city": "Hurricane",
+    "state": "UT",
+    "distance_nm": 12.0,
+    "bearing": "ENE",
+    "fbos": [
+      {
+        "name": "Airport Quick Stop",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 26-Jun",
+        "quote_date": "26-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.43,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 6.28,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.28,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T16:55:41Z",
+    "source": "AirNav Local Fuel"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1788218510.128034,
+  "icao": "KJPX",
+  "data": {
+    "icao": "KJPX",
+    "faa": "JPX",
+    "name": "East Hampton Town Airport",
+    "city": "East Hampton",
+    "state": "NY",
+    "distance_nm": 20.0,
+    "bearing": "SSW",
+    "fbos": [
+      {
+        "name": "Sound Aircraft Services",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.49,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T23:21:50Z",
+    "source": "AirNav Local Fuel"
+  }
+}

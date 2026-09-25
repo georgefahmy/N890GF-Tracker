@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1789072486.2379699,
+  "icao": "KDMN",
+  "data": {
+    "icao": "KDMN",
+    "faa": "DMN",
+    "iata": "DMN",
+    "name": "Deming Municipal Airport",
+    "city": "Deming",
+    "state": "NM",
+    "country": "US",
+    "lat": 32.2623,
+    "lon": -107.721,
+    "elevation_ft": 4314,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.525,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CNTR",
+        "description": "ALBUQUERQUE CNTR",
+        "frequency_mhz": 128.2
+      },
+      {
+        "type": "RDO",
+        "description": "ALBUQUERQUE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 8018,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 5675,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Desert Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 04-Sep",
+        "quote_date": "04-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.9,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDMN",
+    "airport_ref": "3493",
+    "fetched_at": "2026-09-10T20:34:45Z"
+  }
+}

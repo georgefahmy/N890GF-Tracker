@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787525309.4294221,
+  "icao": "7A0",
+  "data": {
+    "icao": "7A0",
+    "faa": "7A0",
+    "iata": "",
+    "name": "Greensboro Municipal Airport",
+    "city": "Greensboro",
+    "state": "AL",
+    "country": "US",
+    "lat": 32.6815,
+    "lon": -87.6621,
+    "elevation_ft": 180,
+    "tower": false,
+    "ctaf_freq": 124.8,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 8300,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Seale Flying Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:48:29Z"
+  }
+}

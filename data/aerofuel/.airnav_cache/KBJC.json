@@ -1,0 +1,142 @@
+{
+  "_cached_at": 1790308718.998515,
+  "icao": "KBJC",
+  "data": {
+    "icao": "KBJC",
+    "faa": "BJC",
+    "iata": "BJC",
+    "name": "Rocky Mountain Metropolitan Airport",
+    "city": "Denver",
+    "state": "CO",
+    "country": "US",
+    "lat": 39.9088,
+    "lon": -105.117,
+    "elevation_ft": 5673,
+    "tower": true,
+    "tower_freq": 118.6,
+    "ctaf_freq": 118.6,
+    "unicom_freq": 118.6,
+    "weather_freq": 126.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 126.1,
+    "approach_desc": "DENVER APP/DEP",
+    "departure_freq": 126.1,
+    "departure_desc": "DENVER APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DENVER APP/DEP",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "12L/30R",
+        "length": 9000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12R/30L",
+        "length": 7002,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 3600,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.42,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.41,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.26,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Sheltair",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 16-Sep",
+        "quote_date": "16-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.01,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.41,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBJC",
+    "airport_ref": "3411",
+    "fetched_at": "2026-08-26T23:48:08Z"
+  }
+}

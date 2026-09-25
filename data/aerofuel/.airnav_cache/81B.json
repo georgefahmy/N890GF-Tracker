@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787705620.4643872,
+  "icao": "81B",
+  "data": {
+    "icao": "81B",
+    "faa": "81B",
+    "iata": "",
+    "name": "Oxford County Regional Airport",
+    "city": "Oxford",
+    "state": "ME",
+    "country": "US",
+    "lat": 44.1574,
+    "lon": -70.4813,
+    "elevation_ft": 346,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PORTLAND APP/DEP",
+        "frequency_mhz": 125.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 2997,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Oxford County Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:53:40Z"
+  }
+}

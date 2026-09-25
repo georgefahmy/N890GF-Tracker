@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787863971.8499541,
+  "icao": "4G5",
+  "data": {
+    "icao": "4G5",
+    "faa": "4G5",
+    "iata": "",
+    "name": "Monroe County Airport",
+    "city": "Woodsfield",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.779,
+    "lon": -81.1028,
+    "elevation_ft": 1197,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "CLEVELAND CNTR",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "RDO",
+        "description": "CLEVELAND RDO",
+        "frequency_mhz": 117.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3805,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Monroe County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 28-Jul",
+        "quote_date": "28-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.37,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.37,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K4G5",
+    "airport_ref": "18818",
+    "fetched_at": "2026-08-27T20:52:51Z"
+  }
+}

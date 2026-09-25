@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788014757.211294,
+  "icao": "S05",
+  "data": {
+    "icao": "S05",
+    "faa": "S05",
+    "iata": "BDY",
+    "name": "Bandon State Airport",
+    "city": "Bandon",
+    "state": "OR",
+    "country": "US",
+    "lat": 43.0865,
+    "lon": -124.408,
+    "elevation_ft": 122,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3601,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "541-347-2022",
+        "notes": "Quote: 19-Aug-2026",
+        "quote_date": "19-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KS05",
+    "airport_ref": "20988",
+    "fetched_at": "2026-08-29T14:45:55Z"
+  }
+}

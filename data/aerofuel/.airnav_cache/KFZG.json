@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787544581.539205,
+  "icao": "KFZG",
+  "data": {
+    "icao": "KFZG",
+    "faa": "FZG",
+    "iata": "",
+    "name": "Fitzgerald Municipal Airport",
+    "city": "Fitzgerald",
+    "state": "GA",
+    "country": "US",
+    "lat": 31.6837,
+    "lon": -83.2705,
+    "elevation_ft": 365,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "ARTC",
+        "description": "JACKSONVILLE CNTR",
+        "frequency_mhz": 132.3
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.625
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 2984,
+        "width": 300,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fitzgerald Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.02,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.7,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.02,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:09:41Z"
+  }
+}

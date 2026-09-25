@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787525569.2386172,
+  "icao": "KELA",
+  "data": {
+    "icao": "KELA",
+    "faa": "ELA",
+    "iata": "ELA",
+    "name": "Eagle Lake Airport",
+    "city": "Eagle Lake",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.6006,
+    "lon": -96.3219,
+    "elevation_ft": 184,
+    "tower": false,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4280,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Eagle Lake Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.94,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.09,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.94,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 128.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "fetched_at": "2026-08-23T22:52:49Z"
+  }
+}

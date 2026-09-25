@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787718478.222295,
+  "icao": "PHDH",
+  "data": {
+    "icao": "PHDH",
+    "faa": "HDH",
+    "iata": "HDH",
+    "name": "Kawaihapai Airfield",
+    "city": "Mokuleia",
+    "state": "HI",
+    "country": "US",
+    "lat": 21.5795,
+    "lon": -158.197,
+    "elevation_ft": 14,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "MISC",
+        "description": "MIL AIR TO AIR",
+        "frequency_mhz": 23.33
+      },
+      {
+        "type": "RDO",
+        "description": "HONOLULU RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 9007,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "North Shore Aviation Services Corporation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 8.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:27:58Z"
+  }
+}

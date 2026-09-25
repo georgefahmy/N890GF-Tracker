@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1787793835.848381,
+  "icao": "KMTV",
+  "data": {
+    "icao": "KMTV",
+    "faa": "MTV",
+    "iata": "",
+    "name": "Blue Ridge Airport",
+    "city": "Martinsville",
+    "state": "VA",
+    "country": "US",
+    "lat": 36.6307,
+    "lon": -80.0183,
+    "elevation_ft": 941,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 118.45,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 124.35,
+    "approach_desc": "GREENSBORO APP/DEP",
+    "departure_freq": 124.35,
+    "departure_desc": "GREENSBORO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 124.85,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREENSBORO APP/DEP",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.45
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 5002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Blue Ridge Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.45,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMTV",
+    "airport_ref": "20568",
+    "fetched_at": "2026-08-27T01:23:55Z"
+  }
+}

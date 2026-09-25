@@ -1,0 +1,163 @@
+{
+  "_cached_at": 1787718383.4807072,
+  "icao": "KSTL",
+  "data": {
+    "icao": "KSTL",
+    "faa": "STL",
+    "iata": "STL",
+    "name": "St. Louis Lambert International Airport",
+    "city": "St Louis",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.7487,
+    "lon": -90.37,
+    "elevation_ft": 618,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "ST LOUIS APP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "APP",
+        "description": "SOUTH/WEST SECONDARY",
+        "frequency_mhz": 121.025
+      },
+      {
+        "type": "APP",
+        "description": "SAINT LOUIS APPROACH SECONDARY",
+        "frequency_mhz": 123.7
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.025
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "DEP",
+        "description": "ST LOUIS DEP N/E",
+        "frequency_mhz": 119.15
+      },
+      {
+        "type": "DEP",
+        "description": "ST LOUIS DEP S/W",
+        "frequency_mhz": 128.1
+      },
+      {
+        "type": "GND",
+        "description": "RWAY 11-29",
+        "frequency_mhz": 118.925
+      },
+      {
+        "type": "GND",
+        "description": "SAINT LOUIS GROUND OUTBOUND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "GND",
+        "description": "SAINT LOUIS GROUND INBOUND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 29.79
+      },
+      {
+        "type": "RDO",
+        "description": "ST LOUIS RDO",
+        "frequency_mhz": 122.05
+      },
+      {
+        "type": "TWR",
+        "description": "RWAY 12R-30L",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "TWR",
+        "description": "RWAY 12L-30R",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "TWR",
+        "description": "RWY 06 AND 11-29",
+        "frequency_mhz": 132.475
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "12R/30L",
+        "length": 11020,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "12L/30R",
+        "length": 9013,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 9000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 7603,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:23Z"
+  }
+}

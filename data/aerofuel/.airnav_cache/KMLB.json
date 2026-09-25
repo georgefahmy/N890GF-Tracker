@@ -1,0 +1,127 @@
+{
+  "_cached_at": 1787523153.4992871,
+  "icao": "KMLB",
+  "data": {
+    "icao": "KMLB",
+    "faa": "MLB",
+    "iata": "MLB",
+    "name": "Melbourne Orlando International Airport",
+    "city": "Melbourne",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.102,
+    "lon": -80.6411,
+    "elevation_ft": 33,
+    "tower": true,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 7840,
+        "surface": "Asphalt/Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sheltair",
+        "brand": "Avfuel",
+        "phone": "321-956-8695",
+        "notes": "Avfuel \u2022 Quote: 18-Aug-2026",
+        "quote_date": "18-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.63,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.83,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Florida Institute of Technology, Inc",
+        "brand": "Titan",
+        "phone": "321-674-6501",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.48,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.48,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ORLANDO APP/DEP",
+        "frequency_mhz": 132.65
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 132.55
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "GRUMMAN OPS",
+        "frequency_mhz": 123.2
+      },
+      {
+        "type": "RDO",
+        "description": "ST PETERSBURG RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T22:12:31Z"
+  }
+}

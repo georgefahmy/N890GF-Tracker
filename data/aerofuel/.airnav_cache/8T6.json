@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718770.9996312,
+  "icao": "8T6",
+  "data": {
+    "icao": "8T6",
+    "faa": "8T6",
+    "iata": "",
+    "name": "Live Oak County Airport",
+    "city": "George West",
+    "state": "TX",
+    "country": "US",
+    "lat": 28.3628,
+    "lon": -98.1165,
+    "elevation_ft": 129,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 134.6
+      },
+      {
+        "type": "CNTR",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 126.625
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3799,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Live Oak County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.48,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 3.88,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.48,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:50Z"
+  }
+}

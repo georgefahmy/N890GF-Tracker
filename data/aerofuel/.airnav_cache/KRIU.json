@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1790302580.7798111,
+  "icao": "KRIU",
+  "data": {
+    "icao": "KRIU",
+    "faa": "RIU",
+    "iata": "",
+    "name": "Rancho Murieta Airport",
+    "city": "Rancho Murieta",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.4868,
+    "lon": -121.1028,
+    "elevation_ft": 141,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "FSS",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3798,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rancho Murieta Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.65,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRIU",
+    "airport_ref": "3848",
+    "fetched_at": "2026-09-10T20:44:42Z"
+  }
+}

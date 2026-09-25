@@ -1,0 +1,69 @@
+{
+  "_cached_at": 1787718927.293934,
+  "icao": "5M1",
+  "data": {
+    "icao": "5M1",
+    "faa": "5M1",
+    "iata": "",
+    "name": "De Witt Municipal Airport Whitcomb Field",
+    "city": "De Witt",
+    "state": "AR",
+    "country": "US",
+    "lat": 34.2623,
+    "lon": -91.3075,
+    "elevation_ft": 190,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3204,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aufderheide Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 4.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "DeWitt Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 4.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:35:27Z"
+  }
+}

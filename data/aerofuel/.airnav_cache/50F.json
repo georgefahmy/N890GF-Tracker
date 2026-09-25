@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787513154.210749,
+  "icao": "50F",
+  "data": {
+    "icao": "50F",
+    "faa": "50F",
+    "iata": "",
+    "name": "Bourland Field",
+    "city": "Cresson",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.5818,
+    "lon": -97.5908,
+    "elevation_ft": 873,
+    "tower": false,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3270,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bourland Field",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Jun",
+        "quote_date": "18-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.78,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.92,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T19:25:54Z"
+  }
+}

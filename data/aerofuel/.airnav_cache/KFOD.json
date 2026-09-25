@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1788202637.1940181,
+  "icao": "KFOD",
+  "data": {
+    "icao": "KFOD",
+    "faa": "FOD",
+    "iata": "FOD",
+    "name": "Fort Dodge Regional Airport",
+    "city": "Fort Dodge",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.5526,
+    "lon": -94.1912,
+    "elevation_ft": 1156,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.775,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.775
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 134.0
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 6547,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 5301,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fort Dodge Flight Support",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.84,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.81,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.84,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KFOD",
+    "airport_ref": "3536",
+    "fetched_at": "2026-08-31T18:57:17Z"
+  }
+}

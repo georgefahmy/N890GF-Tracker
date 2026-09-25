@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787528899.318627,
+  "icao": "KRCM",
+  "data": {
+    "icao": "KRCM",
+    "faa": "RCM",
+    "iata": "",
+    "name": "Skyhaven Airport",
+    "city": "Warrensburg",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.7842,
+    "lon": -93.8029,
+    "elevation_ft": 798,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "WHITEMAN APP",
+        "frequency_mhz": 127.45
+      },
+      {
+        "type": "DEP",
+        "description": "WHITEMAN DEP",
+        "frequency_mhz": 125.925
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4206,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 2801,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "University of Central Missouri",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.33,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.33,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:48:18Z"
+  }
+}

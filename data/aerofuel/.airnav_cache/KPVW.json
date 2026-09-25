@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1787543488.1052501,
+  "icao": "KPVW",
+  "data": {
+    "icao": "KPVW",
+    "faa": "PVW",
+    "iata": "PVW",
+    "name": "Hale County Airport",
+    "city": "Plainview",
+    "state": "TX",
+    "country": "US",
+    "lat": 34.1681,
+    "lon": -101.717,
+    "elevation_ft": 3374,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LUBBOCK APP/DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.675
+      },
+      {
+        "type": "CLD",
+        "description": "LUBBOCK CLNC DEL",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5997,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Tradewind FBO",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.58,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.68,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.27,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.58,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:51:28Z"
+  }
+}

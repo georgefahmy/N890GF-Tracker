@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787787723.8586812,
+  "icao": "H43",
+  "data": {
+    "icao": "H43",
+    "faa": "H43",
+    "name": "Haverstraw Heliport",
+    "city": "Haverstraw",
+    "state": "NY",
+    "distance_nm": 38.0,
+    "bearing": "S",
+    "fbos": [
+      {
+        "name": "Airmetro Helicopters",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 8.17,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-26T23:42:03Z",
+    "source": "AirNav Local Fuel"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787518838.307271,
+  "icao": "1D8",
+  "data": {
+    "icao": "1D8",
+    "faa": "1D8",
+    "iata": "",
+    "name": "Redfield Municipal Airport",
+    "city": "Redfield",
+    "state": "SD",
+    "country": "US",
+    "lat": 44.8562,
+    "lon": -98.5313,
+    "elevation_ft": 1307,
+    "tower": false,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 8400,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Redfield",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.86,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.86,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T21:00:38Z"
+  }
+}

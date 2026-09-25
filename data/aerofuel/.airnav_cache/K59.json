@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787788706.500999,
+  "icao": "K59",
+  "data": {
+    "icao": "K59",
+    "faa": "K59",
+    "iata": "",
+    "name": "Amelia Earhart Airport",
+    "city": "Atchison",
+    "state": "KS",
+    "country": "US",
+    "lat": 39.5705,
+    "lon": -95.1803,
+    "elevation_ft": 1073,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ST JOSEPH APP/DEP",
+        "frequency_mhz": 120.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3000,
+        "width": 48,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "913-426-5757",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:58:24Z"
+  }
+}

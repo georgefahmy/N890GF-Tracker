@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787525641.316101,
+  "icao": "KINJ",
+  "data": {
+    "icao": "KINJ",
+    "faa": "INJ",
+    "iata": "",
+    "name": "Hillsboro Municipal Airport",
+    "city": "Hillsboro",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.0835,
+    "lon": -97.0972,
+    "elevation_ft": 686,
+    "tower": false,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3998,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hillsboro Municipal Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.07,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.1,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.07,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "WACO APP/DEP",
+        "frequency_mhz": 135.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.725
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

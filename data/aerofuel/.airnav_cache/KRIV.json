@@ -1,0 +1,121 @@
+{
+  "_cached_at": 1788014738.767922,
+  "icao": "KRIV",
+  "data": {
+    "icao": "KRIV",
+    "faa": "RIV",
+    "iata": "RIV",
+    "name": "March Air Reserve Base",
+    "city": "Riverside",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.8807,
+    "lon": -117.259,
+    "elevation_ft": 1536,
+    "tower": true,
+    "tower_freq": 127.65,
+    "ctaf_freq": 127.65,
+    "unicom_freq": 122.95,
+    "weather_freq": 134.75,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.25,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 119.25,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.75,
+    "ground_desc": "GND/CLNC DEL",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 119.25
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 134.75
+      },
+      {
+        "type": "GCCD",
+        "description": "GND/CLNC DEL",
+        "frequency_mhz": 121.75
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 29.37
+      },
+      {
+        "type": "PMSV",
+        "description": "PMSV METRO",
+        "frequency_mhz": 23.98
+      },
+      {
+        "type": "POST",
+        "description": "COMD POST",
+        "frequency_mhz": 31.1
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 37.22
+      },
+      {
+        "type": "RDO",
+        "description": "RIVERSIDE RDO",
+        "frequency_mhz": 113.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 127.65
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 13302,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.36,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.36,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.36,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRIV",
+    "airport_ref": "3849",
+    "fetched_at": "2026-08-29T14:45:38Z"
+  }
+}

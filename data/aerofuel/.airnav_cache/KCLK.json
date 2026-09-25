@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787705679.186235,
+  "icao": "KCLK",
+  "data": {
+    "icao": "KCLK",
+    "faa": "CLK",
+    "iata": "CLK",
+    "name": "Clinton Regional Airport",
+    "city": "Clinton",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.5383,
+    "lon": -98.9327,
+    "elevation_ft": 1616,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 128.4
+      },
+      {
+        "type": "ASOS",
+        "description": "AWOS",
+        "frequency_mhz": 119.225
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4305,
+        "width": 72,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 1348,
+        "width": 245,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Clinton Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.39,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.63,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.39,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:54:39Z"
+  }
+}

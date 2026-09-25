@@ -1,0 +1,113 @@
+{
+  "_cached_at": 1788218510.1375759,
+  "icao": "KIJD",
+  "data": {
+    "icao": "KIJD",
+    "faa": "IJD",
+    "iata": "",
+    "name": "Windham Airport",
+    "city": "North Windham",
+    "state": "CT",
+    "country": "US",
+    "lat": 41.744,
+    "lon": -72.1803,
+    "elevation_ft": 247,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.975,
+    "weather_freq": 133.675,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 119.45,
+    "approach_desc": "PROVIDENCE APP",
+    "departure_freq": 127.8,
+    "departure_desc": "BRADLEY DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 128.6,
+    "clearance_desc": "BRADLEY CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "PROVIDENCE APP",
+        "frequency_mhz": 119.45
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 133.675
+      },
+      {
+        "type": "CLD",
+        "description": "BRADLEY CLNC DEL",
+        "frequency_mhz": 128.6
+      },
+      {
+        "type": "DEP",
+        "description": "BRADLEY DEP",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "RDO",
+        "description": "BRIDGEPORT RDO",
+        "frequency_mhz": 110.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4271,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2799,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Windham Air Services, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.17,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KIJD",
+    "airport_ref": "20166",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

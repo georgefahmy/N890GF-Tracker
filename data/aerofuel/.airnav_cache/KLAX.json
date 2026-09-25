@@ -1,0 +1,159 @@
+{
+  "_cached_at": 1787604233.519028,
+  "icao": "KLAX",
+  "data": {
+    "icao": "KLAX",
+    "faa": "LAX",
+    "iata": "LAX",
+    "name": "Los Angeles International Airport",
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.9425,
+    "lon": -118.408,
+    "elevation_ft": 125,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SOCAL APP",
+        "frequency_mhz": 36.07
+      },
+      {
+        "type": "APP",
+        "description": "SOCAL APP",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 133.8
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "DEP",
+        "description": "SOCAL DEP",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "MISC",
+        "description": "CG",
+        "frequency_mhz": 34.5
+      },
+      {
+        "type": "MISC",
+        "description": "CG",
+        "frequency_mhz": 898.4
+      },
+      {
+        "type": "OPS",
+        "description": "AF",
+        "frequency_mhz": 37.22
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "7L/25R",
+        "length": 12894,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "7R/25L",
+        "length": 11095,
+        "width": 200,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "6R/24L",
+        "length": 10859,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "6L/24R",
+        "length": 8926,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 12.21,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 14.18,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 22-Aug",
+        "quote_date": "22-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 12.18,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 14.03,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:43:53Z"
+  }
+}

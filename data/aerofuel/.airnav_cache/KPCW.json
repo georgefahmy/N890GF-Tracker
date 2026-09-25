@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1788014701.778888,
+  "icao": "KPCW",
+  "data": {
+    "icao": "KPCW",
+    "faa": "PCW",
+    "iata": "",
+    "name": "Erie-Ottawa International Airport",
+    "city": "Port Clinton",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.5156,
+    "lon": -82.8683,
+    "elevation_ft": 590,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.775,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 126.35,
+    "approach_desc": "CLEVELAND APP/DEP",
+    "departure_freq": 126.35,
+    "departure_desc": "CLEVELAND APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CLEVELAND APP/DEP",
+        "frequency_mhz": 126.35
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.775
+      },
+      {
+        "type": "RDO",
+        "description": "CLEVELAND RDO",
+        "frequency_mhz": 109.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5646,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 4002,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Erie Ottawa International Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.76,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.06,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.81,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.76,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPCW",
+    "airport_ref": "20812",
+    "fetched_at": "2026-08-29T14:45:01Z"
+  }
+}

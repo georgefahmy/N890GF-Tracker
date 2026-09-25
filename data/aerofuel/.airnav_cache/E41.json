@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787705980.9294531,
+  "icao": "E41",
+  "data": {
+    "icao": "E41",
+    "faa": "E41",
+    "iata": "",
+    "name": "Reagan County Airport",
+    "city": "Big Lake",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.1989,
+    "lon": -101.473,
+    "elevation_ft": 2706,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 126.15
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "MISC",
+        "description": "FOR RWY 16/34 LGT",
+        "frequency_mhz": 123.5
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 5035,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 4001,
+        "width": 60,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Reagan County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:59:40Z"
+  }
+}

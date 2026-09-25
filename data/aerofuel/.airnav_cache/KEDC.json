@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787525630.97943,
+  "icao": "KEDC",
+  "data": {
+    "icao": "KEDC",
+    "faa": "EDC",
+    "iata": "",
+    "name": "Austin Executive Airport",
+    "city": "Pflugerville",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.398,
+    "lon": -97.5669,
+    "elevation_ft": 620,
+    "tower": true,
+    "ctaf_freq": 125.2,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 6025,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 1550,
+        "width": 25,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Henriksen Jet Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 9.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:53:50Z"
+  }
+}

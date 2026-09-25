@@ -1,0 +1,130 @@
+{
+  "_cached_at": 1789072486.2366478,
+  "icao": "KTCS",
+  "data": {
+    "icao": "KTCS",
+    "faa": "TCS",
+    "iata": "TCS",
+    "name": "Truth or Consequences Municipal Airport",
+    "city": "Truth or Consequences",
+    "state": "NM",
+    "country": "US",
+    "lat": 33.2369,
+    "lon": -107.272,
+    "elevation_ft": 4853,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 120.675,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.675
+      },
+      {
+        "type": "CNTR",
+        "description": "ALBUQUERQUE CNTR",
+        "frequency_mhz": 128.2
+      },
+      {
+        "type": "RDO",
+        "description": "ALBUQUERQUE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 7202,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 6981,
+        "width": 190,
+        "surface": "Gravel",
+        "lighted": false
+      },
+      {
+        "id": "01/19",
+        "length": 3302,
+        "width": 130,
+        "surface": "Gravel",
+        "lighted": false
+      },
+      {
+        "id": "15/33",
+        "length": 3001,
+        "width": 140,
+        "surface": "Gravel",
+        "lighted": false
+      },
+      {
+        "id": "07/25",
+        "length": 2933,
+        "width": 130,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "575-894-6199",
+        "notes": "Quote: 04-Sep-2026",
+        "quote_date": "04-Sep-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.08,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.62,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.62,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KTCS",
+    "airport_ref": "3919",
+    "fetched_at": "2026-09-10T20:34:43Z"
+  }
+}

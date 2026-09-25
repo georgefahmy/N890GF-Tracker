@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787527464.4339101,
+  "icao": "PABT",
+  "data": {
+    "icao": "PABT",
+    "faa": "BTT",
+    "iata": "BTT",
+    "name": "Bettles Airport",
+    "city": "Bettles",
+    "state": "AK",
+    "country": "US",
+    "lat": 66.9139,
+    "lon": -151.529,
+    "elevation_ft": 647,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.45
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "FSS",
+        "description": "FAIRBANKS RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "MISC",
+        "description": "TWEB",
+        "frequency_mhz": 116.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5190,
+        "width": 150,
+        "surface": "Gravel",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bettles Lodge / Birchwood Air Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 15.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "MOGAS_FS": {
+            "price": 17.0,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Brooks Range Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 16.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 11.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 16.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:24:24Z"
+  }
+}

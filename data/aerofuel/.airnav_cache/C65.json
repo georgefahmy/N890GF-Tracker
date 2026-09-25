@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718691.361397,
+  "icao": "C65",
+  "data": {
+    "icao": "C65",
+    "faa": "C65",
+    "iata": "PLY",
+    "name": "Plymouth Municipal Airport",
+    "city": "Plymouth",
+    "state": "IN",
+    "country": "US",
+    "lat": 41.3651,
+    "lon": -86.3005,
+    "elevation_ft": 800,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOUTH BEND APP/DEP",
+        "frequency_mhz": 132.05
+      },
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 115.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 4400,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Plymouth (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.21,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:31:31Z"
+  }
+}

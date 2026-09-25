@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1787543355.3758469,
+  "icao": "KSJN",
+  "data": {
+    "icao": "KSJN",
+    "faa": "SJN",
+    "iata": "SJN",
+    "name": "St Johns Industrial Air Park",
+    "city": "St Johns",
+    "state": "AZ",
+    "country": "US",
+    "lat": 34.5186,
+    "lon": -109.379,
+    "elevation_ft": 5737,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 132.175
+      },
+      {
+        "type": "CNTR",
+        "description": "ALBUQUERQUE CNTR",
+        "frequency_mhz": 124.325
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 112.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 5322,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 3400,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "St. Johns Industrial Air Park",
+        "brand": "Phillips 66",
+        "phone": "928-337-4254",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {}
+      },
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "JET_A": {
+            "price": 3.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T03:49:13Z"
+  }
+}

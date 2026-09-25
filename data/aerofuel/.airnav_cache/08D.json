@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788634.426784,
+  "icao": "08D",
+  "data": {
+    "icao": "08D",
+    "faa": "08D",
+    "iata": "",
+    "name": "Stanley Municipal Airport",
+    "city": "Stanley",
+    "state": "ND",
+    "country": "US",
+    "lat": 48.3008,
+    "lon": -102.406,
+    "elevation_ft": 2245,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 127.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "9/27",
+        "length": 3900,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Stanley Municipal Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.1,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:57:14Z"
+  }
+}

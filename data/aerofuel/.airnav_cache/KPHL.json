@@ -1,0 +1,123 @@
+{
+  "_cached_at": 1787787731.566526,
+  "icao": "KPHL",
+  "data": {
+    "icao": "KPHL",
+    "faa": "PHL",
+    "iata": "PHL",
+    "name": "Philadelphia International Airport",
+    "city": "Philadelphia",
+    "state": "PA",
+    "country": "US",
+    "lat": 39.8719,
+    "lon": -75.2411,
+    "elevation_ft": 36,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 123.8
+      },
+      {
+        "type": "ARR",
+        "description": "PRM",
+        "frequency_mhz": 120.425
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 133.4
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.85
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 119.75
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "09R/27L",
+        "length": 12000,
+        "width": 200,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09L/27R",
+        "length": 9500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 6500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 5001,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.61,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.61,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:11Z"
+  }
+}

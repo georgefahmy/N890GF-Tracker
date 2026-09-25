@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787788238.033082,
+  "icao": "9V5",
+  "data": {
+    "icao": "9V5",
+    "faa": "9V5",
+    "iata": "",
+    "name": "Modisett Airport",
+    "city": "Rushville",
+    "state": "NE",
+    "country": "US",
+    "lat": 42.7365,
+    "lon": -102.4443,
+    "elevation_ft": 3751,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3900,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rushville Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:38Z"
+  }
+}

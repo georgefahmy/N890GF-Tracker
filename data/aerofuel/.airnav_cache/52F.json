@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787864079.024717,
+  "icao": "52F",
+  "data": {
+    "icao": "52F",
+    "faa": "52F",
+    "iata": "",
+    "name": "Aero Valley Airport",
+    "city": "Roanoke",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.0516,
+    "lon": -97.2321,
+    "elevation_ft": 643,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3500,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "682-237-9039",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Live Feed",
+    "raw_ident": "K52F",
+    "airport_ref": "18874",
+    "fetched_at": "2026-08-27T20:54:36Z"
+  }
+}

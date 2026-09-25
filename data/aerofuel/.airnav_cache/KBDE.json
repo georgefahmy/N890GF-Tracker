@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1787793716.7291148,
+  "icao": "KBDE",
+  "data": {
+    "icao": "KBDE",
+    "faa": "BDE",
+    "iata": "BDE",
+    "name": "Baudette International Airport",
+    "city": "Baudette",
+    "state": "MN",
+    "country": "US",
+    "lat": 48.7284,
+    "lon": -94.6122,
+    "elevation_ft": 1086,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 126.775,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 126.775
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13W/31W",
+        "length": 6000,
+        "width": 120,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "12/30",
+        "length": 5498,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Adventure North Flying Service, LLC",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.89,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBDE",
+    "airport_ref": "3395",
+    "fetched_at": "2026-08-27T01:21:56Z"
+  }
+}

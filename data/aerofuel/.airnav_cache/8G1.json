@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1788014701.7799182,
+  "icao": "8G1",
+  "data": {
+    "icao": "8G1",
+    "faa": "8G1",
+    "iata": "",
+    "name": "Willard Municipal Airport",
+    "city": "Willard",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.0387,
+    "lon": -82.7246,
+    "elevation_ft": 967,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.2,
+    "approach_desc": "MANSFIELD APP/DEP",
+    "departure_freq": 124.2,
+    "departure_desc": "MANSFIELD APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MANSFIELD APP/DEP",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "CLEVELAND RDO",
+        "frequency_mhz": 122.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 4028,
+        "width": 65,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Willard Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 29-Jun",
+        "quote_date": "29-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K8G1",
+    "airport_ref": "19129",
+    "fetched_at": "2026-08-29T14:45:01Z"
+  }
+}

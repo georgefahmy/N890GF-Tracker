@@ -1,0 +1,155 @@
+{
+  "_cached_at": 1787718609.4578528,
+  "icao": "KIAH",
+  "data": {
+    "icao": "KIAH",
+    "faa": "IAH",
+    "iata": "IAH",
+    "name": "George Bush Intercontinental Airport",
+    "city": "Houston",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.9844,
+    "lon": -95.3414,
+    "elevation_ft": 97,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.05
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 128.1
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 28.14
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 119.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 118.575
+      },
+      {
+        "type": "RDO",
+        "description": "MONTGOMERY CO RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 29.02
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.725
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "15L/33R",
+        "length": 12001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 10000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15R/33L",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "08R/26L",
+        "length": 9402,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "08L/26R",
+        "length": 9000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation IAH",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.01,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 9.68,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:09Z"
+  }
+}

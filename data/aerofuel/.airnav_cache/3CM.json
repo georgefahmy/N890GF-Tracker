@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202512.626109,
+  "icao": "3CM",
+  "data": {
+    "icao": "3CM",
+    "faa": "3CM",
+    "iata": "",
+    "name": "James Clements Municipal Airport",
+    "city": "Bay City",
+    "state": "MI",
+    "country": "US",
+    "lat": 43.5469,
+    "lon": -83.8955,
+    "elevation_ft": 585,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.95,
+    "approach_desc": "SAGINAW APP/DEP",
+    "departure_freq": 120.95,
+    "departure_desc": "SAGINAW APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SAGINAW APP/DEP",
+        "frequency_mhz": 120.95
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3798,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 2599,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "James Clements Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3CM",
+    "airport_ref": "18680",
+    "fetched_at": "2026-08-31T18:55:12Z"
+  }
+}

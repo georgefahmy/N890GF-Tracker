@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787788718.530762,
+  "icao": "C17",
+  "data": {
+    "icao": "C17",
+    "faa": "C17",
+    "iata": "",
+    "name": "Marion Airport",
+    "city": "Marion",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.0311,
+    "lon": -91.5293,
+    "elevation_ft": 862,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3776,
+        "width": 60,
+        "surface": "Com",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "LuxAir Aviation LLC",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.49,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 6.99,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:38Z"
+  }
+}

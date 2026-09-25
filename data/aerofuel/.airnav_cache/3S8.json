@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788014757.212687,
+  "icao": "3S8",
+  "data": {
+    "icao": "3S8",
+    "faa": "3S8",
+    "iata": "GTP",
+    "name": "Grants Pass Airport",
+    "city": "Grants Pass",
+    "state": "OR",
+    "country": "US",
+    "lat": 42.5101,
+    "lon": -123.388,
+    "elevation_ft": 1126,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.3,
+    "approach_desc": "CASCADE APP/DEP",
+    "departure_freq": 124.3,
+    "departure_desc": "CASCADE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CASCADE APP/DEP",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3999,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pacific Aviation Northwest, Inc.",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.19,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.99,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3S8",
+    "airport_ref": "18737",
+    "fetched_at": "2026-08-29T14:45:57Z"
+  }
+}

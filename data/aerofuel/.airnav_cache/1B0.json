@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1788218654.260755,
+  "icao": "1B0",
+  "data": {
+    "icao": "1B0",
+    "faa": "1B0",
+    "iata": "",
+    "name": "Dexter Regional Airport",
+    "city": "Dexter",
+    "state": "ME",
+    "country": "US",
+    "lat": 45.0041,
+    "lon": -69.237,
+    "elevation_ft": 533,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.925,
+    "approach_desc": "BANGOR APP/DEP",
+    "departure_freq": 118.925,
+    "departure_desc": "BANGOR APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BANGOR APP/DEP",
+        "frequency_mhz": 118.925
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3008,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 1249,
+        "width": 120,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dexter Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 22-Jul",
+        "quote_date": "22-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 5.85,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1B0",
+    "airport_ref": "18450",
+    "fetched_at": "2026-08-31T23:24:14Z"
+  }
+}

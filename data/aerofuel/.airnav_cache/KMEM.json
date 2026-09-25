@@ -1,0 +1,154 @@
+{
+  "_cached_at": 1787792778.598229,
+  "icao": "KMEM",
+  "data": {
+    "icao": "KMEM",
+    "faa": "MEM",
+    "iata": "MEM",
+    "name": "Frederick W. Smith International Airport",
+    "city": "Memphis",
+    "state": "TN",
+    "country": "US",
+    "lat": 35.0438,
+    "lon": -89.9763,
+    "elevation_ft": 341,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 33.83
+      },
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.75
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.2
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "POST",
+        "description": "ANG COMD POST",
+        "frequency_mhz": 138.95
+      },
+      {
+        "type": "RDO",
+        "description": "JACKSON RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "18C/36C",
+        "length": 11120,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "18R/36L",
+        "length": 9320,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "18L/36R",
+        "length": 9000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 8946,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wilson Air Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.12,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:18Z"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787864627.4342122,
+  "icao": "O81",
+  "data": {
+    "icao": "O81",
+    "faa": "O81",
+    "iata": "",
+    "name": "Tulelake Municipal Airport",
+    "city": "Tulelake",
+    "state": "CA",
+    "country": "US",
+    "lat": 41.8874,
+    "lon": -121.359,
+    "elevation_ft": 4044,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "MC MINNVILLE RDO",
+        "frequency_mhz": 122.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 3577,
+        "width": 44,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Macy's Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 6.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KO81",
+    "airport_ref": "20705",
+    "fetched_at": "2026-08-27T21:03:46Z"
+  }
+}

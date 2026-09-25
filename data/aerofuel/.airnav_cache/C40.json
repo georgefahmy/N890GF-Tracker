@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787718691.3619788,
+  "icao": "C40",
+  "data": {
+    "icao": "C40",
+    "faa": "C40",
+    "iata": "",
+    "name": "Miller Airport",
+    "city": "Bluffton",
+    "state": "IN",
+    "country": "US",
+    "lat": 40.7167,
+    "lon": -85.25,
+    "elevation_ft": 845,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 2600,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "18/36",
+        "length": 2230,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Miller Flying Service",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:31:31Z"
+  }
+}

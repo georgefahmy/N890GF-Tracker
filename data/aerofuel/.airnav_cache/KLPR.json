@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1788014701.779802,
+  "icao": "KLPR",
+  "data": {
+    "icao": "KLPR",
+    "faa": "LPR",
+    "iata": "",
+    "name": "Lorain County Regional Airport",
+    "city": "Lorain/Elyria",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.3443,
+    "lon": -82.1776,
+    "elevation_ft": 793,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 121.425,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 126.35,
+    "approach_desc": "CLEVELAND APP/DEP",
+    "departure_freq": 126.35,
+    "departure_desc": "CLEVELAND APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 125.7,
+    "clearance_desc": "CLEVELAND CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CLEVELAND APP/DEP",
+        "frequency_mhz": 126.35
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 121.425
+      },
+      {
+        "type": "CLD",
+        "description": "CLEVELAND CLNC DEL",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "MRK Aviation, Inc.",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.21,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.57,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.21,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLPR",
+    "airport_ref": "20368",
+    "fetched_at": "2026-08-29T14:45:01Z"
+  }
+}

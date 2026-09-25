@@ -1,0 +1,117 @@
+{
+  "_cached_at": 1787718334.1528509,
+  "icao": "KSKF",
+  "data": {
+    "icao": "KSKF",
+    "faa": "SKF",
+    "iata": "SKF",
+    "name": "Lackland Air Force Base",
+    "city": "San Antonio",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.3842,
+    "lon": -98.5811,
+    "elevation_ft": 691,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SAN ANTONIO APP",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.45
+      },
+      {
+        "type": "DEP",
+        "description": "SAN ANTONIO DEP",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "PMSV",
+        "description": "PMSV METRO",
+        "frequency_mhz": 23.98
+      },
+      {
+        "type": "POST",
+        "description": "AFRC COMD POST",
+        "frequency_mhz": 143.8
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 130.65
+      },
+      {
+        "type": "TWR",
+        "description": "KELLY TWR",
+        "frequency_mhz": 124.3
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 11550,
+        "width": 300,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.8,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Port San Antonio",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.14,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.14,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:25:34Z"
+  }
+}

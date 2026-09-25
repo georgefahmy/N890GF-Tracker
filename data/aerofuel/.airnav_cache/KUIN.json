@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1787786399.774461,
+  "icao": "KUIN",
+  "data": {
+    "icao": "KUIN",
+    "faa": "UIN",
+    "iata": "UIN",
+    "name": "Quincy Regional Airport Baldwin Field",
+    "city": "Quincy",
+    "state": "IL",
+    "country": "US",
+    "lat": 39.9427,
+    "lon": -91.1946,
+    "elevation_ft": 768,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 135.525
+      },
+      {
+        "type": "RDO",
+        "description": "ST LOUIS RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 7098,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 5399,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 5397,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Quincy Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:19:59Z"
+  }
+}

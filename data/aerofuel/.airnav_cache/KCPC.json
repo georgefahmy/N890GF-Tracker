@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1787793563.8733509,
+  "icao": "KCPC",
+  "data": {
+    "icao": "KCPC",
+    "faa": "CPC",
+    "iata": "",
+    "name": "Columbus County Municipal Airport",
+    "city": "Whiteville",
+    "state": "NC",
+    "country": "US",
+    "lat": 34.2729,
+    "lon": -78.715,
+    "elevation_ft": 99,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.375,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.2,
+    "approach_desc": "MYRTLE BEACH APP/DEP",
+    "departure_freq": 119.2,
+    "departure_desc": "MYRTLE BEACH APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MYRTLE BEACH APP/DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.375
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Columbus County (FBO)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCPC",
+    "airport_ref": "19537",
+    "fetched_at": "2026-08-27T01:19:23Z"
+  }
+}

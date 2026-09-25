@@ -1,0 +1,128 @@
+{
+  "_cached_at": 1788218381.6030772,
+  "icao": "KBAF",
+  "data": {
+    "icao": "KBAF",
+    "faa": "BAF",
+    "iata": "BAF",
+    "name": "Westfield-Barnes Regional Airport",
+    "city": "Westfield",
+    "state": "MA",
+    "country": "US",
+    "lat": 42.1578,
+    "lon": -72.7156,
+    "elevation_ft": 271,
+    "tower": true,
+    "tower_freq": 125.075,
+    "ctaf_freq": 125.075,
+    "unicom_freq": 125.075,
+    "weather_freq": 127.1,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 125.35,
+    "approach_desc": "BRADLEY APP/DEP",
+    "departure_freq": 125.35,
+    "departure_desc": "BRADLEY APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "WESTFIELD GND",
+    "clearance_freq": 121.7,
+    "clearance_desc": "BRADLEY CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BRADLEY APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.1
+      },
+      {
+        "type": "CLD",
+        "description": "BRADLEY CLNC DEL",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "CTAF",
+        "description": "WESTFIELD TRFC",
+        "frequency_mhz": 125.075
+      },
+      {
+        "type": "GND",
+        "description": "WESTFIELD GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "MISC",
+        "description": "ARNG OPS",
+        "frequency_mhz": 46.75
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS CNTR",
+        "frequency_mhz": 30.3
+      },
+      {
+        "type": "RDO",
+        "description": "BURLINGTON RDO",
+        "frequency_mhz": 113.0
+      },
+      {
+        "type": "TWR",
+        "description": "WESTFIELD TWR",
+        "frequency_mhz": 125.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 9000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 31-Aug",
+        "quote_date": "31-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.07,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.44,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.07,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBAF",
+    "airport_ref": "3393",
+    "fetched_at": "2026-08-31T23:19:41Z"
+  }
+}

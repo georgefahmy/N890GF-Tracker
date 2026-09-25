@@ -1,0 +1,116 @@
+{
+  "_cached_at": 1788542284.5149682,
+  "icao": "KBIH",
+  "data": {
+    "icao": "KBIH",
+    "faa": "BIH",
+    "iata": "BIH",
+    "name": "Eastern Sierra Regional Airport",
+    "city": "Bishop",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.3731,
+    "lon": -118.364,
+    "elevation_ft": 4124,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 119.025,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 125.75,
+    "approach_desc": "OAKLAND CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 125.75
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.025
+      },
+      {
+        "type": "RDO",
+        "description": "RIVERSIDE RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 7498,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 5600,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 5567,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bishop Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 01-Sep",
+        "quote_date": "01-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.29,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.66,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.29,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBIH",
+    "airport_ref": "19377",
+    "fetched_at": "2026-09-04T17:18:04Z"
+  }
+}

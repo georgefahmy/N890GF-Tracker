@@ -1,0 +1,115 @@
+{
+  "_cached_at": 1788202637.191967,
+  "icao": "KAEL",
+  "data": {
+    "icao": "KAEL",
+    "faa": "AEL",
+    "iata": "AEL",
+    "name": "Albert Lea Municipal Airport",
+    "city": "Albert Lea",
+    "state": "MN",
+    "country": "US",
+    "lat": 43.6815,
+    "lon": -93.3672,
+    "elevation_ft": 1260,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 119.575,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.8,
+    "approach_desc": "ROCHESTER APP/DEP",
+    "departure_freq": 119.8,
+    "departure_desc": "ROCHESTER APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROCHESTER APP/DEP",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.575
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 132.35
+      },
+      {
+        "type": "RDO",
+        "description": "PRINCETON RDO",
+        "frequency_mhz": 122.05
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 2898,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Albert Lea Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.59,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.96,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "MOGAS_FS": {
+            "price": 5.53,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.53,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAEL",
+    "airport_ref": "19244",
+    "fetched_at": "2026-08-31T18:57:17Z"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1787792807.716589,
+  "icao": "KSMQ",
+  "data": {
+    "icao": "KSMQ",
+    "faa": "SMQ",
+    "iata": "",
+    "name": "Somerset Airport",
+    "city": "Somerville",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.626,
+    "lon": -74.6702,
+    "elevation_ft": 105,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW YORK APP/DEP",
+        "frequency_mhz": 132.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.6
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 112.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 2739,
+        "width": 65,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 1923,
+        "width": 100,
+        "surface": "Gre",
+        "lighted": false
+      },
+      {
+        "id": "17/35",
+        "length": 1700,
+        "width": 150,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Somerset Air Service",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.52,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.52,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.52,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:47Z"
+  }
+}

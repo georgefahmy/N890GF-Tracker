@@ -1,0 +1,152 @@
+{
+  "_cached_at": 1787788130.287255,
+  "icao": "KIND",
+  "data": {
+    "icao": "KIND",
+    "faa": "IND",
+    "iata": "IND",
+    "name": "Indianapolis International Airport",
+    "city": "Indianapolis",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.7173,
+    "lon": -86.2944,
+    "elevation_ft": 797,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP INITIAL CONTACT",
+        "frequency_mhz": 128.175
+      },
+      {
+        "type": "APP (E)",
+        "description": "APP EAST OF ACTIVE RWY",
+        "frequency_mhz": 127.15
+      },
+      {
+        "type": "APP (W)",
+        "description": "APP WEST OF ACTIVE RUNWAY",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 134.25
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 128.75
+      },
+      {
+        "type": "DEP (E)",
+        "description": "DEP EAST",
+        "frequency_mhz": 124.95
+      },
+      {
+        "type": "DEP (W)",
+        "description": "DEP WEST",
+        "frequency_mhz": 119.05
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "TWR",
+        "description": "INDY TWR",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05L/23R",
+        "length": 11200,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "05R/23L",
+        "length": 10000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 7278,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.61,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.23,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.51,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.51,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:50Z"
+  }
+}

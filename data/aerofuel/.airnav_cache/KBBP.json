@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1789073621.591796,
+  "icao": "KBBP",
+  "data": {
+    "icao": "KBBP",
+    "faa": "BBP",
+    "iata": "BTN",
+    "name": "Marlboro County Jetport - H E Avent Field Airport",
+    "city": "Bennettsville",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.6217,
+    "lon": -79.7344,
+    "elevation_ft": 147,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 123.825,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.6,
+    "approach_desc": "FLORENCE APP/DEP",
+    "departure_freq": 118.6,
+    "departure_desc": "FLORENCE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FLORENCE APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 123.825
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5003,
+        "width": 74,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rare Air Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Jul",
+        "quote_date": "27-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBBP",
+    "airport_ref": "19354",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

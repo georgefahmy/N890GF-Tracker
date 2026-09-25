@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1788218347.392255,
+  "icao": "KAKR",
+  "data": {
+    "icao": "KAKR",
+    "faa": "AKR",
+    "iata": "AKC",
+    "name": "Akron Fulton International Airport",
+    "city": "Akron",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.0374,
+    "lon": -81.4678,
+    "elevation_ft": 1067,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.075,
+    "unicom_freq": 123.075,
+    "weather_freq": 126.825,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 118.6,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 118.6,
+    "departure_desc": "APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 126.825
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      },
+      {
+        "type": "RDO",
+        "description": "CLEVELAND RDO",
+        "frequency_mhz": 114.4
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 6336,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Summit Airport Services",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAKR",
+    "airport_ref": "3370",
+    "fetched_at": "2026-08-31T23:19:07Z"
+  }
+}

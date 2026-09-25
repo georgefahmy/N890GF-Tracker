@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787788230.262794,
+  "icao": "9D1",
+  "data": {
+    "icao": "9D1",
+    "faa": "9D1",
+    "iata": "",
+    "name": "Gregory Municipal Airport - Flynn Field",
+    "city": "Gregory",
+    "state": "SD",
+    "country": "US",
+    "lat": 43.2217,
+    "lon": -99.4033,
+    "elevation_ft": 2168,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "FSS",
+        "description": "HURON RDO",
+        "frequency_mhz": 122.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3799,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "605-835-9978",
+        "notes": "Quote: 21-Aug-2026",
+        "quote_date": "21-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:50:28Z"
+  }
+}

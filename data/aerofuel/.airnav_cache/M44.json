@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787787647.62846,
+  "icao": "M44",
+  "data": {
+    "icao": "M44",
+    "faa": "M44",
+    "iata": "",
+    "name": "Houston Municipal Airport",
+    "city": "Houston",
+    "state": "MS",
+    "country": "US",
+    "lat": 33.8862,
+    "lon": -89.0234,
+    "elevation_ft": 337,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 4400,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Houston Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.78,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:40:47Z"
+  }
+}

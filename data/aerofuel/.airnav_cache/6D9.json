@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787793734.5521321,
+  "icao": "6D9",
+  "data": {
+    "icao": "6D9",
+    "faa": "6D9",
+    "iata": "ECA",
+    "name": "Iosco County Airport",
+    "city": "East Tawas",
+    "state": "MI",
+    "country": "US",
+    "lat": 44.3128,
+    "lon": -83.4223,
+    "elevation_ft": 606,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 4802,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Iosco County",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.87,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.87,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K6D9",
+    "airport_ref": "18982",
+    "fetched_at": "2026-08-27T01:22:14Z"
+  }
+}

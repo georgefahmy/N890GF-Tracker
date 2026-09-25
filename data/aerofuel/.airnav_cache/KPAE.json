@@ -1,0 +1,139 @@
+{
+  "_cached_at": 1787864711.400756,
+  "icao": "KPAE",
+  "data": {
+    "icao": "KPAE",
+    "faa": "PAE",
+    "iata": "PAE",
+    "name": "Seattle Paine Field International Airport",
+    "city": "Everett",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.9063,
+    "lon": -122.282,
+    "elevation_ft": 606,
+    "tower": true,
+    "tower_freq": 120.2,
+    "ctaf_freq": 132.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 128.65,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.8,
+    "ground_desc": "GND",
+    "clearance_freq": 126.75,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.65
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.75
+      },
+      {
+        "type": "CNTR",
+        "description": "SEATTLE CNTR",
+        "frequency_mhz": 128.5
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 132.95
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "OPS",
+        "description": "AR OPS",
+        "frequency_mhz": 34.1
+      },
+      {
+        "type": "RDO",
+        "description": "SEATTLE RDO",
+        "frequency_mhz": 132.96
+      },
+      {
+        "type": "TWR",
+        "description": "ACFT ARR E OF CNTRLN ORRY 16L/34R",
+        "frequency_mhz": 120.2
+      },
+      {
+        "type": "TWR",
+        "description": "ACFT ARR W OF CNTRLN ORRY 16R/34L",
+        "frequency_mhz": 132.95
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "16R/34L",
+        "length": 9010,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16L/34R",
+        "length": 3004,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Propeller Aero Services FBO",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.93,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.93,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPAE",
+    "airport_ref": "3763",
+    "fetched_at": "2026-08-27T21:05:11Z"
+  }
+}

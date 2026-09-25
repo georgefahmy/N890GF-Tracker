@@ -1,0 +1,94 @@
+{
+  "_cached_at": 1787787565.682837,
+  "icao": "KDNL",
+  "data": {
+    "icao": "KDNL",
+    "faa": "DNL",
+    "iata": "DNL",
+    "name": "Daniel Field",
+    "city": "Augusta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.4665,
+    "lon": -82.0394,
+    "elevation_ft": 423,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "AUGUSTA APP/DEP",
+        "frequency_mhz": 126.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.275
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 128.1
+      },
+      {
+        "type": "RDO",
+        "description": "MACON RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 4002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 3733,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Augusta Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.74,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.7,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.74,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:39:25Z"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202512.623652,
+  "icao": "Y70",
+  "data": {
+    "icao": "Y70",
+    "faa": "Y70",
+    "iata": "",
+    "name": "Ionia County Airport",
+    "city": "Ionia",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.938,
+    "lon": -85.0605,
+    "elevation_ft": 818,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.65,
+    "approach_desc": "LANSING APP/DEP",
+    "departure_freq": 118.65,
+    "departure_desc": "LANSING APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LANSING APP/DEP",
+        "frequency_mhz": 118.65
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 115.95
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4300,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 4261,
+        "width": 340,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ionia County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KY70",
+    "airport_ref": "21426",
+    "fetched_at": "2026-08-31T18:55:12Z"
+  }
+}

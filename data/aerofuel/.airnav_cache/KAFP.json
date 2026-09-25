@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1789073621.5912058,
+  "icao": "KAFP",
+  "data": {
+    "icao": "KAFP",
+    "faa": "AFP",
+    "iata": "",
+    "name": "Anson County Airport - Jeff Cloud Field",
+    "city": "Wadesboro",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.0206,
+    "lon": -80.0771,
+    "elevation_ft": 300,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 119.325,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.05,
+    "approach_desc": "CHARLOTTE APP/DEP",
+    "departure_freq": 120.05,
+    "departure_desc": "CHARLOTTE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHARLOTTE APP/DEP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 5498,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Anson County Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 03-Sep",
+        "quote_date": "03-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.24,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAFP",
+    "airport_ref": "19250",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

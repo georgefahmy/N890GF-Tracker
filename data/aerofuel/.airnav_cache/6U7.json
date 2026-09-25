@@ -1,0 +1,42 @@
+{
+  "_cached_at": 1787788489.869071,
+  "icao": "6U7",
+  "data": {
+    "icao": "6U7",
+    "faa": "6U7",
+    "iata": "",
+    "name": "Hysham Airport",
+    "city": "Hysham",
+    "state": "MT",
+    "country": "US",
+    "lat": 46.2935,
+    "lon": -107.1936,
+    "elevation_ft": 2624,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3060,
+        "width": 45,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:54:47Z"
+  }
+}

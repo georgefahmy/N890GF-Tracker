@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788014753.0541592,
+  "icao": "S12",
+  "data": {
+    "icao": "S12",
+    "faa": "S12",
+    "iata": "",
+    "name": "Albany Municipal Airport",
+    "city": "Albany",
+    "state": "OR",
+    "country": "US",
+    "lat": 44.6378,
+    "lon": -123.059,
+    "elevation_ft": 226,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 127.5,
+    "approach_desc": "CASCADE APP/DEP",
+    "departure_freq": 127.5,
+    "departure_desc": "CASCADE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CASCADE APP/DEP",
+        "frequency_mhz": 127.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3004,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Oregon Aero Academy, Inc",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KS12",
+    "airport_ref": "20990",
+    "fetched_at": "2026-08-29T14:45:53Z"
+  }
+}

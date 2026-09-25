@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1787782633.7536252,
+  "icao": "KFMN",
+  "data": {
+    "icao": "KFMN",
+    "faa": "FMN",
+    "iata": "FMN",
+    "name": "Four Corners Regional Airport",
+    "city": "Farmington",
+    "state": "NM",
+    "country": "US",
+    "lat": 36.7412,
+    "lon": -108.23,
+    "elevation_ft": 5506,
+    "tower": true,
+    "ctaf_freq": 118.9,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.15
+      },
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 118.575
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "ALBUQUERQUE RDO",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "TWR",
+        "description": "FARMINGTON TWR",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 6704,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 6501,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.83,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.84,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T22:17:13Z"
+  }
+}

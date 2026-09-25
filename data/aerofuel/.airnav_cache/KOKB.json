@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787513430.2265909,
+  "icao": "KOKB",
+  "data": {
+    "icao": "KOKB",
+    "faa": "OKB",
+    "iata": "OCN",
+    "name": "Oceanside Municipal Airport",
+    "city": "Oceanside",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.2179,
+    "lon": -117.3517,
+    "elevation_ft": 28,
+    "tower": true,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 6570,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "KDG Aviation (Formally Airport Property Ventures)",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.77,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.77,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOCAL APP/DEP",
+        "frequency_mhz": 127.3
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "RDO",
+        "description": "SAN DIEGO RDO",
+        "frequency_mhz": 115.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "fetched_at": "2026-08-23T19:30:30Z"
+  }
+}

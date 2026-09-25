@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202468.957649,
+  "icao": "1A5",
+  "data": {
+    "icao": "1A5",
+    "faa": "1A5",
+    "iata": "",
+    "name": "Macon County Airport",
+    "city": "Franklin",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.2226,
+    "lon": -83.419,
+    "elevation_ft": 2020,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": 118.225,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.225
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 5002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Macon Air",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1A5",
+    "airport_ref": "18446",
+    "fetched_at": "2026-08-31T18:54:28Z"
+  }
+}

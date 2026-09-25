@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718313.172051,
+  "icao": "KHQG",
+  "data": {
+    "icao": "KHQG",
+    "faa": "HQG",
+    "iata": "",
+    "name": "Hugoton Municipal Airport",
+    "city": "Hugoton",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.1631,
+    "lon": -101.371,
+    "elevation_ft": 3134,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 134.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5000,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 3039,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hugoton Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 01-Aug",
+        "quote_date": "01-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.47,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.47,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:25:13Z"
+  }
+}

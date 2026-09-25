@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787543488.105406,
+  "icao": "KLIU",
+  "data": {
+    "icao": "KLIU",
+    "faa": "LIU",
+    "iata": "",
+    "name": "Littlefield Municipal Airport",
+    "city": "Littlefield",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.9239,
+    "lon": -102.387,
+    "elevation_ft": 3616,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LUBBOCK APP/DEP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4021,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 2513,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Brown Flying Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.48,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.48,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:51:28Z"
+  }
+}

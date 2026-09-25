@@ -1,0 +1,166 @@
+{
+  "_cached_at": 1788014731.080545,
+  "icao": "KSDL",
+  "data": {
+    "icao": "KSDL",
+    "faa": "SDL",
+    "iata": "SCF",
+    "name": "Scottsdale Airport",
+    "city": "Scottsdale",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.6229,
+    "lon": -111.911,
+    "elevation_ft": 1510,
+    "tower": true,
+    "tower_freq": 119.9,
+    "ctaf_freq": 119.9,
+    "unicom_freq": 119.9,
+    "weather_freq": 118.6,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 120.7,
+    "approach_desc": "PHOENIX APP/DEP",
+    "departure_freq": 120.7,
+    "departure_desc": "PHOENIX APP/DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": 124.8,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PHOENIX APP/DEP",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 8249,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Jet Aviation Scottsdale, LLC",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 11.3,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 29-Aug",
+        "quote_date": "29-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.83,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.57,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 11.52,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSDL",
+    "airport_ref": "21045",
+    "fetched_at": "2026-08-29T14:45:31Z"
+  }
+}

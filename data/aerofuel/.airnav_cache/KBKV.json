@@ -1,0 +1,128 @@
+{
+  "_cached_at": 1788218600.304716,
+  "icao": "KBKV",
+  "data": {
+    "icao": "KBKV",
+    "faa": "BKV",
+    "iata": "",
+    "name": "Brooksville\u2013Tampa Bay Regional Airport",
+    "city": "Brooksville",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.4695,
+    "lon": -82.4571,
+    "elevation_ft": 76,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 134.725,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 125.3,
+    "approach_desc": "TAMPA APP/DEP",
+    "departure_freq": 125.3,
+    "departure_desc": "TAMPA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 119.125,
+    "clearance_desc": "TAMPA CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TAMPA APP/DEP",
+        "frequency_mhz": 125.3
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 134.725
+      },
+      {
+        "type": "CLD",
+        "description": "TAMPA CLNC DEL",
+        "frequency_mhz": 119.125
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 40.9
+      },
+      {
+        "type": "RDO",
+        "description": "ST PETERSBURG RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 7001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 4200,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "American Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Sentinel",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 01-Jun",
+        "quote_date": "01-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBKV",
+    "airport_ref": "19385",
+    "fetched_at": "2026-08-31T23:23:20Z"
+  }
+}

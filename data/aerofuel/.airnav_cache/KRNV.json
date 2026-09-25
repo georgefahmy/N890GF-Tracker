@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1787718927.294529,
+  "icao": "KRNV",
+  "data": {
+    "icao": "KRNV",
+    "faa": "RNV",
+    "iata": "",
+    "name": "Cleveland Municipal Airport",
+    "city": "Cleveland",
+    "state": "MS",
+    "country": "US",
+    "lat": 33.7611,
+    "lon": -90.7579,
+    "elevation_ft": 139,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.725,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 124.175
+      },
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 135.875
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5005,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Air Repair, Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Blues Air LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 08-May",
+        "quote_date": "08-May",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.07,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.04,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.07,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:35:27Z"
+  }
+}

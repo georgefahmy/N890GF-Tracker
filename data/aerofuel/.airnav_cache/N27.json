@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787705574.1081479,
+  "icao": "N27",
+  "data": {
+    "icao": "N27",
+    "faa": "N27",
+    "iata": "",
+    "name": "Bradford County Airport",
+    "city": "Towanda",
+    "state": "PA",
+    "country": "US",
+    "lat": 41.74,
+    "lon": -76.4471,
+    "elevation_ft": 730,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BINGHAMTON APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 4301,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bradford County Airport Authority",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 21-Jul",
+        "quote_date": "21-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.89,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:52:54Z"
+  }
+}

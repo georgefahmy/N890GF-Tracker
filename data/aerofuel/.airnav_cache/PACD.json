@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1787531312.839898,
+  "icao": "PACD",
+  "data": {
+    "icao": "PACD",
+    "faa": "CDB",
+    "iata": "CDB",
+    "name": "Cold Bay Airport",
+    "city": "Cold Bay",
+    "state": "AK",
+    "country": "US",
+    "lat": 55.2079,
+    "lon": -162.725,
+    "elevation_ft": 96,
+    "tower": true,
+    "ctaf_freq": 123.6,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.75
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "FSS",
+        "description": "RDO",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "RFSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 123.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 10179,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 4900,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cold Bay Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Jun",
+        "quote_date": "26-Jun",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.91,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.89,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "MOGAS_FS": {
+            "price": 6.63,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.63,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:28:32Z"
+  }
+}

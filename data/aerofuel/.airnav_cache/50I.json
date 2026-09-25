@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1789073607.586572,
+  "icao": "50I",
+  "data": {
+    "icao": "50I",
+    "faa": "50I",
+    "iata": "KKT",
+    "name": "Kentland Municipal Airport",
+    "city": "Kentland",
+    "state": "IN",
+    "country": "US",
+    "lat": 40.7587,
+    "lon": -87.4295,
+    "elevation_ft": 698,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "CHICAGO CNTR",
+        "frequency_mhz": 132.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4004,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Kentland Municipal Airport",
+        "brand": "Titan",
+        "phone": "219-863-7620",
+        "notes": "Titan \u2022 Quote: 08-Sep-2026",
+        "quote_date": "08-Sep-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "K50I",
+    "airport_ref": "18866",
+    "fetched_at": "2026-09-10T20:53:26Z"
+  }
+}

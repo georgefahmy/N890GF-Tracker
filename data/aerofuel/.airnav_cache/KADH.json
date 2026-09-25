@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787794409.1017349,
+  "icao": "KADH",
+  "data": {
+    "icao": "KADH",
+    "faa": "ADH",
+    "iata": "ADT",
+    "name": "Ada Regional Airport",
+    "city": "Ada",
+    "state": "OK",
+    "country": "US",
+    "lat": 34.8052,
+    "lon": -96.672,
+    "elevation_ft": 1016,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.725,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.725
+      },
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 128.1
+      },
+      {
+        "type": "RDO",
+        "description": "MC ALESTER RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 6203,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 2717,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Heartland Aviation",
+        "brand": "Titan",
+        "phone": "580-235-5279",
+        "notes": "Titan \u2022 Quote: 24-Aug-2026 \u2022 UNICOM: 122.80",
+        "quote_date": "24-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.3,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KADH",
+    "airport_ref": "19235",
+    "fetched_at": "2026-08-27T01:33:27Z"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787718518.6154392,
+  "icao": "NSAS",
+  "data": {
+    "icao": "NSAS",
+    "faa": "Z08",
+    "iata": "OFU",
+    "name": "Ofu Airport",
+    "city": "Ofu",
+    "state": "AS",
+    "country": "US",
+    "lat": -14.1844,
+    "lon": -169.67,
+    "elevation_ft": 9,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 2000,
+        "width": 60,
+        "surface": "Concrete",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:28:38Z"
+  }
+}

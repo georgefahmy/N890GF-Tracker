@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787788062.1287339,
+  "icao": "KPEX",
+  "data": {
+    "icao": "KPEX",
+    "faa": "PEX",
+    "iata": "",
+    "name": "Paynesville Municipal Airport",
+    "city": "Paynesville",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.3721,
+    "lon": -94.7447,
+    "elevation_ft": 1180,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 3302,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Paynesville",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.01,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.01,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:47:42Z"
+  }
+}

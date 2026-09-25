@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787786466.057162,
+  "icao": "KAPT",
+  "data": {
+    "icao": "KAPT",
+    "faa": "APT",
+    "iata": "APT",
+    "name": "Marion County Airport - Brown Field",
+    "city": "Jasper",
+    "state": "TN",
+    "country": "US",
+    "lat": 35.0607,
+    "lon": -85.5853,
+    "elevation_ft": 641,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHATTANOOGA APP/DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3498,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Marion County Airport",
+        "brand": "Phillips 66",
+        "phone": "423-942-5234",
+        "notes": "Phillips 66 \u2022 Quote: 26-Aug-2026",
+        "quote_date": "26-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.36,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.15,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 5.66,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.66,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:21:03Z"
+  }
+}

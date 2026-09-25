@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1789073595.8443189,
+  "icao": "KHNB",
+  "data": {
+    "icao": "KHNB",
+    "faa": "HNB",
+    "iata": "HNB",
+    "name": "Huntingburg Airport",
+    "city": "Huntingburg",
+    "state": "IN",
+    "country": "US",
+    "lat": 38.249,
+    "lon": -86.9537,
+    "elevation_ft": 529,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.25,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 126.4,
+    "approach_desc": "EVANSVILLE APP/DEP",
+    "departure_freq": 126.4,
+    "departure_desc": "EVANSVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 118.8,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "EVANSVILLE APP/DEP",
+        "frequency_mhz": 126.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.25
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5501,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dubois County Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 01-Sep",
+        "quote_date": "01-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.66,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.89,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KHNB",
+    "airport_ref": "20067",
+    "fetched_at": "2026-09-10T20:53:15Z"
+  }
+}

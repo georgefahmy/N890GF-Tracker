@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1788202528.592418,
+  "icao": "KUSE",
+  "data": {
+    "icao": "KUSE",
+    "faa": "USE",
+    "iata": "",
+    "name": "Fulton County Airport",
+    "city": "Wauseon",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.6101,
+    "lon": -84.1272,
+    "elevation_ft": 779,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 134.35,
+    "approach_desc": "TOLEDO APP/DEP",
+    "departure_freq": 134.35,
+    "departure_desc": "TOLEDO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TOLEDO APP/DEP",
+        "frequency_mhz": 134.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3882,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2115,
+        "width": 75,
+        "surface": "Com",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fulton County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.09,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "94UL_SS": {
+            "price": 5.89,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KUSE",
+    "airport_ref": "21302",
+    "fetched_at": "2026-08-31T18:55:28Z"
+  }
+}

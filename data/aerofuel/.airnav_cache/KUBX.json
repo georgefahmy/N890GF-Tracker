@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787793549.428896,
+  "icao": "KUBX",
+  "data": {
+    "icao": "KUBX",
+    "faa": "UBX",
+    "iata": "",
+    "name": "Cuba Municipal Airport",
+    "city": "Cuba",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.0688,
+    "lon": -91.4289,
+    "elevation_ft": 1023,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 133.4,
+    "approach_desc": "KANSAS CITY CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 133.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3420,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cuba Municipal Airport (Mosby Field)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KUBX",
+    "airport_ref": "21283",
+    "fetched_at": "2026-08-27T01:19:09Z"
+  }
+}

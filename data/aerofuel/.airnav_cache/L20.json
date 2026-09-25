@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787527544.3860328,
+  "icao": "L20",
+  "data": {
+    "icao": "L20",
+    "faa": "L20",
+    "iata": "",
+    "name": "Coal Creek Airport",
+    "city": "Yukon Charley Rivers",
+    "state": "AK",
+    "country": "US",
+    "lat": 65.3113,
+    "lon": -143.135,
+    "elevation_ft": 850,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 3900,
+        "width": 80,
+        "surface": "Gravel-P",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:25:44Z"
+  }
+}

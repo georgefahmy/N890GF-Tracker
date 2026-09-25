@@ -1,0 +1,108 @@
+{
+  "_cached_at": 1788014738.766995,
+  "icao": "KONT",
+  "data": {
+    "icao": "KONT",
+    "faa": "ONT",
+    "iata": "ONT",
+    "name": "Ontario International Airport",
+    "city": "Ontario",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.056,
+    "lon": -117.601,
+    "elevation_ft": 944,
+    "tower": true,
+    "tower_freq": 120.6,
+    "ctaf_freq": 120.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 124.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.65,
+    "approach_desc": "SOCAL APP/DEP",
+    "departure_freq": 119.65,
+    "departure_desc": "SOCAL APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 118.1,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOCAL APP/DEP",
+        "frequency_mhz": 119.65
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.25
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.6
+      }
+    ],
+    "runways": [
+      {
+        "id": "08L/26R",
+        "length": 12197,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "08R/26L",
+        "length": 10200,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Guardian Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.05,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.03,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KONT",
+    "airport_ref": "3752",
+    "fetched_at": "2026-08-29T14:45:38Z"
+  }
+}

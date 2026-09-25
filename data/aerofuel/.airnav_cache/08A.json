@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787525309.425287,
+  "icao": "08A",
+  "data": {
+    "icao": "08A",
+    "faa": "08A",
+    "name": "Wetumpka Municipal Airport",
+    "city": "Wetumpka",
+    "state": "AL",
+    "distance_nm": 53.0,
+    "bearing": "E",
+    "fbos": [
+      {
+        "name": "Wetumpka Municipal Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T22:48:29Z",
+    "source": "AirNav Local Fuel"
+  }
+}

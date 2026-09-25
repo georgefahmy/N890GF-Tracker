@@ -1,0 +1,108 @@
+{
+  "_cached_at": 1788202528.593098,
+  "icao": "KONZ",
+  "data": {
+    "icao": "KONZ",
+    "faa": "ONZ",
+    "iata": "",
+    "name": "Grosse Ile Municipal Airport",
+    "city": "Detroit/Grosse Ile",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.0991,
+    "lon": -83.1615,
+    "elevation_ft": 591,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 119.675,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 134.3,
+    "approach_desc": "DETROIT APP",
+    "departure_freq": 134.3,
+    "departure_desc": "DETROIT DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "DETROIT APP",
+        "frequency_mhz": 134.3
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.675
+      },
+      {
+        "type": "DEP",
+        "description": "DETROIT DEP",
+        "frequency_mhz": 134.3
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 115.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4846,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 4424,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Grosse Ile Municipal Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.82,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.38,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.82,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KONZ",
+    "airport_ref": "20755",
+    "fetched_at": "2026-08-31T18:55:28Z"
+  }
+}

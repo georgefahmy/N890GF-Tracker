@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787525641.315948,
+  "icao": "KGOP",
+  "data": {
+    "icao": "KGOP",
+    "faa": "GOP",
+    "iata": "",
+    "name": "Gatesville Municipal Airport",
+    "city": "Gatesville",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.4213,
+    "lon": -97.797,
+    "elevation_ft": 905,
+    "tower": false,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3400,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Gatesville",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:54:01Z"
+  }
+}

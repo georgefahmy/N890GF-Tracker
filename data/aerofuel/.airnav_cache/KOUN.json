@@ -1,0 +1,118 @@
+{
+  "_cached_at": 1787794409.103189,
+  "icao": "KOUN",
+  "data": {
+    "icao": "KOUN",
+    "faa": "OUN",
+    "iata": "OUN",
+    "name": "University of Oklahoma Westheimer Airport",
+    "city": "Norman",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.2456,
+    "lon": -97.4721,
+    "elevation_ft": 1182,
+    "tower": true,
+    "tower_freq": 118.0,
+    "ctaf_freq": 118.0,
+    "unicom_freq": 122.95,
+    "weather_freq": 119.55,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.45,
+    "approach_desc": "OKE CITY APP/DEP",
+    "departure_freq": 120.45,
+    "departure_desc": "OKE CITY APP/DEP",
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "OKE CITY APP/DEP",
+        "frequency_mhz": 120.45
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.55
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "RDO",
+        "description": "MC ALESTER RDO",
+        "frequency_mhz": 122.15
+      },
+      {
+        "type": "TWR",
+        "description": "WESTHEIMER TWR",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5200,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 4748,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cruise Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 22-Aug",
+        "quote_date": "22-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOUN",
+    "airport_ref": "20771",
+    "fetched_at": "2026-08-27T01:33:29Z"
+  }
+}

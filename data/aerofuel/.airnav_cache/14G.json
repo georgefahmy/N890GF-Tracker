@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788014701.779148,
+  "icao": "14G",
+  "data": {
+    "icao": "14G",
+    "faa": "14G",
+    "iata": "",
+    "name": "Fremont Airport",
+    "city": "Fremont",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.3331,
+    "lon": -83.1612,
+    "elevation_ft": 663,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.1,
+    "approach_desc": "TOLEDO APP/DEP",
+    "departure_freq": 126.1,
+    "departure_desc": "TOLEDO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TOLEDO APP/DEP",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4137,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rex Air LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K14G",
+    "airport_ref": "18419",
+    "fetched_at": "2026-08-29T14:45:01Z"
+  }
+}

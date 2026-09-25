@@ -1,0 +1,134 @@
+{
+  "_cached_at": 1788014731.079537,
+  "icao": "KFFZ",
+  "data": {
+    "icao": "KFFZ",
+    "faa": "FFZ",
+    "iata": "MSC",
+    "name": "Falcon Field",
+    "city": "Mesa",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.4608,
+    "lon": -111.728,
+    "elevation_ft": 1394,
+    "tower": true,
+    "tower_freq": 124.6,
+    "ctaf_freq": 124.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 120.7,
+    "approach_desc": "PHOENIX APP/DEP",
+    "departure_freq": 120.7,
+    "departure_desc": "PHOENIX APP/DEP",
+    "ground_freq": 121.3,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PHOENIX APP/DEP",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04R/22L",
+        "length": 5100,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04L/22R",
+        "length": 3799,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cunningham Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.09,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.09,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.76,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Heliponents, Inc.",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 7.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.09,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KFFZ",
+    "airport_ref": "19866",
+    "fetched_at": "2026-08-29T14:45:31Z"
+  }
+}

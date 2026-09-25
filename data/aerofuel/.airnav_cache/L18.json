@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787604227.950177,
+  "icao": "L18",
+  "data": {
+    "icao": "L18",
+    "faa": "L18",
+    "iata": "",
+    "name": "Fallbrook Community Airpark",
+    "city": "Fallbrook",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.3542,
+    "lon": -117.251,
+    "elevation_ft": 708,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2150,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "AHM, LLC",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 07-May",
+        "quote_date": "07-May",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.91,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.91,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T20:43:47Z"
+  }
+}

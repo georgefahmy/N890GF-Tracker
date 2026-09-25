@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1790303755.606265,
+  "icao": "F14",
+  "data": {
+    "icao": "F14",
+    "faa": "F14",
+    "iata": "",
+    "name": "Wichita Valley Airport",
+    "city": "Wichita Falls",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.9477,
+    "lon": -98.6167,
+    "elevation_ft": 1005,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.2,
+    "approach_desc": "SHEPPARD APP/DEP",
+    "departure_freq": 118.2,
+    "departure_desc": "SHEPPARD APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SHEPPARD APP/DEP",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3320,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 3050,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "16/34",
+        "length": 2000,
+        "width": 42,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wichita Valley Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 07-Sep",
+        "quote_date": "07-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.79,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KF14",
+    "airport_ref": "19801",
+    "fetched_at": "2026-08-26T23:21:45Z"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787531204.2360802,
+  "icao": "PAPE",
+  "data": {
+    "icao": "PAPE",
+    "faa": "PEV",
+    "iata": "KPV",
+    "name": "Perryville Airport",
+    "city": "Perryville",
+    "state": "AK",
+    "country": "US",
+    "lat": 55.9065,
+    "lon": -159.1609,
+    "elevation_ft": 29,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 3300,
+        "width": 75,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:26:44Z"
+  }
+}

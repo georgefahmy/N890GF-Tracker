@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788218353.6351428,
+  "icao": "C73",
+  "data": {
+    "icao": "C73",
+    "faa": "C73",
+    "iata": "",
+    "name": "Dixon Municipal Charles R. Walgreen Field",
+    "city": "Dixon",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.8339,
+    "lon": -89.444,
+    "elevation_ft": 785,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 123.05,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 126.0,
+    "approach_desc": "ROCKFORD APP/DEP",
+    "departure_freq": 126.0,
+    "departure_desc": "ROCKFORD APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROCKFORD APP/DEP",
+        "frequency_mhz": 126.0
+      },
+      {
+        "type": "RDO",
+        "description": "KANKAKEE RDO",
+        "frequency_mhz": 111.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3897,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 2803,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Dixon",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KC73",
+    "airport_ref": "19450",
+    "fetched_at": "2026-08-31T23:19:13Z"
+  }
+}

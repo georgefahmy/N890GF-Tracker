@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1788202476.5230432,
+  "icao": "1C1",
+  "data": {
+    "icao": "1C1",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T18:54:36Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787787741.293322,
+  "icao": "KGED",
+  "data": {
+    "icao": "KGED",
+    "faa": "GED",
+    "iata": "GED",
+    "name": "Delaware Coastal Airport",
+    "city": "Georgetown",
+    "state": "DE",
+    "country": "US",
+    "lat": 38.6892,
+    "lon": -75.3589,
+    "elevation_ft": 53,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DOVER APP/DEP",
+        "frequency_mhz": 132.425
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.375
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 112.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5500,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10/28",
+        "length": 3109,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Skyline Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.7,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:21Z"
+  }
+}

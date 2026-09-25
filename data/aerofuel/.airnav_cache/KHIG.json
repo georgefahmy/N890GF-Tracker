@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787788690.004351,
+  "icao": "KHIG",
+  "data": {
+    "icao": "KHIG",
+    "faa": "HIG",
+    "iata": "",
+    "name": "Higginsville Industrial Municipal Airport",
+    "city": "Higginsville",
+    "state": "MO",
+    "country": "US",
+    "lat": 39.0729,
+    "lon": -93.6775,
+    "elevation_ft": 840,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 4400,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Higginsville",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.64,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.64,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:09Z"
+  }
+}

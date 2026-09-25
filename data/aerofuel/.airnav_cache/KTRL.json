@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787525695.969185,
+  "icao": "KTRL",
+  "data": {
+    "icao": "KTRL",
+    "faa": "TRL",
+    "iata": "TRL",
+    "name": "Terrell Municipal Airport",
+    "city": "Terrell",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7092,
+    "lon": -96.2674,
+    "elevation_ft": 474,
+    "tower": false,
+    "ctaf_freq": 124.8,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5006,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Apex Aero Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.69,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.275
+      },
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 132.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T22:54:55Z"
+  }
+}

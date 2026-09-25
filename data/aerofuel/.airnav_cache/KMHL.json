@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787788690.00353,
+  "icao": "KMHL",
+  "data": {
+    "icao": "KMHL",
+    "faa": "MHL",
+    "iata": "MHL",
+    "name": "Marshall Memorial Municipal Airport",
+    "city": "Marshall",
+    "state": "MO",
+    "country": "US",
+    "lat": 39.0958,
+    "lon": -93.2029,
+    "elevation_ft": 779,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "WHITEMAN APP",
+        "frequency_mhz": 127.45
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.675
+      },
+      {
+        "type": "DEP",
+        "description": "WHITEMAN DEP",
+        "frequency_mhz": 125.925
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5005,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 3303,
+        "width": 150,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Marshall Memorial Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.02,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.97,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.02,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:09Z"
+  }
+}

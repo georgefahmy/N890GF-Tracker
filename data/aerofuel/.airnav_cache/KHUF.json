@@ -1,0 +1,119 @@
+{
+  "_cached_at": 1787528585.232064,
+  "icao": "KHUF",
+  "data": {
+    "icao": "KHUF",
+    "faa": "HUF",
+    "iata": "HUF",
+    "name": "Terre Haute Regional Airport, Hulman Field",
+    "city": "Terre Haute",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.4515,
+    "lon": -87.3076,
+    "elevation_ft": 589,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HULMAN A/D SECONDARY",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "A/D",
+        "description": "HULMAN A/D",
+        "frequency_mhz": 125.45
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 127.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.5
+      },
+      {
+        "type": "CTR",
+        "description": "INDIANAPOLIS CENTER",
+        "frequency_mhz": 132.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "OPS",
+        "description": "RACER OPS",
+        "frequency_mhz": 143.55
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 134.725
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 9021,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 7200,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hoosier Aviation, LLC",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.58,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.66,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.58,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:43:05Z"
+  }
+}

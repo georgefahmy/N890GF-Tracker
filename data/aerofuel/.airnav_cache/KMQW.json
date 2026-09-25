@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1789073639.959258,
+  "icao": "KMQW",
+  "data": {
+    "icao": "KMQW",
+    "faa": "MQW",
+    "iata": "MQW",
+    "name": "Telfair Wheeler Airport",
+    "city": "Mc Rae",
+    "state": "GA",
+    "country": "US",
+    "lat": 32.0958,
+    "lon": -82.88,
+    "elevation_ft": 202,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 132.3,
+    "approach_desc": "JACKSONVILLE CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "JACKSONVILLE CNTR",
+        "frequency_mhz": 132.3
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Telfair-Wheeler Airport Authority",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 01-Sep",
+        "quote_date": "01-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.29,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.73,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.29,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMQW",
+    "airport_ref": "20556",
+    "fetched_at": "2026-09-10T20:53:59Z"
+  }
+}

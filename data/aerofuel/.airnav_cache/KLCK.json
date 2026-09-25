@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787792732.222262,
+  "icao": "KLCK",
+  "data": {
+    "icao": "KLCK",
+    "faa": "LCK",
+    "iata": "LCK",
+    "name": "Rickenbacker International Airport",
+    "city": "Columbus",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.8138,
+    "lon": -82.9278,
+    "elevation_ft": 744,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "COLUMBUS APP",
+        "frequency_mhz": 119.15
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.75
+      },
+      {
+        "type": "DEP",
+        "description": "COLUMBUS DEP",
+        "frequency_mhz": 123.8
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.85
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 36.7
+      },
+      {
+        "type": "POST",
+        "description": "COMD POST",
+        "frequency_mhz": 23.88
+      },
+      {
+        "type": "TWR",
+        "description": "RICK TWR",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "05R/23L",
+        "length": 12103,
+        "width": 200,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "05L/23R",
+        "length": 11902,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rickenbacker Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.3,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:05:32Z"
+  }
+}

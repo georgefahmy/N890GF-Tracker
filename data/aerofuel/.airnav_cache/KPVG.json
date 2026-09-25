@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787528412.7817879,
+  "icao": "KPVG",
+  "data": {
+    "icao": "KPVG",
+    "faa": "PVG",
+    "iata": "",
+    "name": "Hampton Roads Executive Airport",
+    "city": "Chesapeake",
+    "state": "VA",
+    "country": "US",
+    "lat": 36.7804,
+    "lon": -76.4488,
+    "elevation_ft": 28,
+    "tower": false,
+    "ctaf_freq": 122.72,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORFOLK APP/DEP",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3PT",
+        "frequency_mhz": 118.375
+      },
+      {
+        "type": "CTAF/UNICOM",
+        "description": "Hampton Roads Traffic/UNICOM",
+        "frequency_mhz": 122.72
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 5350,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "02/20",
+        "length": 3525,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Virginia Aviation Associates",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.89,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.59,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:40:12Z"
+  }
+}

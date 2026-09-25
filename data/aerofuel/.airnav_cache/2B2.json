@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787787707.322144,
+  "icao": "2B2",
+  "data": {
+    "icao": "2B2",
+    "faa": "2B2",
+    "iata": "",
+    "name": "Plum Island Airport",
+    "city": "Newburyport",
+    "state": "MA",
+    "country": "US",
+    "lat": 42.7959,
+    "lon": -70.8412,
+    "elevation_ft": 11,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 2300,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "10/28",
+        "length": 2105,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Plum Island Aerodrome Inc.",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Jun",
+        "quote_date": "26-Jun",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.49,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:41:47Z"
+  }
+}

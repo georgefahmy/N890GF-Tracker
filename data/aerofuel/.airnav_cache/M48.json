@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787787831.572054,
+  "icao": "M48",
+  "data": {
+    "icao": "M48",
+    "faa": "M48",
+    "iata": "",
+    "name": "Houston Memorial Airport",
+    "city": "Houston",
+    "state": "MO",
+    "country": "US",
+    "lat": 37.3301,
+    "lon": -91.9732,
+    "elevation_ft": 1196,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3500,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Houston",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.65,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:51Z"
+  }
+}

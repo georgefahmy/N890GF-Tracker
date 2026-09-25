@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787505204.459358,
+  "icao": "79C",
+  "data": {
+    "icao": "79C",
+    "faa": "79C",
+    "iata": "",
+    "name": "Brennand Airport",
+    "city": "Neenah",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.1591,
+    "lon": -88.5619,
+    "elevation_ft": 850,
+    "tower": false,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 6750,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Brennand Airport LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T17:13:22Z"
+  }
+}

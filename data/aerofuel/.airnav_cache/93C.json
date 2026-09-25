@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787787851.123787,
+  "icao": "93C",
+  "data": {
+    "icao": "93C",
+    "faa": "93C",
+    "iata": "",
+    "name": "Richland Airport",
+    "city": "Richland Center",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.2834,
+    "lon": -90.2983,
+    "elevation_ft": 742,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "CHICAGO CNTR",
+        "frequency_mhz": 133.3
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3200,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 1500,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Richland Center Municipal Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.06,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.06,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:44:11Z"
+  }
+}

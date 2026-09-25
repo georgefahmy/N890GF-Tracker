@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787531319.574482,
+  "icao": "PAKO",
+  "data": {
+    "icao": "PAKO",
+    "faa": "IKO",
+    "iata": "IKO",
+    "name": "Nikolski Air Station",
+    "city": "Nikolski",
+    "state": "AK",
+    "country": "US",
+    "lat": 52.9416,
+    "lon": -168.8495,
+    "elevation_ft": 77,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3512,
+        "width": 135,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:28:39Z"
+  }
+}

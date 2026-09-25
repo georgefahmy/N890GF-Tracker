@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1788014935.8716311,
+  "icao": "KZPH",
+  "data": {
+    "icao": "KZPH",
+    "faa": "ZPH",
+    "iata": "ZPH",
+    "name": "Zephyrhills Municipal Airport",
+    "city": "Zephyrhills",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.2282,
+    "lon": -82.1559,
+    "elevation_ft": 90,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.075,
+    "unicom_freq": 123.075,
+    "weather_freq": 118.975,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 119.9,
+    "approach_desc": "TAMPA APP/DEP",
+    "departure_freq": 119.9,
+    "departure_desc": "TAMPA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TAMPA APP/DEP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.975
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "19/1",
+        "length": 5072,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "5/23",
+        "length": 5001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Zephyrhills (FBO)",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.85,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KZPH",
+    "airport_ref": "21442",
+    "fetched_at": "2026-08-29T14:48:55Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787531423.278368,
+  "icao": "PACJ",
+  "data": {
+    "icao": "PACJ",
+    "faa": "CJX",
+    "iata": "CKD",
+    "name": "Crooked Creek Airport",
+    "city": "Crooked Creek",
+    "state": "AK",
+    "country": "US",
+    "lat": 61.8703,
+    "lon": -158.1376,
+    "elevation_ft": 178,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 1997,
+        "width": 60,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Thomas Trading Post",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "MOGAS_FS": {
+            "price": 11.85,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 11.85,
+    "primary_fuel": "Mogas",
+    "fuels_available": [
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T00:30:23Z"
+  }
+}

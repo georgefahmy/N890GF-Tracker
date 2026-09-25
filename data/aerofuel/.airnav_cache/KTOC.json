@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1787787751.9974139,
+  "icao": "KTOC",
+  "data": {
+    "icao": "KTOC",
+    "faa": "TOC",
+    "iata": "TOC",
+    "name": "Toccoa Airport - R.G. Letourneau Field",
+    "city": "Toccoa",
+    "state": "GA",
+    "country": "US",
+    "lat": 34.5938,
+    "lon": -83.2958,
+    "elevation_ft": 996,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "ATLANTA CNTR",
+        "frequency_mhz": 134.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5008,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 2951,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Toccoa Aviation, Inc.",
+        "brand": "World Fuel Services",
+        "phone": "706-886-1320",
+        "notes": "World Fuel Services \u2022 Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Foothills Aviation / Ace Aircraft",
+        "brand": "",
+        "phone": "706-886-6341",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:42:30Z"
+  }
+}

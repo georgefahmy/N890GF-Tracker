@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788218357.52899,
+  "icao": "9I0",
+  "data": {
+    "icao": "9I0",
+    "faa": "9I0",
+    "iata": "",
+    "name": "Havana Regional Airport",
+    "city": "Havana",
+    "state": "IL",
+    "country": "US",
+    "lat": 40.2227,
+    "lon": -90.0228,
+    "elevation_ft": 499,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 2235,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Havana Regional Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 12-Jun",
+        "quote_date": "12-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "9I0",
+    "airport_ref": "15726",
+    "fetched_at": "2026-08-31T23:19:17Z"
+  }
+}

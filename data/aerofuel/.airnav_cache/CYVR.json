@@ -1,0 +1,53 @@
+{
+  "_cached_at": 1787608578.9161139,
+  "icao": "CYVR",
+  "data": {
+    "icao": "CYVR",
+    "faa": "CYVR",
+    "name": "Vancouver International Airport",
+    "city": "Vancouver",
+    "state": "BC",
+    "distance_nm": 14.0,
+    "bearing": "NNW",
+    "fbos": [
+      {
+        "name": "Million Air Vancouver",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Quote: 16-Jul",
+        "quote_date": "16-Jul",
+        "fuels": {
+          "JET_A": {
+            "price": 7.22,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "Shell",
+        "phone": "N/A",
+        "notes": "Shell \u2022 Quote: 12-Jul",
+        "quote_date": "12-Jul",
+        "fuels": {
+          "JET_A": {
+            "price": 7.01,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "fetched_at": "2026-08-24T21:56:18Z",
+    "source": "AirNav Local Fuel"
+  }
+}

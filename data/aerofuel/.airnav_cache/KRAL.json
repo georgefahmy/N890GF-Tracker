@@ -1,0 +1,144 @@
+{
+  "_cached_at": 1788014738.767276,
+  "icao": "KRAL",
+  "data": {
+    "icao": "KRAL",
+    "faa": "RAL",
+    "iata": "RAL",
+    "name": "Riverside Municipal Airport",
+    "city": "Riverside",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.9519,
+    "lon": -117.445,
+    "elevation_ft": 819,
+    "tower": true,
+    "tower_freq": 121.0,
+    "ctaf_freq": 121.0,
+    "unicom_freq": 122.95,
+    "weather_freq": 128.8,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 135.4,
+    "approach_desc": "SOCAL APP/DEP",
+    "departure_freq": 135.4,
+    "departure_desc": "SOCAL APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOCAL APP/DEP",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 25.54
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.05
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 5401,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 2850,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Raincross Aviation Services",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.84,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "RAS JETPORT - Riverside",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.84,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.14,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.19,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.84,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRAL",
+    "airport_ref": "3837",
+    "fetched_at": "2026-08-29T14:45:38Z"
+  }
+}

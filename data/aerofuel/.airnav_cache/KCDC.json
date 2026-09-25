@@ -1,0 +1,51 @@
+{
+  "_cached_at": 1787504141.373158,
+  "icao": "KCDC",
+  "data": {
+    "icao": "KCDC",
+    "faa": "CDC",
+    "name": "Cedar City Regional Airport",
+    "city": "Cedar City",
+    "state": "UT",
+    "distance_nm": 44.0,
+    "bearing": "NNE",
+    "fbos": [
+      {
+        "name": "GateOne Cedar City formerly Sphere One",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.18,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.44,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.38,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.18,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T16:55:41Z",
+    "source": "AirNav Local Fuel"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "_cached_at": 1787544325.2745972,
+  "icao": "KSFB",
+  "data": {
+    "icao": "KSFB",
+    "faa": "SFB",
+    "iata": "SFB",
+    "name": "Orlando Sanford International Airport",
+    "city": "Orlando",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.7743,
+    "lon": -81.2346,
+    "elevation_ft": 55,
+    "tower": true,
+    "ctaf_freq": 120.3,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 119.775
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.975
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.35
+      },
+      {
+        "type": "TWR",
+        "description": "SANFORD TWR",
+        "frequency_mhz": 120.3
+      }
+    ],
+    "runways": [
+      {
+        "id": "09L/27R",
+        "length": 11002,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 6002,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "09R/27L",
+        "length": 5839,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09C/27C",
+        "length": 3578,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air - SFB",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.78,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.31,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:25Z"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "_cached_at": 1787864711.399153,
+  "icao": "KSEA",
+  "data": {
+    "icao": "KSEA",
+    "faa": "SEA",
+    "iata": "SEA",
+    "name": "Seattle\u2013Tacoma International Airport",
+    "city": "Seattle",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.4479,
+    "lon": -122.3103,
+    "elevation_ft": 433,
+    "tower": true,
+    "tower_freq": 119.9,
+    "ctaf_freq": 118.5,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.0,
+    "weather_type": "ATIS",
+    "weather_desc": "Digital ATIS",
+    "approach_freq": 119.2,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 119.2,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "Seattle Ground",
+    "clearance_freq": 128.0,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 128.0
+      },
+      {
+        "type": "CTAF",
+        "description": "Oshosh traffic",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "D-ATIS",
+        "description": "Digital ATIS",
+        "frequency_mhz": 118.0
+      },
+      {
+        "type": "GND",
+        "description": "Seattle Ground",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "Seattle Tower",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "16L/34R",
+        "length": 11901,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "16C/34C",
+        "length": 9426,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "16R/34L",
+        "length": 8500,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 10.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSEA",
+    "airport_ref": "3875",
+    "fetched_at": "2026-08-27T21:05:11Z"
+  }
+}

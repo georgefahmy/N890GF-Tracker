@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787787843.6009321,
+  "icao": "KRAC",
+  "data": {
+    "icao": "KRAC",
+    "faa": "RAC",
+    "iata": "RAC",
+    "name": "John H Batten Airport",
+    "city": "Racine",
+    "state": "WI",
+    "country": "US",
+    "lat": 42.7606,
+    "lon": -87.8152,
+    "elevation_ft": 674,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.075,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MILWAUKEE APP/DEP",
+        "frequency_mhz": 120.15
+      },
+      {
+        "type": "AWOS",
+        "description": "ASOS",
+        "frequency_mhz": 117.7
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.15
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 6574,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 4421,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Racine Commercial Airport Corp.",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.51,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.93,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.51,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:44:03Z"
+  }
+}

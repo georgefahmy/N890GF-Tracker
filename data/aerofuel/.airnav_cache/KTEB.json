@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1787504127.095472,
+  "icao": "KTEB",
+  "data": {
+    "icao": "KTEB",
+    "faa": "TEB",
+    "name": "Teterboro Airport",
+    "city": "Teterboro",
+    "state": "NJ",
+    "distance_nm": 18.0,
+    "bearing": "NW",
+    "fbos": [
+      {
+        "name": "Jet Aviation",
+        "brand": "AEG Fuels",
+        "phone": "N/A",
+        "notes": "AEG Fuels \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 9.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 11.34,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T16:55:27Z",
+    "source": "AirNav Local Fuel"
+  }
+}

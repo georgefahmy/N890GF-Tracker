@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788218666.8511329,
+  "icao": "KSDC",
+  "data": {
+    "icao": "KSDC",
+    "faa": "SDC",
+    "iata": "",
+    "name": "Williamson Sodus Airport",
+    "city": "Williamson/Sodus",
+    "state": "NY",
+    "country": "US",
+    "lat": 43.2346,
+    "lon": -77.1194,
+    "elevation_ft": 424,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.55,
+    "approach_desc": "ROCHESTER APP/DEP",
+    "departure_freq": 119.55,
+    "departure_desc": "ROCHESTER APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROCHESTER APP/DEP",
+        "frequency_mhz": 119.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3803,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Williamson Flying Club",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.27,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.27,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSDC",
+    "airport_ref": "18698",
+    "fetched_at": "2026-08-31T23:24:26Z"
+  }
+}

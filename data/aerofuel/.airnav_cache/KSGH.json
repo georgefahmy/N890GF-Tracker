@@ -1,0 +1,115 @@
+{
+  "_cached_at": 1787528524.689226,
+  "icao": "KSGH",
+  "data": {
+    "icao": "KSGH",
+    "faa": "SGH",
+    "iata": "SGH",
+    "name": "Springfield-Beckley Municipal Airport",
+    "city": "Springfield",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.8403,
+    "lon": -83.8402,
+    "elevation_ft": 1051,
+    "tower": true,
+    "ctaf_freq": 120.7,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTON APP/DEP",
+        "frequency_mhz": 118.85
+      },
+      {
+        "type": "ASOS",
+        "description": "AWSS",
+        "frequency_mhz": 134.975
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 25.787
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "OPS",
+        "description": "178 FW OPS",
+        "frequency_mhz": 141.7
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 9010,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 5498,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Springfield-Beckley Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.69,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.07,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:04Z"
+  }
+}

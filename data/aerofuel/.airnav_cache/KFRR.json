@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787787799.484125,
+  "icao": "KFRR",
+  "data": {
+    "icao": "KFRR",
+    "faa": "FRR",
+    "iata": "FRR",
+    "name": "Front Royal Warren County Airport",
+    "city": "Front Royal",
+    "state": "VA",
+    "country": "US",
+    "lat": 38.9175,
+    "lon": -78.2535,
+    "elevation_ft": 709,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3008,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Front Royal-Warren County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:19Z"
+  }
+}

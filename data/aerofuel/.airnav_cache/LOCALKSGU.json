@@ -1,0 +1,448 @@
+{
+  "_cached_at": 1787504141.370752,
+  "icao": "LOCAL_KSGU",
+  "data": {
+    "success": true,
+    "source_airport": "KSGU",
+    "radius_miles": 80,
+    "count": 9,
+    "fetched_at": "2026-08-23T16:55:41Z",
+    "airports": [
+      {
+        "icao": "KSGU",
+        "faa": "SGU",
+        "name": "St George Regional Airport",
+        "city": "St George",
+        "state": "UT",
+        "distance_nm": null,
+        "bearing": null,
+        "fbos": [
+          {
+            "name": "Million Air St. George",
+            "brand": "AVFUEL",
+            "phone": "N/A",
+            "notes": "AVFUEL \u2022 Guaranteed Price",
+            "quote_date": null,
+            "fuels": {
+              "100LL_SS": {
+                "price": 6.17,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              },
+              "100LL_FS": {
+                "price": 5.49,
+                "type": "100LL",
+                "service": "Full-Serve",
+                "label": "100LL Avgas (Full-Serve)"
+              },
+              "JET_A": {
+                "price": 5.49,
+                "type": "Jet-A",
+                "service": "Full-Serve",
+                "label": "Jet-A Turbine Fuel (Full-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 5.49,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "1L8",
+        "faa": "1L8",
+        "name": "General Dick Stout Field Airport",
+        "city": "Hurricane",
+        "state": "UT",
+        "distance_nm": 12.0,
+        "bearing": "ENE",
+        "fbos": [
+          {
+            "name": "Airport Quick Stop",
+            "brand": "Phillips 66",
+            "phone": "N/A",
+            "notes": "Phillips 66 \u2022 Quote: 26-Jun",
+            "quote_date": "26-Jun",
+            "fuels": {
+              "100LL_SS": {
+                "price": 7.15,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              },
+              "JET_A": {
+                "price": 6.43,
+                "type": "Jet-A",
+                "service": "Self-Serve",
+                "label": "Jet-A Turbine Fuel (Self-Serve)"
+              },
+              "MOGAS_SS": {
+                "price": 6.28,
+                "type": "Mogas",
+                "service": "Self-Serve",
+                "label": "Mogas (Ethanol-Free Self-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 6.28,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A",
+          "Mogas"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "KAZC",
+        "faa": "AZC",
+        "name": "Colorado City Municipal Airport",
+        "city": "Colorado City",
+        "state": "AZ",
+        "distance_nm": 24.0,
+        "bearing": "E",
+        "fbos": [
+          {
+            "name": "Colorado City Municipal Airport",
+            "brand": "",
+            "phone": "N/A",
+            "notes": "Quote: 07-Aug",
+            "quote_date": "07-Aug",
+            "fuels": {
+              "100LL_SS": {
+                "price": 7.35,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              },
+              "100LL_FS": {
+                "price": 7.75,
+                "type": "100LL",
+                "service": "Full-Serve",
+                "label": "100LL Avgas (Full-Serve)"
+              },
+              "JET_A": {
+                "price": 7.35,
+                "type": "Jet-A",
+                "service": "Self-Serve",
+                "label": "Jet-A Turbine Fuel (Self-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 7.35,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "67L",
+        "faa": "67L",
+        "name": "Mesquite Airport",
+        "city": "Mesquite",
+        "state": "NV",
+        "distance_nm": 29.0,
+        "bearing": "WSW",
+        "fbos": [
+          {
+            "name": "City of Mesquite (FBO)",
+            "brand": "AVFUEL",
+            "phone": "N/A",
+            "notes": "AVFUEL \u2022 Quote: 19-Aug",
+            "quote_date": "19-Aug",
+            "fuels": {
+              "100LL_SS": {
+                "price": 6.99,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              },
+              "JET_A": {
+                "price": 7.09,
+                "type": "Jet-A",
+                "service": "Full-Serve",
+                "label": "Jet-A Turbine Fuel (Full-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 6.99,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "KCDC",
+        "faa": "CDC",
+        "name": "Cedar City Regional Airport",
+        "city": "Cedar City",
+        "state": "UT",
+        "distance_nm": 44.0,
+        "bearing": "NNE",
+        "fbos": [
+          {
+            "name": "GateOne Cedar City formerly Sphere One",
+            "brand": "AVFUEL",
+            "phone": "N/A",
+            "notes": "AVFUEL \u2022 Quote: 21-Aug",
+            "quote_date": "21-Aug",
+            "fuels": {
+              "100LL_SS": {
+                "price": 7.18,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              },
+              "100LL_FS": {
+                "price": 8.44,
+                "type": "100LL",
+                "service": "Full-Serve",
+                "label": "100LL Avgas (Full-Serve)"
+              },
+              "JET_A": {
+                "price": 8.38,
+                "type": "Jet-A",
+                "service": "Full-Serve",
+                "label": "Jet-A Turbine Fuel (Full-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 7.18,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "KKNB",
+        "faa": "KNB",
+        "name": "Kanab Municipal Airport",
+        "city": "Kanab",
+        "state": "UT",
+        "distance_nm": 47.0,
+        "bearing": "E",
+        "fbos": [
+          {
+            "name": "City of Kanab (FBO)",
+            "brand": "",
+            "phone": "N/A",
+            "notes": "Quote: 30-Jul",
+            "quote_date": "30-Jul",
+            "fuels": {
+              "100LL_SS": {
+                "price": 6.49,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              },
+              "JET_A": {
+                "price": 5.5,
+                "type": "Jet-A",
+                "service": "Self-Serve",
+                "label": "Jet-A Turbine Fuel (Self-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 6.49,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "U08",
+        "faa": "U08",
+        "name": "Perkins Field Airport",
+        "city": "Overton",
+        "state": "NV",
+        "distance_nm": 53.0,
+        "bearing": "WSW",
+        "fbos": [
+          {
+            "name": "Perkins Field",
+            "brand": "World Fuel Services",
+            "phone": "N/A",
+            "notes": "World Fuel Services \u2022 Quote: 19-Aug",
+            "quote_date": "19-Aug",
+            "fuels": {
+              "100LL_SS": {
+                "price": 6.98,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 6.98,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "1L9",
+        "faa": "1L9",
+        "name": "Parowan Airport",
+        "city": "Parowan",
+        "state": "UT",
+        "distance_nm": 59.0,
+        "bearing": "NNE",
+        "fbos": [
+          {
+            "name": "Parowan Aviation",
+            "brand": "independent",
+            "phone": "N/A",
+            "notes": "independent \u2022 Quote: 26-Jun",
+            "quote_date": "26-Jun",
+            "fuels": {
+              "100LL_SS": {
+                "price": 6.39,
+                "type": "100LL",
+                "service": "Self-Serve",
+                "label": "100LL Avgas (Self-Serve)"
+              },
+              "JET_A": {
+                "price": 6.43,
+                "type": "Jet-A",
+                "service": "Self-Serve",
+                "label": "Jet-A Turbine Fuel (Self-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 6.39,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      },
+      {
+        "icao": "KBCE",
+        "faa": "BCE",
+        "name": "Bryce Canyon Airport",
+        "city": "Bryce Canyon",
+        "state": "UT",
+        "distance_nm": 76.0,
+        "bearing": "ENE",
+        "fbos": [
+          {
+            "name": "Bryce Canyon Airport",
+            "brand": "",
+            "phone": "N/A",
+            "notes": "Quote: 14-Aug",
+            "quote_date": "14-Aug",
+            "fuels": {
+              "100LL_FS": {
+                "price": 6.75,
+                "type": "100LL",
+                "service": "Full-Serve",
+                "label": "100LL Avgas (Full-Serve)"
+              },
+              "JET_A": {
+                "price": 6.25,
+                "type": "Jet-A",
+                "service": "Full-Serve",
+                "label": "Jet-A Turbine Fuel (Full-Serve)"
+              }
+            }
+          }
+        ],
+        "best_price": 6.75,
+        "primary_fuel": "100LL",
+        "fuels_available": [
+          "100LL",
+          "Jet-A"
+        ],
+        "last_updated": "2026-08-23",
+        "fetched_at": "2026-08-23T16:55:41Z",
+        "source": "AirNav Local Fuel"
+      }
+    ],
+    "target": {
+      "icao": "KSGU",
+      "faa": "SGU",
+      "name": "St George Regional Airport",
+      "city": "St George",
+      "state": "UT",
+      "distance_nm": null,
+      "bearing": null,
+      "fbos": [
+        {
+          "name": "Million Air St. George",
+          "brand": "AVFUEL",
+          "phone": "N/A",
+          "notes": "AVFUEL \u2022 Guaranteed Price",
+          "quote_date": null,
+          "fuels": {
+            "100LL_SS": {
+              "price": 6.17,
+              "type": "100LL",
+              "service": "Self-Serve",
+              "label": "100LL Avgas (Self-Serve)"
+            },
+            "100LL_FS": {
+              "price": 5.49,
+              "type": "100LL",
+              "service": "Full-Serve",
+              "label": "100LL Avgas (Full-Serve)"
+            },
+            "JET_A": {
+              "price": 5.49,
+              "type": "Jet-A",
+              "service": "Full-Serve",
+              "label": "Jet-A Turbine Fuel (Full-Serve)"
+            }
+          }
+        }
+      ],
+      "best_price": 5.49,
+      "primary_fuel": "100LL",
+      "fuels_available": [
+        "100LL",
+        "Jet-A"
+      ],
+      "last_updated": "2026-08-23",
+      "fetched_at": "2026-08-23T16:55:41Z",
+      "source": "AirNav Local Fuel"
+    },
+    "from_cache": false
+  }
+}

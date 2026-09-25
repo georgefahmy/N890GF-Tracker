@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787523161.350018,
+  "icao": "X14",
+  "data": {
+    "icao": "X14",
+    "faa": "X14",
+    "iata": "",
+    "name": "La Belle Municipal Airport",
+    "city": "La Belle",
+    "state": "FL",
+    "country": "US",
+    "lat": 26.7442,
+    "lon": -81.4326,
+    "elevation_ft": 20,
+    "tower": false,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.8,
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 3720,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hendry County (FBO)",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.92,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.23,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.92,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:12:41Z"
+  }
+}

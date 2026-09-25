@@ -1,0 +1,134 @@
+{
+  "_cached_at": 1790302538.711668,
+  "icao": "KMOD",
+  "data": {
+    "icao": "KMOD",
+    "faa": "MOD",
+    "iata": "MOD",
+    "name": "Modesto City Co-Harry Sham Field",
+    "city": "Modesto",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.6258,
+    "lon": -120.954,
+    "elevation_ft": 97,
+    "tower": true,
+    "tower_freq": 125.3,
+    "ctaf_freq": 125.3,
+    "unicom_freq": 122.95,
+    "weather_freq": 127.7,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 36.32,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 36.32,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 36.32
+      },
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 120.95
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 127.7
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 114.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 125.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10L/28R",
+        "length": 5904,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10R/28L",
+        "length": 3464,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Modesto Jet Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.04,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.69,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.04,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMOD",
+    "airport_ref": "3701",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

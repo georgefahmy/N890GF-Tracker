@@ -1,0 +1,121 @@
+{
+  "_cached_at": 1787525569.2373319,
+  "icao": "KSGR",
+  "data": {
+    "icao": "KSGR",
+    "faa": "SGR",
+    "iata": "SGR",
+    "name": "Sugar Land Regional Airport",
+    "city": "Houston",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.6223,
+    "lon": -95.6565,
+    "elevation_ft": 82,
+    "tower": true,
+    "ctaf_freq": 118.65,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 8000,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "GlobalSelect",
+        "brand": "Phillips 66",
+        "phone": "281-275-2400",
+        "notes": "Phillips 66 \u2022 Guaranteed Price \u2022 UNICOM: 122.95",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.11,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.48,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 5.22,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Prime Appearance",
+        "brand": "",
+        "phone": "877-296-8391",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      },
+      {
+        "name": "Western Airways, LLC",
+        "brand": "Titan",
+        "phone": "281-565-9700",
+        "notes": "Titan",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": 5.22,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HOUSTON APP/DEP",
+        "frequency_mhz": 123.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.125
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.65
+      },
+      {
+        "type": "GND",
+        "description": "GND/CLNC DEL",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.65
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T22:52:47Z"
+  }
+}

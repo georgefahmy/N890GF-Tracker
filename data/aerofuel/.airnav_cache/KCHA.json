@@ -1,0 +1,119 @@
+{
+  "_cached_at": 1787786466.0575511,
+  "icao": "KCHA",
+  "data": {
+    "icao": "KCHA",
+    "faa": "CHA",
+    "iata": "CHA",
+    "name": "Chattanooga Metropolitan Airport (Lovell Field)",
+    "city": "Chattanooga",
+    "state": "TN",
+    "country": "US",
+    "lat": 35.0353,
+    "lon": -85.2038,
+    "elevation_ft": 683,
+    "tower": true,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "CHATTANOOGA APP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "APP",
+        "description": "CHATTANOOGA APP",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.85
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.95
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "DEP",
+        "description": "CHATTANOOGA DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 41.5
+      },
+      {
+        "type": "TWR",
+        "description": "CHATTANOOGA TWR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 7400,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 5575,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Wilson Air Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:21:06Z"
+  }
+}

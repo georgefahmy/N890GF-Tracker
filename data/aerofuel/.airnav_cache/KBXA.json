@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787544590.780663,
+  "icao": "KBXA",
+  "data": {
+    "icao": "KBXA",
+    "faa": "BXA",
+    "iata": "BXA",
+    "name": "George R Carr Memorial Air Field",
+    "city": "Bogalusa",
+    "state": "LA",
+    "country": "US",
+    "lat": 30.8137,
+    "lon": -89.865,
+    "elevation_ft": 119,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.025
+      },
+      {
+        "type": "CNTR",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 133.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5002,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bogalusa Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Jun",
+        "quote_date": "14-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.15,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:09:50Z"
+  }
+}

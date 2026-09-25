@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787528899.317297,
+  "icao": "KNVD",
+  "data": {
+    "icao": "KNVD",
+    "faa": "NVD",
+    "iata": "NVD",
+    "name": "Nevada Municipal Airport",
+    "city": "Nevada",
+    "state": "MO",
+    "country": "US",
+    "lat": 37.8521,
+    "lon": -94.3049,
+    "elevation_ft": 892,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.175
+      },
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 125.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 2581,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aero B Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 31-Jul",
+        "quote_date": "31-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:48:18Z"
+  }
+}

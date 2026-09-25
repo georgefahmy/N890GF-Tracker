@@ -1,0 +1,93 @@
+{
+  "_cached_at": 1787528566.8143082,
+  "icao": "I68",
+  "data": {
+    "icao": "I68",
+    "faa": "I68",
+    "iata": "",
+    "name": "Warren County Airport/John Lane Field",
+    "city": "Lebanon",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.4622,
+    "lon": -84.2518,
+    "elevation_ft": 898,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.075,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "DAYTON APP",
+        "frequency_mhz": 118.85
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.925
+      },
+      {
+        "type": "CLD",
+        "description": "DAYTON CLNC DEL",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "DEP",
+        "description": "DAYTON DEP",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4505,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Warren County Airport Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.15,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.22,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788014646.948726,
+  "icao": "3H4",
+  "data": {
+    "icao": "3H4",
+    "faa": "3H4",
+    "iata": "",
+    "name": "Hillsboro Municipal Airport",
+    "city": "Hillsboro",
+    "state": "ND",
+    "country": "US",
+    "lat": 47.3594,
+    "lon": -97.0604,
+    "elevation_ft": 905,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.4,
+    "approach_desc": "FARGO APP/DEP",
+    "departure_freq": 120.4,
+    "departure_desc": "FARGO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FARGO APP/DEP",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3301,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "On-Site Aviation, Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3H4",
+    "airport_ref": "18701",
+    "fetched_at": "2026-08-29T14:44:06Z"
+  }
+}

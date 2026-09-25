@@ -1,0 +1,146 @@
+{
+  "_cached_at": 1787793943.878728,
+  "icao": "KGTF",
+  "data": {
+    "icao": "KGTF",
+    "faa": "GTF",
+    "iata": "GTF",
+    "name": "Great Falls International Airport",
+    "city": "Great Falls",
+    "state": "MT",
+    "country": "US",
+    "lat": 47.482,
+    "lon": -111.371,
+    "elevation_ft": 3680,
+    "tower": true,
+    "tower_freq": 118.7,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 126.6,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 128.6,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 128.6,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND/CLNC DEL",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 128.6
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.6
+      },
+      {
+        "type": "GND",
+        "description": "GND/CLNC DEL",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS MAINT",
+        "frequency_mhz": 28.89
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 10502,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 6030,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 4294,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Holman Aviation",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.42,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Great Falls Jet Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.55,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGTF",
+    "airport_ref": "3571",
+    "fetched_at": "2026-08-27T01:25:43Z"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1787505204.459693,
+  "icao": "KATW",
+  "data": {
+    "icao": "KATW",
+    "faa": "ATW",
+    "iata": "ATW",
+    "name": "Appleton International Airport",
+    "city": "Appleton",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.2585,
+    "lon": -88.519,
+    "elevation_ft": 918,
+    "tower": true,
+    "ctaf_freq": 123.05,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 7920,
+        "surface": "Turf"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Appleton Flight Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.81,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "94UL_FS": {
+            "price": 8.4,
+            "type": "94UL",
+            "service": "Full-Serve",
+            "label": "94UL Unleaded (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.45,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREEN BAY APP/DEP",
+        "frequency_mhz": 126.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.15
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "GND",
+        "description": "APPLETON GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "APPLETON TWR",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "fetched_at": "2026-08-23T17:13:22Z"
+  }
+}

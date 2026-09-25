@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788218572.0720189,
+  "icao": "6S3",
+  "data": {
+    "icao": "6S3",
+    "faa": "6S3",
+    "iata": "",
+    "name": "Woltermann Memorial Airport",
+    "city": "Columbus",
+    "state": "MT",
+    "country": "US",
+    "lat": 45.6305,
+    "lon": -109.239,
+    "elevation_ft": 3575,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3800,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rickman Aircraft",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 15-Apr",
+        "quote_date": "15-Apr",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K6S3",
+    "airport_ref": "19011",
+    "fetched_at": "2026-08-31T23:22:52Z"
+  }
+}

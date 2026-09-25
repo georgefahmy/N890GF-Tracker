@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788215030.361082,
+  "icao": "KVMR",
+  "data": {
+    "icao": "KVMR",
+    "faa": "VMR",
+    "iata": "",
+    "name": "Harold Davidson Field",
+    "city": "Vermillion",
+    "state": "SD",
+    "country": "US",
+    "lat": 42.7653,
+    "lon": -96.9343,
+    "elevation_ft": 1146,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.6,
+    "approach_desc": "SIOUX CITY APP/DEP",
+    "departure_freq": 124.6,
+    "departure_desc": "SIOUX CITY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SIOUX CITY APP/DEP",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "RCO",
+        "description": "HURON RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 4105,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Vermillion",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.16,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.23,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.16,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVMR",
+    "airport_ref": "21330",
+    "fetched_at": "2026-08-31T22:23:50Z"
+  }
+}

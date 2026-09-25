@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1787793549.428276,
+  "icao": "KUUV",
+  "data": {
+    "icao": "KUUV",
+    "faa": "UUV",
+    "iata": "",
+    "name": "Sullivan Regional Airport",
+    "city": "Sullivan",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.2335,
+    "lon": -91.1643,
+    "elevation_ft": 933,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 119.375,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.375
+      },
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 133.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 4500,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sullivan Regional Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-May",
+        "quote_date": "14-May",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.85,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.85,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KUUV",
+    "airport_ref": "21306",
+    "fetched_at": "2026-08-27T01:19:09Z"
+  }
+}

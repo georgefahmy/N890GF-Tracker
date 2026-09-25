@@ -1,0 +1,83 @@
+{
+  "_cached_at": 1787544783.198705,
+  "icao": "D09",
+  "data": {
+    "icao": "D09",
+    "faa": "D09",
+    "iata": "",
+    "name": "Bottineau Municipal Airport",
+    "city": "Bottineau",
+    "state": "ND",
+    "country": "US",
+    "lat": 48.8304,
+    "lon": -100.417,
+    "elevation_ft": 1681,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "MINOT APP",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "DEP",
+        "description": "MINOT DEP",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3700,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2115,
+        "width": 170,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Botno Aircraft Services",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Jun",
+        "quote_date": "19-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:13:03Z"
+  }
+}

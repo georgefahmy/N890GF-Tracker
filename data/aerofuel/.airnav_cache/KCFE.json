@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1788014670.639294,
+  "icao": "KCFE",
+  "data": {
+    "icao": "KCFE",
+    "faa": "CFE",
+    "iata": "",
+    "name": "Buffalo Municipal Airport",
+    "city": "Buffalo",
+    "state": "MN",
+    "country": "US",
+    "lat": 45.159,
+    "lon": -93.8433,
+    "elevation_ft": 967,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3200,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Buffalo Fuel Facility/Ad Building",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCFE",
+    "airport_ref": "16710",
+    "fetched_at": "2026-08-29T14:44:30Z"
+  }
+}

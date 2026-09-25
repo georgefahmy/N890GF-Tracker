@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787864711.400246,
+  "icao": "S50",
+  "data": {
+    "icao": "S50",
+    "faa": "S50",
+    "iata": "",
+    "name": "Auburn Municipal Airport",
+    "city": "Auburn",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.3277,
+    "lon": -122.227,
+    "elevation_ft": 63,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.975,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3400,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cascade Helicopter Services",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 7.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Auburn Airport Administration",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KS50",
+    "airport_ref": "21010",
+    "fetched_at": "2026-08-27T21:05:11Z"
+  }
+}

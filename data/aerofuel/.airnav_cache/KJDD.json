@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718983.511404,
+  "icao": "KJDD",
+  "data": {
+    "icao": "KJDD",
+    "faa": "JDD",
+    "iata": "",
+    "name": "Wood County Airport - Collins Field",
+    "city": "Mineola",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7422,
+    "lon": -95.4965,
+    "elevation_ft": 434,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LONGVIEW APP/DEP",
+        "frequency_mhz": 128.75
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4002,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "East Texas Flying Service Inc.",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.86,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.23,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.86,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:36:23Z"
+  }
+}

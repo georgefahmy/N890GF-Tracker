@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788015609.782943,
+  "icao": "8K2",
+  "data": {
+    "icao": "8K2",
+    "faa": "8K2",
+    "iata": "",
+    "name": "Harper Municipal Airport",
+    "city": "Harper",
+    "state": "KS",
+    "country": "US",
+    "lat": 37.2783,
+    "lon": -98.0432,
+    "elevation_ft": 1427,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3268,
+        "width": 38,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 2138,
+        "width": 160,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Harper",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K8K2",
+    "airport_ref": "19134",
+    "fetched_at": "2026-08-29T15:00:09Z"
+  }
+}

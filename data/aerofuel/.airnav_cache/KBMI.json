@@ -1,0 +1,123 @@
+{
+  "_cached_at": 1789073603.5312068,
+  "icao": "KBMI",
+  "data": {
+    "icao": "KBMI",
+    "faa": "BMI",
+    "iata": "BMI",
+    "name": "Central Illinois Regional Airport at Bloomington-Normal",
+    "city": "Bloomington/Normal",
+    "state": "IL",
+    "country": "US",
+    "lat": 40.4771,
+    "lon": -88.9159,
+    "elevation_ft": 871,
+    "tower": true,
+    "tower_freq": 124.6,
+    "ctaf_freq": 124.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 135.35,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 118.05,
+    "approach_desc": "PEORIA APP/DEP",
+    "departure_freq": 118.05,
+    "departure_desc": "PEORIA APP/DEP",
+    "ground_freq": 121.65,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PEORIA APP/DEP",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "RDO",
+        "description": "KANKAKEE RDO",
+        "frequency_mhz": 108.2
+      },
+      {
+        "type": "TWR",
+        "description": "BLOOMINGTON TWR",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 8000,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 6525,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Synergy Flight Center",
+        "brand": "Avfuel",
+        "phone": "309-828-4448",
+        "notes": "Avfuel \u2022 Quote: 09-Sep-2026",
+        "quote_date": "09-Sep-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.56,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.23,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.56,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KBMI",
+    "airport_ref": "3419",
+    "fetched_at": "2026-09-10T20:53:22Z"
+  }
+}

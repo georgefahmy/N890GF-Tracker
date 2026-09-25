@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202512.623317,
+  "icao": "4D0",
+  "data": {
+    "icao": "4D0",
+    "faa": "4D0",
+    "iata": "",
+    "name": "Abrams Municipal Airport",
+    "city": "Grand Ledge",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.7752,
+    "lon": -84.7364,
+    "elevation_ft": 842,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.65,
+    "approach_desc": "LANSING APP/DEP",
+    "departure_freq": 118.65,
+    "departure_desc": "LANSING APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LANSING APP/DEP",
+        "frequency_mhz": 118.65
+      },
+      {
+        "type": "OPS",
+        "description": "ARNG OPS",
+        "frequency_mhz": 41.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3200,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2560,
+        "width": 120,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "GrandAir Aviation, Inc.",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K4D0",
+    "airport_ref": "18811",
+    "fetched_at": "2026-08-31T18:55:12Z"
+  }
+}

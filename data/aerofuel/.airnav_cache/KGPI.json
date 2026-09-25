@@ -1,0 +1,124 @@
+{
+  "_cached_at": 1787793943.879052,
+  "icao": "KGPI",
+  "data": {
+    "icao": "KGPI",
+    "faa": "GPI",
+    "iata": "FCA",
+    "name": "Glacier Park International Airport",
+    "city": "Kalispell",
+    "state": "MT",
+    "country": "US",
+    "lat": 48.3105,
+    "lon": -114.256,
+    "elevation_ft": 2977,
+    "tower": true,
+    "tower_freq": 124.55,
+    "ctaf_freq": 124.55,
+    "unicom_freq": 122.95,
+    "weather_freq": 132.625,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 132.625
+      },
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CITY CNTR",
+        "frequency_mhz": 133.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.55
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "RCO",
+        "description": "GREAT FALLS RDO",
+        "frequency_mhz": 122.5
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 124.55
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 9007,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 3510,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.58,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.63,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.84,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.58,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGPI",
+    "airport_ref": "3527",
+    "fetched_at": "2026-08-27T01:25:43Z"
+  }
+}

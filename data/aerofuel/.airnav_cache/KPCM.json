@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788014935.871045,
+  "icao": "KPCM",
+  "data": {
+    "icao": "KPCM",
+    "faa": "PCM",
+    "iata": "",
+    "name": "Plant City Municipal Airport",
+    "city": "Plant City",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.0002,
+    "lon": -82.1642,
+    "elevation_ft": 153,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 120.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.65,
+    "approach_desc": "TAMPA APP/DEP",
+    "departure_freq": 120.65,
+    "departure_desc": "TAMPA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TAMPA APP/DEP",
+        "frequency_mhz": 120.65
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.025
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3950,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlas Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.67,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.78,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.67,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPCM",
+    "airport_ref": "20811",
+    "fetched_at": "2026-08-29T14:48:55Z"
+  }
+}

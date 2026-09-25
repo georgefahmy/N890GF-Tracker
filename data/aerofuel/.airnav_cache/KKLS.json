@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787608551.001654,
+  "icao": "KKLS",
+  "data": {
+    "icao": "KKLS",
+    "faa": "KLS",
+    "iata": "KLS",
+    "name": "Southwest Washington Regional Airport",
+    "city": "Kelso",
+    "state": "WA",
+    "country": "US",
+    "lat": 46.118,
+    "lon": -122.898,
+    "elevation_ft": 20,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 135.075
+      },
+      {
+        "type": "CNTR",
+        "description": "SEATTLE CNTR",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "FSS",
+        "description": "SEATTLE RDO",
+        "frequency_mhz": 122.25
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 4391,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cascade Air",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:55:50Z"
+  }
+}

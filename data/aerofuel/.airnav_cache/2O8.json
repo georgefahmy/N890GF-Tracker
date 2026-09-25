@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787705679.185389,
+  "icao": "2O8",
+  "data": {
+    "icao": "2O8",
+    "faa": "2O8",
+    "iata": "",
+    "name": "Hinton Municipal Airport",
+    "city": "Hinton",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.5059,
+    "lon": -98.3424,
+    "elevation_ft": 1587,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 128.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4000,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hinton Airport",
+        "brand": "Phillips 66",
+        "phone": "405-542-3993",
+        "notes": "Phillips 66 \u2022 Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T00:54:37Z"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787793728.75399,
+  "icao": "N98",
+  "data": {
+    "icao": "N98",
+    "faa": "N98",
+    "iata": "",
+    "name": "Boyne City Municipal Airport",
+    "city": "Boyne City",
+    "state": "MI",
+    "country": "US",
+    "lat": 45.2083,
+    "lon": -84.9903,
+    "elevation_ft": 657,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Boyne City Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.61,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.61,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KN98",
+    "airport_ref": "20630",
+    "fetched_at": "2026-08-27T01:22:08Z"
+  }
+}

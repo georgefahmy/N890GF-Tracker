@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1789073595.844744,
+  "icao": "KAJG",
+  "data": {
+    "icao": "KAJG",
+    "faa": "AJG",
+    "iata": "",
+    "name": "Mount Carmel Municipal Airport",
+    "city": "Mount Carmel",
+    "state": "IL",
+    "country": "US",
+    "lat": 38.6065,
+    "lon": -87.7267,
+    "elevation_ft": 429,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 134.9,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 125.6,
+    "approach_desc": "EVANSVILLE APP/DEP",
+    "departure_freq": 125.6,
+    "departure_desc": "EVANSVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "EVANSVILLE APP/DEP",
+        "frequency_mhz": 125.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 134.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4500,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 4000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Mt. Carmel",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 04-Sep",
+        "quote_date": "04-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAJG",
+    "airport_ref": "19267",
+    "fetched_at": "2026-09-10T20:53:15Z"
+  }
+}

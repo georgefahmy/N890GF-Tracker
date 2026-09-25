@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787608578.922493,
+  "icao": "38W",
+  "data": {
+    "icao": "38W",
+    "faa": "38W",
+    "iata": "",
+    "name": "Lynden Airport",
+    "city": "Lynden",
+    "state": "WA",
+    "country": "US",
+    "lat": 48.9559,
+    "lon": -122.458,
+    "elevation_ft": 106,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 2425,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "24 E Lynden Municipal Airport/Jansen Field",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:56:18Z"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "_cached_at": 1790308492.202641,
+  "icao": "KPAO",
+  "data": {
+    "icao": "KPAO",
+    "faa": "PAO",
+    "iata": "PAO",
+    "name": "Palo Alto Airport",
+    "city": "Palo Alto",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.4611,
+    "lon": -122.115,
+    "elevation_ft": 4,
+    "tower": true,
+    "tower_freq": 118.6,
+    "ctaf_freq": 118.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 135.275,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 33.82,
+    "approach_desc": "NORCAL APP",
+    "departure_freq": 121.3,
+    "departure_desc": "NORCAL DEP",
+    "ground_freq": 125.0,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 33.82
+      },
+      {
+        "type": "APP",
+        "description": "NORCAL APP",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.275
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "DEP",
+        "description": "NORCAL DEP",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 125.0
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 2441,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rossi Aircraft",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "94UL_FS": {
+            "price": 8.64,
+            "type": "94UL",
+            "service": "Full-Serve",
+            "label": "94UL Unleaded (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.85,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPAO",
+    "airport_ref": "20805",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

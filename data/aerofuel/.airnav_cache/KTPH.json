@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788542025.325449,
+  "icao": "KTPH",
+  "data": {
+    "icao": "KTPH",
+    "faa": "TPH",
+    "iata": "TPH",
+    "name": "Tonopah Airport",
+    "city": "Tonopah",
+    "state": "NV",
+    "country": "US",
+    "lat": 38.0602,
+    "lon": -117.087,
+    "elevation_ft": 5430,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 118.875,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.875
+      },
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CNTR",
+        "frequency_mhz": 133.45
+      },
+      {
+        "type": "RDO",
+        "description": "RENO RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 7160,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 5660,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "KT Aero",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 31-Aug",
+        "quote_date": "31-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.4,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTPH",
+    "airport_ref": "21216",
+    "fetched_at": "2026-09-04T17:13:44Z"
+  }
+}

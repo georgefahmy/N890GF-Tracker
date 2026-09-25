@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787544325.2749078,
+  "icao": "X04",
+  "data": {
+    "icao": "X04",
+    "faa": "X04",
+    "iata": "",
+    "name": "Orlando Apopka Airport",
+    "city": "Apopka",
+    "state": "FL",
+    "country": "US",
+    "lat": 28.7072,
+    "lon": -81.5817,
+    "elevation_ft": 143,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3284,
+        "width": 60,
+        "surface": "Cop",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "First Landings Aviation",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.3,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:05:25Z"
+  }
+}

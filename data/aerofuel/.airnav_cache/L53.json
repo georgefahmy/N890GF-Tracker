@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787543201.1740658,
+  "icao": "L53",
+  "data": {
+    "icao": "L53",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-24T03:46:41Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

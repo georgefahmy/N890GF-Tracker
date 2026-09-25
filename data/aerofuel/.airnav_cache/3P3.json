@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787705669.084713,
+  "icao": "3P3",
+  "data": {
+    "icao": "3P3",
+    "faa": "3P3",
+    "iata": "",
+    "name": "Mott Municipal Airport",
+    "city": "Mott",
+    "state": "ND",
+    "country": "US",
+    "lat": 46.3597,
+    "lon": -102.323,
+    "elevation_ft": 2411,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mott Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:54:29Z"
+  }
+}

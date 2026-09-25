@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787782633.7552269,
+  "icao": "KLAM",
+  "data": {
+    "icao": "KLAM",
+    "faa": "LAM",
+    "iata": "LAM",
+    "name": "Los Alamos Airport",
+    "city": "Los Alamos",
+    "state": "NM",
+    "country": "US",
+    "lat": 35.8798,
+    "lon": -106.269,
+    "elevation_ft": 7171,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "ARTC",
+        "description": "ALBUQUERQUE CNTR",
+        "frequency_mhz": 132.8
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 124.175
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 6000,
+        "width": 120,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Los Alamos Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.6,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T22:17:13Z"
+  }
+}

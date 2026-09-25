@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787526564.4844759,
+  "icao": "KSPK",
+  "data": {
+    "icao": "KSPK",
+    "faa": "SPK",
+    "iata": "",
+    "name": "Spanish Fork Municipal Airport/Woodhouse Field",
+    "city": "Spanish Fork",
+    "state": "UT",
+    "country": "US",
+    "lat": 40.145,
+    "lon": -111.6677,
+    "elevation_ft": 4529,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 6500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Utah Aviation Services Inc.",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.65,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.73,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:09:24Z"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787606188.292848,
+  "icao": "O08",
+  "data": {
+    "icao": "O08",
+    "faa": "O08",
+    "iata": "",
+    "name": "Colusa County Airport",
+    "city": "Colusa",
+    "state": "CA",
+    "country": "US",
+    "lat": 39.179,
+    "lon": -121.993,
+    "elevation_ft": 50,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 132.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3000,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Colusa County Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.53,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.53,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:16:28Z"
+  }
+}

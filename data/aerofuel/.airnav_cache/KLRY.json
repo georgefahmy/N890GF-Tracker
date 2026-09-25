@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787528899.316992,
+  "icao": "KLRY",
+  "data": {
+    "icao": "KLRY",
+    "faa": "LRY",
+    "iata": "",
+    "name": "Lawrence Smith Memorial Airport",
+    "city": "Harrisonville",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.6099,
+    "lon": -94.3435,
+    "elevation_ft": 915,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 125.55
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.975
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Harrisonville",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:48:18Z"
+  }
+}

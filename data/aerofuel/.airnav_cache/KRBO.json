@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787718770.999052,
+  "icao": "KRBO",
+  "data": {
+    "icao": "KRBO",
+    "faa": "RBO",
+    "iata": "",
+    "name": "Nueces County Airport",
+    "city": "Robstown",
+    "state": "TX",
+    "country": "US",
+    "lat": 27.7781,
+    "lon": -97.6901,
+    "elevation_ft": 79,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "KINGSVILLE APP",
+        "frequency_mhz": 119.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.175
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "DEP",
+        "description": "CORPUS DEP",
+        "frequency_mhz": 120.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 3700,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Nueces County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.25,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:50Z"
+  }
+}

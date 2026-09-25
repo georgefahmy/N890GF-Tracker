@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787705579.811051,
+  "icao": "9G8",
+  "data": {
+    "icao": "9G8",
+    "faa": "9G8",
+    "iata": "",
+    "name": "Ebensburg Airport",
+    "city": "Ebensburg",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.4612,
+    "lon": -78.7752,
+    "elevation_ft": 2099,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CLEVELAND CNTR",
+        "frequency_mhz": 121.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3204,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11U/29U",
+        "length": 1636,
+        "width": 150,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "R.A.C.R.A",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:52:59Z"
+  }
+}

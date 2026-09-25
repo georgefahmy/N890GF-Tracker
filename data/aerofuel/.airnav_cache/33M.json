@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787792778.599382,
+  "icao": "33M",
+  "data": {
+    "icao": "33M",
+    "faa": "33M",
+    "iata": "",
+    "name": "Water Valley Municipal Airport",
+    "city": "Water Valley",
+    "state": "MS",
+    "country": "US",
+    "lat": 34.1668,
+    "lon": -89.6862,
+    "elevation_ft": 270,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3000,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Water Valley",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-27T01:06:18Z"
+  }
+}

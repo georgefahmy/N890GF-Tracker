@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787864058.276417,
+  "icao": "5BL",
+  "data": {
+    "icao": "5BL",
+    "faa": "5BL",
+    "iata": "",
+    "name": "Homer-Beluga Lake Seaplane Base",
+    "city": "Homer",
+    "state": "AK",
+    "country": "US",
+    "lat": 59.6447,
+    "lon": -151.502,
+    "elevation_ft": 25,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "NE/SW",
+        "length": 3000,
+        "width": 600,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Emerald Air Service",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 10.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.25,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Homer Seaplane Base",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Jul",
+        "quote_date": "10-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 10.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "5BL",
+    "airport_ref": "12287",
+    "fetched_at": "2026-08-27T20:54:18Z"
+  }
+}

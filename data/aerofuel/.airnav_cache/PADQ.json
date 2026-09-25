@@ -1,0 +1,126 @@
+{
+  "_cached_at": 1787527534.913376,
+  "icao": "PADQ",
+  "data": {
+    "icao": "PADQ",
+    "faa": "ADQ",
+    "iata": "ADQ",
+    "name": "Kodiak Airport",
+    "city": "Kodiak",
+    "state": "AK",
+    "country": "US",
+    "lat": 57.75,
+    "lon": -152.494,
+    "elevation_ft": 78,
+    "tower": true,
+    "ctaf_freq": 119.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.5
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "FSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "MISC",
+        "description": "TWEB",
+        "frequency_mhz": 117.1
+      },
+      {
+        "type": "OPS",
+        "description": "OPS",
+        "frequency_mhz": 156.8
+      },
+      {
+        "type": "RFSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 7534,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 5400,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01/19",
+        "length": 5010,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Island Air Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 12.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 13.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 12.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:25:34Z"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787718353.9534562,
+  "icao": "KRYW",
+  "data": {
+    "icao": "KRYW",
+    "faa": "RYW",
+    "iata": "",
+    "name": "Lago Vista Texas Rusty Allen Airport",
+    "city": "Lago Vista",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.4986,
+    "lon": -97.9695,
+    "elevation_ft": 1231,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.725,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "AUSTIN APP/DEP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3808,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lago Vista Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:25:53Z"
+  }
+}

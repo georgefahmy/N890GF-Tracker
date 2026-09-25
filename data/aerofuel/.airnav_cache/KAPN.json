@@ -1,0 +1,123 @@
+{
+  "_cached_at": 1787793734.551214,
+  "icao": "KAPN",
+  "data": {
+    "icao": "KAPN",
+    "faa": "APN",
+    "iata": "APN",
+    "name": "Alpena County Regional Airport",
+    "city": "Alpena",
+    "state": "MI",
+    "country": "US",
+    "lat": 45.0781,
+    "lon": -83.5603,
+    "elevation_ft": 690,
+    "tower": true,
+    "tower_freq": 121.35,
+    "ctaf_freq": 121.35,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.675,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 128.425,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 128.425,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 128.425
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 120.675
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.35
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 37.22
+      },
+      {
+        "type": "RDO",
+        "description": "LANSING RDO",
+        "frequency_mhz": 108.8
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 121.35
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 9001,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 5028,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "989-354-2907",
+        "notes": "Quote: 19-Aug-2026",
+        "quote_date": "19-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.27,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.28,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.27,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KAPN",
+    "airport_ref": "3382",
+    "fetched_at": "2026-08-27T01:22:13Z"
+  }
+}

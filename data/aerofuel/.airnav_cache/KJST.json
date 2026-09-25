@@ -1,0 +1,123 @@
+{
+  "_cached_at": 1787793845.655624,
+  "icao": "KJST",
+  "data": {
+    "icao": "KJST",
+    "faa": "JST",
+    "iata": "JST",
+    "name": "John Murtha Johnstown Cambria County Airport",
+    "city": "Johnstown",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.3161,
+    "lon": -78.8339,
+    "elevation_ft": 2284,
+    "tower": true,
+    "tower_freq": 125.75,
+    "ctaf_freq": 125.75,
+    "unicom_freq": 122.95,
+    "weather_freq": 118.325,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.6,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "CNTR",
+        "description": "CLEVELAND CNTR",
+        "frequency_mhz": 121.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.75
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.6
+      },
+      {
+        "type": "OPS",
+        "description": "KEYSTONE OPS ARNG",
+        "frequency_mhz": 36.5
+      },
+      {
+        "type": "RDO",
+        "description": "ALTOONA RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 125.75
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 7004,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 4387,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Nulton Aviation Services",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.49,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.37,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KJST",
+    "airport_ref": "3625",
+    "fetched_at": "2026-08-27T01:24:05Z"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787718927.294655,
+  "icao": "KSGT",
+  "data": {
+    "icao": "KSGT",
+    "faa": "SGT",
+    "iata": "SGT",
+    "name": "Stuttgart Municipal Airport / Carl Humphrey Field",
+    "city": "Stuttgart",
+    "state": "AR",
+    "country": "US",
+    "lat": 34.5995,
+    "lon": -91.575,
+    "elevation_ft": 224,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "LITTLE ROCK APP/DEP",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.025
+      },
+      {
+        "type": "CLD",
+        "description": "LITTLE ROCK CLNC DEL",
+        "frequency_mhz": 123.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 6015,
+        "width": 100,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 5002,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Stuttgart Municipal Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.61,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.15,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.61,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:35:27Z"
+  }
+}

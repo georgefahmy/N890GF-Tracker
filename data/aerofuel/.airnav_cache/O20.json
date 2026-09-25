@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1790302580.777494,
+  "icao": "O20",
+  "data": {
+    "icao": "O20",
+    "faa": "O20",
+    "iata": "",
+    "name": "Kingdon Airpark",
+    "city": "Lodi",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.0916,
+    "lon": -121.359,
+    "elevation_ft": 15,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3851,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Kingdon Airpark",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 09-Sep",
+        "quote_date": "09-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KO20",
+    "airport_ref": "20678",
+    "fetched_at": "2026-09-10T20:44:42Z"
+  }
+}

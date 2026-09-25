@@ -1,0 +1,116 @@
+{
+  "_cached_at": 1787523161.349312,
+  "icao": "KBCT",
+  "data": {
+    "icao": "KBCT",
+    "faa": "BCT",
+    "iata": "BCT",
+    "name": "Boca Raton Airport",
+    "city": "Boca Raton",
+    "state": "FL",
+    "country": "US",
+    "lat": 26.3785,
+    "lon": -80.1077,
+    "elevation_ft": 13,
+    "tower": true,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5710,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 23-Aug",
+        "quote_date": "23-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.98,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.59,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.09,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.36,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "PALM BEACH APP",
+        "frequency_mhz": 125.2
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 121.125
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.425
+      },
+      {
+        "type": "DEP",
+        "description": "PALM BEACH DEP",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.425
+      }
+    ],
+    "fetched_at": "2026-08-23T22:12:41Z"
+  }
+}

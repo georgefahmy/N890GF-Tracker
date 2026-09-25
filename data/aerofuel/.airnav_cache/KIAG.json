@@ -1,0 +1,133 @@
+{
+  "_cached_at": 1788014712.994025,
+  "icao": "KIAG",
+  "data": {
+    "icao": "KIAG",
+    "faa": "IAG",
+    "iata": "IAG",
+    "name": "Niagara Falls International Airport",
+    "city": "Niagara Falls",
+    "state": "NY",
+    "country": "US",
+    "lat": 43.1073,
+    "lon": -78.9462,
+    "elevation_ft": 589,
+    "tower": true,
+    "tower_freq": 118.5,
+    "ctaf_freq": 118.5,
+    "unicom_freq": 122.95,
+    "weather_freq": 120.8,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 126.5,
+    "approach_desc": "BUFFALO APP/DEP",
+    "departure_freq": 126.5,
+    "departure_desc": "BUFFALO APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": 119.25,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BUFFALO APP/DEP",
+        "frequency_mhz": 126.5
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 120.8
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 119.25
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "OPS",
+        "description": "ANG OPS",
+        "frequency_mhz": 26.19
+      },
+      {
+        "type": "POST",
+        "description": "914 AW COMD POST",
+        "frequency_mhz": 34.002
+      },
+      {
+        "type": "PTD",
+        "description": "PTD",
+        "frequency_mhz": 37.22
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 9826,
+        "width": 150,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 5188,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Calspan Air Services",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.81,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KIAG",
+    "airport_ref": "3603",
+    "fetched_at": "2026-08-29T14:45:12Z"
+  }
+}

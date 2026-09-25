@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788218295.068379,
+  "icao": "KPGV",
+  "data": {
+    "icao": "KPGV",
+    "faa": "PGV",
+    "iata": "PGV",
+    "name": "Pitt-Greenville Airport",
+    "city": "Greenville",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.6355,
+    "lon": -77.3843,
+    "elevation_ft": 26,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 128.425,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 122.35,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.425
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "CNTR",
+        "description": "WASHINGTON CNTR",
+        "frequency_mhz": 135.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 7175,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 4997,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pitt-Greenville Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.17,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.23,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.17,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPGV",
+    "airport_ref": "20824",
+    "fetched_at": "2026-08-31T23:18:15Z"
+  }
+}

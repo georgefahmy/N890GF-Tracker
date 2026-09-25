@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1790302538.7111712,
+  "icao": "KLSN",
+  "data": {
+    "icao": "KLSN",
+    "faa": "LSN",
+    "iata": "LSN",
+    "name": "Los Banos Municipal Airport",
+    "city": "Los Banos",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.0629,
+    "lon": -120.869,
+    "elevation_ft": 121,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.675,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.95,
+    "approach_desc": "NORCAL APP/DEP",
+    "departure_freq": 120.95,
+    "departure_desc": "NORCAL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NORCAL APP/DEP",
+        "frequency_mhz": 120.95
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.675
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 112.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3801,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Los Banos (FBO)",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 10-Sep",
+        "quote_date": "10-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.32,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.15,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.32,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLSN",
+    "airport_ref": "20377",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

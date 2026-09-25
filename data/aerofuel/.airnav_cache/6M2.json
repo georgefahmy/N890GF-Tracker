@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787788270.531353,
+  "icao": "6M2",
+  "data": {
+    "icao": "6M2",
+    "faa": "6M2",
+    "iata": "",
+    "name": "Horseshoe Bend Airport",
+    "city": "Horseshoe Bend",
+    "state": "AR",
+    "country": "US",
+    "lat": 36.2214,
+    "lon": -91.7555,
+    "elevation_ft": 782,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4502,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Horseshoe Bend",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:51:10Z"
+  }
+}

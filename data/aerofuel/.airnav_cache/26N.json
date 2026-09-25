@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787787731.564246,
+  "icao": "26N",
+  "data": {
+    "icao": "26N",
+    "faa": "26N",
+    "iata": "",
+    "name": "Ocean City Municipal Airport",
+    "city": "Ocean City",
+    "state": "NJ",
+    "country": "US",
+    "lat": 39.2635,
+    "lon": -74.6075,
+    "elevation_ft": 5,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 2972,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Ocean City (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:11Z"
+  }
+}

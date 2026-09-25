@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787787534.8689961,
+  "icao": "I18",
+  "data": {
+    "icao": "I18",
+    "faa": "I18",
+    "iata": "",
+    "name": "Jackson County Airport",
+    "city": "Ravenswood",
+    "state": "WV",
+    "country": "US",
+    "lat": 38.9298,
+    "lon": -81.8195,
+    "elevation_ft": 758,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "HUNTINGTON APP/DEP",
+        "frequency_mhz": 128.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 2",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Jackson County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.8,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:38:54Z"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787705746.3013911,
+  "icao": "KGTE",
+  "data": {
+    "icao": "KGTE",
+    "faa": "GTE",
+    "iata": "",
+    "name": "Gothenburg Municipal Airport",
+    "city": "Gothenburg",
+    "state": "NE",
+    "country": "US",
+    "lat": 40.9263,
+    "lon": -100.148,
+    "elevation_ft": 2559,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "DENVER CNTR",
+        "frequency_mhz": 132.7
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3300,
+        "width": 150,
+        "surface": "Grs",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2599,
+        "width": 50,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Gothenburg Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.38,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.38,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:55:46Z"
+  }
+}

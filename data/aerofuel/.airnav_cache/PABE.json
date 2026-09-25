@@ -1,0 +1,137 @@
+{
+  "_cached_at": 1787718396.448512,
+  "icao": "PABE",
+  "data": {
+    "icao": "PABE",
+    "faa": "BET",
+    "iata": "BET",
+    "name": "Bethel Airport",
+    "city": "Bethel",
+    "state": "AK",
+    "country": "US",
+    "lat": 60.7798,
+    "lon": -161.838,
+    "elevation_ft": 126,
+    "tower": true,
+    "ctaf_freq": 118.7,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.8
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 125.2
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF/BETHEL WX",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "FSS",
+        "description": "KENAI RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "MISC",
+        "description": "TWEB",
+        "frequency_mhz": 114.1
+      },
+      {
+        "type": "OPS",
+        "description": "NG OPS",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "01L/19R",
+        "length": 6400,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01R/19L",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "12/30",
+        "length": 1858,
+        "width": 75,
+        "surface": "Gravel",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crowley",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 11.05,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Delta Western, Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 10.04,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.67,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 10.04,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:36Z"
+  }
+}

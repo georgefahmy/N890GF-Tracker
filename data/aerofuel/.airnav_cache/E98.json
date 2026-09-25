@@ -1,0 +1,42 @@
+{
+  "_cached_at": 1787788247.551318,
+  "icao": "E98",
+  "data": {
+    "icao": "E98",
+    "faa": "E98",
+    "iata": "",
+    "name": "Mid Valley Airpark",
+    "city": "Los Lunas",
+    "state": "NM",
+    "country": "US",
+    "lat": 34.7598,
+    "lon": -106.745,
+    "elevation_ft": 4830,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4332,
+        "width": 37,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:47Z"
+  }
+}

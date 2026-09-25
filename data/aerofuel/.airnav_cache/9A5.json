@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787786466.057867,
+  "icao": "9A5",
+  "data": {
+    "icao": "9A5",
+    "faa": "9A5",
+    "iata": "",
+    "name": "Barwick Lafayette Airport",
+    "city": "Lafayette",
+    "state": "GA",
+    "country": "US",
+    "lat": 34.6886,
+    "lon": -85.2904,
+    "elevation_ft": 777,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHATTANOOGA APP/DEP",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.775
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 4999,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Barwick-LaFayette Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:21:06Z"
+  }
+}

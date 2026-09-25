@@ -1,0 +1,100 @@
+{
+  "_cached_at": 1789073589.824297,
+  "icao": "2H0",
+  "data": {
+    "icao": "2H0",
+    "faa": "2H0",
+    "iata": "",
+    "name": "Shelby County Airport",
+    "city": "Shelbyville",
+    "state": "IL",
+    "country": "US",
+    "lat": 39.4104,
+    "lon": -88.8454,
+    "elevation_ft": 618,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 124.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4098,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 2336,
+        "width": 180,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "04/22",
+        "length": 1446,
+        "width": 180,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Shelby County",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 02-Sep",
+        "quote_date": "02-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.99,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K2H0",
+    "airport_ref": "18588",
+    "fetched_at": "2026-09-10T20:53:09Z"
+  }
+}

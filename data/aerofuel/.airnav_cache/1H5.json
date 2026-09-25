@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787787831.573767,
+  "icao": "1H5",
+  "data": {
+    "icao": "1H5",
+    "faa": "1H5",
+    "iata": "",
+    "name": "Willow Springs Memorial Airport",
+    "city": "Willow Springs",
+    "state": "MO",
+    "country": "US",
+    "lat": 36.9896,
+    "lon": -91.9541,
+    "elevation_ft": 1247,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3502,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Willow Springs Memorial Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:51Z"
+  }
+}

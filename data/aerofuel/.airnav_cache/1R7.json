@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787718617.668767,
+  "icao": "1R7",
+  "data": {
+    "icao": "1R7",
+    "faa": "1R7",
+    "iata": "",
+    "name": "Brookhaven-Lincoln County Airport",
+    "city": "Brookhaven",
+    "state": "MS",
+    "country": "US",
+    "lat": 31.6058,
+    "lon": -90.4093,
+    "elevation_ft": 489,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.125
+      },
+      {
+        "type": "CNTR",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 133.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Brookhaven-Lincoln County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.59,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:17Z"
+  }
+}

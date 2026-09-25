@@ -1,0 +1,45 @@
+{
+  "_cached_at": 1787504141.372969,
+  "icao": "67L",
+  "data": {
+    "icao": "67L",
+    "faa": "67L",
+    "name": "Mesquite Airport",
+    "city": "Mesquite",
+    "state": "NV",
+    "distance_nm": 29.0,
+    "bearing": "WSW",
+    "fbos": [
+      {
+        "name": "City of Mesquite (FBO)",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T16:55:41Z",
+    "source": "AirNav Local Fuel"
+  }
+}

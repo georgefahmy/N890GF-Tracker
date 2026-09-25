@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787788634.426972,
+  "icao": "PO1",
+  "data": {
+    "icao": "PO1",
+    "faa": "PO1",
+    "iata": "",
+    "name": "Poplar Muni Airport",
+    "city": "Poplar",
+    "state": "MT",
+    "country": "US",
+    "lat": 48.1329,
+    "lon": -105.165,
+    "elevation_ft": 2036,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4400,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dallas Aero & Sales, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 17-Jul",
+        "quote_date": "17-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:57:14Z"
+  }
+}

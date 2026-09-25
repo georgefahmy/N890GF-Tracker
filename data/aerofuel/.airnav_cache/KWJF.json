@@ -1,0 +1,122 @@
+{
+  "_cached_at": 1788202672.304491,
+  "icao": "KWJF",
+  "data": {
+    "icao": "KWJF",
+    "faa": "WJF",
+    "iata": "WJF",
+    "name": "General William J Fox Airfield",
+    "city": "Lancaster",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.7411,
+    "lon": -118.219,
+    "elevation_ft": 2351,
+    "tower": true,
+    "tower_freq": 120.3,
+    "ctaf_freq": 120.3,
+    "unicom_freq": 122.95,
+    "weather_freq": 126.3,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 126.1,
+    "approach_desc": "JOSHUA APP/DEP",
+    "departure_freq": 126.1,
+    "departure_desc": "JOSHUA APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "JOSHUA APP/DEP",
+        "frequency_mhz": 126.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.3
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 133.875
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "RIVERSIDE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "FOX TWR",
+        "frequency_mhz": 120.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 7201,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "General Wm J Fox Airfield",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.88,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.38,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.26,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.88,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KWJF",
+    "airport_ref": "21375",
+    "fetched_at": "2026-08-31T18:57:52Z"
+  }
+}

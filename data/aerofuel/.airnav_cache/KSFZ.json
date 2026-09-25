@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788218510.139807,
+  "icao": "KSFZ",
+  "data": {
+    "icao": "KSFZ",
+    "faa": "SFZ",
+    "iata": "SFZ",
+    "name": "North Central State Airport",
+    "city": "Pawtucket",
+    "state": "RI",
+    "country": "US",
+    "lat": 41.9208,
+    "lon": -71.4914,
+    "elevation_ft": 441,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.075,
+    "unicom_freq": 123.075,
+    "weather_freq": 120.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 135.4,
+    "approach_desc": "PROVIDENCE APP/DEP",
+    "departure_freq": 135.4,
+    "departure_desc": "PROVIDENCE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 124.35,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PROVIDENCE APP/DEP",
+        "frequency_mhz": 135.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.025
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5000,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 3211,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FlightLevel Rhode Island",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.13,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.62,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.13,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSFZ",
+    "airport_ref": "21060",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

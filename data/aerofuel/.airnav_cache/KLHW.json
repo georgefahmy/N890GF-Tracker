@@ -1,0 +1,143 @@
+{
+  "_cached_at": 1787793815.2771661,
+  "icao": "KLHW",
+  "data": {
+    "icao": "KLHW",
+    "faa": "LHW",
+    "iata": "LIY",
+    "name": "MidCoast Regional Airport at Wright Army Airfield",
+    "city": "Hinesville",
+    "state": "GA",
+    "country": "US",
+    "lat": 31.8912,
+    "lon": -81.561,
+    "elevation_ft": 45,
+    "tower": true,
+    "tower_freq": 38.5,
+    "ctaf_freq": 127.35,
+    "unicom_freq": 127.35,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.4,
+    "approach_desc": "SAVANNAH APP",
+    "departure_freq": 118.4,
+    "departure_desc": "SAVANNAH DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "SAVANNAH APP",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 127.35
+      },
+      {
+        "type": "DEP",
+        "description": "SAVANNAH DEP",
+        "frequency_mhz": 118.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "MISC",
+        "description": "FLT FLW",
+        "frequency_mhz": 41.3
+      },
+      {
+        "type": "OPS",
+        "description": "BASE OPS",
+        "frequency_mhz": 38.7
+      },
+      {
+        "type": "RDO",
+        "description": "MARNE RDO",
+        "frequency_mhz": 41.3
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 38.5
+      }
+    ],
+    "runways": [
+      {
+        "id": "06L/24R",
+        "length": 6500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15L/33R",
+        "length": 5001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06R/24L",
+        "length": 2610,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "15R/33L",
+        "length": 2520,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "MidCoast Regional Airport (FBO)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.1,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLHW",
+    "airport_ref": "20342",
+    "fetched_at": "2026-08-27T01:23:35Z"
+  }
+}

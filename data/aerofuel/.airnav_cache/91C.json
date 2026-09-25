@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1788202536.242836,
+  "icao": "91C",
+  "data": {
+    "icao": "91C",
+    "faa": "91C",
+    "iata": "",
+    "name": "Sauk-Prairie Airport",
+    "city": "Prairie Du Sac",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.2979,
+    "lon": -89.7558,
+    "elevation_ft": 832,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2936,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Blue Sky Flight LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Jun",
+        "quote_date": "13-Jun",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "94UL_SS": {
+            "price": 6.25,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "91C",
+    "airport_ref": "15303",
+    "fetched_at": "2026-08-31T18:55:36Z"
+  }
+}

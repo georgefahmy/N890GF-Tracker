@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1787788634.4249752,
+  "icao": "KXWA",
+  "data": {
+    "icao": "KXWA",
+    "faa": "XWA",
+    "iata": "XWA",
+    "name": "Williston Basin International Airport",
+    "city": "Williston",
+    "state": "ND",
+    "country": "US",
+    "lat": 48.2609,
+    "lon": -103.7512,
+    "elevation_ft": 2344,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 7503,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Overland Aviation",
+        "brand": "Avfuel",
+        "phone": "701-875-4334",
+        "notes": "Avfuel \u2022 24/7 self-serve access \u2022 Guaranteed Price \u2022 Quote: 24/7/365 \u2022 UNICOM: 122.80",
+        "quote_date": "24/7/365",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "SAF"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:57:12Z"
+  }
+}

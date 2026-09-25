@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788014920.203858,
+  "icao": "48X",
+  "data": {
+    "icao": "48X",
+    "faa": "48X",
+    "iata": "",
+    "name": "Airport Manatee Airport",
+    "city": "Palmetto",
+    "state": "FL",
+    "country": "US",
+    "lat": 27.6425,
+    "lon": -82.5209,
+    "elevation_ft": 27,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3120,
+        "width": 100,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airport Manatee",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 06-Aug",
+        "quote_date": "06-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.36,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.36,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "48X",
+    "airport_ref": "11271",
+    "fetched_at": "2026-08-29T14:48:40Z"
+  }
+}

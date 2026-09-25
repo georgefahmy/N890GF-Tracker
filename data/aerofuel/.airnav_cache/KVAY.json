@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787787731.564518,
+  "icao": "KVAY",
+  "data": {
+    "icao": "KVAY",
+    "faa": "VAY",
+    "iata": "LLY",
+    "name": "South Jersey Regional Airport",
+    "city": "Lumberton",
+    "state": "NJ",
+    "country": "US",
+    "lat": 39.9429,
+    "lon": -74.8457,
+    "elevation_ft": 53,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 121.725,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MC GUIRE APP/DEP",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.325
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 121.725
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3881,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "South Jersey Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.05,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:11Z"
+  }
+}

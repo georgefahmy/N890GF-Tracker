@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1787793845.654027,
+  "icao": "KCBE",
+  "data": {
+    "icao": "KCBE",
+    "faa": "CBE",
+    "iata": "CBE",
+    "name": "Greater Cumberland Regional Airport",
+    "city": "Wiley Ford",
+    "state": "WV",
+    "country": "US",
+    "lat": 39.6154,
+    "lon": -78.7609,
+    "elevation_ft": 775,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 128.625,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.625
+      },
+      {
+        "type": "CNTR",
+        "description": "CLEVELAND CNTR",
+        "frequency_mhz": 124.4
+      },
+      {
+        "type": "RDO",
+        "description": "ELKINS RDO",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 5047,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 3000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Potomac Highlands Airport Authority",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.8,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCBE",
+    "airport_ref": "19462",
+    "fetched_at": "2026-08-27T01:24:05Z"
+  }
+}

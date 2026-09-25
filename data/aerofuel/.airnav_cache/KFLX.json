@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1788542163.43739,
+  "icao": "KFLX",
+  "data": {
+    "icao": "KFLX",
+    "faa": "FLX",
+    "iata": "FLX",
+    "name": "Fallon Municipal Airport",
+    "city": "Fallon",
+    "state": "NV",
+    "country": "US",
+    "lat": 39.4991,
+    "lon": -118.749,
+    "elevation_ft": 3963,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.85,
+    "approach_desc": "NAVY FALLON APP/DEP",
+    "departure_freq": 120.85,
+    "departure_desc": "NAVY FALLON APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NAVY FALLON APP/DEP",
+        "frequency_mhz": 120.85
+      },
+      {
+        "type": "RDO",
+        "description": "RENO RDO",
+        "frequency_mhz": 114.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5705,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 3581,
+        "width": 60,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fallon Airmotive Co.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.36,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.86,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.99,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.36,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KFLX",
+    "airport_ref": "19878",
+    "fetched_at": "2026-09-04T17:16:03Z"
+  }
+}

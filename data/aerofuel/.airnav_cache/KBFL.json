@@ -1,0 +1,161 @@
+{
+  "_cached_at": 1787529229.542012,
+  "icao": "KBFL",
+  "data": {
+    "icao": "KBFL",
+    "faa": "BFL",
+    "iata": "BFL",
+    "name": "Meadows Field",
+    "city": "Bakersfield",
+    "state": "CA",
+    "country": "US",
+    "lat": 35.4336,
+    "lon": -119.057,
+    "elevation_ft": 510,
+    "tower": true,
+    "ctaf_freq": 118.1,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "BAKERSFIELD APP SOUTH INITIAL CONTACT",
+        "frequency_mhz": 118.8
+      },
+      {
+        "type": "APP",
+        "description": "BAKERSFIELD APP NORTH INITIAL CONTACT",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "CTR",
+        "description": "LOS ANGELES CENTER",
+        "frequency_mhz": 127.1
+      },
+      {
+        "type": "DEP",
+        "description": "BAKERSFIELD DEP",
+        "frequency_mhz": 126.45
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "RANCHO RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "TWR",
+        "description": "BAKERSFIELD TWR",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "12L/30R",
+        "length": 10849,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12R/30L",
+        "length": 7700,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bakersfield Jet Center",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.98,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Epic Jet Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.69,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.88,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 23-Aug",
+        "quote_date": "23-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.0,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.87,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:53:49Z"
+  }
+}

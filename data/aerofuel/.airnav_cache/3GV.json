@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787528899.320003,
+  "icao": "3GV",
+  "data": {
+    "icao": "3GV",
+    "faa": "3GV",
+    "iata": "",
+    "name": "East Kansas City Airport",
+    "city": "Grain Valley",
+    "state": "MO",
+    "country": "US",
+    "lat": 39.0151,
+    "lon": -94.2153,
+    "elevation_ft": 835,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY APP/DEP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "CLD",
+        "description": "KANSAS CITY CLNC DEL",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4507,
+        "width": 44,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 2206,
+        "width": 20,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Grain Valley Airport Corp.",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.84,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.84,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:48:18Z"
+  }
+}

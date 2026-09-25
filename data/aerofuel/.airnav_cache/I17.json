@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787528524.689984,
+  "icao": "I17",
+  "data": {
+    "icao": "I17",
+    "faa": "I17",
+    "iata": "",
+    "name": "Piqua Airport-Hartzell Field",
+    "city": "Piqua",
+    "state": "OH",
+    "country": "US",
+    "lat": 40.1647,
+    "lon": -84.3084,
+    "elevation_ft": 994,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTON APP/DEP",
+        "frequency_mhz": 134.45
+      },
+      {
+        "type": "RDO",
+        "description": "DAYTON RDO",
+        "frequency_mhz": 117.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3998,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hartzell Propeller Service Center",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Jul",
+        "quote_date": "27-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.42,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.8,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.42,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:04Z"
+  }
+}

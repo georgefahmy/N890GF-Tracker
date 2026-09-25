@@ -1,0 +1,135 @@
+{
+  "_cached_at": 1787864058.2759418,
+  "icao": "PAEN",
+  "data": {
+    "icao": "PAEN",
+    "faa": "ENA",
+    "iata": "ENA",
+    "name": "Kenai Municipal Airport",
+    "city": "Kenai",
+    "state": "AK",
+    "country": "US",
+    "lat": 60.5709,
+    "lon": -151.2452,
+    "elevation_ft": 99,
+    "tower": true,
+    "tower_freq": 239.3,
+    "ctaf_freq": 121.3,
+    "unicom_freq": 121.3,
+    "weather_freq": 133.35,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 118.75,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 133.35
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 121.3
+      },
+      {
+        "type": "FSS",
+        "description": "RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 118.75
+      },
+      {
+        "type": "MILITARY TOWER",
+        "description": "MILITARY TOWER",
+        "frequency_mhz": 239.3
+      },
+      {
+        "type": "MILL CENTER",
+        "description": "MILL CENTER",
+        "frequency_mhz": 379.1
+      },
+      {
+        "type": "MISC",
+        "description": "TWEB",
+        "frequency_mhz": 117.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 121.3
+      }
+    ],
+    "runways": [
+      {
+        "id": "02L/20R",
+        "length": 7855,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "2W/20W",
+        "length": 4600,
+        "width": 240,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "02R/20L",
+        "length": 1980,
+        "width": 75,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crowley",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.67,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.58,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.67,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "PAEN",
+    "airport_ref": "5359",
+    "fetched_at": "2026-08-27T20:54:18Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1788202652.255287,
+  "icao": "MO00",
+  "data": {
+    "icao": "MO00",
+    "faa": "MO00",
+    "name": "Turkey Mountain Airport",
+    "city": "Shell Knob",
+    "state": "MO",
+    "distance_nm": 41.0,
+    "bearing": "SSW",
+    "fbos": [
+      {
+        "name": "Turkey Mountain Airpark",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jul",
+        "quote_date": "30-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "fetched_at": "2026-08-31T18:57:32Z",
+    "source": "AirNav Local Fuel"
+  }
+}

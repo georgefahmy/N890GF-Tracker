@@ -1,0 +1,72 @@
+{
+  "_cached_at": 1787787665.92447,
+  "icao": "8G2",
+  "data": {
+    "icao": "8G2",
+    "faa": "8G2",
+    "iata": "",
+    "name": "Corry Lawrence Airport",
+    "city": "Corry",
+    "state": "PA",
+    "country": "US",
+    "lat": 41.9076,
+    "lon": -79.6411,
+    "elevation_ft": 1766,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ERIE APP/DEP",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4101,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Corry-Lawrence Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Jul",
+        "quote_date": "07-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.62,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.4,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.62,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:41:05Z"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787718396.4490528,
+  "icao": "Z59",
+  "data": {
+    "icao": "Z59",
+    "faa": "Z59",
+    "iata": "JBT",
+    "name": "Bethel Seaplane Base",
+    "city": "Bethel",
+    "state": "AK",
+    "country": "US",
+    "lat": 60.782,
+    "lon": -161.743,
+    "elevation_ft": 15,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "NE/SW",
+        "length": 3000,
+        "width": 500,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Crowley",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_FS": {
+            "price": 9.77,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.05,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 9.77,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:26:36Z"
+  }
+}

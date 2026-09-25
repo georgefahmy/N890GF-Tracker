@@ -1,0 +1,116 @@
+{
+  "_cached_at": 1787788706.501924,
+  "icao": "KMCI",
+  "data": {
+    "icao": "KMCI",
+    "faa": "MCI",
+    "iata": "MCI",
+    "name": "Kansas City International Airport",
+    "city": "Kansas City",
+    "state": "MO",
+    "country": "US",
+    "lat": 39.3017,
+    "lon": -94.7139,
+    "elevation_ft": 1026,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 120.95
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.625
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 135.7
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 124.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.65
+      },
+      {
+        "type": "RDO",
+        "description": "COLUMBIA RDO",
+        "frequency_mhz": 122.65
+      },
+      {
+        "type": "TWR",
+        "description": "INTL TWR",
+        "frequency_mhz": 125.75
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "01L/19R",
+        "length": 10801,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 9501,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "01R/19L",
+        "length": 9500,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.14,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.78,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.14,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:26Z"
+  }
+}

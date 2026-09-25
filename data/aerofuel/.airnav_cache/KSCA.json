@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787528524.69037,
+  "icao": "KSCA",
+  "data": {
+    "icao": "KSCA",
+    "faa": "SCA",
+    "iata": "",
+    "name": "Sidney Municipal Airport",
+    "city": "Sidney",
+    "state": "OH",
+    "country": "US",
+    "lat": 40.2414,
+    "lon": -84.1509,
+    "elevation_ft": 1044,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DAYTON APP/DEP",
+        "frequency_mhz": 127.65
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.425
+      },
+      {
+        "type": "RDO",
+        "description": "DAYTON RDO",
+        "frequency_mhz": 117.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 5013,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 2981,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aerotech Aviation LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 15-Jul",
+        "quote_date": "15-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.29,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:04Z"
+  }
+}

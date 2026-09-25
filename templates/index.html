@@ -102,6 +102,17 @@
             background: #9e3b0a;
             color: white;
         }
+        .fuel-map-btn {
+            background: #0ea5e9;
+            color: white;
+            border: 1px solid #38bdf8;
+            transition: all 0.2s ease-in-out;
+        }
+        .fuel-map-btn:hover {
+            background: #0284c7;
+            color: white;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+        }
         .flight-analyzer-btn {
             /* background:  #0a9ad3; */
             background: transparent;
@@ -267,6 +278,7 @@
                 <div class="col-12 col-md-auto d-flex gap-2 flex-wrap justify-content-center">
                     <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelModal">Log Fuel</button>
                     <button class="btn fuel-prices-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#pricesResultModal">Check $$</button>
+                    <a href="/fuel_map" class="btn fuel-map-btn flex-grow-1 flex-md-grow-0">Fuel $$ Map</a>
                     <button class="btn route-advisor-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal">Routes</button>
                     <button class="btn database-download-button flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">Dynon DBs</button>
                     <a href="/live_map" class="btn btn-info text-white flex-grow-1 flex-md-grow-0">Live Map</a>

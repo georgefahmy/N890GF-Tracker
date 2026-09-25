@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1787863998.417099,
+  "icao": "KHJH",
+  "data": {
+    "icao": "KHJH",
+    "faa": "HJH",
+    "iata": "",
+    "name": "Hebron Municipal Airport",
+    "city": "Hebron",
+    "state": "NE",
+    "country": "US",
+    "lat": 40.1519,
+    "lon": -97.584,
+    "elevation_ft": 1466,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": 118.525,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS3",
+        "frequency_mhz": 118.525
+      },
+      {
+        "type": "CNTR",
+        "description": "MINNEAPOLIS CNTR",
+        "frequency_mhz": 126.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3600,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 2513,
+        "width": 150,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hebron Municipal Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KHJH",
+    "airport_ref": "20055",
+    "fetched_at": "2026-08-27T20:53:18Z"
+  }
+}

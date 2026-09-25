@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1787787790.699738,
+  "icao": "KBLF",
+  "data": {
+    "icao": "KBLF",
+    "faa": "BLF",
+    "iata": "BLF",
+    "name": "Mercer County Airport",
+    "city": "Bluefield",
+    "state": "WV",
+    "country": "US",
+    "lat": 37.2958,
+    "lon": -81.2077,
+    "elevation_ft": 2857,
+    "tower": true,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 132.725
+      },
+      {
+        "type": "CNTR",
+        "description": "INDIANAPOLIS CNTR",
+        "frequency_mhz": 126.575
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "ELKINS RDO",
+        "frequency_mhz": 122.2
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 4743,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mercer County Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.65,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 5.9,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:10Z"
+  }
+}

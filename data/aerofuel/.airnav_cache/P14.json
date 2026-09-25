@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787543355.3763552,
+  "icao": "P14",
+  "data": {
+    "icao": "P14",
+    "faa": "P14",
+    "iata": "HBK",
+    "name": "Holbrook Municipal Airport",
+    "city": "Holbrook",
+    "state": "AZ",
+    "country": "US",
+    "lat": 34.9407,
+    "lon": -110.138,
+    "elevation_ft": 5262,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.675
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 6698,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 3202,
+        "width": 120,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Holbrook Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.52,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.52,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:49:15Z"
+  }
+}

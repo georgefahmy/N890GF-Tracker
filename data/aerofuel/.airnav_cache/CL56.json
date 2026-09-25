@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1790302594.595814,
+  "icao": "CL56",
+  "data": {
+    "icao": "CL56",
+    "faa": "CL56",
+    "name": "Ranchaero Airport",
+    "city": "Chico",
+    "state": "CA",
+    "distance_nm": 57.0,
+    "bearing": "SSE",
+    "fbos": [
+      {
+        "name": "Ranchaero Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-24",
+    "fetched_at": "2026-09-25T02:16:34Z",
+    "source": "AirNav Local Fuel"
+  }
+}

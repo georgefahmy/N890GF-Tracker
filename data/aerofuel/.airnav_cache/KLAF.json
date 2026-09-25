@@ -1,0 +1,123 @@
+{
+  "_cached_at": 1789073607.587905,
+  "icao": "KLAF",
+  "data": {
+    "icao": "KLAF",
+    "faa": "LAF",
+    "iata": "LAF",
+    "name": "Purdue University Airport",
+    "city": "West Lafayette",
+    "state": "IN",
+    "country": "US",
+    "lat": 40.4129,
+    "lon": -86.9394,
+    "elevation_ft": 606,
+    "tower": true,
+    "tower_freq": 119.6,
+    "ctaf_freq": 119.6,
+    "unicom_freq": 122.95,
+    "weather_freq": 127.75,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 123.85,
+    "approach_desc": "GRISSOM A/D",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRISSOM A/D",
+        "frequency_mhz": 123.85
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 127.75
+      },
+      {
+        "type": "CNTR",
+        "description": "CHICAGO CNTR",
+        "frequency_mhz": 123.85
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "LAFAYETTE TWR",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 6600,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 4225,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Purdue Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 02-Sep",
+        "quote_date": "02-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.74,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KLAF",
+    "airport_ref": "3627",
+    "fetched_at": "2026-09-10T20:53:27Z"
+  }
+}

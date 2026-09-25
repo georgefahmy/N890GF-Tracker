@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1788218649.997247,
+  "icao": "KCAR",
+  "data": {
+    "icao": "KCAR",
+    "faa": "CAR",
+    "iata": "CAR",
+    "name": "Caribou Municipal Airport",
+    "city": "Caribou",
+    "state": "ME",
+    "country": "US",
+    "lat": 46.8715,
+    "lon": -68.0179,
+    "elevation_ft": 626,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 135.125,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.125
+      },
+      {
+        "type": "CNTR",
+        "description": "BOSTON CNTR",
+        "frequency_mhz": 124.75
+      },
+      {
+        "type": "RDO",
+        "description": "BANGOR RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4003,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 3016,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Caribou Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.65,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.65,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCAR",
+    "airport_ref": "3440",
+    "fetched_at": "2026-08-31T23:24:09Z"
+  }
+}

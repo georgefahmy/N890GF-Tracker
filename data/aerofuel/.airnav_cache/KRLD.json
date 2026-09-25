@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1787864675.905356,
+  "icao": "KRLD",
+  "data": {
+    "icao": "KRLD",
+    "faa": "RLD",
+    "iata": "RLD",
+    "name": "Richland Airport",
+    "city": "Richland",
+    "state": "WA",
+    "country": "US",
+    "lat": 46.3056,
+    "lon": -119.304,
+    "elevation_ft": 394,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 132.625,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 128.75,
+    "approach_desc": "CHINOOK APP/DEP",
+    "departure_freq": 128.75,
+    "departure_desc": "CHINOOK APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 122.4,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHINOOK APP/DEP",
+        "frequency_mhz": 128.75
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 132.625
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 122.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4009,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 4001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sundance Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Jul",
+        "quote_date": "20-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.83,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.15,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.96,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.83,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRLD",
+    "airport_ref": "20939",
+    "fetched_at": "2026-08-27T21:04:35Z"
+  }
+}

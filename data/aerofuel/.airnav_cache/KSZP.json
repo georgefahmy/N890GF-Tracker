@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1788202697.069558,
+  "icao": "KSZP",
+  "data": {
+    "icao": "KSZP",
+    "faa": "SZP",
+    "iata": "SZP",
+    "name": "Santa Paula Airport",
+    "city": "Santa Paula",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.3472,
+    "lon": -119.061,
+    "elevation_ft": 243,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 2665,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "H1",
+        "length": 60,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Santa Paula Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSZP",
+    "airport_ref": "24683",
+    "fetched_at": "2026-08-31T18:58:17Z"
+  }
+}

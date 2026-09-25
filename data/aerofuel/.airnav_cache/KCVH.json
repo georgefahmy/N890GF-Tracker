@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1790302538.7101629,
+  "icao": "KCVH",
+  "data": {
+    "icao": "KCVH",
+    "faa": "CVH",
+    "iata": "HLI",
+    "name": "Hollister Municipal Airport",
+    "city": "Hollister",
+    "state": "CA",
+    "country": "US",
+    "lat": 36.8933,
+    "lon": -121.41,
+    "elevation_ft": 230,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 120.425,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS",
+    "approach_freq": 124.525,
+    "approach_desc": "APPR & DEP",
+    "departure_freq": 124.525,
+    "departure_desc": "APPR & DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APPR & DEP",
+        "description": "APPR & DEP",
+        "frequency_mhz": 124.525
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS",
+        "frequency_mhz": 120.425
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 6350,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 3149,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hollister Jet Center, Inc",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.8,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.44,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-24",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCVH",
+    "airport_ref": "17054",
+    "fetched_at": "2026-09-25T02:15:38Z"
+  }
+}

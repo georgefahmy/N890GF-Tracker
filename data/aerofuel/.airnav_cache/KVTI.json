@@ -1,0 +1,105 @@
+{
+  "_cached_at": 1788202625.747377,
+  "icao": "KVTI",
+  "data": {
+    "icao": "KVTI",
+    "faa": "VTI",
+    "iata": "",
+    "name": "Vinton Veterans Memorial Airpark",
+    "city": "Vinton",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.2182,
+    "lon": -92.0259,
+    "elevation_ft": 842,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 120.075,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 134.05,
+    "approach_desc": "CEDAR RAPIDS APP/DEP",
+    "departure_freq": 134.05,
+    "departure_desc": "CEDAR RAPIDS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CEDAR RAPIDS APP/DEP",
+        "frequency_mhz": 134.05
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.075
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4000,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 2500,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Vinton",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 4.78,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.78,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KVTI",
+    "airport_ref": "21338",
+    "fetched_at": "2026-08-31T18:57:05Z"
+  }
+}

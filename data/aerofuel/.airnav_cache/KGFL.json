@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788218488.343789,
+  "icao": "KGFL",
+  "data": {
+    "icao": "KGFL",
+    "faa": "GFL",
+    "iata": "GFL",
+    "name": "Floyd Bennett Memorial Airport",
+    "city": "Glens Falls",
+    "state": "NY",
+    "country": "US",
+    "lat": 43.3412,
+    "lon": -73.6103,
+    "elevation_ft": 328,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 119.25,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 125.0,
+    "approach_desc": "ALBANY APP/DEP",
+    "departure_freq": 125.0,
+    "departure_desc": "ALBANY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ALBANY APP/DEP",
+        "frequency_mhz": 125.0
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.25
+      },
+      {
+        "type": "RDO",
+        "description": "BURLINGTON RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 5000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "12/30",
+        "length": 3999,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Rich Air",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.69,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.39,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.69,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGFL",
+    "airport_ref": "3554",
+    "fetched_at": "2026-08-31T23:21:28Z"
+  }
+}

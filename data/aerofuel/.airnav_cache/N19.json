@@ -1,0 +1,67 @@
+{
+  "_cached_at": 1787782633.752613,
+  "icao": "N19",
+  "data": {
+    "icao": "N19",
+    "faa": "N19",
+    "iata": "",
+    "name": "Aztec Municipal Airport",
+    "city": "Aztec",
+    "state": "NM",
+    "country": "US",
+    "lat": 36.837,
+    "lon": -108.0289,
+    "elevation_ft": 5877,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 4300,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 2850,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aztec Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T22:17:13Z"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1788214945.067322,
+  "icao": "S78",
+  "data": {
+    "icao": "S78",
+    "faa": "S78",
+    "iata": "",
+    "name": "Emmett Municipal Airport",
+    "city": "Emmett",
+    "state": "ID",
+    "country": "US",
+    "lat": 43.8499,
+    "lon": -116.543,
+    "elevation_ft": 2350,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CITY",
+        "frequency_mhz": 128.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      },
+      {
+        "type": "RDO",
+        "description": "BOISE",
+        "frequency_mhz": 122.45
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3307,
+        "width": 55,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Midfield Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 27-Aug",
+        "quote_date": "27-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.43,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.43,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KS78",
+    "airport_ref": "21021",
+    "fetched_at": "2026-08-31T22:22:25Z"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "_cached_at": 1788218304.5473468,
+  "icao": "KEQY",
+  "data": {
+    "icao": "KEQY",
+    "faa": "EQY",
+    "iata": "",
+    "name": "Charlotte-Monroe Executive Airport",
+    "city": "Monroe",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.0188,
+    "lon": -80.6202,
+    "elevation_ft": 679,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": 135.775,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 120.05,
+    "approach_desc": "CHARLOTTE APP/DEP",
+    "departure_freq": 120.05,
+    "departure_desc": "CHARLOTTE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 132.55,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHARLOTTE APP/DEP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.775
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 132.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 7001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Charlotte-Monroe Executive Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.57,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.17,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.49,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.57,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KEQY",
+    "airport_ref": "19767",
+    "fetched_at": "2026-08-31T23:18:24Z"
+  }
+}

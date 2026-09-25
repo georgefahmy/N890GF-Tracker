@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787528139.385362,
+  "icao": "43IL",
+  "data": {
+    "icao": "43IL",
+    "faa": "43IL",
+    "name": "Vertiport Chicago Heliport",
+    "city": "Chicago",
+    "state": "IL",
+    "distance_nm": 13.0,
+    "bearing": "ESE",
+    "fbos": [
+      {
+        "name": "Vertiport Chicago",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Aug",
+        "quote_date": "03-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 9.01,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "fetched_at": "2026-08-23T23:35:39Z",
+    "source": "AirNav Local Fuel"
+  }
+}

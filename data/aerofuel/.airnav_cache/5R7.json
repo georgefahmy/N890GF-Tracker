@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787718633.269676,
+  "icao": "5R7",
+  "data": {
+    "icao": "5R7",
+    "faa": "5R7",
+    "iata": "",
+    "name": "Roy E. Ray Airport",
+    "city": "Bayou La Batre",
+    "state": "AL",
+    "country": "US",
+    "lat": 30.4544,
+    "lon": -88.2112,
+    "elevation_ft": 80,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2000,
+        "width": 150,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Roy E. Ray Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:30:33Z"
+  }
+}

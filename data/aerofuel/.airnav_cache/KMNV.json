@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788202468.9565818,
+  "icao": "KMNV",
+  "data": {
+    "icao": "KMNV",
+    "faa": "MNV",
+    "iata": "",
+    "name": "Monroe County Airport",
+    "city": "Madisonville",
+    "state": "TN",
+    "country": "US",
+    "lat": 35.5454,
+    "lon": -84.3802,
+    "elevation_ft": 1031,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 118.475,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 123.9,
+    "approach_desc": "KNOXVILLE APP/DEP",
+    "departure_freq": 123.9,
+    "departure_desc": "KNOXVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KNOXVILLE APP/DEP",
+        "frequency_mhz": 123.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 3643,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Monroe County",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.8,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.9,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.8,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMNV",
+    "airport_ref": "20537",
+    "fetched_at": "2026-08-31T18:54:28Z"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1787864675.904858,
+  "icao": "1S5",
+  "data": {
+    "icao": "1S5",
+    "faa": "1S5",
+    "iata": "",
+    "name": "Sunnyside Municipal Airport",
+    "city": "Sunnyside",
+    "state": "WA",
+    "country": "US",
+    "lat": 46.3271,
+    "lon": -119.97,
+    "elevation_ft": 768,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3425,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Port of Sunnyside",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.37,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.37,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1S5",
+    "airport_ref": "18514",
+    "fetched_at": "2026-08-27T21:04:35Z"
+  }
+}

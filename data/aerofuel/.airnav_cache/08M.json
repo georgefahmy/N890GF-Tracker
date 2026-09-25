@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787788321.6199481,
+  "icao": "08M",
+  "data": {
+    "icao": "08M",
+    "faa": "08M",
+    "iata": "",
+    "name": "Carthage-Leake County Airport",
+    "city": "Carthage",
+    "state": "MS",
+    "country": "US",
+    "lat": 32.7612,
+    "lon": -89.5301,
+    "elevation_ft": 454,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3000,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Carthage-Leake County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:52:01Z"
+  }
+}

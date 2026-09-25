@@ -1,0 +1,113 @@
+{
+  "_cached_at": 1788014712.993255,
+  "icao": "KBUF",
+  "data": {
+    "icao": "KBUF",
+    "faa": "BUF",
+    "iata": "BUF",
+    "name": "Buffalo Niagara International Airport",
+    "city": "Buffalo",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.9405,
+    "lon": -78.7322,
+    "elevation_ft": 728,
+    "tower": true,
+    "tower_freq": 120.5,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "weather_freq": 135.35,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 126.15,
+    "approach_desc": "Buffalo APP/DEP",
+    "departure_freq": 126.15,
+    "departure_desc": "Buffalo APP/DEP",
+    "ground_freq": 133.2,
+    "ground_desc": "GND",
+    "clearance_freq": 124.7,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "Buffalo APP/DEP",
+        "frequency_mhz": 126.15
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 135.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 124.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 133.2
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.5
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 8829,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "14/32",
+        "length": 7161,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.28,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KBUF",
+    "airport_ref": "3431",
+    "fetched_at": "2026-08-29T14:45:12Z"
+  }
+}

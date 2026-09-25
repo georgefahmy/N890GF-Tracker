@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787788183.693336,
+  "icao": "M66",
+  "data": {
+    "icao": "M66",
+    "faa": "M66",
+    "iata": "",
+    "name": "Alfred Schroeder Field",
+    "city": "Hillsboro",
+    "state": "KS",
+    "country": "US",
+    "lat": 38.3409,
+    "lon": -97.2139,
+    "elevation_ft": 1434,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3229,
+        "width": 44,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Hillsboro",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:49:43Z"
+  }
+}

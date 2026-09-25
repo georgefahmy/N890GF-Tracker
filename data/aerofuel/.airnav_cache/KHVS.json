@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787528396.836364,
+  "icao": "KHVS",
+  "data": {
+    "icao": "KHVS",
+    "faa": "HVS",
+    "iata": "HVS",
+    "name": "Hartsville Regional Airport",
+    "city": "Hartsville",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.4031,
+    "lon": -80.1192,
+    "elevation_ft": 364,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SHAW APP/DEP",
+        "frequency_mhz": 125.4
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.225
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "843-383-1088",
+        "notes": "Quote: 20-Aug-2026",
+        "quote_date": "20-Aug-2026",
+        "fuels": {
+          "JET_A": {
+            "price": 6.64,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:39:55Z"
+  }
+}

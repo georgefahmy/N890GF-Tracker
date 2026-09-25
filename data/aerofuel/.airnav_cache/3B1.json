@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1788218654.2594419,
+  "icao": "3B1",
+  "data": {
+    "icao": "3B1",
+    "faa": "3B1",
+    "iata": "",
+    "name": "Greenville Municipal Airport",
+    "city": "Greenville",
+    "state": "ME",
+    "country": "US",
+    "lat": 45.463,
+    "lon": -69.5516,
+    "elevation_ft": 1401,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 23.6,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS A",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS A",
+        "frequency_mhz": 23.6
+      },
+      {
+        "type": "CNTR",
+        "description": "BOSTON CNTR",
+        "frequency_mhz": 120.25
+      },
+      {
+        "type": "RDO",
+        "description": "BANGOR RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 3001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Town of Greenville - Greenville Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.05,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K3B1",
+    "airport_ref": "18673",
+    "fetched_at": "2026-08-31T23:24:14Z"
+  }
+}

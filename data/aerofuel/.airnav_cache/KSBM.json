@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1787505204.460274,
+  "icao": "KSBM",
+  "data": {
+    "icao": "KSBM",
+    "faa": "SBM",
+    "iata": "SBM",
+    "name": "Sheboygan County Memorial Airport",
+    "city": "Sheboygan",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.7696,
+    "lon": -87.8514,
+    "elevation_ft": 755,
+    "tower": false,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 122.7,
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 4560,
+        "surface": "Concrete"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Lake Breeze Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.54,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.64,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.64,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.54,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 110.0
+      },
+      {
+        "type": "CNTR",
+        "description": "CHICAGO CNTR",
+        "frequency_mhz": 127.0
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 110.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "fetched_at": "2026-08-23T17:13:22Z"
+  }
+}

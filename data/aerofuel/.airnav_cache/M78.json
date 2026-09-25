@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787788275.638408,
+  "icao": "M78",
+  "data": {
+    "icao": "M78",
+    "faa": "M78",
+    "iata": "",
+    "name": "Malvern Municipal Airport",
+    "city": "Malvern",
+    "state": "AR",
+    "country": "US",
+    "lat": 34.3333,
+    "lon": -92.7615,
+    "elevation_ft": 538,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 128.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 3188,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "N2 Aviation Works",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:51:15Z"
+  }
+}

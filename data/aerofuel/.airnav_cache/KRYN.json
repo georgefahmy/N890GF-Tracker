@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1787518884.756638,
+  "icao": "KRYN",
+  "data": {
+    "icao": "KRYN",
+    "faa": "RYN",
+    "iata": "",
+    "name": "Ryan Field",
+    "city": "Tucson",
+    "state": "AZ",
+    "country": "US",
+    "lat": 32.1422,
+    "lon": -111.175,
+    "elevation_ft": 2417,
+    "tower": true,
+    "ctaf_freq": 125.2,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3850,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Velocity Air",
+        "brand": "World Fuel Services",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.45,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.95,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "TUCSON APP/DEP",
+        "frequency_mhz": 128.5
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 133.35
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.8
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 118.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 125.8
+      }
+    ],
+    "fetched_at": "2026-08-23T21:01:24Z"
+  }
+}

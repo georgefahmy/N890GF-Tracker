@@ -1,0 +1,60 @@
+{
+  "_cached_at": 1787528566.81509,
+  "icao": "I73",
+  "data": {
+    "icao": "I73",
+    "faa": "I73",
+    "iata": "",
+    "name": "Moraine Air Park",
+    "city": "Dayton",
+    "state": "OH",
+    "country": "US",
+    "lat": 39.6822,
+    "lon": -84.239,
+    "elevation_ft": 720,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3500,
+        "width": 65,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Moraine Airpark",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:42:46Z"
+  }
+}

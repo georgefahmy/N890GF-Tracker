@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1787544581.539406,
+  "icao": "KCKF",
+  "data": {
+    "icao": "KCKF",
+    "faa": "CKF",
+    "iata": "",
+    "name": "Crisp County Cordele Airport",
+    "city": "Cordele",
+    "state": "GA",
+    "country": "US",
+    "lat": 31.9888,
+    "lon": -83.7739,
+    "elevation_ft": 310,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.05,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.325
+      },
+      {
+        "type": "CNTR",
+        "description": "JACKSONVILLE CNTR",
+        "frequency_mhz": 125.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.05
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5008,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "10/28",
+        "length": 5001,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Richter Aviation LLC",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.91,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.93,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.91,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T04:09:41Z"
+  }
+}

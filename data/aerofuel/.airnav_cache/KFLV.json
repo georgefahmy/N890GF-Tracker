@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787788706.501323,
+  "icao": "KFLV",
+  "data": {
+    "icao": "KFLV",
+    "faa": "FLV",
+    "iata": "FLV",
+    "name": "Sherman Army Air Field",
+    "city": "Fort Leavenworth",
+    "state": "KS",
+    "country": "US",
+    "lat": 39.3683,
+    "lon": -94.9147,
+    "elevation_ft": 772,
+    "tower": false,
+    "ctaf_freq": 126.2,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "KANSAS CITY APP/DEP",
+        "frequency_mhz": 124.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 126.2
+      },
+      {
+        "type": "RDO",
+        "description": "WICHITA RDO",
+        "frequency_mhz": 122.35
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 5318,
+        "width": 102,
+        "surface": "Pem",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Leavenworth Aviation Services",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:26Z"
+  }
+}

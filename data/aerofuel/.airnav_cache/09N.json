@@ -1,0 +1,52 @@
+{
+  "_cached_at": 1787787723.8618271,
+  "icao": "09N",
+  "data": {
+    "icao": "09N",
+    "faa": "09N",
+    "iata": "",
+    "name": "Airhaven Airport",
+    "city": "Staatsburg",
+    "state": "NY",
+    "country": "US",
+    "lat": 41.8326,
+    "lon": -73.876,
+    "elevation_ft": 450,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 1863,
+        "width": 75,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "AirNav Reported Fuel Island",
+        "phone": "N/A",
+        "notes": "AirNav Public Retail Fuel Feed",
+        "fuels": {
+          "SAF": {
+            "price": 2.0,
+            "type": "SAF",
+            "service": "Full-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "SAF"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:42:01Z"
+  }
+}

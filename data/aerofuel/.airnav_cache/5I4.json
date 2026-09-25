@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787788130.287636,
+  "icao": "5I4",
+  "data": {
+    "icao": "5I4",
+    "faa": "5I4",
+    "iata": "",
+    "name": "Sheridan Airport",
+    "city": "Sheridan",
+    "state": "IN",
+    "country": "US",
+    "lat": 40.1779,
+    "lon": -86.2173,
+    "elevation_ft": 936,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.075,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "INDIANAPOLIS APP/DEP",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "RDO",
+        "description": "TERRE HAUTE RDO",
+        "frequency_mhz": 113.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.075
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 3760,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 3387,
+        "width": 88,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Hamilton County Airport Authority",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Jul",
+        "quote_date": "13-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:48:50Z"
+  }
+}

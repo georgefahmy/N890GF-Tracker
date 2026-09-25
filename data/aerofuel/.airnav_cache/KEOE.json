@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788218308.860854,
+  "icao": "KEOE",
+  "data": {
+    "icao": "KEOE",
+    "faa": "EOE",
+    "iata": "",
+    "name": "Newberry County Airport",
+    "city": "Newberry",
+    "state": "SC",
+    "country": "US",
+    "lat": 34.3093,
+    "lon": -81.6397,
+    "elevation_ft": 570,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 133.4,
+    "approach_desc": "COLUMBIA APP/DEP",
+    "departure_freq": 133.4,
+    "departure_desc": "COLUMBIA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "COLUMBIA APP/DEP",
+        "frequency_mhz": 133.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Newberry County Airport Commission",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.61,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.61,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KEOE",
+    "airport_ref": "18557",
+    "fetched_at": "2026-08-31T23:18:28Z"
+  }
+}

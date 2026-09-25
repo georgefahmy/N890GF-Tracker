@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787608478.367307,
+  "icao": "1O2",
+  "data": {
+    "icao": "1O2",
+    "faa": "1O2",
+    "iata": "CKE",
+    "name": "Lampson Field",
+    "city": "Lakeport",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.9906,
+    "lon": -122.901,
+    "elevation_ft": 1379,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 2",
+        "frequency_mhz": 118.35
+      },
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 3600,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Westgate Petroleum",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 13-Aug",
+        "quote_date": "13-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:54:38Z"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "_cached_at": 1787525309.4309719,
+  "icao": "KEKY",
+  "data": {
+    "icao": "KEKY",
+    "faa": "EKY",
+    "iata": "",
+    "name": "Bessemer Airport",
+    "city": "Bessemer",
+    "state": "AL",
+    "country": "US",
+    "lat": 33.3129,
+    "lon": -86.9259,
+    "elevation_ft": 700,
+    "tower": false,
+    "ctaf_freq": 119.0,
+    "unicom_freq": 123.0,
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 8800,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fly EKY - The Bessemer Municipal Airport FBO",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.03,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.8,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.03,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BIRMINGHAM APP/DEP",
+        "frequency_mhz": 124.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.825
+      },
+      {
+        "type": "CLD",
+        "description": "BIRMINGHAM CLNC DEL",
+        "frequency_mhz": 123.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "fetched_at": "2026-08-23T22:48:29Z"
+  }
+}

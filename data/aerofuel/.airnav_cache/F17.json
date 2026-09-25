@@ -1,0 +1,77 @@
+{
+  "_cached_at": 1787788280.534863,
+  "icao": "F17",
+  "data": {
+    "icao": "F17",
+    "faa": "F17",
+    "iata": "",
+    "name": "Center Municipal Airport",
+    "city": "Center",
+    "state": "TX",
+    "country": "US",
+    "lat": 31.8316,
+    "lon": -94.1564,
+    "elevation_ft": 319,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 126.325
+      },
+      {
+        "type": "RDO",
+        "description": "MONTGOMERY CO RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5501,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Center Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.2,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:51:20Z"
+  }
+}

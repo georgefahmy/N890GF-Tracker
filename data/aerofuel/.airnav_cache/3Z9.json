@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787527415.918807,
+  "icao": "3Z9",
+  "data": {
+    "icao": "3Z9",
+    "faa": "3Z9",
+    "iata": "",
+    "name": "Haines Seaplane Base",
+    "city": "Haines",
+    "state": "AK",
+    "country": "US",
+    "lat": 59.235,
+    "lon": -135.441,
+    "elevation_ft": 100,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "N/S",
+        "length": 5000,
+        "width": 4000,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:23:33Z"
+  }
+}

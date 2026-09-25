@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1789073621.58946,
+  "icao": "43A",
+  "data": {
+    "icao": "43A",
+    "faa": "43A",
+    "iata": "",
+    "name": "Montgomery County Airport",
+    "city": "Star",
+    "state": "NC",
+    "country": "US",
+    "lat": 35.3841,
+    "lon": -79.7905,
+    "elevation_ft": 628,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 3500,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Montgomery County (FBO)",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 28-Jul",
+        "quote_date": "28-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.35,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.35,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K43A",
+    "airport_ref": "18772",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

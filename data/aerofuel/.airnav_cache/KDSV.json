@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787793856.739576,
+  "icao": "KDSV",
+  "data": {
+    "icao": "KDSV",
+    "faa": "DSV",
+    "iata": "DSV",
+    "name": "Dansville Municipal Airport",
+    "city": "Dansville",
+    "state": "NY",
+    "country": "US",
+    "lat": 42.5705,
+    "lon": -77.7133,
+    "elevation_ft": 662,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": 118.325,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 123.7,
+    "approach_desc": "ROCHESTER APP/DEP",
+    "departure_freq": 123.7,
+    "departure_desc": "ROCHESTER APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROCHESTER APP/DEP",
+        "frequency_mhz": 123.7
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "AWOS",
+        "description": "Automated Weather Operating System",
+        "frequency_mhz": 118.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Dansville Municipal Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.49,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDSV",
+    "airport_ref": "19656",
+    "fetched_at": "2026-08-27T01:24:16Z"
+  }
+}

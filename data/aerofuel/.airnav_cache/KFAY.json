@@ -1,0 +1,113 @@
+{
+  "_cached_at": 1789073621.590423,
+  "icao": "KFAY",
+  "data": {
+    "icao": "KFAY",
+    "faa": "FAY",
+    "iata": "FAY",
+    "name": "Fayetteville Regional Airport - Grannis Field",
+    "city": "Fayetteville",
+    "state": "NC",
+    "country": "US",
+    "lat": 34.9912,
+    "lon": -78.8803,
+    "elevation_ft": 189,
+    "tower": true,
+    "tower_freq": 118.3,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 121.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 125.175,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 125.175,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 125.175
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 121.25
+      },
+      {
+        "type": "GCA",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "RALEIGH RDO",
+        "frequency_mhz": 25.54
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 7709,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "10/28",
+        "length": 4801,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 09-Sep",
+        "quote_date": "09-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 8.15,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.63,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KFAY",
+    "airport_ref": "3525",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "_cached_at": 1788542168.957449,
+  "icao": "KTVL",
+  "data": {
+    "icao": "KTVL",
+    "faa": "TVL",
+    "iata": "TVL",
+    "name": "Lake Tahoe Airport",
+    "city": "South Lake Tahoe",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.8939,
+    "lon": -119.995,
+    "elevation_ft": 6264,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.85,
+    "unicom_freq": 122.85,
+    "weather_freq": 124.725,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 124.725
+      },
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 127.95
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.85
+      },
+      {
+        "type": "RDO",
+        "description": "RENO RDO",
+        "frequency_mhz": 122.25
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.85
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 8541,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mountain West Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTVL",
+    "airport_ref": "3934",
+    "fetched_at": "2026-09-04T17:16:08Z"
+  }
+}

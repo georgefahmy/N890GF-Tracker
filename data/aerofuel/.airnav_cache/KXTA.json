@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787527170.082916,
+  "icao": "KXTA",
+  "data": {
+    "icao": "KXTA",
+    "faa": "XTA",
+    "iata": "",
+    "name": "Homey (Area 51) Airport",
+    "city": "Groom Lake",
+    "state": "NV",
+    "country": "US",
+    "lat": 37.235,
+    "lon": -115.811,
+    "elevation_ft": 4462,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 12000,
+        "width": 0,
+        "surface": "Unk",
+        "lighted": false
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:19:28Z"
+  }
+}

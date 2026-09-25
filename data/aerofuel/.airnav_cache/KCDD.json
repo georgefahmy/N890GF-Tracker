@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1787793711.071588,
+  "icao": "KCDD",
+  "data": {
+    "icao": "KCDD",
+    "faa": "CDD",
+    "iata": "",
+    "name": "Scotts Seaplane Base",
+    "city": "Crane Lake",
+    "state": "MN",
+    "country": "US",
+    "lat": 48.2666,
+    "lon": -92.4835,
+    "elevation_ft": 1119,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "07W/25W",
+        "length": 8000,
+        "width": 1000,
+        "surface": "Water",
+        "lighted": false
+      },
+      {
+        "id": "16W/34W",
+        "length": 7000,
+        "width": 1000,
+        "surface": "Water",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Scott's Resort & Seaplane Base",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "CDD",
+    "airport_ref": "16706",
+    "fetched_at": "2026-08-27T01:21:51Z"
+  }
+}

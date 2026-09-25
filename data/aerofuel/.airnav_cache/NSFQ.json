@@ -1,0 +1,42 @@
+{
+  "_cached_at": 1787718514.3796759,
+  "icao": "NSFQ",
+  "data": {
+    "icao": "NSFQ",
+    "faa": "FAQ",
+    "iata": "FTI",
+    "name": "Fitiuta Airport",
+    "city": "Fitiuta Village",
+    "state": "AS",
+    "country": "US",
+    "lat": -14.2161,
+    "lon": -169.4238,
+    "elevation_ft": 110,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3190,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:28:34Z"
+  }
+}

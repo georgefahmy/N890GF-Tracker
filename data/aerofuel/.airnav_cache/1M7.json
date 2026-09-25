@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1788202644.5809438,
+  "icao": "1M7",
+  "data": {
+    "icao": "1M7",
+    "faa": "1M7",
+    "iata": "",
+    "name": "Fulton Airport",
+    "city": "Fulton",
+    "state": "KY",
+    "country": "US",
+    "lat": 36.5259,
+    "lon": -88.9156,
+    "elevation_ft": 400,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 4001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Fulton Airport/Virgil Craven Memorial Field",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 12-Aug",
+        "quote_date": "12-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "1M7",
+    "airport_ref": "8428",
+    "fetched_at": "2026-08-31T18:57:24Z"
+  }
+}

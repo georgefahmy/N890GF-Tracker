@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787787774.0863528,
+  "icao": "2K4",
+  "data": {
+    "icao": "2K4",
+    "faa": "2K4",
+    "iata": "",
+    "name": "Scott Field",
+    "city": "Mangum",
+    "state": "OK",
+    "country": "US",
+    "lat": 34.8926,
+    "lon": -99.5282,
+    "elevation_ft": 1643,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ALTUS",
+        "frequency_mhz": 125.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4199,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Mangum (self-serve fuel)",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:54Z"
+  }
+}

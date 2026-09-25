@@ -1,0 +1,138 @@
+{
+  "_cached_at": 1788014646.948226,
+  "icao": "KGFK",
+  "data": {
+    "icao": "KGFK",
+    "faa": "GFK",
+    "iata": "GFK",
+    "name": "Grand Forks International Airport",
+    "city": "Grand Forks",
+    "state": "ND",
+    "country": "US",
+    "lat": 47.9493,
+    "lon": -97.1761,
+    "elevation_ft": 845,
+    "tower": true,
+    "tower_freq": 118.4,
+    "ctaf_freq": 118.4,
+    "unicom_freq": 122.95,
+    "weather_freq": 119.4,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 118.1,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 118.1,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 124.575,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "APP/DEP",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.4
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 124.575
+      },
+      {
+        "type": "RDO",
+        "description": "RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "Grand Forks Tower",
+        "frequency_mhz": 118.4
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "17R/35L",
+        "length": 7351,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09L/27R",
+        "length": 6701,
+        "width": 100,
+        "surface": "Concrete",
+        "lighted": false
+      },
+      {
+        "id": "17L/35R",
+        "length": 3901,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "09R/27L",
+        "length": 3300,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Avflight Grand Forks",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.37,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.75,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGFK",
+    "airport_ref": "3553",
+    "fetched_at": "2026-08-29T14:44:06Z"
+  }
+}

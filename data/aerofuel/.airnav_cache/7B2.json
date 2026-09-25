@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1788218381.602448,
+  "icao": "7B2",
+  "data": {
+    "icao": "7B2",
+    "faa": "7B2",
+    "iata": "",
+    "name": "Northampton Airport",
+    "city": "Northampton",
+    "state": "MA",
+    "country": "US",
+    "lat": 42.3281,
+    "lon": -72.6114,
+    "elevation_ft": 121,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 125.35,
+    "approach_desc": "BRADLEY APP/DEP",
+    "departure_freq": 125.35,
+    "departure_desc": "BRADLEY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 133.6,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "BRADLEY APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 133.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 3365,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Northampton Aeronautics Inc.",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K7B2",
+    "airport_ref": "19051",
+    "fetched_at": "2026-08-31T23:19:41Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787525683.785762,
+  "icao": "3F4",
+  "data": {
+    "icao": "3F4",
+    "faa": "3F4",
+    "iata": "",
+    "name": "Vivian Airport",
+    "city": "Vivian",
+    "state": "LA",
+    "country": "US",
+    "lat": 32.8613,
+    "lon": -94.0102,
+    "elevation_ft": 260,
+    "tower": false,
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 2998,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Town of Vivian",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.46,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.46,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T22:54:43Z"
+  }
+}

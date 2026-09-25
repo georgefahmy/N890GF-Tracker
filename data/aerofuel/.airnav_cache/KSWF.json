@@ -1,0 +1,124 @@
+{
+  "_cached_at": 1787787723.8626251,
+  "icao": "KSWF",
+  "data": {
+    "icao": "KSWF",
+    "faa": "SWF",
+    "iata": "SWF",
+    "name": "New York Stewart International Airport",
+    "city": "Newburgh",
+    "state": "NY",
+    "country": "US",
+    "lat": 41.5042,
+    "lon": -74.1089,
+    "elevation_ft": 491,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "ACP",
+        "description": "105 AW COMD POST",
+        "frequency_mhz": 37.94
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 124.575
+      },
+      {
+        "type": "CNTR",
+        "description": "NEW YORK CNTR",
+        "frequency_mhz": 132.75
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "MISC",
+        "description": "AR OPS",
+        "frequency_mhz": 38.5
+      },
+      {
+        "type": "OPS",
+        "description": "ARMY OPS",
+        "frequency_mhz": 49.75
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 121.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 11817,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16/34",
+        "length": 6004,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 9.44,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 26-Aug",
+        "quote_date": "26-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.63,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.09,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.63,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:03Z"
+  }
+}

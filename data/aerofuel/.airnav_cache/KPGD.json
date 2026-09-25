@@ -1,0 +1,121 @@
+{
+  "_cached_at": 1788014920.202995,
+  "icao": "KPGD",
+  "data": {
+    "icao": "KPGD",
+    "faa": "PGD",
+    "iata": "PGD",
+    "name": "Punta Gorda Airport",
+    "city": "Punta Gorda",
+    "state": "FL",
+    "country": "US",
+    "lat": 26.9202,
+    "lon": -81.9905,
+    "elevation_ft": 26,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.975,
+    "unicom_freq": 122.975,
+    "weather_freq": 135.675,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 126.8,
+    "approach_desc": "FORT MYERS APP/DEP",
+    "departure_freq": 126.8,
+    "departure_desc": "FORT MYERS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 127.05,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT MYERS APP/DEP",
+        "frequency_mhz": 126.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.675
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 127.05
+      },
+      {
+        "type": "RDO",
+        "description": "ST PETERSBURG RDO",
+        "frequency_mhz": 122.025
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 7193,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "15/33",
+        "length": 6286,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 2636,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "PGD Air Center",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.63,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.1,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KPGD",
+    "airport_ref": "20822",
+    "fetched_at": "2026-08-29T14:48:40Z"
+  }
+}

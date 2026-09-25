@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1788202520.7609549,
+  "icao": "98G",
+  "data": {
+    "icao": "98G",
+    "faa": "98G",
+    "iata": "",
+    "name": "Sebewaing Township Airport",
+    "city": "Sebewaing",
+    "state": "MI",
+    "country": "US",
+    "lat": 43.7299,
+    "lon": -83.4639,
+    "elevation_ft": 584,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 2178,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "06/24",
+        "length": 2150,
+        "width": 130,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Sebewaing Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.4,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.4,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "98G",
+    "airport_ref": "15559",
+    "fetched_at": "2026-08-31T18:55:20Z"
+  }
+}

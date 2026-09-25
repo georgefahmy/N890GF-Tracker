@@ -1,0 +1,85 @@
+{
+  "_cached_at": 1787792807.715411,
+  "icao": "1N7",
+  "data": {
+    "icao": "1N7",
+    "faa": "1N7",
+    "iata": "",
+    "name": "Blairstown Airport",
+    "city": "Blairstown",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.9711,
+    "lon": -74.9975,
+    "elevation_ft": 372,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW YORK APP/DEP",
+        "frequency_mhz": 127.6
+      },
+      {
+        "type": "APP",
+        "description": "ALLENTOWN APP DEP",
+        "frequency_mhz": 119.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "07/25",
+        "length": 3112,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Airport Fuel Facility",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 24.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      },
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "908-362-8965",
+        "notes": "Quote: 25-Aug-2026",
+        "quote_date": "25-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-27T01:06:45Z"
+  }
+}

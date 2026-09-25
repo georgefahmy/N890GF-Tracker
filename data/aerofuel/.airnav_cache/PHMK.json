@@ -1,0 +1,83 @@
+{
+  "_cached_at": 1787718471.379127,
+  "icao": "PHMK",
+  "data": {
+    "icao": "PHMK",
+    "faa": "MKK",
+    "iata": "MKK",
+    "name": "Molokai Airport",
+    "city": "Kaunakakai",
+    "state": "HI",
+    "country": "US",
+    "lat": 21.1529,
+    "lon": -157.096,
+    "elevation_ft": 454,
+    "tower": true,
+    "ctaf_freq": 125.7,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.2
+      },
+      {
+        "type": "CNTR",
+        "description": "HONOLULU CNTR",
+        "frequency_mhz": 124.1
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 125.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "HONOLULU RDO",
+        "frequency_mhz": 116.1
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 125.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 4494,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 3118,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:27:49Z"
+  }
+}

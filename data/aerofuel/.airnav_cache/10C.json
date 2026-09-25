@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788218353.635812,
+  "icao": "10C",
+  "data": {
+    "icao": "10C",
+    "faa": "10C",
+    "iata": "",
+    "name": "Galt Field",
+    "city": "Wonder Lake",
+    "state": "IL",
+    "country": "US",
+    "lat": 42.4027,
+    "lon": -88.3769,
+    "elevation_ft": 875,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.55,
+    "approach_desc": "CHICAGO APP/DEP",
+    "departure_freq": 120.55,
+    "departure_desc": "CHICAGO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHICAGO APP/DEP",
+        "frequency_mhz": 120.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 2802,
+        "width": 36,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2141,
+        "width": 125,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "JB Aviation",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K10C",
+    "airport_ref": "18400",
+    "fetched_at": "2026-08-31T23:19:13Z"
+  }
+}

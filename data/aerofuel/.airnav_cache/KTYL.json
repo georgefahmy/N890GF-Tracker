@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787543355.376232,
+  "icao": "KTYL",
+  "data": {
+    "icao": "KTYL",
+    "faa": "TYL",
+    "iata": "TYZ",
+    "name": "Taylor Airport",
+    "city": "Taylor",
+    "state": "AZ",
+    "country": "US",
+    "lat": 34.4528,
+    "lon": -110.115,
+    "elevation_ft": 5823,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "CNTR",
+        "description": "ALUBQUERQUE CNTR",
+        "frequency_mhz": 132.9
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 7001,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ray's Aircraft Services",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T03:49:15Z"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "_cached_at": 1788218510.1386461,
+  "icao": "KHVN",
+  "data": {
+    "icao": "KHVN",
+    "faa": "HVN",
+    "iata": "HVN",
+    "name": "Tweed New Haven Airport",
+    "city": "New Haven",
+    "state": "CT",
+    "country": "US",
+    "lat": 41.2629,
+    "lon": -72.8877,
+    "elevation_ft": 12,
+    "tower": true,
+    "tower_freq": 124.8,
+    "ctaf_freq": 124.8,
+    "unicom_freq": 122.95,
+    "weather_freq": 133.65,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.075,
+    "approach_desc": "NEW YORK APP/DEP",
+    "departure_freq": 124.075,
+    "departure_desc": "NEW YORK APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "NEW YORK APP/DEP",
+        "frequency_mhz": 124.075
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 133.65
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.8
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "BRIDGEPORT RDO",
+        "frequency_mhz": 109.8
+      },
+      {
+        "type": "TWR",
+        "description": "NEW HAVEN TWR",
+        "frequency_mhz": 124.8
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "02/20",
+        "length": 5600,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Robinson Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.7,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.7,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KHVN",
+    "airport_ref": "3599",
+    "fetched_at": "2026-08-31T23:21:50Z"
+  }
+}

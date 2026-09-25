@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787544900.016973,
+  "icao": "U03",
+  "data": {
+    "icao": "U03",
+    "faa": "U03",
+    "iata": "",
+    "name": "Buhl Municipal Airport",
+    "city": "Buhl",
+    "state": "ID",
+    "country": "US",
+    "lat": 42.5916,
+    "lon": -114.797,
+    "elevation_ft": 3660,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CITY",
+        "frequency_mhz": 118.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3898,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "8 Triple 9 Aviation",
+        "brand": "Titan",
+        "phone": "208-543-8999",
+        "notes": "Titan \u2022 Quote: 18-Aug-2026",
+        "quote_date": "18-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.89,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.89,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-24T04:14:58Z"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "_cached_at": 1787793531.2357209,
+  "icao": "KGZN",
+  "data": {
+    "icao": "KGZN",
+    "faa": "GZN",
+    "iata": "",
+    "name": "Gregory M. Simmons Memorial Airport",
+    "city": "Cisco",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.3673,
+    "lon": -99.0236,
+    "elevation_ft": 1711,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 3500,
+        "surface": "Paved"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Cisco Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 07-Aug",
+        "quote_date": "07-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.55,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 7.0,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.55,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KGZN",
+    "airport_ref": "319542",
+    "fetched_at": "2026-08-27T01:18:51Z"
+  }
+}

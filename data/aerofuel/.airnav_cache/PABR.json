@@ -1,0 +1,89 @@
+{
+  "_cached_at": 1787527475.79233,
+  "icao": "PABR",
+  "data": {
+    "icao": "PABR",
+    "faa": "BRW",
+    "iata": "BRW",
+    "name": "Wiley Post Will Rogers Memorial Airport",
+    "city": "Utqia\u0121vik",
+    "state": "AK",
+    "country": "US",
+    "lat": 71.2854,
+    "lon": -156.766,
+    "elevation_ft": 44,
+    "tower": true,
+    "ctaf_freq": 123.6,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 132.15
+      },
+      {
+        "type": "CNTR",
+        "description": "ANCHORAGE CNTR",
+        "frequency_mhz": 135.3
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 123.6
+      },
+      {
+        "type": "FSS",
+        "description": "BARROW RDO",
+        "frequency_mhz": 122.2
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 7100,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "907-852-3835",
+        "notes": "Quote: 21-Aug-2026",
+        "quote_date": "21-Aug-2026",
+        "fuels": {
+          "100LL_FS": {
+            "price": 12.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "MOGAS_FS": {
+            "price": 6.9,
+            "type": "Mogas",
+            "service": "Full-Serve",
+            "label": "Mogas (Ethanol-Free Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-23T23:24:34Z"
+  }
+}

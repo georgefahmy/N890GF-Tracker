@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1788218347.394441,
+  "icao": "62D",
+  "data": {
+    "icao": "62D",
+    "faa": "62D",
+    "iata": "",
+    "name": "Warren Airport",
+    "city": "Warren",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.267,
+    "lon": -80.9274,
+    "elevation_ft": 905,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 2907,
+        "width": 30,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "18/36",
+        "length": 2700,
+        "width": 100,
+        "surface": "Gre",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Warren-Skeets Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Aug",
+        "quote_date": "30-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.1,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "MOGAS_SS": {
+            "price": 5.5,
+            "type": "Mogas",
+            "service": "Self-Serve",
+            "label": "Mogas (Ethanol-Free Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Mogas"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K62D",
+    "airport_ref": "18949",
+    "fetched_at": "2026-08-31T23:19:07Z"
+  }
+}

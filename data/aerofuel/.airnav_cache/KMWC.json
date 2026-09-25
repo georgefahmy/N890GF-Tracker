@@ -1,0 +1,118 @@
+{
+  "_cached_at": 1787787849.411083,
+  "icao": "KMWC",
+  "data": {
+    "icao": "KMWC",
+    "faa": "MWC",
+    "iata": "MWC",
+    "name": "Lawrence J Timmerman Airport",
+    "city": "Milwaukee",
+    "state": "WI",
+    "country": "US",
+    "lat": 43.1104,
+    "lon": -88.0344,
+    "elevation_ft": 745,
+    "tower": true,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MILWAUKEE APP/DEP",
+        "frequency_mhz": 128.7
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 128.3
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 120.5
+      },
+      {
+        "type": "GND",
+        "description": "TIMMERMAN GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "GREEN BAY RDO",
+        "frequency_mhz": 112.5
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "15L/33R",
+        "length": 4107,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15R/33L",
+        "length": 3231,
+        "width": 270,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "04L/22R",
+        "length": 3203,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04R/22L",
+        "length": 2840,
+        "width": 270,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Spring City Aviation - Milwaukee",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.25,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.35,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:44:09Z"
+  }
+}

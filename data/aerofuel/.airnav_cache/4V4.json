@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1788014646.948076,
+  "icao": "4V4",
+  "data": {
+    "icao": "4V4",
+    "faa": "4V4",
+    "iata": "",
+    "name": "Northwood Municipal Airpiort - Vince Field",
+    "city": "Northwood",
+    "state": "ND",
+    "country": "US",
+    "lat": 47.7249,
+    "lon": -97.5901,
+    "elevation_ft": 1117,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 118.1,
+    "approach_desc": "GRAND FORKS",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GRAND FORKS",
+        "frequency_mhz": 118.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 3160,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Northwood Aero Service",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K4V4",
+    "airport_ref": "18859",
+    "fetched_at": "2026-08-29T14:44:06Z"
+  }
+}

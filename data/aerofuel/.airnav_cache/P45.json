@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1787793845.654491,
+  "icao": "P45",
+  "data": {
+    "icao": "P45",
+    "faa": "P45",
+    "iata": "",
+    "name": "Mount Pleasant/Scottdale Airport",
+    "city": "Mount Pleasant",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.1084,
+    "lon": -79.5414,
+    "elevation_ft": 1160,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 2037,
+        "width": 135,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "14/32",
+        "length": 1625,
+        "width": 175,
+        "surface": "Turf",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Mount Pleasant/Scottdale Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 30-Jun-2025",
+        "quote_date": "30-Jun-2025",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "P45",
+    "airport_ref": "23962",
+    "fetched_at": "2026-08-27T01:24:05Z"
+  }
+}

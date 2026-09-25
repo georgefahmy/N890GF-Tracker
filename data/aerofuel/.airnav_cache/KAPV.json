@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1788202672.305742,
+  "icao": "KAPV",
+  "data": {
+    "icao": "KAPV",
+    "faa": "APV",
+    "iata": "APV",
+    "name": "Apple Valley Airport",
+    "city": "Apple Valley",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.5753,
+    "lon": -117.186,
+    "elevation_ft": 3062,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.55,
+    "approach_desc": "JOSHUA APP/DEP",
+    "departure_freq": 124.55,
+    "departure_desc": "JOSHUA APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "JOSHUA APP/DEP",
+        "frequency_mhz": 124.55
+      },
+      {
+        "type": "RDO",
+        "description": "RIVERSIDE RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 6498,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 4100,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Apple Valley Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.63,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.88,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.56,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.63,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KAPV",
+    "airport_ref": "19296",
+    "fetched_at": "2026-08-31T18:57:52Z"
+  }
+}

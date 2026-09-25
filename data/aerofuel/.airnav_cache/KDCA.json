@@ -1,0 +1,129 @@
+{
+  "_cached_at": 1787705647.8700428,
+  "icao": "KDCA",
+  "data": {
+    "icao": "KDCA",
+    "faa": "DCA",
+    "iata": "DCA",
+    "name": "Ronald Reagan Washington National Airport",
+    "city": "Washington",
+    "state": "DC",
+    "country": "US",
+    "lat": 38.8521,
+    "lon": -77.0377,
+    "elevation_ft": 15,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 119.85
+      },
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 124.2
+      },
+      {
+        "type": "CLRD",
+        "description": "CLRD",
+        "frequency_mhz": 128.25
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 118.95
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 125.65
+      },
+      {
+        "type": "GND",
+        "description": "Washington Ground",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 257.6
+      },
+      {
+        "type": "TWR",
+        "description": "Washington Tower",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 134.35
+      },
+      {
+        "type": "TWR",
+        "description": "Washington Tower ;Helicopters",
+        "frequency_mhz": 257.6
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      },
+      {
+        "type": "WXAS",
+        "description": "WX ASOS: (703-418-1177)",
+        "frequency_mhz": 132.65
+      }
+    ],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 7169,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 5204,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 5000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Signature Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "JET_A": {
+            "price": 11.89,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T00:54:07Z"
+  }
+}

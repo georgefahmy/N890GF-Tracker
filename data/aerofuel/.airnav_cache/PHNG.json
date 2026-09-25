@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1787718449.876766,
+  "icao": "PHNG",
+  "data": {
+    "icao": "PHNG",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "fetched_at": "2026-08-26T04:27:29Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

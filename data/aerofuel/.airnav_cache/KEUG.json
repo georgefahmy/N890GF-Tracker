@@ -1,0 +1,129 @@
+{
+  "_cached_at": 1787864665.5570922,
+  "icao": "KEUG",
+  "data": {
+    "icao": "KEUG",
+    "faa": "EUG",
+    "iata": "EUG",
+    "name": "Eugene Airport",
+    "city": "Eugene",
+    "state": "OR",
+    "country": "US",
+    "lat": 44.1246,
+    "lon": -123.212,
+    "elevation_ft": 374,
+    "tower": true,
+    "tower_freq": 118.9,
+    "ctaf_freq": 118.9,
+    "unicom_freq": 122.95,
+    "weather_freq": 125.225,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.6,
+    "approach_desc": "CASCADE APP/DEP",
+    "departure_freq": 119.6,
+    "departure_desc": "CASCADE APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": 121.7,
+    "clearance_desc": "EUGENE CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CASCADE APP/DEP",
+        "frequency_mhz": 119.6
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.225
+      },
+      {
+        "type": "CLD",
+        "description": "EUGENE CLNC DEL",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "RDO",
+        "description": "MC MINNVILLE RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "TWR",
+        "description": "EUGENE TWR",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "16R/34L",
+        "length": 8009,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "16L/34R",
+        "length": 6000,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Atlantic Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.95,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.93,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-27",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KEUG",
+    "airport_ref": "3517",
+    "fetched_at": "2026-08-27T21:04:25Z"
+  }
+}

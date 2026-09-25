@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787793815.278497,
+  "icao": "09J",
+  "data": {
+    "icao": "09J",
+    "faa": "09J",
+    "iata": "",
+    "name": "Jekyll Island Airport",
+    "city": "Jekyll Island",
+    "state": "GA",
+    "country": "US",
+    "lat": 31.0745,
+    "lon": -81.4278,
+    "elevation_ft": 11,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "JACKSONVILLE CNTR",
+        "frequency_mhz": 126.75
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3715,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Jekyll Island Airport",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K09J",
+    "airport_ref": "18338",
+    "fetched_at": "2026-08-27T01:23:35Z"
+  }
+}

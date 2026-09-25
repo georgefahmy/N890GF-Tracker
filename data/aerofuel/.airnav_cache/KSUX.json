@@ -1,0 +1,123 @@
+{
+  "_cached_at": 1788215030.359999,
+  "icao": "KSUX",
+  "data": {
+    "icao": "KSUX",
+    "faa": "SUX",
+    "iata": "SUX",
+    "name": "Sioux Gateway Airport / Brigadier General Bud Day Field",
+    "city": "Sioux City",
+    "state": "IA",
+    "country": "US",
+    "lat": 42.3976,
+    "lon": -96.3822,
+    "elevation_ft": 1098,
+    "tower": true,
+    "tower_freq": 118.7,
+    "ctaf_freq": 118.7,
+    "unicom_freq": 122.95,
+    "weather_freq": 119.45,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 124.6,
+    "approach_desc": "SIOUX CITY APP/DEP",
+    "departure_freq": 124.6,
+    "departure_desc": "SIOUX CITY APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SIOUX CITY APP/DEP",
+        "frequency_mhz": 124.6
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 119.45
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "OPS",
+        "description": "ANG COMD POST",
+        "frequency_mhz": 37.31
+      },
+      {
+        "type": "RDO",
+        "description": "FORT DODGE RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "TWR",
+        "description": "SIOUX CITY TWR",
+        "frequency_mhz": 118.7
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 9002,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 6600,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Ascension FBO Network",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 25-Aug",
+        "quote_date": "25-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.44,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 9.14,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.44,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KSUX",
+    "airport_ref": "3909",
+    "fetched_at": "2026-08-31T22:23:50Z"
+  }
+}

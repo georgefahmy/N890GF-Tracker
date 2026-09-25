@@ -1,0 +1,84 @@
+{
+  "_cached_at": 1788214945.066257,
+  "icao": "U82",
+  "data": {
+    "icao": "U82",
+    "faa": "U82",
+    "iata": "",
+    "name": "Council Municipal Airport",
+    "city": "Council",
+    "state": "ID",
+    "country": "US",
+    "lat": 44.7503,
+    "lon": -116.4451,
+    "elevation_ft": 2963,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "SALT LAKE CITY",
+        "frequency_mhz": 128.05
+      },
+      {
+        "type": "RCO",
+        "description": "CASCADE RCO",
+        "frequency_mhz": 122.35
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 3600,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Council",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 01-Jul",
+        "quote_date": "01-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.21,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.21,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KU82",
+    "airport_ref": "21277",
+    "fetched_at": "2026-08-31T22:22:25Z"
+  }
+}

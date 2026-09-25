@@ -1,0 +1,97 @@
+{
+  "_cached_at": 1787787790.700753,
+  "icao": "KLWB",
+  "data": {
+    "icao": "KLWB",
+    "faa": "LWB",
+    "iata": "LWB",
+    "name": "Greenbrier Valley Airport",
+    "city": "Lewisburg",
+    "state": "WV",
+    "country": "US",
+    "lat": 37.8579,
+    "lon": -80.4004,
+    "elevation_ft": 2302,
+    "tower": true,
+    "ctaf_freq": 118.9,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 121.4
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 120.85
+      },
+      {
+        "type": "CNTR",
+        "description": "WASHINGTON CNTR",
+        "frequency_mhz": 134.4
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "TWR",
+        "description": "LEWISBURG TWR",
+        "frequency_mhz": 118.9
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 7003,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Greenbrier Valley Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.59,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.34,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.59,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:10Z"
+  }
+}

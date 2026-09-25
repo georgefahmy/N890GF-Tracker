@@ -1,0 +1,121 @@
+{
+  "_cached_at": 1787787723.862466,
+  "icao": "KPOU",
+  "data": {
+    "icao": "KPOU",
+    "faa": "POU",
+    "iata": "POU",
+    "name": "Dutchess County Airport",
+    "city": "Poughkeepsie",
+    "state": "NY",
+    "country": "US",
+    "lat": 41.6266,
+    "lon": -73.8842,
+    "elevation_ft": 165,
+    "tower": true,
+    "ctaf_freq": 124.0,
+    "unicom_freq": 122.95,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 126.75
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.75
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "CNTR",
+        "description": "NEW YORK CNTR",
+        "frequency_mhz": 132.75
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "RDO",
+        "description": "NEW YORK RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 124.0
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 5001,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "15/33",
+        "length": 2743,
+        "width": 100,
+        "surface": "Pem",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 1357,
+        "width": 100,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FlightLevel Dutchess",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.36,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:03Z"
+  }
+}

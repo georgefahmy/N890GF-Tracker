@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787788736.812914,
+  "icao": "P52",
+  "data": {
+    "icao": "P52",
+    "faa": "P52",
+    "iata": "CTW",
+    "name": "Cottonwood Airport",
+    "city": "Cottonwood",
+    "state": "AZ",
+    "country": "US",
+    "lat": 34.73,
+    "lon": -112.035,
+    "elevation_ft": 3550,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "14/32",
+        "length": 4250,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Cottonwood",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 04-Aug",
+        "quote_date": "04-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.15,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.15,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:58:56Z"
+  }
+}

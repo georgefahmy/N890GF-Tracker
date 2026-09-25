@@ -1,0 +1,76 @@
+{
+  "_cached_at": 1787523161.349549,
+  "icao": "KOBE",
+  "data": {
+    "icao": "KOBE",
+    "faa": "OBE",
+    "iata": "OBE",
+    "name": "Okeechobee County Airport",
+    "city": "Okeechobee",
+    "state": "FL",
+    "country": "US",
+    "lat": 27.2628,
+    "lon": -80.8498,
+    "elevation_ft": 34,
+    "tower": false,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 4930,
+        "surface": "Gravel"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Okeechobee County Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.03,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.03,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.58,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.03,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 118.675
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "fetched_at": "2026-08-23T22:12:41Z"
+  }
+}

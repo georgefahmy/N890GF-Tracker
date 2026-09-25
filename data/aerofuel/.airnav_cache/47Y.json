@@ -1,0 +1,68 @@
+{
+  "_cached_at": 1789073557.8809578,
+  "icao": "47Y",
+  "data": {
+    "icao": "47Y",
+    "faa": "47Y",
+    "iata": "",
+    "name": "Pelican Rapids Muni-Lyon's Field",
+    "city": "Pelican Rapids",
+    "state": "MN",
+    "country": "US",
+    "lat": 46.6416,
+    "lon": -96.1045,
+    "elevation_ft": 1389,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 3260,
+        "width": 140,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Pelican Rapids Municipal Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 11-Aug",
+        "quote_date": "11-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 4.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "47Y",
+    "airport_ref": "11229",
+    "fetched_at": "2026-09-10T20:52:37Z"
+  }
+}

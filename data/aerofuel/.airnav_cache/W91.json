@@ -1,0 +1,79 @@
+{
+  "_cached_at": 1787793835.8505611,
+  "icao": "W91",
+  "data": {
+    "icao": "W91",
+    "faa": "W91",
+    "iata": "",
+    "name": "Smith Mountain Lake Airport",
+    "city": "Moneta",
+    "state": "VA",
+    "country": "US",
+    "lat": 37.1077,
+    "lon": -79.5925,
+    "elevation_ft": 892,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 135.0,
+    "approach_desc": "ROANOKE APP/DEP",
+    "departure_freq": 135.0,
+    "departure_desc": "ROANOKE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "ROANOKE APP/DEP",
+        "frequency_mhz": 135.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 3058,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Smith Mountain Lake Airport",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.14,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.14,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KW91",
+    "airport_ref": "21363",
+    "fetched_at": "2026-08-27T01:23:55Z"
+  }
+}

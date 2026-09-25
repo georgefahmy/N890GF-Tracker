@@ -1,0 +1,81 @@
+{
+  "_cached_at": 1789073557.881971,
+  "icao": "8D3",
+  "data": {
+    "icao": "8D3",
+    "faa": "8D3",
+    "iata": "",
+    "name": "Sisseton Municipal Airport",
+    "city": "Sisseton",
+    "state": "SD",
+    "country": "US",
+    "lat": 45.6699,
+    "lon": -96.9942,
+    "elevation_ft": 1161,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3400,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 1914,
+        "width": 150,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Sisseton",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 20-Aug",
+        "quote_date": "20-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.05,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.05,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K8D3",
+    "airport_ref": "19123",
+    "fetched_at": "2026-09-10T20:52:37Z"
+  }
+}

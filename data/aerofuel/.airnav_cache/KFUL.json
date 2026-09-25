@@ -1,0 +1,117 @@
+{
+  "_cached_at": 1788014738.769088,
+  "icao": "KFUL",
+  "data": {
+    "icao": "KFUL",
+    "faa": "FUL",
+    "iata": "FUL",
+    "name": "Fullerton Municipal Airport",
+    "city": "Fullerton",
+    "state": "CA",
+    "country": "US",
+    "lat": 33.872,
+    "lon": -117.98,
+    "elevation_ft": 96,
+    "tower": true,
+    "tower_freq": 119.1,
+    "ctaf_freq": 119.1,
+    "unicom_freq": 122.95,
+    "weather_freq": 125.05,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 125.35,
+    "approach_desc": "SOCAL APP/DEP",
+    "departure_freq": 125.35,
+    "departure_desc": "SOCAL APP/DEP",
+    "ground_freq": 121.8,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "SOCAL APP/DEP",
+        "frequency_mhz": 125.35
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.05
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.8
+      },
+      {
+        "type": "RDO",
+        "description": "RIVERSIDE RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 119.1
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3121,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "General Aviation Co Inc. No ramp fees",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.2,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 8.55,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.75,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.2,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KFUL",
+    "airport_ref": "19905",
+    "fetched_at": "2026-08-29T14:45:38Z"
+  }
+}

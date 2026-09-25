@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1787590095.08085,
+  "icao": "O22",
+  "data": {
+    "icao": "O22",
+    "faa": "O22",
+    "iata": "COA",
+    "name": "Columbia Airport",
+    "city": "Columbia",
+    "state": "CA",
+    "country": "US",
+    "lat": 38.0304,
+    "lon": -120.415,
+    "elevation_ft": 2118,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.975,
+    "frequencies": [
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 124.65
+      },
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 126.85
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.975
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 4673,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "11/29",
+        "length": 2607,
+        "width": 50,
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "H1/H1",
+        "length": 100,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": false
+      },
+      {
+        "id": "H2/H2",
+        "length": 78,
+        "width": 78,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Bald Eagle Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.96,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.21,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.96,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T16:59:53Z"
+  }
+}

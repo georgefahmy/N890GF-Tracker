@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787608478.367059,
+  "icao": "KUKI",
+  "data": {
+    "icao": "KUKI",
+    "faa": "UKI",
+    "iata": "UKI",
+    "name": "Ukiah Municipal Airport",
+    "city": "Ukiah",
+    "state": "CA",
+    "country": "US",
+    "lat": 39.126,
+    "lon": -123.201,
+    "elevation_ft": 614,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.275
+      },
+      {
+        "type": "CNTR",
+        "description": "OAKLAND CNTR",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "RDO",
+        "description": "OAKLAND RDO",
+        "frequency_mhz": 122.0
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 4423,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Ukiah (FBO)",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 19-Aug",
+        "quote_date": "19-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 8.5,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-24",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-24T21:54:38Z"
+  }
+}

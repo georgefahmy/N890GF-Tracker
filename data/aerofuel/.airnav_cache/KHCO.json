@@ -1,0 +1,91 @@
+{
+  "_cached_at": 1788014640.39615,
+  "icao": "KHCO",
+  "data": {
+    "icao": "KHCO",
+    "faa": "HCO",
+    "iata": "",
+    "name": "Hallock Municipal Airport",
+    "city": "Hallock",
+    "state": "MN",
+    "country": "US",
+    "lat": 48.7527,
+    "lon": -96.943,
+    "elevation_ft": 819,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 126.475,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 132.15,
+    "approach_desc": "MINNEAPOLIS APP/DEP",
+    "departure_freq": 132.15,
+    "departure_desc": "MINNEAPOLIS APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MINNEAPOLIS APP/DEP",
+        "frequency_mhz": 132.15
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 126.475
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "13/31",
+        "length": 4007,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "218-843-2076",
+        "notes": "Quote: 12-Aug-2026",
+        "quote_date": "12-Aug-2026",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.6,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.6,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.6,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-29",
+    "source": "AirNav Live Feed",
+    "raw_ident": "KHCO",
+    "airport_ref": "20034",
+    "fetched_at": "2026-08-29T14:43:58Z"
+  }
+}

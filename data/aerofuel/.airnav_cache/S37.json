@@ -1,0 +1,61 @@
+{
+  "_cached_at": 1787787527.834312,
+  "icao": "S37",
+  "data": {
+    "icao": "S37",
+    "faa": "S37",
+    "iata": "",
+    "name": "Smoketown Airport",
+    "city": "Smoketown",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.0416,
+    "lon": -76.2014,
+    "elevation_ft": 370,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "10/28",
+        "length": 2750,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Smoketown Aviation LLC",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "94UL_SS": {
+            "price": 6.49,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.49,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:38:47Z"
+  }
+}

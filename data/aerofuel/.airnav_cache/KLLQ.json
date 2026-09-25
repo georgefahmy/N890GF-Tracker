@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787718927.293786,
+  "icao": "KLLQ",
+  "data": {
+    "icao": "KLLQ",
+    "faa": "LLQ",
+    "iata": "",
+    "name": "Monticello Municipal Ellis Field",
+    "city": "Monticello",
+    "state": "AR",
+    "country": "US",
+    "lat": 33.6386,
+    "lon": -91.751,
+    "elevation_ft": 270,
+    "tower": true,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 133.325
+      },
+      {
+        "type": "CNTR",
+        "description": "MEMPHIS CNTR",
+        "frequency_mhz": 135.875
+      },
+      {
+        "type": "FSS",
+        "description": "JONESBORO RDO",
+        "frequency_mhz": 122.1
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 5020,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Monticello (FBO)",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.9,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.9,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.9,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:35:27Z"
+  }
+}

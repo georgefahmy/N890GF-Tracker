@@ -1,0 +1,75 @@
+{
+  "_cached_at": 1787517326.783927,
+  "icao": "KRIW",
+  "data": {
+    "icao": "KRIW",
+    "faa": "RIW",
+    "iata": "RIW",
+    "name": "Central Wyoming Regional Airport",
+    "city": "Riverton",
+    "state": "WY",
+    "country": "US",
+    "lat": 43.0642,
+    "lon": -108.46,
+    "elevation_ft": 5525,
+    "tower": true,
+    "ctaf_freq": 120.5,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 7830,
+        "surface": "Gravel"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Five Rivers Jet Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 18-Aug",
+        "quote_date": "18-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.82,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.43,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.82,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 121.425
+      },
+      {
+        "type": "RDO",
+        "description": "CASPER RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "fetched_at": "2026-08-23T20:35:26Z"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1789073126.1893702,
+  "icao": "KRKR",
+  "data": {
+    "icao": "KRKR",
+    "faa": "RKR",
+    "iata": "RKR",
+    "name": "Robert S Kerr Airport",
+    "city": "Poteau",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.0216,
+    "lon": -94.6213,
+    "elevation_ft": 451,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 120.625,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 120.9,
+    "approach_desc": "RAZORBACK APP/DEP",
+    "departure_freq": 120.9,
+    "departure_desc": "RAZORBACK APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "RAZORBACK APP/DEP",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 120.625
+      },
+      {
+        "type": "RDO",
+        "description": "MC ALESTER RDO",
+        "frequency_mhz": 122.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 4007,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Poteau Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 03-Sep",
+        "quote_date": "03-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 4.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KRKR",
+    "airport_ref": "20937",
+    "fetched_at": "2026-09-10T20:45:26Z"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787786428.0223858,
+  "icao": "04Y",
+  "data": {
+    "icao": "04Y",
+    "faa": "04Y",
+    "iata": "",
+    "name": "Hawley Municipal Airport",
+    "city": "Hawley",
+    "state": "MN",
+    "country": "US",
+    "lat": 46.8838,
+    "lon": -96.3503,
+    "elevation_ft": 1208,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FARGO APP/DEP",
+        "frequency_mhz": 120.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 3404,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Hawley",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.19,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.19,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:20:28Z"
+  }
+}

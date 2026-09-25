@@ -1,0 +1,88 @@
+{
+  "_cached_at": 1788218551.655363,
+  "icao": "CO4",
+  "data": {
+    "icao": "CO4",
+    "faa": "CO4",
+    "iata": "",
+    "name": "Colorado Springs East Airport",
+    "city": "Ellicott",
+    "state": "CO",
+    "country": "US",
+    "lat": 38.8744,
+    "lon": -104.41,
+    "elevation_ft": 6145,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "17L/35R",
+        "length": 4500,
+        "width": 40,
+        "surface": "Gravel",
+        "lighted": false
+      },
+      {
+        "id": "17R/35L",
+        "length": 4500,
+        "width": 42,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 3440,
+        "width": 60,
+        "surface": "Gravel",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Springs East Airport inc.",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Quote: 28-Aug",
+        "quote_date": "28-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.22,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.22,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KA50",
+    "airport_ref": "19222",
+    "fetched_at": "2026-08-31T23:22:31Z"
+  }
+}

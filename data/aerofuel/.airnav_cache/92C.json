@@ -1,0 +1,59 @@
+{
+  "_cached_at": 1787505204.461206,
+  "icao": "92C",
+  "data": {
+    "icao": "92C",
+    "faa": "92C",
+    "iata": "",
+    "name": "Carter Airport",
+    "city": "Pulaski",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.6412,
+    "lon": -88.2152,
+    "elevation_ft": 785,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.95,
+    "runways": [
+      {
+        "id": "16/34",
+        "length": 4950,
+        "surface": "Asphalt"
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Blue Skies Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 12-Dec-2025",
+        "quote_date": "12-Dec-2025",
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.87,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "94UL_SS": {
+            "price": 4.12,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 4.12,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "94UL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "frequencies": [],
+    "fetched_at": "2026-08-23T17:13:22Z"
+  }
+}

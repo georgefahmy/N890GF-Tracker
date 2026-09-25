@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788218353.636388,
+  "icao": "C81",
+  "data": {
+    "icao": "C81",
+    "faa": "C81",
+    "iata": "",
+    "name": "Campbell Airport",
+    "city": "Grayslake",
+    "state": "IL",
+    "country": "US",
+    "lat": 42.3246,
+    "lon": -88.0741,
+    "elevation_ft": 788,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
+    "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 120.55,
+    "approach_desc": "CHICAGO APP/DEP",
+    "departure_freq": 120.55,
+    "departure_desc": "CHICAGO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CHICAGO APP/DEP",
+        "frequency_mhz": 120.55
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "06/24",
+        "length": 3573,
+        "width": 40,
+        "surface": "Cop",
+        "lighted": false
+      },
+      {
+        "id": "09/27",
+        "length": 3270,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Campbell Airport, LLC",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.99,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KC81",
+    "airport_ref": "19455",
+    "fetched_at": "2026-08-31T23:19:13Z"
+  }
+}

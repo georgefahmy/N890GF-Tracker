@@ -1,0 +1,90 @@
+{
+  "_cached_at": 1787788220.688534,
+  "icao": "KAFK",
+  "data": {
+    "icao": "KAFK",
+    "faa": "AFK",
+    "iata": "",
+    "name": "Nebraska City Municipal Airport",
+    "city": "Nebraska City",
+    "state": "NE",
+    "country": "US",
+    "lat": 40.6069,
+    "lon": -95.8657,
+    "elevation_ft": 1165,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "OMAHA APP/DEP",
+        "frequency_mhz": 120.1
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 128.325
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "15/33",
+        "length": 4501,
+        "width": 76,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "05/23",
+        "length": 2550,
+        "width": 151,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Blue Line Aviation",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.36,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 5.36,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 4.68,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.36,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:50:20Z"
+  }
+}

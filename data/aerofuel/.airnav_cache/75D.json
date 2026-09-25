@@ -1,0 +1,36 @@
+{
+  "_cached_at": 1787718699.156534,
+  "icao": "75D",
+  "data": {
+    "icao": "75D",
+    "faa": "75D",
+    "iata": "",
+    "name": "P W Johnson Memorial Airport",
+    "city": "New Martinsville",
+    "state": "WV",
+    "country": "US",
+    "lat": 39.684,
+    "lon": -80.8623,
+    "elevation_ft": 632,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 2100,
+        "width": 73,
+        "surface": "Turf",
+        "lighted": true
+      }
+    ],
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T04:31:36Z"
+  }
+}

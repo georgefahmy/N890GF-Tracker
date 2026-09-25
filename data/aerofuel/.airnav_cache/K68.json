@@ -1,0 +1,54 @@
+{
+  "_cached_at": 1787528905.9194272,
+  "icao": "K68",
+  "data": {
+    "icao": "K68",
+    "faa": "K68",
+    "iata": "",
+    "name": "Garnett Municipal Airport",
+    "city": "Garnett",
+    "state": "KS",
+    "country": "US",
+    "lat": 38.2772,
+    "lon": -95.2153,
+    "elevation_ft": 989,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "frequencies": [],
+    "runways": [
+      {
+        "id": "01/19",
+        "length": 2653,
+        "width": 45,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Garnett",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Jul",
+        "quote_date": "24-Jul",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-23",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-23T23:48:25Z"
+  }
+}

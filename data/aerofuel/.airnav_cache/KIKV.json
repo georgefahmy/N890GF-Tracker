@@ -1,0 +1,109 @@
+{
+  "_cached_at": 1788202625.747234,
+  "icao": "KIKV",
+  "data": {
+    "icao": "KIKV",
+    "faa": "IKV",
+    "iata": "",
+    "name": "Ankeny Regional Airport",
+    "city": "Ankeny",
+    "state": "IA",
+    "country": "US",
+    "lat": 41.6914,
+    "lon": -93.5664,
+    "elevation_ft": 910,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.9,
+    "weather_freq": 119.175,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 123.9,
+    "approach_desc": "DES MOINES APP/DEP",
+    "departure_freq": 123.9,
+    "departure_desc": "DES MOINES APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 126.65,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "DES MOINES APP/DEP",
+        "frequency_mhz": 123.9
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.175
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 126.65
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 5500,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 4200,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Exec 1 Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 31-Aug",
+        "quote_date": "31-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.0,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.75,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.0,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KIKV",
+    "airport_ref": "20170",
+    "fetched_at": "2026-08-31T18:57:05Z"
+  }
+}

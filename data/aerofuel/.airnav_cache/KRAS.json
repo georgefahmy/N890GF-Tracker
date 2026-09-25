@@ -1,0 +1,65 @@
+{
+  "_cached_at": 1787718770.9989362,
+  "icao": "KRAS",
+  "data": {
+    "icao": "KRAS",
+    "faa": "RAS",
+    "iata": "",
+    "name": "Mustang Beach Airport",
+    "city": "Port Aransas",
+    "state": "TX",
+    "country": "US",
+    "lat": 27.8118,
+    "lon": -97.0888,
+    "elevation_ft": 5,
+    "tower": false,
+    "ctaf_freq": 122.9,
+    "unicom_freq": 122.8,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CORPUS APP/DEP",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 122.9
+      }
+    ],
+    "runways": [
+      {
+        "id": "12/30",
+        "length": 3482,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "City of Port Aransas",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 10-Aug",
+        "quote_date": "10-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.25,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.25,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-25",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T04:32:50Z"
+  }
+}

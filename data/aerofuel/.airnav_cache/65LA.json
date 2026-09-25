@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1787793812.093858,
+  "icao": "65LA",
+  "data": {
+    "icao": "65LA",
+    "faa": "65LA",
+    "name": "Southern Seaplane Airport",
+    "city": "Belle Chasse",
+    "state": "LA",
+    "distance_nm": 2.0,
+    "bearing": "N",
+    "fbos": [
+      {
+        "name": "Southern Seaplane",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 05-Aug",
+        "quote_date": "05-Aug",
+        "fuels": {
+          "100LL_FS": {
+            "price": 7.44,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.44,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "fetched_at": "2026-08-27T01:23:32Z",
+    "source": "AirNav Local Fuel"
+  }
+}

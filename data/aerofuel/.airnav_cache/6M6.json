@@ -1,0 +1,56 @@
+{
+  "_cached_at": 1787786399.774027,
+  "icao": "6M6",
+  "data": {
+    "icao": "6M6",
+    "faa": "6M6",
+    "iata": "",
+    "name": "Lewis County Regional Airport",
+    "city": "Monticello",
+    "state": "MO",
+    "country": "US",
+    "lat": 40.1292,
+    "lon": -91.6783,
+    "elevation_ft": 675,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.7,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "KANSAS CITY CNTR",
+        "frequency_mhz": 135.525
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.7
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3500,
+        "width": 60,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "573-719-6015",
+        "notes": "Quote: 13-Aug-2026",
+        "quote_date": "13-Aug-2026",
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Live Feed",
+    "fetched_at": "2026-08-26T23:19:58Z"
+  }
+}

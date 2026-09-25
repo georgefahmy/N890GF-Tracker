@@ -1,0 +1,156 @@
+{
+  "_cached_at": 1788218582.80063,
+  "icao": "KCPR",
+  "data": {
+    "icao": "KCPR",
+    "faa": "CPR",
+    "iata": "CPR",
+    "name": "Casper-Natrona County International Airport",
+    "city": "Casper",
+    "state": "WY",
+    "country": "US",
+    "lat": 42.9074,
+    "lon": -106.4616,
+    "elevation_ft": 5350,
+    "tower": true,
+    "tower_freq": 118.3,
+    "ctaf_freq": 118.3,
+    "unicom_freq": 122.95,
+    "weather_freq": 126.15,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.0,
+    "approach_desc": "CASPER APP/DEP",
+    "departure_freq": 119.0,
+    "departure_desc": "CASPER APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "CASPER GND/CLNC DEL",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "CASPER APP/DEP",
+        "frequency_mhz": 119.0
+      },
+      {
+        "type": "AAS",
+        "description": "VFR ADVSY SVC",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 126.15
+      },
+      {
+        "type": "CTAF",
+        "description": "CTAF",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "GCCD",
+        "description": "CASPER GND/CLNC DEL",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "CASPER RDO",
+        "frequency_mhz": 122.2
+      },
+      {
+        "type": "TWR",
+        "description": "CASPER TWR",
+        "frequency_mhz": 118.3
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "03/21",
+        "length": 10165,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 7696,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Aero Center Casper",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.75,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.2,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.1,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Atlantic Aviation",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 21-Aug",
+        "quote_date": "21-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.67,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.67,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 10.2,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.67,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCPR",
+    "airport_ref": "3465",
+    "fetched_at": "2026-08-31T23:23:02Z"
+  }
+}

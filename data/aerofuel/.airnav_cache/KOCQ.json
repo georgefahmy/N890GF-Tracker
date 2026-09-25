@@ -1,0 +1,86 @@
+{
+  "_cached_at": 1788202591.76416,
+  "icao": "KOCQ",
+  "data": {
+    "icao": "KOCQ",
+    "faa": "OCQ",
+    "iata": "",
+    "name": "J. Douglas Bake Memorial Airport",
+    "city": "Oconto",
+    "state": "WI",
+    "country": "US",
+    "lat": 44.8743,
+    "lon": -87.9117,
+    "elevation_ft": 604,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.5,
+    "approach_desc": "GREEN BAY APP/DEP",
+    "departure_freq": 119.5,
+    "departure_desc": "GREEN BAY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "GREEN BAY APP/DEP",
+        "frequency_mhz": 119.5
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 3199,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 1840,
+        "width": 150,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Oconto Municipal Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 5.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 5.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-31",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KOCQ",
+    "airport_ref": "20714",
+    "fetched_at": "2026-08-31T18:56:31Z"
+  }
+}

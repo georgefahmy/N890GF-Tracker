@@ -1,0 +1,82 @@
+{
+  "_cached_at": 1787787820.658205,
+  "icao": "2W6",
+  "data": {
+    "icao": "2W6",
+    "faa": "2W6",
+    "iata": "LTW",
+    "name": "St. Mary's County Regional Airport",
+    "city": "California",
+    "state": "MD",
+    "country": "US",
+    "lat": 38.3154,
+    "lon": -76.5501,
+    "elevation_ft": 142,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "PATUXENT APP/DEP",
+        "frequency_mhz": 120.05
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.575
+      },
+      {
+        "type": "RDO",
+        "description": "LEESBURG RDO",
+        "frequency_mhz": 117.6
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 4150,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "RCS Services",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 14-Aug",
+        "quote_date": "14-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.98,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.45,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.98,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:43:40Z"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "_cached_at": 1789073621.589948,
+  "icao": "KMEB",
+  "data": {
+    "icao": "KMEB",
+    "faa": "MEB",
+    "iata": "MXE",
+    "name": "Laurinburg Maxton Airport",
+    "city": "Maxton",
+    "state": "NC",
+    "country": "US",
+    "lat": 34.7919,
+    "lon": -79.3658,
+    "elevation_ft": 216,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 134.125,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 127.8,
+    "approach_desc": "FAYETTEVILLE APP/DEP",
+    "departure_freq": 127.8,
+    "departure_desc": "FAYETTEVILLE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FAYETTEVILLE APP/DEP",
+        "frequency_mhz": 127.8
+      },
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 134.125
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "05/23",
+        "length": 6503,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "13/31",
+        "length": 3536,
+        "width": 75,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Laurinburg-Maxton Airport",
+        "brand": "Titan",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 03-Sep",
+        "quote_date": "03-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.3,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 6.6,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.25,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.3,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-09-10",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KMEB",
+    "airport_ref": "20491",
+    "fetched_at": "2026-09-10T20:53:41Z"
+  }
+}

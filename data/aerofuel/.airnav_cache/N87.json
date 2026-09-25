@@ -1,0 +1,70 @@
+{
+  "_cached_at": 1787787731.565582,
+  "icao": "N87",
+  "data": {
+    "icao": "N87",
+    "faa": "N87",
+    "iata": "",
+    "name": "Trenton Robbinsville Airport",
+    "city": "Robbinsville",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.2139,
+    "lon": -74.6018,
+    "elevation_ft": 118,
+    "tower": false,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 123.0,
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "MC GUIRE APP/DEP",
+        "frequency_mhz": 124.15
+      },
+      {
+        "type": "RDO",
+        "description": "MILLVILLE RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
+    "runways": [
+      {
+        "id": "11/29",
+        "length": 4275,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Trenton-Robbinsville Airport",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 17-Aug",
+        "quote_date": "17-Aug",
+        "fuels": {
+          "100LL_SS": {
+            "price": 7.5,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 7.5,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-08-26",
+    "source": "AirNav Local Fuel",
+    "fetched_at": "2026-08-26T23:42:11Z"
+  }
+}
