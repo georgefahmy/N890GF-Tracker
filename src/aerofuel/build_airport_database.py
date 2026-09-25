@@ -13,10 +13,7 @@ import os
 import sys
 from datetime import datetime, timezone
 
-try:
-    from . import fetch_fuel_data
-except ImportError:
-    import fetch_fuel_data
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
@@ -280,6 +277,11 @@ def build_database():
     print(f"Loading cached fuel rates from .airnav_cache/...")
     airnav_cache = load_all_airnav_cache()
     print(f"Indexed {len(airnav_cache)} airport entries from .airnav_cache/.")
+
+    try:
+        from . import fetch_fuel_data
+    except ImportError:
+        import fetch_fuel_data
 
     base_airports = fetch_fuel_data.build_dataset()
     print(f"Built base public dataset with {len(base_airports)} airports.")
