@@ -169,6 +169,7 @@ def api_ourairports_sync():
 
         meta = build_airport_database.build_database()
         load_catalog(force_reload=True)
+        get_summary_catalog_bytes(directory=DATA_DIR, force_reload=True)
 
         return jsonify({
             "status": "ok",

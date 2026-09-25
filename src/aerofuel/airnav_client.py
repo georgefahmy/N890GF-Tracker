@@ -332,7 +332,18 @@ class AirNavClient:
 
         if cache_dir is None:
             base_dir = os.path.dirname(os.path.abspath(__file__))
-            self.cache_dir = os.path.join(base_dir, ".airnav_cache")
+            candidates = [
+                os.path.join(base_dir, "..", "..", "data", "aerofuel", ".airnav_cache"),
+                os.path.join(base_dir, "..", "..", "data", ".airnav_cache"),
+                os.path.join(base_dir, "..", "..", ".airnav_cache"),
+                os.path.join(base_dir, ".airnav_cache"),
+            ]
+            for c in candidates:
+                if os.path.exists(c):
+                    self.cache_dir = os.path.abspath(c)
+                    break
+            else:
+                self.cache_dir = os.path.abspath(candidates[0])
         else:
             self.cache_dir = cache_dir
 

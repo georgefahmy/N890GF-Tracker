@@ -216,7 +216,19 @@ def load_all_airnav_cache(cache_dir=None):
     Returns a dict mapping clean uppercase ICAO/FAA codes to their cached airport fuel data.
     """
     if cache_dir is None:
-        cache_dir = os.path.join(PROJECT_ROOT, ".airnav_cache")
+        candidates = [
+            os.path.join(DATA_DIR, ".airnav_cache"),
+            os.path.join(PROJECT_ROOT, "data", "aerofuel", ".airnav_cache"),
+            os.path.join(PROJECT_ROOT, "data", ".airnav_cache"),
+            os.path.join(PROJECT_ROOT, ".airnav_cache"),
+            os.path.join(BASE_DIR, ".airnav_cache"),
+        ]
+        for c in candidates:
+            if os.path.exists(c):
+                cache_dir = c
+                break
+        if cache_dir is None:
+            cache_dir = os.path.join(DATA_DIR, ".airnav_cache")
     if not os.path.exists(cache_dir):
         return {}
 
