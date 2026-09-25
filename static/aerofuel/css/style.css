@@ -2437,60 +2437,428 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Adjustments
+   Mobile-Only Elements Hidden on Desktop
+   -------------------------------------------------------------------------- */
+.mobile-only-bar,
+.mobile-sheet-header,
+.mobile-drawer-backdrop {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Interface & Responsive Drawer Architecture (<= 860px)
    -------------------------------------------------------------------------- */
 @media (max-width: 860px) {
+  /* 1. Header Bar: Compact single-row layout */
   #top-nav {
-    flex-wrap: wrap;
+    height: 52px;
+    padding: 6px 10px;
+    flex-wrap: nowrap;
     gap: 8px;
+    justify-content: space-between;
+    overflow: visible;
+  }
+
+  .tracker-nav-back {
+    padding: 4px 8px;
+    font-size: 0.78rem;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .tracker-nav-back .nav-back-text {
+    display: none;
+  }
+
+  .brand-section {
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .brand-logo {
+    font-size: 1.2rem;
+  }
+
+  .brand-text h1 {
+    font-size: 0.92rem;
+    gap: 4px;
+  }
+
+  .brand-badge {
+    display: none;
+  }
+
+  .header-fuel-stat-badge {
+    display: none;
   }
 
   .search-container {
+    flex: 1;
+    min-width: 90px;
+    max-width: 170px;
+    margin: 0;
+    order: 0;
+  }
+
+  .search-input-wrapper {
+    height: 32px;
+    padding: 4px 8px 4px 26px;
+  }
+
+  .search-icon {
+    font-size: 0.75rem;
+    left: 8px;
+  }
+
+  #airport-search {
+    font-size: 0.75rem;
+  }
+
+  #airport-search::placeholder {
+    font-size: 0.72rem;
+  }
+
+  #search-dropdown {
+    position: fixed;
+    top: 54px;
+    left: 8px;
+    right: 8px;
+    width: calc(100% - 16px);
+    max-height: 55vh;
+    z-index: 1500;
+  }
+
+  /* 2. Top Nav Controls as Mobile Bottom Sheet Drawer */
+  #top-nav .nav-controls {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     max-width: 100%;
-    order: 3;
+    z-index: 1300;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--panel-border);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.85);
+    padding: 14px 18px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: translateY(115%);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #top-nav .nav-controls.mobile-open {
+    transform: translateY(0);
+  }
+
+  #top-nav .nav-controls .filter-group {
     width: 100%;
   }
 
-  #radar-sidebar {
-    position: fixed;
-    top: 140px;
-    right: 10px;
-    bottom: 10px;
-    width: calc(100% - 20px);
-    max-width: 360px;
-    transform: translateX(calc(100% + 20px));
+  #top-nav .nav-controls .select-wrapper {
+    width: 100%;
   }
 
-  #radar-sidebar.open {
-    transform: translateX(0);
+  #top-nav .nav-controls .hud-select {
+    width: 100%;
+    height: 42px;
+    font-size: 0.88rem;
+    padding: 8px 12px;
+  }
+
+  #top-nav .nav-controls #btn-load-prices {
+    width: 100%;
+    height: 42px;
+    justify-content: center;
+    font-size: 0.88rem;
+    margin-top: 4px;
+  }
+
+  /* 3. Left Radius & Route HUD as Mobile Bottom Sheet Drawer */
+  #radius-control-hud {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: 82vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1300;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--panel-border);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.85);
+    padding: 14px 18px 28px;
+    transform: translateY(115%);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #radius-control-hud.mobile-open {
+    transform: translateY(0);
+  }
+
+  /* 4. Right Sidebar as Mobile Bottom Sheet Drawer */
+  #radar-sidebar {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 75vh;
+    max-height: 82vh;
+    z-index: 1300;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--panel-border);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.85);
+    transform: translateY(115%);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #radar-sidebar.mobile-open {
+    transform: translateY(0);
   }
 
   #sidebar-toggle-btn {
-    display: block;
-    top: 140px;
+    display: none !important;
   }
 
-  #radius-control-hud {
-    top: 140px;
-    width: calc(100% - 32px);
-    max-width: 320px;
-  }
-
-  #best-deal-hud {
-    width: calc(100% - 24px);
-    padding: 10px 14px;
-    bottom: 12px;
-  }
-
+  /* 5. Fuel Legend HUD on Mobile */
   #fuel-legend-hud {
-    left: 16px;
-    right: auto;
-    bottom: 84px;
-    width: 200px;
+    position: fixed;
+    bottom: 72px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: 320px;
+    margin: 0 auto;
+    z-index: 1250;
+    transform: translateY(140%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.28s ease, opacity 0.25s ease;
   }
 
-  .leaflet-control-aero-scale {
-    margin-right: 16px !important;
+  #fuel-legend-hud.mobile-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* 6. Best Deal Banner on Mobile */
+  #best-deal-hud {
+    position: fixed;
+    bottom: 72px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: 440px;
+    margin: 0 auto;
+    z-index: 1000;
+    padding: 8px 12px;
+  }
+
+  /* 7. Floating Mobile Action Bar Dock */
+  .mobile-only-bar,
+  #mobile-action-bar {
+    display: flex !important;
+    position: fixed;
+    bottom: 12px;
+    left: 10px;
+    right: 10px;
+    margin: 0 auto;
+    max-width: 420px;
+    height: 48px;
+    z-index: 1100;
+    align-items: center;
+    justify-content: space-around;
+    gap: 4px;
+    padding: 3px 6px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65), 0 0 16px rgba(56, 189, 248, 0.15);
+  }
+
+  .mobile-bar-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 3px 6px;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    min-width: 50px;
+    height: 40px;
+    transition: all 0.18s ease;
+    user-select: none;
+  }
+
+  .mobile-bar-btn:active,
+  .mobile-bar-btn.active-tab {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+  }
+
+  .mobile-bar-btn .bar-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .mobile-bar-btn .bar-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  #mobile-btn-radar.active {
+    color: #34d399;
+  }
+
+  #mobile-btn-radar.off {
+    color: #f87171;
+  }
+
+  .mobile-pill-badge {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    background: #0284c7;
+    color: #fff;
+    padding: 1px 5px;
+    border-radius: 999px;
+    min-width: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    line-height: 1.1;
+  }
+
+  /* 8. Mobile Drawer Backdrop Overlay */
+  .mobile-drawer-backdrop,
+  #mobile-drawer-backdrop {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 1200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+  }
+
+  #mobile-drawer-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* 9. Mobile Sheet Header & Drag Handle */
+  .mobile-sheet-header {
+    display: block !important;
+    margin-bottom: 12px;
+  }
+
+  .mobile-sheet-handle {
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.25);
+    margin: 0 auto 10px;
+  }
+
+  .mobile-sheet-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  .mobile-sheet-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mobile-sheet-close {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: var(--text-main);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .mobile-sheet-close:active {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: #ef4444;
+    color: #ef4444;
+  }
+
+  /* 10. Map Controls on Mobile */
+  .leaflet-top.leaflet-right {
+    top: 60px !important;
+    right: 12px !important;
+  }
+
+  .leaflet-control-zoom {
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .leaflet-control-zoom a {
+    width: 34px !important;
+    height: 34px !important;
+    line-height: 34px !important;
+    font-size: 18px !important;
+  }
+
+  .leaflet-bottom.leaflet-left {
+    bottom: 68px !important;
+  }
+
+  .leaflet-bottom.leaflet-right {
+    bottom: 68px !important;
   }
 
   .specs-grid {

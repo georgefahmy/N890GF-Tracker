@@ -3547,6 +3547,10 @@
         headerBadge.innerText = 'OFF';
         headerBadge.title = 'Search Radar is turned off';
       }
+      const mobileBadge = document.getElementById('mobile-airports-badge');
+      if (mobileBadge) {
+        mobileBadge.innerText = 'OFF';
+      }
       if (minPriceEl) minPriceEl.innerText = '--';
       if (avgPriceEl) avgPriceEl.innerText = '--';
 
@@ -3590,6 +3594,10 @@
     if (headerBadge) {
       headerBadge.innerText = priced.length;
       headerBadge.title = `${priced.length} reporting fuel (${inRadiusList.length} total in radius)`;
+    }
+    const mobileBadge = document.getElementById('mobile-airports-badge');
+    if (mobileBadge) {
+      mobileBadge.innerText = priced.length;
     }
 
     if (priced.length > 0) {
@@ -3785,6 +3793,19 @@
         radarPowerBtn.className = 'btn-radar-power off';
         radarPowerBtn.innerHTML = '<span class="power-dot"></span><span class="power-label">Radar OFF</span>';
         radarPowerBtn.setAttribute('title', 'Turn Radar ON (Shortcut: R)');
+      }
+    }
+
+    const mobileRadarBtn = document.getElementById('mobile-btn-radar');
+    if (mobileRadarBtn) {
+      if (STATE.radarEnabled) {
+        mobileRadarBtn.className = 'mobile-bar-btn active';
+        mobileRadarBtn.innerHTML = '<span class="bar-icon">📡</span><span class="bar-label">Radar ON</span>';
+        mobileRadarBtn.setAttribute('title', 'Turn Radar OFF');
+      } else {
+        mobileRadarBtn.className = 'mobile-bar-btn off';
+        mobileRadarBtn.innerHTML = '<span class="bar-icon">⚪</span><span class="bar-label">Radar OFF</span>';
+        mobileRadarBtn.setAttribute('title', 'Turn Radar ON');
       }
     }
 
@@ -4887,8 +4908,132 @@
     }, 3200);
   }
 
+  // --- Mobile Drawer Architecture & Floating Navigation Bar ---
+  function setupMobileInterface() {
+    const backdrop = document.getElementById('mobile-drawer-backdrop');
+    const btnRadar = document.getElementById('mobile-btn-radar');
+    const btnControls = document.getElementById('mobile-btn-controls');
+    const btnFilters = document.getElementById('mobile-btn-filters');
+    const btnAirports = document.getElementById('mobile-btn-airports');
+    const btnLegend = document.getElementById('mobile-btn-legend');
+
+    const radiusHud = document.getElementById('radius-control-hud');
+    const navControls = document.getElementById('nav-controls');
+    const sidebar = document.getElementById('radar-sidebar');
+    const legendHud = document.getElementById('fuel-legend-hud');
+
+    const closeFilters = document.getElementById('btn-close-mobile-filters');
+    const closeRadius = document.getElementById('btn-close-mobile-radius');
+    const closeSidebar = document.getElementById('btn-close-mobile-sidebar');
+
+    function closeAllDrawers() {
+      if (radiusHud) radiusHud.classList.remove('mobile-open');
+      if (navControls) navControls.classList.remove('mobile-open');
+      if (sidebar) sidebar.classList.remove('mobile-open');
+      if (legendHud) legendHud.classList.remove('mobile-open');
+      if (backdrop) backdrop.classList.remove('active');
+
+      [btnControls, btnFilters, btnAirports, btnLegend].forEach(b => {
+        if (b) b.classList.remove('active-tab');
+      });
+    }
+
+    function toggleDrawer(targetDrawer, triggerBtn) {
+      if (!targetDrawer) return;
+      const isOpen = targetDrawer.classList.contains('mobile-open');
+      closeAllDrawers();
+
+      if (!isOpen) {
+        targetDrawer.classList.add('mobile-open');
+        if (triggerBtn) triggerBtn.classList.add('active-tab');
+        if (backdrop && targetDrawer !== legendHud) {
+          backdrop.classList.add('active');
+        }
+      }
+    }
+
+    if (btnRadar) {
+      btnRadar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setRadarEnabled(!STATE.radarEnabled);
+      });
+    }
+
+    if (btnControls) {
+      btnControls.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDrawer(radiusHud, btnControls);
+      });
+    }
+
+    if (btnFilters) {
+      btnFilters.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDrawer(navControls, btnFilters);
+      });
+    }
+
+    if (btnAirports) {
+      btnAirports.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (sidebar) {
+          sidebar.classList.remove('minimized', 'collapsed');
+        }
+        toggleDrawer(sidebar, btnAirports);
+      });
+    }
+
+    if (btnLegend) {
+      btnLegend.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDrawer(legendHud, btnLegend);
+      });
+    }
+
+    [closeFilters, closeRadius, closeSidebar].forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeAllDrawers();
+        });
+      }
+    });
+
+    if (backdrop) {
+      backdrop.addEventListener('click', () => {
+        closeAllDrawers();
+      });
+    }
+
+    const airportsList = document.getElementById('radar-airports-list');
+    if (airportsList) {
+      airportsList.addEventListener('click', (e) => {
+        const card = e.target.closest('.airport-card');
+        if (card && window.innerWidth <= 860) {
+          setTimeout(closeAllDrawers, 180);
+        }
+      });
+    }
+
+    if (map) {
+      map.on('click', () => {
+        if (window.innerWidth <= 860) {
+          closeAllDrawers();
+        }
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && window.innerWidth <= 860) {
+        closeAllDrawers();
+      }
+    });
+  }
+
   // --- Event Setup for Filters & Controls ---
   function setupControls() {
+    setupMobileInterface();
+
     // Radius Slider
     const slider = document.getElementById('radius-slider');
     if (slider) {

@@ -45,7 +45,7 @@
     <header id="top-nav">
       <!-- Return to Tracker Button & Brand Section -->
       <a href="/" class="tracker-nav-back" title="Return to N890GF Tracker Main Dashboard">
-        <span>⬅️ N890GF Tracker</span>
+        <span class="nav-back-arrow">⬅️</span><span class="nav-back-text"> N890GF Tracker</span>
       </a>
 
       <!-- Brand Section -->
@@ -73,7 +73,15 @@
       </div>
 
       <!-- Filters & Actions -->
-      <div class="nav-controls">
+      <div class="nav-controls" id="nav-controls">
+        <div class="mobile-sheet-header">
+          <div class="mobile-sheet-handle"></div>
+          <div class="mobile-sheet-title-row">
+            <span class="mobile-sheet-title">⛽ Fuel & Price Filters</span>
+            <button type="button" class="mobile-sheet-close" id="btn-close-mobile-filters" aria-label="Close Filters">&times;</button>
+          </div>
+        </div>
+
         <!-- Fuel Type Selector -->
         <div class="filter-group">
           <div class="select-wrapper">
@@ -128,6 +136,14 @@
 
       <!-- Floating Search Radius HUD (Top Left) -->
       <aside id="radius-control-hud">
+        <div class="mobile-sheet-header">
+          <div class="mobile-sheet-handle"></div>
+          <div class="mobile-sheet-title-row">
+            <span class="mobile-sheet-title">📡 Radar & Route Controls</span>
+            <button type="button" class="mobile-sheet-close" id="btn-close-mobile-radius" aria-label="Close Controls">&times;</button>
+          </div>
+        </div>
+
         <div class="hud-header">
           <div class="hud-header-left">
             <span class="hud-title">📡 Search Radar</span>
@@ -233,6 +249,14 @@
 
       <!-- Right Sidebar: Radius Inspector & Ranked List -->
       <aside id="radar-sidebar">
+        <div class="mobile-sheet-header">
+          <div class="mobile-sheet-handle"></div>
+          <div class="mobile-sheet-title-row">
+            <span class="mobile-sheet-title">📊 Radar Airports</span>
+            <button type="button" class="mobile-sheet-close" id="btn-close-mobile-sidebar" aria-label="Close Airports">&times;</button>
+          </div>
+        </div>
+
         <div class="sidebar-header" id="sidebar-header-toggle" title="Click to Minimize / Expand Radar Sidebar">
           <div class="sidebar-header-left">
             <span class="hud-title">📊 Radar Airports</span>
@@ -322,6 +346,34 @@
           </div>
         </div>
       </aside>
+
+      <!-- Mobile Floating Action Bar Dock -->
+      <nav id="mobile-action-bar" class="mobile-only-bar" aria-label="Mobile Navigation Controls">
+        <button type="button" id="mobile-btn-radar" class="mobile-bar-btn active" title="Toggle Search Radar">
+          <span class="bar-icon">📡</span>
+          <span class="bar-label">Radar</span>
+        </button>
+        <button type="button" id="mobile-btn-controls" class="mobile-bar-btn" title="Radar & Route Controls">
+          <span class="bar-icon">🎛️</span>
+          <span class="bar-label">Controls</span>
+        </button>
+        <button type="button" id="mobile-btn-filters" class="mobile-bar-btn" title="Fuel & Price Filters">
+          <span class="bar-icon">⛽</span>
+          <span class="bar-label">Filters</span>
+        </button>
+        <button type="button" id="mobile-btn-airports" class="mobile-bar-btn" title="Radar Airports List">
+          <span class="bar-icon">📊</span>
+          <span class="bar-label">Airports</span>
+          <span id="mobile-airports-badge" class="mobile-pill-badge">0</span>
+        </button>
+        <button type="button" id="mobile-btn-legend" class="mobile-bar-btn" title="Price Tier Legend">
+          <span class="bar-icon">🏷️</span>
+          <span class="bar-label">Legend</span>
+        </button>
+      </nav>
+
+      <!-- Mobile Drawer Backdrop Overlay -->
+      <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop"></div>
     </div>
 
     <!-- Airport Details Modal Backdrop -->

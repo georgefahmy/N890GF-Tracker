@@ -245,6 +245,40 @@ class TestAeroFuelIntegration:
             assert "const centerLat = STATE.circleCenter.lat;" in body_snippet
             assert "const centerLon = STATE.circleCenter.lng;" in body_snippet
 
+    def test_mobile_fuel_map_interface_elements(self, app, client):
+        """Verify mobile navigation bar, drawer architecture, and backdrop are present in templates, CSS, and JS."""
+        with app.app_context():
+            # 1. Template verification
+            res_html = client.get("/fuel_map")
+            assert res_html.status_code == 200
+            html = res_html.data.decode("utf-8")
+            assert 'id="mobile-action-bar"' in html
+            assert 'id="mobile-btn-radar"' in html
+            assert 'id="mobile-btn-controls"' in html
+            assert 'id="mobile-btn-filters"' in html
+            assert 'id="mobile-btn-airports"' in html
+            assert 'id="mobile-btn-legend"' in html
+            assert 'id="mobile-drawer-backdrop"' in html
+            assert 'class="mobile-sheet-header"' in html
+
+            # 2. CSS verification
+            res_css = client.get("/static/aerofuel/css/style.css")
+            assert res_css.status_code == 200
+            css = res_css.data.decode("utf-8")
+            assert "#mobile-action-bar" in css
+            assert ".mobile-drawer-backdrop" in css
+            assert ".mobile-open" in css
+            assert "@media (max-width: 860px)" in css
+
+            # 3. JavaScript verification
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "setupMobileInterface" in js
+            assert "closeAllDrawers" in js
+            assert "toggleDrawer" in js
+            assert "mobile-airports-badge" in js
+
 
 
 
