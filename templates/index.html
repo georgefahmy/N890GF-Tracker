@@ -379,7 +379,12 @@
             <button class="nav-link" id="fuel-tab" data-bs-toggle="tab" data-bs-target="#fuel" type="button">Fuel Logs</button>
         </li>
 
-        <li class="ms-auto pe-2">
+        <li class="ms-auto pe-2 d-flex align-items-center gap-1">
+            {% if unassociated_csv_count and unassociated_csv_count > 0 %}
+            <span id="unassociatedCsvAlert" class="text-warning d-inline-flex align-items-center me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="{{ unassociated_csv_count }} flight log file{{ 's' if unassociated_csv_count != 1 else '' }} not associated with any flight log entry" style="cursor: help;">
+                <i class="bi bi-exclamation-triangle-fill fs-6"></i>
+            </span>
+            {% endif %}
             <a id="dynamicExportBtn" href="/export/flights" class="btn btn-sm btn-outline-secondary">
                 ⬇️ Export to CSV
             </a>
@@ -478,28 +483,42 @@
                                     <label class="form-label">Notes</label>
                                     <textarea name="notes" class="form-control" rows="2">{{ row.notes }}</textarea>
                                 </div>
-                                {% if row.matching_csv %}
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Associated Telemetry File</label>
-                                    <div class="p-2 border rounded bg-light d-flex align-items-center justify-content-between">
+                                    {% if row.matching_csv %}
+                                    <div class="p-2 border rounded bg-light d-flex align-items-center justify-content-between mb-2">
                                         <div class="text-truncate me-2">
-                                            <span class="badge bg-info text-dark me-1">📊 CSV Log</span>
+                                            <span class="badge bg-info text-dark me-1">📊 Current File</span>
                                             <small class="fw-semibold text-break">{{ row.matching_csv }}</small>
                                         </div>
-                                        <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" class="btn btn-sm btn-outline-info text-nowrap">
+                                        <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" target="_blank" class="btn btn-sm btn-outline-info text-nowrap">
                                             📊 View Analyzer
                                         </a>
                                     </div>
-                                    <div class="form-text mt-1">Replace or upload a new telemetry CSV for this flight:</div>
+                                    {% else %}
+                                    <div class="p-2 border rounded bg-light text-muted small mb-2">
+                                        <em>No flight telemetry file currently associated.</em>
+                                    </div>
+                                    {% endif %}
+
+                                    <label class="form-label small text-muted mb-1">Associate with File:</label>
+                                    <select name="associated_csv" class="form-select form-select-sm mb-2">
+                                        <option value="__none__" {% if row.associated_csv == 'none' or not row.matching_csv %}selected{% endif %}>
+                                            -- None (No associated file) --
+                                        </option>
+                                        <option value="__auto__">
+                                            🔄 Reset to Auto-detect by Date/Time
+                                        </option>
+                                        {% for csv_f in available_csv_files %}
+                                        <option value="{{ csv_f }}" {% if row.matching_csv == csv_f and row.associated_csv != 'none' %}selected{% endif %}>
+                                            {{ csv_f }}{% if csv_f in unassociated_csv_files and csv_f != row.matching_csv %} (Unassociated){% endif %}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <div class="form-text small">Or upload a new telemetry CSV for this flight:</div>
                                     <input class="form-control form-control-sm mt-1" type="file" name="flight_csv" accept=".csv">
                                 </div>
-                                {% else %}
-                                <div class="mb-3">
-                                    <label class="form-label">Flight Telemetry CSV <span class="text-muted fw-normal">(Optional)</span></label>
-                                    <input class="form-control" type="file" name="flight_csv" accept=".csv">
-                                    <div class="form-text">Attach raw flight telemetry CSV. Telemetry data will be processed in the background.</div>
-                                </div>
-                                {% endif %}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -762,9 +781,16 @@
                   <textarea name="notes" class="form-control" rows="2"></textarea>
               </div>
               <div class="mb-3">
-                  <label class="form-label">Flight Telemetry CSV <span class="text-muted fw-normal">(Optional)</span></label>
-                  <input class="form-control" type="file" name="flight_csv" accept=".csv">
-                  <div class="form-text">Attach raw flight telemetry CSV. Telemetry data will be processed in the background.</div>
+                  <label class="form-label">Associate Flight Telemetry File <span class="text-muted fw-normal">(Optional)</span></label>
+                  <select name="associated_csv" class="form-select form-select-sm mb-2">
+                      <option value="__auto__" selected>🔄 Auto-detect by Date/Time</option>
+                      <option value="__none__">-- None (No associated file) --</option>
+                      {% for csv_f in available_csv_files %}
+                      <option value="{{ csv_f }}">{{ csv_f }}{% if csv_f in unassociated_csv_files %} (Unassociated){% endif %}</option>
+                      {% endfor %}
+                  </select>
+                  <div class="form-text small">Or upload a new flight telemetry CSV:</div>
+                  <input class="form-control form-control-sm mt-1" type="file" name="flight_csv" accept=".csv">
               </div>
           </div>
           <div class="modal-footer">

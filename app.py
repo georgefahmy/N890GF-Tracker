@@ -227,6 +227,7 @@ class FlightLog(db.Model):
     tach_delta = db.Column(db.Float, default=0.0)
     landings = db.Column(db.Integer)
     notes = db.Column(db.Text)
+    associated_csv = db.Column(db.Text, nullable=True)
 
 
 class MaintenanceLog(db.Model):
@@ -375,8 +376,16 @@ with app.app_context():
                             )
                         )
                 conn.commit()
+        if "flight_log" in inspector.get_table_names():
+            flight_log_cols = [c["name"] for c in inspector.get_columns("flight_log")]
+            if "associated_csv" not in flight_log_cols:
+                with engine.connect() as conn:
+                    conn.execute(
+                        db.text("ALTER TABLE flight_log ADD COLUMN associated_csv TEXT")
+                    )
+                    conn.commit()
     except Exception as mig_err:
-        print("Auto-migration notice for airspeed_calibration_records:", mig_err)
+        print("Auto-migration notice:", mig_err)
 
 
 def validate_float(value, default=0.0):
@@ -943,6 +952,8 @@ def calc_per_hour_cost():
 def find_matching_csv_map(flight_logs_raw):
     """
     Maps each FlightLog dictionary (by 'id') to a matching CSV filename in clean_flights/.
+    Honors explicit associations via 'associated_csv' (or 'none'), falling back to
+    date/time auto-matching for unassigned flight logs.
     """
     if not os.path.exists(SAVE_DIR):
         return {}
@@ -951,69 +962,91 @@ def find_matching_csv_map(flight_logs_raw):
     if not csv_files:
         return {}
 
-    csv_by_date = {}
-    for f in csv_files:
-        date_part = f[:10]
-        csv_by_date.setdefault(date_part, []).append(f)
-
-    for date_part in csv_by_date:
-        csv_by_date[date_part].sort()
-
-    logs_by_date = {}
-    for log in flight_logs_raw:
-        dt_val = log.get("date")
-        dt_obj = None
-        if isinstance(dt_val, (datetime, date)):
-            dt_obj = dt_val
-        elif isinstance(dt_val, str):
-            for fmt in ("%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
-                try:
-                    dt_obj = datetime.strptime(dt_val, fmt)
-                    break
-                except ValueError:
-                    pass
-
-        date_key = (
-            dt_obj.strftime("%Y-%m-%d")
-            if dt_obj
-            else (str(dt_val)[:10] if dt_val else "")
-        )
-        logs_by_date.setdefault(date_key, []).append((dt_obj, log))
-
     result = {}
-    for date_key, log_list in logs_by_date.items():
-        matching_csvs = csv_by_date.get(date_key, [])
-        if not matching_csvs:
-            continue
+    assigned_csvs = set()
+    unassigned_logs = []
 
-        if len(matching_csvs) == 1:
-            for _, log in log_list:
-                result[log.get("id")] = matching_csvs[0]
+    # Step 1: Process explicit associations
+    for log in flight_logs_raw:
+        log_id = log.get("id")
+        assoc = log.get("associated_csv")
+        if assoc in ("none", "__none__"):
+            result[log_id] = None
+        elif assoc and assoc in csv_files:
+            result[log_id] = assoc
+            assigned_csvs.add(assoc)
+        elif assoc:
+            result[log_id] = assoc
         else:
-            sorted_logs = sorted(log_list, key=lambda x: x[0] if x[0] else datetime.min)
-            for idx, (log_dt, log) in enumerate(sorted_logs):
-                matched_csv = None
-                if log_dt and (
-                    log_dt.hour != 0 or log_dt.minute != 0 or log_dt.second != 0
-                ):
-                    min_diff = float("inf")
-                    for csv_f in matching_csvs:
-                        try:
-                            time_str = csv_f[11:-4].replace("-", ":")
-                            csv_dt = datetime.strptime(
-                                f"{date_key} {time_str}", "%Y-%m-%d %H:%M:%S"
-                            )
-                            diff = abs((log_dt - csv_dt).total_seconds())
-                            if diff < min_diff:
-                                min_diff = diff
-                                matched_csv = csv_f
-                        except Exception:
-                            pass
-                if not matched_csv:
-                    csv_idx = min(idx, len(matching_csvs) - 1)
-                    matched_csv = matching_csvs[csv_idx]
+            unassigned_logs.append(log)
 
-                result[log.get("id")] = matched_csv
+    # Step 2: Auto-match remaining unassigned flight logs by date/time
+    remaining_csvs = [f for f in csv_files if f not in assigned_csvs]
+    if remaining_csvs and unassigned_logs:
+        csv_by_date = {}
+        for f in remaining_csvs:
+            date_part = f[:10]
+            csv_by_date.setdefault(date_part, []).append(f)
+
+        for date_part in csv_by_date:
+            csv_by_date[date_part].sort()
+
+        logs_by_date = {}
+        for log in unassigned_logs:
+            dt_val = log.get("date")
+            dt_obj = None
+            if isinstance(dt_val, (datetime, date)):
+                dt_obj = dt_val
+            elif isinstance(dt_val, str):
+                for fmt in ("%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+                    try:
+                        dt_obj = datetime.strptime(dt_val, fmt)
+                        break
+                    except ValueError:
+                        pass
+
+            date_key = (
+                dt_obj.strftime("%Y-%m-%d")
+                if dt_obj
+                else (str(dt_val)[:10] if dt_val else "")
+            )
+            logs_by_date.setdefault(date_key, []).append((dt_obj, log))
+
+        for date_key, log_list in logs_by_date.items():
+            matching_csvs = csv_by_date.get(date_key, [])
+            if not matching_csvs:
+                continue
+
+            if len(matching_csvs) == 1:
+                for _, log in log_list:
+                    result[log.get("id")] = matching_csvs[0]
+            else:
+                sorted_logs = sorted(
+                    log_list, key=lambda x: x[0] if x[0] else datetime.min
+                )
+                for idx, (log_dt, log) in enumerate(sorted_logs):
+                    matched_csv = None
+                    if log_dt and (
+                        log_dt.hour != 0 or log_dt.minute != 0 or log_dt.second != 0
+                    ):
+                        min_diff = float("inf")
+                        for csv_f in matching_csvs:
+                            try:
+                                time_str = csv_f[11:-4].replace("-", ":")
+                                csv_dt = datetime.strptime(
+                                    f"{date_key} {time_str}", "%Y-%m-%d %H:%M:%S"
+                                )
+                                diff = abs((log_dt - csv_dt).total_seconds())
+                                if diff < min_diff:
+                                    min_diff = diff
+                                    matched_csv = csv_f
+                            except Exception:
+                                pass
+                    if not matched_csv:
+                        csv_idx = min(idx, len(matching_csvs) - 1)
+                        matched_csv = matching_csvs[csv_idx]
+
+                    result[log.get("id")] = matched_csv
 
     return result
 
@@ -1086,6 +1119,22 @@ def index():
     for log in flight_logs:
         log["matching_csv"] = csv_map.get(log.get("id"))
 
+    # Compute available CSV files and unassociated CSV files
+    available_csv_files = []
+    if os.path.exists(SAVE_DIR):
+        available_csv_files = sorted(
+            [f for f in os.listdir(SAVE_DIR) if f.endswith(".csv")],
+            reverse=True,
+        )
+
+    associated_csv_set = {
+        log.get("matching_csv") for log in flight_logs if log.get("matching_csv")
+    }
+    unassociated_csv_files = [
+        f for f in available_csv_files if f not in associated_csv_set
+    ]
+    unassociated_csv_count = len(unassociated_csv_files)
+
     # --- Compute Hobbs delta between fuel-ups ---
     def safe_hobbs(x):
         try:
@@ -1137,7 +1186,7 @@ def index():
     stats_data = load_stats_file()
     total_gallons = calc_total_gallons(stats_data)
     total_air_time = calc_total_air_time(stats_data)
-    print(total_air_time)
+    # print(total_air_time)
     today = datetime.now()
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar() or today
     years_diff = today.year - first_flight_date.year
@@ -1248,6 +1297,9 @@ def index():
         hourly_fuel_cost=per_hour_cost,
         total_distance_traveled=calc_total_distance(stats_data),
         total_gallons_used=calc_total_gallons(stats_data),
+        available_csv_files=available_csv_files,
+        unassociated_csv_files=unassociated_csv_files,
+        unassociated_csv_count=unassociated_csv_count,
         oil_results=None,
     )
 
@@ -1341,6 +1393,14 @@ def process_flight_csv_file(filepath):
 @app.route("/add_flight", methods=["POST"])
 @login_required
 def add_flight():
+    assoc = request.form.get("associated_csv", "").strip()
+    if assoc in ("none", "__none__"):
+        associated_csv = "none"
+    elif assoc and assoc != "__auto__":
+        associated_csv = assoc
+    else:
+        associated_csv = None
+
     # Create a new FlightLog object using values from the form
     new_flight = FlightLog(
         date=parse_date_obj(request.form.get("date")),
@@ -1354,6 +1414,7 @@ def add_flight():
         tach=validate_float(request.form.get("tach")),
         landings=int(request.form.get("landings", 0)),
         notes=request.form.get("notes"),
+        associated_csv=associated_csv,
     )
 
     # Add to the session and commit to the database
@@ -1464,6 +1525,18 @@ def edit_flight(id):
     flight.tach = validate_float(request.form.get("tach"))
     flight.landings = int(request.form.get("landings", 0))
     flight.notes = request.form.get("notes")
+
+    # Update associated telemetry CSV file if provided
+    if "associated_csv" in request.form:
+        assoc = request.form.get("associated_csv", "").strip()
+        if assoc in ("none", "__none__"):
+            flight.associated_csv = "none"
+        elif assoc == "__auto__":
+            flight.associated_csv = None
+        elif assoc:
+            flight.associated_csv = assoc
+        else:
+            flight.associated_csv = None
 
     # Commit the changes to the database
     db.session.commit()

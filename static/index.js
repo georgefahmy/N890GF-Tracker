@@ -824,15 +824,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // This ensures the "Export to CSV" button always points to the right data
     const tabEls = document.querySelectorAll('button[data-bs-toggle="tab"]');
     const exportBtn = document.getElementById('dynamicExportBtn');
+    const alertEl = document.getElementById('unassociatedCsvAlert');
 
     tabEls.forEach(tabEl => {
         tabEl.addEventListener('shown.bs.tab', function (event) {
             const targetId = event.target.getAttribute('data-bs-target').replace('#', '');
 
             // Update the CSV link based on the active tab
-            if (targetId === 'flight') exportBtn.href = "/export/flights";
-            else if (targetId === 'mx') exportBtn.href = "/export/mx";
-            else if (targetId === 'fuel') exportBtn.href = "/export/fuel";
+            if (targetId === 'flight') {
+                exportBtn.href = "/export/flights";
+                if (alertEl) alertEl.style.display = 'inline-flex';
+            } else if (targetId === 'mx') {
+                exportBtn.href = "/export/mx";
+                if (alertEl) alertEl.style.display = 'none';
+            } else if (targetId === 'fuel') {
+                exportBtn.href = "/export/fuel";
+                if (alertEl) alertEl.style.display = 'none';
+            }
 
             // Update the URL hash without scrolling the page
             if (history.replaceState) {

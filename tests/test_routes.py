@@ -804,11 +804,82 @@ class TestFlightCsvMatching:
             assert csv_map.get(1) == "2026-07-21 07-28-49.csv"
             assert 2 not in csv_map
 
+    def test_find_matching_csv_map_with_explicit_association(self, app):
+        with app.app_context():
+            from app import find_matching_csv_map
+
+            raw_logs = [
+                {"id": 1, "date": "2026-07-21 07:28:49", "associated_csv": "none"},
+                {"id": 2, "date": "2020-01-01 00:00:00", "associated_csv": "2026-07-21 07-28-49.csv"},
+            ]
+            csv_map = find_matching_csv_map(raw_logs)
+            assert csv_map.get(1) is None
+            assert csv_map.get(2) == "2026-07-21 07-28-49.csv"
+
+    @patch("app.git_push_data")
+    def test_edit_flight_change_associated_csv(self, mock_push, app, auth_client):
+        from app import FlightLog, db
+
+        with app.app_context():
+            flight = FlightLog.query.first()
+            if not flight:
+                flight = FlightLog(
+                    date=datetime(2026, 7, 21),
+                    takeoff_airport="KPAO",
+                    landing_airport="KSQL",
+                    hobbs=100.0,
+                    tach=95.0,
+                    landings=1,
+                )
+                db.session.add(flight)
+                db.session.commit()
+            flight_id = flight.id
+
+            # Change association to a specific file
+            res = auth_client.post(
+                f"/edit_flight/{flight_id}",
+                data={
+                    "date": "2026-07-21",
+                    "takeoff": "KPAO",
+                    "landing": "KSQL",
+                    "hobbs": "100.0",
+                    "tach": "95.0",
+                    "landings": "1",
+                    "notes": "",
+                    "associated_csv": "2026-07-21 07-28-49.csv",
+                },
+                follow_redirects=True,
+            )
+            assert res.status_code == 200
+            updated = db.session.get(FlightLog, flight_id)
+            assert updated.associated_csv == "2026-07-21 07-28-49.csv"
+
+            # Change association to none
+            res2 = auth_client.post(
+                f"/edit_flight/{flight_id}",
+                data={
+                    "date": "2026-07-21",
+                    "takeoff": "KPAO",
+                    "landing": "KSQL",
+                    "hobbs": "100.0",
+                    "tach": "95.0",
+                    "landings": "1",
+                    "notes": "",
+                    "associated_csv": "__none__",
+                },
+                follow_redirects=True,
+            )
+            assert res2.status_code == 200
+            updated2 = db.session.get(FlightLog, flight_id)
+            assert updated2.associated_csv == "none"
+
     def test_index_renders_data_csv_attributes(self, app, auth_client, seed_db):
         with app.app_context():
             response = auth_client.get("/")
             assert response.status_code == 200
             assert b"flightTable" in response.data
+            assert b"unassociatedCsvAlert" in response.data or b"Export to CSV" in response.data
+
 
 
 # =============================================================================
