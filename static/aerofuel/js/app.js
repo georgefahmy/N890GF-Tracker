@@ -1830,6 +1830,8 @@
         updateCirclePosition(e.latlng.lat, e.latlng.lng);
         recalculateRadiusAirports();
       } else if (!STATE.radarEnabled && STATE.selectedAirport) {
+        cancelRadarOffHoverFade();
+        isSelectedAirportPinned = false;
         STATE.selectedAirport = null;
         updateBestDealHUD(null, []);
         recalculateRadiusAirports();
@@ -1876,6 +1878,63 @@
   }
 
   let hoveredAirportIcao = null;
+  let radarOffHoverTimeout = null;
+  let radarOffFadeAnimTimeout = null;
+  let isMouseOverHud = false;
+  let isSelectedAirportPinned = false;
+
+  function cancelRadarOffHoverFade() {
+    if (radarOffHoverTimeout) {
+      clearTimeout(radarOffHoverTimeout);
+      radarOffHoverTimeout = null;
+    }
+    if (radarOffFadeAnimTimeout) {
+      clearTimeout(radarOffFadeAnimTimeout);
+      radarOffFadeAnimTimeout = null;
+    }
+    const hud = document.getElementById('best-deal-hud');
+    if (hud) {
+      hud.classList.remove('fade-out');
+    }
+  }
+
+  function scheduleRadarOffHoverFade() {
+    cancelRadarOffHoverFade();
+    if (STATE.radarEnabled || isSelectedAirportPinned || isMouseOverHud) return;
+    const hud = document.getElementById('best-deal-hud');
+    if (!hud || hud.style.display === 'none') return;
+
+    radarOffHoverTimeout = setTimeout(() => {
+      if (STATE.radarEnabled || isSelectedAirportPinned || isMouseOverHud) return;
+      const h = document.getElementById('best-deal-hud');
+      if (h && h.style.display !== 'none') {
+        h.classList.add('fade-out');
+        radarOffFadeAnimTimeout = setTimeout(() => {
+          if (STATE.radarEnabled || isSelectedAirportPinned || isMouseOverHud) return;
+          h.style.display = 'none';
+          h.classList.remove('fade-out');
+          document.body.classList.remove('has-active-airport-hud');
+          STATE.selectedAirport = null;
+        }, 500);
+      }
+    }, 5000);
+  }
+
+  function attachHudHoverListeners() {
+    const hud = document.getElementById('best-deal-hud');
+    if (!hud || hud._aerofuelHoverListenersAttached) return;
+    hud._aerofuelHoverListenersAttached = true;
+    hud.addEventListener('mouseenter', () => {
+      isMouseOverHud = true;
+      cancelRadarOffHoverFade();
+    });
+    hud.addEventListener('mouseleave', () => {
+      isMouseOverHud = false;
+      if (!STATE.radarEnabled && !isSelectedAirportPinned && STATE.selectedAirport) {
+        scheduleRadarOffHoverFade();
+      }
+    });
+  }
 
   function renderSingleHoverMarker(apt) {
     if (!apt) return;
@@ -1952,33 +2011,38 @@
   }
 
   function clearRadarOffHoverMarker() {
-    if (!hoveredAirportIcao) return;
-    const prevIcao = hoveredAirportIcao;
-    hoveredAirportIcao = null;
+    if (hoveredAirportIcao) {
+      const prevIcao = hoveredAirportIcao;
+      hoveredAirportIcao = null;
 
-    const cleanPrev = prevIcao.toUpperCase().trim();
-    const originIcao = STATE.originAirport ? (STATE.originAirport.icao || '').toUpperCase().trim() : null;
-    const originFaa = STATE.originAirport ? (STATE.originAirport.faa || '').toUpperCase().trim() : null;
-    const isOrigin = Boolean(originIcao && (cleanPrev === originIcao || (originFaa && cleanPrev === originFaa)));
-    const destIcao = STATE.destinationAirport ? (STATE.destinationAirport.icao || '').toUpperCase().trim() : null;
-    const destFaa = STATE.destinationAirport ? (STATE.destinationAirport.faa || '').toUpperCase().trim() : null;
-    const isDest = Boolean(destIcao && (cleanPrev === destIcao || (destFaa && cleanPrev === destFaa)));
-    const activePopupIcao = STATE.activePopupIcao ? STATE.activePopupIcao.toUpperCase().trim() : null;
-    const isPopupOpen = Boolean(activePopupIcao && (cleanPrev === activePopupIcao || (originFaa && cleanPrev === activePopupIcao)));
-    const aptCanonical = STATE.airportsMap.get(cleanPrev) || (cleanPrev.startsWith('K') ? STATE.airportsMap.get(cleanPrev.slice(1)) : STATE.airportsMap.get('K' + cleanPrev)) || { icao: cleanPrev, faa: cleanPrev };
-    const isRouteWaypoint = Boolean(getRouteStopInfo(aptCanonical));
+      const cleanPrev = prevIcao.toUpperCase().trim();
+      const originIcao = STATE.originAirport ? (STATE.originAirport.icao || '').toUpperCase().trim() : null;
+      const originFaa = STATE.originAirport ? (STATE.originAirport.faa || '').toUpperCase().trim() : null;
+      const isOrigin = Boolean(originIcao && (cleanPrev === originIcao || (originFaa && cleanPrev === originFaa)));
+      const destIcao = STATE.destinationAirport ? (STATE.destinationAirport.icao || '').toUpperCase().trim() : null;
+      const destFaa = STATE.destinationAirport ? (STATE.destinationAirport.faa || '').toUpperCase().trim() : null;
+      const isDest = Boolean(destIcao && (cleanPrev === destIcao || (destFaa && cleanPrev === destFaa)));
+      const activePopupIcao = STATE.activePopupIcao ? STATE.activePopupIcao.toUpperCase().trim() : null;
+      const isPopupOpen = Boolean(activePopupIcao && (cleanPrev === activePopupIcao || (originFaa && cleanPrev === activePopupIcao)));
+      const aptCanonical = STATE.airportsMap.get(cleanPrev) || (cleanPrev.startsWith('K') ? STATE.airportsMap.get(cleanPrev.slice(1)) : STATE.airportsMap.get('K' + cleanPrev)) || { icao: cleanPrev, faa: cleanPrev };
+      const isRouteWaypoint = Boolean(getRouteStopInfo(aptCanonical));
 
-    if (!isOrigin && !isDest && !isPopupOpen && !isRouteWaypoint) {
-      const markerObj = STATE.markers.get(prevIcao);
-      if (markerObj && markerObj.marker) {
-        markersLayerGroup.removeLayer(markerObj.marker);
+      if (!isOrigin && !isDest && !isPopupOpen && !isRouteWaypoint) {
+        const markerObj = STATE.markers.get(prevIcao);
+        if (markerObj && markerObj.marker) {
+          markersLayerGroup.removeLayer(markerObj.marker);
+        }
+        STATE.markers.delete(prevIcao);
+      } else {
+        const el = document.getElementById(`marker-${prevIcao}`);
+        if (el) {
+          el.classList.remove('is-hover-bubble');
+        }
       }
-      STATE.markers.delete(prevIcao);
-    } else {
-      const el = document.getElementById(`marker-${prevIcao}`);
-      if (el) {
-        el.classList.remove('is-hover-bubble');
-      }
+    }
+
+    if (!STATE.radarEnabled && !isSelectedAirportPinned && STATE.selectedAirport) {
+      scheduleRadarOffHoverFade();
     }
   }
 
@@ -1996,13 +2060,17 @@
 
     const cleanIcao = (hoveredApt.icao || '').toUpperCase().trim();
     if (hoveredAirportIcao && hoveredAirportIcao.toUpperCase().trim() === cleanIcao) {
+      cancelRadarOffHoverFade();
       return; // Already hovering on this airport
     }
 
     // Switched to another airport
+    cancelRadarOffHoverFade();
+    isSelectedAirportPinned = false;
     clearRadarOffHoverMarker();
     hoveredAirportIcao = hoveredApt.icao;
     renderSingleHoverMarker(hoveredApt);
+    showSelectedAirportHUD(hoveredApt);
   }
 
   let sidebarAutoCollapsedForRadar = false;
@@ -2033,6 +2101,8 @@
   function setRadarEnabled(enabled, options = {}) {
     const silent = Boolean(options.silent);
     STATE.radarEnabled = Boolean(enabled);
+    cancelRadarOffHoverFade();
+    isSelectedAirportPinned = false;
     clearRadarOffHoverMarker();
 
     if (STATE.radarEnabled) {
@@ -2965,6 +3035,12 @@
     el.addEventListener('click', handleAirportClick);
     el.addEventListener('pointerdown', handlePointerDown);
     el.addEventListener('touchstart', handlePointerDown, { passive: true });
+    el.addEventListener('mouseenter', function () {
+      if (!STATE.radarEnabled) {
+        hoveredAirportIcao = apt.icao;
+        showSelectedAirportHUD(apt);
+      }
+    });
 
     const badge = el.querySelector('.fuel-price-badge');
     if (badge) {
@@ -3332,6 +3408,8 @@
 
   async function fetchAirportFuelAndHighlight(apt, forceRefresh = false, openModalDirectly = false) {
     if (!apt) return;
+    cancelRadarOffHoverFade();
+    isSelectedAirportPinned = true;
     const icao = apt.icao;
     const cleanIcao = (apt.icao || '').toUpperCase().trim();
     const cleanFaa = (apt.faa || cleanIcao).toUpperCase().trim();
@@ -3625,12 +3703,16 @@
 
     if (!lowest) {
       hud.style.display = 'none';
+      hud.classList.remove('fade-out');
       document.body.classList.remove('has-active-airport-hud');
       STATE.prevBestDealSignature = '';
       return;
     }
 
+    cancelRadarOffHoverFade();
+    attachHudHoverListeners();
     hud.style.display = 'flex';
+    hud.classList.remove('fade-out');
     document.body.classList.add('has-active-airport-hud');
 
     // Calculate average price in radius for savings calculation (only among priced airports)
@@ -3706,8 +3788,11 @@
     const hud = document.getElementById('best-deal-hud');
     if (!hud || !apt) return;
 
+    cancelRadarOffHoverFade();
+    attachHudHoverListeners();
     STATE.selectedAirport = apt;
     hud.style.display = 'flex';
+    hud.classList.remove('fade-out');
     document.body.classList.add('has-active-airport-hud');
 
     const cleanIcao = (apt.icao || '').toUpperCase().trim();
@@ -3816,8 +3901,11 @@
     if (closeBtn) {
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        cancelRadarOffHoverFade();
+        isSelectedAirportPinned = false;
         STATE.selectedAirport = null;
         hud.style.display = 'none';
+        hud.classList.remove('fade-out');
         document.body.classList.remove('has-active-airport-hud');
         recalculateRadiusAirports();
       });
@@ -5855,6 +5943,8 @@
       getHoveredAirportIcao: () => hoveredAirportIcao,
       handleRadarOffHover: handleRadarOffHover,
       clearRadarOffHoverMarker: clearRadarOffHoverMarker,
+      scheduleRadarOffHoverFade: scheduleRadarOffHoverFade,
+      cancelRadarOffHoverFade: cancelRadarOffHoverFade,
       getNiceScaleNumber: getNiceScaleNumber,
       calculateMetersPerPixel: (lat, zoom) => (40075016.68557849 * Math.cos(lat * Math.PI / 180)) / (256 * Math.pow(2, zoom)),
       getMap: () => map,

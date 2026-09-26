@@ -334,6 +334,20 @@ class TestAeroFuelIntegration:
             assert "has-active-airport-hud" in js
             # Verify recalculateRadiusAirports renders selectedAirport HUD when radar is off
             assert "showSelectedAirportHUD(STATE.selectedAirport)" in js
+            # Verify hovering over an airport when radar is off triggers showSelectedAirportHUD
+            assert "showSelectedAirportHUD(hoveredApt)" in js
+            # Verify 5-second auto-fade timeout and cancellation mechanisms
+            assert "scheduleRadarOffHoverFade" in js
+            assert "cancelRadarOffHoverFade" in js
+            assert "5000" in js
+            assert "fade-out" in js
+
+            # Verify CSS fade-out transition
+            res_css = client.get("/static/aerofuel/css/style.css")
+            assert res_css.status_code == 200
+            css = res_css.data.decode("utf-8")
+            assert "#best-deal-hud.fade-out" in css
+            assert "transition: opacity 0.5s ease" in css
 
     def test_app_js_syntax_validation(self):
         """Verify static/aerofuel/js/app.js contains strictly valid JavaScript without syntax errors."""

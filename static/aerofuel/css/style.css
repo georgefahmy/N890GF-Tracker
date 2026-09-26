@@ -1539,6 +1539,13 @@ html, body {
   justify-content: space-between;
   gap: 16px;
   animation: slide-up 0.35s ease-out;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#best-deal-hud.fade-out {
+  opacity: 0 !important;
+  transform: translate(-50%, 15px) !important;
+  pointer-events: none !important;
 }
 
 @keyframes slide-up {
