@@ -1,21 +1,21 @@
 {
-  "_cached_at": 1790372990.9380891,
-  "icao": "E60",
+  "_cached_at": 1790372977.9651651,
+  "icao": "E25",
   "data": {
-    "icao": "E60",
-    "faa": "E60",
+    "icao": "E25",
+    "faa": "E25",
     "iata": "",
-    "name": "Eloy Municipal Airport",
-    "city": "Eloy",
+    "name": "Wickenburg Municipal Airport",
+    "city": "Wickenburg",
     "state": "AZ",
     "country": "US",
-    "lat": 32.807,
-    "lon": -111.587,
-    "elevation_ft": 1513,
+    "lat": 33.9702,
+    "lon": -112.796,
+    "elevation_ft": 2377,
     "tower": false,
     "tower_freq": null,
-    "ctaf_freq": 122.8,
-    "unicom_freq": 122.8,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
     "weather_freq": null,
     "weather_type": null,
     "weather_desc": null,
@@ -31,13 +31,13 @@
       {
         "type": "UNIC",
         "description": "CTAF/UNICOM",
-        "frequency_mhz": 122.8
+        "frequency_mhz": 123.0
       }
     ],
     "runways": [
       {
-        "id": "02/20",
-        "length": 3901,
+        "id": "05/23",
+        "length": 6101,
         "width": 75,
         "surface": "Asphalt",
         "lighted": true
@@ -45,20 +45,20 @@
     ],
     "fbos": [
       {
-        "name": "Bel America",
-        "brand": "",
+        "name": "Town of Wickenburg",
+        "brand": "independent",
         "phone": "N/A",
-        "notes": "Quote: 21-Sep",
-        "quote_date": "21-Sep",
+        "notes": "independent \u2022 Quote: 17-Sep",
+        "quote_date": "17-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.95,
+            "price": 6.7,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 6.05,
+            "price": 6.1,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -66,16 +66,16 @@
         }
       }
     ],
-    "best_price": 6.95,
+    "best_price": 6.7,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
-    "raw_ident": "KE60",
-    "airport_ref": "19704",
-    "fetched_at": "2026-08-29T14:45:31Z"
+    "raw_ident": "KE25",
+    "airport_ref": "19691",
+    "fetched_at": "2026-09-25T21:49:35Z"
   }
 }

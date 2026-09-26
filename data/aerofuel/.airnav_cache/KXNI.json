@@ -1,8 +1,8 @@
 {
-  "_cached_at": 1790372120.0146952,
-  "icao": "M45",
+  "_cached_at": 1790372998.3565133,
+  "icao": "KXNI",
   "data": {
-    "icao": "M45",
+    "icao": "KXNI",
     "name": "",
     "ctaf_freq": null,
     "unicom_freq": null,
@@ -11,7 +11,7 @@
     "primary_fuel": "None",
     "fuels_available": [],
     "last_updated": "2026-09-25",
-    "fetched_at": "2026-09-25T21:35:20Z",
+    "fetched_at": "2026-09-25T21:49:58Z",
     "source": "AirNav Live Feed",
     "from_cache": false
   }

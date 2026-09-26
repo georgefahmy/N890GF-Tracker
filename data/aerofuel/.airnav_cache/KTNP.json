@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787518864.9366772,
+  "_cached_at": 1790372977.9624481,
   "icao": "KTNP",
   "data": {
     "icao": "KTNP",
@@ -13,39 +13,20 @@
     "lon": -115.9473,
     "elevation_ft": 1888,
     "tower": false,
-    "ctaf_freq": 122.9,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
-    "runways": [
-      {
-        "id": "02/20",
-        "length": 7940,
-        "surface": "Asphalt/Paved"
-      }
-    ],
-    "fbos": [
-      {
-        "name": "Department of Airports",
-        "brand": "independent",
-        "phone": "N/A",
-        "notes": "independent \u2022 Quote: 13-Aug",
-        "quote_date": "13-Aug",
-        "fuels": {
-          "100LL_SS": {
-            "price": 6.67,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          }
-        }
-      }
-    ],
-    "best_price": 6.67,
-    "primary_fuel": "100LL",
-    "fuels_available": [
-      "100LL"
-    ],
-    "last_updated": "2026-08-23",
-    "source": "AirNav Local Fuel",
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "CNTR",
@@ -63,6 +44,48 @@
         "frequency_mhz": 122.8
       }
     ],
-    "fetched_at": "2026-08-23T21:01:04Z"
+    "runways": [
+      {
+        "id": "08/26",
+        "length": 5531,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 3797,
+        "width": 50,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Department of Airports",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.45,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.45,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL"
+    ],
+    "last_updated": "2026-09-25",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KTNP",
+    "airport_ref": "21205",
+    "fetched_at": "2026-09-25T21:49:35Z"
   }
 }

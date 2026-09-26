@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788247.5518432,
+  "_cached_at": 1790373027.883464,
   "icao": "KAEG",
   "data": {
     "icao": "KAEG",
@@ -13,8 +13,20 @@
     "lon": -106.795,
     "elevation_ft": 5837,
     "tower": true,
+    "tower_freq": 120.15,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": 119.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 127.4,
+    "approach_desc": "ALBUQUERQUE APP/DEP",
+    "departure_freq": 127.4,
+    "departure_desc": "ALBUQUERQUE APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 124.8,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "A/D",
@@ -67,13 +79,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.74,
+            "price": 6.94,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 6.89,
+            "price": 7.09,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -87,7 +99,7 @@
         }
       }
     ],
-    "best_price": 6.74,
+    "best_price": 6.94,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -95,6 +107,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KAEG",
+    "airport_ref": "19242",
     "fetched_at": "2026-08-26T23:50:47Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787543355.376144,
+  "_cached_at": 1790372999.7653089,
   "icao": "KSOW",
   "data": {
     "icao": "KSOW",
@@ -13,8 +13,20 @@
     "lon": -110.0071,
     "elevation_ft": 6415,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": 118.075,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -53,23 +65,23 @@
         "name": "Show Low Regional Airport",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 13-Aug",
-        "quote_date": "13-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.09,
+            "price": 6.39,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 6.34,
+            "price": 6.64,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 5.24,
+            "price": 5.81,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -77,7 +89,7 @@
         }
       }
     ],
-    "best_price": 6.09,
+    "best_price": 6.39,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -85,6 +97,8 @@
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KSOW",
+    "airport_ref": "21097",
     "fetched_at": "2026-08-24T03:49:15Z"
   }
 }

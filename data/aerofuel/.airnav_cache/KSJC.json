@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790353131.2858171,
+  "_cached_at": 1790372937.9161465,
   "icao": "KSJC",
   "data": {
     "icao": "KSJC",
@@ -142,10 +142,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-09-24",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSJC",
     "airport_ref": "3883",
-    "fetched_at": "2026-09-25T02:15:38Z"
+    "fetched_at": "2026-09-25T21:48:56Z"
   }
 }

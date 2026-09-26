@@ -1,17 +1,17 @@
 {
-  "_cached_at": 1790372999.7614973,
-  "icao": "KJTC",
+  "_cached_at": 1790373029.90524,
+  "icao": "KSXU",
   "data": {
-    "icao": "KJTC",
-    "faa": "JTC",
+    "icao": "KSXU",
+    "faa": "SXU",
     "iata": "",
-    "name": "Springerville Municipal Airport",
-    "city": "Springerville",
-    "state": "AZ",
+    "name": "Santa Rosa Route 66 Airport",
+    "city": "Santa Rosa",
+    "state": "NM",
     "country": "US",
-    "lat": 34.1311,
-    "lon": -109.3103,
-    "elevation_ft": 7055,
+    "lat": 34.9344,
+    "lon": -104.643,
+    "elevation_ft": 4792,
     "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.8,
@@ -29,11 +29,6 @@
     "clearance_desc": null,
     "frequencies": [
       {
-        "type": "CNTR",
-        "description": "ALBUQUERQUE CNTR",
-        "frequency_mhz": 132.9
-      },
-      {
         "type": "UNIC",
         "description": "CTAF/UNICOM",
         "frequency_mhz": 122.8
@@ -41,15 +36,15 @@
     ],
     "runways": [
       {
-        "id": "03/21",
-        "length": 8422,
+        "id": "01/19",
+        "length": 5013,
         "width": 75,
         "surface": "Asphalt",
         "lighted": true
       },
       {
-        "id": "11/29",
-        "length": 4603,
+        "id": "08/26",
+        "length": 4294,
         "width": 60,
         "surface": "Asphalt",
         "lighted": true
@@ -57,20 +52,20 @@
     ],
     "fbos": [
       {
-        "name": "Town of Springerville",
-        "brand": "Phillips 66",
+        "name": "Santa Rosa Route 66 Airport",
+        "brand": "Titan",
+        "phone": "575-512-6090",
+        "notes": "Titan \u2022 Quote: 16-Sep-2026",
+        "quote_date": "16-Sep-2026",
+        "fuels": {}
+      },
+      {
+        "name": "AirNav Reported Fuel Island",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 17-Sep",
-        "quote_date": "17-Sep",
+        "notes": "AirNav Public Retail Fuel Feed",
         "fuels": {
-          "100LL_SS": {
-            "price": 6.43,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
           "JET_A": {
-            "price": 5.95,
+            "price": 1.0,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -78,16 +73,14 @@
         }
       }
     ],
-    "best_price": 6.43,
-    "primary_fuel": "100LL",
+    "best_price": null,
+    "primary_fuel": "None",
     "fuels_available": [
-      "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KD68",
-    "airport_ref": "19608",
-    "fetched_at": "2026-08-24T03:49:15Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KI58",
+    "airport_ref": "20135"
   }
 }

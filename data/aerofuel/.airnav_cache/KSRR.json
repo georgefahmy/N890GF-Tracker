@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789072486.238511,
+  "_cached_at": 1790373027.8868153,
   "icao": "KSRR",
   "data": {
     "icao": "KSRR",
@@ -70,17 +70,17 @@
         "name": "Sierra Blanca Regional Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 28-Aug",
-        "quote_date": "28-Aug",
+        "notes": "AVFUEL \u2022 Quote: 21-Sep",
+        "quote_date": "21-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 7.13,
+            "price": 7.79,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.15,
+            "price": 7.4,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -88,7 +88,7 @@
         }
       }
     ],
-    "best_price": 7.13,
+    "best_price": 7.79,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

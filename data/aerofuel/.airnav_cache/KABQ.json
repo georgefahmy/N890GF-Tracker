@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788247.550924,
+  "_cached_at": 1790373027.8822472,
   "icao": "KABQ",
   "data": {
     "icao": "KABQ",
@@ -13,8 +13,20 @@
     "lon": -106.6089,
     "elevation_ft": 5355,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": 120.3,
+    "ctaf_freq": 122.95,
     "unicom_freq": 122.95,
+    "weather_freq": 118.0,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 123.9,
+    "approach_desc": "APP",
+    "departure_freq": 123.9,
+    "departure_desc": "DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "Ground",
+    "clearance_freq": 119.2,
+    "clearance_desc": "Clearance",
     "frequencies": [
       {
         "type": "APP",
@@ -89,13 +101,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_FS": {
-            "price": 6.99,
+            "price": 7.15,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.9,
+            "price": 10.25,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -106,17 +118,17 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "independent \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 6.99,
+            "price": 7.1,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.34,
+            "price": 10.37,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -124,7 +136,7 @@
         }
       }
     ],
-    "best_price": 6.99,
+    "best_price": 7.1,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -132,6 +144,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KABQ",
+    "airport_ref": "16091",
     "fetched_at": "2026-08-26T23:50:47Z"
   }
 }

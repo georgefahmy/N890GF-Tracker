@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790302538.7111712,
+  "_cached_at": 1790372937.8979993,
   "icao": "KLSN",
   "data": {
     "icao": "KLSN",
@@ -63,8 +63,8 @@
         "name": "City of Los Banos (FBO)",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 10-Sep",
-        "quote_date": "10-Sep",
+        "notes": "World Fuel Services \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.32,
@@ -87,10 +87,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-24",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KLSN",
     "airport_ref": "20377",
-    "fetched_at": "2026-09-25T02:15:38Z"
+    "fetched_at": "2026-09-25T21:48:56Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787543345.141387,
+  "_cached_at": 1790373029.9108036,
   "icao": "KPRZ",
   "data": {
     "icao": "KPRZ",
@@ -13,8 +13,20 @@
     "lon": -103.41,
     "elevation_ft": 4078,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": 118.175,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 125.5,
+    "approach_desc": "CANNON APP",
+    "departure_freq": 125.5,
+    "departure_desc": "CANNON DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 119.0,
+    "clearance_desc": "CANNON CLNC DEL",
     "frequencies": [
       {
         "type": "APP",
@@ -63,17 +75,17 @@
         "name": "Portales Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 21-Aug",
-        "quote_date": "21-Aug",
+        "notes": "Quote: 14-Sep",
+        "quote_date": "14-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 5.99,
+            "price": 6.95,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 5.89,
+            "price": 6.24,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -81,14 +93,16 @@
         }
       }
     ],
-    "best_price": 5.99,
+    "best_price": 6.95,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
+    "last_updated": "2026-08-27",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-24T03:49:05Z"
+    "raw_ident": "KPRZ",
+    "airport_ref": "20868",
+    "fetched_at": "2026-08-27T21:04:25Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787604243.181026,
+  "_cached_at": 1790372977.9638271,
   "icao": "KBVU",
   "data": {
     "icao": "KBVU",
@@ -13,8 +13,20 @@
     "lon": -114.8588,
     "elevation_ft": 2201,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
     "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "UNIC",
@@ -43,17 +55,17 @@
         "name": "Boulder City Aviation Services FBO",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 19-Aug",
-        "quote_date": "19-Aug",
+        "notes": "Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 8.08,
+            "price": 8.28,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.83,
+            "price": 7.79,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -68,13 +80,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.07,
+            "price": 7.43,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 7.33,
+            "price": 7.29,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -82,14 +94,16 @@
         }
       }
     ],
-    "best_price": 7.07,
+    "best_price": 7.43,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-24T20:44:03Z"
+    "raw_ident": "K61B",
+    "airport_ref": "18945",
+    "fetched_at": "2026-09-25T21:49:35Z"
   }
 }

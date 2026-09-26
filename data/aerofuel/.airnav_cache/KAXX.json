@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787793643.247064,
+  "_cached_at": 1790373029.9129918,
   "icao": "KAXX",
   "data": {
     "icao": "KAXX",
@@ -58,17 +58,17 @@
         "name": "The Village of Angel Fire FBO",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 14-Aug",
-        "quote_date": "14-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 16-Sep",
+        "quote_date": "16-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 7.79,
+            "price": 7.2,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.79,
+            "price": 7.2,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -82,7 +82,7 @@
         }
       }
     ],
-    "best_price": 7.79,
+    "best_price": 7.2,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

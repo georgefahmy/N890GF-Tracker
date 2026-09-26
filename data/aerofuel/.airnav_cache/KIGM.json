@@ -1,24 +1,24 @@
 {
-  "_cached_at": 1790372990.9461985,
-  "icao": "KPAN",
+  "_cached_at": 1790372977.9610167,
+  "icao": "KIGM",
   "data": {
-    "icao": "KPAN",
-    "faa": "PAN",
-    "iata": "PJB",
-    "name": "Payson Airport",
-    "city": "Payson",
+    "icao": "KIGM",
+    "faa": "IGM",
+    "iata": "IGM",
+    "name": "Kingman Airport",
+    "city": "Kingman",
     "state": "AZ",
     "country": "US",
-    "lat": 34.2568,
-    "lon": -111.339,
-    "elevation_ft": 5157,
-    "tower": false,
+    "lat": 35.2595,
+    "lon": -113.938,
+    "elevation_ft": 3449,
+    "tower": true,
     "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
-    "weather_freq": 119.325,
+    "weather_freq": 119.275,
     "weather_type": "AWOS",
-    "weather_desc": "AWOS 3",
+    "weather_desc": "ASOS",
     "approach_freq": null,
     "approach_desc": null,
     "departure_freq": null,
@@ -29,14 +29,14 @@
     "clearance_desc": null,
     "frequencies": [
       {
-        "type": "AWOS",
-        "description": "AWOS 3",
-        "frequency_mhz": 119.325
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 119.275
       },
       {
-        "type": "FSS",
+        "type": "RDO",
         "description": "PRESCOTT RDO",
-        "frequency_mhz": 122.3
+        "frequency_mhz": 108.8
       },
       {
         "type": "UNIC",
@@ -46,8 +46,15 @@
     ],
     "runways": [
       {
-        "id": "06/24",
-        "length": 5504,
+        "id": "03/21",
+        "length": 6827,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "17/35",
+        "length": 6725,
         "width": 75,
         "surface": "Asphalt",
         "lighted": true
@@ -55,37 +62,43 @@
     ],
     "fbos": [
       {
-        "name": "MPG East, Inc.",
+        "name": "Air'zona Aircraft Service",
         "brand": "World Fuel Services",
         "phone": "N/A",
         "notes": "World Fuel Services \u2022 Quote: 22-Sep",
         "quote_date": "22-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 7.35,
+            "price": 7.1,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
-          "JET_A": {
-            "price": 7.35,
-            "type": "Jet-A",
+          "100LL_FS": {
+            "price": 7.6,
+            "type": "100LL",
             "service": "Full-Serve",
-            "label": "Jet-A Turbine Fuel (Full-Serve)"
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.1,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 7.35,
+    "best_price": 7.1,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
-    "raw_ident": "KPAN",
-    "airport_ref": "20804",
-    "fetched_at": "2026-08-24T03:49:15Z"
+    "raw_ident": "KIGM",
+    "airport_ref": "20161",
+    "fetched_at": "2026-09-25T21:49:35Z"
   }
 }

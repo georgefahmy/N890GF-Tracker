@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789072486.238391,
+  "_cached_at": 1790373027.8761487,
   "icao": "KBRG",
   "data": {
     "icao": "KBRG",
@@ -60,23 +60,23 @@
         "name": "The City of Belen",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 04-Sep",
-        "quote_date": "04-Sep",
+        "notes": "Phillips 66 \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.72,
+            "price": 6.9,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 6.87,
+            "price": 7.1,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 5.7,
+            "price": 6.55,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -84,7 +84,7 @@
         }
       }
     ],
-    "best_price": 6.72,
+    "best_price": 6.9,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014731.078805,
+  "_cached_at": 1790372990.9440196,
   "icao": "P19",
   "data": {
     "icao": "P19",
@@ -57,7 +57,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.55,
+            "price": 6.9,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -71,7 +71,7 @@
         }
       }
     ],
-    "best_price": 6.55,
+    "best_price": 6.9,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

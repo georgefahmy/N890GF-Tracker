@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787792710.458226,
+  "_cached_at": 1790372937.897444,
   "icao": "3O1",
   "data": {
     "icao": "3O1",
@@ -13,8 +13,20 @@
     "lon": -120.963,
     "elevation_ft": 75,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.9,
-    "unicom_freq": 122.8,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "CTAF",
@@ -44,8 +56,10 @@
     "best_price": null,
     "primary_fuel": "None",
     "fuels_available": [],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-09-25",
     "source": "AirNav Live Feed",
-    "fetched_at": "2026-08-26T22:19:47Z"
+    "raw_ident": "K3O1",
+    "airport_ref": "18724",
+    "fetched_at": "2026-09-25T21:48:54Z"
   }
 }

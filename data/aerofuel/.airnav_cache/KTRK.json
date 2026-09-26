@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542181.624506,
+  "_cached_at": 1790372125.66491,
   "icao": "KTRK",
   "data": {
     "icao": "KTRK",
@@ -80,23 +80,23 @@
         "name": "Truckee Tahoe Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 01-Sep",
-        "quote_date": "01-Sep",
+        "notes": "Quote: 22-Sep",
+        "quote_date": "22-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 7.15,
+            "price": 7.56,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.15,
+            "price": 7.56,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "SAF": {
-            "price": 9.2,
+            "price": 9.84,
             "type": "SAF",
             "service": "Full-Serve",
             "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
@@ -104,16 +104,16 @@
         }
       }
     ],
-    "best_price": 7.15,
+    "best_price": 7.56,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "SAF"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTRK",
     "airport_ref": "21220",
-    "fetched_at": "2026-09-04T17:16:21Z"
+    "fetched_at": "2026-09-25T21:35:21Z"
   }
 }

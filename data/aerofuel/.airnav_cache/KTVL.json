@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542168.957449,
+  "_cached_at": 1790372125.660718,
   "icao": "KTVL",
   "data": {
     "icao": "KTVL",
@@ -92,10 +92,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTVL",
     "airport_ref": "3934",
-    "fetched_at": "2026-09-04T17:16:08Z"
+    "fetched_at": "2026-09-25T21:35:21Z"
   }
 }

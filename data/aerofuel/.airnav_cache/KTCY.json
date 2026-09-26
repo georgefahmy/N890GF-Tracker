@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790353131.286647,
+  "_cached_at": 1790372937.9089916,
   "icao": "KTCY",
   "data": {
     "icao": "KTCY",
@@ -89,10 +89,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-24",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTCY",
     "airport_ref": "21181",
-    "fetched_at": "2026-09-25T02:15:38Z"
+    "fetched_at": "2026-09-25T21:48:56Z"
   }
 }

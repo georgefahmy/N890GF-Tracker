@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787792710.460054,
+  "_cached_at": 1790372937.9124188,
   "icao": "KMAE",
   "data": {
     "icao": "KMAE",
@@ -13,8 +13,20 @@
     "lon": -120.112,
     "elevation_ft": 255,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": 134.725,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 119.45,
+    "approach_desc": "FRESNO APP/DEP",
+    "departure_freq": 119.45,
+    "departure_desc": "FRESNO APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "A/D",
@@ -74,8 +86,8 @@
         "name": "C&T Aviation AEG Connect Network",
         "brand": "AEG Fuels",
         "phone": "N/A",
-        "notes": "AEG Fuels \u2022 Quote: 24-Aug",
-        "quote_date": "24-Aug",
+        "notes": "AEG Fuels \u2022 Quote: 18-Sep",
+        "quote_date": "18-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.28,
@@ -98,8 +110,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-27T01:05:10Z"
+    "raw_ident": "KMAE",
+    "airport_ref": "20469",
+    "fetched_at": "2026-09-25T21:48:56Z"
   }
 }

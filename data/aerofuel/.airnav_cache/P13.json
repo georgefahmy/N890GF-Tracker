@@ -1,0 +1,74 @@
+{
+  "_cached_at": 1790372990.9303207,
+  "icao": "P13",
+  "data": {
+    "icao": "P13",
+    "faa": "P13",
+    "iata": "GLB",
+    "name": "San Carlos Apache Airport",
+    "city": "Globe",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.3531,
+    "lon": -110.667,
+    "elevation_ft": 3261,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "ALBUQUERQUE CNTR",
+        "frequency_mhz": 125.4
+      },
+      {
+        "type": "RDO",
+        "description": "PRESCOTT RDO",
+        "frequency_mhz": 122.3
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "09/27",
+        "length": 6500,
+        "width": 100,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "928-812-5790",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KP13",
+    "airport_ref": "20796"
+  }
+}

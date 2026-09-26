@@ -1,22 +1,22 @@
 {
-  "_cached_at": 1790372999.7599983,
-  "icao": "KSJN",
+  "_cached_at": 1790373029.907258,
+  "icao": "KTCC",
   "data": {
-    "icao": "KSJN",
-    "faa": "SJN",
-    "iata": "SJN",
-    "name": "St Johns Industrial Air Park",
-    "city": "St Johns",
-    "state": "AZ",
+    "icao": "KTCC",
+    "faa": "TCC",
+    "iata": "TCC",
+    "name": "Tucumcari Municipal Airport",
+    "city": "Tucumcari",
+    "state": "NM",
     "country": "US",
-    "lat": 34.5186,
-    "lon": -109.379,
-    "elevation_ft": 5737,
-    "tower": false,
+    "lat": 35.1828,
+    "lon": -103.603,
+    "elevation_ft": 4065,
+    "tower": true,
     "tower_freq": null,
-    "ctaf_freq": 122.8,
-    "unicom_freq": 122.8,
-    "weather_freq": 132.175,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 119.275,
     "weather_type": "AWOS",
     "weather_desc": "ASOS",
     "approach_freq": null,
@@ -31,73 +31,72 @@
       {
         "type": "ASOS",
         "description": "ASOS",
-        "frequency_mhz": 132.175
+        "frequency_mhz": 119.275
       },
       {
         "type": "CNTR",
         "description": "ALBUQUERQUE CNTR",
-        "frequency_mhz": 124.325
+        "frequency_mhz": 126.85
       },
       {
         "type": "RDO",
-        "description": "PRESCOTT RDO",
-        "frequency_mhz": 112.3
+        "description": "ALBUQUERQUE RDO",
+        "frequency_mhz": 122.35
       },
       {
         "type": "UNIC",
         "description": "CTAF/UNICOM",
-        "frequency_mhz": 122.8
+        "frequency_mhz": 122.95
       }
     ],
     "runways": [
       {
-        "id": "14/32",
-        "length": 5322,
-        "width": 75,
+        "id": "03/21",
+        "length": 7104,
+        "width": 100,
         "surface": "Asphalt",
         "lighted": true
       },
       {
-        "id": "03/21",
-        "length": 3400,
+        "id": "08/26",
+        "length": 4600,
         "width": 60,
         "surface": "Asphalt",
-        "lighted": false
+        "lighted": true
       }
     ],
     "fbos": [
       {
-        "name": "St. Johns Industrial Air Park",
+        "name": "Tucumcari Municipal Airport",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Guaranteed Price",
-        "quote_date": null,
+        "notes": "Phillips 66 \u2022 Quote: 11-Sep",
+        "quote_date": "11-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 5.4,
+            "price": 6.32,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 4.64,
+            "price": 6.5,
             "type": "Jet-A",
-            "service": "Full-Serve",
-            "label": "Jet-A Turbine Fuel (Full-Serve)"
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 5.4,
+    "best_price": 6.32,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
-    "source": "AirNav Live Feed",
-    "raw_ident": "KSJN",
-    "airport_ref": "21073",
-    "fetched_at": "2026-08-24T03:49:13Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KTCC",
+    "airport_ref": "3916"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787543355.376232,
+  "_cached_at": 1790372999.7642915,
   "icao": "KTYL",
   "data": {
     "icao": "KTYL",
@@ -13,8 +13,20 @@
     "lon": -110.115,
     "elevation_ft": 5823,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
     "unicom_freq": 122.7,
+    "weather_freq": 119.075,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -46,8 +58,8 @@
         "name": "Ray's Aircraft Services",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 07-Aug",
-        "quote_date": "07-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 17-Sep",
+        "quote_date": "17-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 5.6,
@@ -65,6 +77,8 @@
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KTYL",
+    "airport_ref": "21239",
     "fetched_at": "2026-08-24T03:49:15Z"
   }
 }

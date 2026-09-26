@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542181.625518,
+  "_cached_at": 1790372125.6627414,
   "icao": "KCXP",
   "data": {
     "icao": "KCXP",
@@ -57,7 +57,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.49,
+            "price": 6.79,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -69,7 +69,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 5.49,
+            "price": 5.99,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -104,10 +104,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KCXP",
     "airport_ref": "19577",
-    "fetched_at": "2026-09-04T17:16:21Z"
+    "fetched_at": "2026-09-25T21:35:21Z"
   }
 }

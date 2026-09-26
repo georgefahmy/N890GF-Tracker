@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014731.079537,
+  "_cached_at": 1790372990.9368632,
   "icao": "KFFZ",
   "data": {
     "icao": "KFFZ",
@@ -84,19 +84,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.09,
+            "price": 7.62,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 8.09,
+            "price": 8.74,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.76,
+            "price": 8.22,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -107,11 +107,11 @@
         "name": "Heliponents, Inc.",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
         "fuels": {
           "JET_A": {
-            "price": 7.09,
+            "price": 7.49,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -119,7 +119,7 @@
         }
       }
     ],
-    "best_price": 7.09,
+    "best_price": 7.62,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

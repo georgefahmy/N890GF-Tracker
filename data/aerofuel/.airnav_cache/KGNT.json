@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787543355.376846,
+  "_cached_at": 1790372999.7608306,
   "icao": "KGNT",
   "data": {
     "icao": "KGNT",
@@ -13,8 +13,20 @@
     "lon": -107.902,
     "elevation_ft": 6537,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "CNTR",
@@ -41,8 +53,8 @@
         "name": "Grants-Milan Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 12-Aug",
-        "quote_date": "12-Aug",
+        "notes": "Quote: 10-Sep",
+        "quote_date": "10-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.8,
@@ -67,6 +79,8 @@
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KGNT",
+    "airport_ref": "19968",
     "fetched_at": "2026-08-24T03:49:15Z"
   }
 }

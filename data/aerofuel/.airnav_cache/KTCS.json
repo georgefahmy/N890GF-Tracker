@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789072486.2366478,
+  "_cached_at": 1790373027.8811789,
   "icao": "KTCS",
   "data": {
     "icao": "KTCS",
@@ -88,12 +88,18 @@
     ],
     "fbos": [
       {
-        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "name": "Truth or Consequences Municipal Airport",
         "brand": "",
-        "phone": "575-894-6199",
-        "notes": "Quote: 04-Sep-2026",
-        "quote_date": "04-Sep-2026",
+        "phone": "N/A",
+        "notes": "Quote: 18-Sep",
+        "quote_date": "18-Sep",
         "fuels": {
+          "100LL_SS": {
+            "price": 6.62,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
           "100LL_FS": {
             "price": 7.08,
             "type": "100LL",
@@ -105,12 +111,6 @@
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "100LL_SS": {
-            "price": 6.62,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
           }
         }
       }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788247.550452,
+  "_cached_at": 1790373029.9083257,
   "icao": "0E0",
   "data": {
     "icao": "0E0",
@@ -13,8 +13,20 @@
     "lon": -106.0028,
     "elevation_ft": 6199,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.9,
-    "unicom_freq": 122.8,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "CTAF",
@@ -36,8 +48,8 @@
         "name": "K0E0 Fuel LLC",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 07-Aug",
-        "quote_date": "07-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 18-Sep",
+        "quote_date": "18-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.55,
@@ -62,6 +74,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "K0E0",
+    "airport_ref": "18355",
     "fetched_at": "2026-08-26T23:50:47Z"
   }
 }

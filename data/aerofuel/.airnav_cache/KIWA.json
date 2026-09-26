@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014731.079009,
+  "_cached_at": 1790372990.9357734,
   "icao": "KIWA",
   "data": {
     "icao": "KIWA",
@@ -96,13 +96,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_FS": {
-            "price": 8.1,
+            "price": 8.78,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.77,
+            "price": 8.25,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -110,7 +110,7 @@
         }
       }
     ],
-    "best_price": 8.1,
+    "best_price": 8.78,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

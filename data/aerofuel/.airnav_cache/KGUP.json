@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787543355.376517,
+  "_cached_at": 1790372999.75927,
   "icao": "KGUP",
   "data": {
     "icao": "KGUP",
@@ -13,8 +13,20 @@
     "lon": -108.7882,
     "elevation_ft": 6472,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 122.95,
     "unicom_freq": 122.95,
+    "weather_freq": 118.375,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "ASOS",
@@ -46,8 +58,8 @@
         "name": "KT Aero",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 13-Aug",
-        "quote_date": "13-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.6,
@@ -78,6 +90,8 @@
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KGUP",
+    "airport_ref": "3572",
     "fetched_at": "2026-08-24T03:49:15Z"
   }
 }

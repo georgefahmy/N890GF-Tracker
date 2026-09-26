@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542163.4364538,
+  "_cached_at": 1790372125.668355,
   "icao": "KSPZ",
   "data": {
     "icao": "KSPZ",
@@ -48,8 +48,8 @@
         "name": "Silver Springs Regional Airport, LLC",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 31-Aug",
-        "quote_date": "31-Aug",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.89,
@@ -72,10 +72,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSPZ",
     "airport_ref": "19345",
-    "fetched_at": "2026-09-04T17:16:03Z"
+    "fetched_at": "2026-09-25T21:35:21Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787543355.3763552,
+  "_cached_at": 1790372999.7631342,
   "icao": "P14",
   "data": {
     "icao": "P14",
@@ -13,8 +13,20 @@
     "lon": -110.138,
     "elevation_ft": 5262,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": 118.675,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -57,7 +69,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.52,
+            "price": 7.13,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -65,13 +77,15 @@
         }
       }
     ],
-    "best_price": 6.52,
+    "best_price": 7.13,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KP14",
+    "airport_ref": "20797",
     "fetched_at": "2026-08-24T03:49:15Z"
   }
 }

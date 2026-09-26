@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542163.4376042,
+  "_cached_at": 1790372125.6637423,
   "icao": "O43",
   "data": {
     "icao": "O43",
@@ -48,8 +48,8 @@
         "name": "City of Yerington",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 03-Sep",
-        "quote_date": "03-Sep",
+        "notes": "Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.25,
@@ -65,10 +65,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO43",
     "airport_ref": "20689",
-    "fetched_at": "2026-09-04T17:16:03Z"
+    "fetched_at": "2026-09-25T21:35:21Z"
   }
 }

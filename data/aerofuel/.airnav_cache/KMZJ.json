@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014731.0798678,
+  "_cached_at": 1790372990.9428225,
   "icao": "KMZJ",
   "data": {
     "icao": "KMZJ",
@@ -53,8 +53,8 @@
         "name": "Ascent Aviation Services",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 11-Aug",
-        "quote_date": "11-Aug",
+        "notes": "independent \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 7.0,
@@ -63,7 +63,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.5,
+            "price": 7.75,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

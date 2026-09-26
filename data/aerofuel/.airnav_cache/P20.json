@@ -1,24 +1,24 @@
 {
-  "_cached_at": 1790372977.96175,
-  "icao": "KBLH",
+  "_cached_at": 1790372977.9587572,
+  "icao": "P20",
   "data": {
-    "icao": "KBLH",
-    "faa": "BLH",
-    "iata": "BLH",
-    "name": "Blythe Airport",
-    "city": "Blythe",
-    "state": "CA",
+    "icao": "P20",
+    "faa": "P20",
+    "iata": "",
+    "name": "Avi Suquilla Airport",
+    "city": "Parker",
+    "state": "AZ",
     "country": "US",
-    "lat": 33.6192,
-    "lon": -114.717,
-    "elevation_ft": 399,
-    "tower": true,
+    "lat": 34.1489,
+    "lon": -114.2684,
+    "elevation_ft": 452,
+    "tower": false,
     "tower_freq": null,
-    "ctaf_freq": 122.8,
-    "unicom_freq": 122.8,
-    "weather_freq": 120.175,
-    "weather_type": "AWOS",
-    "weather_desc": "ASOS",
+    "ctaf_freq": 122.725,
+    "unicom_freq": 122.725,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
     "approach_freq": null,
     "approach_desc": null,
     "departure_freq": null,
@@ -29,37 +29,20 @@
     "clearance_desc": null,
     "frequencies": [
       {
-        "type": "ASOS",
-        "description": "ASOS",
-        "frequency_mhz": 120.175
-      },
-      {
         "type": "CNTR",
         "description": "LOS ANGELES CNTR",
         "frequency_mhz": 128.15
       },
       {
-        "type": "RDO",
-        "description": "RIVERSIDE RDO",
-        "frequency_mhz": 122.4
-      },
-      {
         "type": "UNIC",
         "description": "CTAF/UNICOM",
-        "frequency_mhz": 122.8
+        "frequency_mhz": 122.725
       }
     ],
     "runways": [
       {
-        "id": "08/26",
-        "length": 6543,
-        "width": 150,
-        "surface": "Asphalt",
-        "lighted": true
-      },
-      {
-        "id": "17/35",
-        "length": 5800,
+        "id": "01/19",
+        "length": 6250,
         "width": 100,
         "surface": "Asphalt",
         "lighted": true
@@ -67,20 +50,20 @@
     ],
     "fbos": [
       {
-        "name": "Patton Aviation LLC",
-        "brand": "independent",
+        "name": "CRIT Air",
+        "brand": "",
         "phone": "N/A",
-        "notes": "independent \u2022 Guaranteed Price",
-        "quote_date": null,
+        "notes": "Quote: 17-Sep",
+        "quote_date": "17-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 7.73,
+            "price": 7.95,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.43,
+            "price": 7.8,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -88,7 +71,7 @@
         }
       }
     ],
-    "best_price": 7.73,
+    "best_price": 7.95,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -96,8 +79,8 @@
     ],
     "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
-    "raw_ident": "KBLH",
-    "airport_ref": "19388",
+    "raw_ident": "KP20",
+    "airport_ref": "20799",
     "fetched_at": "2026-09-25T21:49:35Z"
   }
 }

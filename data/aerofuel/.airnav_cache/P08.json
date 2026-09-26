@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014731.0789068,
+  "_cached_at": 1790372990.9322913,
   "icao": "P08",
   "data": {
     "icao": "P08",
@@ -70,7 +70,7 @@
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 6.1,
+            "price": 6.25,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"

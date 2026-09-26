@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542181.624692,
+  "_cached_at": 1790372125.6661005,
   "icao": "KRNO",
   "data": {
     "icao": "KRNO",
@@ -123,8 +123,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 04-Sep",
-        "quote_date": "04-Sep",
+        "notes": "independent \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 8.32,
@@ -133,7 +133,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.83,
+            "price": 10.26,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -147,10 +147,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-25",
     "source": "AirNav Local Fuel",
     "raw_ident": "KRNO",
     "airport_ref": "3853",
-    "fetched_at": "2026-09-04T17:16:21Z"
+    "fetched_at": "2026-09-25T21:35:21Z"
   }
 }

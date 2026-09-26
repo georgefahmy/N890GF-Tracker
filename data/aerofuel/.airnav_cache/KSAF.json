@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788247.552138,
+  "_cached_at": 1790373029.9119792,
   "icao": "KSAF",
   "data": {
     "icao": "KSAF",
@@ -13,8 +13,20 @@
     "lon": -106.089,
     "elevation_ft": 6348,
     "tower": true,
+    "tower_freq": 119.5,
     "ctaf_freq": 119.5,
     "unicom_freq": 122.95,
+    "weather_freq": 128.55,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "ATIS",
@@ -80,17 +92,17 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "independent \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 7.3,
+            "price": 7.7,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.38,
+            "price": 9.41,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -101,8 +113,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "independent \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.84,
@@ -117,7 +129,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.71,
+            "price": 7.75,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -133,6 +145,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KSAF",
+    "airport_ref": "21033",
     "fetched_at": "2026-08-26T23:50:47Z"
   }
 }
