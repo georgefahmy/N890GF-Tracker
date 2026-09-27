@@ -525,6 +525,10 @@ function toggleAirspeedCalSelection(calKey) {
     if (card && !card.classList.contains("d-none")) {
         renderAirspeedPowerPlot();
     }
+    const ratioCard = document.getElementById("airspeedPowerRatioPlotCard");
+    if (ratioCard && !ratioCard.classList.contains("d-none")) {
+        renderAirspeedPowerRatioPlot();
+    }
 }
 
 function toggleSelectAllAirspeedCals(checked) {
@@ -546,6 +550,10 @@ function toggleSelectAllAirspeedCals(checked) {
     if (card && !card.classList.contains("d-none")) {
         renderAirspeedPowerPlot();
     }
+    const ratioCard = document.getElementById("airspeedPowerRatioPlotCard");
+    if (ratioCard && !ratioCard.classList.contains("d-none")) {
+        renderAirspeedPowerRatioPlot();
+    }
 }
 
 function clearAirspeedCalSelection() {
@@ -556,6 +564,10 @@ function clearAirspeedCalSelection() {
     const card = document.getElementById("airspeedPowerPlotCard");
     if (card && !card.classList.contains("d-none")) {
         renderAirspeedPowerPlot();
+    }
+    const ratioCard = document.getElementById("airspeedPowerRatioPlotCard");
+    if (ratioCard && !ratioCard.classList.contains("d-none")) {
+        renderAirspeedPowerRatioPlot();
     }
 }
 
@@ -969,6 +981,658 @@ function renderAirspeedPowerPlot() {
 
 window.toggleAirspeedPowerPlot = toggleAirspeedPowerPlot;
 window.renderAirspeedPowerPlot = renderAirspeedPowerPlot;
+
+// --- TRUE AIRSPEED VS POWER RATIOS BY DATE PLOT ---
+function toggleAirspeedPowerRatioPlot() {
+    const card = document.getElementById("airspeedPowerRatioPlotCard");
+    if (!card) return;
+    const isHidden = card.classList.contains("d-none");
+    if (isHidden) {
+        card.classList.remove("d-none");
+        renderAirspeedPowerRatioPlot();
+    } else {
+        card.classList.add("d-none");
+    }
+}
+
+function renderAirspeedPowerRatioPlot() {
+    const div = document.getElementById("airspeedPowerRatioPlotDiv");
+    const statsDiv = document.getElementById("airspeedPowerRatioPlotStats");
+    if (!div) return;
+
+    const flights = window.globalFlights || [];
+    let dataPoints = [];
+
+    flights.forEach(f => {
+        if (f.saved_calibrations && f.saved_calibrations.length > 0) {
+            f.saved_calibrations.forEach(c => {
+                const res = c.results || {};
+                const eng = c.engine_settings || {};
+
+                const power = eng.percent_power;
+                const corrTas = res.corrected_average_true_airspeed_kts;
+                const da = res.density_altitude_ft !== undefined ? res.density_altitude_ft : 0;
+                const ias = res.average_indicated_airspeed_kts;
+                const cas = res.average_calibrated_airspeed_kts;
+
+                if (power !== undefined && power !== null && power > 0 && corrTas !== undefined && corrTas !== null && corrTas > 0) {
+                    const sigma = Math.pow(Math.max(0.1, 1 - 6.87559e-6 * da), 4.25588);
+                    const normTas = corrTas * Math.sqrt(sigma);
+
+                    const corrRatio = corrTas / power; // kts / % power
+                    const normRatio = normTas / power; // Normalized kts / % power
+                    const cubeCorrRatio = corrTas / Math.cbrt(power / 100);
+                    const cubeNormRatio = normTas / Math.cbrt(power / 100);
+
+                    const calKey = getAirspeedCalKey(c);
+                    const rawDate = f.date || (f.filename ? f.filename.slice(0, 10) : 'Unknown');
+                    const parsedTimestamp = Date.parse(rawDate) || 0;
+
+                    dataPoints.push({
+                        calKey: calKey,
+                        power: Number(power),
+                        powerBand: Math.round(Number(power) / 5) * 5,
+                        corrTas: Number(corrTas),
+                        normTas: Number(normTas.toFixed(1)),
+                        corrRatio: Number(corrRatio.toFixed(3)),
+                        normRatio: Number(normRatio.toFixed(3)),
+                        cubeCorrRatio: Number(cubeCorrRatio.toFixed(2)),
+                        cubeNormRatio: Number(cubeNormRatio.toFixed(2)),
+                        da: Number(da),
+                        ias: ias,
+                        cas: cas,
+                        flight_date: rawDate,
+                        parsedTimestamp: parsedTimestamp,
+                        filename: f.filename,
+                        id: c.id,
+                        start_time: c.start_time || 0,
+                        end_time: c.end_time || 0,
+                        segment: `${formatMMSS(c.start_time)}-${formatMMSS(c.end_time)}`,
+                        map: eng.manifold_pressure_inhg,
+                        rpm: eng.rpm,
+                        ff: eng.fuel_flow_gph
+                    });
+                }
+            });
+        }
+    });
+
+    if (dataPoints.length === 0) {
+        div.innerHTML = '<div class="text-center text-muted p-5">No saved calibrations with recorded % Power and TAS to plot.</div>';
+        if (statsDiv) statsDiv.innerHTML = '';
+        return;
+    }
+
+    const useNormalized = document.getElementById("ratioNormTasToggle")?.checked ?? true;
+    const metric = document.getElementById("ratioMetricSelect")?.value || "ratio";
+
+    // Sort chronologically by date and start time
+    dataPoints.sort((a, b) => (a.parsedTimestamp - b.parsedTimestamp) || (a.start_time - b.start_time));
+
+    // Dynamic population of Power Band selector with counts and average TAS
+    const bandSelectEl = document.getElementById("ratioPowerBandSelect");
+    const uniqueBands = Array.from(new Set(dataPoints.map(p => p.powerBand))).sort((a, b) => a - b);
+    let selectedBand = bandSelectEl ? bandSelectEl.value : "all";
+
+    if (bandSelectEl) {
+        // Build option list preserving selection
+        const prevVal = bandSelectEl.value || "all";
+        let optHtml = `<option value="all">All Power (Combined) (${dataPoints.length} pts)</option>`;
+        optHtml += `<option value="grouped_bands">Group by 5% Bands (Multi-Trace)</option>`;
+        uniqueBands.forEach(b => {
+            const bPts = dataPoints.filter(p => p.powerBand === b);
+            const avgBandTas = (bPts.reduce((sum, p) => sum + (useNormalized ? p.normTas : p.corrTas), 0) / bPts.length).toFixed(1);
+            optHtml += `<option value="${b}">${b}% Power Band (${bPts.length} pts, avg ${avgBandTas} kt)</option>`;
+        });
+        bandSelectEl.innerHTML = optHtml;
+
+        if (prevVal === "all" || prevVal === "grouped_bands" || uniqueBands.includes(Number(prevVal))) {
+            bandSelectEl.value = prevVal;
+            selectedBand = prevVal;
+        } else {
+            bandSelectEl.value = "all";
+            selectedBand = "all";
+        }
+    }
+
+    function getYValue(p) {
+        if (metric === "ratio") return useNormalized ? p.normRatio : p.corrRatio;
+        if (metric === "cube_ratio") return useNormalized ? p.cubeNormRatio : p.cubeCorrRatio;
+        if (metric === "tas") return useNormalized ? p.normTas : p.corrTas;
+        if (metric === "power") return p.power;
+        return useNormalized ? p.normRatio : p.corrRatio;
+    }
+
+    let yAxisTitle = 'TAS / % Power (kts / %)';
+    let metricLabel = 'TAS / % Power Ratio';
+    let metricUnit = 'kts / %';
+    if (metric === "ratio") {
+        yAxisTitle = useNormalized ? 'Normalized TAS / % Power (kts / % @ Sea Level)' : 'Corrected TAS / % Power (kts / %)';
+        metricLabel = useNormalized ? 'Norm TAS / % Power' : 'Corr TAS / % Power';
+        metricUnit = 'kts / %';
+    } else if (metric === "cube_ratio") {
+        yAxisTitle = useNormalized ? 'Normalized TAS / ∛(Power/100)' : 'Corrected TAS / ∛(Power/100)';
+        metricLabel = useNormalized ? 'Norm TAS / ∛Power' : 'Corr TAS / ∛Power';
+        metricUnit = 'kts / ∛P';
+    } else if (metric === "tas") {
+        yAxisTitle = useNormalized ? 'Normalized TAS @ Sea Level (kts)' : 'Corrected TAS (kts)';
+        metricLabel = useNormalized ? 'Norm TAS' : 'Corrected TAS';
+        metricUnit = 'kts';
+    } else if (metric === "power") {
+        yAxisTitle = 'Engine % Power (%)';
+        metricLabel = '% Power';
+        metricUnit = '%';
+    }
+
+    const isDarkMode = document.body.classList.contains("dark-mode") || document.documentElement.getAttribute("data-bs-theme") === "dark";
+
+    function makeHoverText(p, isSelected = false) {
+        const ratioStr = useNormalized ? `${p.normRatio.toFixed(3)} kts/% (Norm)` : `${p.corrRatio.toFixed(3)} kts/%`;
+        const cubeRatioStr = useNormalized ? `${p.cubeNormRatio.toFixed(1)} (Norm)` : `${p.cubeCorrRatio.toFixed(1)}`;
+        return `<b>${p.flight_date}</b> (${p.segment})${isSelected ? ' <b style="color:#ff1744;">★ SELECTED</b>' : ''}<br>` +
+            `<b>Flight:</b> ${p.filename}<br>` +
+            `<b>5% Power Band:</b> <strong>${p.powerBand}%</strong> (${p.power}% recorded)<br>` +
+            `<b>TAS / % Power:</b> <b style="color:#0d6efd;">${ratioStr}</b><br>` +
+            `<b>Aero Power Index:</b> ${cubeRatioStr}<br>` +
+            `<b>Corrected TAS:</b> ${p.corrTas} kt<br>` +
+            `<b>Normalized TAS (Sea Level):</b> ${p.normTas} kt<br>` +
+            `<b>Density Altitude:</b> ${p.da.toLocaleString()} ft<br>` +
+            (p.map ? `<b>Engine:</b> ${p.map}" MAP, ${p.rpm ? Math.round(p.rpm) : '--'} RPM, ${p.ff || '--'} GPH<br>` : '') +
+            `<span style="font-size:0.8em; color:#888;">(Click point to toggle selection)</span>`;
+    }
+
+    const selectedKeys = window.selectedAirspeedCalKeys || new Set();
+    const hasSelection = selectedKeys.size > 0;
+
+    // Distinct color palette for 5% power bands
+    const bandColors = {
+        50: '#00f0ff',
+        55: '#20c997',
+        60: '#198754',
+        65: '#ffc107',
+        70: '#fd7e14',
+        75: '#dc3545',
+        80: '#d63384',
+        85: '#9d4edd',
+        90: '#6610f2'
+    };
+    const paletteList = ['#00f0ff', '#20c997', '#198754', '#ffc107', '#fd7e14', '#dc3545', '#d63384', '#9d4edd', '#6610f2'];
+
+    let traces = [];
+    let plotTitleText = `True Airspeed vs. % Power Performance Over Time (${metricLabel})`;
+
+    if (selectedBand === "grouped_bands") {
+        // --- MODE 1: MULTI-TRACE 5% BANDS ---
+        plotTitleText = `True Airspeed vs. Date Grouped by 5% Power Bands (${metricLabel})`;
+
+        uniqueBands.forEach((b, idx) => {
+            const bPts = dataPoints.filter(p => p.powerBand === b);
+            if (bPts.length === 0) return;
+
+            const color = bandColors[b] || paletteList[idx % paletteList.length];
+            const avgBandTas = (bPts.reduce((sum, p) => sum + (useNormalized ? p.normTas : p.corrTas), 0) / bPts.length).toFixed(1);
+
+            // Scatter trace for this band
+            traces.push({
+                x: bPts.map(p => p.flight_date),
+                y: bPts.map(p => getYValue(p)),
+                mode: 'markers',
+                type: 'scatter',
+                name: `${b}% Band (${bPts.length} pts, avg ${avgBandTas} kt)`,
+                text: bPts.map(p => makeHoverText(p, selectedKeys.has(p.calKey))),
+                hoverinfo: 'text',
+                customdata: bPts.map(p => p.calKey),
+                marker: {
+                    size: hasSelection ? bPts.map(p => selectedKeys.has(p.calKey) ? 16 : 9) : 12,
+                    color: color,
+                    opacity: hasSelection ? bPts.map(p => selectedKeys.has(p.calKey) ? 1.0 : 0.35) : 0.9,
+                    line: {
+                        color: hasSelection ? bPts.map(p => selectedKeys.has(p.calKey) ? '#ff1744' : '#ffffff') : '#ffffff',
+                        width: hasSelection ? bPts.map(p => selectedKeys.has(p.calKey) ? 3 : 1) : 1.5
+                    }
+                }
+            });
+
+            // Trendline for this band if >= 2 points with distinct timestamps
+            const bMinT = bPts[0].parsedTimestamp;
+            const bMaxT = bPts[bPts.length - 1].parsedTimestamp;
+            if (bPts.length >= 2 && bMaxT > bMinT) {
+                const bTVals = bPts.map(p => (p.parsedTimestamp - bMinT) / (1000 * 86400));
+                const bYVals = bPts.map(p => getYValue(p));
+                const bN = bPts.length;
+                let sT = 0, sY = 0, sTY = 0, sTT = 0, sYY = 0;
+                for (let i = 0; i < bN; i++) {
+                    sT += bTVals[i];
+                    sY += bYVals[i];
+                    sTY += bTVals[i] * bYVals[i];
+                    sTT += bTVals[i] * bTVals[i];
+                    sYY += bYVals[i] * bYVals[i];
+                }
+                const bSlope = bN > 1 && (bN * sTT - sT * sT) !== 0 ? (bN * sTY - sT * sY) / (bN * sTT - sT * sT) : 0;
+                const bIntercept = (sY - bSlope * sT) / bN;
+                const bSpanDays = (bMaxT - bMinT) / (1000 * 86400);
+                const bFitYStart = bIntercept;
+                const bFitYEnd = bSlope * bSpanDays + bIntercept;
+                const bDelta = bFitYEnd - bFitYStart;
+
+                traces.push({
+                    x: [bPts[0].flight_date, bPts[bPts.length - 1].flight_date],
+                    y: [bFitYStart, bFitYEnd],
+                    mode: 'lines',
+                    type: 'scatter',
+                    name: `${b}% Trend (${bDelta >= 0 ? '+' : ''}${bDelta.toFixed(2)} ${metricUnit})`,
+                    line: { color: color, width: 2, dash: 'dot' }
+                });
+            }
+        });
+
+        if (statsDiv) {
+            const summaryBadges = uniqueBands.map((b, idx) => {
+                const bPts = dataPoints.filter(p => p.powerBand === b);
+                const avgTas = (bPts.reduce((sum, p) => sum + (useNormalized ? p.normTas : p.corrTas), 0) / bPts.length).toFixed(1);
+                const avgMetric = (bPts.reduce((sum, p) => sum + getYValue(p), 0) / bPts.length).toFixed(2);
+                const color = bandColors[b] || paletteList[idx % paletteList.length];
+                return `<span class="badge px-2 py-1" style="background-color:${color}; color:#000; font-weight:bold;">${b}% Band: ${avgTas} kt (${avgMetric} ${metricUnit}, N=${bPts.length})</span>`;
+            }).join(' ');
+
+            statsDiv.innerHTML = `
+                <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
+                    <span class="fw-bold">5% Power Band Summary:</span>
+                    ${summaryBadges}
+                </div>
+            `;
+        }
+
+    } else if (selectedBand !== "all") {
+        // --- MODE 2: SINGLE SPECIFIC 5% BAND ---
+        const bandVal = Number(selectedBand);
+        const bandPoints = dataPoints.filter(p => p.powerBand === bandVal);
+        plotTitleText = `True Airspeed vs. Date — ${bandVal}% Power Band (${metricLabel})`;
+
+        if (bandPoints.length === 0) {
+            div.innerHTML = `<div class="text-center text-muted p-5">No calibrations found in the ${bandVal}% power band.</div>`;
+            if (statsDiv) statsDiv.innerHTML = '';
+            return;
+        }
+
+        const bColor = bandColors[bandVal] || '#0d6efd';
+        const n = bandPoints.length;
+        const minTimestamp = Math.min(...bandPoints.map(p => p.parsedTimestamp));
+        const maxTimestamp = Math.max(...bandPoints.map(p => p.parsedTimestamp));
+        const timeSpanDays = Math.max(1, (maxTimestamp - minTimestamp) / (1000 * 86400));
+
+        const tVals = bandPoints.map(p => (p.parsedTimestamp - minTimestamp) / (1000 * 86400));
+        const yVals = bandPoints.map(p => getYValue(p));
+
+        let sumT = 0, sumY = 0, sumTY = 0, sumTT = 0, sumYY = 0;
+        for (let i = 0; i < n; i++) {
+            sumT += tVals[i];
+            sumY += yVals[i];
+            sumTY += tVals[i] * yVals[i];
+            sumTT += tVals[i] * tVals[i];
+            sumYY += yVals[i] * yVals[i];
+        }
+        const slope = n > 1 && (n * sumTT - sumT * sumT) !== 0 ? (n * sumTY - sumT * sumY) / (n * sumTT - sumT * sumT) : 0;
+        const intercept = n > 1 ? (sumY - slope * sumT) / n : (yVals[0] || 0);
+
+        let r2 = 0;
+        const num = (n * sumTY - sumT * sumY);
+        const den = Math.sqrt((n * sumTT - sumT * sumT) * (n * sumYY - sumY * sumY));
+        if (den !== 0) r2 = Math.pow(num / den, 2);
+
+        const minDateStr = bandPoints[0].flight_date;
+        const maxDateStr = bandPoints[bandPoints.length - 1].flight_date;
+        const fitDates = [minDateStr, maxDateStr];
+        const fitY = [intercept, slope * timeSpanDays + intercept];
+        const deltaOverall = (fitY[1] - fitY[0]);
+        const deltaPercent = fitY[0] !== 0 ? ((deltaOverall / fitY[0]) * 100) : 0;
+
+        const selInBand = bandPoints.filter(p => selectedKeys.has(p.calKey));
+        const unselInBand = bandPoints.filter(p => !selectedKeys.has(p.calKey));
+
+        if (hasSelection && selInBand.length > 0) {
+            if (unselInBand.length > 0) {
+                traces.push({
+                    x: unselInBand.map(p => p.flight_date),
+                    y: unselInBand.map(p => getYValue(p)),
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: `Other ${bandVal}% Calibrations (${unselInBand.length})`,
+                    text: unselInBand.map(p => makeHoverText(p, false)),
+                    hoverinfo: 'text',
+                    customdata: unselInBand.map(p => p.calKey),
+                    marker: {
+                        size: 11,
+                        color: bColor,
+                        opacity: 0.35,
+                        line: { color: isDarkMode ? '#555555' : '#cccccc', width: 1 }
+                    }
+                });
+            }
+
+            traces.push({
+                x: selInBand.map(p => p.flight_date),
+                y: selInBand.map(p => getYValue(p)),
+                mode: 'markers',
+                type: 'scatter',
+                name: `Selected in Band (${selInBand.length})`,
+                text: selInBand.map(p => makeHoverText(p, true)),
+                hoverinfo: 'text',
+                customdata: selInBand.map(p => p.calKey),
+                marker: {
+                    size: 16,
+                    color: bColor,
+                    opacity: 1.0,
+                    line: { color: '#ff1744', width: 3.5 }
+                }
+            });
+        } else {
+            traces.push({
+                x: bandPoints.map(p => p.flight_date),
+                y: yVals,
+                mode: 'markers',
+                type: 'scatter',
+                name: `${bandVal}% Power Calibrations (${n})`,
+                text: bandPoints.map(p => makeHoverText(p, false)),
+                hoverinfo: 'text',
+                customdata: bandPoints.map(p => p.calKey),
+                marker: {
+                    size: 13,
+                    color: bColor,
+                    line: { color: '#ffffff', width: 1.5 }
+                }
+            });
+        }
+
+        if (n >= 2 && maxTimestamp > minTimestamp) {
+            traces.push({
+                x: fitDates,
+                y: fitY,
+                mode: 'lines',
+                type: 'scatter',
+                name: `${bandVal}% Trend (${deltaOverall >= 0 ? '+' : ''}${deltaOverall.toFixed(3)} ${metricUnit} / ${timeSpanDays.toFixed(0)}d, R²=${r2.toFixed(3)})`,
+                line: { color: bColor, width: 2.5, dash: 'solid' }
+            });
+        }
+
+        if (statsDiv) {
+            const avgY = (yVals.reduce((a, b) => a + b, 0) / n).toFixed(3);
+            const avgTAS = (bandPoints.reduce((sum, p) => sum + (useNormalized ? p.normTas : p.corrTas), 0) / n).toFixed(1);
+            const avgPwr = (bandPoints.reduce((sum, p) => sum + p.power, 0) / n).toFixed(1);
+            const deltaBadgeClass = deltaOverall >= 0 ? 'text-success fw-bold' : 'text-danger fw-bold';
+
+            statsDiv.innerHTML = `
+                <strong>${bandVal}% Power Band Analysis:</strong>
+                Span: <strong>${minDateStr} → ${maxDateStr}</strong> (${Math.round(timeSpanDays)} days)
+                | Trend Change: <span class="${deltaBadgeClass}">${deltaOverall >= 0 ? '+' : ''}${deltaOverall.toFixed(3)} ${metricUnit} (${deltaPercent >= 0 ? '+' : ''}${deltaPercent.toFixed(1)}%)</span>
+                | Band Avg TAS: <strong>${avgTAS} kts</strong>
+                | Band Avg Power: <strong>${avgPwr}%</strong>
+                | Avg ${metricLabel}: <strong>${avgY} ${metricUnit}</strong>
+                | Correlation (R²): <strong>${r2.toFixed(3)}</strong>
+                | Calibrations: <strong>${n}</strong>
+            `;
+        }
+
+    } else {
+        // --- MODE 3: ALL POWER LEVELS (COMBINED) ---
+        const n = dataPoints.length;
+        const minTimestamp = Math.min(...dataPoints.map(p => p.parsedTimestamp));
+        const maxTimestamp = Math.max(...dataPoints.map(p => p.parsedTimestamp));
+        const timeSpanDays = Math.max(1, (maxTimestamp - minTimestamp) / (1000 * 86400));
+
+        const tVals = dataPoints.map(p => (p.parsedTimestamp - minTimestamp) / (1000 * 86400));
+        const yVals = dataPoints.map(p => getYValue(p));
+
+        let sumT = 0, sumY = 0, sumTY = 0, sumTT = 0, sumYY = 0;
+        for (let i = 0; i < n; i++) {
+            sumT += tVals[i];
+            sumY += yVals[i];
+            sumTY += tVals[i] * yVals[i];
+            sumTT += tVals[i] * tVals[i];
+            sumYY += yVals[i] * yVals[i];
+        }
+        const slope = n > 1 && (n * sumTT - sumT * sumT) !== 0 ? (n * sumTY - sumT * sumY) / (n * sumTT - sumT * sumT) : 0;
+        const intercept = n > 1 ? (sumY - slope * sumT) / n : (yVals[0] || 0);
+
+        let r2 = 0;
+        const num = (n * sumTY - sumT * sumY);
+        const den = Math.sqrt((n * sumTT - sumT * sumT) * (n * sumYY - sumY * sumY));
+        if (den !== 0) r2 = Math.pow(num / den, 2);
+
+        const minDateStr = dataPoints[0].flight_date;
+        const maxDateStr = dataPoints[dataPoints.length - 1].flight_date;
+        const fitDates = [minDateStr, maxDateStr];
+        const fitY = [intercept, slope * timeSpanDays + intercept];
+        const deltaOverall = (fitY[1] - fitY[0]);
+        const deltaPercent = fitY[0] !== 0 ? ((deltaOverall / fitY[0]) * 100) : 0;
+
+        const selectedPoints = hasSelection ? dataPoints.filter(p => selectedKeys.has(p.calKey)) : [];
+        const unselectedPoints = hasSelection ? dataPoints.filter(p => !selectedKeys.has(p.calKey)) : dataPoints;
+        const isHighlightActive = selectedPoints.length > 0;
+
+        const powerVals = dataPoints.map(p => p.power);
+        const minPower = Math.min(...powerVals);
+        const maxPower = Math.max(...powerVals);
+
+        if (isHighlightActive) {
+            if (unselectedPoints.length > 0) {
+                traces.push({
+                    x: unselectedPoints.map(p => p.flight_date),
+                    y: unselectedPoints.map(p => getYValue(p)),
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: `Other Calibrations (${unselectedPoints.length})`,
+                    text: unselectedPoints.map(p => makeHoverText(p, false)),
+                    hoverinfo: 'text',
+                    customdata: unselectedPoints.map(p => p.calKey),
+                    marker: {
+                        size: 11,
+                        color: unselectedPoints.map(p => p.power),
+                        cmin: minPower,
+                        cmax: maxPower,
+                        colorscale: 'Turbo',
+                        opacity: 0.35,
+                        colorbar: {
+                            title: '% Power',
+                            titleside: 'right',
+                            len: 0.8
+                        },
+                        showscale: true,
+                        line: { color: isDarkMode ? '#555555' : '#cccccc', width: 1 }
+                    }
+                });
+            }
+
+            traces.push({
+                x: selectedPoints.map(p => p.flight_date),
+                y: selectedPoints.map(p => getYValue(p)),
+                mode: 'markers',
+                type: 'scatter',
+                name: `Selected (${selectedPoints.length})`,
+                text: selectedPoints.map(p => makeHoverText(p, true)),
+                hoverinfo: 'text',
+                customdata: selectedPoints.map(p => p.calKey),
+                marker: {
+                    size: 16,
+                    color: selectedPoints.map(p => p.power),
+                    cmin: minPower,
+                    cmax: maxPower,
+                    colorscale: 'Turbo',
+                    opacity: 1.0,
+                    showscale: unselectedPoints.length === 0,
+                    colorbar: unselectedPoints.length === 0 ? {
+                        title: '% Power',
+                        titleside: 'right',
+                        len: 0.8
+                    } : undefined,
+                    line: { color: '#ff1744', width: 3.5 }
+                }
+            });
+
+            traces.push({
+                x: fitDates,
+                y: fitY,
+                mode: 'lines',
+                type: 'scatter',
+                name: `Fleet Trend (${deltaOverall >= 0 ? '+' : ''}${deltaOverall.toFixed(3)} ${metricUnit}, R²=${r2.toFixed(3)})`,
+                line: { color: isDarkMode ? '#6c757d' : '#adb5bd', width: 1.5, dash: 'dash' }
+            });
+
+            if (selectedPoints.length >= 2) {
+                const selT = selectedPoints.map(p => (p.parsedTimestamp - minTimestamp) / (1000 * 86400));
+                const selY = selectedPoints.map(p => getYValue(p));
+                const selN = selT.length;
+                let sT = 0, sY = 0, sTY = 0, sTT = 0, sYY = 0;
+                for (let i = 0; i < selN; i++) {
+                    sT += selT[i];
+                    sY += selY[i];
+                    sTY += selT[i] * selY[i];
+                    sTT += selT[i] * selT[i];
+                    sYY += selY[i] * selY[i];
+                }
+                const selSlope = selN > 1 && (selN * sTT - sT * sT) !== 0 ? (selN * sTY - sT * sY) / (selN * sTT - sT * sT) : 0;
+                const selIntercept = selN > 1 ? (sY - selSlope * sT) / selN : (selY[0] || 0);
+                let selR2 = null;
+                const sNum = (selN * sTY - sT * sY);
+                const sDen = Math.sqrt((selN * sTT - sT * sT) * (selN * sYY - selY * selY));
+                if (sDen !== 0) selR2 = Math.pow(sNum / sDen, 2);
+
+                const selMinDate = selectedPoints[0].flight_date;
+                const selMaxDate = selectedPoints[selectedPoints.length - 1].flight_date;
+                const selTStart = selT[0];
+                const selTEnd = selT[selN - 1];
+
+                traces.push({
+                    x: [selMinDate, selMaxDate],
+                    y: [selTStart * selSlope + selIntercept, selTEnd * selSlope + selIntercept],
+                    mode: 'lines',
+                    type: 'scatter',
+                    name: `Selected Fit ${selR2 !== null ? `(R²=${selR2.toFixed(3)})` : ''}`,
+                    line: { color: '#0d6efd', width: 2.5 }
+                });
+            }
+
+            if (statsDiv) {
+                const avgSelY = (selectedPoints.reduce((sum, p) => sum + getYValue(p), 0) / selectedPoints.length).toFixed(3);
+                const avgSelPower = (selectedPoints.reduce((sum, p) => sum + p.power, 0) / selectedPoints.length).toFixed(1);
+                const avgSelTAS = (selectedPoints.reduce((sum, p) => sum + (useNormalized ? p.normTas : p.corrTas), 0) / selectedPoints.length).toFixed(1);
+
+                statsDiv.innerHTML = `
+                    <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
+                        <span class="badge bg-primary px-2 py-1"><i class="bi bi-check2-circle"></i> ${selectedPoints.length} Selected</span>
+                        <span><strong>Avg ${metricLabel}:</strong> ${avgSelY} ${metricUnit}</span> |
+                        <span><strong>Avg TAS:</strong> ${avgSelTAS} kts</span> |
+                        <span><strong>Avg Power:</strong> ${avgSelPower}%</span> |
+                        <span class="text-muted ms-1">Fleet Trend: ${deltaOverall >= 0 ? '+' : ''}${deltaOverall.toFixed(3)} ${metricUnit} (${deltaPercent >= 0 ? '+' : ''}${deltaPercent.toFixed(1)}%) across ${n} calibrations</span>
+                    </div>
+                `;
+            }
+        } else {
+            const hoverTexts = dataPoints.map(p => makeHoverText(p, false));
+
+            const scatterTrace = {
+                x: dataPoints.map(p => p.flight_date),
+                y: yVals,
+                mode: 'markers',
+                type: 'scatter',
+                name: 'Calibrations',
+                text: hoverTexts,
+                hoverinfo: 'text',
+                customdata: dataPoints.map(p => p.calKey),
+                marker: {
+                    size: 13,
+                    color: powerVals,
+                    cmin: minPower,
+                    cmax: maxPower,
+                    colorscale: 'Turbo',
+                    colorbar: {
+                        title: '% Power',
+                        titleside: 'right',
+                        len: 0.8
+                    },
+                    showscale: true,
+                    line: { color: '#ffffff', width: 1.5 }
+                }
+            };
+
+            const fitTrace = {
+                x: fitDates,
+                y: fitY,
+                mode: 'lines',
+                type: 'scatter',
+                name: `Trend (${deltaOverall >= 0 ? '+' : ''}${deltaOverall.toFixed(3)} ${metricUnit} / ${timeSpanDays.toFixed(0)}d, R²=${r2.toFixed(3)})`,
+                line: { color: '#0d6efd', width: 2.5, dash: 'solid' }
+            };
+
+            traces = [scatterTrace, fitTrace];
+
+            if (statsDiv) {
+                const avgY = (yVals.reduce((a, b) => a + b, 0) / n).toFixed(3);
+                const deltaBadgeClass = deltaOverall >= 0 ? 'text-success fw-bold' : 'text-danger fw-bold';
+                statsDiv.innerHTML = `
+                    <strong>Time Series Analysis:</strong>
+                    Span: <strong>${minDateStr} → ${maxDateStr}</strong> (${Math.round(timeSpanDays)} days)
+                    | Overall Trend Change: <span class="${deltaBadgeClass}">${deltaOverall >= 0 ? '+' : ''}${deltaOverall.toFixed(3)} ${metricUnit} (${deltaPercent >= 0 ? '+' : ''}${deltaPercent.toFixed(1)}%)</span>
+                    | Fleet Avg ${metricLabel}: <strong>${avgY} ${metricUnit}</strong>
+                    | Correlation (R²): <strong>${r2.toFixed(3)}</strong>
+                    | Total Calibrations: <strong>${n}</strong>
+                `;
+            }
+        }
+    }
+
+    const layout = {
+        title: {
+            text: plotTitleText,
+            font: { size: 13, color: isDarkMode ? '#f8f9fa' : '#212529' },
+            x: 0.5,
+            xanchor: 'center',
+            y: 0.97,
+            yanchor: 'top'
+        },
+        xaxis: {
+            title: 'Flight Date',
+            type: 'date',
+            gridcolor: isDarkMode ? '#343a40' : '#e9ecef',
+            zerolinecolor: isDarkMode ? '#495057' : '#ced4da',
+            color: isDarkMode ? '#f8f9fa' : '#212529'
+        },
+        yaxis: {
+            title: yAxisTitle,
+            gridcolor: isDarkMode ? '#343a40' : '#e9ecef',
+            zerolinecolor: isDarkMode ? '#495057' : '#ced4da',
+            color: isDarkMode ? '#f8f9fa' : '#212529'
+        },
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent',
+        margin: { l: 65, r: 60, t: 80, b: 50 },
+        showlegend: true,
+        legend: {
+            orientation: 'h',
+            x: 0.5,
+            xanchor: 'center',
+            y: 1.04,
+            yanchor: 'bottom',
+            font: { size: 11, color: isDarkMode ? '#f8f9fa' : '#212529' }
+        }
+    };
+
+    Plotly.react(div, traces, layout, { responsive: true });
+
+    div.removeAllListeners && div.removeAllListeners('plotly_click');
+    div.on('plotly_click', (eventData) => {
+        if (eventData && eventData.points && eventData.points.length > 0) {
+            const pt = eventData.points[0];
+            const calKey = pt.customdata;
+            if (calKey) {
+                toggleAirspeedCalSelection(calKey);
+            }
+        }
+    });
+}
+
+window.toggleAirspeedPowerRatioPlot = toggleAirspeedPowerRatioPlot;
+window.renderAirspeedPowerRatioPlot = renderAirspeedPowerRatioPlot;
 
 // --- INTERACTIVE AIRSPEED CALIBRATION FLIGHT TRACK MAP WITH CURSOR FOLLOW ---
 window.calMapState = {

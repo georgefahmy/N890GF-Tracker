@@ -931,6 +931,30 @@ class TestAirspeedCalibrationDB:
 
             assert db.session.get(AirspeedCalibration, cal_id) is None
 
+    def test_airspeed_power_ratio_plot_elements(self, app, auth_client):
+        """Verify the new True Airspeed vs Power ratios by date plot button and card exist in template and JS."""
+        with app.app_context():
+            res_html = auth_client.get("/multi_flight_stats")
+            assert res_html.status_code == 200
+            html = res_html.data.decode("utf-8")
+            assert "toggleAirspeedPowerRatioPlot()" in html
+            assert "airspeedPowerRatioPlotCard" in html
+            assert "airspeedPowerRatioPlotDiv" in html
+            assert "ratioMetricSelect" in html
+            assert "ratioPowerBandSelect" in html
+            assert "ratioNormTasToggle" in html
+
+            res_js = auth_client.get("/static/multi_stats.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "function toggleAirspeedPowerRatioPlot()" in js
+            assert "function renderAirspeedPowerRatioPlot()" in js
+            assert "normRatio" in js
+            assert "corrRatio" in js
+            assert "powerBand" in js
+            assert "grouped_bands" in js
+            assert "airspeedPowerRatioPlotDiv" in js
+
 
 class TestFlightMapTelemetryAPI:
     """Tests for /api/flight_map_telemetry."""
