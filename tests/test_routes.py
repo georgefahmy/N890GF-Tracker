@@ -951,8 +951,10 @@ class TestAirspeedCalibrationDB:
             assert "function renderAirspeedPowerRatioPlot()" in js
             assert "normRatio" in js
             assert "corrRatio" in js
+            assert "cubeCorrRatio" in js
             assert "powerBand" in js
             assert "grouped_bands" in js
+            assert "180" in js
             assert "airspeedPowerRatioPlotDiv" in js
 
 

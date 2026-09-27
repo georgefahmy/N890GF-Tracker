@@ -1019,10 +1019,11 @@ function renderAirspeedPowerRatioPlot() {
                     const sigma = Math.pow(Math.max(0.1, 1 - 6.87559e-6 * da), 4.25588);
                     const normTas = corrTas * Math.sqrt(sigma);
 
+                    const hp = 180 * (power / 100);
                     const corrRatio = corrTas / power; // kts / % power
                     const normRatio = normTas / power; // Normalized kts / % power
-                    const cubeCorrRatio = corrTas / Math.cbrt(power / 100);
-                    const cubeNormRatio = normTas / Math.cbrt(power / 100);
+                    const cubeCorrRatio = corrTas / Math.cbrt(hp); // kts / HP^(1/3)
+                    const cubeNormRatio = normTas / Math.cbrt(hp); // Normalized kts / HP^(1/3)
 
                     const calKey = getAirspeedCalKey(c);
                     const rawDate = f.date || (f.filename ? f.filename.slice(0, 10) : 'Unknown');
@@ -1031,6 +1032,7 @@ function renderAirspeedPowerRatioPlot() {
                     dataPoints.push({
                         calKey: calKey,
                         power: Number(power),
+                        hp: Number(hp.toFixed(1)),
                         powerBand: Math.round(Number(power) / 5) * 5,
                         corrTas: Number(corrTas),
                         normTas: Number(normTas.toFixed(1)),
@@ -1111,9 +1113,9 @@ function renderAirspeedPowerRatioPlot() {
         metricLabel = useNormalized ? 'Norm TAS / % Power' : 'Corr TAS / % Power';
         metricUnit = 'kts / %';
     } else if (metric === "cube_ratio") {
-        yAxisTitle = useNormalized ? 'Normalized TAS / ∛(Power/100)' : 'Corrected TAS / ∛(Power/100)';
-        metricLabel = useNormalized ? 'Norm TAS / ∛Power' : 'Corr TAS / ∛Power';
-        metricUnit = 'kts / ∛P';
+        yAxisTitle = useNormalized ? 'Normalized TAS / ∛(HP) [kts / HP⅓ @ Sea Level]' : 'Corrected TAS / ∛(HP) [kts / HP⅓]';
+        metricLabel = useNormalized ? 'Norm TAS / ∛HP' : 'Corr TAS / ∛HP';
+        metricUnit = 'kts/HP⅓';
     } else if (metric === "tas") {
         yAxisTitle = useNormalized ? 'Normalized TAS @ Sea Level (kts)' : 'Corrected TAS (kts)';
         metricLabel = useNormalized ? 'Norm TAS' : 'Corrected TAS';
@@ -1128,12 +1130,12 @@ function renderAirspeedPowerRatioPlot() {
 
     function makeHoverText(p, isSelected = false) {
         const ratioStr = useNormalized ? `${p.normRatio.toFixed(3)} kts/% (Norm)` : `${p.corrRatio.toFixed(3)} kts/%`;
-        const cubeRatioStr = useNormalized ? `${p.cubeNormRatio.toFixed(1)} (Norm)` : `${p.cubeCorrRatio.toFixed(1)}`;
+        const cubeRatioStr = useNormalized ? `${p.cubeNormRatio.toFixed(2)} kts/HP⅓ (Norm)` : `${p.cubeCorrRatio.toFixed(2)} kts/HP⅓`;
         return `<b>${p.flight_date}</b> (${p.segment})${isSelected ? ' <b style="color:#ff1744;">★ SELECTED</b>' : ''}<br>` +
             `<b>Flight:</b> ${p.filename}<br>` +
-            `<b>5% Power Band:</b> <strong>${p.powerBand}%</strong> (${p.power}% recorded)<br>` +
-            `<b>TAS / % Power:</b> <b style="color:#0d6efd;">${ratioStr}</b><br>` +
-            `<b>Aero Power Index:</b> ${cubeRatioStr}<br>` +
+            `<b>5% Power Band:</b> <strong>${p.powerBand}%</strong> (${p.power}% / ${p.hp} HP)<br>` +
+            `<b>Aero Power Index:</b> <b style="color:#0d6efd;">${cubeRatioStr}</b><br>` +
+            `<b>TAS / % Power:</b> ${ratioStr}<br>` +
             `<b>Corrected TAS:</b> ${p.corrTas} kt<br>` +
             `<b>Normalized TAS (Sea Level):</b> ${p.normTas} kt<br>` +
             `<b>Density Altitude:</b> ${p.da.toLocaleString()} ft<br>` +
