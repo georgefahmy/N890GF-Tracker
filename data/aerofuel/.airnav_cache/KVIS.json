@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542284.5161788,
+  "_cached_at": 1790618084.0593166,
   "icao": "KVIS",
   "data": {
     "icao": "KVIS",
@@ -63,8 +63,8 @@
         "name": "Visalia Municipal Airport",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 31-Aug",
-        "quote_date": "31-Aug",
+        "notes": "World Fuel Services \u2022 Quote: 09-Sep",
+        "quote_date": "09-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.6,
@@ -93,10 +93,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KVIS",
     "airport_ref": "21325",
-    "fetched_at": "2026-09-04T17:18:04Z"
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

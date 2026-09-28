@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787604257.363471,
+  "_cached_at": 1790618084.0732152,
   "icao": "KFCH",
   "data": {
     "icao": "KFCH",
@@ -13,8 +13,20 @@
     "lon": -119.82,
     "elevation_ft": 279,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": 135.225,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 119.0,
+    "approach_desc": "APP",
+    "departure_freq": 119.0,
+    "departure_desc": "DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "APP",
@@ -81,8 +93,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-24T20:44:17Z"
+    "raw_ident": "KFCH",
+    "airport_ref": "19848",
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

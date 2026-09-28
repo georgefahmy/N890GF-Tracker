@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542284.516355,
+  "_cached_at": 1790618084.0621471,
   "icao": "KTLR",
   "data": {
     "icao": "KTLR",
@@ -53,8 +53,8 @@
         "name": "Valley Air Crafts",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 01-Sep",
-        "quote_date": "01-Sep",
+        "notes": "Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.25,
@@ -77,10 +77,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTLR",
     "airport_ref": "21202",
-    "fetched_at": "2026-09-04T17:18:04Z"
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

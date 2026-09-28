@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542284.515815,
+  "_cached_at": 1790618084.065984,
   "icao": "KPTV",
   "data": {
     "icao": "KPTV",
@@ -93,10 +93,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KPTV",
     "airport_ref": "20880",
-    "fetched_at": "2026-09-04T17:18:04Z"
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574589.5645127,
+  "_cached_at": 1790618084.0767665,
   "icao": "KMIT",
   "data": {
     "icao": "KMIT",
@@ -90,10 +90,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMIT",
     "airport_ref": "20510",
-    "fetched_at": "2026-08-23T23:53:49Z"
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

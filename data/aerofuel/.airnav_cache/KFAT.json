@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787604257.3632672,
+  "_cached_at": 1790618084.0685031,
   "icao": "KFAT",
   "data": {
     "icao": "KFAT",
@@ -13,8 +13,20 @@
     "lon": -119.718,
     "elevation_ft": 336,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": 118.2,
+    "ctaf_freq": 122.95,
     "unicom_freq": 122.95,
+    "weather_freq": 121.35,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 35.195,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 35.195,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": 124.35,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "A/D",
@@ -88,8 +100,8 @@
         "name": "Atlantic Aviation",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 24-Aug",
-        "quote_date": "24-Aug",
+        "notes": "World Fuel Services \u2022 Quote: 28-Sep",
+        "quote_date": "28-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 8.95,
@@ -98,7 +110,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.79,
+            "price": 9.37,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -109,8 +121,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 22-Aug",
-        "quote_date": "22-Aug",
+        "notes": "independent \u2022 Quote: 26-Sep",
+        "quote_date": "26-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 9.02,
@@ -119,13 +131,13 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.71,
+            "price": 9.31,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
           },
           "SAF": {
-            "price": 10.49,
+            "price": 11.08,
             "type": "SAF",
             "service": "Full-Serve",
             "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
@@ -140,8 +152,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-24T20:44:17Z"
+    "raw_ident": "KFAT",
+    "airport_ref": "3524",
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

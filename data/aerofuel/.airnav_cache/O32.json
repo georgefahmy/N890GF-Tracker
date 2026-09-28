@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542284.51652,
+  "_cached_at": 1790618084.0669959,
   "icao": "O32",
   "data": {
     "icao": "O32",
@@ -48,8 +48,8 @@
         "name": "Reedley Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.88,
@@ -72,10 +72,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO32",
     "airport_ref": "20684",
-    "fetched_at": "2026-09-04T17:18:04Z"
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

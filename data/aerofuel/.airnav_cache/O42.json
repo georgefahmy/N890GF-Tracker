@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542284.5152361,
+  "_cached_at": 1790618084.0586417,
   "icao": "O42",
   "data": {
     "icao": "O42",
@@ -45,14 +45,14 @@
     ],
     "fbos": [
       {
-        "name": "Woodlake Airport",
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
         "brand": "",
-        "phone": "N/A",
-        "notes": "Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "phone": "559-564-8055",
+        "notes": "Quote: 25-Sep-2026",
+        "quote_date": "25-Sep-2026",
         "fuels": {
           "100LL_SS": {
-            "price": 6.0,
+            "price": 6.5,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -60,15 +60,15 @@
         }
       }
     ],
-    "best_price": 6.0,
+    "best_price": 6.5,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO42",
     "airport_ref": "20688",
-    "fetched_at": "2026-09-04T17:18:04Z"
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }

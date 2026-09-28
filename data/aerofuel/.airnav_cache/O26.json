@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542284.514484,
+  "_cached_at": 1790618084.0755174,
   "icao": "O26",
   "data": {
     "icao": "O26",
@@ -71,28 +71,35 @@
       {
         "name": "Lone Pine Airport",
         "brand": "Titan",
-        "phone": "760-937-4017",
-        "notes": "Titan \u2022 Quote: 01-Sep-2026",
-        "quote_date": "01-Sep-2026",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 5.7,
+            "price": 6.5,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 9.08,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
           }
         }
       }
     ],
-    "best_price": 5.7,
+    "best_price": 6.5,
     "primary_fuel": "100LL",
     "fuels_available": [
-      "100LL"
+      "100LL",
+      "Jet-A"
     ],
-    "last_updated": "2026-09-04",
-    "source": "AirNav Live Feed",
+    "last_updated": "2026-09-28",
+    "source": "AirNav Local Fuel",
     "raw_ident": "KO26",
     "airport_ref": "20681",
-    "fetched_at": "2026-09-04T17:18:02Z"
+    "fetched_at": "2026-09-28T17:54:41Z"
   }
 }
