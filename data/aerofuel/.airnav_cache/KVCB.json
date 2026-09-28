@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790302580.777366,
+  "_cached_at": 1790574527.6363368,
   "icao": "KVCB",
   "data": {
     "icao": "KVCB",
@@ -88,10 +88,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KVCB",
     "airport_ref": "21314",
-    "fetched_at": "2026-09-10T20:44:42Z"
+    "fetched_at": "2026-09-28T05:48:45Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790536125.242423,
+  "_cached_at": 1790574527.6328268,
   "icao": "KDVO",
   "data": {
     "icao": "KDVO",
@@ -88,10 +88,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KDVO",
     "airport_ref": "19670",
-    "fetched_at": "2026-09-10T20:44:13Z"
+    "fetched_at": "2026-09-28T05:48:45Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073082.067159,
+  "_cached_at": 1790574455.5267057,
   "icao": "O61",
   "data": {
     "icao": "O61",
@@ -7,8 +7,8 @@
     "name": "Cameron Park Airport",
     "city": "Cameron Park",
     "state": "CA",
-    "distance_nm": 19.0,
-    "bearing": "E",
+    "distance_nm": 15.0,
+    "bearing": "SSW",
     "fbos": [
       {
         "name": "Cameron Park Airport",
@@ -31,8 +31,8 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-10",
-    "fetched_at": "2026-09-10T20:44:42Z",
+    "last_updated": "2026-09-27",
+    "fetched_at": "2026-09-28T05:47:35Z",
     "source": "AirNav Local Fuel"
   }
 }

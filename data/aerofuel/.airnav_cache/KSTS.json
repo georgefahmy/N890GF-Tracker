@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073053.6373131,
+  "_cached_at": 1790574527.643838,
   "icao": "KSTS",
   "data": {
     "icao": "KSTS",
@@ -96,7 +96,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.51,
+            "price": 7.97,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -123,7 +123,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.15,
+            "price": 8.57,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -137,10 +137,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSTS",
     "airport_ref": "21114",
-    "fetched_at": "2026-09-10T20:44:13Z"
+    "fetched_at": "2026-09-28T05:48:45Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787608478.367059,
+  "_cached_at": 1790574497.9550405,
   "icao": "KUKI",
   "data": {
     "icao": "KUKI",
@@ -13,8 +13,20 @@
     "lon": -123.201,
     "elevation_ft": 614,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": 119.275,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "ASOS",
@@ -51,8 +63,8 @@
         "name": "City of Ukiah (FBO)",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 19-Aug",
-        "quote_date": "19-Aug",
+        "notes": "Quote: 21-Sep",
+        "quote_date": "21-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.9,
@@ -75,8 +87,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-24T21:54:38Z"
+    "raw_ident": "KUKI",
+    "airport_ref": "3941",
+    "fetched_at": "2026-09-28T05:48:15Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787590095.08085,
+  "_cached_at": 1790574397.2596378,
   "icao": "O22",
   "data": {
     "icao": "O22",
@@ -13,8 +13,20 @@
     "lon": -120.415,
     "elevation_ft": 2118,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 122.975,
     "unicom_freq": 122.975,
+    "weather_freq": 124.65,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -66,18 +78,12 @@
       {
         "name": "Bald Eagle Aviation",
         "brand": "Titan",
-        "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 17-Aug",
-        "quote_date": "17-Aug",
+        "phone": "209-533-4616",
+        "notes": "Titan \u2022 Quote: 22-Sep-2026 \u2022 UNICOM: 122.975",
+        "quote_date": "22-Sep-2026",
         "fuels": {
-          "100LL_SS": {
-            "price": 5.96,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
           "100LL_FS": {
-            "price": 6.21,
+            "price": 6.95,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -87,18 +93,26 @@
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 6.7,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 5.96,
+    "best_price": 6.7,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-23T16:59:53Z"
+    "raw_ident": "KO22",
+    "airport_ref": "20679",
+    "fetched_at": "2026-09-28T05:46:34Z"
   }
 }

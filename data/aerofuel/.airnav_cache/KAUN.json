@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073082.075753,
+  "_cached_at": 1790574455.5620153,
   "icao": "KAUN",
   "data": {
     "icao": "KAUN",
@@ -62,19 +62,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.42,
+            "price": 7.58,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.62,
+            "price": 7.78,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.41,
+            "price": 7.85,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -82,7 +82,7 @@
         }
       }
     ],
-    "best_price": 7.42,
+    "best_price": 7.58,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

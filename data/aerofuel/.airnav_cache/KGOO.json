@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542181.6250398,
+  "_cached_at": 1790574455.5645108,
   "icao": "KGOO",
   "data": {
     "icao": "KGOO",
@@ -58,17 +58,17 @@
         "name": "Nevada County Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "AVFUEL \u2022 Quote: 14-Sep",
+        "quote_date": "14-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.49,
+            "price": 6.8,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.19,
+            "price": 7.5,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -82,7 +82,7 @@
         }
       }
     ],
-    "best_price": 6.49,
+    "best_price": 6.8,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

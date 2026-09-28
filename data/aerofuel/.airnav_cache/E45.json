@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787590095.081229,
+  "_cached_at": 1790574397.2621174,
   "icao": "E45",
   "data": {
     "icao": "E45",
@@ -13,8 +13,20 @@
     "lon": -120.1782,
     "elevation_ft": 2930,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.9,
-    "unicom_freq": 122.8,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "CNTR",
@@ -58,8 +70,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-24T16:48:15Z"
+    "raw_ident": "KE45",
+    "airport_ref": "19699",
+    "fetched_at": "2026-09-28T05:46:34Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790536125.241844,
+  "_cached_at": 1790574527.6353207,
   "icao": "KCCR",
   "data": {
     "icao": "KCCR",
@@ -145,10 +145,10 @@
       "94UL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KCCR",
     "airport_ref": "19469",
-    "fetched_at": "2026-09-10T20:44:13Z"
+    "fetched_at": "2026-09-28T05:48:45Z"
   }
 }

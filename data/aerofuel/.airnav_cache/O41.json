@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790302580.779068,
+  "_cached_at": 1790574527.6477306,
   "icao": "O41",
   "data": {
     "icao": "O41",
@@ -77,10 +77,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO41",
     "airport_ref": "20687",
-    "fetched_at": "2026-09-10T20:44:42Z"
+    "fetched_at": "2026-09-28T05:48:45Z"
   }
 }

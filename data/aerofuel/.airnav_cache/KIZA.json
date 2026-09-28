@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202697.0683851,
+  "_cached_at": 1790574589.5684662,
   "icao": "KIZA",
   "data": {
     "icao": "KIZA",
@@ -58,23 +58,23 @@
         "name": "Santa Ynez Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 19-Aug",
-        "quote_date": "19-Aug",
+        "notes": "Quote: 21-Sep",
+        "quote_date": "21-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.68,
+            "price": 6.75,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.63,
+            "price": 7.5,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.24,
+            "price": 7.59,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -82,7 +82,7 @@
         }
       }
     ],
-    "best_price": 6.68,
+    "best_price": 6.75,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

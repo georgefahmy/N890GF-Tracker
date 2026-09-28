@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372937.9022093,
+  "_cached_at": 1790574397.271858,
   "icao": "KMER",
   "data": {
     "icao": "KMER",
@@ -82,10 +82,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-25",
+    "last_updated": "2026-09-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMER",
     "airport_ref": "3676",
-    "fetched_at": "2026-09-25T21:48:56Z"
+    "fetched_at": "2026-09-28T05:46:34Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073082.076819,
+  "_cached_at": 1790574455.561284,
   "icao": "E36",
   "data": {
     "icao": "E36",
@@ -39,14 +39,14 @@
     ],
     "fbos": [
       {
-        "name": "Georgetown Airport",
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
         "brand": "",
-        "phone": "N/A",
-        "notes": "Quote: 03-Sep",
-        "quote_date": "03-Sep",
+        "phone": "530-622-0459",
+        "notes": "Quote: 19-Sep-2026",
+        "quote_date": "19-Sep-2026",
         "fuels": {
           "100LL_SS": {
-            "price": 6.14,
+            "price": 6.54,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -54,7 +54,7 @@
         }
       }
     ],
-    "best_price": 6.14,
+    "best_price": 6.54,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"

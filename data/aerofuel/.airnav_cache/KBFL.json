@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787529229.542012,
+  "_cached_at": 1790574589.5656755,
   "icao": "KBFL",
   "data": {
     "icao": "KBFL",
@@ -13,8 +13,20 @@
     "lon": -119.057,
     "elevation_ft": 510,
     "tower": true,
+    "tower_freq": 118.1,
     "ctaf_freq": 118.1,
     "unicom_freq": 122.95,
+    "weather_freq": 118.6,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 118.8,
+    "approach_desc": "BAKERSFIELD APP SOUTH INITIAL CONTACT",
+    "departure_freq": 126.45,
+    "departure_desc": "BAKERSFIELD DEP",
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "APP",
@@ -92,13 +104,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_FS": {
-            "price": 7.79,
+            "price": 7.9,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.98,
+            "price": 8.3,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -113,13 +125,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_FS": {
-            "price": 7.69,
+            "price": 7.8,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.88,
+            "price": 8.2,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -130,8 +142,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 23-Aug",
-        "quote_date": "23-Aug",
+        "notes": "independent \u2022 Quote: 27-Sep",
+        "quote_date": "27-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 8.0,
@@ -140,7 +152,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.87,
+            "price": 9.47,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -148,7 +160,7 @@
         }
       }
     ],
-    "best_price": 7.69,
+    "best_price": 7.8,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -156,6 +168,8 @@
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KBFL",
+    "airport_ref": "3402",
     "fetched_at": "2026-08-23T23:53:49Z"
   }
 }

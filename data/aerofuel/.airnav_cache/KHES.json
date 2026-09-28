@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073053.6387148,
+  "_cached_at": 1790574497.956291,
   "icao": "KHES",
   "data": {
     "icao": "KHES",
@@ -42,8 +42,8 @@
         "name": "Healdsburg Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 12-Aug",
-        "quote_date": "12-Aug",
+        "notes": "Quote: 14-Sep",
+        "quote_date": "14-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.95,
@@ -59,10 +59,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-08-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "O31",
     "airport_ref": "23488",
-    "fetched_at": "2026-09-10T20:44:13Z"
+    "fetched_at": "2026-08-27T21:04:35Z"
   }
 }

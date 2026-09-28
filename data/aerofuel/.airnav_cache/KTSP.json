@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202672.3047,
+  "_cached_at": 1790574589.571099,
   "icao": "KTSP",
   "data": {
     "icao": "KTSP",
@@ -48,11 +48,11 @@
         "name": "Tehachapi Municipal Airport",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 24-Aug",
-        "quote_date": "24-Aug",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.59,
+            "price": 6.83,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -66,7 +66,7 @@
         }
       }
     ],
-    "best_price": 6.59,
+    "best_price": 6.83,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

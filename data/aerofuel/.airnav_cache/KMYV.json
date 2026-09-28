@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073082.076073,
+  "_cached_at": 1790574455.5757036,
   "icao": "KMYV",
   "data": {
     "icao": "KMYV",
@@ -70,23 +70,23 @@
         "name": "Honeycutt Aviation",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 09-Sep",
-        "quote_date": "09-Sep",
+        "notes": "Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.99,
+            "price": 7.29,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.49,
+            "price": 7.79,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.99,
+            "price": 8.39,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -94,7 +94,7 @@
         }
       }
     ],
-    "best_price": 6.99,
+    "best_price": 7.29,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

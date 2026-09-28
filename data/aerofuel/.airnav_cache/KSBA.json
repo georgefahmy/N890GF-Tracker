@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202697.068785,
+  "_cached_at": 1790574589.5697014,
   "icao": "KSBA",
   "data": {
     "icao": "KSBA",
@@ -112,17 +112,17 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 31-Aug",
-        "quote_date": "31-Aug",
+        "notes": "independent \u2022 Quote: 27-Sep",
+        "quote_date": "27-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 8.0,
+            "price": 7.75,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.62,
+            "price": 11.08,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -139,8 +139,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 29-Aug",
-        "quote_date": "29-Aug",
+        "notes": "independent \u2022 Quote: 26-Sep",
+        "quote_date": "26-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.23,
@@ -155,13 +155,13 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.92,
+            "price": 10.36,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
           },
           "SAF": {
-            "price": 11.78,
+            "price": 12.24,
             "type": "SAF",
             "service": "Full-Serve",
             "label": "SAF Sustainable Aviation Fuel (Full-Serve)"
