@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790629718.3910296,
+  "_cached_at": 1790714687.301719,
   "icao": "KAPC",
   "data": {
     "icao": "KAPC",
@@ -87,8 +87,8 @@
         "name": "Skyservice Napa FBO",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 21-Sep",
-        "quote_date": "21-Sep",
+        "notes": "Titan \u2022 Quote: 28-Sep",
+        "quote_date": "28-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 8.99,
@@ -108,8 +108,8 @@
         "name": "Atlantic Aviation",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 17-Sep",
-        "quote_date": "17-Sep",
+        "notes": "Titan \u2022 Quote: 28-Sep",
+        "quote_date": "28-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.16,

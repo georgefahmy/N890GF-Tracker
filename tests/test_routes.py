@@ -709,6 +709,18 @@ class TestPublicPages:
         with app.app_context():
             response = client.get("/live_map")
             assert response.status_code == 200
+            html = response.data.decode("utf-8")
+            assert "unifiedSearchInput" in html
+            assert "filtersDropdownBtn" in html
+            assert "chipN890GF" in html
+            assert "chip7700" in html
+            assert "chipE16" in html
+            assert "filterReg" in html
+            assert "filterType" in html
+            assert "filterMinAlt" in html
+            assert "filterSquawk" in html
+            assert "btnToggleMil" in html
+            assert "adsbIframe" in html
 
     def test_gami_page(self, app, client):
         with app.app_context():

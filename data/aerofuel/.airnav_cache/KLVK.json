@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790629718.3776455,
+  "_cached_at": 1790714687.300181,
   "icao": "KLVK",
   "data": {
     "icao": "KLVK",
@@ -80,11 +80,11 @@
         "name": "Five Rivers Aviation",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 21-Sep",
-        "quote_date": "21-Sep",
+        "notes": "AVFUEL \u2022 Quote: 29-Sep",
+        "quote_date": "29-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 8.41,
+            "price": 7.41,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -102,7 +102,7 @@
             "label": "94UL Unleaded (Self-Serve)"
           },
           "JET_A": {
-            "price": 8.2,
+            "price": 8.01,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -110,7 +110,7 @@
         }
       }
     ],
-    "best_price": 8.41,
+    "best_price": 7.41,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

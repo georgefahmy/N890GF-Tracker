@@ -1,100 +1,1019 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Map - N890GF</title>
+    <title>Live Traffic Map - N890GF Tracker</title>
+    <!-- Bootstrap 5.3 CSS & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
-        /* Remove default margins and prevent double scrollbars */
+        /* Base full screen setup */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
             overflow: hidden;
-            background-color: #212529; /* Dark background matching nav */
+            background-color: #121417;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #e9ecef;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Custom top header bar */
-        .header-bar {
-            height: 60px;
-            background-color: #212529;
+        /* Top navigation header */
+        .adsb-header {
+            flex-shrink: 0;
+            min-height: 56px;
+            background-color: rgba(22, 25, 29, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            padding: 0 20px;
-            border-bottom: 1px solid #333;
+            justify-content: space-between;
+            padding: 6px 14px;
+            gap: 10px;
+            z-index: 1050;
+            position: relative;
         }
 
-        /* Fill the remaining vertical space */
+        /* Iframe container - occupies full remaining height */
         .iframe-container {
-            height: calc(100vh - 60px);
+            flex: 1 1 0;
+            min-height: 0;
+            height: 100%;
             width: 100%;
+            position: relative;
+            background-color: #0b0c0e;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Active filter floating overlay pill bar */
+        .active-filter-bar {
+            position: absolute;
+            top: 10px;
+            left: 220px;
+            z-index: 1030;
+            background-color: rgba(22, 25, 29, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            max-width: calc(100vw - 280px);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .active-filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Search input styling */
+        .unified-search-box {
+            position: relative;
+            width: 320px;
+            min-width: 200px;
+        }
+        .unified-search-box input {
+            background-color: rgba(36, 40, 46, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border-radius: 50rem;
+            padding-left: 34px;
+            padding-right: 32px;
+            font-size: 0.85rem;
+            height: 36px;
+            transition: all 0.2s ease-in-out;
+        }
+        .unified-search-box input:focus {
+            background-color: rgba(45, 50, 58, 0.95);
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+            color: #fff;
+        }
+        .unified-search-box .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #adb5bd;
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+        .unified-search-box .clear-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 0;
+            display: none;
+        }
+        .unified-search-box .clear-btn:hover {
+            color: #ffffff;
+        }
+
+        /* Nav Pills Buttons */
+        .adsb-nav-pill {
+            background-color: rgba(36, 40, 46, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #e9ecef;
+            border-radius: 50rem;
+            padding: 5px 14px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .adsb-nav-pill:hover, .adsb-nav-pill:focus {
+            background-color: rgba(55, 61, 70, 0.95);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+        .adsb-nav-pill.active {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: #ffffff;
+        }
+
+        /* Dropdown menus styling */
+        .adsb-dropdown-menu {
+            background-color: rgba(26, 29, 34, 0.96) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6) !important;
+            border-radius: 12px !important;
+            padding: 8px !important;
+            color: #dee2e6;
+            margin-top: 6px !important;
+        }
+        .adsb-dropdown-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 12px;
+            border-radius: 6px;
+            color: #dee2e6;
+            font-size: 0.85rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+        .adsb-dropdown-item:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+        .adsb-dropdown-item.active-item {
+            color: #0df0ff;
+            font-weight: 600;
+        }
+        .kbd-hint {
+            font-family: ui-monospace, monospace;
+            font-size: 0.75rem;
+            color: #6c757d;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 1px 5px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Filters Menu Card */
+        .filters-menu-card {
+            width: 390px;
+            max-width: 92vw;
+            max-height: 82vh;
+            overflow-y: auto;
+            padding: 12px 14px !important;
+        }
+        .filters-menu-card::-webkit-scrollbar {
+            width: 6px;
+        }
+        .filters-menu-card::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .filter-row {
+            margin-bottom: 10px;
+        }
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #adb5bd;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .filter-input {
+            background-color: #121417;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 0.82rem;
+            border-radius: 6px;
+            padding: 4px 8px;
+        }
+        .filter-input:focus {
+            background-color: #1a1e24;
+            border-color: #0d6efd;
+            color: #fff;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+        }
+        .btn-filter-action {
+            font-size: 0.75rem;
+            padding: 3px 9px;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        /* Source & Flag Tag Pills */
+        .source-pill {
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+            font-weight: 600;
+        }
+        .source-pill.source-adsb { background-color: #0d6efd; color: #fff; }
+        .source-pill.source-uat { background-color: #198754; color: #fff; }
+        .source-pill.source-mlat { background-color: #6c757d; color: #fff; }
+        .source-pill.source-tisb { background-color: #6f42c1; color: #fff; }
+        .source-pill.source-modes { background-color: #0dcaf0; color: #000; }
+        .source-pill.source-other { background-color: #495057; color: #fff; }
+        .source-pill.source-adsc { background-color: #20c997; color: #000; }
+
+        .flag-pill.flag-mil { background-color: #dc3545; color: #fff; }
+        .flag-pill.flag-pia { background-color: #198754; color: #fff; }
+        .flag-pill.flag-ladd { background-color: #0d6efd; color: #fff; }
+
+        .source-pill.disabled-pill, .flag-pill.disabled-pill {
+            opacity: 0.35;
+            filter: grayscale(80%);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        /* Quick chip links */
+        .quick-chip {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ced4da;
+            padding: 2px 8px;
+            border-radius: 50rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.15s;
+        }
+        .quick-chip:hover {
+            background-color: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        .quick-chip.active-chip {
+            background-color: #0d6efd;
+            color: #ffffff;
+            border-color: #0d6efd;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 992px) {
+            .adsb-header {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .unified-search-box {
+                width: 100%;
+                order: 3;
+            }
+            .iframe-container {
+                height: calc(100vh - 96px);
+            }
+            .active-filter-bar {
+                left: 14px;
+                max-width: calc(100vw - 28px);
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="header-bar text-white d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" href="/">← Back </a>
-        <span class="navbar-text text-white m-2"> ✈️ ADSB Live Traffic</span>
-
-        <div class="d-flex align-items-center gap-2 ms-auto" style="max-width: 450px;">
-            <input type="text" id="adsbSearchInput" class="form-control form-control-sm text-uppercase" placeholder="Enter N-Number">
-            <button class="btn btn-sm btn-primary" type="button" id="adsbSearchBtn">Search</button>
-
-            <input type="text" id="typeSearchInput" class="form-control form-control-sm text-uppercase" placeholder="Enter type filter">
-            <button class="btn btn-sm btn-primary" type="button" id="typeSearchBtn">Search</button>
+    <!-- TOP ADSB CONTROL HEADER -->
+    <header class="adsb-header">
+        <!-- Brand & Back Button -->
+        <div class="d-flex align-items-center gap-2">
+            <a href="/" class="btn btn-sm btn-outline-secondary text-white py-1 px-2 fw-semibold" title="Back to Flight Tracker Dashboard">
+                <i class="bi bi-arrow-left"></i> Tracker
+            </a>
+            <span class="fw-bold d-none d-md-inline-block text-nowrap" style="letter-spacing: -0.2px;">
+                ✈️ Live Traffic
+            </span>
         </div>
+
+        <!-- Center Unified Search Bar -->
+        <div class="unified-search-box flex-grow-1" style="max-width: 420px;">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" id="unifiedSearchInput" class="form-control" placeholder="Search flight, reg, hex, type, airport...">
+            <button type="button" id="clearSearchBtn" class="clear-btn" title="Clear search">
+                <i class="bi bi-x-circle-fill"></i>
+            </button>
+        </div>
+
+        <!-- Right Actions: Filters & Shortcuts -->
+        <div class="d-flex align-items-center gap-2">
+            <!-- FILTERS DROPDOWN -->
+            <div class="dropdown">
+                <button class="adsb-nav-pill dropdown-toggle" type="button" id="filtersDropdownBtn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    <i class="bi bi-funnel"></i> Filters
+                    <span class="badge bg-primary rounded-pill d-none ms-1" id="activeFilterBadge">0</span>
+                </button>
+                <div class="dropdown-menu adsb-dropdown-menu dropdown-menu-end shadow-lg filters-menu-card" aria-labelledby="filtersDropdownBtn">
+                    <!-- Quick Toggle Actions -->
+                    <div class="d-flex gap-2 mb-3">
+                        <button type="button" class="btn btn-sm btn-outline-danger flex-fill py-1 extra-small" id="btnToggleMil" onclick="toggleMilitaryOnly()">
+                            <i class="bi bi-shield-shaded me-1"></i> Military only
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-info flex-fill py-1 extra-small" id="btnToggleIsolate" onclick="toggleIsolateSelected()">
+                            <i class="bi bi-bullseye me-1"></i> Isolate selected
+                        </button>
+                    </div>
+
+                    <div class="text-uppercase extra-small text-muted fw-bold mb-2 pb-1 border-bottom border-secondary opacity-75">
+                        Filter By
+                    </div>
+
+                    <!-- Filter by Altitude -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by altitude:</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="number" id="filterMinAlt" class="filter-input w-50" placeholder="Min ft">
+                            <span class="small text-muted">to</span>
+                            <input type="number" id="filterMaxAlt" class="filter-input w-50" placeholder="Max ft">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('altitude')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('altitude')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Registration (N-Number) -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by registration (N-Number):</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterReg" class="filter-input flex-grow-1 text-uppercase" placeholder="e.g. N890GF, N123AB">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('reg')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('reg')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Type Code -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by type code:</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterType" class="filter-input flex-grow-1 text-uppercase" placeholder="e.g. RV8, C172, B738, F16">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('type')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('type')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Callsign -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by callsign:</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterCallsign" class="filter-input flex-grow-1 text-uppercase" placeholder="e.g. SWA123, UAL456">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('callsign')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('callsign')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Squawk -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by squawk code:</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterSquawk" class="filter-input flex-grow-1" placeholder="e.g. 7700, 7600, 1200">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('squawk')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('squawk')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Type Description -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by type description:</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterTypeDesc" class="filter-input flex-grow-1 text-uppercase" placeholder="e.g. L1P, L2J, H1T">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('typedesc')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('typedesc')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by ICAO Hex ID -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by ICAO hex ID:</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterIcao" class="filter-input flex-grow-1 text-uppercase" placeholder="e.g. A8B3C1">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('icao')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('icao')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Source -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by source:</label>
+                        <div class="d-flex flex-wrap gap-1 mb-1" id="sourcePillsContainer">
+                            <span class="source-pill source-adsb" data-source="adsb" onclick="toggleSourcePill(this)">ADS-B</span>
+                            <span class="source-pill source-uat" data-source="uat" onclick="toggleSourcePill(this)">UAT / ADS-R</span>
+                            <span class="source-pill source-mlat" data-source="mlat" onclick="toggleSourcePill(this)">MLAT</span>
+                            <span class="source-pill source-tisb" data-source="tisb" onclick="toggleSourcePill(this)">TIS-B</span>
+                            <span class="source-pill source-modes" data-source="modes" onclick="toggleSourcePill(this)">Mode-S</span>
+                            <span class="source-pill source-other" data-source="other" onclick="toggleSourcePill(this)">Other</span>
+                            <span class="source-pill source-adsc" data-source="adsc" onclick="toggleSourcePill(this)">ADS-C</span>
+                        </div>
+                        <div class="d-flex justify-content-end gap-1 mt-1">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('sources')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('sources')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by DB Flags -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by DB flags:</label>
+                        <div class="d-flex flex-wrap gap-1 mb-1" id="flagPillsContainer">
+                            <span class="source-pill flag-pill flag-mil" data-flag="mil" onclick="toggleFlagPill(this)">Military</span>
+                            <span class="source-pill flag-pill flag-pia" data-flag="pia" onclick="toggleFlagPill(this)">PIA</span>
+                            <span class="source-pill flag-pill flag-ladd" data-flag="ladd" onclick="toggleFlagPill(this)">LADD</span>
+                        </div>
+                        <div class="d-flex justify-content-end gap-1 mt-1">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('flags')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('flags')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Country of Registration -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by country of registration:</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterCountry" class="filter-input flex-grow-1" placeholder="e.g. United States, Canada">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('country')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('country')">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Filter by Category -->
+                    <div class="filter-row">
+                        <label class="filter-label">Filter by category (A3, B0...):</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" id="filterCategory" class="filter-input flex-grow-1 text-uppercase" placeholder="e.g. A1, A2, B0">
+                            <button class="btn btn-sm btn-primary btn-filter-action" onclick="applySingleFilter('category')">Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-filter-action" onclick="resetSingleFilter('category')">Reset</button>
+                        </div>
+                    </div>
+
+                    <hr class="dropdown-divider border-secondary opacity-50 my-2">
+
+                    <!-- Clear All Filters Button -->
+                    <button class="btn btn-sm btn-outline-warning w-100 fw-bold" onclick="clearAllFilters()">
+                        <i class="bi bi-trash3 me-1"></i> Clear all filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Favorites / Shortcuts -->
+            <div class="d-none d-lg-flex align-items-center gap-1 border-start border-secondary ps-2 ms-1">
+                <button class="quick-chip" id="chipN890GF" onclick="quickTrackN890GF()" title="Quick lock onto N890GF">
+                    <i class="bi bi-star-fill text-warning"></i> N890GF
+                </button>
+                <button class="quick-chip" id="chip7700" onclick="quickSquawk7700()" title="Search active 7700 emergency squawks">
+                    <i class="bi bi-exclamation-triangle-fill text-danger"></i> 7700
+                </button>
+                <button class="quick-chip" id="chipE16" onclick="quickCenterE16()" title="Center on San Martin Airport (E16)">
+                    <i class="bi bi-geo-alt-fill text-info"></i> E16
+                </button>
+                <button class="btn btn-sm btn-link text-white text-decoration-none py-0 px-2" onclick="refreshAdsbMap()" title="Reload map">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN IFRAME CONTAINER -->
+    <div class="iframe-container" id="iframeContainer">
+        <!-- ACTIVE FILTER CHIPS FLOATING OVERLAY (Visible when any filter is active) -->
+        <div class="active-filter-bar d-none" id="activeFilterBar">
+            <span class="text-muted small me-1"><i class="bi bi-funnel-fill text-primary"></i> Active:</span>
+            <div class="d-flex align-items-center gap-1 flex-wrap" id="activeFilterChipsContainer"></div>
+            <button class="btn btn-link text-warning p-0 ms-2 extra-small text-decoration-none fw-semibold" onclick="clearAllFilters()">
+                Clear
+            </button>
+        </div>
+
+        <iframe id="adsbIframe" src="https://globe.adsbexchange.com/?sidebarWidth=200&keepPosition=1&enableLabels=1&trackLabels=1&extendedLabels=2&SiteLat=37.0817&SiteLon=-121.5972&lat=37.0817&lon=-121.5972&zoom=10" width="100%" height="100%" style="border:none;" allowfullscreen></iframe>
     </div>
 
-    <div class="iframe-container">
-        <iframe id="adsbIframe" src="https://globe.adsbexchange.com/?sidebarWidth=200&" width="100%" height="100%" style="border:none;"></iframe>
-    </div>
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- ADSB Interactive Map Controller Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchBtn = document.getElementById('adsbSearchBtn');
-            const typeBtn = document.getElementById('typeSearchBtn');
-            const searchInput = document.getElementById('adsbSearchInput');
-            const typeInput = document.getElementById('typeSearchInput');
+        // Centralized Map and Filter State
+        const adsbState = {
+            searchQuery: '',
+            reg: '',
+            type: '',
+            callsign: '',
+            squawk: '',
+            minAlt: '',
+            maxAlt: '',
+            icao: '',
+            typeDesc: '',
+            country: '',
+            category: '',
+            sources: [],
+            flags: [],
+            milOnly: false,
+            isolate: false,
+            // Explicit center flag - only set when user clicks E16 or explicitly centers
+            explicitCenter: false,
+            airport: '',
+            lat: null,
+            lon: null,
+            zoom: 10
+        };
+
+        const BASE_URL = "https://globe.adsbexchange.com/";
+
+        // Generate full query URL based on active search and filter state
+        function buildAdsbUrl() {
+            const params = new URLSearchParams();
+            params.set('sidebarWidth', '200');
+            params.set('keepPosition', '1');
+
+            // Only force coordinates if user explicitly asked to center (e.g. clicked E16 shortcut)
+            if (adsbState.explicitCenter && adsbState.lat !== null && adsbState.lon !== null) {
+                params.set('SiteLat', adsbState.lat);
+                params.set('SiteLon', adsbState.lon);
+                params.set('lat', adsbState.lat);
+                params.set('lon', adsbState.lon);
+                params.set('zoom', adsbState.zoom || 11);
+            }
+
+            if (adsbState.searchQuery) {
+                const q = adsbState.searchQuery.trim();
+                if (/^[0-9A-Z]{3,4}$/i.test(q) && (q.startsWith('K') || q.startsWith('0') || q.startsWith('C') || q.startsWith('E'))) {
+                    params.set('airport', q.toUpperCase());
+                } else if (/^N[0-9]{1,5}[A-Z]{0,2}$/i.test(q)) {
+                    params.set('reg', q.toUpperCase());
+                } else if (/^[0-7]{4}$/.test(q)) {
+                    // Valid 4-digit squawk code (0000-7777)
+                    params.set('filterSquawk', q);
+                    params.set('filtersquawk', q);
+                } else if (/^[0-9A-F]{6}$/i.test(q)) {
+                    // Looks like ICAO hex
+                    params.set('icao', q.toLowerCase());
+                } else {
+                    params.set('find', q);
+                }
+            }
+
+            if (adsbState.reg) {
+                params.set('reg', adsbState.reg);
+            }
+            if (adsbState.type) {
+                params.set('filterType', adsbState.type);
+                params.set('filtertype', adsbState.type);
+            }
+            if (adsbState.callsign) {
+                params.set('filterCallSign', adsbState.callsign);
+                params.set('callsign', adsbState.callsign);
+            }
+            if (adsbState.squawk) {
+                params.set('filterSquawk', adsbState.squawk);
+                params.set('filtersquawk', adsbState.squawk);
+            }
+            if (adsbState.minAlt) {
+                params.set('filterAltMin', adsbState.minAlt);
+                params.set('minAlt', adsbState.minAlt);
+            }
+            if (adsbState.maxAlt) {
+                params.set('filterAltMax', adsbState.maxAlt);
+                params.set('maxAlt', adsbState.maxAlt);
+            }
+            if (adsbState.icao) {
+                params.set('icao', adsbState.icao);
+            }
+            if (adsbState.typeDesc) {
+                params.set('filterDescription', adsbState.typeDesc);
+                params.set('filtertypedesc', adsbState.typeDesc);
+            }
+            if (adsbState.country) {
+                params.set('filtercountry', adsbState.country);
+            }
+            if (adsbState.category) {
+                params.set('filtercategory', adsbState.category);
+            }
+
+            // DB Flags
+            let activeFlags = [...adsbState.flags];
+            if (adsbState.milOnly && !activeFlags.includes('military') && !activeFlags.includes('mil')) {
+                activeFlags.push('military');
+            }
+            if (activeFlags.length > 0) {
+                params.set('filterDbFlag', activeFlags.join(','));
+                params.set('filterflags', activeFlags.join(','));
+            }
+
+            // Sources
+            if (adsbState.sources.length > 0) {
+                params.set('filterSources', adsbState.sources.join(','));
+                params.set('filtersource', adsbState.sources.join(','));
+            }
+
+            if (adsbState.isolate) {
+                params.set('isolate', '1');
+            } else {
+                params.set('noIsolation', '1');
+            }
+
+            if (adsbState.airport) {
+                params.set('airport', adsbState.airport);
+            }
+
+            return `${BASE_URL}?${params.toString()}`;
+        }
+
+        function updateIframe() {
             const iframe = document.getElementById('adsbIframe');
+            const targetUrl = buildAdsbUrl();
+            if (iframe && iframe.src !== targetUrl) {
+                iframe.src = targetUrl;
+            }
+            renderActiveFilterChips();
+            updateUIIndicators();
+        }
 
-            function updateAdsbMap() {
-                let nNumber = searchInput.value.trim().toLowerCase();
+        function renderActiveFilterChips() {
+            const bar = document.getElementById('activeFilterBar');
+            const container = document.getElementById('activeFilterChipsContainer');
+            const badge = document.getElementById('activeFilterBadge');
+            if (!bar || !container) return;
 
-                // If a tail number is entered, append it. Otherwise load the global map.
-                if (nNumber) {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200&reg=" + encodeURIComponent(nNumber);
+            let chips = [];
+
+            if (adsbState.searchQuery) {
+                chips.push({ label: `Search: ${adsbState.searchQuery}`, reset: () => { adsbState.searchQuery = ''; document.getElementById('unifiedSearchInput').value = ''; updateIframe(); } });
+            }
+            if (adsbState.milOnly) {
+                chips.push({ label: `Military Only`, reset: () => { toggleMilitaryOnly(); } });
+            }
+            if (adsbState.isolate) {
+                chips.push({ label: `Isolate Selected`, reset: () => { toggleIsolateSelected(); } });
+            }
+            if (adsbState.minAlt || adsbState.maxAlt) {
+                chips.push({ label: `Alt: ${adsbState.minAlt || '0'} - ${adsbState.maxAlt || '∞'} ft`, reset: () => resetSingleFilter('altitude') });
+            }
+            if (adsbState.reg) {
+                chips.push({ label: `Reg: ${adsbState.reg}`, reset: () => resetSingleFilter('reg') });
+            }
+            if (adsbState.type) {
+                chips.push({ label: `Type: ${adsbState.type}`, reset: () => resetSingleFilter('type') });
+            }
+            if (adsbState.callsign) {
+                chips.push({ label: `Callsign: ${adsbState.callsign}`, reset: () => resetSingleFilter('callsign') });
+            }
+            if (adsbState.squawk) {
+                chips.push({ label: `Squawk: ${adsbState.squawk}`, reset: () => resetSingleFilter('squawk') });
+            }
+            if (adsbState.typeDesc) {
+                chips.push({ label: `Desc: ${adsbState.typeDesc}`, reset: () => resetSingleFilter('typedesc') });
+            }
+            if (adsbState.icao) {
+                chips.push({ label: `ICAO: ${adsbState.icao}`, reset: () => resetSingleFilter('icao') });
+            }
+            if (adsbState.sources.length > 0) {
+                chips.push({ label: `Sources (${adsbState.sources.length})`, reset: () => resetSingleFilter('sources') });
+            }
+            if (adsbState.flags.length > 0) {
+                chips.push({ label: `Flags: ${adsbState.flags.join(',')}`, reset: () => resetSingleFilter('flags') });
+            }
+            if (adsbState.country) {
+                chips.push({ label: `Country: ${adsbState.country}`, reset: () => resetSingleFilter('country') });
+            }
+            if (adsbState.category) {
+                chips.push({ label: `Cat: ${adsbState.category}`, reset: () => resetSingleFilter('category') });
+            }
+
+            // Update badge on Filters button
+            if (badge) {
+                if (chips.length > 0) {
+                    badge.textContent = chips.length;
+                    badge.classList.remove('d-none');
                 } else {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200";
+                    badge.classList.add('d-none');
                 }
             }
-            function updateTypeMap() {
-                let type = typeInput.value.trim().toLowerCase();
-                if (type) {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200&filtertype=" + encodeURIComponent(type);
+
+            if (chips.length > 0) {
+                bar.classList.remove('d-none');
+                container.innerHTML = chips.map((c, idx) => `
+                    <span class="badge bg-secondary text-white py-1 px-2 d-inline-flex align-items-center gap-1" style="font-size: 0.78rem;">
+                        ${c.label}
+                        <i class="bi bi-x-circle-fill ms-1" style="cursor: pointer;" onclick="activeFilterResets[${idx}]()"></i>
+                    </span>
+                `).join('');
+                window.activeFilterResets = chips.map(c => c.reset);
+            } else {
+                bar.classList.add('d-none');
+                container.innerHTML = '';
+                window.activeFilterResets = [];
+            }
+        }
+
+        function updateUIIndicators() {
+            // Military toggle button style
+            const milBtn = document.getElementById('btnToggleMil');
+            if (milBtn) {
+                if (adsbState.milOnly) {
+                    milBtn.classList.remove('btn-outline-danger');
+                    milBtn.classList.add('btn-danger', 'text-white');
                 } else {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200";
+                    milBtn.classList.remove('btn-danger', 'text-white');
+                    milBtn.classList.add('btn-outline-danger');
                 }
             }
 
-            // Click listener for the button
-            searchBtn.addEventListener('click', updateAdsbMap);
-            typeBtn.addEventListener('click', updateTypeMap);
+            // Isolate toggle button style
+            const isoBtn = document.getElementById('btnToggleIsolate');
+            if (isoBtn) {
+                if (adsbState.isolate) {
+                    isoBtn.classList.remove('btn-outline-info');
+                    isoBtn.classList.add('btn-info', 'text-dark');
+                } else {
+                    isoBtn.classList.remove('btn-info', 'text-dark');
+                    isoBtn.classList.add('btn-outline-info');
+                }
+            }
 
-            // Enter key listener for the input field
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    updateAdsbMap();
+            // Quick chip states
+            const chipN = document.getElementById('chipN890GF');
+            if (chipN) {
+                if (adsbState.reg === 'N890GF') chipN.classList.add('active-chip');
+                else chipN.classList.remove('active-chip');
+            }
+
+            const chip77 = document.getElementById('chip7700');
+            if (chip77) {
+                if (adsbState.squawk === '7700') chip77.classList.add('active-chip');
+                else chip77.classList.remove('active-chip');
+            }
+        }
+
+        // --- FILTER ACTIONS ---
+        function applySingleFilter(key) {
+            adsbState.explicitCenter = false; // Don't force reset to E16
+            if (key === 'altitude') {
+                adsbState.minAlt = document.getElementById('filterMinAlt')?.value.trim() || '';
+                adsbState.maxAlt = document.getElementById('filterMaxAlt')?.value.trim() || '';
+            } else if (key === 'reg') {
+                adsbState.reg = document.getElementById('filterReg')?.value.trim().toUpperCase() || '';
+            } else if (key === 'type') {
+                adsbState.type = document.getElementById('filterType')?.value.trim().toUpperCase() || '';
+            } else if (key === 'callsign') {
+                adsbState.callsign = document.getElementById('filterCallsign')?.value.trim().toUpperCase() || '';
+            } else if (key === 'squawk') {
+                adsbState.squawk = document.getElementById('filterSquawk')?.value.trim() || '';
+            } else if (key === 'typedesc') {
+                adsbState.typeDesc = document.getElementById('filterTypeDesc')?.value.trim().toUpperCase() || '';
+            } else if (key === 'icao') {
+                adsbState.icao = document.getElementById('filterIcao')?.value.trim().toLowerCase() || '';
+            } else if (key === 'country') {
+                adsbState.country = document.getElementById('filterCountry')?.value.trim() || '';
+            } else if (key === 'category') {
+                adsbState.category = document.getElementById('filterCategory')?.value.trim().toUpperCase() || '';
+            } else if (key === 'sources') {
+                const selectedPills = document.querySelectorAll('#sourcePillsContainer .source-pill:not(.disabled-pill)');
+                adsbState.sources = Array.from(selectedPills).map(p => p.getAttribute('data-source'));
+            } else if (key === 'flags') {
+                const selectedPills = document.querySelectorAll('#flagPillsContainer .flag-pill:not(.disabled-pill)');
+                adsbState.flags = Array.from(selectedPills).map(p => p.getAttribute('data-flag'));
+            }
+            updateIframe();
+        }
+
+        function resetSingleFilter(key) {
+            adsbState.explicitCenter = false;
+            if (key === 'altitude') {
+                adsbState.minAlt = '';
+                adsbState.maxAlt = '';
+                if (document.getElementById('filterMinAlt')) document.getElementById('filterMinAlt').value = '';
+                if (document.getElementById('filterMaxAlt')) document.getElementById('filterMaxAlt').value = '';
+            } else if (key === 'reg') {
+                adsbState.reg = '';
+                if (document.getElementById('filterReg')) document.getElementById('filterReg').value = '';
+            } else if (key === 'type') {
+                adsbState.type = '';
+                if (document.getElementById('filterType')) document.getElementById('filterType').value = '';
+            } else if (key === 'callsign') {
+                adsbState.callsign = '';
+                if (document.getElementById('filterCallsign')) document.getElementById('filterCallsign').value = '';
+            } else if (key === 'squawk') {
+                adsbState.squawk = '';
+                if (document.getElementById('filterSquawk')) document.getElementById('filterSquawk').value = '';
+            } else if (key === 'typedesc') {
+                adsbState.typeDesc = '';
+                if (document.getElementById('filterTypeDesc')) document.getElementById('filterTypeDesc').value = '';
+            } else if (key === 'icao') {
+                adsbState.icao = '';
+                if (document.getElementById('filterIcao')) document.getElementById('filterIcao').value = '';
+            } else if (key === 'country') {
+                adsbState.country = '';
+                if (document.getElementById('filterCountry')) document.getElementById('filterCountry').value = '';
+            } else if (key === 'category') {
+                adsbState.category = '';
+                if (document.getElementById('filterCategory')) document.getElementById('filterCategory').value = '';
+            } else if (key === 'sources') {
+                adsbState.sources = [];
+                document.querySelectorAll('#sourcePillsContainer .source-pill').forEach(p => p.classList.remove('disabled-pill'));
+            } else if (key === 'flags') {
+                adsbState.flags = [];
+                document.querySelectorAll('#flagPillsContainer .flag-pill').forEach(p => p.classList.remove('disabled-pill'));
+            }
+            updateIframe();
+        }
+
+        function clearAllFilters() {
+            adsbState.explicitCenter = false;
+            adsbState.searchQuery = '';
+            adsbState.reg = '';
+            adsbState.type = '';
+            adsbState.callsign = '';
+            adsbState.squawk = '';
+            adsbState.minAlt = '';
+            adsbState.maxAlt = '';
+            adsbState.icao = '';
+            adsbState.typeDesc = '';
+            adsbState.country = '';
+            adsbState.category = '';
+            adsbState.sources = [];
+            adsbState.flags = [];
+            adsbState.milOnly = false;
+            adsbState.isolate = false;
+
+            // Clear input fields
+            ['unifiedSearchInput', 'filterMinAlt', 'filterMaxAlt', 'filterReg', 'filterType', 'filterCallsign', 'filterSquawk', 'filterTypeDesc', 'filterIcao', 'filterCountry', 'filterCategory'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+
+            // Reset pill states
+            document.querySelectorAll('#sourcePillsContainer .source-pill').forEach(p => p.classList.remove('disabled-pill'));
+            document.querySelectorAll('#flagPillsContainer .flag-pill').forEach(p => p.classList.remove('disabled-pill'));
+
+            updateIframe();
+        }
+
+        function toggleSourcePill(el) {
+            el.classList.toggle('disabled-pill');
+        }
+
+        function toggleFlagPill(el) {
+            el.classList.toggle('disabled-pill');
+        }
+
+        function toggleMilitaryOnly() {
+            adsbState.explicitCenter = false;
+            adsbState.milOnly = !adsbState.milOnly;
+            updateIframe();
+        }
+
+        function toggleIsolateSelected() {
+            adsbState.explicitCenter = false;
+            adsbState.isolate = !adsbState.isolate;
+            updateIframe();
+        }
+
+        // --- QUICK SHORTCUT ACTIONS ---
+        function quickTrackN890GF() {
+            adsbState.explicitCenter = false;
+            if (adsbState.reg === 'N890GF') {
+                adsbState.reg = '';
+                if (document.getElementById('filterReg')) document.getElementById('filterReg').value = '';
+            } else {
+                adsbState.reg = 'N890GF';
+                if (document.getElementById('filterReg')) document.getElementById('filterReg').value = 'N890GF';
+            }
+            updateIframe();
+        }
+
+        function quickSquawk7700() {
+            adsbState.explicitCenter = false;
+            if (adsbState.squawk === '7700') {
+                adsbState.squawk = '';
+                if (document.getElementById('filterSquawk')) document.getElementById('filterSquawk').value = '';
+            } else {
+                adsbState.squawk = '7700';
+                if (document.getElementById('filterSquawk')) document.getElementById('filterSquawk').value = '7700';
+            }
+            updateIframe();
+        }
+
+        function quickCenterE16() {
+            adsbState.airport = 'E16';
+            adsbState.explicitCenter = true;
+            adsbState.lat = 37.0817;
+            adsbState.lon = -121.5972;
+            adsbState.zoom = 11;
+            updateIframe();
+        }
+
+        function refreshAdsbMap() {
+            const iframe = document.getElementById('adsbIframe');
+            if (iframe) {
+                iframe.src = buildAdsbUrl();
+            }
+        }
+
+        // --- EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('unifiedSearchInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    if (this.value.trim().length > 0) {
+                        clearBtn.style.display = 'block';
+                    } else {
+                        clearBtn.style.display = 'none';
+                    }
+                });
+
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        adsbState.searchQuery = this.value.trim();
+                        updateIframe();
+                    }
+                });
+            }
+
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function() {
+                    searchInput.value = '';
+                    adsbState.searchQuery = '';
+                    clearBtn.style.display = 'none';
+                    updateIframe();
+                });
+            }
+
+            // Enter key listeners on filter inputs
+            const filterInputs = [
+                { id: 'filterMinAlt', action: 'altitude' },
+                { id: 'filterMaxAlt', action: 'altitude' },
+                { id: 'filterReg', action: 'reg' },
+                { id: 'filterType', action: 'type' },
+                { id: 'filterCallsign', action: 'callsign' },
+                { id: 'filterSquawk', action: 'squawk' },
+                { id: 'filterTypeDesc', action: 'typedesc' },
+                { id: 'filterIcao', action: 'icao' },
+                { id: 'filterCountry', action: 'country' },
+                { id: 'filterCategory', action: 'category' }
+            ];
+
+            filterInputs.forEach(item => {
+                const el = document.getElementById(item.id);
+                if (el) {
+                    el.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            applySingleFilter(item.action);
+                        }
+                    });
                 }
             });
-            typeInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    updateTypeMap();
-                }
-            });
+
+            // Initial render
+            updateUIIndicators();
         });
     </script>
 </body>

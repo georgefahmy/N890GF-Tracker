@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790629718.3788726,
+  "_cached_at": 1790714687.300349,
   "icao": "KCCR",
   "data": {
     "icao": "KCCR",
@@ -103,7 +103,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_FS": {
-            "price": 8.1,
+            "price": 8.2,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -115,7 +115,7 @@
             "label": "94UL Unleaded (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.17,
+            "price": 7.99,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -130,7 +130,7 @@
         "quote_date": null,
         "fuels": {
           "JET_A": {
-            "price": 6.67,
+            "price": 6.5,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -138,7 +138,7 @@
         }
       }
     ],
-    "best_price": 8.1,
+    "best_price": 8.2,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

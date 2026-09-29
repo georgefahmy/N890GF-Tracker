@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790629718.370319,
+  "_cached_at": 1790714687.2984629,
   "icao": "KHWD",
   "data": {
     "icao": "KHWD",
@@ -95,11 +95,11 @@
         "name": "APP Jet Center Hayward",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 22-Sep",
-        "quote_date": "22-Sep",
+        "notes": "Titan \u2022 Quote: 29-Sep",
+        "quote_date": "29-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 8.39,
+            "price": 8.59,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
