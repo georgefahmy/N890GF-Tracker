@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790536125.241013,
+  "_cached_at": 1790629718.372638,
   "icao": "KHAF",
   "data": {
     "icao": "KHAF",
@@ -70,10 +70,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-22",
-    "source": "AirNav Live Feed",
+    "last_updated": "2026-09-28",
+    "source": "AirNav Local Fuel",
     "raw_ident": "KHAF",
     "airport_ref": "20023",
-    "fetched_at": "2026-08-29T14:58:44Z"
+    "fetched_at": "2026-09-28T21:08:36Z"
   }
 }

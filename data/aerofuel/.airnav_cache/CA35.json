@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574525.3264043,
+  "_cached_at": 1790629716.0790596,
   "icao": "CA35",
   "data": {
     "icao": "CA35",
@@ -7,8 +7,8 @@
     "name": "San Rafael Airport",
     "city": "San Rafael",
     "state": "CA",
-    "distance_nm": 16.0,
-    "bearing": "SW",
+    "distance_nm": 33.0,
+    "bearing": "NNW",
     "fbos": [
       {
         "name": "San Rafael Airport Management Office",
@@ -38,8 +38,8 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-27",
-    "fetched_at": "2026-09-28T05:48:45Z",
+    "last_updated": "2026-09-28",
+    "fetched_at": "2026-09-28T21:08:36Z",
     "source": "AirNav Local Fuel"
   }
 }
