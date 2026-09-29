@@ -1,47 +1,37 @@
 {
-  "_cached_at": 1790660768.6886656,
-  "icao": "KGPC",
+  "_cached_at": 1790660768.668467,
+  "icao": "KCFJ",
   "data": {
-    "icao": "KGPC",
-    "faa": "GPC",
+    "icao": "KCFJ",
+    "faa": "CFJ",
     "iata": "",
-    "name": "Putnam County Airport",
-    "city": "Greencastle",
+    "name": "Crawfordsville Regional Airport",
+    "city": "Crawfordsville",
     "state": "IN",
     "country": "US",
-    "lat": 39.6326,
-    "lon": -86.8138,
-    "elevation_ft": 842,
+    "lat": 39.9756,
+    "lon": -86.9199,
+    "elevation_ft": 799,
     "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
-    "weather_freq": 118.125,
-    "weather_type": "AWOS",
-    "weather_desc": "AWOS 3",
-    "approach_freq": 121.1,
-    "approach_desc": "INDIANAPOLIS APP",
-    "departure_freq": 31.78,
-    "departure_desc": "INDIANAPOLIS DEP",
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.05,
+    "approach_desc": "INDIANAPOLIS APP/DEP",
+    "departure_freq": 119.05,
+    "departure_desc": "INDIANAPOLIS APP/DEP",
     "ground_freq": null,
     "ground_desc": null,
     "clearance_freq": null,
     "clearance_desc": null,
     "frequencies": [
       {
-        "type": "APP",
-        "description": "INDIANAPOLIS APP",
-        "frequency_mhz": 121.1
-      },
-      {
-        "type": "AWOS",
-        "description": "AWOS 3",
-        "frequency_mhz": 118.125
-      },
-      {
-        "type": "DEP",
-        "description": "INDIANAPOLIS DEP",
-        "frequency_mhz": 31.78
+        "type": "A/D",
+        "description": "INDIANAPOLIS APP/DEP",
+        "frequency_mhz": 119.05
       },
       {
         "type": "UNIC",
@@ -51,23 +41,23 @@
     ],
     "runways": [
       {
-        "id": "18/36",
-        "length": 5002,
-        "width": 100,
+        "id": "04/22",
+        "length": 5506,
+        "width": 75,
         "surface": "Asphalt",
         "lighted": true
       }
     ],
     "fbos": [
       {
-        "name": "PDM Aviation LLC",
-        "brand": "AVFUEL",
+        "name": "Crawfordsville Regional Airport",
+        "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 03-Sep",
-        "quote_date": "03-Sep",
+        "notes": "Phillips 66 \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.25,
+            "price": 6.55,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -81,7 +71,7 @@
         }
       }
     ],
-    "best_price": 6.25,
+    "best_price": 6.55,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -89,8 +79,8 @@
     ],
     "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
-    "raw_ident": "K4I7",
-    "airport_ref": "18823",
+    "raw_ident": "KCFJ",
+    "airport_ref": "19484",
     "fetched_at": "2026-09-29T05:46:06Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073607.586572,
+  "_cached_at": 1790660768.6697235,
   "icao": "50I",
   "data": {
     "icao": "50I",
@@ -51,13 +51,13 @@
     "fbos": [
       {
         "name": "Kentland Municipal Airport",
-        "brand": "Titan",
-        "phone": "219-863-7620",
-        "notes": "Titan \u2022 Quote: 08-Sep-2026",
-        "quote_date": "08-Sep-2026",
+        "brand": "independent",
+        "phone": "N/A",
+        "notes": "independent \u2022 Quote: 22-Sep",
+        "quote_date": "22-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.05,
+            "price": 6.4,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -65,15 +65,15 @@
         }
       }
     ],
-    "best_price": 6.05,
+    "best_price": 6.4,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-10",
-    "source": "AirNav Live Feed",
+    "last_updated": "2026-09-28",
+    "source": "AirNav Local Fuel",
     "raw_ident": "K50I",
     "airport_ref": "18866",
-    "fetched_at": "2026-09-10T20:53:26Z"
+    "fetched_at": "2026-09-29T05:46:06Z"
   }
 }

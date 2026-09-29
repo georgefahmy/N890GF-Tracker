@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073607.588393,
+  "_cached_at": 1790660768.664307,
   "icao": "1I9",
   "data": {
     "icao": "1I9",
@@ -59,10 +59,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "1I9",
     "airport_ref": "8323",
-    "fetched_at": "2026-09-10T20:53:27Z"
+    "fetched_at": "2026-09-29T05:46:06Z"
   }
 }

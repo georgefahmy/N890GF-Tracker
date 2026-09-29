@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073607.587724,
+  "_cached_at": 1790660768.6672451,
   "icao": "KMCX",
   "data": {
     "icao": "KMCX",
@@ -53,17 +53,17 @@
         "name": "MCX Aero LLC",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 20-Aug",
-        "quote_date": "20-Aug",
+        "notes": "Quote: 17-Sep",
+        "quote_date": "17-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 5.9,
+            "price": 6.15,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 5.8,
+            "price": 6.1,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -71,16 +71,16 @@
         }
       }
     ],
-    "best_price": 5.9,
+    "best_price": 6.15,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMCX",
     "airport_ref": "20483",
-    "fetched_at": "2026-09-10T20:53:27Z"
+    "fetched_at": "2026-09-29T05:46:06Z"
   }
 }

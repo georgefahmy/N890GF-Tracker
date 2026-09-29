@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788130.287067,
+  "_cached_at": 1790660768.6815083,
   "icao": "KTYQ",
   "data": {
     "icao": "KTYQ",
@@ -13,8 +13,20 @@
     "lon": -86.2514,
     "elevation_ft": 922,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.05,
     "unicom_freq": 123.05,
+    "weather_freq": 120.725,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 124.65,
+    "approach_desc": "ACTIVE RWAY 05-23 AT IND",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 118.175,
+    "clearance_desc": "INDY CLEARANCE DELIVERY",
     "frequencies": [
       {
         "type": "A/D",
@@ -56,8 +68,8 @@
         "name": "Jet Access - Zionsville (formerly First Wing Jet Center)",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 14-Aug",
-        "quote_date": "14-Aug",
+        "notes": "AVFUEL \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.99,
@@ -86,8 +98,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:48:50Z"
+    "raw_ident": "KTYQ",
+    "airport_ref": "21240",
+    "fetched_at": "2026-09-29T05:46:06Z"
   }
 }

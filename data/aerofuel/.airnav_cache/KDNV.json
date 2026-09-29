@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073607.588116,
+  "_cached_at": 1790660768.6745267,
   "icao": "KDNV",
   "data": {
     "icao": "KDNV",
@@ -75,8 +75,8 @@
         "name": "Midwest Aero",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.39,
@@ -105,10 +105,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KDNV",
     "airport_ref": "19647",
-    "fetched_at": "2026-09-10T20:53:27Z"
+    "fetched_at": "2026-09-29T05:46:06Z"
   }
 }

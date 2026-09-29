@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073607.5909572,
+  "_cached_at": 1790660768.673505,
   "icao": "KGGP",
   "data": {
     "icao": "KGGP",
@@ -82,10 +82,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KGGP",
     "airport_ref": "19948",
-    "fetched_at": "2026-09-10T20:53:27Z"
+    "fetched_at": "2026-09-29T05:46:06Z"
   }
 }

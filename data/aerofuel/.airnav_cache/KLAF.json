@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1789073607.587905,
+  "_cached_at": 1790660768.6635041,
   "icao": "KLAF",
   "data": {
     "icao": "KLAF",
@@ -89,35 +89,42 @@
       {
         "name": "Purdue Aviation",
         "brand": "Phillips 66",
-        "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 02-Sep",
-        "quote_date": "02-Sep",
+        "phone": "765-743-9692",
+        "notes": "Phillips 66 \u2022 Quote: 24-Sep-2026",
+        "quote_date": "24-Sep-2026",
         "fuels": {
           "100LL_FS": {
-            "price": 7.2,
+            "price": 7.89,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 6.74,
+            "price": 7.48,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "SAF": {
+            "price": 1.0,
+            "type": "SAF",
+            "service": "Self-Serve",
+            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 7.2,
+    "best_price": 7.89,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
-      "Jet-A"
+      "Jet-A",
+      "SAF"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-09-28",
     "source": "AirNav Local Fuel",
     "raw_ident": "KLAF",
     "airport_ref": "3627",
-    "fetched_at": "2026-09-10T20:53:27Z"
+    "fetched_at": "2026-09-29T05:46:06Z"
   }
 }
