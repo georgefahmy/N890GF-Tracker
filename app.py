@@ -1295,8 +1295,8 @@ def index():
         avg_gph=avg_gph,
         hours_per_month=hours_per_month,
         monthly_fixed_costs=fixed_costs,
-        hourly_operating_cost=total_hourly_cost,
-        hourly_fuel_cost=per_hour_cost,
+        hourly_operating_cost=per_hour_cost,
+        hourly_fuel_cost=hourly_fuel_cost,
         total_distance_traveled=calc_total_distance(stats_data),
         total_gallons_used=calc_total_gallons(stats_data),
         available_csv_files=available_csv_files,
@@ -1930,7 +1930,9 @@ def get_adsb_base_url():
                             "ADSB_FEED_KEY",
                         ):
                             v_clean = v.strip().strip('"').strip("'")
-                            if v_clean.startswith("http://") or v_clean.startswith("https://"):
+                            if v_clean.startswith("http://") or v_clean.startswith(
+                                "https://"
+                            ):
                                 return v_clean
                             return f"https://globe.adsbexchange.com/?feed={v_clean}"
         except Exception:
