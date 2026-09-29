@@ -955,6 +955,8 @@ class TestAirspeedCalibrationDB:
             assert "ratioMetricSelect" in html
             assert "ratioPowerBandSelect" in html
             assert "ratioNormTasToggle" in html
+            assert 'href="/"' in html
+            assert "Home" in html
 
             res_js = auth_client.get("/static/multi_stats.js")
             assert res_js.status_code == 200
