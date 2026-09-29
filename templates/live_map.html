@@ -64,17 +64,17 @@
 
                 // If a tail number is entered, append it. Otherwise load the global map.
                 if (nNumber) {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200&reg=" + encodeURIComponent(nNumber);
+                    iframe.src = "https://globe.airplanes.live/?sidebarWidth=200&reg=" + encodeURIComponent(nNumber);
                 } else {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200";
+                    iframe.src = "https://globe.airplanes.live/?sidebarWidth=200";
                 }
             }
             function updateTypeMap() {
                 let type = typeInput.value.trim().toLowerCase();
                 if (type) {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200&filtertype=" + encodeURIComponent(type);
+                    iframe.src = "https://globe.airplanes.live/?sidebarWidth=200&filtertype=" + encodeURIComponent(type);
                 } else {
-                    iframe.src = "https://globe.adsbexchange.com/?sidebarWidth=200";
+                    iframe.src = "https://globe.airplanes.live/?sidebarWidth=200";
                 }
             }
 
