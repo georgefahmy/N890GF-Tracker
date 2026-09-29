@@ -514,9 +514,12 @@
                 <button class="quick-chip" id="chipE16" onclick="quickCenterE16()" title="Center on San Martin Airport (E16)">
                     <i class="bi bi-geo-alt-fill text-info"></i> E16
                 </button>
-                <button class="btn btn-sm btn-link text-white text-decoration-none py-0 px-2" onclick="refreshAdsbMap()" title="Reload map">
+                <button class="btn btn-sm btn-link text-white text-decoration-none py-0 px-1" onclick="refreshAdsbMap()" title="Reload map">
                     <i class="bi bi-arrow-clockwise"></i>
                 </button>
+                <a id="openExternalBtn" href="https://globe.adsbexchange.com/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info py-0 px-2 fw-semibold d-inline-flex align-items-center gap-1" style="font-size: 0.8rem; border-radius: 50rem;" title="Open directly in new tab (full Premium / Satellite layer support)">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                </a>
             </div>
         </div>
     </header>
@@ -532,7 +535,7 @@
             </button>
         </div>
 
-        <iframe id="adsbIframe" src="https://globe.adsbexchange.com/?sidebarWidth=200&keepPosition=1&enableLabels=1&trackLabels=1&SiteLat=37.0817&SiteLon=-121.5972&lat=37.0817&lon=-121.5972&zoom=10" width="100%" height="100%" style="border:none;" allowfullscreen></iframe>
+        <iframe id="adsbIframe" src="" width="100%" height="100%" style="border:none;" allow="geolocation; fullscreen; clipboard-read; clipboard-write; storage-access;" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <!-- Bootstrap 5.3 JS Bundle -->
@@ -565,11 +568,17 @@
             zoom: 10
         };
 
-        const BASE_URL = "https://globe.adsbexchange.com/";
+        const BASE_URL = {{ adsb_base_url|default('https://globe.adsbexchange.com/')|tojson }};
 
         // Generate full query URL based on active search and filter state
         function buildAdsbUrl() {
-            const params = new URLSearchParams();
+            let urlObj;
+            try {
+                urlObj = new URL(BASE_URL, window.location.origin);
+            } catch(e) {
+                urlObj = new URL("https://globe.adsbexchange.com/");
+            }
+            const params = urlObj.searchParams;
             params.set('sidebarWidth', '200');
             params.set('keepPosition', '1');
 
@@ -663,7 +672,7 @@
                 params.set('airport', adsbState.airport);
             }
 
-            return `${BASE_URL}?${params.toString()}`;
+            return urlObj.toString();
         }
 
         function updateIframe() {
@@ -671,6 +680,10 @@
             const targetUrl = buildAdsbUrl();
             if (iframe && iframe.src !== targetUrl) {
                 iframe.src = targetUrl;
+            }
+            const extBtn = document.getElementById('openExternalBtn');
+            if (extBtn) {
+                extBtn.href = targetUrl;
             }
             renderActiveFilterChips();
             updateUIIndicators();
@@ -1034,7 +1047,7 @@
             });
 
             // Initial render
-            updateUIIndicators();
+            updateIframe();
         });
     </script>
 </body>

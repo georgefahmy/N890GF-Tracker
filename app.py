@@ -1870,10 +1870,80 @@ def calc_convection_alt():
     )
 
 
+def get_adsb_base_url():
+    """Retrieve configured ADSB/feeder URL or feed UID from environment, instance config, or .env.
+    Falls back to the public ADSBexchange globe."""
+    env_val = (
+        os.getenv("ADSB_FEEDER_URL")
+        or os.getenv("ADSB_BASE_URL")
+        or os.getenv("ADSB_FEED_UID")
+        or os.getenv("ADSB_FEED")
+        or os.getenv("ADSB_FEED_KEY")
+    )
+    if env_val:
+        val = env_val.strip()
+        if val.startswith("http://") or val.startswith("https://"):
+            return val
+        return f"https://globe.adsbexchange.com/?feed={val}"
+
+    config_path = os.path.join(INSTANCE_DIR, "adsb_config.json")
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r") as f:
+                cfg = json.load(f)
+                val = (
+                    cfg.get("adsb_url")
+                    or cfg.get("feeder_url")
+                    or cfg.get("url")
+                    or cfg.get("feed_url")
+                    or cfg.get("feed_uid")
+                    or cfg.get("feed")
+                    or cfg.get("uid")
+                    or cfg.get("uuid")
+                    or cfg.get("feed_uuid")
+                    or cfg.get("key")
+                    or cfg.get("token")
+                    or cfg.get("ADSB_FEEDER_URL")
+                )
+                if val:
+                    val_str = str(val).strip()
+                    if val_str.startswith("http://") or val_str.startswith("https://"):
+                        return val_str
+                    return f"https://globe.adsbexchange.com/?feed={val_str}"
+        except Exception as e:
+            app.logger.warning(f"Error reading instance/adsb_config.json: {e}")
+
+    env_path = os.path.join(BASE_DIR, ".env")
+    if os.path.exists(env_path):
+        try:
+            with open(env_path, "r") as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        k_clean = k.strip()
+                        if k_clean in (
+                            "ADSB_FEEDER_URL",
+                            "ADSB_BASE_URL",
+                            "ADSB_FEED_UID",
+                            "ADSB_FEED",
+                            "ADSB_FEED_KEY",
+                        ):
+                            v_clean = v.strip().strip('"').strip("'")
+                            if v_clean.startswith("http://") or v_clean.startswith("https://"):
+                                return v_clean
+                            return f"https://globe.adsbexchange.com/?feed={v_clean}"
+        except Exception:
+            pass
+
+    return "https://globe.adsbexchange.com/"
+
+
 @app.route("/live_map")
 # @login_required # Uncomment if you want to restrict this to logged-in users
 def live_map():
-    return render_template("live_map.html")
+    adsb_url = get_adsb_base_url()
+    return render_template("live_map.html", adsb_base_url=adsb_url)
 
 
 @app.route("/analyzer")

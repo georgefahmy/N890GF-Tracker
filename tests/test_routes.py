@@ -723,6 +723,17 @@ class TestPublicPages:
             assert "filterSquawk" in html
             assert "btnToggleMil" in html
             assert "adsbIframe" in html
+            assert "openExternalBtn" in html
+            assert "https://globe.adsbexchange.com/" in html
+
+    def test_live_map_custom_feeder_url(self, app, client, monkeypatch):
+        """Verify custom feeder URL from environment is securely passed to live_map."""
+        with app.app_context():
+            monkeypatch.setenv("ADSB_FEEDER_URL", "https://globe.adsbexchange.com/?feed=secret_token_123")
+            response = client.get("/live_map")
+            assert response.status_code == 200
+            html = response.data.decode("utf-8")
+            assert "https://globe.adsbexchange.com/?feed=secret_token_123" in html
 
     def test_gami_page(self, app, client):
         with app.app_context():

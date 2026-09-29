@@ -8,3 +8,5 @@ htmlcov/
 tests/__pycache__/
 .agents
 LLC/
+.env
+*.env
