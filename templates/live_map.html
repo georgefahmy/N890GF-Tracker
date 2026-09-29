@@ -505,6 +505,9 @@
                 <button class="quick-chip" id="chipN890GF" onclick="quickTrackN890GF()" title="Quick lock onto N890GF">
                     <i class="bi bi-star-fill text-warning"></i> N890GF
                 </button>
+                <button class="quick-chip" id="chipRVs" onclick="quickFilterRVs()" title="Filter by Van's Aircraft RVs (^RV)">
+                    <i class="bi bi-airplane-fill text-success"></i> RVs
+                </button>
                 <button class="quick-chip" id="chip7700" onclick="quickSquawk7700()" title="Search active 7700 emergency squawks">
                     <i class="bi bi-exclamation-triangle-fill text-danger"></i> 7700
                 </button>
@@ -782,6 +785,12 @@
                 else chipN.classList.remove('active-chip');
             }
 
+            const chipRV = document.getElementById('chipRVs');
+            if (chipRV) {
+                if (adsbState.type === '^RV') chipRV.classList.add('active-chip');
+                else chipRV.classList.remove('active-chip');
+            }
+
             const chip77 = document.getElementById('chip7700');
             if (chip77) {
                 if (adsbState.squawk === '7700') chip77.classList.add('active-chip');
@@ -922,6 +931,18 @@
             } else {
                 adsbState.reg = 'N890GF';
                 if (document.getElementById('filterReg')) document.getElementById('filterReg').value = 'N890GF';
+            }
+            updateIframe();
+        }
+
+        function quickFilterRVs() {
+            adsbState.explicitCenter = false;
+            if (adsbState.type === '^RV') {
+                adsbState.type = '';
+                if (document.getElementById('filterType')) document.getElementById('filterType').value = '';
+            } else {
+                adsbState.type = '^RV';
+                if (document.getElementById('filterType')) document.getElementById('filterType').value = '^RV';
             }
             updateIframe();
         }

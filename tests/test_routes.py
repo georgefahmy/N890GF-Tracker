@@ -713,6 +713,8 @@ class TestPublicPages:
             assert "unifiedSearchInput" in html
             assert "filtersDropdownBtn" in html
             assert "chipN890GF" in html
+            assert "chipRVs" in html
+            assert "quickFilterRVs" in html
             assert "chip7700" in html
             assert "chipE16" in html
             assert "filterReg" in html
