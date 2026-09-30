@@ -343,7 +343,7 @@ function renderTableRows(flights) {
                 return `
                     <div class="d-flex align-items-center gap-1" style="font-size: 0.85rem;">
                         <span><span class="text-muted" title="Uncorrected TAS">${uncorr}</span> &rarr; <span class="text-body-emphasis fw-bold" title="Corrected TAS">${corr} kts</span> ${err ? `<span class="${errColor} small">(${err})</span>` : ''}</span>
-                        <button class="btn btn-link btn-sm p-0 text-danger ms-1" onclick="deleteAirspeedCalibration(${c.id})" title="Delete Calibration from Database">
+                        <button class="btn btn-link btn-sm p-0 text-danger ms-1" onclick="event.stopPropagation(); deleteAirspeedCalibration(${c.id})" title="Delete Calibration from Database">
                             <i class="bi bi-trash small"></i>
                         </button>
                     </div>
@@ -352,28 +352,203 @@ function renderTableRows(flights) {
         }
 
         return `
-            <tr>
-                <td><strong>${f.date}</strong></td>
-                <td>${f.duration_hours || 0} hrs (${f.duration_min || 0}m)<br><span class="small text-muted">Airborne: ${f.airborne_hours || 0} hrs</span></td>
-                <td>${f.distance_traveled_mi || 0} mi</td>
-                <td>${f.total_fuel || 0} gal</td>
-                <td>${f.avg_fuel_flow || 0} GPH</td>
-                <td><span class="text-success fw-bold">${f.avg_mpg || 'N/A'}</span></td>
-                <td>${(f.avg_speed_mph !== undefined && f.avg_speed_mph !== null && f.avg_speed_mph !== 'N/A') ? `${f.avg_speed_mph} mph` : 'N/A'}</td>
-                <td><span class="${chtColor}">${f.max_cht || '--'} °F</span> / ${f.max_rpm || '--'}</td>
-                <td>${shockBadge}</td>
-                <td>${f.cht_spread !== undefined ? f.cht_spread + ' °F' : 'N/A'}</td>
-                <td><span class="badge bg-info text-dark">${f.landing_count || 1}</span></td>
-                <td>${f.wind_speed_kts !== 'N/A' && f.wind_speed_kts !== undefined ? `${f.wind_speed_kts} kts @ ${f.wind_dir_deg}°` : 'N/A'}</td>
-                <td>${calCell}</td>
+            <tr class="flight-row" onclick="openFlightDetailsModal('${f.filename}')" title="Click to view full flight details">
                 <td>
-                    <button class="btn btn-sm btn-outline-primary" onclick="openFlightInAnalyzer('${f.filename}')">
-                        <i class="bi bi-play-circle"></i> Analyze
+                    <strong class="text-primary">${f.date}</strong>
+                    <div class="d-md-none text-muted" style="font-size: 0.68rem;"><i class="bi bi-info-circle"></i> Details</div>
+                </td>
+                <td>
+                    <span class="fw-semibold">${f.duration_hours || 0}h</span>
+                    <span class="d-none d-md-inline"> (${f.duration_min || 0}m)</span>
+                    <div class="small text-muted" style="font-size: 0.72rem;">Air: ${f.airborne_hours || 0}h</div>
+                </td>
+                <td class="d-none d-md-table-cell">${f.distance_traveled_mi || 0} mi</td>
+                <td>
+                    <span class="fw-semibold">${f.total_fuel || 0} gal</span>
+                    <div class="small text-muted d-md-none" style="font-size: 0.72rem;">${f.avg_fuel_flow || 0} GPH</div>
+                </td>
+                <td class="d-none d-md-table-cell">${f.avg_fuel_flow || 0} GPH</td>
+                <td class="d-none d-md-table-cell"><span class="text-success fw-bold">${f.avg_mpg || 'N/A'}</span></td>
+                <td class="d-none d-md-table-cell">${(f.avg_speed_mph !== undefined && f.avg_speed_mph !== null && f.avg_speed_mph !== 'N/A') ? `${f.avg_speed_mph} mph` : 'N/A'}</td>
+                <td class="d-none d-md-table-cell"><span class="${chtColor}">${f.max_cht || '--'} °F</span> / ${f.max_rpm || '--'}</td>
+                <td class="d-none d-md-table-cell">${shockBadge}</td>
+                <td class="d-none d-md-table-cell">${f.cht_spread !== undefined ? f.cht_spread + ' °F' : 'N/A'}</td>
+                <td class="d-none d-md-table-cell"><span class="badge bg-info text-dark">${f.landing_count || 1}</span></td>
+                <td class="d-none d-md-table-cell">${f.wind_speed_kts !== 'N/A' && f.wind_speed_kts !== undefined ? `${f.wind_speed_kts} kts @ ${f.wind_dir_deg}°` : 'N/A'}</td>
+                <td class="d-none d-md-table-cell">${calCell}</td>
+                <td class="text-end text-md-start">
+                    <button class="btn btn-sm btn-outline-primary py-1 px-2" onclick="event.stopPropagation(); openFlightInAnalyzer('${f.filename}')" title="Analyze Flight">
+                        <i class="bi bi-play-circle"></i> <span class="d-none d-sm-inline">Analyze</span>
                     </button>
                 </td>
             </tr>
         `;
     }).join("");
+}
+
+function openFlightDetailsModal(filename) {
+    const flight = globalFlights.find(f => f.filename === filename);
+    if (!flight) return;
+
+    const modalEl = document.getElementById("flightDetailsModal");
+    if (!modalEl) return;
+
+    const labelEl = document.getElementById("flightDetailsModalLabel");
+    if (labelEl) labelEl.innerText = `Flight Details: ${flight.date}`;
+
+    const fnEl = document.getElementById("flightDetailsFilename");
+    if (fnEl) fnEl.innerText = flight.filename;
+
+    const analyzeBtn = document.getElementById("flightDetailsAnalyzeBtn");
+    if (analyzeBtn) {
+        analyzeBtn.onclick = () => {
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) modal.hide();
+            openFlightInAnalyzer(flight.filename);
+        };
+    }
+
+    const shockBadge = flight.max_shock_cooling > 50
+        ? `<span class="badge bg-danger">${flight.max_shock_cooling} °F/min (High)</span>`
+        : `<span class="badge bg-success">${flight.max_shock_cooling || 0} °F/min</span>`;
+
+    const chtBadge = flight.max_cht > 430
+        ? `<span class="badge bg-danger">${flight.max_cht} °F</span>`
+        : (flight.max_cht >= 410 ? `<span class="badge bg-warning text-dark">${flight.max_cht} °F</span>` : `<span class="badge bg-success">${flight.max_cht || '--'} °F</span>`);
+
+    let calContent = `<div class="text-muted small">No airspeed calibration maneuvers recorded on this flight.</div>`;
+    if (flight.saved_calibrations && flight.saved_calibrations.length > 0) {
+        calContent = flight.saved_calibrations.map((c, idx) => {
+            const res = c.results || {};
+            const uncorr = res.uncorrected_average_true_airspeed_kts !== undefined ? res.uncorrected_average_true_airspeed_kts : '--';
+            const corr = res.corrected_average_true_airspeed_kts !== undefined ? res.corrected_average_true_airspeed_kts : '--';
+            const err = res.airspeed_error_kts !== undefined ? (res.airspeed_error_kts >= 0 ? '+' : '') + res.airspeed_error_kts : '';
+            const errColor = (res.airspeed_error_kts !== undefined && res.airspeed_error_kts >= 0) ? 'text-success' : 'text-danger';
+            return `
+                <div class="p-2 mb-2 rounded bg-light border">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <strong>Segment ${idx + 1}: ${c.segment_name || 'Calibration'}</strong>
+                        <span class="badge bg-primary">DA: ${res.density_altitude_ft || '--'} ft</span>
+                    </div>
+                    <div class="small mt-1">
+                        <span>Uncorr TAS: <strong>${uncorr} kts</strong> &rarr; Corr TAS: <strong class="text-primary">${corr} kts</strong></span>
+                        ${err ? `<span class="${errColor} ms-1 fw-bold">(${err} kts)</span>` : ''}
+                    </div>
+                    <div class="small text-muted mt-1">
+                        Bias: ${res.heading_bias_deg !== undefined ? res.heading_bias_deg + '°' : '--'} |
+                        Wind: ${res.wind_speed_kts !== undefined ? res.wind_speed_kts + ' kts @ ' + res.wind_direction_deg + '°' : '--'}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    const bodyEl = document.getElementById("flightDetailsBody");
+    if (bodyEl) {
+        bodyEl.innerHTML = `
+            <!-- Top Summary Badges -->
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1"><i class="bi bi-clock"></i> Engine: ${flight.duration_hours || 0} hrs</span>
+                <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle px-2 py-1"><i class="bi bi-geo-alt"></i> Distance: ${flight.distance_traveled_mi || 0} mi</span>
+                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2 py-1"><i class="bi bi-fuel-pump"></i> Fuel: ${flight.total_fuel || 0} gal</span>
+                <span class="badge border px-2 py-1" style="background: rgba(111, 66, 193, 0.15); color: #6f42c1; border-color: rgba(111, 66, 193, 0.3) !important;"><i class="bi bi-pin-map"></i> Landings: ${flight.landing_count || 1}</span>
+            </div>
+
+            <!-- 4 Section Cards Grid -->
+            <div class="row g-2 mb-3">
+                <!-- Duration & Operations -->
+                <div class="col-12 col-md-6">
+                    <div class="card h-100 border p-2 shadow-none bg-body-tertiary">
+                        <div class="fw-bold small text-primary mb-2"><i class="bi bi-stopwatch"></i> Duration & Times</div>
+                        <div class="d-flex justify-content-between small py-1 border-bottom">
+                            <span class="text-muted">Total Engine Time:</span>
+                            <span class="fw-bold">${flight.duration_hours || 0} hrs (${flight.duration_min || 0}m)</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1 border-bottom">
+                            <span class="text-muted">Airborne Flight Time:</span>
+                            <span class="fw-bold">${flight.airborne_hours || 0} hrs</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1">
+                            <span class="text-muted">Total Landings:</span>
+                            <span class="fw-bold">${flight.landing_count || 1}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fuel & Economy -->
+                <div class="col-12 col-md-6">
+                    <div class="card h-100 border p-2 shadow-none bg-body-tertiary">
+                        <div class="fw-bold small text-warning-emphasis mb-2"><i class="bi bi-fuel-pump"></i> Fuel & Efficiency</div>
+                        <div class="d-flex justify-content-between small py-1 border-bottom">
+                            <span class="text-muted">Total Fuel Burned:</span>
+                            <span class="fw-bold">${flight.total_fuel || 0} gal</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1 border-bottom">
+                            <span class="text-muted">Avg Fuel Flow (GPH):</span>
+                            <span class="fw-bold">${flight.avg_fuel_flow || 0} GPH</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1">
+                            <span class="text-muted">Avg Miles Per Gal:</span>
+                            <span class="fw-bold text-success">${flight.avg_mpg || 'N/A'} MPG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance & Navigation -->
+                <div class="col-12 col-md-6">
+                    <div class="card h-100 border p-2 shadow-none bg-body-tertiary">
+                        <div class="fw-bold small text-info mb-2"><i class="bi bi-speedometer2"></i> Speed & Navigation</div>
+                        <div class="d-flex justify-content-between small py-1 border-bottom">
+                            <span class="text-muted">Distance Traveled:</span>
+                            <span class="fw-bold">${flight.distance_traveled_mi || 0} mi</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1 border-bottom">
+                            <span class="text-muted">Avg Cruise Speed:</span>
+                            <span class="fw-bold">${(flight.avg_speed_mph !== undefined && flight.avg_speed_mph !== null && flight.avg_speed_mph !== 'N/A') ? flight.avg_speed_mph + ' mph' : 'N/A'}</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1">
+                            <span class="text-muted">Wind Aloft:</span>
+                            <span class="fw-bold">${flight.wind_speed_kts !== 'N/A' && flight.wind_speed_kts !== undefined ? `${flight.wind_speed_kts} kts @ ${flight.wind_dir_deg}°` : 'N/A'}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engine Health & Cooling -->
+                <div class="col-12 col-md-6">
+                    <div class="card h-100 border p-2 shadow-none bg-body-tertiary">
+                        <div class="fw-bold small text-danger mb-2"><i class="bi bi-fire"></i> Thermal Health & RPM</div>
+                        <div class="d-flex justify-content-between align-items-center small py-1 border-bottom">
+                            <span class="text-muted">Max CHT:</span>
+                            <span>${chtBadge}</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1 border-bottom">
+                            <span class="text-muted">Max Engine RPM:</span>
+                            <span class="fw-bold">${flight.max_rpm || '--'} RPM</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center small py-1 border-bottom">
+                            <span class="text-muted">Max Shock Cooling:</span>
+                            <span>${shockBadge}</span>
+                        </div>
+                        <div class="d-flex justify-content-between small py-1">
+                            <span class="text-muted">CHT Spread:</span>
+                            <span class="fw-bold">${flight.cht_spread !== undefined ? flight.cht_spread + ' °F' : 'N/A'}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Airspeed Calibrations Section -->
+            <div class="card border p-2 shadow-none bg-body-tertiary">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="fw-bold small text-primary"><i class="bi bi-compass"></i> Airspeed Calibrations</div>
+                </div>
+                ${calContent}
+            </div>
+        `;
+    }
+
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modal.show();
 }
 
 function openFlightInAnalyzer(filename) {

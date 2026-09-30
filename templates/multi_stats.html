@@ -75,18 +75,29 @@
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             min-height: 78px;
         }
+        .flight-row {
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out;
+        }
+        .flight-row:hover {
+            background-color: rgba(13, 110, 253, 0.08) !important;
+        }
+        [data-bs-theme="dark"] .flight-row:hover,
+        body.dark-mode .flight-row:hover {
+            background-color: rgba(13, 110, 253, 0.22) !important;
+        }
         @media (max-width: 768px) {
             body {
                 padding-top: 60px !important;
             }
             .table-responsive-sticky {
-                max-height: 55vh;
+                max-height: 60vh;
             }
             .table {
-                font-size: 0.78rem;
+                font-size: 0.82rem;
             }
             .table th, .table td {
-                padding: 0.35rem 0.45rem;
+                padding: 0.45rem 0.45rem;
             }
             .stat-card {
                 padding: 0.45rem 0.5rem !important;
@@ -263,20 +274,20 @@
                 <table class="table table-hover align-middle mb-0 text-nowrap">
                     <thead class="table-light table-sticky-header">
                         <tr>
-                            <th role="button" onclick="sortBy('date')">Date & File <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('date')">Date <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('duration_hours')">Duration <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('distance_traveled_mi')">Distance <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('distance_traveled_mi')" class="d-none d-md-table-cell">Distance <i class="bi bi-arrow-down-up small text-muted"></i></th>
                             <th role="button" onclick="sortBy('total_fuel')">Fuel <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('avg_fuel_flow')">Avg Flow <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('avg_mpg')">MPG <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('avg_speed_mph')">Avg Speed <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('max_cht')">Max CHT / RPM <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('max_shock_cooling')">Shock Cooling <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('cht_spread')">CHT Spread <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('landing_count')">Landings <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('wind_speed_kts')">Wind Aloft <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th role="button" onclick="sortBy('has_calibration')">Airspeed Calibration <i class="bi bi-arrow-down-up small text-muted"></i></th>
-                            <th>Action</th>
+                            <th role="button" onclick="sortBy('avg_fuel_flow')" class="d-none d-md-table-cell">Avg Flow <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('avg_mpg')" class="d-none d-md-table-cell">MPG <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('avg_speed_mph')" class="d-none d-md-table-cell">Avg Speed <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('max_cht')" class="d-none d-md-table-cell">Max CHT / RPM <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('max_shock_cooling')" class="d-none d-md-table-cell">Shock Cooling <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('cht_spread')" class="d-none d-md-table-cell">CHT Spread <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('landing_count')" class="d-none d-md-table-cell">Landings <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('wind_speed_kts')" class="d-none d-md-table-cell">Wind Aloft <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th role="button" onclick="sortBy('has_calibration')" class="d-none d-md-table-cell">Airspeed Calibration <i class="bi bi-arrow-down-up small text-muted"></i></th>
+                            <th class="text-end text-md-start">Action</th>
                         </tr>
                     </thead>
                     <tbody id="multiStatsTbody">
@@ -526,6 +537,33 @@
                 </div>
                 <div class="modal-footer bg-light py-2">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLIGHT DETAILS MODAL (Mobile Tap & Detailed Overview) -->
+    <div class="modal fade" id="flightDetailsModal" tabindex="-1" aria-labelledby="flightDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content shadow-lg border-0">
+                <div class="modal-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fs-5">✈️</span>
+                        <div>
+                            <h5 class="modal-title fw-bold mb-0" id="flightDetailsModalLabel">Flight Details</h5>
+                            <small class="text-muted d-block" id="flightDetailsFilename" style="font-size: 0.75rem;"></small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3" id="flightDetailsBody">
+                    <!-- Populated dynamically via JS -->
+                </div>
+                <div class="modal-footer bg-light py-2 d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-sm fw-bold d-flex align-items-center gap-1" id="flightDetailsAnalyzeBtn">
+                        <i class="bi bi-play-circle"></i> Open in Analyzer
+                    </button>
                 </div>
             </div>
         </div>
