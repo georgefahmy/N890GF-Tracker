@@ -36,3 +36,7 @@ def calc_total_air_time(df):
 
 def calc_total_gallons(df):
     return float(df.gallons_used.sum())
+
+
+def calc_total_duration(df):
+    return float(df.total_duration.sum()) if "total_duration" in df.columns else 0.0

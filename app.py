@@ -59,6 +59,7 @@ from src.sw_db_updates import download_dynon_databases_only
 from src.tool_functions import (
     calc_total_air_time,
     calc_total_distance,
+    calc_total_duration,
     calc_total_gallons,
     load_stats_file,
 )
@@ -1205,7 +1206,7 @@ def index():
     stats_data = load_stats_file()
     total_gallons = calc_total_gallons(stats_data)
     total_air_time = calc_total_air_time(stats_data)
-    # print(total_air_time)
+    total_duration = calc_total_duration(stats_data)
     today = datetime.now()
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     latest_flight_date = db.session.query(func.max(FlightLog.date)).scalar()
@@ -1217,11 +1218,15 @@ def index():
         days_span = 30
     total_months = max(days_span / 30.4375, 1.0)
     hours_per_month = total_hobbs / total_months if total_months > 0 else 0.0
-    air_time_hours = total_air_time / 3600.0 if total_air_time > 0 else 0.0
+    total_duration_hours = total_duration / 3600.0 if total_duration > 0 else total_hobbs
     avg_gph = (
-        round(total_gallons / air_time_hours, 2)
-        if air_time_hours > 0
-        else (round(total_gallons / total_hobbs, 2) if total_hobbs > 0 else 0.0)
+        round(total_gallons / total_duration_hours, 2)
+        if total_duration_hours > 0
+        else (
+            round(total_gallons / (total_air_time / 3600.0), 2)
+            if total_air_time > 0
+            else 0.0
+        )
     )
 
     # average fuel cost per hour and maintenance costs per hour of operation included below
