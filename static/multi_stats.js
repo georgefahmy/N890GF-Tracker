@@ -416,9 +416,9 @@ function openFlightDetailsModal(filename) {
         ? `<span class="badge bg-danger">${flight.max_cht} °F</span>`
         : (flight.max_cht >= 410 ? `<span class="badge bg-warning text-dark">${flight.max_cht} °F</span>` : `<span class="badge bg-success">${flight.max_cht || '--'} °F</span>`);
 
-    let calContent = `<div class="text-muted small">No airspeed calibration maneuvers recorded on this flight.</div>`;
+    let calSection = '';
     if (flight.saved_calibrations && flight.saved_calibrations.length > 0) {
-        calContent = flight.saved_calibrations.map((c, idx) => {
+        const calItems = flight.saved_calibrations.map((c, idx) => {
             const res = c.results || {};
             const uncorr = res.uncorrected_average_true_airspeed_kts !== undefined ? res.uncorrected_average_true_airspeed_kts : '--';
             const corr = res.corrected_average_true_airspeed_kts !== undefined ? res.corrected_average_true_airspeed_kts : '--';
@@ -441,6 +441,16 @@ function openFlightDetailsModal(filename) {
                 </div>
             `;
         }).join('');
+
+        calSection = `
+            <!-- Airspeed Calibrations Section -->
+            <div class="card border p-2 shadow-none bg-body-tertiary">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="fw-bold small text-primary"><i class="bi bi-compass"></i> Airspeed Calibrations</div>
+                </div>
+                ${calItems}
+            </div>
+        `;
     }
 
     const bodyEl = document.getElementById("flightDetailsBody");
@@ -455,7 +465,7 @@ function openFlightDetailsModal(filename) {
             </div>
 
             <!-- 4 Section Cards Grid -->
-            <div class="row g-2 mb-3">
+            <div class="row g-2 ${calSection ? 'mb-3' : ''}">
                 <!-- Duration & Operations -->
                 <div class="col-12 col-md-6">
                     <div class="card h-100 border p-2 shadow-none bg-body-tertiary">
@@ -537,18 +547,258 @@ function openFlightDetailsModal(filename) {
                 </div>
             </div>
 
-            <!-- Airspeed Calibrations Section -->
-            <div class="card border p-2 shadow-none bg-body-tertiary">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="fw-bold small text-primary"><i class="bi bi-compass"></i> Airspeed Calibrations</div>
+            <!-- Collapsible Flight Track Map Card -->
+            <div class="card shadow-sm mb-3 border">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2 px-3 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#flightDetailsMapCollapse" aria-expanded="false" aria-controls="flightDetailsMapCollapse" id="flightDetailsMapToggle">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-bold small">🗺️ Interactive Flight Track Map</span>
+                        <span class="badge bg-secondary extra-small fw-normal d-none d-sm-inline" id="flightDetailsMapBadge">GPS Track & Position Cursor</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-light text-dark extra-small">Click to toggle map</span>
+                        <i class="bi bi-chevron-down chart-collapse-arrow" id="flightDetailsMapArrow"></i>
+                    </div>
                 </div>
-                ${calContent}
+                <div class="collapse" id="flightDetailsMapCollapse">
+                    <div class="card-body p-2">
+                        <div id="flightDetailsMapDiv" style="height: 320px; width: 100%;">
+                            <div class="d-flex align-items-center justify-content-center h-100 text-muted small">
+                                <span class="spinner-border spinner-border-sm text-primary me-2"></span> Loading GPS track...
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mt-2 px-2 bg-light rounded py-1 border small">
+                            <span class="text-muted text-nowrap extra-small fw-semibold">Timeline Scrub:</span>
+                            <input type="range" class="form-range flex-grow-1" id="flightDetailsMapSlider" min="0" max="100" value="0" oninput="onFlightDetailsMapSliderChange(this.value)">
+                            <span class="badge bg-dark extra-small text-nowrap" id="flightDetailsMapInfo">--</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            ${calSection}
         `;
+
+        initFlightDetailsMapCollapse(flight.filename);
     }
 
     const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
     modal.show();
+}
+
+window.flightDetailsMapState = {
+    activeFilename: null,
+    telemetry: null,
+    cursorIndex: 0
+};
+
+function initFlightDetailsMapCollapse(filename) {
+    const collapseEl = document.getElementById("flightDetailsMapCollapse");
+    if (!collapseEl) return;
+
+    if (window.flightDetailsMapState.activeFilename !== filename) {
+        window.flightDetailsMapState.activeFilename = filename;
+        window.flightDetailsMapState.telemetry = null;
+        window.flightDetailsMapState.cursorIndex = 0;
+    }
+
+    collapseEl.addEventListener("shown.bs.collapse", () => {
+        loadAndRenderFlightDetailsMap(filename);
+    });
+
+    if (collapseEl.classList.contains("show")) {
+        loadAndRenderFlightDetailsMap(filename);
+    }
+}
+
+function loadAndRenderFlightDetailsMap(filename) {
+    const div = document.getElementById("flightDetailsMapDiv");
+    if (!div) return;
+
+    if (window.flightDetailsMapState.telemetry && window.flightDetailsMapState.activeFilename === filename) {
+        renderFlightDetailsMapPlot();
+        return;
+    }
+
+    div.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-muted small"><span class="spinner-border spinner-border-sm text-primary me-2"></span> Loading GPS track...</div>';
+
+    fetch(`/api/flight_map_telemetry?filename=${encodeURIComponent(filename)}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                div.innerHTML = `<div class="text-center text-muted p-4 small"><i class="bi bi-geo-alt-slash"></i> ${data.error}</div>`;
+                return;
+            }
+            window.flightDetailsMapState.activeFilename = filename;
+            window.flightDetailsMapState.telemetry = data;
+            renderFlightDetailsMapPlot();
+        })
+        .catch(err => {
+            console.error("Error loading map telemetry:", err);
+            div.innerHTML = '<div class="text-center text-danger p-4 small">Failed to load GPS track data.</div>';
+        });
+}
+
+function renderFlightDetailsMapPlot() {
+    const div = document.getElementById("flightDetailsMapDiv");
+    const sliderEl = document.getElementById("flightDetailsMapSlider");
+    const infoEl = document.getElementById("flightDetailsMapInfo");
+    const data = window.flightDetailsMapState.telemetry;
+    if (!div || !data) return;
+
+    const lats = data.lat || [];
+    const lons = data.lon || [];
+    const times = data.time || [];
+    const alts = data.alt || [];
+    const iass = data.ias || [];
+    const tass = data.tas || [];
+    const hdgs = data.heading || [];
+
+    if (lats.length === 0 || lons.length === 0) {
+        div.innerHTML = '<div class="text-center text-muted p-4 small">No GPS coordinates recorded for this flight.</div>';
+        return;
+    }
+
+    if (sliderEl) {
+        sliderEl.min = 0;
+        sliderEl.max = lats.length - 1;
+        sliderEl.value = 0;
+        window.flightDetailsMapState.cursorIndex = 0;
+    }
+
+    // 1. Full flight path line
+    const fullPathTrace = {
+        type: 'scattermapbox',
+        mode: 'lines',
+        lat: lats,
+        lon: lons,
+        line: { width: 4, color: '#0ea5e9' },
+        name: 'Flight Track',
+        text: times.map((t, i) =>
+            `<b>Flight Position</b><br>` +
+            `Time: ${formatMMSS(t)}<br>` +
+            `Alt: ${Math.round(alts[i] || 0).toLocaleString()} ft<br>` +
+            `IAS: ${Math.round(iass[i] || 0)} kt | TAS: ${Math.round(tass[i] || 0)} kt<br>` +
+            `HDG: ${Math.round(hdgs[i] || 0)}°`
+        ),
+        hoverinfo: 'text'
+    };
+
+    // 2. Start & End Markers
+    const startEndTrace = {
+        type: 'scattermapbox',
+        mode: 'markers+text',
+        lat: [lats[0], lats[lats.length - 1]],
+        lon: [lons[0], lons[lons.length - 1]],
+        marker: { size: 12, color: ['#198754', '#dc3545'] },
+        text: ['Start', 'End'],
+        textposition: 'top right',
+        name: 'Start / End',
+        hoverinfo: 'text'
+    };
+
+    // 3. Position Cursor Marker
+    const initIdx = 0;
+    const cursorTrace = {
+        type: 'scattermapbox',
+        mode: 'markers',
+        lat: [lats[initIdx]],
+        lon: [lons[initIdx]],
+        marker: { size: 15, color: '#ff0055', symbol: 'circle', opacity: 0.9 },
+        name: 'Position Cursor',
+        hoverinfo: 'text',
+        text: [`<b>Current Cursor</b><br>Time: ${formatMMSS(times[initIdx])}<br>Alt: ${Math.round(alts[initIdx] || 0).toLocaleString()} ft`]
+    };
+
+    const minLat = Math.min(...lats);
+    const maxLat = Math.max(...lats);
+    const minLon = Math.min(...lons);
+    const maxLon = Math.max(...lons);
+
+    const centerLat = (minLat + maxLat) / 2;
+    const centerLon = (minLon + maxLon) / 2;
+    const maxDiff = Math.max(Math.abs(maxLat - minLat), Math.abs(maxLon - minLon));
+
+    let fitZoom = 10;
+    if (maxDiff > 0.0001) {
+        fitZoom = Math.min(13, Math.max(7, Math.log2(360 / maxDiff) - 2.6));
+    }
+
+    const layout = {
+        mapbox: {
+            style: 'open-street-map',
+            center: { lat: centerLat, lon: centerLon },
+            zoom: fitZoom
+        },
+        margin: { l: 0, r: 0, t: 0, b: 0 },
+        showlegend: false,
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent'
+    };
+
+    Plotly.react(div, [fullPathTrace, startEndTrace, cursorTrace], layout, { responsive: true })
+        .then(() => {
+            div.on('plotly_hover', (eventData) => {
+                if (!eventData || !eventData.points || !eventData.points.length) return;
+                const pt = eventData.points[0];
+                if (pt.curveNumber === 2) return;
+                updateFlightDetailsMapCursor(pt.pointIndex);
+            });
+            updateFlightDetailsMapCursor(0);
+        })
+        .catch(e => console.debug("Map style loading notice:", e));
+}
+
+function onFlightDetailsMapSliderChange(val) {
+    updateFlightDetailsMapCursor(parseInt(val, 10));
+}
+
+function updateFlightDetailsMapCursor(idx) {
+    const data = window.flightDetailsMapState.telemetry;
+    const div = document.getElementById("flightDetailsMapDiv");
+    const sliderEl = document.getElementById("flightDetailsMapSlider");
+    const infoEl = document.getElementById("flightDetailsMapInfo");
+
+    if (!data || !div || idx < 0) return;
+    const lats = data.lat || [];
+    const lons = data.lon || [];
+    const times = data.time || [];
+    const alts = data.alt || [];
+    const iass = data.ias || [];
+    const tass = data.tas || [];
+    const hdgs = data.heading || [];
+
+    if (idx >= lats.length) return;
+
+    window.flightDetailsMapState.cursorIndex = idx;
+    if (sliderEl && parseInt(sliderEl.value, 10) !== idx) {
+        sliderEl.value = idx;
+    }
+
+    const lat = lats[idx];
+    const lon = lons[idx];
+    const t = times[idx];
+    const alt = alts[idx];
+    const ias = iass[idx];
+    const tas = tass[idx];
+    const hdg = hdgs[idx];
+
+    if (infoEl) {
+        infoEl.innerText = `${formatMMSS(t)} | ${Math.round(alt || 0).toLocaleString()} ft | ${Math.round(tas || 0)} kts TAS | ${Math.round(hdg || 0)}°`;
+    }
+
+    if (div.data && div.data.length >= 3) {
+        Plotly.restyle(div, {
+            lat: [[lat]],
+            lon: [[lon]],
+            text: [[
+                `<b>Position Cursor</b><br>` +
+                `Time: ${formatMMSS(t)}<br>` +
+                `Alt: ${Math.round(alt || 0).toLocaleString()} ft<br>` +
+                `IAS: ${Math.round(ias || 0)} kt | TAS: ${Math.round(tas || 0)} kt<br>` +
+                `HDG: ${Math.round(hdg || 0)}°`
+            ]]
+        }, [2]).catch(e => console.debug("Map cursor restyle notice:", e));
+    }
 }
 
 function openFlightInAnalyzer(filename) {

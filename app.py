@@ -56,6 +56,7 @@ from src.oil_analysis import parse_oil_report
 from src.process_telemetry import process_flights
 from src.sw_db_updates import download_dynon_databases_only
 from src.tool_functions import (
+    calc_total_air_time,
     calc_total_distance,
     calc_total_duration,
     calc_total_gallons,
