@@ -48,16 +48,14 @@ from src.airspeed_calibration import analyze_flight_data
 from src.flight_analytics import extract_comprehensive_flight_stats
 from src.fuel_estimate_simple import (
     calculate_endurance,
-    calculate_fuel,
     calculate_fuel_fast,
     calculate_usable_fuel,
 )
 from src.fuel_prices import scrape_airnav_to_json
 from src.oil_analysis import parse_oil_report
-from src.process_telemetry import calculate_flight_summary, process_flights
+from src.process_telemetry import process_flights
 from src.sw_db_updates import download_dynon_databases_only
 from src.tool_functions import (
-    calc_total_air_time,
     calc_total_distance,
     calc_total_duration,
     calc_total_gallons,
@@ -1186,7 +1184,7 @@ def index():
 
     # --- Fuel Cost Metrics ---
     total_fuel_cost = 0.0
-    total_gallons = 0.0
+    # total_gallons = 0.0
     cost_per_month = 0.0
     insurance_per_year = 2400
     insurance_per_month = insurance_per_year / 12  # $200 per month
@@ -1207,28 +1205,60 @@ def index():
     # Load fleet telemetry stats for exact engine runtime, fuel consumption, and distance
     fleet_flights = get_all_flight_stats_cached()
     if fleet_flights:
-        total_telemetry_fuel = sum(f.get("total_fuel", 0.0) or 0.0 for f in fleet_flights)
-        total_engine_hours = sum(f.get("duration_hours", 0.0) or 0.0 for f in fleet_flights)
-        total_dist_mi = sum(f.get("distance_traveled_mi", 0.0) or 0.0 for f in fleet_flights)
-        avg_gph = round(total_telemetry_fuel / total_engine_hours, 2) if total_engine_hours > 0 else 0.0
-        avg_mpg = round(total_dist_mi / total_telemetry_fuel, 2) if total_telemetry_fuel > 0 else 0.0
+        total_telemetry_fuel = sum(
+            f.get("total_fuel", 0.0) or 0.0 for f in fleet_flights
+        )
+        total_engine_hours = sum(
+            f.get("duration_hours", 0.0) or 0.0 for f in fleet_flights
+        )
+        total_dist_mi = sum(
+            f.get("distance_traveled_mi", 0.0) or 0.0 for f in fleet_flights
+        )
+        avg_gph = (
+            round(total_telemetry_fuel / total_engine_hours, 2)
+            if total_engine_hours > 0
+            else 0.0
+        )
+        avg_mpg = (
+            round(total_dist_mi / total_telemetry_fuel, 2)
+            if total_telemetry_fuel > 0
+            else 0.0
+        )
         total_gallons_used = total_telemetry_fuel
         total_distance_traveled = total_dist_mi
     else:
         stats_data = load_stats_file()
         total_gallons_used = calc_total_gallons(stats_data)
         total_duration = calc_total_duration(stats_data)
-        total_engine_hours = total_duration / 3600.0 if total_duration > 0 else total_hobbs
+        total_engine_hours = (
+            total_duration / 3600.0 if total_duration > 0 else total_hobbs
+        )
         total_distance_traveled = calc_total_distance(stats_data)
-        avg_gph = round(total_gallons_used / total_engine_hours, 2) if total_engine_hours > 0 else 0.0
-        avg_mpg = round(total_distance_traveled / total_gallons_used, 2) if total_gallons_used > 0 else 0.0
+        avg_gph = (
+            round(total_gallons_used / total_engine_hours, 2)
+            if total_engine_hours > 0
+            else 0.0
+        )
+        avg_mpg = (
+            round(total_distance_traveled / total_gallons_used, 2)
+            if total_gallons_used > 0
+            else 0.0
+        )
 
-    today = datetime.now()
+    # today = datetime.now()
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     latest_flight_date = db.session.query(func.max(FlightLog.date)).scalar()
     if first_flight_date and latest_flight_date:
-        d_min = first_flight_date.date() if isinstance(first_flight_date, datetime) else first_flight_date
-        d_max = latest_flight_date.date() if isinstance(latest_flight_date, datetime) else latest_flight_date
+        d_min = (
+            first_flight_date.date()
+            if isinstance(first_flight_date, datetime)
+            else first_flight_date
+        )
+        d_max = (
+            latest_flight_date.date()
+            if isinstance(latest_flight_date, datetime)
+            else latest_flight_date
+        )
         days_span = max((d_max - d_min).days, 1)
     else:
         days_span = 30
@@ -1258,7 +1288,7 @@ def index():
         + (mx_costs_per_hour * hours_per_month)
     )
     cost_per_hour = cost_per_month / hours_per_month
-    total_hourly_cost = per_hour_cost + cost_per_hour
+    # total_hourly_cost = per_hour_cost + cost_per_hour
     # avg_price_per_gallon = (
     #     db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0
     # )
@@ -1358,7 +1388,7 @@ def process_flight_csv_file(filepath):
             fid for fid in df["Flight ID"].unique() if fid not in (None, 0, "", "nan")
         ]
 
-        stats_file = os.path.join(BASE_DIR, "static", "stats.csv")
+        # stats_file = os.path.join(BASE_DIR, "static", "stats.csv")
 
         for fid in flight_ids:
             flight_data = df[df["Flight ID"] == fid]
@@ -1820,7 +1850,7 @@ def estimate_fuel():
     right_gal, _ = calculate_fuel_fast(
         right_height, pitch_angle=pitch_angle, roll_angle=roll_angle
     )
-    total_gal = left_gal + right_gal
+    # total_gal = left_gal + right_gal
 
     left_gal_r = round(left_gal, 2)
     right_gal_r = round(right_gal, 2)
@@ -2175,44 +2205,50 @@ def generate_fleet_summary_file():
         avg_spd = f.get("avg_speed_mph", 0.0)
 
         flight_dict = dict(f)
-        flight_dict.update({
-            "fid": fid,
-            "filename": f.get("filename", ""),
-            "date": f.get("date", ""),
-            "total_duration": total_dur_sec,
-            "engine_duration_sec": total_dur_sec,
-            "duration_hours": dur_h,
-            "duration_min": round(dur_h * 60.0, 1),
-            "air_time": air_time_sec,
-            "airborne_hours": air_h,
-            "distance_traveled": dist_mi,
-            "distance_traveled_mi": dist_mi,
-            "distance_traveled_nm": float(f.get("distance_traveled_nm", 0.0) or 0.0),
-            "gallons_used": gallons,
-            "total_fuel": gallons,
-            "avg_fuel_flow": f.get("avg_fuel_flow", 0.0),
-            "avg_mpg": avg_mpg,
-            "avg_speed": avg_spd,
-            "avg_speed_mph": avg_spd,
-            "max_cht": max_cht,
-            "max_rpm": max_rpm,
-            "cum_total_hours": round(cum_total_hours, 2),
-            "cum_airborne_hours": round(cum_airborne_hours, 2),
-            "landing_count": f.get("landing_count", 1),
-        })
+        flight_dict.update(
+            {
+                "fid": fid,
+                "filename": f.get("filename", ""),
+                "date": f.get("date", ""),
+                "total_duration": total_dur_sec,
+                "engine_duration_sec": total_dur_sec,
+                "duration_hours": dur_h,
+                "duration_min": round(dur_h * 60.0, 1),
+                "air_time": air_time_sec,
+                "airborne_hours": air_h,
+                "distance_traveled": dist_mi,
+                "distance_traveled_mi": dist_mi,
+                "distance_traveled_nm": float(
+                    f.get("distance_traveled_nm", 0.0) or 0.0
+                ),
+                "gallons_used": gallons,
+                "total_fuel": gallons,
+                "avg_fuel_flow": f.get("avg_fuel_flow", 0.0),
+                "avg_mpg": avg_mpg,
+                "avg_speed": avg_spd,
+                "avg_speed_mph": avg_spd,
+                "max_cht": max_cht,
+                "max_rpm": max_rpm,
+                "cum_total_hours": round(cum_total_hours, 2),
+                "cum_airborne_hours": round(cum_airborne_hours, 2),
+                "landing_count": f.get("landing_count", 1),
+            }
+        )
         flights_output.append(flight_dict)
 
-        csv_rows.append([
-            fid,
-            total_dur_sec,
-            air_time_sec,
-            dist_mi,
-            gallons,
-            max_cht,
-            max_rpm,
-            avg_mpg if isinstance(avg_mpg, (int, float)) else 0.0,
-            avg_spd if isinstance(avg_spd, (int, float)) else 0.0,
-        ])
+        csv_rows.append(
+            [
+                fid,
+                total_dur_sec,
+                air_time_sec,
+                dist_mi,
+                gallons,
+                max_cht,
+                max_rpm,
+                avg_mpg if isinstance(avg_mpg, (int, float)) else 0.0,
+                avg_spd if isinstance(avg_spd, (int, float)) else 0.0,
+            ]
+        )
 
     tot_dist = sum(f.get("distance_traveled_mi", 0.0) for f in flights_output)
     tot_fuel = sum(f.get("total_fuel", 0.0) for f in flights_output)
@@ -2220,7 +2256,9 @@ def generate_fleet_summary_file():
 
     fleet_avg_ff = round(tot_fuel / cum_total_hours, 2) if cum_total_hours > 0 else 0.0
     fleet_avg_mpg = round(tot_dist / tot_fuel, 2) if tot_fuel > 0 else 0.0
-    fleet_avg_spd = round(tot_dist / cum_airborne_hours, 1) if cum_airborne_hours > 0 else 0.0
+    fleet_avg_spd = (
+        round(tot_dist / cum_airborne_hours, 1) if cum_airborne_hours > 0 else 0.0
+    )
 
     all_dates = [f["date"] for f in flights_output if f.get("date")]
     min_date = min(all_dates) if all_dates else ""
@@ -2273,17 +2311,19 @@ def generate_fleet_summary_file():
         stats_csv_path = os.path.join(BASE_DIR, "static", "stats.csv")
         with open(stats_csv_path, "w", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow([
-                "fid",
-                "total_duration",
-                "air_time",
-                "distance_traveled",
-                "gallons_used",
-                "max_cht",
-                "max_rpm",
-                "avg_mpg",
-                "avg_speed",
-            ])
+            writer.writerow(
+                [
+                    "fid",
+                    "total_duration",
+                    "air_time",
+                    "distance_traveled",
+                    "gallons_used",
+                    "max_cht",
+                    "max_rpm",
+                    "avg_mpg",
+                    "avg_speed",
+                ]
+            )
             writer.writerows(csv_rows)
     except Exception as err:
         print("Error saving stats.csv:", err)
@@ -2326,7 +2366,9 @@ def api_multi_flight_stats():
             else totals.get("total_engine_hours", 0.0)
         )
         months_span = totals.get("months_span", 1.0)
-        hours_per_month = round(total_hobbs / months_span, 1) if months_span > 0 else 0.0
+        hours_per_month = (
+            round(total_hobbs / months_span, 1) if months_span > 0 else 0.0
+        )
         hours_per_year_est = int(round(hours_per_month * 12, 0))
 
         per_hour_cost, mx_costs_per_hour, avg_fuel_cost_per_hour = calc_per_hour_cost(
@@ -2363,7 +2405,7 @@ def api_engine_health_trends():
     engine_data = []
 
     for filename in sorted(csv_files):
-        filepath = os.path.join(SAVE_DIR, filename)
+        # filepath = os.path.join(SAVE_DIR, filename)
         try:
             df = load_cached_flight_df(filename)
             if df is None or df.empty:
