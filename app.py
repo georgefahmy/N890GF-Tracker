@@ -1203,10 +1203,25 @@ def index():
 
     total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
 
-    stats_data = load_stats_file()
-    total_gallons = calc_total_gallons(stats_data)
-    total_air_time = calc_total_air_time(stats_data)
-    total_duration = calc_total_duration(stats_data)
+    # Load fleet telemetry stats for exact engine runtime, fuel consumption, and distance
+    fleet_flights = get_all_flight_stats_cached()
+    if fleet_flights:
+        total_telemetry_fuel = sum(f.get("total_fuel", 0.0) or 0.0 for f in fleet_flights)
+        total_engine_hours = sum(f.get("duration_hours", 0.0) or 0.0 for f in fleet_flights)
+        total_dist_mi = sum(f.get("distance_traveled_mi", 0.0) or 0.0 for f in fleet_flights)
+        avg_gph = round(total_telemetry_fuel / total_engine_hours, 2) if total_engine_hours > 0 else 0.0
+        avg_mpg = round(total_dist_mi / total_telemetry_fuel, 2) if total_telemetry_fuel > 0 else 0.0
+        total_gallons_used = total_telemetry_fuel
+        total_distance_traveled = total_dist_mi
+    else:
+        stats_data = load_stats_file()
+        total_gallons_used = calc_total_gallons(stats_data)
+        total_duration = calc_total_duration(stats_data)
+        total_engine_hours = total_duration / 3600.0 if total_duration > 0 else total_hobbs
+        total_distance_traveled = calc_total_distance(stats_data)
+        avg_gph = round(total_gallons_used / total_engine_hours, 2) if total_engine_hours > 0 else 0.0
+        avg_mpg = round(total_distance_traveled / total_gallons_used, 2) if total_gallons_used > 0 else 0.0
+
     today = datetime.now()
     first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
     latest_flight_date = db.session.query(func.max(FlightLog.date)).scalar()
@@ -1218,16 +1233,6 @@ def index():
         days_span = 30
     total_months = max(days_span / 30.4375, 1.0)
     hours_per_month = total_hobbs / total_months if total_months > 0 else 0.0
-    total_duration_hours = total_duration / 3600.0 if total_duration > 0 else total_hobbs
-    avg_gph = (
-        round(total_gallons / total_duration_hours, 2)
-        if total_duration_hours > 0
-        else (
-            round(total_gallons / (total_air_time / 3600.0), 2)
-            if total_air_time > 0
-            else 0.0
-        )
-    )
 
     # average fuel cost per hour and maintenance costs per hour of operation included below
     per_hour_cost, mx_costs_per_hour, hourly_fuel_cost = calc_per_hour_cost(avg_gph)
@@ -1319,12 +1324,13 @@ def index():
         cost_per_hour=cost_per_hour,
         avg_fuel_cost_per_hour=avg_fuel_cost_per_hour,
         avg_gph=avg_gph,
+        avg_mpg=avg_mpg,
         hours_per_month=hours_per_month,
         monthly_fixed_costs=fixed_costs,
         hourly_operating_cost=per_hour_cost,
         hourly_fuel_cost=hourly_fuel_cost,
-        total_distance_traveled=calc_total_distance(stats_data),
-        total_gallons_used=calc_total_gallons(stats_data),
+        total_distance_traveled=total_distance_traveled,
+        total_gallons_used=total_gallons_used,
         available_csv_files=available_csv_files,
         unassociated_csv_files=unassociated_csv_files,
         unassociated_csv_count=unassociated_csv_count,
@@ -1992,15 +1998,14 @@ def multi_flight_stats_page():
 MULTI_STATS_CACHE_FILE = os.path.join(CACHE_DIR, "multi_stats_cache.json")
 
 
-@app.route("/api/multi_flight_stats", methods=["GET"])
-def api_multi_flight_stats():
-    """Returns high-level summary statistics (new & old) across all saved flights with disk caching."""
+def get_all_flight_stats_cached():
+    """Extracts summary statistics for all saved CSV flights using disk cache."""
     if not os.path.exists(SAVE_DIR):
-        return jsonify({"flights": [], "totals": {}})
+        return []
 
     csv_files = [f for f in os.listdir(SAVE_DIR) if f.endswith(".csv")]
     if not csv_files:
-        return jsonify({"flights": [], "totals": {}})
+        return []
 
     cache_data = {}
     if os.path.exists(MULTI_STATS_CACHE_FILE):
@@ -2159,6 +2164,16 @@ def api_multi_flight_stats():
             json.dump(updated_cache, f)
     except Exception as e:
         print("Error saving multi stats cache:", e)
+
+    return flight_stats_list
+
+
+@app.route("/api/multi_flight_stats", methods=["GET"])
+def api_multi_flight_stats():
+    """Returns high-level summary statistics (new & old) across all saved flights with disk caching."""
+    flight_stats_list = get_all_flight_stats_cached()
+    if not flight_stats_list:
+        return jsonify({"flights": [], "totals": {}})
 
     # Attach dynamic DB airspeed calibration records to each flight
     for stats in flight_stats_list:
