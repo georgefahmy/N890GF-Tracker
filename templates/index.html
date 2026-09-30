@@ -383,10 +383,12 @@
            MOBILE FLOATING ACTION BAR & BOTTOM DRAWERS (AeroFuel IQ Style)
            ========================================================================== */
         /* By default on desktop / larger screens, completely hide mobile dock and bottom sheets */
-        #mobile-tracker-bar,
-        .mobile-sheet-backdrop,
-        .mobile-bottom-sheet {
-            display: none !important;
+        @media (min-width: 769px) {
+            #mobile-tracker-bar,
+            .mobile-sheet-backdrop,
+            .mobile-bottom-sheet {
+                display: none !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -421,6 +423,8 @@
                 border: 1px solid rgba(255, 255, 255, 0.16);
                 border-radius: 999px;
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
 
             .mobile-tracker-btn {
@@ -440,6 +444,8 @@
                 flex: 1;
                 transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
                 text-decoration: none;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
 
             .mobile-tracker-btn:hover,
@@ -482,6 +488,7 @@
 
             /* Mobile Drawers Backdrop */
             .mobile-sheet-backdrop {
+                display: block;
                 position: fixed;
                 inset: 0;
                 background: rgba(0, 0, 0, 0.65);
@@ -500,6 +507,7 @@
 
             /* Mobile Bottom Sheets */
             .mobile-bottom-sheet {
+                display: block;
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -514,6 +522,7 @@
                 transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
                 max-height: 85vh;
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
                 padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
             }
 
