@@ -134,6 +134,10 @@ class TestIndexRoute:
         with app.app_context():
             response = auth_client.get("/")
             assert response.status_code == 200
+            html = response.data.decode("utf-8")
+            assert "mobile-tracker-bar" in html
+            assert "logSheet" in html
+            assert "toolsSheet" in html
 
 
 # =============================================================================

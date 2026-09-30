@@ -14,6 +14,30 @@ document.addEventListener("DOMContentLoaded", () => {
     if (calsSearchInput) {
         calsSearchInput.addEventListener("input", renderAirspeedCalsModalTable);
     }
+
+    const chartsCollapseEl = document.getElementById("fleetChartsCollapse");
+    if (chartsCollapseEl) {
+        // On wide desktop screens (>= 1200px), expand charts by default; on mobile/tablet keep collapsed
+        if (window.innerWidth >= 1200) {
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(chartsCollapseEl, { toggle: false });
+            bsCollapse.show();
+        }
+
+        chartsCollapseEl.addEventListener("shown.bs.collapse", () => {
+            ['chartEngineHealth', 'chartActivity', 'chartFuelEfficiency'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && typeof Plotly !== 'undefined') {
+                    try {
+                        Plotly.Plots.resize(el);
+                    } catch (e) {
+                        if (window.globalFlights && window.globalFlights.length) {
+                            renderTrendCharts(window.globalFlights);
+                        }
+                    }
+                }
+            });
+        });
+    }
 });
 
 function loadMultiFlightStats() {
@@ -63,12 +87,28 @@ function renderFleetTotals(totals) {
     };
 
     setVal("totalFlightCount", totals.flight_count || 0);
-    setVal("totalHours", (totals.total_hours || 0) + " hrs");
     setVal("totalAirborneHours", (totals.total_airborne_hours || 0) + " hrs");
     setVal("totalMiles", (totals.total_distance_mi || 0).toLocaleString() + " mi");
-    setVal("totalFuel", (totals.total_fuel_gal || 0).toLocaleString() + " gal");
     setVal("totalLandings", totals.total_landings || 0);
-    setVal("fleetAvgCht", (totals.fleet_avg_cht || "--") + " °F");
+    setVal("fleetAvgFuelFlow", (totals.avg_fuel_flow || 0) + " GPH");
+    setVal("fleetAvgMpg", (totals.avg_mpg || 0) + " MPG");
+    setVal("fleetAvgSpeed", (totals.avg_speed_mph || 0) + " mph");
+    setVal("fleetMonthlyHours", (totals.hours_per_month || 0) + " hrs");
+    if (totals.hours_per_year_est) {
+        setVal("fleetYearlyHoursSub", `(${totals.hours_per_year_est} yr)`);
+    }
+
+    // Operating costs: Total ($81) and Fuel only ($58 fuel)
+    const totalCost = Math.round(totals.hourly_operating_cost || 0);
+    const fuelCost = Math.round(totals.hourly_fuel_cost || 0);
+    setVal("fleetHourlyOperating", "$" + totalCost);
+    setVal("fleetHourlyFuelSub", "($" + fuelCost + " fuel)");
+
+    // Total fuel spent & gallons
+    const fuelSpent = (totals.total_fuel_cost || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const fuelGal = Math.round(totals.total_fuel_gal || 0).toLocaleString();
+    setVal("fleetFuelSpent", "$" + fuelSpent);
+    setVal("fleetFuelGalSub", "(" + fuelGal + " gal)");
 }
 
 function renderTrendCharts(flights) {

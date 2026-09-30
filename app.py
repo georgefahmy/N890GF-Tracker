@@ -918,18 +918,24 @@ def logout():
     return redirect(url_for("login"))
 
 
-def calc_per_hour_cost():
-    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0
+def calc_per_hour_cost(avg_fuel_flow=None):
+    total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0.0
+    total_fuel_gal = db.session.query(func.sum(FuelLog.gallons)).scalar() or 0.0
     latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
     total_hobbs = validate_float(latest_flight.hobbs) if latest_flight else 0.0
-    today = datetime.now()
-    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar() or today
-    years_diff = today.year - first_flight_date.year
-    months_diff = today.month - first_flight_date.month
-    total_months = (years_diff * 12) + months_diff
-    total_months = max(total_months, 1)
-    hours_per_month = total_hobbs / total_months
+
+    min_date = db.session.query(func.min(FlightLog.date)).scalar()
+    max_date = db.session.query(func.max(FlightLog.date)).scalar()
+    if min_date and max_date:
+        d_min = min_date.date() if isinstance(min_date, datetime) else min_date
+        d_max = max_date.date() if isinstance(max_date, datetime) else max_date
+        days_span = max((d_max - d_min).days, 1)
+    else:
+        days_span = 30
+    months_span = max(days_span / 30.4375, 1.0)
+    hours_per_month = total_hobbs / months_span if months_span > 0 else 0.0
     hours_per_year_est = hours_per_month * 12
+
     engine_overhaul = 25000
     engine_overhaul_per_hour = engine_overhaul / 2000
     prop_overhaul = 3500
@@ -944,9 +950,20 @@ def calc_per_hour_cost():
     mx_costs_per_hour = (
         prop_overhaul_per_hour + engine_overhaul_per_hour + oil_change_price
     )
-    avg_fuel_cost_per_hour = (
-        round(total_fuel_cost / total_hobbs, 2) if total_hobbs > 0 else 0.0
+
+    avg_price_per_gal = (
+        (total_fuel_cost / total_fuel_gal)
+        if total_fuel_gal > 0
+        else (db.session.query(func.avg(FuelLog.price_per_gallon)).scalar() or 0.0)
     )
+
+    if avg_fuel_flow and avg_fuel_flow > 0 and avg_price_per_gal > 0:
+        avg_fuel_cost_per_hour = round(avg_price_per_gal * avg_fuel_flow, 2)
+    elif total_hobbs > 0 and total_fuel_cost > 0:
+        avg_fuel_cost_per_hour = round(total_fuel_cost / total_hobbs, 2)
+    else:
+        avg_fuel_cost_per_hour = 0.0
+
     per_hour_cost = avg_fuel_cost_per_hour + mx_costs_per_hour
     return per_hour_cost, mx_costs_per_hour, avg_fuel_cost_per_hour
 
@@ -1190,12 +1207,16 @@ def index():
     total_air_time = calc_total_air_time(stats_data)
     # print(total_air_time)
     today = datetime.now()
-    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar() or today
-    years_diff = today.year - first_flight_date.year
-    months_diff = today.month - first_flight_date.month
-    total_months = (years_diff * 12) + months_diff
-    total_months = max(total_months, 1)
-    hours_per_month = total_hobbs / total_months
+    first_flight_date = db.session.query(func.min(FlightLog.date)).scalar()
+    latest_flight_date = db.session.query(func.max(FlightLog.date)).scalar()
+    if first_flight_date and latest_flight_date:
+        d_min = first_flight_date.date() if isinstance(first_flight_date, datetime) else first_flight_date
+        d_max = latest_flight_date.date() if isinstance(latest_flight_date, datetime) else latest_flight_date
+        days_span = max((d_max - d_min).days, 1)
+    else:
+        days_span = 30
+    total_months = max(days_span / 30.4375, 1.0)
+    hours_per_month = total_hobbs / total_months if total_months > 0 else 0.0
     air_time_hours = total_air_time / 3600.0 if total_air_time > 0 else 0.0
     avg_gph = (
         round(total_gallons / air_time_hours, 2)
@@ -1204,7 +1225,7 @@ def index():
     )
 
     # average fuel cost per hour and maintenance costs per hour of operation included below
-    per_hour_cost, mx_costs_per_hour, hourly_fuel_cost = calc_per_hour_cost()
+    per_hour_cost, mx_costs_per_hour, hourly_fuel_cost = calc_per_hour_cost(avg_gph)
     avg_fuel_cost_per_hour = per_hour_cost - mx_costs_per_hour
 
     # monthly/yearly subscriptions. prices per month are $20.83  $4.03  $7.42
@@ -2180,23 +2201,86 @@ def api_multi_flight_stats():
     total_fuel_gal = sum(f.get("total_fuel", 0) for f in flight_stats_list)
     total_landings = sum(f.get("landing_count", 1) for f in flight_stats_list)
 
-    avg_cht_list = [
-        f["max_cht"]
-        for f in flight_stats_list
-        if isinstance(f.get("max_cht"), (int, float))
-    ]
-    fleet_avg_cht = (
-        round(sum(avg_cht_list) / len(avg_cht_list), 1) if avg_cht_list else "N/A"
+    fleet_avg_fuel_flow = (
+        round(total_fuel_gal / cum_total_hours, 2)
+        if cum_total_hours > 0
+        else 0.0
     )
+
+    fleet_avg_mpg = (
+        round(total_distance_mi / total_fuel_gal, 2)
+        if total_fuel_gal > 0
+        else 0.0
+    )
+
+    fleet_avg_speed = (
+        round(total_distance_mi / cum_airborne_hours, 1)
+        if cum_airborne_hours > 0
+        else (
+            round(total_distance_mi / cum_total_hours, 1)
+            if cum_total_hours > 0
+            else 0.0
+        )
+    )
+
+    # Calculate average monthly hours from earliest flight log date to most recent
+    hours_per_month = 0.0
+    hours_per_year_est = 0
+    per_hour_cost = 0.0
+    avg_fuel_cost_per_hour = 0.0
+    total_fuel_cost = 0.0
+
+    try:
+        all_dates = []
+        for f in flight_stats_list:
+            d_val = f.get("date")
+            if d_val:
+                try:
+                    all_dates.append(datetime.strptime(str(d_val)[:10], "%Y-%m-%d").date())
+                except Exception:
+                    pass
+        try:
+            db_flight_dates = [
+                r[0].date() if isinstance(r[0], datetime) else r[0]
+                for r in db.session.query(FlightLog.date).filter(FlightLog.date.isnot(None)).all()
+                if r[0]
+            ]
+            all_dates.extend(db_flight_dates)
+        except Exception:
+            pass
+
+        if all_dates:
+            min_flight_date = min(all_dates)
+            max_flight_date = max(all_dates)
+            days_span = max((max_flight_date - min_flight_date).days, 1)
+        else:
+            days_span = 30
+
+        months_span = max(days_span / 30.4375, 1.0)
+        latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
+        total_hobbs = validate_float(latest_flight.hobbs) if (latest_flight and latest_flight.hobbs) else cum_total_hours
+        hours_per_month = round(total_hobbs / months_span, 1)
+        hours_per_year_est = int(round(hours_per_month * 12, 0))
+
+        per_hour_cost, mx_costs_per_hour, avg_fuel_cost_per_hour = calc_per_hour_cost(fleet_avg_fuel_flow)
+        total_fuel_cost = db.session.query(func.sum(FuelLog.total_cost)).scalar() or 0.0
+    except Exception as e:
+        print("Error computing DB metrics for multi-stats:", e)
 
     totals = {
         "flight_count": len(flight_stats_list),
-        "total_hours": round(cum_total_hours, 1),
         "total_airborne_hours": round(cum_airborne_hours, 1),
         "total_distance_mi": round(total_distance_mi, 1),
-        "total_fuel_gal": round(total_fuel_gal, 1),
         "total_landings": total_landings,
-        "fleet_avg_cht": fleet_avg_cht,
+        "avg_fuel_flow": fleet_avg_fuel_flow,
+        "avg_mpg": fleet_avg_mpg,
+        "avg_speed_mph": fleet_avg_speed,
+        "hours_per_month": hours_per_month,
+        "hours_per_year_est": hours_per_year_est,
+        "hourly_operating_cost": round(per_hour_cost, 0),
+        "hourly_fuel_cost": round(avg_fuel_cost_per_hour, 0),
+        "total_fuel_cost": round(total_fuel_cost, 2),
+        "total_fuel_gal": round(total_fuel_gal, 1),
     }
 
     # Sort flights newest to oldest for default UI view
@@ -2986,7 +3070,7 @@ def api_analyze_flight():
             if duration > 0
             else 0.0
         )
-        per_hour_cost, _, _ = calc_per_hour_cost()
+        per_hour_cost, _, _ = calc_per_hour_cost(avg_flow)
         actual_cost_per_hour = (
             round(per_hour_cost * (duration / 3600), 2) if duration > 0 else 0.0
         )

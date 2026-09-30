@@ -6,6 +6,8 @@
     <title>N890GF - Aircraft Maintenance & Flight Log</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Leaflet Map -->
     <link rel="apple-touch-icon" sizes="512x512" href="/static/icons/Rv-7 Logo.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
@@ -39,6 +41,186 @@
         .status-current { color: #198754; font-weight: bold; }
         .status-default { color: #6c757d; font-weight: bold; }
         .card { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        /* ==========================================================================
+           MODERN AVIONICS STATUS HUD CARDS
+           ========================================================================== */
+        .status-hud-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1rem 1.15rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 112px;
+        }
+
+        .status-hud-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .status-hud-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3.5px;
+            background: #94a3b8;
+            transition: background 0.2s ease;
+        }
+
+        .status-hud-card.hud-ok::before {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+        .status-hud-card.hud-ok {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .status-hud-card.hud-warn::before {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+        .status-hud-card.hud-warn {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .status-hud-card.hud-alert::before {
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+        }
+        .status-hud-card.hud-alert {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .status-hud-card.hud-info::before {
+            background: linear-gradient(90deg, #0284c7, #0ea5e9);
+        }
+
+        .hud-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.35rem;
+        }
+
+        .hud-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin: 0;
+        }
+
+        .hud-pill {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 999px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .hud-pill-ok {
+            background: rgba(16, 185, 129, 0.12);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .hud-pill-warn {
+            background: rgba(245, 158, 11, 0.12);
+            color: #b45309;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        .hud-pill-alert {
+            background: rgba(239, 68, 68, 0.12);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        .hud-value-box {
+            margin: 0.2rem 0;
+        }
+
+        .hud-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            color: #0f172a;
+        }
+
+        .hud-subtext {
+            font-size: 0.72rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Dark mode overrides for HUD cards */
+        body.dark-mode .status-hud-card {
+            background: #1e293b;
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .status-hud-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode .status-hud-card.hud-ok {
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+
+        body.dark-mode .status-hud-card.hud-warn {
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+
+        body.dark-mode .status-hud-card.hud-alert {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        body.dark-mode .hud-title {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .hud-value {
+            color: #f8fafc !important;
+        }
+
+        body.dark-mode .hud-subtext {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .hud-pill-ok {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399 !important;
+            border-color: rgba(16, 185, 129, 0.35);
+        }
+
+        body.dark-mode .hud-pill-warn {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24 !important;
+            border-color: rgba(245, 158, 11, 0.35);
+        }
+
+        body.dark-mode .hud-pill-alert {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171 !important;
+            border-color: rgba(239, 68, 68, 0.35);
+        }
         .action-btns { min-width: 120px; }
         .flight-row-clickable {
             cursor: pointer;
@@ -196,6 +378,222 @@
             flex-direction: column;
             align-items: flex-end;
         }
+
+        /* ==========================================================================
+           MOBILE FLOATING ACTION BAR & BOTTOM DRAWERS (AeroFuel IQ Style)
+           ========================================================================== */
+        /* By default on desktop / larger screens, completely hide mobile dock and bottom sheets */
+        #mobile-tracker-bar,
+        .mobile-sheet-backdrop,
+        .mobile-bottom-sheet {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            /* Hide top cluttered sticky bar on mobile */
+            .sticky-action-bar {
+                display: none !important;
+            }
+
+            body {
+                padding-top: 60px;
+                padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+            }
+
+            /* Mobile Floating Dock */
+            #mobile-tracker-bar {
+                display: flex !important;
+                position: fixed;
+                bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+                left: 12px;
+                right: 12px;
+                margin: 0 auto;
+                max-width: 440px;
+                height: 52px;
+                z-index: 1045;
+                align-items: center;
+                justify-content: space-around;
+                gap: 4px;
+                padding: 4px 8px;
+                background: rgba(15, 23, 42, 0.88);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.16);
+                border-radius: 999px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+            }
+
+            .mobile-tracker-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2px;
+                background: transparent;
+                border: none;
+                color: #94a3b8;
+                padding: 4px 6px;
+                border-radius: 16px;
+                cursor: pointer;
+                position: relative;
+                min-width: 50px;
+                flex: 1;
+                transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+                text-decoration: none;
+            }
+
+            .mobile-tracker-btn:hover,
+            .mobile-tracker-btn:focus {
+                color: #f8fafc;
+            }
+
+            .mobile-tracker-btn.active {
+                color: #38bdf8;
+                background: rgba(56, 189, 248, 0.15);
+            }
+
+            .mobile-tracker-btn.active .tracker-bar-icon {
+                transform: scale(1.15);
+            }
+
+            .mobile-tracker-btn.log-action-btn {
+                background: linear-gradient(135deg, #0284c7, #0369a1);
+                color: #ffffff;
+                border-radius: 50rem;
+                box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+            }
+
+            .mobile-tracker-btn.log-action-btn:hover {
+                background: linear-gradient(135deg, #0369a1, #075985);
+                color: #ffffff;
+            }
+
+            .tracker-bar-icon {
+                font-size: 1.15rem;
+                line-height: 1;
+                transition: transform 0.2s ease;
+            }
+
+            .tracker-bar-label {
+                font-size: 0.65rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+            }
+
+            /* Mobile Drawers Backdrop */
+            .mobile-sheet-backdrop {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.65);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                z-index: 1050;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.25s ease;
+            }
+
+            .mobile-sheet-backdrop.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            /* Mobile Bottom Sheets */
+            .mobile-bottom-sheet {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 1055;
+                background: #1e293b;
+                color: #f8fafc;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 20px 20px 0 0;
+                box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
+                transform: translateY(100%);
+                transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+                max-height: 85vh;
+                overflow-y: auto;
+                padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            }
+
+            .mobile-bottom-sheet.active {
+                transform: translateY(0);
+            }
+
+            .mobile-sheet-handle-bar {
+                display: flex;
+                justify-content: center;
+                padding-top: 8px;
+                padding-bottom: 4px;
+            }
+
+            .mobile-sheet-handle {
+                width: 38px;
+                height: 4px;
+                border-radius: 2px;
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            .mobile-sheet-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 16px 12px 16px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-sheet-title {
+                font-weight: 700;
+                font-size: 0.95rem;
+                color: #38bdf8;
+            }
+
+            .mobile-sheet-body {
+                padding: 14px 16px;
+            }
+
+            /* Mobile Tool Cards */
+            .mobile-tool-card {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 12px;
+                border-radius: 12px;
+                background: rgba(15, 23, 42, 0.65);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: #f8fafc;
+                text-decoration: none;
+                width: 100%;
+                text-align: left;
+                transition: all 0.2s ease;
+            }
+
+            .mobile-tool-card:hover, .mobile-tool-card:active {
+                background: rgba(56, 189, 248, 0.15);
+                border-color: #38bdf8;
+                color: #ffffff;
+            }
+
+            .mobile-tool-card .tool-icon {
+                font-size: 1.3rem;
+                margin-bottom: 4px;
+            }
+
+            .mobile-tool-card .tool-name {
+                font-size: 0.82rem;
+                font-weight: 700;
+                color: #f1f5f9;
+                line-height: 1.2;
+            }
+
+            .mobile-tool-card .tool-desc {
+                font-size: 0.68rem;
+                color: #94a3b8;
+                margin-top: 2px;
+                line-height: 1.15;
+            }
+        }
     </style>
 </head>
 <body>
@@ -286,94 +684,107 @@
                     <a href="/multi_flight_stats" class="btn btn-outline-info flex-grow-1 flex-md-grow-0">Multi-Flight Stats</a>
 
                     <button class="btn btn-outline-primary flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#oilAnalysisModal">Oil Analysis</button>
+                    <button class="btn btn-outline-info flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal">⛽ Fuel Estimator</button>
                     <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#cloudModal">Cloud Base</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Status Cards (5 Equal Columns) -->
+    <!-- Modernized Avionics Status HUD Cards (4 Balanced Columns) -->
     <div class="row mb-4 g-3">
-        <div class="col-6 col-lg">
-            <!-- Dynamic styling for the Overdue Card -->
-            <div class="card text-center p-3 h-100 d-flex flex-column justify-content-center {{ 'border-danger' if overdue_count > 0 else 'border-success' }}">
-                <h6 class="text-muted mb-2">Overdue Items</h6>
-                <h3 class="{{ 'status-overdue mb-1' if overdue_count > 0 else 'status-current mb-0' }}">{{ overdue_count }}</h3>
-
-                {% if overdue_count > 0 %}
-                    <div class="d-flex flex-wrap justify-content-center gap-1 mt-1">
+        <!-- 1. Airworthiness / Overdue Items -->
+        <div class="col-6 col-lg-3">
+            <div class="status-hud-card {{ 'hud-alert' if overdue_count > 0 else 'hud-ok' }}">
+                <div class="hud-header">
+                    <span class="hud-title">🛡️ Airworthiness</span>
+                    <span class="hud-pill {{ 'hud-pill-alert' if overdue_count > 0 else 'hud-pill-ok' }}">
+                        {{ overdue_count ~ ' Action' if overdue_count > 0 else 'Current' }}
+                    </span>
+                </div>
+                <div class="hud-value-box">
+                    <div class="hud-value {{ 'status-overdue' if overdue_count > 0 else 'status-current' }}">
+                        {{ overdue_count ~ ' Overdue' if overdue_count > 0 else 'All Current' }}
+                    </div>
+                    {% if overdue_count > 0 %}
+                    <div class="d-flex flex-wrap gap-1 mt-1">
                         {% for item in overdue_items %}
-                        <span class="badge bg-danger">{{ item }}</span>
+                        <span class="badge bg-danger" style="font-size: 0.68rem;">{{ item }}</span>
                         {% endfor %}
                     </div>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-6 col-lg">
-            <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
-                <h6 class="text-muted mb-2">Condition Inspection</h6>
-                <span class="{{ cond_status_class }}">{{ cond_due }}</span>
-            </div>
-        </div>
-        <div class="col-6 col-lg">
-            <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
-                <h6 class="text-muted mb-2">Oil Change Due</h6>
-                <span class="{{ oil_status_class }}">{{ oil_due }}</span>
-            </div>
-        </div>
-        <div class="col-6 col-lg">
-            <div class="card text-center p-3 h-100 d-flex flex-column justify-content-between">
-                <h6 class="text-muted mb-2">Av & Ob Databases</h6>
-                <span class="{{ aviation_status_class }}">{{ aviation_db_text }}</span>
-            </div>
-        </div>
-        <div class="col-md-3 col-lg"> <div class="card h-100 shadow-sm">
-            <div class="card-header bg-secondary text-white py-2 d-flex justify-content-between align-items-center">
-                <h6 class="mb-0">⛽ Fuel Estimator</h6>
-                <div class="text-end no-wrap-col">
-                    <span class="fw-bold fs-6"><span id="totalGalDisplay">0.00</span> gal</span>
-                    <div class="small opacity-75" style="font-size: 0.72rem;">Usable: <span id="usableGalDisplay">0.00</span> gal</div>
+                    {% endif %}
+                </div>
+                <div class="hud-subtext">
+                    <i class="bi bi-shield-check"></i>
+                    <span>{{ 'Inspection or DB action required' if overdue_count > 0 else 'All inspections & ADs current' }}</span>
                 </div>
             </div>
-            <div class="card-body py-2">
-                <div class="row gx-1 align-items-center">
-                    <div class="col-6 d-flex flex-column align-items-center border-end py-1">
-                        <div class="text-primary small mb-0 fw-bold">
-                            L: <span id="leftHeightDisplay">0</span>"
-                        </div>
-                        <input type="range" class="form-range vertical-slider" orient="vertical" id="leftFuelSlider" min="0" max="6.5" step="0.25" value="0">
-                        <div class="mt-1 small">
-                            <span id="leftGalDisplay" class="fw-bold">0.00</span> gal
-                        </div>
-                    </div>
+        </div>
 
-                    <div class="col-6 d-flex flex-column align-items-center py-1">
-                        <div class="text-primary small mb-0 fw-bold">
-                            R: <span id="rightHeightDisplay">0</span>"
-                        </div>
-                        <input type="range" class="form-range vertical-slider" orient="vertical" id="rightFuelSlider" min="0" max="6.5" step="0.25" value="0">
-                        <div class="mt-1 small">
-                            <span id="rightGalDisplay" class="fw-bold">0.00</span> gal
-                        </div>
-                    </div>
+        <!-- 2. Condition Inspection -->
+        <div class="col-6 col-lg-3">
+            {% set cond_hud_class = 'hud-alert' if cond_status_class == 'status-overdue' else ('hud-warn' if cond_status_class == 'status-warning' else 'hud-ok') %}
+            {% set cond_pill_class = 'hud-pill-alert' if cond_status_class == 'status-overdue' else ('hud-pill-warn' if cond_status_class == 'status-warning' else 'hud-pill-ok') %}
+            <div class="status-hud-card {{ cond_hud_class }}">
+                <div class="hud-header">
+                    <span class="hud-title">🔍 Condition Insp.</span>
+                    <span class="hud-pill {{ cond_pill_class }}">
+                        {{ 'Overdue' if cond_status_class == 'status-overdue' else ('Due Soon' if cond_status_class == 'status-warning' else 'Annual') }}
+                    </span>
                 </div>
+                <div class="hud-value-box">
+                    <div class="hud-value {{ cond_status_class }}">{{ cond_due }}</div>
+                </div>
+                <div class="hud-subtext">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>12-Month Annual Cycle</span>
+                </div>
+            </div>
+        </div>
 
-                <!-- Presets & Endurance Footer -->
-                <div class="border-top pt-2 mt-1">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-muted small" style="font-size: 0.75rem;">Presets:</span>
-                        <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-outline-secondary py-0 px-1" style="font-size: 0.7rem;" onclick="setFuelPreset('full')">Full (42g)</button>
-                            <button type="button" class="btn btn-outline-secondary py-0 px-1" style="font-size: 0.7rem;" onclick="setFuelPreset('tabs')">Tabs (30g)</button>
-                            <button type="button" class="btn btn-outline-secondary py-0 px-1" style="font-size: 0.7rem;" onclick="setFuelPreset('half')">Half (21g)</button>
-                        </div>
+        <!-- 3. Oil Change Due -->
+        <div class="col-6 col-lg-3">
+            {% set oil_hud_class = 'hud-alert' if oil_status_class == 'status-overdue' else ('hud-warn' if oil_status_class == 'status-warning' else 'hud-ok') %}
+            {% set oil_pill_class = 'hud-pill-alert' if oil_status_class == 'status-overdue' else ('hud-pill-warn' if oil_status_class == 'status-warning' else 'hud-pill-ok') %}
+            <div class="status-hud-card {{ oil_hud_class }}">
+                <div class="hud-header">
+                    <span class="hud-title">🛢️ Oil Service</span>
+                    <span class="hud-pill {{ oil_pill_class }}">
+                        {{ 'Overdue' if oil_status_class == 'status-overdue' else ('Due Soon' if oil_status_class == 'status-warning' else '50-Hr') }}
+                    </span>
+                </div>
+                <div class="hud-value-box">
+                    <div class="hud-value {{ oil_status_class }}">{{ oil_due }}</div>
+                </div>
+                <div class="hud-subtext">
+                    <i class="bi bi-clock-history"></i>
+                    <span>50-Hour Service Interval</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Dynon Databases -->
+        <div class="col-6 col-lg-3">
+            {% set db_hud_class = 'hud-alert' if aviation_status_class == 'status-overdue' else 'hud-ok' %}
+            {% set db_pill_class = 'hud-pill-alert' if aviation_status_class == 'status-overdue' else 'hud-pill-ok' %}
+            <div class="status-hud-card {{ db_hud_class }}">
+                <div class="hud-header">
+                    <span class="hud-title">💾 Dynon DBs</span>
+                    <span class="hud-pill {{ db_pill_class }}">
+                        {{ 'Overdue' if aviation_status_class == 'status-overdue' else 'Active' }}
+                    </span>
+                </div>
+                <div class="hud-value-box">
+                    <div class="hud-value {{ aviation_status_class }}" style="font-size: 1.05rem;">{{ aviation_db_text }}</div>
+                    {% if obstacle_db_text and obstacle_db_text != '--' %}
+                    <div class="small mt-1 text-muted" style="font-size: 0.72rem;">
+                        Obs: <span class="{{ obstacle_status_class }} fw-semibold">{{ obstacle_db_text }}</span>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mt-1 no-wrap-col">
-                        <span class="text-muted small" style="font-size: 0.75rem;">
-                            <input type="number" id="cruiseGphInput" class="form-control form-control-sm d-inline-block text-center px-1 py-0 fw-bold border-secondary-subtle" style="width: 58px; height: 22px; font-size: 0.75rem;" step="0.1" min="1" max="30" value="9.08" title="Adjust fuel burn rate (GPH)"> GPH:
-                        </span>
-                        <span id="enduranceDisplay" class="badge bg-success" style="font-size: 0.75rem;">0h 00m</span>
-                    </div>
+                    {% endif %}
+                </div>
+                <div class="hud-subtext">
+                    <i class="bi bi-hdd-network"></i>
+                    <span>Aviation & Obstacle Data</span>
                 </div>
             </div>
         </div>
@@ -1116,6 +1527,102 @@
     </div>
 </div>
 
+<!-- Fuel Estimator Modal -->
+<div class="modal fade" id="fuelEstimatorModal" tabindex="-1" aria-labelledby="fuelEstimatorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content shadow-lg border-0">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title d-flex align-items-center gap-2" id="fuelEstimatorModalLabel">
+                    <span>⛽</span> RV-7 Fuel Estimator & Pre-Flight Endurance
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-3 p-md-4">
+                <div class="row g-3 g-md-4 align-items-center">
+                    <!-- Sliders Column -->
+                    <div class="col-12 col-md-6">
+                        <div class="card p-3 bg-light border-0 shadow-sm rounded-3">
+                            <h6 class="fw-bold text-center mb-3 text-secondary">Dipstick Fuel Level (Inches)</h6>
+                            <div class="row text-center">
+                                <!-- Left Tank -->
+                                <div class="col-6 border-end">
+                                    <div class="badge bg-primary px-3 py-1 mb-2 fs-6">Left Tank</div>
+                                    <div class="text-primary fw-bold fs-5 mb-1">
+                                        <span id="leftHeightDisplay">0</span>"
+                                    </div>
+                                    <input type="range" class="form-range vertical-slider" orient="vertical" id="leftFuelSlider" min="0" max="6.5" step="0.25" value="0" style="height: 110px !important;">
+                                    <div class="mt-2 fw-bold fs-6">
+                                        <span id="leftGalDisplay">0.00</span> <small class="text-muted">gal</small>
+                                    </div>
+                                </div>
+                                <!-- Right Tank -->
+                                <div class="col-6">
+                                    <div class="badge bg-primary px-3 py-1 mb-2 fs-6">Right Tank</div>
+                                    <div class="text-primary fw-bold fs-5 mb-1">
+                                        <span id="rightHeightDisplay">0</span>"
+                                    </div>
+                                    <input type="range" class="form-range vertical-slider" orient="vertical" id="rightFuelSlider" min="0" max="6.5" step="0.25" value="0" style="height: 110px !important;">
+                                    <div class="mt-2 fw-bold fs-6">
+                                        <span id="rightGalDisplay">0.00</span> <small class="text-muted">gal</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Presets -->
+                            <div class="mt-3 pt-3 border-top text-center">
+                                <div class="text-muted small mb-2 fw-semibold">Quick Tank Presets:</div>
+                                <div class="btn-group w-100">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm py-1" onclick="setFuelPreset('full')">Full (42g)</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm py-1" onclick="setFuelPreset('tabs')">Tabs (30g)</button>
+                                    <button type="button" class="btn btn-outline-secondary py-1 btn-sm" onclick="setFuelPreset('half')">Half (21g)</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Computed Summary Column -->
+                    <div class="col-12 col-md-6">
+                        <div class="card p-3 bg-light border-0 shadow-sm rounded-3 h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="fw-bold mb-3 text-secondary">Calculated Fuel & Endurance</h6>
+                                <div class="d-flex justify-content-between align-items-center mb-2 p-2 bg-white rounded border">
+                                    <span class="text-muted fw-semibold small">Total Onboard Fuel:</span>
+                                    <span class="fs-6 fw-bold text-dark"><span id="totalGalDisplay">0.00</span> gal</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2 p-2 bg-white rounded border">
+                                    <span class="text-muted fw-semibold small">Usable (0.5g unusable/tk):</span>
+                                    <span class="fs-6 fw-bold text-primary"><span id="usableGalDisplay">0.00</span> gal</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3 p-2 bg-white rounded border">
+                                    <span class="text-muted fw-semibold small">Cruise Burn Rate:</span>
+                                    <div class="d-flex align-items-center gap-1">
+                                        <input type="number" id="cruiseGphInput" class="form-control form-control-sm text-center fw-bold border-secondary-subtle" style="width: 65px;" step="0.1" min="1" max="30" value="9.08" title="Adjust fuel burn rate (GPH)">
+                                        <span class="small fw-semibold text-muted">GPH</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-3 bg-dark text-white rounded text-center">
+                                <div class="small text-uppercase tracking-wide text-light opacity-75 mb-1" style="font-size: 0.72rem;">Estimated Endurance</div>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <span id="enduranceDisplay" class="badge bg-success fs-4 px-3 py-2">0h 00m</span>
+                                </div>
+                                <div class="small opacity-75 mt-2" style="font-size: 0.72rem;">Includes 45-min VFR night / IFR reserve calculation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#fuelModal">
+                    ⛽ Log Fuel Purchase
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Database Updates Modal -->
 <div class="modal fade" id="dbUpdateModal" tabindex="-1" aria-labelledby="dbUpdateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -1153,6 +1660,191 @@
                 data-bs-dismiss="toast"></button>
     </div>
 </div>
+<!-- Mobile Floating Action Bar Dock (Bottom) -->
+<nav id="mobile-tracker-bar" class="mobile-tracker-dock d-md-none" aria-label="Mobile Navigation Controls">
+    <button type="button" id="mobile-nav-flights" class="mobile-tracker-btn active" onclick="mobileSwitchTab('flight-tab')">
+        <span class="tracker-bar-icon">✈️</span>
+        <span class="tracker-bar-label">Flights</span>
+    </button>
+    <button type="button" id="mobile-nav-mx" class="mobile-tracker-btn" onclick="mobileSwitchTab('mx-tab')">
+        <span class="tracker-bar-icon">🔧</span>
+        <span class="tracker-bar-label">Mx</span>
+    </button>
+    <button type="button" id="mobile-nav-fuel" class="mobile-tracker-btn" onclick="mobileSwitchTab('fuel-tab')">
+        <span class="tracker-bar-icon">⛽</span>
+        <span class="tracker-bar-label">Fuel</span>
+    </button>
+    <button type="button" id="mobile-nav-log" class="mobile-tracker-btn log-action-btn" onclick="toggleMobileSheet('logSheet')" title="Log Entry">
+        <span class="tracker-bar-icon">➕</span>
+        <span class="tracker-bar-label">Log</span>
+    </button>
+    <button type="button" id="mobile-nav-tools" class="mobile-tracker-btn" onclick="toggleMobileSheet('toolsSheet')" title="More Tools & Apps">
+        <span class="tracker-bar-icon">🧭</span>
+        <span class="tracker-bar-label">Tools</span>
+    </button>
+</nav>
+
+<!-- Mobile Drawers Backdrop Overlay -->
+<div id="mobile-sheet-backdrop" class="mobile-sheet-backdrop d-md-none" onclick="closeAllMobileSheets()"></div>
+
+<!-- Mobile Quick Log Action Sheet -->
+<div id="logSheet" class="mobile-bottom-sheet d-md-none">
+    <div class="mobile-sheet-handle-bar">
+        <div class="mobile-sheet-handle"></div>
+    </div>
+    <div class="mobile-sheet-header">
+        <h6 class="mobile-sheet-title mb-0">⚡ Quick Log Actions</h6>
+        <button type="button" class="btn-close btn-close-white" onclick="closeAllMobileSheets()" aria-label="Close"></button>
+    </div>
+    <div class="mobile-sheet-body">
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-primary py-2 d-flex align-items-center justify-content-start gap-3" data-bs-toggle="modal" data-bs-target="#flightModal" onclick="closeAllMobileSheets()">
+                <span class="fs-4">✈️</span>
+                <div class="text-start">
+                    <div class="fw-bold">Log New Flight</div>
+                    <small class="opacity-75 d-block">Record date, Hobbs/Tach, route & landings</small>
+                </div>
+            </button>
+            <button type="button" class="btn btn-warning py-2 d-flex align-items-center justify-content-start gap-3 text-dark" data-bs-toggle="modal" data-bs-target="#mxModal" onclick="closeAllMobileSheets()">
+                <span class="fs-4">🔧</span>
+                <div class="text-start">
+                    <div class="fw-bold">Log Maintenance</div>
+                    <small class="opacity-75 d-block">Condition inspection, oil change, avionics</small>
+                </div>
+            </button>
+            <button type="button" class="btn btn-success py-2 d-flex align-items-center justify-content-start gap-3" data-bs-toggle="modal" data-bs-target="#fuelModal" onclick="closeAllMobileSheets()">
+                <span class="fs-4">⛽</span>
+                <div class="text-start">
+                    <div class="fw-bold">Log Fuel Purchase</div>
+                    <small class="opacity-75 d-block">Airport, gallons, total cost & price/gal</small>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Tools & Apps Sheet -->
+<div id="toolsSheet" class="mobile-bottom-sheet d-md-none">
+    <div class="mobile-sheet-handle-bar">
+        <div class="mobile-sheet-handle"></div>
+    </div>
+    <div class="mobile-sheet-header">
+        <h6 class="mobile-sheet-title mb-0">🧭 Navigation, Analytics & Tools</h6>
+        <button type="button" class="btn-close btn-close-white" onclick="closeAllMobileSheets()" aria-label="Close"></button>
+    </div>
+    <div class="mobile-sheet-body">
+        <div class="row row-cols-2 g-2">
+            <div class="col">
+                <button type="button" class="mobile-tool-card" style="border-left: 3px solid #0dcaf0;" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal" onclick="closeAllMobileSheets()">
+                    <span class="tool-icon">⛽</span>
+                    <span class="tool-name">Fuel Estimator</span>
+                    <span class="tool-desc">Dipstick & endurance calc</span>
+                </button>
+            </div>
+            <div class="col">
+                <a href="/fuel_map" class="mobile-tool-card fuel-map-card">
+                    <span class="tool-icon">🗺️</span>
+                    <span class="tool-name">Fuel $$ Map</span>
+                    <span class="tool-desc">Airport radar & prices</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/live_map" class="mobile-tool-card live-map-card">
+                    <span class="tool-icon">📡</span>
+                    <span class="tool-name">Live Traffic</span>
+                    <span class="tool-desc">ADS-B radar & N890GF</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/analyzer" class="mobile-tool-card analyzer-card">
+                    <span class="tool-icon">📈</span>
+                    <span class="tool-name">Analyzer</span>
+                    <span class="tool-desc">Flight charts & telemetry</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/multi_flight_stats" class="mobile-tool-card multi-stats-card">
+                    <span class="tool-icon">📊</span>
+                    <span class="tool-name">Multi-Stats</span>
+                    <span class="tool-desc">Fleet trends & metrics</span>
+                </a>
+            </div>
+            <div class="col">
+                <button type="button" class="mobile-tool-card route-card" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal" onclick="closeAllMobileSheets()">
+                    <span class="tool-icon">🛫</span>
+                    <span class="tool-name">Route Advisor</span>
+                    <span class="tool-desc">Fuel stop optimizer</span>
+                </button>
+            </div>
+            <div class="col">
+                <button type="button" class="mobile-tool-card db-card" data-bs-toggle="modal" data-bs-target="#dbUpdateModal" onclick="closeAllMobileSheets()">
+                    <span class="tool-icon">💾</span>
+                    <span class="tool-name">Dynon DBs</span>
+                    <span class="tool-desc">Aviation & obstacle data</span>
+                </button>
+            </div>
+            <div class="col">
+                <button type="button" class="mobile-tool-card oil-card" data-bs-toggle="modal" data-bs-target="#oilAnalysisModal" onclick="closeAllMobileSheets()">
+                    <span class="tool-icon">🧪</span>
+                    <span class="tool-name">Oil Analysis</span>
+                    <span class="tool-desc">Spectrometric trends</span>
+                </button>
+            </div>
+            <div class="col">
+                <button type="button" class="mobile-tool-card cloud-card" data-bs-toggle="modal" data-bs-target="#cloudModal" onclick="closeAllMobileSheets()">
+                    <span class="tool-icon">☁️</span>
+                    <span class="tool-name">Cloud Base</span>
+                    <span class="tool-desc">Convective ceiling calc</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function mobileSwitchTab(tabId) {
+        const tabEl = document.getElementById(tabId);
+        if (tabEl) {
+            const bsTab = bootstrap.Tab.getOrCreateInstance(tabEl);
+            bsTab.show();
+        }
+        document.querySelectorAll('.mobile-tracker-btn').forEach(b => b.classList.remove('active'));
+        if (tabId === 'flight-tab') document.getElementById('mobile-nav-flights')?.classList.add('active');
+        else if (tabId === 'mx-tab') document.getElementById('mobile-nav-mx')?.classList.add('active');
+        else if (tabId === 'fuel-tab') document.getElementById('mobile-nav-fuel')?.classList.add('active');
+    }
+
+    function toggleMobileSheet(sheetId) {
+        const sheet = document.getElementById(sheetId);
+        const backdrop = document.getElementById('mobile-sheet-backdrop');
+        if (!sheet || !backdrop) return;
+        const isActive = sheet.classList.contains('active');
+        closeAllMobileSheets();
+        if (!isActive) {
+            sheet.classList.add('active');
+            backdrop.classList.add('active');
+        }
+    }
+
+    function closeAllMobileSheets() {
+        document.querySelectorAll('.mobile-bottom-sheet').forEach(s => s.classList.remove('active'));
+        document.getElementById('mobile-sheet-backdrop')?.classList.remove('active');
+    }
+
+    // Sync bottom dock active button when tabs are toggled anywhere
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabBtns = document.querySelectorAll('button[data-bs-toggle="tab"]');
+        tabBtns.forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function(event) {
+                const targetId = event.target.id;
+                document.querySelectorAll('.mobile-tracker-btn').forEach(b => b.classList.remove('active'));
+                if (targetId === 'flight-tab') document.getElementById('mobile-nav-flights')?.classList.add('active');
+                else if (targetId === 'mx-tab') document.getElementById('mobile-nav-mx')?.classList.add('active');
+                else if (targetId === 'fuel-tab') document.getElementById('mobile-nav-fuel')?.classList.add('active');
+            });
+        });
+    });
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const searchBtn = document.getElementById('adsbSearchBtn');
@@ -1169,15 +1861,17 @@
         }
 
         // Trigger on button click
-        searchBtn.addEventListener('click', updateAdsbMap);
+        if (searchBtn && searchInput && iframe) {
+            searchBtn.addEventListener('click', updateAdsbMap);
 
-        // Trigger on pressing 'Enter' inside the input field
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault(); // Prevent accidental form submissions
-                updateAdsbMap();
-            }
-        });
+            // Trigger on pressing 'Enter' inside the input field
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Prevent accidental form submissions
+                    updateAdsbMap();
+                }
+            });
+        }
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

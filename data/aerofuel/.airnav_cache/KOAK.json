@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790719546.2166772,
+  "_cached_at": 1790737497.9731278,
   "icao": "KOAK",
   "data": {
     "icao": "KOAK",
@@ -119,7 +119,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.24,
+            "price": 8.06,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

@@ -23,6 +23,15 @@
             background-color: #212529 !important;
             color: #f8f9fa;
         }
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        .chart-collapse-arrow {
+            transition: transform 0.25s ease;
+        }
+        [aria-expanded="false"] .chart-collapse-arrow {
+            transform: rotate(-90deg);
+        }
         @media (min-width: 1200px) {
             .row-cols-xl-7 > * {
                 flex: 0 0 auto;
@@ -59,6 +68,29 @@
             width: 1.05rem;
             height: 1.05rem;
         }
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px !important;
+            }
+            .table-responsive-sticky {
+                max-height: 62vh;
+            }
+            .table {
+                font-size: 0.8rem;
+            }
+            .table th, .table td {
+                padding: 0.4rem 0.5rem;
+            }
+            .stat-card {
+                padding: 0.5rem 0.6rem !important;
+            }
+            .stat-card .stat-label {
+                font-size: 0.68rem !important;
+            }
+            .stat-card .stat-value {
+                font-size: 1.05rem !important;
+            }
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </head>
@@ -69,105 +101,153 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <div class="d-flex align-items-center gap-2">
-                <a class="navbar-brand text-white" href="/">✈️ N890GF</a>
+                <a href="/" class="btn btn-outline-light btn-sm" title="Back to Flight Tracker"><i class="bi bi-house-door-fill"></i> Home</a>
+                <a class="navbar-brand fw-bold mb-0 py-0 ms-1" href="/analyzer"><i class="bi bi-arrow-left"></i> Analyzer</a>
             </div>
             <span class="navbar-text text-white fw-semibold d-none d-md-inline">✈️ Fleet Multi-Flight Statistics Dashboard</span>
             <div class="d-flex align-items-center gap-2">
-                <a href="/analyzer" class="btn btn-outline-light btn-sm"><i class="bi bi-graph-up"></i> Analyzer Workspace</a>
+                <a href="/analyzer" class="btn btn-outline-light btn-sm d-none d-sm-inline-flex align-items-center gap-1"><i class="bi bi-graph-up"></i> Analyzer Workspace</a>
                 <button id="themeToggle" class="btn btn-sm btn-outline-light" title="Toggle theme">🌙</button>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid p-4">
+    <div class="container-fluid px-2 px-md-4 py-3">
 
         <!-- HEADER -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
-                <h3 class="fw-bold mb-1">Multi-Flight Telemetry & Fleet Analytics</h3>
-                <p class="text-muted mb-0">High-level statistics, thermal health trends, and fuel performance across all recorded flights.</p>
+                <h4 class="fw-bold mb-1">Multi-Flight Telemetry & Fleet Analytics</h4>
+                <p class="text-muted small mb-0 d-none d-sm-block">High-level statistics, thermal health trends, and fuel performance across all recorded flights.</p>
             </div>
-            <div id="multiStatsStatus" class="text-muted"></div>
+            <div id="multiStatsStatus" class="text-muted small"></div>
         </div>
 
-        <!-- FLEET SUMMARY CARDS -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-7 g-3 mb-4">
+        <!-- FLEET SUMMARY CARDS (10 COMPACT RESPONSIVE TILES) -->
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2 g-md-3 mb-3">
             <div class="col">
-                <div class="card p-3 text-center border border-2 border-primary shadow-sm text-nowrap">
-                    <div class="text-muted small text-nowrap">Total Flights</div>
-                    <div id="totalFlightCount" class="fs-4 fw-bold text-primary text-nowrap">--</div>
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-primary shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Total Flights</div>
+                    <div id="totalFlightCount" class="stat-value fs-5 fs-md-4 fw-bold text-primary text-nowrap">--</div>
                 </div>
             </div>
             <div class="col">
-                <div class="card p-3 text-center border border-2 border-success shadow-sm text-nowrap">
-                    <div class="text-muted small text-nowrap">Total Engine Hours</div>
-                    <div id="totalHours" class="fs-4 fw-bold text-success text-nowrap">--</div>
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 shadow-sm h-100 d-flex flex-column justify-content-center" style="border-color: #20c997 !important;">
+                    <div class="text-muted stat-label small text-nowrap">Airborne Time</div>
+                    <div id="totalAirborneHours" class="stat-value fs-5 fs-md-4 fw-bold text-nowrap" style="color: #20c997;">--</div>
                 </div>
             </div>
             <div class="col">
-                <div class="card p-3 text-center border border-2 shadow-sm text-nowrap" style="border-color: #20c997 !important;">
-                    <div class="text-muted small text-nowrap">Flight Time (Airborne)</div>
-                    <div id="totalAirborneHours" class="fs-4 fw-bold text-nowrap" style="color: #20c997;">--</div>
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-info shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Total Distance</div>
+                    <div id="totalMiles" class="stat-value fs-5 fs-md-4 fw-bold text-info text-nowrap">--</div>
                 </div>
             </div>
             <div class="col">
-                <div class="card p-3 text-center border border-2 border-info shadow-sm text-nowrap">
-                    <div class="text-muted small text-nowrap">Total Distance</div>
-                    <div id="totalMiles" class="fs-4 fw-bold text-info text-nowrap">--</div>
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 shadow-sm h-100 d-flex flex-column justify-content-center" style="border-color: #6f42c1 !important;">
+                    <div class="text-muted stat-label small text-nowrap">Total Landings</div>
+                    <div id="totalLandings" class="stat-value fs-5 fs-md-4 fw-bold text-nowrap" style="color: #6f42c1;">--</div>
                 </div>
             </div>
             <div class="col">
-                <div class="card p-3 text-center border border-2 border-warning shadow-sm text-nowrap">
-                    <div class="text-muted small text-nowrap">Total Fuel Burned</div>
-                    <div id="totalFuel" class="fs-4 fw-bold text-warning text-nowrap">--</div>
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-warning shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Avg Fuel Flow</div>
+                    <div id="fleetAvgFuelFlow" class="stat-value fs-5 fs-md-4 fw-bold text-warning text-nowrap">--</div>
                 </div>
             </div>
             <div class="col">
-                <div class="card p-3 text-center border border-2 shadow-sm text-nowrap" style="border-color: #6f42c1 !important;">
-                    <div class="text-muted small text-nowrap">Total Landings</div>
-                    <div id="totalLandings" class="fs-4 fw-bold text-nowrap" style="color: #6f42c1;">--</div>
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-success shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Avg MPG</div>
+                    <div id="fleetAvgMpg" class="stat-value fs-5 fs-md-4 fw-bold text-success text-nowrap">--</div>
                 </div>
             </div>
             <div class="col">
-                <div class="card p-3 text-center border border-2 border-danger shadow-sm text-nowrap">
-                    <div class="text-muted small text-nowrap">Fleet Avg CHT</div>
-                    <div id="fleetAvgCht" class="fs-4 fw-bold text-danger text-nowrap">--</div>
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-primary shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Avg Cruise Speed</div>
+                    <div id="fleetAvgSpeed" class="stat-value fs-5 fs-md-4 fw-bold text-primary text-nowrap">--</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-info shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Monthly Hours</div>
+                    <div class="d-flex align-items-baseline justify-content-center gap-1">
+                        <span id="fleetMonthlyHours" class="stat-value fs-5 fs-md-4 fw-bold text-info text-nowrap">--</span>
+                        <span id="fleetYearlyHoursSub" class="text-muted small"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-danger shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Hourly Operating</div>
+                    <div class="d-flex align-items-baseline justify-content-center gap-1">
+                        <span id="fleetHourlyOperating" class="stat-value fs-5 fs-md-4 fw-bold text-danger text-nowrap">--</span>
+                        <span id="fleetHourlyFuelSub" class="text-muted small"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card stat-card p-2 p-md-3 text-center border border-2 border-warning shadow-sm h-100 d-flex flex-column justify-content-center">
+                    <div class="text-muted stat-label small text-nowrap">Total Fuel Spent</div>
+                    <div class="d-flex align-items-baseline justify-content-center gap-1">
+                        <span id="fleetFuelSpent" class="stat-value fs-5 fs-md-4 fw-bold text-warning text-nowrap">--</span>
+                        <span id="fleetFuelGalSub" class="text-muted small"></span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- PLOTLY FLEET TREND CHARTS -->
-        <div class="row g-3 mb-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="card p-3 shadow-sm">
-                    <div id="chartEngineHealth" style="height:420px;"></div>
+        <!-- PLOTLY FLEET TREND CHARTS (COLLAPSIBLE) -->
+        <div class="card shadow-sm mb-3 border">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2 px-3 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#fleetChartsCollapse" aria-expanded="false" aria-controls="fleetChartsCollapse" id="chartsToggleHeader">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold fs-6">📈 Fleet Trend Charts</span>
+                    <span class="badge bg-secondary extra-small fw-normal d-none d-sm-inline">Thermal Health, Activity & Fuel Economy</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-light text-dark extra-small d-none d-md-inline">Click to toggle charts</span>
+                    <i class="bi bi-chevron-down chart-collapse-arrow"></i>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card p-3 shadow-sm">
-                    <div id="chartActivity" style="height:420px;"></div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="card p-3 shadow-sm">
-                    <div id="chartFuelEfficiency" style="height:420px;"></div>
+            <div class="collapse" id="fleetChartsCollapse">
+                <div class="card-body p-2 p-md-3">
+                    <div class="row g-2 g-md-3">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card p-2 shadow-none border">
+                                <div id="chartEngineHealth" style="height:360px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card p-2 shadow-none border">
+                                <div id="chartActivity" style="height:360px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="card p-2 shadow-none border">
+                                <div id="chartFuelEfficiency" style="height:360px;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- TABLE SECTION -->
-        <div class="card shadow-sm">
-            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
-                <h5 class="mb-0 fw-bold"><i class="bi bi-table"></i> Flight Log Summary Table</h5>
-                <div class="d-flex align-items-center gap-2">
-                    <button class="btn btn-warning btn-sm fw-bold shadow-sm text-dark" onclick="openEngineHealthModal()">
-                        🔥 Engine Health & Cooling Trends
-                    </button>
-                    <button class="btn btn-primary btn-sm fw-bold shadow-sm" onclick="openAirspeedCalibrationsModal()">
-                        ✈️ Compare Airspeed Calibrations
-                    </button>
-                    <div style="min-width: 220px;">
-                        <input type="text" id="searchFlightInput" class="form-control form-control-sm" placeholder="🔍 Search date, filename...">
+        <div class="card shadow-sm border">
+            <div class="card-header bg-dark text-white py-2 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-stretch align-items-lg-center gap-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <h5 class="mb-0 fw-bold fs-6"><i class="bi bi-table"></i> Flight Log Summary Table</h5>
+                    </div>
+                    <div class="d-flex flex-wrap flex-sm-nowrap align-items-center gap-2">
+                        <button class="btn btn-warning btn-sm fw-bold text-dark flex-grow-1 flex-sm-grow-0 text-nowrap" onclick="openEngineHealthModal()">
+                            🔥 <span class="d-none d-md-inline">Engine Health & Cooling</span><span class="d-md-none">Engine Health</span>
+                        </button>
+                        <button class="btn btn-primary btn-sm fw-bold text-white flex-grow-1 flex-sm-grow-0 text-nowrap" onclick="openAirspeedCalibrationsModal()">
+                            ✈️ <span class="d-none d-md-inline">Airspeed Calibrations</span><span class="d-md-none">Calibrations</span>
+                        </button>
+                        <div class="flex-grow-1" style="min-width: 160px;">
+                            <input type="text" id="searchFlightInput" class="form-control form-control-sm" placeholder="🔍 Search date, filename...">
+                        </div>
                     </div>
                 </div>
             </div>
