@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788736.813102,
+  "_cached_at": 1790875606.9834886,
   "icao": "KPRC",
   "data": {
     "icao": "KPRC",
@@ -13,8 +13,20 @@
     "lon": -112.4199,
     "elevation_ft": 5045,
     "tower": true,
+    "tower_freq": 125.3,
     "ctaf_freq": 125.3,
     "unicom_freq": 122.95,
+    "weather_freq": 127.2,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "ATIS",
@@ -84,19 +96,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 8.15,
+            "price": 8.75,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 8.95,
+            "price": 9.55,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.75,
+            "price": 9.65,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -104,14 +116,16 @@
         }
       }
     ],
-    "best_price": 8.15,
+    "best_price": 8.75,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-10-01",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:58:56Z"
+    "raw_ident": "KPRC",
+    "airport_ref": "3789",
+    "fetched_at": "2026-10-01T17:26:44Z"
   }
 }

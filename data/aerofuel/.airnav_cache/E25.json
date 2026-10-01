@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372977.9651651,
+  "_cached_at": 1790875606.974689,
   "icao": "E25",
   "data": {
     "icao": "E25",
@@ -46,24 +46,32 @@
     "fbos": [
       {
         "name": "Town of Wickenburg",
-        "brand": "independent",
-        "phone": "N/A",
-        "notes": "independent \u2022 Quote: 17-Sep",
-        "quote_date": "17-Sep",
+        "brand": "",
+        "phone": "928-684-0754",
+        "notes": "Quote: 30-Sep-2026",
+        "quote_date": "30-Sep-2026",
         "fuels": {
+          "JET_A": {
+            "price": 6.1,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
           "100LL_SS": {
             "price": 6.7,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
-          },
-          "JET_A": {
-            "price": 6.1,
-            "type": "Jet-A",
-            "service": "Self-Serve",
-            "label": "Jet-A Turbine Fuel (Self-Serve)"
           }
         }
+      },
+      {
+        "name": "Master Aircraft Services, Inc.",
+        "brand": "Titan",
+        "phone": "928-684-0754",
+        "notes": "Titan",
+        "quote_date": null,
+        "fuels": {}
       }
     ],
     "best_price": 6.7,
@@ -72,10 +80,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-25",
+    "last_updated": "2026-10-01",
     "source": "AirNav Local Fuel",
     "raw_ident": "KE25",
     "airport_ref": "19691",
-    "fetched_at": "2026-09-25T21:49:35Z"
+    "fetched_at": "2026-10-01T17:26:44Z"
   }
 }

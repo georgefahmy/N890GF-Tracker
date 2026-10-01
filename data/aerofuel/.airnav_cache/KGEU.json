@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014731.080248,
+  "_cached_at": 1790875606.9797907,
   "icao": "KGEU",
   "data": {
     "icao": "KGEU",
@@ -87,19 +87,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.79,
+            "price": 7.89,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.99,
+            "price": 8.09,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.77,
+            "price": 7.97,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -107,16 +107,16 @@
         }
       }
     ],
-    "best_price": 7.79,
+    "best_price": 7.89,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-10-01",
     "source": "AirNav Local Fuel",
     "raw_ident": "KGEU",
     "airport_ref": "19940",
-    "fetched_at": "2026-08-29T14:45:31Z"
+    "fetched_at": "2026-10-01T17:26:44Z"
   }
 }
