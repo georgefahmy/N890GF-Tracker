@@ -827,6 +827,105 @@
     return `${ageDays}d ago`;
   }
 
+  /**
+   * Evaluates and formats the airport fuel quote/update date and staleness.
+   * Returns { dateStr, quoteDate, fetchedAt, lastUpdated, relStr, label, isStale, title } or null.
+   */
+  function getAirportDateInfo(apt, fuelInfo) {
+    if (!apt) return null;
+    const cleanIcao = (apt.icao || '').toUpperCase().trim();
+    const cleanFaa = (apt.faa || cleanIcao).toUpperCase().trim();
+    const canonical = STATE.airportsMap.get(cleanIcao) || (cleanFaa ? STATE.airportsMap.get(cleanFaa) : null) || apt;
+
+    // 1. Check for FBO quote date
+    let quoteDate = (fuelInfo && fuelInfo.quote_date) || null;
+    if (!quoteDate && canonical.fbos && canonical.fbos.length > 0) {
+      for (let i = 0; i < canonical.fbos.length; i++) {
+        const fbo = canonical.fbos[i];
+        if (fbo.quote_date) {
+          quoteDate = fbo.quote_date;
+          break;
+        }
+        if (fbo.notes) {
+          const m = fbo.notes.match(/Quote:\s*([A-Za-z0-9\-]+)/i);
+          if (m) {
+            quoteDate = m[1];
+            break;
+          }
+        }
+      }
+    }
+
+    // 2. Check fetched_at / last_updated
+    const fetchedAt = canonical.fetched_at || (STATE.customPrices[cleanIcao] && STATE.customPrices[cleanIcao].fetched_at) || (cleanFaa && STATE.customPrices[cleanFaa] && STATE.customPrices[cleanFaa].fetched_at) || null;
+    const lastUpdated = canonical.last_updated || null;
+
+    let dateStr = '';
+    let relStr = '';
+    let isStale = false;
+    let title = '';
+
+    if (fetchedAt) {
+      relStr = formatRelativeTime(fetchedAt);
+      const ageDays = (Date.now() - new Date(fetchedAt).getTime()) / (1000 * 60 * 60 * 24);
+      if (ageDays > 30) {
+        isStale = true;
+      }
+    }
+
+    if (quoteDate) {
+      dateStr = quoteDate;
+      title = `AirNav FBO Quote: ${quoteDate}${fetchedAt ? ` (Fetched ${fetchedAt})` : ''}`;
+
+      // Parse quote date to determine staleness
+      const mMatch = quoteDate.match(/^(\d{1,2})-([A-Za-z]{3})(?:-(\d{4}))?$/i);
+      if (mMatch) {
+        const day = parseInt(mMatch[1], 10);
+        const monthNames = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        const monthIdx = monthNames.indexOf(mMatch[2].toLowerCase());
+        if (monthIdx !== -1) {
+          const year = mMatch[3] ? parseInt(mMatch[3], 10) : new Date().getFullYear();
+          const quoteTime = new Date(year, monthIdx, day).getTime();
+          const ageDays = (Date.now() - quoteTime) / (1000 * 60 * 60 * 24);
+          if (ageDays > 30 || ageDays < -5) {
+            isStale = true;
+          }
+        }
+      } else {
+        const curYear = new Date().getFullYear();
+        if (quoteDate.includes(String(curYear - 1)) || quoteDate.includes('2025') || quoteDate.includes('2024')) {
+          isStale = true;
+        }
+      }
+    } else if (lastUpdated) {
+      dateStr = lastUpdated;
+      title = `Last Updated: ${lastUpdated}${fetchedAt ? ` (Fetched ${fetchedAt})` : ''}`;
+      const updDate = new Date(lastUpdated);
+      if (!isNaN(updDate.getTime())) {
+        const ageDays = (Date.now() - updDate.getTime()) / (1000 * 60 * 60 * 24);
+        if (ageDays > 30) isStale = true;
+      }
+    } else if (fetchedAt) {
+      dateStr = relStr || 'Recently';
+      title = `Fetched: ${fetchedAt}`;
+    }
+
+    if (!dateStr) {
+      return null;
+    }
+
+    return {
+      dateStr: dateStr,
+      quoteDate: quoteDate,
+      fetchedAt: fetchedAt,
+      lastUpdated: lastUpdated,
+      relStr: relStr,
+      label: dateStr,
+      isStale: isStale,
+      title: isStale ? `⚠️ Outdated quote! ${title}` : title
+    };
+  }
+
   // --- Price Extraction & Filtering ---
   /**
    * Checks if an airport has active fetched live fuel prices in session state.
@@ -869,7 +968,8 @@
           service: 'Self-Serve',
           label: `${canonicalApt.primary_fuel || '100LL'}`,
           fboName: 'Local FBO',
-          phone: ''
+          phone: '',
+          quote_date: null
         };
       }
       return null;
@@ -907,7 +1007,8 @@
             service: fuelObj.service,
             label: fuelObj.label || `${fuelObj.type} (${fuelObj.service})`,
             fboName: fbo.name,
-            phone: fbo.phone
+            phone: fbo.phone,
+            quote_date: fbo.quote_date || null
           });
         }
       }
@@ -3242,15 +3343,14 @@
         `;
       }
 
+      const popupDateInfo = getAirportDateInfo(canonical);
       let freshnessBadge = '';
-      if (canonical.fetched_at) {
-        const rel = formatRelativeTime(canonical.fetched_at);
-        const isCached = (Date.now() - new Date(canonical.fetched_at).getTime()) < 24 * 60 * 60 * 1000;
-        freshnessBadge = `<span class="popup-timestamp-badge" title="Fetched: ${canonical.fetched_at}">⏱️ AirNav Quote: ${rel} ${isCached ? '(Cached)' : '(Stale)'}</span>`;
+      if (popupDateInfo) {
+        freshnessBadge = `<span class="popup-timestamp-badge ${popupDateInfo.isStale ? 'is-stale' : ''}" title="${popupDateInfo.title}">⏱️ AirNav Quote: ${popupDateInfo.dateStr}${popupDateInfo.relStr ? ` (${popupDateInfo.relStr})` : ''}</span>`;
+      } else if (canonical.last_updated) {
+        freshnessBadge = `<span class="popup-timestamp-badge">AirNav: ${canonical.last_updated}</span>`;
       } else {
-        const timestamp = canonical.last_updated ? `AirNav: ${canonical.last_updated}` : 'AirNav Live Feed';
-        const source = canonical.source ? ` (${canonical.source})` : '';
-        freshnessBadge = `<span class="popup-timestamp-badge">${timestamp}${source}</span>`;
+        freshnessBadge = `<span class="popup-timestamp-badge">AirNav Live Feed</span>`;
       }
 
       fuelsHtml = `
@@ -3263,8 +3363,11 @@
         </div>
       `;
     } else if (hasFetchedPrice(canonical)) {
+      const popupDateInfo = getAirportDateInfo(canonical);
       let freshnessBadge = '';
-      if (canonical.fetched_at) {
+      if (popupDateInfo) {
+        freshnessBadge = ` • ⏱️ ${popupDateInfo.label}`;
+      } else if (canonical.fetched_at) {
         const rel = formatRelativeTime(canonical.fetched_at);
         const isCached = (Date.now() - new Date(canonical.fetched_at).getTime()) < 24 * 60 * 60 * 1000;
         freshnessBadge = ` • ⏱️ ${rel} ${isCached ? '(Cached)' : '(Stale)'}`;
@@ -3282,6 +3385,9 @@
       `;
     }
 
+    const popupDateInfo = getAirportDateInfo(canonical);
+    const dateSubtitle = popupDateInfo ? ` • <span class="popup-meta-date ${popupDateInfo.isStale ? 'is-stale' : 'is-fresh'}" title="${popupDateInfo.title}">📅 ${popupDateInfo.label}</span>` : '';
+
     return `
       <div class="airport-popup-bubble-content" data-icao="${canonical.icao}">
         <!-- Airport Header -->
@@ -3291,7 +3397,7 @@
             <span class="popup-tower-tag ${canonical.tower ? 'is-towered' : 'is-nontowered'}">${towerStatus}</span>
           </div>
           <div class="popup-name-title">${canonical.name || `${canonical.icao} Airport`}</div>
-          <div class="popup-meta-subtitle">📍 ${canonical.city ? canonical.city + ', ' : ''}${canonical.state || ''} • Elev: ${elevText}</div>
+          <div class="popup-meta-subtitle">📍 ${canonical.city ? canonical.city + ', ' : ''}${canonical.state || ''} • Elev: ${elevText}${dateSubtitle}</div>
         </div>
 
         <!-- Quick Specs -->
@@ -3725,6 +3831,8 @@
     if (STATE.prevBestDealSignature === signature) return;
     STATE.prevBestDealSignature = signature;
 
+    const dateInfo = getAirportDateInfo(lowest, lowest.effectiveFuel);
+
     hud.innerHTML = `
       <div class="best-deal-badge">
         <span class="best-deal-badge-title">🏆 Lowest In Radius</span>
@@ -3735,6 +3843,7 @@
         <div class="best-deal-header">
           <span class="best-deal-icao">${lowest.icao}</span>
           <span class="best-deal-name" title="${lowest.name}">${lowest.name}</span>
+          ${dateInfo ? `<span class="best-deal-date ${dateInfo.isStale ? 'is-stale' : 'is-fresh'}" title="${dateInfo.title}">${dateInfo.dateStr}</span>` : ''}
         </div>
         <div class="best-deal-sub">
           <span>${lowest.city}, ${lowest.state}</span>
@@ -3801,6 +3910,7 @@
 
     const isFetched = hasFetchedPrice(canonical);
     const fuelInfo = isFetched ? getEffectiveFuelInfo(canonical) : null;
+    const dateInfo = getAirportDateInfo(canonical, fuelInfo);
 
     // Distance calculation from Origin or Circle Center
     let distDisplay = '';
@@ -3858,6 +3968,7 @@
         <div class="best-deal-header">
           <span class="best-deal-icao">${canonical.icao || canonical.faa}</span>
           <span class="best-deal-name" title="${canonical.name}">${canonical.name}</span>
+          ${dateInfo ? `<span class="best-deal-date ${dateInfo.isStale ? 'is-stale' : 'is-fresh'}" title="${dateInfo.title}">${dateInfo.dateStr}</span>` : ''}
         </div>
         <div class="best-deal-sub">
           <span>${canonical.city || ''}${canonical.state ? ', ' + canonical.state : ''}</span>
@@ -4049,6 +4160,10 @@
                 ${originTag}
                 <span>•</span>
                 <span>${apt.effectiveFuel.service}</span>
+                ${(() => {
+                  const dateInfo = getAirportDateInfo(apt, apt.effectiveFuel);
+                  return dateInfo ? `<span>•</span> <span class="card-date-tag ${dateInfo.isStale ? 'is-stale' : 'is-fresh'}" title="${dateInfo.title}">📅 ${dateInfo.label}</span>` : '';
+                })()}
               </div>
             </div>
             <div class="card-price-section">
@@ -4399,8 +4514,11 @@
       `;
     }
 
+    const modalDateInfo = getAirportDateInfo(apt);
     let freshnessBadgeModal = '';
-    if (apt.fetched_at) {
+    if (modalDateInfo) {
+      freshnessBadgeModal = `<span class="modal-freshness-badge ${modalDateInfo.isStale ? 'is-stale' : ''}" title="${modalDateInfo.title}">⏱️ AirNav Quote: ${modalDateInfo.dateStr}${modalDateInfo.relStr ? ` (${modalDateInfo.relStr})` : ''}</span>`;
+    } else if (apt.fetched_at) {
       const rel = formatRelativeTime(apt.fetched_at);
       const isCached = (Date.now() - new Date(apt.fetched_at).getTime()) < 24 * 60 * 60 * 1000;
       freshnessBadgeModal = `<span class="modal-freshness-badge" title="Fetched at: ${apt.fetched_at}">⏱️ AirNav Quote: ${rel} ${isCached ? '(Cached)' : '(Stale)'}</span>`;
@@ -4488,7 +4606,7 @@
         <div class="modal-header">
           <div class="modal-title-wrap">
             <h2>✈️ ${apt.name} (${identHeader})</h2>
-            <div class="modal-subtitle">📍 ${apt.city}, ${apt.state}, USA • Elev: ${apt.elevation_ft} ft MSL</div>
+            <div class="modal-subtitle">📍 ${apt.city}, ${apt.state}, USA • Elev: ${apt.elevation_ft} ft MSL${modalDateInfo ? ` • <span class="modal-meta-date ${modalDateInfo.isStale ? 'is-stale' : 'is-fresh'}" title="${modalDateInfo.title}">📅 ${modalDateInfo.label}</span>` : ''}</div>
           </div>
           <button class="modal-close-btn" id="modal-close-x">&times;</button>
         </div>

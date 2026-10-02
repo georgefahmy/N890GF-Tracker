@@ -75,6 +75,7 @@ def api_single_airport(target_code):
                 "primary_fuel": cached_fuel.get("primary_fuel", matched.get("primary_fuel")),
                 "fuels_available": cached_fuel.get("fuels_available", matched.get("fuels_available")),
                 "fetched_at": cached_fuel.get("fetched_at", matched.get("fetched_at")),
+                "last_updated": cached_fuel.get("last_updated", matched.get("last_updated")),
             }
         return jsonify({"status": "ok", "airport": matched})
     return jsonify({"status": "error", "message": f"Airport '{clean_code}' not found in catalog"}), 404
