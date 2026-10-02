@@ -251,18 +251,6 @@
             min-width: 140px;
         }
 
-        .route-advisor-btn {
-            background: #6f42c1;
-            border: 1px solid #6f42c1;
-            color: white;
-            /* background: transparent; */
-            transition: all 0.2s ease-in-out;
-        }
-
-        .route-advisor-btn:hover {
-            background: #533290;
-            color: white;
-        }
         .database-download-button {
             background: #76032b;
             border: 1px solid #76032b;
@@ -328,26 +316,6 @@
             /* Make table fonts slightly smaller for mobile fit */
             .table {
                 font-size: 0.85rem;
-            }
-        }
-        /* Force solid background on the modal components */
-        #routeAdvisorModal .modal-content,
-        #routeAdvisorModal .modal-body {
-            background-color: #fff !important; /* Use #1a1a1a if in dark mode */
-        }
-
-        /* Ensure the modal dialog grows correctly */
-        #routeAdvisorModal .modal-dialog {
-            display: flex;
-            align-items: center;
-            min-height: calc(100% - 1rem);
-        }
-
-        /* Fix for mobile fullscreen expansion */
-        @media (max-width: 575.98px) {
-            #routeAdvisorModal .modal-content {
-                height: auto;
-                min-height: 100vh;
             }
         }
         .vertical-slider {
@@ -685,7 +653,6 @@
                 <div class="col-12 col-md-auto d-flex gap-2 flex-wrap justify-content-center">
                     <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelModal">Log Fuel</button>
                     <a href="/fuel_map" class="btn fuel-map-btn flex-grow-1 flex-md-grow-0">Fuel $$ Map</a>
-                    <button class="btn route-advisor-btn flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal">Routes</button>
                     <button class="btn database-download-button flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">Dynon DBs</button>
                     <a href="/live_map" class="btn btn-info text-white flex-grow-1 flex-md-grow-0">Live Map</a>
                     <a href="/analyzer" class="btn flight-analyzer-btn flex-grow-1 flex-md-grow-0">Analyzer</a>
@@ -1400,41 +1367,6 @@
 </div>
 
 
-<!-- Route Advisor Modal -->
-<div class="modal fade" id="routeAdvisorModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
-        <div class="modal-content">
-            <form id="routeAdvisorForm">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title">Route Advisor</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-3 mb-3">
-                        <div class="col-12 col-md-4">
-                            <label class="form-label fw-bold">Origin</label>
-                            <input type="text" name="origin" class="form-control form-control-lg text-uppercase" placeholder="KJFK" required autocapitalize="characters">
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <label class="form-label fw-bold">Destination</label>
-                            <input type="text" name="destination" class="form-control form-control-lg text-uppercase" placeholder="KLAX" required autocapitalize="characters">
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <label class="form-label fw-bold">Range (NM)</label>
-                            <input type="number" name="range_nm" class="form-control form-control-lg" placeholder="600" inputmode="decimal">
-                        </div>
-                    </div>
-                    <div class="modal-footer flex-column flex-sm-row">
-                        <button type="submit" class="btn btn-primary btn-lg w-100 w-sm-auto">Generate Route</button>
-                        <button type="button" class="btn btn-secondary w-100 w-sm-auto mt-2 mt-sm-0" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                    <div id="routeMap" class="d-none border" style="height: 350px; width: 100%; border-radius: 8px;"></div>
-                    <div id="routeResult" class="alert alert-info d-none mt-3"></div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- Cloud Base Calculator Modal -->
 <div class="modal fade" id="cloudModal" tabindex="-1">
@@ -1777,13 +1709,6 @@
                     <span class="tool-name">Multi-Stats</span>
                     <span class="tool-desc">Fleet trends & metrics</span>
                 </a>
-            </div>
-            <div class="col">
-                <button type="button" class="mobile-tool-card route-card" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal" onclick="closeAllMobileSheets()">
-                    <span class="tool-icon">🛫</span>
-                    <span class="tool-name">Route Advisor</span>
-                    <span class="tool-desc">Fuel stop optimizer</span>
-                </button>
             </div>
             <div class="col">
                 <button type="button" class="mobile-tool-card db-card" data-bs-toggle="modal" data-bs-target="#dbUpdateModal" onclick="closeAllMobileSheets()">

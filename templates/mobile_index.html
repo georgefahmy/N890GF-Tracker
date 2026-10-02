@@ -42,18 +42,6 @@
             white-space: nowrap;
             min-width: 140px;
         }
-
-        .route-advisor-btn {
-            color: #6f42c1;
-            border: 1px solid #6f42c1;
-            background: transparent;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .route-advisor-btn:hover {
-            background: #6f42c1;
-            color: white;
-        }
     </style>
 </head>
 <body>
@@ -83,9 +71,6 @@
 
                 <button class="btn btn-success flex-fill flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelModal">
                     Fuel Tracker
-                </button>
-                <button class="btn route-advisor-btn" data-bs-toggle="modal" data-bs-target="#routeAdvisorModal">
-                    Route Advisor
                 </button>
                 <a href="/fuel_map" class="btn btn-outline-info flex-fill flex-md-grow-0" style="white-space: nowrap;">
                     Fuel $$ Map
@@ -678,49 +663,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="routeAdvisorModal" tabindex="-1" aria-labelledby="routeAdvisorModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
-        <div class="modal-content">
-            <form id="routeAdvisorForm">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title" id="routeAdvisorModalLabel">Route Advisor</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
 
-                <div class="modal-body">
-                    <div class="row g-3 mb-3">
-                        <div class="col-12 col-md-4">
-                            <label class="form-label fw-bold">Origin Airport</label>
-                            <input type="text" name="origin" class="form-control form-control-lg text-uppercase"
-                                   placeholder="e.g. KJFK" required
-                                   autocapitalize="characters" autocorrect="off">
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <label class="form-label fw-bold">Destination Airport</label>
-                            <input type="text" name="destination" class="form-control form-control-lg text-uppercase"
-                                   placeholder="e.g. KLAX" required
-                                   autocapitalize="characters" autocorrect="off">
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <label class="form-label fw-bold">Max Leg Range (NM)</label>
-                            <input type="number" name="range_nm" class="form-control form-control-lg"
-                                   placeholder="e.g. 600" min="0" inputmode="decimal">
-                        </div>
-                    </div>
-
-                    <div id="routeMap" class="d-none shadow-sm" style="height: 350px; width: 100%; border-radius: 12px; margin-top: 10px;"></div>
-
-                    <div id="routeResult" class="alert alert-info d-none mt-3 p-3 shadow-sm"></div>
-                </div>
-
-                <div class="modal-footer flex-column flex-sm-row">
-                    <button type="submit" class="btn btn-primary btn-lg w-100 w-sm-auto order-0 order-sm-1">Generate Route</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg w-100 w-sm-auto mt-2 mt-sm-0 order-1 order-sm-0" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 

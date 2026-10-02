@@ -43,7 +43,6 @@ from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
 from src.aerofuel.routes import aerofuel_bp
-from src.airnav_route import fetch_route
 from src.airspeed_calibration import analyze_flight_data
 from src.flight_analytics import extract_comprehensive_flight_stats
 from src.fuel_estimate_simple import (
@@ -2723,20 +2722,6 @@ def api_get_signals():
         print(f"Signal Parsing Error: {e}")
         return jsonify({"error": str(e)}), 500
 
-
-@app.route("/route_advisor", methods=["POST"])
-def route_advisor():
-    origin = request.form["origin"]
-    destination = request.form["destination"]
-    range_value = request.form["range_nm"]
-
-    result = fetch_route(
-        origin,
-        destination,
-        range_value,
-    )
-
-    return jsonify(result)
 
 
 # --- API endpoint for Dynon database updates ---
