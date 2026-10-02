@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542025.3260958,
+  "_cached_at": 1790887588.6401687,
   "icao": "KWMC",
   "data": {
     "icao": "KWMC",
@@ -70,8 +70,8 @@
         "name": "Winnemucca Air Service",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 28-Aug",
-        "quote_date": "28-Aug",
+        "notes": "AVFUEL \u2022 Quote: 14-Sep",
+        "quote_date": "14-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.85,

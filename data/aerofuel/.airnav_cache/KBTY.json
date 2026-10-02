@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542284.516005,
+  "_cached_at": 1790887573.7363937,
   "icao": "KBTY",
   "data": {
     "icao": "KBTY",
@@ -53,8 +53,8 @@
         "name": "Beatty Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "AVFUEL \u2022 Quote: 30-Sep",
+        "quote_date": "30-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.45,
@@ -70,10 +70,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-10-01",
     "source": "AirNav Local Fuel",
     "raw_ident": "KBTY",
     "airport_ref": "19412",
-    "fetched_at": "2026-09-04T17:18:04Z"
+    "fetched_at": "2026-10-01T20:46:10Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542025.325826,
+  "_cached_at": 1790887573.7437596,
   "icao": "KHTH",
   "data": {
     "icao": "KHTH",
@@ -60,8 +60,8 @@
         "name": "Hawthorne Industrial Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 31-Aug",
-        "quote_date": "31-Aug",
+        "notes": "AVFUEL \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.54,
@@ -84,10 +84,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-10-01",
     "source": "AirNav Local Fuel",
     "raw_ident": "KHTH",
     "airport_ref": "20091",
-    "fetched_at": "2026-09-04T17:13:44Z"
+    "fetched_at": "2026-10-01T20:46:10Z"
   }
 }

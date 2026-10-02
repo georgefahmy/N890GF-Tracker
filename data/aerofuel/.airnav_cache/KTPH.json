@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542025.325449,
+  "_cached_at": 1790887573.7356956,
   "icao": "KTPH",
   "data": {
     "icao": "KTPH",
@@ -70,8 +70,8 @@
         "name": "KT Aero",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 31-Aug",
-        "quote_date": "31-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 21-Sep",
+        "quote_date": "21-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 6.4,
@@ -94,10 +94,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-10-01",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTPH",
     "airport_ref": "21216",
-    "fetched_at": "2026-09-04T17:13:44Z"
+    "fetched_at": "2026-10-01T20:46:10Z"
   }
 }

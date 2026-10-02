@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788542181.624023,
+  "_cached_at": 1790887588.6412385,
   "icao": "KRTS",
   "data": {
     "icao": "KRTS",
@@ -70,17 +70,17 @@
         "name": "Aviation Classics",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 31-Aug",
-        "quote_date": "31-Aug",
+        "notes": "Quote: 21-Sep",
+        "quote_date": "21-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.85,
+            "price": 6.92,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.35,
+            "price": 7.42,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -94,7 +94,7 @@
         }
       }
     ],
-    "best_price": 6.85,
+    "best_price": 6.92,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
