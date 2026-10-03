@@ -2028,7 +2028,7 @@ def get_all_flight_stats_cached():
     for filename in csv_files:
         filepath = os.path.join(SAVE_DIR, filename)
         mtime = os.path.getmtime(filepath)
-        CACHE_VERSION = "v7"
+        CACHE_VERSION = "v8"
         cache_key = f"{CACHE_VERSION}_{filename}_{mtime}"
 
         if cache_key in cache_data:
@@ -2085,14 +2085,6 @@ def get_all_flight_stats_cached():
                 )
                 avg_flow = (total_fuel * 3600) / duration if duration > 0 else 0
 
-                avg_mpg = "N/A"
-                if "MPG" in flight_data.columns:
-                    valid_mpg = pd.to_numeric(
-                        flight_data["MPG"], errors="coerce"
-                    ).dropna()
-                    if not valid_mpg.empty:
-                        avg_mpg = round(float(valid_mpg.mean()), 1)
-
                 dist_miles = 0.0
                 gs_col = None
                 for c in ["Ground Speed (knots)", "Ground Speed", "GPS GS", "gps_gs"]:
@@ -2116,6 +2108,13 @@ def get_all_flight_stats_cached():
                     ).dropna()
                     if not dt_series.empty:
                         dist_miles = round(float(dt_series.max() / 5280.0), 1)
+
+                # Avg MPG (nm/gal) = total distance / total fuel burned
+                avg_mpg = (
+                    round(float((dist_miles / 1.15078) / total_fuel), 1)
+                    if isinstance(total_fuel, (int, float)) and total_fuel > 0
+                    else "N/A"
+                )
 
                 def safe_max_col(col):
                     if col in flight_data.columns:
@@ -2271,7 +2270,7 @@ def generate_fleet_summary_file():
     tot_landings = sum(f.get("landing_count", 1) for f in flights_output)
 
     fleet_avg_ff = round(tot_fuel / cum_total_hours, 2) if cum_total_hours > 0 else 0.0
-    fleet_avg_mpg = round(tot_dist / tot_fuel, 2) if tot_fuel > 0 else 0.0
+    fleet_avg_mpg = round((tot_dist / 1.15078) / tot_fuel, 1) if tot_fuel > 0 else 0.0
     fleet_avg_spd = (
         round(tot_dist / cum_airborne_hours, 1) if cum_airborne_hours > 0 else 0.0
     )
@@ -3097,16 +3096,8 @@ def api_analyze_flight():
         )
         avg_flow = (total_fuel * 3600) / duration if duration > 0 else 0
 
-        # Calculate Average MPG using the mean() of the MPG data column
-        avg_mpg = "N/A"
-
-        if "MPG" in flight_data.columns:
-            try:
-                valid_mpg = pd.to_numeric(flight_data["MPG"], errors="coerce").dropna()
-                if not valid_mpg.empty:
-                    avg_mpg = round(valid_mpg.mean(), 1)
-            except Exception:
-                pass
+        # Total distance traveled (used for Avg MPG = distance / fuel)
+        distance_traveled = []
         if "Distance Traveled" in flight_data.columns:
             distance_traveled = safe_numeric(
                 flight_data.get("Distance Traveled", pd.Series([0] * len(flight_data)))
@@ -3128,6 +3119,14 @@ def api_analyze_flight():
         )
         distance_traveled_miles = (
             distance_traveled[-1] / 5280 if len(distance_traveled) > 0 else 0.0
+        )
+        distance_traveled_nm = distance_traveled_miles / 1.15078
+
+        # Avg MPG (nm/gal) = total distance / total fuel burned
+        avg_mpg = (
+            round(float(distance_traveled_nm / total_fuel), 1)
+            if isinstance(total_fuel, (int, float)) and total_fuel > 0
+            else "N/A"
         )
         avg_speed_mph = (
             round(distance_traveled_miles / (duration / 3600), 2)

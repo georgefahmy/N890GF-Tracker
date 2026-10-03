@@ -1109,6 +1109,7 @@ function updateGlobalUI(data) {
     const costVal = typeof s.actual_cost_per_hour === 'number' ? s.actual_cost_per_hour.toFixed(2) : '0.00';
     const fuelCostVal = typeof s.total_fuel === 'number' && typeof s.current_fuel_price === 'number' ? (s.total_fuel * s.current_fuel_price).toFixed(2) : '0.00';
     const distVal = typeof s.distance_traveled === 'number' ? s.distance_traveled.toFixed(1) : '0.0';
+    const distNmVal = typeof s.distance_traveled === 'number' ? (s.distance_traveled / 1.15078).toFixed(1) : '0.0';
 
     document.getElementById('statsList').innerHTML = `
         <!-- General & Fuel Performance -->
@@ -1127,7 +1128,7 @@ function updateGlobalUI(data) {
                     <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg Fuel Flow</div>
                     <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.avg_fuel_flow || 0} GPH</div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Overall Average MPG across entire flight (including ground operations)">
+                <div style="flex: 1 1 0; min-width: 0;" title="Overall Average MPG = total distance (nm) / total fuel">
                     <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg MPG</div>
                     <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_mpg || 'N/A'} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
                 </div>
@@ -1137,7 +1138,7 @@ function updateGlobalUI(data) {
                 </div>
                 <div style="flex: 1 1 0; min-width: 0;" title="Distance Traveled">
                     <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Distance</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${distVal} mi</div>
+                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${distVal} mi <span class="text-muted fw-normal" style="font-size: 0.75rem;">(${distNmVal} nm)</span></div>
                 </div>
                 <div style="flex: 1 1 0; min-width: 0;" title="Avg Speed">
                     <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg Speed</div>
