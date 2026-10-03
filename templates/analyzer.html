@@ -550,22 +550,6 @@
                                 </span>
 
                                 <div class="cesium-hud-overlay position-absolute bottom-0 start-0 end-0 p-1 text-white shadow-lg">
-                                    <!-- Playback controls bar -->
-                                    <div class="d-flex align-items-center gap-1 mb-1 px-1">
-                                        <select class="form-select form-select-sm w-auto bg-dark text-white border-secondary shadow-sm rounded-pill py-0 px-2 extra-small" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
-                                            <option value="1">1x</option>
-                                            <option value="2">2x</option>
-                                            <option value="5">5x</option>
-                                            <option value="10">10x</option>
-                                            <option value="30">30x</option>
-                                        </select>
-                                        <button class="btn btn-sm btn-primary shadow-sm px-2 py-0 rounded-pill d-flex align-items-center justify-content-center" id="playPauseBtn" onclick="togglePlayback()" style="min-width: 32px; height: 24px;">▶</button>
-                                        <input type="range" id="mapScrubber" class="form-range flex-grow-1 mx-1" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
-                                        <button class="btn btn-sm btn-outline-light border-secondary shadow-sm p-0 rounded-circle d-flex align-items-center justify-content-center" id="hudToggleBtn" onclick="toggleTelemetryHud()" title="Toggle telemetry readouts" style="width: 24px; height: 24px; font-size: 0.7rem;">
-                                            <i class="bi bi-chevron-down" id="hudToggleIcon"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-light border-secondary shadow-sm p-0 rounded-circle d-flex align-items-center justify-content-center" id="fullscreen3DBtn" onclick="toggle3DFullscreen()" title="Toggle Fullscreen 3D" style="width: 24px; height: 24px; font-size: 0.75rem;">⛶</button>
-                                    </div>
 
                                     <!-- Avionics Telemetry HUD Grid (4 across x 3 down) -->
                                     <div class="telemetry-hud-grid" id="telemetryHudGrid">
@@ -616,6 +600,23 @@
                                             <div class="hud-label">MPG</div>
                                             <div id="attMpg" class="hud-value">--</div>
                                         </div>
+                                    </div>
+
+                                    <!-- Playback controls bar -->
+                                    <div class="d-flex align-items-center gap-1 mb-1 px-1">
+                                        <select class="form-select form-select-sm w-auto bg-dark text-white border-secondary shadow-sm rounded-pill py-0 px-2 extra-small" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                                            <option value="1">1x</option>
+                                            <option value="2">2x</option>
+                                            <option value="5">5x</option>
+                                            <option value="10">10x</option>
+                                            <option value="30">30x</option>
+                                        </select>
+                                        <button class="btn btn-sm btn-primary shadow-sm px-2 py-0 rounded-pill d-flex align-items-center justify-content-center" id="playPauseBtn" onclick="togglePlayback()" style="min-width: 32px; height: 24px;">▶</button>
+                                        <input type="range" id="mapScrubber" class="form-range flex-grow-1 mx-1" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
+                                        <button class="btn btn-sm btn-outline-light border-secondary shadow-sm p-0 rounded-circle d-flex align-items-center justify-content-center" id="hudToggleBtn" onclick="toggleTelemetryHud()" title="Toggle telemetry readouts" style="width: 24px; height: 24px; font-size: 0.7rem;">
+                                            <i class="bi bi-chevron-down" id="hudToggleIcon"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-light border-secondary shadow-sm p-0 rounded-circle d-flex align-items-center justify-content-center" id="fullscreen3DBtn" onclick="toggle3DFullscreen()" title="Toggle Fullscreen 3D" style="width: 24px; height: 24px; font-size: 0.75rem;">⛶</button>
                                     </div>
                                 </div>
                             </div>
