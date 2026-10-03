@@ -3,45 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Data Analyzer</title>
+    <title>Flight Data Analyzer - N890GF</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     {% include 'dark_mode.html' %}
     <style>
-        body { background-color: #f8f9fa; padding-top: 56px; }
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 1050; }
-        .graph-wrapper { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #dee2e6;}
-        .plot-loader { z-index: 10; background: rgba(255,255,255,0.9); border-radius: 8px;}
-        /* Mobile First: Natural document flow */
-        .right-sticky-col {
-            position: relative;
-            width: 100%;
-            height: auto;
-            margin-top: 2rem; /* Adds breathing room under the plots on mobile */
-            z-index: 1000;
+        :root {
+            --analyzer-card-radius: 12px;
+            --analyzer-header-height: 64px;
         }
 
-        /* Desktop View: Fixed/Sticky layout */
+        body {
+            background-color: #f4f6f9;
+            padding-top: var(--analyzer-header-height);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1050;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Modern card styles */
+        .analyzer-card {
+            border-radius: var(--analyzer-card-radius);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .analyzer-card:hover {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+        }
+
+        body.dark-mode .analyzer-card {
+            background-color: #1a1e23;
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Plot wrappers */
+        .graph-wrapper {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9ecef;
+        }
+
+        body.dark-mode .graph-wrapper {
+            background: #14171a;
+            border-color: #2b3035;
+            box-shadow: none;
+        }
+
+        .plot-card {
+            border-radius: var(--analyzer-card-radius);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode .plot-card {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .plot-loader {
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+        }
+
+        body.dark-mode .plot-loader {
+            background: rgba(20, 23, 26, 0.92);
+        }
+
+        /* Mobile Segmented Switcher */
+        .mobile-view-nav {
+            position: sticky;
+            top: var(--analyzer-header-height);
+            z-index: 1030;
+            background: rgba(244, 246, 249, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 6px 0;
+            margin-bottom: 12px;
+        }
+
+        body.dark-mode .mobile-view-nav {
+            background: rgba(18, 18, 18, 0.95);
+        }
+
+        .mobile-nav-pill-group {
+            background: #e9ecef;
+            border-radius: 50rem;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        body.dark-mode .mobile-nav-pill-group {
+            background: #23272d;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .mobile-nav-btn {
+            flex: 1;
+            border: none;
+            border-radius: 50rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            color: #495057;
+            background: transparent;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+
+        body.dark-mode .mobile-nav-btn {
+            color: #adb5bd;
+        }
+
+        .mobile-nav-btn.active {
+            background: #0d6efd;
+            color: #ffffff !important;
+            box-shadow: 0 2px 6px rgba(13, 110, 253, 0.35);
+        }
+
+        /* Desktop Column Layout Transitions */
+        [name="leftColumn"], [name="rightColumn"] {
+            transition: flex 0.35s ease-in-out, max-width 0.35s ease-in-out, opacity 0.25s ease-in-out;
+        }
+
+        /* Desktop Sticky Column */
         @media (min-width: 992px) {
             .right-sticky-col {
-                position: fixed;
-                top: 80px;
-                right: 50px;
-                width: calc(33.333vw - 50px);
-                height: calc(100vh - 80px);
-                overflow: hidden;
-                box-sizing: border-box;
-                margin-top: 0;
+                position: sticky;
+                top: calc(var(--analyzer-header-height) + 12px);
+                max-height: calc(100vh - var(--analyzer-header-height) - 24px);
+                overflow-y: auto;
+                overflow-x: hidden;
+                scrollbar-width: thin;
+                padding-right: 4px;
+            }
+
+            .right-sticky-col::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            .right-sticky-col::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, 0.15);
+                border-radius: 4px;
+            }
+
+            body.dark-mode .right-sticky-col::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.2);
             }
         }
-        /* Apply transition to the flex properties for both columns */
-        [name="leftColumn"], [name="rightColumn"] {
-            transition: flex 0.4s ease-in-out, max-width 0.4s ease-in-out, opacity 0.3s ease-in-out;
-            overflow: hidden; /* Prevents content from 'popping' out during shrink */
-        }
 
-        /* When Collapsed: Right column disappears, Left column fills space */
+        /* Collapsed Sidebar on Desktop */
         .sidebar-collapsed [name="rightColumn"] {
             flex: 0 0 0% !important;
             max-width: 0% !important;
@@ -49,6 +178,7 @@
             padding-right: 0 !important;
             opacity: 0;
             pointer-events: none;
+            overflow: hidden;
         }
 
         .sidebar-collapsed [name="leftColumn"] {
@@ -56,125 +186,303 @@
             max-width: 100% !important;
         }
 
-        /* Ensure the sticky container inside the right column doesn't create phantom width */
-        .sidebar-collapsed .right-sticky-col {
-            width: 0;
-            display: none;
+        /* Mobile View Switching Rules (< 992px) */
+        @media (max-width: 991.98px) {
+            body {
+                padding-top: 58px;
+            }
+
+            .right-sticky-col {
+                position: relative;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            /* View: Graphs */
+            #analyzerMainContainer[data-mobile-view="graphs"] [name="leftColumn"] {
+                display: block !important;
+            }
+            #analyzerMainContainer[data-mobile-view="graphs"] [name="rightColumn"] {
+                display: none !important;
+            }
+
+            /* View: 3D Attitude */
+            #analyzerMainContainer[data-mobile-view="3d"] [name="leftColumn"] {
+                display: none !important;
+            }
+            #analyzerMainContainer[data-mobile-view="3d"] [name="rightColumn"] {
+                display: block !important;
+            }
+            #analyzerMainContainer[data-mobile-view="3d"] #mapCardWrapper {
+                display: none !important;
+            }
+            #analyzerMainContainer[data-mobile-view="3d"] #aircraftDataWrapper {
+                display: block !important;
+            }
+
+            /* View: Map */
+            #analyzerMainContainer[data-mobile-view="map"] [name="leftColumn"] {
+                display: none !important;
+            }
+            #analyzerMainContainer[data-mobile-view="map"] [name="rightColumn"] {
+                display: block !important;
+            }
+            #analyzerMainContainer[data-mobile-view="map"] #aircraftDataWrapper {
+                display: none !important;
+            }
+            #analyzerMainContainer[data-mobile-view="map"] #mapCardWrapper {
+                display: block !important;
+            }
+        }
+
+        /* Avionics Telemetry HUD Overlay */
+        .cesium-hud-overlay {
+            z-index: 999;
+            background: rgba(15, 20, 25, 0.72);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 4px 6px !important;
+        }
+
+        .cesium-hud-overlay .form-range {
+            height: 1.2rem;
+            cursor: pointer;
+        }
+
+        .telemetry-hud-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px 3px;
+            text-align: center;
+        }
+
+        .hud-item {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 4px;
+            padding: 2px 2px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            min-width: 0;
+        }
+
+        .hud-item-wide {
+            grid-column: span 2;
+        }
+
+        .hud-label {
+            font-size: 0.56rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1;
+        }
+
+        .hud-value {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.1;
+            margin-top: 1px;
+        }
+
+        /* Glassmorphic Action Buttons */
+        .btn-action-tool {
+            border-radius: 50rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.35rem 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .btn-action-tool:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Range Scrubber */
+        .form-range::-webkit-slider-thumb {
+            background: #0d6efd;
+            box-shadow: 0 0 6px rgba(13, 110, 253, 0.6);
+        }
+
+        .extra-small {
+            font-size: 0.72rem;
+        }
+
+        body.dark-mode #mobileMapScrubberBar {
+            background-color: #23272d !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
         }
     </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="/">✈️ N890GF</a>
+    <div class="container-fluid px-3">
+        <div class="d-flex align-items-center gap-2">
+            <a href="/" class="btn btn-outline-light btn-sm d-flex align-items-center gap-1" title="Back to Flight Tracker">
+                <i class="bi bi-house-door-fill"></i> <span class="d-none d-sm-inline">Home</span>
+            </a>
+            <a class="navbar-brand fw-bold mb-0 py-0 ms-1 d-flex align-items-center gap-2" href="/analyzer">
+                <span>✈️ N890GF</span>
+                <span class="badge bg-primary text-light" style="font-size: 0.7rem; font-weight: 600;">Analyzer</span>
+            </a>
+            <span class="navbar-text text-white-50 small d-none d-xl-inline ms-2">
+                Interactive Flight Data &amp; Telemetry Engine
+            </span>
+        </div>
+
         <div class="d-flex align-items-center gap-2 ms-auto">
-            <a href="/multi_flight_stats" class="btn btn-outline-success btn-sm">📊 Multi-Flight Stats</a>
-            <button id="sidebarToggle" class="btn btn-sm btn-outline-light" onclick="toggleSidebar()">🗺️</button>
-            <button id="themeToggle" class="btn btn-sm btn-outline-light">🌙</button>
+            <a href="/multi_flight_stats" class="btn btn-outline-success btn-sm d-flex align-items-center gap-1" title="Fleet Multi-Flight Statistics">
+                <i class="bi bi-bar-chart-line-fill"></i> <span class="d-none d-md-inline">Multi-Flight Stats</span>
+            </a>
+            <button id="sidebarToggle" class="btn btn-sm btn-outline-light d-none d-lg-inline-flex align-items-center gap-1" onclick="toggleSidebar()" title="Toggle 3D & Map Sidebar">
+                <i class="bi bi-layout-sidebar-inset-reverse"></i>
+            </button>
+            <button id="themeToggle" class="btn btn-sm btn-outline-light" title="Toggle theme">🌙</button>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid px-4 px-xl-5 mt-4 mb-5">
+<div class="container-fluid px-2 px-md-4 py-3" id="analyzerMainContainer" data-mobile-view="graphs">
 
-    <div class="row mb-4 align-items-start">
-
-        <!-- LEFT COLUMN: file + stats + plots -->
-       <div class="col-12 col-lg-8" name="leftColumn">
-
-            <!-- COMBINED FLIGHT SELECTION & SUMMARY STATS CARD -->
-            <div class="card p-3 shadow-sm mb-3">
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-3 border-bottom">
-                    <div class="d-flex align-items-center gap-2 flex-grow-1" style="max-width: 550px;">
-                        <label class="form-label text-muted small mb-0 fw-semibold text-nowrap">Flight Log:</label>
-                        <select class="form-select" id="savedFlights">
-                            <option value="">-- Select Flight Log --</option>
-                        </select>
-                    </div>
-
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="btn-group" role="group" aria-label="Temperature unit selection">
-                            <input type="radio" class="btn-check" name="tempUnit" id="unitF" autocomplete="off" value="F" checked>
-                            <label class="btn btn-outline-primary btn-sm" for="unitF">°F</label>
-
-                            <input type="radio" class="btn-check" name="tempUnit" id="unitC" autocomplete="off" value="C">
-                            <label class="btn btn-outline-primary btn-sm" for="unitC">°C</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-3 d-none" id="statsCard">
-                    <h5 class="text-primary mb-2" id="statFlightId">Flight Summary</h5>
-                    <div class="row g-2" id="statsList"></div>
-                </div>
-
-                <div class="pt-3 text-muted text-center" id="statsPlaceholder">
-                    Select a flight log to begin analysis.
-                </div>
+    <!-- TOP SECTION: FLIGHT SELECTION & SUMMARY STATS -->
+    <div class="card analyzer-card p-3 mb-3 shadow-sm" id="flightSelectionCard">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-2 border-bottom">
+            <div class="d-flex align-items-center gap-2 flex-grow-1" style="max-width: 550px;">
+                <label class="form-label text-muted small mb-0 fw-bold text-nowrap d-flex align-items-center gap-1">
+                    <i class="bi bi-file-earmark-spreadsheet-fill text-primary"></i> Flight Log:
+                </label>
+                <select class="form-select form-select-sm shadow-none" id="savedFlights">
+                    <option value="">-- Select Flight Log --</option>
+                </select>
             </div>
 
-            <!-- PLOTS SECTION (UNCHANGED CONTENT AREA) -->
-            <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
-                <h5 class="text-secondary d-none mb-0" id="plotHeader">Flight Graphs</h5>
-
-                <div class="d-flex gap-2 flex-wrap align-items-center">
-                    {% if current_user.is_authenticated %}
-                    <button class="btn btn-outline-info btn-sm" onclick="openSignalBandsModal()">
-                        Edit Signal Bands
-                    </button>
-                    {% endif %}
-                    <button class="btn btn-outline-secondary btn-sm" id="xyTabToggleBtn" onclick="toggleXYTab()">
-                        Show XY Plot
-                    </button>
-                    <button class="btn btn-outline-primary btn-sm" onclick="openGamiModal()">
-                        GAMI Spread
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm" onclick="openAirspeedCalModal()">
-                        Airspeed Calibration
-                    </button>
-                    <a href="/multi_flight_stats" class="btn btn-outline-success btn-sm">
-                        📊 Multi-Flight Stats
-                    </a>
-                </div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-secondary d-none" id="statsCollapseBtn" type="button" data-bs-toggle="collapse" data-bs-target="#statsCollapse" aria-expanded="true" aria-controls="statsCollapse" title="Toggle summary statistics">
+                    <i class="bi bi-chevron-up" id="statsCollapseIcon"></i>
+                </button>
             </div>
-            <div id="xyTab" class="card p-3 shadow-sm mb-4 d-none">
-                <h5 class="text-secondary mb-3">XY Plot (Signal vs Signal)</h5>
-                <div class="row mb-3">
-                    <div class="col-md-5">
-                        <label class="form-label small">X Axis Signal</label>
-                        <select class="form-select" id="xyXSelect" onchange="plotXY()"></select>
+        </div>
+
+        <div class="collapse show pt-2" id="statsCollapse">
+            <div class="d-none" id="statsCard">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="text-primary fw-bold mb-0 d-flex align-items-center gap-2" id="statFlightId">
+                        <i class="bi bi-speedometer2"></i> Flight Summary
+                    </h6>
+                </div>
+                <div class="row g-2" id="statsList"></div>
+            </div>
+
+            <div class="text-muted text-center py-2 small" id="statsPlaceholder">
+                <i class="bi bi-arrow-up-circle me-1"></i> Select a flight log above to begin telemetry analysis.
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTION TOOLS & QUICK LAUNCH BAR -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <h5 class="text-secondary d-none mb-0 fw-bold d-flex align-items-center gap-2" id="plotHeader">
+            <i class="bi bi-graph-up text-primary"></i> Flight Graphs
+        </h5>
+
+        <div class="d-flex gap-2 flex-wrap align-items-center ms-auto">
+            {% if current_user.is_authenticated %}
+            <button class="btn btn-outline-warning btn-sm btn-action-tool shadow-sm" onclick="openSignalBandsModal()">
+                <i class="bi bi-sliders"></i> Signal Bands
+            </button>
+            {% endif %}
+            <button class="btn btn-outline-secondary btn-sm btn-action-tool shadow-sm" id="xyTabToggleBtn" onclick="toggleXYTab()">
+                <i class="bi bi-graph-up-arrow"></i> Show XY Plot
+            </button>
+            <button class="btn btn-outline-primary btn-sm btn-action-tool shadow-sm" onclick="openGamiModal()">
+                <i class="bi bi-fire"></i> GAMI Spread
+            </button>
+            <button class="btn btn-outline-info btn-sm btn-action-tool shadow-sm" onclick="openAirspeedCalModal()">
+                <i class="bi bi-compass"></i> Airspeed Cal
+            </button>
+            <a href="/multi_flight_stats" class="btn btn-outline-success btn-sm btn-action-tool shadow-sm">
+                <i class="bi bi-bar-chart-line-fill"></i> Multi-Flight
+            </a>
+        </div>
+    </div>
+
+    <!-- MOBILE VIEW SWITCHER (Visible ONLY on Mobile < 992px) -->
+    <div class="mobile-view-nav d-lg-none">
+        <div class="mobile-nav-pill-group" role="group" aria-label="Mobile View Switcher">
+            <button type="button" class="mobile-nav-btn active" data-view="graphs" onclick="switchMobileView('graphs')">
+                <i class="bi bi-graph-up"></i> Graphs
+            </button>
+            <button type="button" class="mobile-nav-btn" data-view="3d" onclick="switchMobileView('3d')">
+                <i class="bi bi-badge-3d-fill"></i> 3D View
+            </button>
+            <button type="button" class="mobile-nav-btn" data-view="map" onclick="switchMobileView('map')">
+                <i class="bi bi-map"></i> Flight Map
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN TWO-COLUMN CONTENT AREA -->
+    <div class="row align-items-start g-3">
+
+        <!-- LEFT COLUMN: XY Plot + Dynamic Telemetry Plots -->
+        <div class="col-12 col-lg-8" name="leftColumn">
+
+            <!-- XY PLOT SECTION -->
+            <div id="xyTab" class="card analyzer-card p-3 shadow-sm mb-3 d-none">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="text-secondary fw-bold mb-0 d-flex align-items-center gap-2">
+                        <i class="bi bi-graph-up-arrow text-primary"></i> XY Correlation Plot (Signal vs Signal)
+                    </h6>
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="toggleXYTab()" title="Close XY Plot">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="row g-2 mb-3">
+                    <div class="col-12 col-sm-5">
+                        <label class="form-label small text-muted fw-semibold mb-1">X Axis Signal</label>
+                        <select class="form-select form-select-sm" id="xyXSelect" onchange="plotXY()"></select>
                     </div>
-                    <div class="col-md-5">
-                        <label class="form-label small">Y Axis Signal</label>
-                        <select class="form-select" id="xyYSelect" onchange="plotXY()"></select>
+                    <div class="col-12 col-sm-5">
+                        <label class="form-label small text-muted fw-semibold mb-1">Y Axis Signal</label>
+                        <select class="form-select form-select-sm" id="xyYSelect" onchange="plotXY()"></select>
                     </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <div class="w-100 d-flex flex-column gap-2">
-                            <button class="btn btn-primary w-100" onclick="plotXY()">Plot</button>
-                            <button class="btn btn-outline-secondary w-100" onclick="swapXY()">Swap Axes</button>
-                            <button class="btn btn-outline-secondary w-100" id="xy-filter-btn" onclick="toggleXYFilters()">
-                                Show Filters
+                    <div class="col-12 col-sm-2 d-flex align-items-end">
+                        <div class="w-100 d-flex flex-sm-column flex-row gap-1">
+                            <button class="btn btn-primary btn-sm flex-grow-1" onclick="plotXY()">Plot</button>
+                            <button class="btn btn-outline-secondary btn-sm flex-grow-1" onclick="swapXY()">Swap</button>
+                            <button class="btn btn-outline-secondary btn-sm flex-grow-1" id="xy-filter-btn" onclick="toggleXYFilters()">
+                                Filters
                             </button>
                         </div>
                     </div>
                 </div>
+
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" id="xyOverlayToggle" onchange="plotXY()">
-                    <label class="form-check-label small" for="xyOverlayToggle">
+                    <label class="form-check-label small text-muted" for="xyOverlayToggle">
                         Show Raw vs Filtered Overlay
                     </label>
                 </div>
-                <div class="mb-3 p-2 border rounded d-none" id="xy-filter-section">
 
+                <div class="mb-3 p-2 border rounded d-none bg-body-tertiary" id="xy-filter-section">
                     <div class="row g-2 align-items-end">
-                        <div class="col-md-4">
-                            <label class="form-label small">Filter Signal</label>
+                        <div class="col-12 col-sm-4">
+                            <label class="form-label small text-muted mb-1">Filter Signal</label>
                             <select class="form-select form-select-sm" id="xyFilterSignal"></select>
                         </div>
-
-                        <div class="col-md-2">
-                            <label class="form-label small">Op</label>
+                        <div class="col-6 col-sm-2">
+                            <label class="form-label small text-muted mb-1">Op</label>
                             <select class="form-select form-select-sm" id="xyFilterOp">
                                 <option value=">">></option>
                                 <option value="<"><</option>
@@ -183,176 +491,222 @@
                                 <option value="==">==</option>
                             </select>
                         </div>
-
-                        <div class="col-md-3">
-                            <label class="form-label small">Value</label>
+                        <div class="col-6 col-sm-3">
+                            <label class="form-label small text-muted mb-1">Value</label>
                             <input type="number" class="form-control form-control-sm" id="xyFilterValue">
                         </div>
-
-                        <div class="col-md-3">
+                        <div class="col-12 col-sm-3">
                             <button class="btn btn-primary btn-sm w-100" onclick="addXYFilter()">Add Filter</button>
                         </div>
                     </div>
 
                     <div class="mt-2">
-                        <div class="small text-muted">Active XY Filters</div>
-                        <ul class="list-group mt-1" id="xyFilterList"></ul>
-                        <button class="btn btn-outline-danger btn-sm mt-2" onclick="clearXYFilters()">
+                        <div class="extra-small text-muted fw-bold">Active XY Filters</div>
+                        <ul class="list-group list-group-flush mt-1" id="xyFilterList"></ul>
+                        <button class="btn btn-outline-danger btn-sm mt-2 py-0 px-2 extra-small" onclick="clearXYFilters()">
                             Clear Filters
                         </button>
                     </div>
                 </div>
-                <div class="graph-wrapper" style="height:400px;">
+
+                <div class="graph-wrapper" style="height: 400px;">
                     <div id="xyGraph" class="w-100 h-100"></div>
                 </div>
             </div>
-            <div class="row align-items-stretch">
-                <div class="col-md-12 h-100 d-flex flex-column">
-                    <div id="plotsContainer"></div>
 
-                    <div class="text-center mt-4">
-                        <button class="btn btn-outline-primary shadow-sm px-4 py-2 d-none" id="addPlotBtn" onclick="addPlot()">
-                            <strong>+ Add Additional Plot</strong>
-                        </button>
-                    </div>
+            <!-- DYNAMIC FLIGHT PLOTS CONTAINER -->
+            <div id="plotsContainerSection">
+                <div id="plotsContainer"></div>
+
+                <div class="text-center mt-3 mb-4">
+                    <button class="btn btn-primary shadow-sm px-4 py-2 d-none rounded-pill" id="addPlotBtn" onclick="addPlot()">
+                        <i class="bi bi-plus-circle-fill me-1"></i> Add Additional Plot
+                    </button>
                 </div>
             </div>
+
         </div>
 
-        <!-- RIGHT COLUMN: sticky 3D + map -->
-       <div class="col-12 col-lg-4" name="rightColumn">
+        <!-- RIGHT COLUMN: 3D Flight View + Interactive Map -->
+        <div class="col-12 col-lg-4" name="rightColumn">
             <div class="right-sticky-col">
-                <div class="right-scroll">
                 <div class="d-flex flex-column gap-3">
 
-                    <!-- Aircraft Attitude / 3D Model -->
-                    <div class="card p-3 shadow-sm h-100 d-none" id="aircraftDataCard">
-                        <h6 class="text-primary mb-2">3D Flight View & Telemetry</h6>
-                        <hr class="mt-0 mb-2">
+                    <!-- 3D Flight View & Telemetry HUD -->
+                    <div id="aircraftDataWrapper">
+                        <div class="card analyzer-card p-3 shadow-sm d-none" id="aircraftDataCard">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="text-primary fw-bold mb-0 d-flex align-items-center gap-2">
+                                    <i class="bi bi-badge-3d-fill"></i> 3D Flight View &amp; Telemetry
+                                </h6>
+                                <span class="badge bg-primary-subtle text-primary extra-small">Live Sync</span>
+                            </div>
 
-                        <div id="attitude3DContainer"
-                             class="border rounded position-relative overflow-hidden mb-0"
-                             style="height: 480px; min-height: 400px;">
-                            <span class="cesium-placeholder text-muted small position-absolute top-50 start-50 translate-middle">
-                                Loading 3D Model...
-                            </span>
-                            <div class="cesium-hud-overlay position-absolute bottom-0 start-0 end-0 p-2 bg-dark bg-opacity-75 text-white shadow-lg" style="z-index: 999; backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.15);">
-                                <!-- Playback controls bar -->
-                                <div class="d-flex align-items-center gap-2 mb-2 px-1">
-                                    <select class="form-select form-select-sm w-auto bg-dark text-white border-secondary shadow-sm" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                            <div id="attitude3DContainer"
+                                 class="border rounded position-relative overflow-hidden mb-0"
+                                 style="height: 480px; min-height: 400px; background: #000000;">
+                                <span class="cesium-placeholder text-muted small position-absolute top-50 start-50 translate-middle">
+                                    <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div> Loading 3D Model...
+                                </span>
+
+                                <div class="cesium-hud-overlay position-absolute bottom-0 start-0 end-0 p-1 text-white shadow-lg">
+                                    <!-- Playback controls bar -->
+                                    <div class="d-flex align-items-center gap-1 mb-1 px-1">
+                                        <select class="form-select form-select-sm w-auto bg-dark text-white border-secondary shadow-sm rounded-pill py-0 px-2 extra-small" id="playbackSpeedSelect" onchange="setPlaybackSpeed(this.value)">
+                                            <option value="1">1x</option>
+                                            <option value="2">2x</option>
+                                            <option value="5">5x</option>
+                                            <option value="10">10x</option>
+                                            <option value="30">30x</option>
+                                        </select>
+                                        <button class="btn btn-sm btn-primary shadow-sm px-2 py-0 rounded-pill d-flex align-items-center justify-content-center" id="playPauseBtn" onclick="togglePlayback()" style="min-width: 32px; height: 24px;">▶</button>
+                                        <input type="range" id="mapScrubber" class="form-range flex-grow-1 mx-1" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
+                                        <button class="btn btn-sm btn-outline-light border-secondary shadow-sm p-0 rounded-circle d-flex align-items-center justify-content-center" id="hudToggleBtn" onclick="toggleTelemetryHud()" title="Toggle telemetry readouts" style="width: 24px; height: 24px; font-size: 0.7rem;">
+                                            <i class="bi bi-chevron-down" id="hudToggleIcon"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-light border-secondary shadow-sm p-0 rounded-circle d-flex align-items-center justify-content-center" id="fullscreen3DBtn" onclick="toggle3DFullscreen()" title="Toggle Fullscreen 3D" style="width: 24px; height: 24px; font-size: 0.75rem;">⛶</button>
+                                    </div>
+
+                                    <!-- Avionics Telemetry HUD Grid (4 across x 3 down) -->
+                                    <div class="telemetry-hud-grid" id="telemetryHudGrid">
+                                        <!-- Row 1: Attitudes & Speed -->
+                                        <div class="hud-item">
+                                            <div class="hud-label">Pitch</div>
+                                            <div id="attPitch" class="hud-value">-- °</div>
+                                        </div>
+                                        <div class="hud-item">
+                                            <div class="hud-label">Roll</div>
+                                            <div id="attRoll" class="hud-value">-- °</div>
+                                        </div>
+                                        <div class="hud-item">
+                                            <div class="hud-label">Heading</div>
+                                            <div id="attHeading" class="hud-value">-- °</div>
+                                        </div>
+                                        <div class="hud-item">
+                                            <div class="hud-label">Airspeed</div>
+                                            <div id="attAirspeed" class="hud-value">-- kts</div>
+                                        </div>
+                                        <!-- Row 2: Altitude & Engine -->
+                                        <div class="hud-item">
+                                            <div class="hud-label">Altitude</div>
+                                            <div id="attAltitude" class="hud-value">-- ft</div>
+                                        </div>
+                                        <div class="hud-item">
+                                            <div class="hud-label">VS</div>
+                                            <div id="attVerticalSpeed" class="hud-value">-- fpm</div>
+                                        </div>
+                                        <div class="hud-item">
+                                            <div class="hud-label">RPM</div>
+                                            <div id="attRpm" class="hud-value">--</div>
+                                        </div>
+                                        <div class="hud-item">
+                                            <div class="hud-label">MAP</div>
+                                            <div id="attMap" class="hud-value">--</div>
+                                        </div>
+                                        <!-- Row 3: Efficiency (Fuel Flow spans 2 columns to make 4 cols) -->
+                                        <div class="hud-item">
+                                            <div class="hud-label">Power</div>
+                                            <div id="attPower" class="hud-value">-- %</div>
+                                        </div>
+                                        <div class="hud-item hud-item-wide">
+                                            <div class="hud-label">Fuel Flow</div>
+                                            <div id="attFuelFlow" class="hud-value">-- gph</div>
+                                        </div>
+                                        <div class="hud-item">
+                                            <div class="hud-label">MPG</div>
+                                            <div id="attMpg" class="hud-value">--</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card analyzer-card p-3 shadow-sm d-flex align-items-center justify-content-center text-muted text-center" id="aircraftDataPlaceholder" style="min-height: 180px;">
+                            <div>
+                                <i class="bi bi-badge-3d fs-2 text-muted d-block mb-1"></i>
+                                <span>3D Attitude &amp; Flight Data will appear here upon flight selection.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Flight Track Map -->
+                    <div id="mapCardWrapper">
+                        <div class="card analyzer-card p-2 shadow-sm">
+                            <div class="d-flex justify-content-between align-items-center px-2 py-1 mb-1">
+                                <span class="small fw-bold d-flex align-items-center gap-1">
+                                    <i class="bi bi-geo-alt-fill text-danger"></i> Flight Track
+                                </span>
+                                <div class="d-flex align-items-center gap-2">
+                                    <select id="mapColorModeSelect" class="form-select form-select-sm py-0 px-2 extra-small" style="width: auto;">
+                                        <option value="altitude">Altitude</option>
+                                        <option value="airspeed">Airspeed</option>
+                                        <option value="groundspeed">Ground Speed</option>
+                                        <option value="vertical_speed">Vertical Speed</option>
+                                    </select>
+                                    <div class="form-check form-switch m-0 d-flex align-items-center gap-1">
+                                        <input class="form-check-input"
+                                            type="checkbox"
+                                            id="followAircraftToggle"
+                                            checked
+                                            onchange="toggleFollowAircraft(this.checked)">
+                                        <label class="form-check-label extra-small text-muted" for="followAircraftToggle">
+                                            Follow
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="mapGraph" class="rounded overflow-hidden" style="height: 360px;"></div>
+
+                            <!-- Mobile-Only Flight Scrubber Bar (Hidden on Desktop) -->
+                            <div class="d-lg-none mt-2 p-2 bg-body-tertiary rounded border" id="mobileMapScrubberBar">
+                                <div class="d-flex align-items-center gap-2">
+                                    <select class="form-select form-select-sm w-auto bg-dark text-white border-secondary shadow-sm rounded-pill py-0 px-2 extra-small"
+                                            id="mobileMapPlaybackSpeedSelect"
+                                            onchange="setPlaybackSpeed(this.value)">
                                         <option value="1">1x</option>
                                         <option value="2">2x</option>
                                         <option value="5">5x</option>
                                         <option value="10">10x</option>
                                         <option value="30">30x</option>
                                     </select>
-                                    <button class="btn btn-sm btn-primary shadow-sm px-3" id="playPauseBtn" onclick="togglePlayback()">▶</button>
-                                    <input type="range" id="mapScrubber" class="form-range flex-grow-1 mx-2" min="0" max="100" value="0" step="1" oninput="scrubMap(this.value)">
-                                    <button class="btn btn-sm btn-outline-light border-secondary shadow-sm px-2" id="fullscreen3DBtn" onclick="toggle3DFullscreen()" title="Toggle Fullscreen 3D">⛶</button>
-                                </div>
-
-                                <!-- Telemetry metrics row 1 -->
-                                <div class="row g-1 text-center align-items-center mb-1">
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Pitch</div>
-                                        <div id="attPitch" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Roll</div>
-                                        <div id="attRoll" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Heading</div>
-                                        <div id="attHeading" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- °</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Airspeed</div>
-                                        <div id="attAirspeed" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- kts</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Altitude</div>
-                                        <div id="attAltitude" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- ft</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">VS</div>
-                                        <div id="attVerticalSpeed" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- fpm</div>
-                                    </div>
-                                </div>
-
-                                <!-- Telemetry metrics row 2 -->
-                                <div class="row g-1 text-center align-items-center">
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">RPM</div>
-                                        <div id="attRpm" class="fw-bold text-nowrap" style="font-size: 0.85rem;">--</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">MAP (inHg)</div>
-                                        <div id="attMap" class="fw-bold text-nowrap" style="font-size: 0.85rem;">--</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Power</div>
-                                        <div id="attPower" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- %</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">Fuel Flow</div>
-                                        <div id="attFuelFlow" class="fw-bold text-nowrap" style="font-size: 0.85rem;">-- gph</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="text-white-50 text-nowrap" style="font-size: 0.72rem;">MPG (NM)</div>
-                                        <div id="attMpg" class="fw-bold text-nowrap" style="font-size: 0.85rem;">--</div>
-                                    </div>
+                                    <button class="btn btn-sm btn-primary shadow-sm px-3 rounded-pill d-flex align-items-center justify-content-center"
+                                            id="mobileMapPlayPauseBtn"
+                                            onclick="togglePlayback()">▶</button>
+                                    <input type="range"
+                                           id="mobileMapScrubber"
+                                           class="form-range flex-grow-1 mx-2"
+                                           min="0"
+                                           max="100"
+                                           value="0"
+                                           step="1"
+                                           oninput="scrubMap(this.value)">
                                 </div>
                             </div>
+
+                            <div id="mapMetrics" class="extra-small text-muted px-2 pt-1 pb-1"></div>
                         </div>
-                    </div>
-
-                    <div class="card p-3 shadow-sm d-flex align-items-center justify-content-top text-muted" id="aircraftDataPlaceholder">
-                        Aircraft Attitude Data will Appear here.
-                    </div>
-
-                    <!-- MAP -->
-                    <div class="card p-2 shadow-sm">
-                        <div class="d-flex justify-content-between align-items-center px-2 mb-1">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <select id="mapColorModeSelect" class="form-select form-select-sm">
-                                    <option value="altitude">Altitude</option>
-                                    <option value="airspeed">Airspeed</option>
-                                    <option value="groundspeed">Ground Speed</option>
-                                    <option value="vertical_speed">Vertical Speed</option>
-                                </select>
-                            </div>
-                            <div class="form-check form-switch m-0">
-                                <input class="form-check-input"
-                                    type="checkbox"
-                                    id="followAircraftToggle"
-                                    checked
-                                    onchange="toggleFollowAircraft(this.checked)">
-                                <label class="form-check-label small" for="followAircraftToggle">
-                                    Follow
-                                </label>
-                            </div>
-                        </div>
-                        <div id="mapGraph" style="height: 350px;"></div>
-                        <div id="mapMetrics" class="small text-muted px-2 pb-1"></div>
                     </div>
 
                 </div>
-                </div> <!-- right-scroll -->
             </div>
         </div>
 
     </div>
+</div>
 
 <!-- AIRSPEED CALIBRATION MODAL -->
 <div class="modal fade" id="airspeedCalModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content shadow">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title">✈️ Airspeed Calibration Analysis</h5>
+        <h5 class="modal-title d-flex align-items-center gap-2">
+            <i class="bi bi-compass"></i> Airspeed Calibration Analysis
+        </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <div class="card p-3 mb-3">
+        <div class="card p-3 mb-3 bg-body-tertiary border-0">
           <div class="row g-2 align-items-center">
             <div class="col-md-5">
               <label class="form-label text-muted small mb-1 fw-bold">Select Flight</label>
@@ -393,7 +747,7 @@
           <div class="col-lg-4">
             <div class="card p-2 shadow-sm h-100">
               <div class="card-header bg-dark text-white py-1 px-2 d-flex justify-content-between align-items-center">
-                <span class="small fw-bold">🗺️ Flight Track & Position</span>
+                <span class="small fw-bold">🗺️ Flight Track &amp; Position</span>
                 <span class="badge bg-info text-dark extra-small" id="asCalMapBadge">Track</span>
               </div>
               <div class="card-body p-1 d-flex flex-column justify-content-center">
@@ -405,29 +759,22 @@
 
         <div id="asCalResultsContainer" class="d-none">
           <div class="row g-3 mb-2">
-            <!-- Calibration Results Card -->
             <div class="col-md-7">
               <div class="card p-3 border-primary shadow-sm h-100">
                 <h6 class="text-primary fw-bold mb-2">Airspeed Calibration Results</h6>
-                <div class="row g-2 small" id="asCalMetricsGrid">
-                  <!-- Dynamically populated -->
-                </div>
+                <div class="row g-2 small" id="asCalMetricsGrid"></div>
               </div>
             </div>
-            <!-- Engine Settings Card -->
             <div class="col-md-5">
               <div class="card p-3 border-warning shadow-sm h-100">
                 <h6 class="text-warning text-dark fw-bold mb-2">⚙️ Engine Settings (Calibration Segment)</h6>
-                <div class="row g-2 small" id="asCalEngineGrid">
-                  <!-- Dynamically populated -->
-                </div>
+                <div class="row g-2 small" id="asCalEngineGrid"></div>
               </div>
             </div>
           </div>
         </div>
 
         <pre id="calibrationResult" class="p-3 rounded small bg-dark text-light d-none" style="white-space: pre-wrap;"></pre>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
@@ -439,16 +786,14 @@
 <!-- SIGNAL BANDS MODAL -->
 <div class="modal fade" id="signalBandsModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Signal Bands Configuration</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <div class="modal-content shadow">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title d-flex align-items-center gap-2">
+            <i class="bi bi-sliders"></i> Edit Signal Bands Configuration
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-
       <div class="modal-body">
-
-        <!-- Top Toolbar: Select or Add Signal -->
         <div class="row g-2 mb-3 align-items-center">
             <div class="col-md-5">
                 <label class="small text-muted mb-1 fw-bold">Select Existing Signal</label>
@@ -464,25 +809,20 @@
             </div>
         </div>
 
-        <!-- Bands Editor Container -->
         <div class="card text-light border-secondary shadow-sm">
             <div class="card-header border-secondary d-flex justify-content-between align-items-center p-2">
                 <h6 class="mb-0 mx-2 text-info" id="currentSignalLabel">Select a signal</h6>
                 <button class="btn btn-sm btn-primary fw-bold" onclick="addBandRow()">+ Add Band</button>
             </div>
-            <div class="card-body p-2" id="bandRowsContainer">
-                <!-- Dynamic band rows will be injected here via JS -->
-            </div>
+            <div class="card-body p-2" id="bandRowsContainer"></div>
         </div>
 
         <div id="signalBandsError" class="text-danger small mt-2 d-none fw-bold"></div>
       </div>
-
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" onclick="saveSignalBands()">Save & Apply</button>
+        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary btn-sm" onclick="saveSignalBands()">Save &amp; Apply</button>
       </div>
-
     </div>
   </div>
 </div>
@@ -490,27 +830,19 @@
 <!-- GAMI SPREAD MODAL -->
 <div class="modal fade" id="gamiModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content shadow">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title">✈️ GAMI Spread Analysis</h5>
+        <h5 class="modal-title d-flex align-items-center gap-2">
+            <i class="bi bi-fire"></i> GAMI Spread Analysis
+        </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <div class="card p-3 mb-3">
+        <div class="card p-3 mb-3 bg-body-tertiary border-0">
           <div class="row g-2 align-items-center">
-            <div class="col-md-7">
+            <div class="col-12">
               <label class="form-label text-muted small mb-1 fw-bold">Select Flight</label>
               <select id="gamiSavedFlights" class="form-select form-select-sm" onchange="loadFlight()"></select>
-            </div>
-            <div class="col-md-5 text-md-end">
-              <label class="form-label text-muted small mb-1 d-block fw-bold">Temperature Unit</label>
-              <div class="btn-group btn-group-sm" role="group">
-                <input type="radio" class="btn-check" name="gamiTempUnit" id="gamiUnitF" autocomplete="off" value="F" checked>
-                <label class="btn btn-outline-primary" for="gamiUnitF">°F</label>
-
-                <input type="radio" class="btn-check" name="gamiTempUnit" id="gamiUnitC" autocomplete="off" value="C">
-                <label class="btn btn-outline-primary" for="gamiUnitC">°C</label>
-              </div>
             </div>
           </div>
         </div>
@@ -538,6 +870,75 @@
     </div>
   </div>
 </div>
+
+<!-- SCRIPTS & APPLICATION LOGIC -->
+<script>
+// Mobile View Switching Handler
+function switchMobileView(view) {
+    const container = document.getElementById('analyzerMainContainer');
+    if (!container) return;
+    container.setAttribute('data-mobile-view', view);
+
+    // Update active state on buttons
+    document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-view') === view);
+    });
+
+    // Resize triggers for Plotly and Cesium
+    setTimeout(() => {
+        if (view === 'graphs') {
+            document.querySelectorAll('.plotly-graph').forEach(div => {
+                if (window.Plotly && div && div.data) Plotly.Plots.resize(div);
+            });
+            const xyGraph = document.getElementById('xyGraph');
+            if (window.Plotly && xyGraph && xyGraph.data) Plotly.Plots.resize(xyGraph);
+        } else if (view === '3d') {
+            window.dispatchEvent(new Event('resize'));
+        } else if (view === 'map') {
+            const mapGraph = document.getElementById('mapGraph');
+            if (window.Plotly && mapGraph && mapGraph.data) Plotly.Plots.resize(mapGraph);
+        }
+    }, 120);
+}
+
+// Toggle 3D Telemetry HUD Grid visibility
+function toggleTelemetryHud() {
+    const grid = document.getElementById('telemetryHudGrid');
+    const icon = document.getElementById('hudToggleIcon');
+    if (!grid) return;
+    const isHidden = grid.classList.toggle('d-none');
+    if (icon) {
+        icon.className = isHidden ? 'bi bi-chevron-up' : 'bi bi-chevron-down';
+    }
+}
+
+// Summary Card Collapse Icon toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const collapseEl = document.getElementById('statsCollapse');
+    const collapseIcon = document.getElementById('statsCollapseIcon');
+    const collapseBtn = document.getElementById('statsCollapseBtn');
+
+    if (collapseEl && collapseIcon) {
+        collapseEl.addEventListener('show.bs.collapse', () => {
+            collapseIcon.className = 'bi bi-chevron-up';
+        });
+        collapseEl.addEventListener('hide.bs.collapse', () => {
+            collapseIcon.className = 'bi bi-chevron-down';
+        });
+    }
+
+    // Observe statsCard to reveal collapse button once stats load
+    const statsCard = document.getElementById('statsCard');
+    if (statsCard && collapseBtn) {
+        const observer = new MutationObserver(() => {
+            if (!statsCard.classList.contains('d-none')) {
+                collapseBtn.classList.remove('d-none');
+            }
+        });
+        observer.observe(statsCard, { attributes: true, attributeFilter: ['class'] });
+    }
+});
+</script>
 
 <script src="{{ url_for('static', filename='signal_bands.js') }}"></script>
 <script src="{{ url_for('static', filename='gami.js') }}"></script>

@@ -169,36 +169,36 @@ function renderGami(data) {
     const keys = Object.keys(df[0]);
 
     const egtKeys = keys.filter(k => {
-        const ku = k.toUpperCase();
-
-        if (!ku.includes("EGT")) return false;
-
-        if (tempUnit === 'F') {
-            return ku.includes("F");
-        }
-
-        if (tempUnit === 'C') {
-            return ku.includes("C");
-        }
-
-        return true;
+        const ku = k.toUpperCase().trim();
+        if (ku.includes("LEAN") || ku.includes("DIFF") || ku.includes("SPAN") || ku.includes("STATE")) return false;
+        if (ku.includes("(DEG C)") || ku.endsWith("_C")) return false;
+        return /^EGT[\s_]*\d+/i.test(ku) || ku === 'EGT' || ku.startsWith('EGT (');
     });
 
-    // Prefer Fuel Flow explicitly (avoid Fuel Pressure confusion)
+    // Prefer Fuel Flow explicitly (avoid Fuel Pressure, Total, or Integral confusion)
     const fuelKey = keys.find(k => {
-        const kl = k.toLowerCase();
-        return kl.includes("fuel flow");
+        const kl = k.toLowerCase().trim();
+        return kl.includes("fuel flow") && !kl.includes("pressure") && !kl.includes("integral") && !kl.includes("total");
+    }) || keys.find(k => {
+        const kl = k.toLowerCase().trim();
+        return kl.includes("fuel flow") && !kl.includes("pressure");
     });
 
-    // build EGT series from dataframe
+    // build EGT series from dataframe with safe float parsing
     const egtTraces = egtKeys.map(k => ({
         name: k,
-        y: df.map(r => r[k])
+        y: df.map(r => {
+            const v = parseFloat(r[k]);
+            return (typeof v === 'number' && !isNaN(v)) ? v : null;
+        })
     }));
 
     const fuelTrace = fuelKey ? {
         name: fuelKey,
-        y: df.map(r => r[fuelKey])
+        y: df.map(r => {
+            const v = parseFloat(r[fuelKey]);
+            return (typeof v === 'number' && !isNaN(v)) ? v : null;
+        })
     } : null;
 
     if (!egtTraces.length) {
@@ -208,12 +208,13 @@ function renderGami(data) {
 
     // METRICS
     const avgs = egtTraces.map(t => {
-        const avg = t.y.reduce((a,b)=>a+b,0)/t.y.length;
+        const validY = t.y.filter(v => v !== null && !isNaN(v));
+        const avg = validY.length ? validY.reduce((a, b) => a + b, 0) / validY.length : 0;
         return { name: t.name, avg };
     });
 
     const values = avgs.map(a => a.avg);
-    const spread = Math.max(...values) - Math.min(...values);
+    const spread = values.length ? (Math.max(...values) - Math.min(...values)) : 0;
 
     // ---- GAMI Spread Calculation ----
 
@@ -229,17 +230,25 @@ function renderGami(data) {
 
         egtTraces.forEach((t) => {
             let maxY = null;
+            let maxIdx = null;
 
             for (let j = 0; j < t.y.length; j++) {
                 if (!maskPeak[j]) continue;
+                const yVal = t.y[j];
+                if (yVal === null || isNaN(yVal)) continue;
 
-                if (maxY === null || t.y[j] > maxY) {
-                    maxY = t.y[j];
+                if (maxY === null || yVal > maxY) {
+                    maxY = yVal;
+                    maxIdx = j;
                 }
             }
 
-            if (maxY !== null) {
-                peakEgts.push(`${t.name}: ${maxY.toFixed(1)}`);
+            if (maxY !== null && typeof maxY === 'number' && !isNaN(maxY)) {
+                let text = `${t.name}: ${maxY.toFixed(0)} °${tempUnit}`;
+                if (fuelTrace && maxIdx !== null && fuelTrace.y[maxIdx] !== null && !isNaN(fuelTrace.y[maxIdx])) {
+                    text += ` @ ${fuelTrace.y[maxIdx].toFixed(2)} GPH`;
+                }
+                peakEgts.push(text);
             }
         });
 
@@ -265,14 +274,16 @@ function renderGami(data) {
 
             for (let j = 0; j < t.y.length; j++) {
                 if (!mask2[j]) continue;
+                const yVal = t.y[j];
+                if (yVal === null || isNaN(yVal)) continue;
 
-                if (maxY === null || t.y[j] > maxY) {
-                    maxY = t.y[j];
+                if (maxY === null || yVal > maxY) {
+                    maxY = yVal;
                     maxIdx = j;
                 }
             }
 
-            if (maxIdx !== null) {
+            if (maxIdx !== null && fuelTrace.y[maxIdx] !== null && !isNaN(fuelTrace.y[maxIdx])) {
                 peakFuelFlows.push(fuelTrace.y[maxIdx]);
             }
         });
@@ -335,6 +346,65 @@ function renderGami(data) {
         const currentTimeYRange = timeGraphDiv.layout?.yaxis?.range ? [...timeGraphDiv.layout.yaxis.range] : null;
         const currentTimeY2Range = timeGraphDiv.layout?.yaxis2?.range ? [...timeGraphDiv.layout.yaxis2.range] : null;
 
+        function getSelectionShapes() {
+            const shapes = [];
+
+            // SHADED SELECTION REGION (between start and end)
+            if (timeSelectionState.start !== null && timeSelectionState.end !== null) {
+                shapes.push({
+                    type: 'rect',
+                    x0: timeSelectionState.start,
+                    x1: timeSelectionState.end,
+                    y0: 0,
+                    y1: 1,
+                    yref: 'paper',
+                    fillcolor: 'rgba(25, 135, 84, 0.15)',
+                    line: { width: 0 }
+                });
+            }
+
+            // START LINE (green)
+            if (timeSelectionState.start !== null) {
+                shapes.push({
+                    type: 'line',
+                    x0: timeSelectionState.start,
+                    x1: timeSelectionState.start,
+                    y0: 0,
+                    y1: 1,
+                    yref: 'paper',
+                    line: {
+                        color: '#198754',
+                        width: 2
+                    }
+                });
+            }
+
+            // END LINE (red)
+            if (timeSelectionState.end !== null) {
+                shapes.push({
+                    type: 'line',
+                    x0: timeSelectionState.end,
+                    x1: timeSelectionState.end,
+                    y0: 0,
+                    y1: 1,
+                    yref: 'paper',
+                    line: {
+                        color: '#dc3545',
+                        width: 2
+                    }
+                });
+            }
+
+            return shapes;
+        }
+
+        function drawSelectionBox() {
+            const timeGraph = getGamiElem('timeGraph');
+            if (timeGraph && timeGraph.data) {
+                Plotly.relayout(timeGraph, { shapes: getSelectionShapes() });
+            }
+        }
+
         const timeLayout = {
             title: "EGT + Fuel Flow vs Time",
             xaxis: { title: "Time" },
@@ -344,6 +414,7 @@ function renderGami(data) {
                 overlaying: 'y',
                 side: 'right'
             },
+            shapes: getSelectionShapes(),
             hovermode: 'x',
             margin: { l: 60, r: 60, t: 40, b: 40 },
             legend: { orientation: "h", y: -0.15 }
@@ -366,13 +437,16 @@ function renderGami(data) {
 
         if (timeGraphDiv.removeAllListeners) {
             timeGraphDiv.removeAllListeners('plotly_click');
+            timeGraphDiv.removeAllListeners('plotly_hover');
+            timeGraphDiv.removeAllListeners('plotly_unhover');
         }
 
         // Click-based time window selection
         timeGraphDiv.on('plotly_click', function(eventdata) {
             if (!eventdata.points || eventdata.points.length === 0) return;
 
-            const x = eventdata.points[0].x;
+            const x = Number(eventdata.points[0].x);
+            if (isNaN(x)) return;
 
             // Check if start point is set and currently visible on the active plot zoom range
             const currentRange = timeGraphDiv.layout?.xaxis?.range;
@@ -403,14 +477,34 @@ function renderGami(data) {
                 clickMarkers = [timeSelectionState.start, timeSelectionState.end];
             }
 
-            drawSelectionBox();
             renderGami(currentData);
         });
 
-    function updateVerticalCursor(x) {
-        Plotly.relayout(getGamiElem('timeGraph'), {
-            shapes: [
-                {
+        function drawCursor(plotId, x) {
+            const plotEl = getGamiElem(plotId);
+            if (!plotEl || !plotEl.data) return;
+
+            const shapes = [...getSelectionShapes()];
+
+            // CLICK MARKERS (black persistent clicks)
+            clickMarkers.forEach(v => {
+                shapes.push({
+                    type: 'line',
+                    x0: v,
+                    x1: v,
+                    y0: 0,
+                    y1: 1,
+                    yref: 'paper',
+                    line: {
+                        color: 'black',
+                        width: 2
+                    }
+                });
+            });
+
+            // CURSOR LINE (hover)
+            if (x !== null && x !== undefined) {
+                shapes.push({
                     type: 'line',
                     x0: x,
                     x1: x,
@@ -418,155 +512,33 @@ function renderGami(data) {
                     y1: 1,
                     yref: 'paper',
                     line: {
-                        color: 'rgba(0,0,0,0.4)',
+                        color: 'rgba(0,0,0,0.35)',
                         width: 1,
                         dash: 'dot'
                     }
-                }
-            ]
-        });
-    }
+                });
+            }
 
-    function drawSelectionBox() {
-        const shapes = [];
-
-        // SHADED SELECTION REGION (between start and end)
-        if (timeSelectionState.start !== null && timeSelectionState.end !== null) {
-            shapes.push({
-                type: 'rect',
-                x0: timeSelectionState.start,
-                x1: timeSelectionState.end,
-                y0: 0,
-                y1: 1,
-                yref: 'paper',
-                fillcolor: 'rgba(25, 135, 84, 0.15)',
-                line: { width: 0 }
-            });
+            Plotly.relayout(plotEl, { shapes });
         }
 
-        // START LINE (green)
-        if (timeSelectionState.start !== null) {
-            shapes.push({
-                type: 'line',
-                x0: timeSelectionState.start,
-                x1: timeSelectionState.start,
-                y0: 0,
-                y1: 1,
-                yref: 'paper',
-                line: {
-                    color: '#198754',
-                    width: 2
-                }
-            });
+        function syncCursor(x) {
+            hoverX = x;
+            drawCursor('timeGraph', x);
+            drawCursor('scatterGraph', x);
         }
 
-        // END LINE (red)
-        if (timeSelectionState.end !== null) {
-            shapes.push({
-                type: 'line',
-                x0: timeSelectionState.end,
-                x1: timeSelectionState.end,
-                y0: 0,
-                y1: 1,
-                yref: 'paper',
-                line: {
-                    color: '#dc3545',
-                    width: 2
-                }
-            });
-        }
-
-        Plotly.relayout(getGamiElem('timeGraph'), { shapes });
-    }
-    function drawCursor(plotId, x) {
-        const shapes = [];
-
-        // CLICK MARKERS (black persistent clicks)
-        clickMarkers.forEach(v => {
-            shapes.push({
-                type: 'line',
-                x0: v,
-                x1: v,
-                y0: 0,
-                y1: 1,
-                yref: 'paper',
-                line: {
-                    color: 'black',
-                    width: 2
-                }
-            });
+        // mouse hover cursor
+        timeGraphDiv.on('plotly_hover', function(eventdata) {
+            if (eventdata && eventdata.points && eventdata.points.length > 0) {
+                syncCursor(eventdata.points[0].x);
+            }
         });
 
-        // SELECTION START (green)
-        if (timeSelectionState.start !== null) {
-            shapes.push({
-                type: 'line',
-                x0: timeSelectionState.start,
-                x1: timeSelectionState.start,
-                y0: 0,
-                y1: 1,
-                yref: 'paper',
-                line: {
-                    color: 'green',
-                    width: 2
-                }
-            });
-        }
-
-        // SELECTION END (red)
-        if (timeSelectionState.end !== null) {
-            shapes.push({
-                type: 'line',
-                x0: timeSelectionState.end,
-                x1: timeSelectionState.end,
-                y0: 0,
-                y1: 1,
-                yref: 'paper',
-                line: {
-                    color: 'red',
-                    width: 2
-                }
-            });
-        }
-
-        // CURSOR LINE (hover)
-        if (x !== null && x !== undefined) {
-            shapes.push({
-                type: 'line',
-                x0: x,
-                x1: x,
-                y0: 0,
-                y1: 1,
-                yref: 'paper',
-                line: {
-                    color: 'rgba(0,0,0,0.35)',
-                    width: 1,
-                    dash: 'dot'
-                }
-            });
-        }
-
-        Plotly.relayout(getGamiElem(plotId), { shapes });
-    }
-
-    function syncCursor(x) {
-        hoverX = x;
-        drawCursor('timeGraph', x);
-        drawCursor('scatterGraph', x);
-    }
-
-    // mouse hover cursor
-    timeGraphDiv.on('plotly_hover', function(eventdata) {
-        if (eventdata && eventdata.points && eventdata.points.length > 0) {
-            syncCursor(eventdata.points[0].x);
-        }
-    });
-
-    // remove cursor when leaving plot
-    timeGraphDiv.on('plotly_unhover', function() {
-        // restore persistent selection + click markers without cursor
-        drawSelectionBox();
-    });
+        // remove cursor when leaving plot
+        timeGraphDiv.on('plotly_unhover', function() {
+            drawSelectionBox();
+        });
     }
 
 
@@ -617,14 +589,16 @@ function renderGami(data) {
 
                 for (let j = 0; j < t.y.length; j++) {
                     if (!mask2[j]) continue;
+                    const yVal = t.y[j];
+                    if (yVal === null || isNaN(yVal)) continue;
 
-                    if (maxY === null || t.y[j] > maxY) {
-                        maxY = t.y[j];
+                    if (maxY === null || yVal > maxY) {
+                        maxY = yVal;
                         maxIdx = j;
                     }
                 }
 
-                if (maxIdx !== null && fuelTrace) {
+                if (maxIdx !== null && fuelTrace && fuelTrace.y[maxIdx] !== null && !isNaN(fuelTrace.y[maxIdx])) {
                     scatter.push({
                         x: [fuelTrace.y[maxIdx]],
                         y: [maxY],
@@ -661,19 +635,22 @@ function renderGami(data) {
 
                 for (let j = 0; j < t.y.length; j++) {
                     if (!mask2[j]) continue;
-                    if (maxY === null || t.y[j] > maxY) {
-                        maxY = t.y[j];
+                    const yVal = t.y[j];
+                    if (yVal === null || isNaN(yVal)) continue;
+
+                    if (maxY === null || yVal > maxY) {
+                        maxY = yVal;
                         maxIdx = j;
                     }
                 }
 
-                if (maxIdx !== null && fuelTrace) {
+                if (maxIdx !== null && fuelTrace && fuelTrace.y[maxIdx] !== null && !isNaN(fuelTrace.y[maxIdx])) {
                     const fuelVal = fuelTrace.y[maxIdx];
                     const color = colors[i % colors.length];
                     annotations.push({
                         x: fuelVal,
                         y: maxY,
-                        text: (fuelVal ? `${t.name}: ${fuelVal.toFixed(1)}` : t.name),
+                        text: (fuelVal !== null && !isNaN(fuelVal) ? `${t.name}: ${fuelVal.toFixed(1)}` : t.name),
                         showarrow: true,
                         arrowhead: 2,
                         arrowcolor: color,

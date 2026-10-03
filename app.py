@@ -174,12 +174,28 @@ def load_cached_flight_df(saved_filename):
                 import pickle
 
                 with gzip.open(cache_path, "rb") as f:
-                    return pickle.load(f)
+                    df = pickle.load(f)
+                    deg_c = [c for c in df.columns if "(deg C)" in c]
+                    if deg_c:
+                        for c in deg_c:
+                            f_col = c.replace("(deg C)", "(deg F)")
+                            if f_col not in df.columns:
+                                df[f_col] = pd.to_numeric(df[c], errors="coerce") * 9.0 / 5.0 + 32.0
+                            df.drop(columns=[c], inplace=True)
+                        save_flight_df_cache(saved_filename, df)
+                    return df
         except Exception as e:
             print(f"Cache load failed for {saved_filename}: {e}")
 
     # Fallback to reading CSV and updating cache
     df = pd.read_csv(csv_path, low_memory=False)
+    deg_c = [c for c in df.columns if "(deg C)" in c]
+    if deg_c:
+        for c in deg_c:
+            f_col = c.replace("(deg C)", "(deg F)")
+            if f_col not in df.columns:
+                df[f_col] = pd.to_numeric(df[c], errors="coerce") * 9.0 / 5.0 + 32.0
+            df.drop(columns=[c], inplace=True)
     save_flight_df_cache(saved_filename, df)
     return df
 
@@ -2700,7 +2716,7 @@ def api_get_signals():
             "Fuel Pressure (PSI)",
             "Oil Temp (deg F)",
         ]
-        signals = sorted([col for col in numeric_cols if col not in excluded])
+        signals = sorted([col for col in numeric_cols if col not in excluded and "(deg C)" not in col and not col.endswith("_C") and not col.endswith("_c")])
 
         if "CHT" not in signals:
             signals.append("CHT")
@@ -2875,19 +2891,19 @@ def api_analyze_flight():
 
         def extract_traces(sig):
             traces = []
-            deg_str = f"(deg {temp_unit})"
+            deg_str = f"(deg {temp_unit})" if temp_unit else "(deg F)"
 
             if sig == "CHT":
                 cols = [
                     c
                     for c in flight_data.columns
-                    if c.startswith("CHT ") and deg_str in c
+                    if c.startswith("CHT ") and (deg_str in c or "(deg C)" not in c)
                 ]
             elif sig == "EGT":
                 cols = [
                     c
                     for c in flight_data.columns
-                    if c.startswith("EGT ") and deg_str in c
+                    if re.match(r"^EGT\s*\d+", c, re.IGNORECASE) and (deg_str in c or "(deg C)" not in c)
                 ]
             else:
                 cols = [sig] if sig in flight_data.columns else []

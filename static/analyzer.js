@@ -140,13 +140,10 @@ function populateXYDropdowns() {
 
     if (!xSelect || !ySelect || !AppState.file.signalList || AppState.file.signalList.length === 0) return;
 
-    const unitF = document.getElementById('unitF')?.checked ?? true;
-    const hideString = unitF ? "(deg C)" : "(deg F)";
-
-    // Apply same filtering logic as main plots
+    // Filter out any remaining deg C signals (default to Fahrenheit)
     const filteredSignals = AppState.file.signalList.filter(sig => {
         if (sig === "CHT" || sig === "EGT") return true;
-        return !sig.includes(hideString);
+        return !sig.includes("(deg C)");
     });
 
     let optionsHtml = '';
@@ -444,12 +441,9 @@ function addPlot() {
     const cardEl = document.getElementById(`plotCard-${plotId}`);
 
     const signalSelect = cardEl.querySelector('.filter-signal');
-    const unitF = document.getElementById('unitF').checked;
-    const hideString = unitF ? "(deg C)" : "(deg F)";
-
     const filteredSignals = AppState.file.signalList.filter(sig => {
         if (sig === "CHT" || sig === "EGT") return true;
-        return !sig.includes(hideString);
+        return !sig.includes("(deg C)");
     });
 
     signalSelect.innerHTML = filteredSignals.map(s => `<option value="${s}">${s}</option>`).join('');
@@ -507,9 +501,6 @@ function updateAllPlots(isInitialLoad = false) {
 function populateDropdownsForPlot(plotId) {
     if (AppState.file.signalList.length === 0) return;
 
-    const unitF = document.getElementById('unitF').checked;
-    const hideString = unitF ? "(deg C)" : "(deg F)";
-
     const leftSelect = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`);
     const rightSelect = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`);
 
@@ -518,10 +509,10 @@ function populateDropdownsForPlot(plotId) {
 
     let optionsHtml = '';
 
-    // Filter out the wrong temperature unit
+    // Filter out any remaining deg C signals
     const filteredSignals = AppState.file.signalList.filter(sig => {
         if (sig === "CHT" || sig === "EGT") return true;
-        return !sig.includes(hideString);
+        return !sig.includes("(deg C)");
     });
 
     filteredSignals.forEach(sig => {
@@ -597,7 +588,7 @@ async function triggerAnalysis(plotId, isInitialLoad = false) {
         formData.append('saved_filename', AppState.file.currentName);
         formData.append('left_signal', document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`).value);
         formData.append('right_signal', document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`).value);
-        formData.append('temp_unit', document.getElementById('unitF').checked ? 'F' : 'C');
+        formData.append('temp_unit', 'F');
         formData.append('filters', JSON.stringify(AppState.ui.filters[plotId] || []));
 
         // If map telemetry is already loaded, request ONLY the chart trace data!
@@ -1312,7 +1303,7 @@ function plotXY() {
     const ySignal = ySelect.value;
     if (!xSignal || !ySignal) return;
 
-    const tempUnit = document.getElementById('unitF')?.checked ? 'F' : 'C';
+    const tempUnit = 'F';
     const overlay = document.getElementById('xyOverlayToggle')?.checked;
 
     if (graphDiv && !graphDiv.data) {
@@ -2174,11 +2165,29 @@ function renderMap(data) {
     const mapDiv = document.getElementById('mapGraph');
 
     // Set up scrubber max and value
-    const scrubber = document.getElementById('mapScrubber');
-    if (scrubber && AppState.map.data.length) {
-        scrubber.max = AppState.map.data.length - 1;
-        scrubber.value = 0;
+    if (AppState.map.data.length) {
+        syncScrubberUI(0, AppState.map.data.length - 1);
     }
+}
+
+function syncScrubberUI(idx, max) {
+    const s1 = document.getElementById('mapScrubber');
+    const s2 = document.getElementById('mobileMapScrubber');
+    if (max !== undefined) {
+        if (s1) s1.max = max;
+        if (s2) s2.max = max;
+    }
+    if (idx !== undefined) {
+        if (s1) s1.value = idx;
+        if (s2) s2.value = idx;
+    }
+}
+
+function syncPlayPauseBtnUI(text) {
+    const b1 = document.getElementById('playPauseBtn');
+    const b2 = document.getElementById('mobileMapPlayPauseBtn');
+    if (b1) b1.innerText = text;
+    if (b2) b2.innerText = text;
 }
 
 function syncAircraftToTime(t) {
@@ -2196,11 +2205,7 @@ function syncAircraftToTime(t) {
     }
 
     scrubMap(bestIndex);
-
-    const scrubber = document.getElementById('mapScrubber');
-    if (scrubber) {
-        scrubber.value = bestIndex;
-    }
+    syncScrubberUI(bestIndex);
 }
 
 let pendingScrubIndex = null;
@@ -2211,6 +2216,7 @@ function scrubMap(idx) {
     idx = parseInt(idx);
     AppState.playback.index = idx;
     AppState.playback.tick = 0;
+    syncScrubberUI(idx);
 
     pendingScrubIndex = idx;
     if (!scrubAnimationFrame) {
@@ -2299,15 +2305,14 @@ function executeScrub(idx) {
 }
 
 function togglePlayback() {
-    const btn = document.getElementById('playPauseBtn');
     if (AppState.playback.timer) {
         clearInterval(AppState.playback.timer);
         AppState.playback.timer = null;
-        if (btn) btn.innerText = '▶';
+        syncPlayPauseBtnUI('▶');
     } else {
-        if (btn) btn.innerText = '⏸';
-        const scrubber = document.getElementById('mapScrubber');
-        AppState.playback.index = parseInt(scrubber.value) || 0;
+        syncPlayPauseBtnUI('⏸');
+        const scrubber = document.getElementById('mapScrubber') || document.getElementById('mobileMapScrubber');
+        AppState.playback.index = parseInt(scrubber?.value) || 0;
 
         // Temporarily set this so the speed function knows it is allowed to start
         AppState.playback.timer = true;
@@ -2320,6 +2325,10 @@ function togglePlayback() {
 
 function setPlaybackSpeed(val) {
     AppState.playback.speed = parseInt(val);
+    const speedSelect = document.getElementById('playbackSpeedSelect');
+    const mobileSpeedSelect = document.getElementById('mobileMapPlaybackSpeedSelect');
+    if (speedSelect && speedSelect.value != val) speedSelect.value = val;
+    if (mobileSpeedSelect && mobileSpeedSelect.value != val) mobileSpeedSelect.value = val;
 
     // Only run if we are actively playing
     if (!AppState.playback.timer) return;
@@ -2336,8 +2345,7 @@ function setPlaybackSpeed(val) {
         if (!AppState.map.data.lat || AppState.playback.index >= AppState.map.data.lat.length - 1) {
             clearInterval(AppState.playback.timer);
             AppState.playback.timer = null;
-            const btn = document.getElementById('playPauseBtn');
-            if (btn) btn.innerText = '▶';
+            syncPlayPauseBtnUI('▶');
             return;
         }
 
@@ -2512,8 +2520,7 @@ function setPlaybackSpeed(val) {
             AppState.playback.tick = AppState.playback.tick % AppState.playback.fps;
 
             // Sync the scrubber UI
-            const scrubber = document.getElementById('mapScrubber');
-            if (scrubber) scrubber.value = AppState.playback.index;
+            syncScrubberUI(AppState.playback.index);
 
             syncTooltips(AppState.playback.index);
         }

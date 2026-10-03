@@ -17,15 +17,22 @@ def process_flights(df):
     df = df.copy()
 
     # --- 1. CLEANING & TYPE NORMALIZATION ---
-    # Convert all temperature columns from deg C to deg F
+    # Convert all temperature columns from deg C to deg F, then drop deg C columns
     temp_c_cols = [col for col in df.columns if "(deg C)" in col]
     for col in temp_c_cols:
         try:
             new_name = col.replace("(deg C)", "(deg F)")
-            numeric_vals = pd.to_numeric(df[col], errors="coerce")
-            df[new_name] = numeric_vals * 9.0 / 5.0 + 32.0
+            if new_name not in df.columns:
+                numeric_vals = pd.to_numeric(df[col], errors="coerce")
+                df[new_name] = numeric_vals * 9.0 / 5.0 + 32.0
+            df.drop(columns=[col], inplace=True)
         except Exception as e:
             print(f"Warning: Temperature conversion failed for column '{col}': {e}")
+
+    if "OAT_C" in df.columns:
+        if "OAT (deg F)" not in df.columns:
+            df["OAT (deg F)"] = pd.to_numeric(df["OAT_C"], errors="coerce") * 9.0 / 5.0 + 32.0
+        df.drop(columns=["OAT_C"], inplace=True)
 
     # Identify and standardize core numeric columns
     core_numeric_cols = [
@@ -154,14 +161,14 @@ def process_flights(df):
                 break
 
         oat_c = pd.Series(15.0, index=df.index)
-        for c in ["OAT (deg C)", "OAT_C", "oat_c"]:
-            if c in df.columns:
-                oat_c = pd.to_numeric(df[c], errors="coerce").fillna(15.0)
-                break
-            elif "OAT (deg F)" in df.columns:
-                oat_f = pd.to_numeric(df["OAT (deg F)"], errors="coerce").fillna(59.0)
-                oat_c = (oat_f - 32.0) * 5.0 / 9.0
-                break
+        if "OAT (deg F)" in df.columns:
+            oat_f = pd.to_numeric(df["OAT (deg F)"], errors="coerce").fillna(59.0)
+            oat_c = (oat_f - 32.0) * 5.0 / 9.0
+        else:
+            for c in ["OAT (deg C)", "OAT_C", "oat_c"]:
+                if c in df.columns:
+                    oat_c = pd.to_numeric(df[c], errors="coerce").fillna(15.0)
+                    break
 
         delta = np.maximum(1e-5, 1.0 - 6.87559e-6 * press_alt) ** 5.25588
         theta = (oat_c + 273.15) / 288.15

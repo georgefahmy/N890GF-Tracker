@@ -67,15 +67,7 @@
                         </select>
                     </div>
 
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="btn-group" role="group" aria-label="Temperature unit selection">
-                            <input type="radio" class="btn-check" name="tempUnit" id="unitF" autocomplete="off" value="F" checked>
-                            <label class="btn btn-outline-primary btn-sm" for="unitF">°F</label>
 
-                            <input type="radio" class="btn-check" name="tempUnit" id="unitC" autocomplete="off" value="C">
-                            <label class="btn btn-outline-primary btn-sm" for="unitC">°C</label>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="pt-3 d-none" id="statsCard">
@@ -413,19 +405,9 @@
       <div class="modal-body">
         <div class="card p-3 mb-3">
           <div class="row g-2 align-items-center">
-            <div class="col-md-7">
+            <div class="col-12">
               <label class="form-label text-muted small mb-1 fw-bold">Select Flight</label>
               <select id="gamiSavedFlights" class="form-select form-select-sm" onchange="loadFlight()"></select>
-            </div>
-            <div class="col-md-5 text-md-end">
-              <label class="form-label text-muted small mb-1 d-block fw-bold">Temperature Unit</label>
-              <div class="btn-group btn-group-sm" role="group">
-                <input type="radio" class="btn-check" name="gamiTempUnit" id="gamiUnitF" autocomplete="off" value="F" checked>
-                <label class="btn btn-outline-primary" for="gamiUnitF">°F</label>
-
-                <input type="radio" class="btn-check" name="gamiTempUnit" id="gamiUnitC" autocomplete="off" value="C">
-                <label class="btn btn-outline-primary" for="gamiUnitC">°C</label>
-              </div>
             </div>
           </div>
         </div>
