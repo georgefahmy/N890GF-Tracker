@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788214945.067322,
+  "_cached_at": 1791161951.5840507,
   "icao": "S78",
   "data": {
     "icao": "S78",
@@ -58,11 +58,11 @@
         "name": "Midfield Aviation",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.43,
+            "price": 6.86,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -70,7 +70,7 @@
         }
       }
     ],
-    "best_price": 6.43,
+    "best_price": 6.86,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"

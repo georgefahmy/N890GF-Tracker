@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787793531.235827,
+  "_cached_at": 1791161984.3361518,
   "icao": "E30",
   "data": {
     "icao": "E30",
@@ -53,8 +53,8 @@
         "name": "Bruce Field Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 21-Aug",
-        "quote_date": "21-Aug",
+        "notes": "Quote: 18-Sep",
+        "quote_date": "18-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.33,

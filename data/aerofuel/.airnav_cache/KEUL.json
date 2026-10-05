@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788214945.071726,
+  "_cached_at": 1791161903.1718366,
   "icao": "KEUL",
   "data": {
     "icao": "KEUL",
@@ -72,7 +72,7 @@
         "quote_date": null,
         "fuels": {
           "JET_A": {
-            "price": 6.62,
+            "price": 7.09,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -83,11 +83,11 @@
         "name": "Silverhawk Aviation Academy",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "notes": "AVFUEL \u2022 Quote: 03-Oct",
+        "quote_date": "03-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.45,
+            "price": 7.15,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -104,11 +104,11 @@
         "name": "Midfield Aviation",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.45,
+            "price": 6.89,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -116,16 +116,16 @@
         }
       }
     ],
-    "best_price": 6.45,
+    "best_price": 6.89,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KEUL",
     "airport_ref": "19778",
-    "fetched_at": "2026-08-31T22:22:25Z"
+    "fetched_at": "2026-10-05T00:58:10Z"
   }
 }

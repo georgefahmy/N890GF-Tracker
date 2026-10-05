@@ -1,0 +1,38 @@
+{
+  "_cached_at": 1791161984.3126779,
+  "icao": "9TE2",
+  "data": {
+    "icao": "9TE2",
+    "faa": "9TE2",
+    "name": "JL Bar Ranch Airport",
+    "city": "Sonora",
+    "state": "TX",
+    "distance_nm": 40.0,
+    "bearing": "ESE",
+    "fbos": [
+      {
+        "name": "The JL Bar Ranch & Resort Airport",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 29-Sep",
+        "quote_date": "29-Sep",
+        "fuels": {
+          "JET_A": {
+            "price": 7.29,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [
+      "Jet-A"
+    ],
+    "last_updated": "2026-10-04",
+    "fetched_at": "2026-10-05T00:59:44Z",
+    "source": "AirNav Local Fuel"
+  }
+}

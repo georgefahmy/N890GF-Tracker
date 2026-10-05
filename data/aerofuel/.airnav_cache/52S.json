@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787786357.862707,
+  "_cached_at": 1791161958.4004633,
   "icao": "52S",
   "data": {
     "icao": "52S",
@@ -13,8 +13,20 @@
     "lon": -114.081,
     "elevation_ft": 3006,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [],
     "runways": [
       {
@@ -30,11 +42,11 @@
         "name": "St. Ignatius Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 14-Aug",
-        "quote_date": "14-Aug",
+        "notes": "Quote: 30-Sep",
+        "quote_date": "30-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.34,
+            "price": 6.77,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -42,13 +54,15 @@
         }
       }
     ],
-    "best_price": 6.34,
+    "best_price": 6.77,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "52S",
+    "airport_ref": "11935",
     "fetched_at": "2026-08-26T23:19:17Z"
   }
 }

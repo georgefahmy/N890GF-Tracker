@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788214945.071404,
+  "_cached_at": 1791161903.1711204,
   "icao": "KMAN",
   "data": {
     "icao": "KMAN",
@@ -56,49 +56,57 @@
     "fbos": [
       {
         "name": "Avcenter",
-        "brand": "AVFUEL",
-        "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 28-Aug",
-        "quote_date": "28-Aug",
+        "brand": "Avfuel",
+        "phone": "208-466-5432",
+        "notes": "Avfuel \u2022 Quote: 21-Sep-2026 \u2022 UNICOM: 122.70",
+        "quote_date": "21-Sep-2026",
         "fuels": {
-          "100LL_SS": {
-            "price": 6.6,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
           "100LL_FS": {
-            "price": 6.59,
+            "price": 7.15,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.99,
+            "price": 8.0,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
           },
+          "100LL_SS": {
+            "price": 7.12,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
           "MOGAS_SS": {
-            "price": 7.11,
+            "price": 6.4,
             "type": "Mogas",
             "service": "Self-Serve",
             "label": "Mogas (Ethanol-Free Self-Serve)"
           }
         }
+      },
+      {
+        "name": "Spirit of Flight Foundation Museum",
+        "brand": "",
+        "phone": "208-546-4882",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {}
       }
     ],
-    "best_price": 6.59,
+    "best_price": 6.4,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A",
       "Mogas"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KS67",
     "airport_ref": "21014",
-    "fetched_at": "2026-08-31T22:22:25Z"
+    "fetched_at": "2026-10-05T00:58:10Z"
   }
 }

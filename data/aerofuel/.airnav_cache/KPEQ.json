@@ -1,24 +1,24 @@
 {
-  "_cached_at": 1791161951.5712998,
-  "icao": "KMYL",
+  "_cached_at": 1791161978.1897662,
+  "icao": "KPEQ",
   "data": {
-    "icao": "KMYL",
-    "faa": "MYL",
-    "iata": "MYL",
-    "name": "McCall Municipal Airport",
-    "city": "McCall",
-    "state": "ID",
+    "icao": "KPEQ",
+    "faa": "PEQ",
+    "iata": "PEQ",
+    "name": "Pecos Municipal Airport",
+    "city": "Pecos",
+    "state": "TX",
     "country": "US",
-    "lat": 44.8888,
-    "lon": -116.1011,
-    "elevation_ft": 5024,
-    "tower": true,
+    "lat": 31.3824,
+    "lon": -103.511,
+    "elevation_ft": 2613,
+    "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
-    "weather_freq": 119.925,
+    "weather_freq": 118.175,
     "weather_type": "AWOS",
-    "weather_desc": "ASOS",
+    "weather_desc": "AWOS 3",
     "approach_freq": null,
     "approach_desc": null,
     "departure_freq": null,
@@ -29,19 +29,19 @@
     "clearance_desc": null,
     "frequencies": [
       {
-        "type": "ASOS",
-        "description": "ASOS",
-        "frequency_mhz": 119.925
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 118.175
       },
       {
         "type": "CNTR",
-        "description": "SALT LAKE CITY CNTR",
-        "frequency_mhz": 128.05
+        "description": "ALBUQUERQUE CNTR",
+        "frequency_mhz": 135.875
       },
       {
         "type": "RDO",
-        "description": "BOISE RDO",
-        "frequency_mhz": 122.35
+        "description": "SAN ANGELO RDO",
+        "frequency_mhz": 111.8
       },
       {
         "type": "UNIC",
@@ -51,35 +51,42 @@
     ],
     "runways": [
       {
-        "id": "16/34",
-        "length": 6101,
-        "width": 75,
+        "id": "14/32",
+        "length": 6236,
+        "width": 80,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 5953,
+        "width": 80,
         "surface": "Asphalt",
         "lighted": true
       }
     ],
     "fbos": [
       {
-        "name": "McCall Aviation",
+        "name": "Crosby Flying Services, LLC",
         "brand": "Avfuel",
-        "phone": "208-634-7137",
-        "notes": "Avfuel \u2022 Quote: 30-Sep-2026 \u2022 UNICOM: 122.80",
-        "quote_date": "30-Sep-2026",
+        "phone": "432-447-2488",
+        "notes": "Avfuel \u2022 Guaranteed Price",
+        "quote_date": null,
         "fuels": {
           "100LL_FS": {
-            "price": 8.61,
+            "price": 7.99,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.68,
+            "price": 7.78,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
           },
           "100LL_SS": {
-            "price": 7.08,
+            "price": 7.59,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -87,16 +94,15 @@
         }
       }
     ],
-    "best_price": 7.08,
+    "best_price": 7.59,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-31",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KMYL",
-    "airport_ref": "20591",
-    "fetched_at": "2026-08-31T22:22:25Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KPEQ",
+    "airport_ref": "20818"
   }
 }

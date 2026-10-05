@@ -1,17 +1,17 @@
 {
-  "_cached_at": 1791161958.3937936,
-  "icao": "KHRF",
+  "_cached_at": 1791161984.3269243,
+  "icao": "KOZA",
   "data": {
-    "icao": "KHRF",
-    "faa": "HRF",
-    "iata": "",
-    "name": "Ravalli County Airport",
-    "city": "Hamilton",
-    "state": "MT",
+    "icao": "KOZA",
+    "faa": "OZA",
+    "iata": "OZA",
+    "name": "Ozona Municipal Airport",
+    "city": "Ozona",
+    "state": "TX",
     "country": "US",
-    "lat": 46.2515,
-    "lon": -114.1256,
-    "elevation_ft": 3642,
+    "lat": 30.7353,
+    "lon": -101.203,
+    "elevation_ft": 2381,
     "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.8,
@@ -19,8 +19,8 @@
     "weather_freq": null,
     "weather_type": null,
     "weather_desc": null,
-    "approach_freq": 124.9,
-    "approach_desc": "SPOKANE APP",
+    "approach_freq": null,
+    "approach_desc": null,
     "departure_freq": null,
     "departure_desc": null,
     "ground_freq": null,
@@ -29,9 +29,9 @@
     "clearance_desc": null,
     "frequencies": [
       {
-        "type": "A/D",
-        "description": "SPOKANE APP",
-        "frequency_mhz": 124.9
+        "type": "CNTR",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 125.75
       },
       {
         "type": "UNIC",
@@ -41,8 +41,8 @@
     ],
     "runways": [
       {
-        "id": "17/35",
-        "length": 5200,
+        "id": "16/34",
+        "length": 6003,
         "width": 75,
         "surface": "Asphalt",
         "lighted": true
@@ -50,43 +50,36 @@
     ],
     "fbos": [
       {
-        "name": "Ascension FBO Network",
-        "brand": "Titan",
-        "phone": "406-361-2180",
-        "notes": "Titan \u2022 Quote: 28-Sep-2026",
-        "quote_date": "28-Sep-2026",
+        "name": "McCleary Aircraft",
+        "brand": "Avfuel",
+        "phone": "325-392-2030",
+        "notes": "Avfuel \u2022 Quote: 24-Sep-2026",
+        "quote_date": "24-Sep-2026",
         "fuels": {
           "100LL_FS": {
-            "price": 7.49,
+            "price": 6.58,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.84,
+            "price": 6.9,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "100LL_SS": {
-            "price": 6.89,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 6.89,
+    "best_price": 6.58,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-27",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "K6S5",
-    "airport_ref": "19012",
-    "fetched_at": "2026-08-27T21:05:37Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KOZA",
+    "airport_ref": "20789"
   }
 }

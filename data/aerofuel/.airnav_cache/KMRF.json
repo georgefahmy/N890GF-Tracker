@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787782639.3348181,
+  "_cached_at": 1791161978.1963727,
   "icao": "KMRF",
   "data": {
     "icao": "KMRF",
@@ -13,8 +13,20 @@
     "lon": -104.0159,
     "elevation_ft": 4849,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": 134.025,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 135.875,
+    "approach_desc": "ALBUQUERQUE CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "A/D",
@@ -65,17 +77,17 @@
         "name": "Presidio County",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 13-Aug",
-        "quote_date": "13-Aug",
+        "notes": "Quote: 03-Oct",
+        "quote_date": "03-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.25,
+            "price": 6.99,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 7.49,
+            "price": 7.99,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -83,7 +95,7 @@
         }
       }
     ],
-    "best_price": 6.25,
+    "best_price": 6.99,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -91,6 +103,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KMRF",
+    "airport_ref": "20558",
     "fetched_at": "2026-08-26T22:17:19Z"
   }
 }

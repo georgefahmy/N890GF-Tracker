@@ -1,22 +1,22 @@
 {
-  "_cached_at": 1791161978.1987534,
-  "icao": "KCNM",
+  "_cached_at": 1791161978.1930075,
+  "icao": "KFST",
   "data": {
-    "icao": "KCNM",
-    "faa": "CNM",
-    "iata": "CNM",
-    "name": "Cavern City Air Terminal",
-    "city": "Carlsbad",
-    "state": "NM",
+    "icao": "KFST",
+    "faa": "FST",
+    "iata": "FST",
+    "name": "Fort Stockton Pecos County Airport",
+    "city": "Fort Stockton",
+    "state": "TX",
     "country": "US",
-    "lat": 32.3375,
-    "lon": -104.263,
-    "elevation_ft": 3295,
+    "lat": 30.9157,
+    "lon": -102.916,
+    "elevation_ft": 3011,
     "tower": true,
     "tower_freq": null,
-    "ctaf_freq": 122.95,
-    "unicom_freq": 122.95,
-    "weather_freq": 118.375,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 118.525,
     "weather_type": "AWOS",
     "weather_desc": "ASOS",
     "approach_freq": null,
@@ -31,7 +31,7 @@
       {
         "type": "ASOS",
         "description": "ASOS",
-        "frequency_mhz": 118.375
+        "frequency_mhz": 118.525
       },
       {
         "type": "CNTR",
@@ -40,67 +40,68 @@
       },
       {
         "type": "RDO",
-        "description": "ALBUQUERQUE RDO",
-        "frequency_mhz": 122.65
+        "description": "SAN ANGELO RDO",
+        "frequency_mhz": 116.9
       },
       {
         "type": "UNIC",
         "description": "CTAF/UNICOM",
-        "frequency_mhz": 122.95
+        "frequency_mhz": 122.8
       }
     ],
     "runways": [
       {
-        "id": "03/21",
-        "length": 7854,
-        "width": 150,
-        "surface": "Asphalt",
-        "lighted": true
-      },
-      {
-        "id": "14R/32L",
-        "length": 5837,
+        "id": "12/30",
+        "length": 7508,
         "width": 100,
         "surface": "Asphalt",
         "lighted": true
       },
       {
-        "id": "08/26",
-        "length": 5334,
-        "width": 75,
+        "id": "07/25",
+        "length": 4961,
+        "width": 150,
+        "surface": "Grs",
+        "lighted": false
+      },
+      {
+        "id": "03/21",
+        "length": 4400,
+        "width": 60,
         "surface": "Asphalt",
         "lighted": true
       },
       {
-        "id": "14L/32R",
-        "length": 4616,
+        "id": "16/34",
+        "length": 3981,
         "width": 150,
-        "surface": "Asphalt",
+        "surface": "Turf",
+        "lighted": false
+      },
+      {
+        "id": "11/29",
+        "length": 3348,
+        "width": 100,
+        "surface": "Grs",
         "lighted": false
       }
     ],
     "fbos": [
       {
-        "name": "Chandler Aviation",
+        "name": "Fort Stockton Aviation",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 30-Sep",
-        "quote_date": "30-Sep",
+        "notes": "AVFUEL \u2022 Quote: 14-Sep",
+        "quote_date": "14-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.79,
+            "price": 7.4,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
-          "100LL_FS": {
-            "price": 6.99,
-            "type": "100LL",
-            "service": "Full-Serve",
-            "label": "100LL Avgas (Full-Serve)"
-          },
           "JET_A": {
-            "price": 6.25,
+            "price": 7.4,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -108,16 +109,15 @@
         }
       }
     ],
-    "best_price": 6.79,
+    "best_price": 7.4,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KCNM",
-    "airport_ref": "3461",
-    "fetched_at": "2026-08-24T03:49:05Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KFST",
+    "airport_ref": "19900"
   }
 }

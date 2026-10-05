@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1791161889.1219811,
+  "icao": "U98",
+  "data": {
+    "icao": "U98",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-10-04",
+    "fetched_at": "2026-10-05T00:58:09Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

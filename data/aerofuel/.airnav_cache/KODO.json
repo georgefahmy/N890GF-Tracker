@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787705980.928771,
+  "_cached_at": 1791161978.1953428,
   "icao": "KODO",
   "data": {
     "icao": "KODO",
@@ -13,8 +13,20 @@
     "lon": -102.387,
     "elevation_ft": 3004,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": 119.275,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 124.6,
+    "approach_desc": "MIDLAND APP/DEP",
+    "departure_freq": 124.6,
+    "departure_desc": "MIDLAND APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 121.7,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "A/D",
@@ -69,19 +81,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.89,
+            "price": 7.51,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.53,
+            "price": 7.98,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 6.89,
+            "price": 7.45,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -89,7 +101,7 @@
         }
       }
     ],
-    "best_price": 6.89,
+    "best_price": 7.51,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -97,6 +109,8 @@
     ],
     "last_updated": "2026-08-25",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KODO",
+    "airport_ref": "20716",
     "fetched_at": "2026-08-26T00:59:40Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787864737.799207,
+  "_cached_at": 1791161958.3970768,
   "icao": "38S",
   "data": {
     "icao": "38S",
@@ -48,11 +48,11 @@
         "name": "TC Aviation",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 07-Aug",
-        "quote_date": "07-Aug",
+        "notes": "Quote: 16-Sep",
+        "quote_date": "16-Sep",
         "fuels": {
           "JET_A": {
-            "price": 6.95,
+            "price": 7.19,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788214945.068991,
+  "_cached_at": 1791161903.1731572,
   "icao": "KBOI",
   "data": {
     "icao": "KBOI",
@@ -148,8 +148,8 @@
         "name": "Turbo Air",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 04-Jun",
-        "quote_date": "04-Jun",
+        "notes": "Phillips 66 \u2022 Quote: 01-Oct",
+        "quote_date": "01-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.6,
@@ -178,10 +178,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KBOI",
     "airport_ref": "3421",
-    "fetched_at": "2026-08-31T22:22:25Z"
+    "fetched_at": "2026-10-05T00:58:10Z"
   }
 }

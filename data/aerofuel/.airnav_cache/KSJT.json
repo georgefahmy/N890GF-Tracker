@@ -1,28 +1,28 @@
 {
-  "_cached_at": 1791161958.395888,
-  "icao": "KMSO",
+  "_cached_at": 1791161984.3316557,
+  "icao": "KSJT",
   "data": {
-    "icao": "KMSO",
-    "faa": "MSO",
-    "iata": "MSO",
-    "name": "Missoula Montana Airport",
-    "city": "Missoula",
-    "state": "MT",
+    "icao": "KSJT",
+    "faa": "SJT",
+    "iata": "SJT",
+    "name": "San Angelo Regional Mathis Field",
+    "city": "San Angelo",
+    "state": "TX",
     "country": "US",
-    "lat": 46.9158,
-    "lon": -114.0911,
-    "elevation_ft": 3206,
+    "lat": 31.3577,
+    "lon": -100.496,
+    "elevation_ft": 1919,
     "tower": true,
-    "tower_freq": 118.4,
-    "ctaf_freq": 118.4,
+    "tower_freq": 118.3,
+    "ctaf_freq": 118.3,
     "unicom_freq": 122.95,
-    "weather_freq": 126.65,
+    "weather_freq": 128.45,
     "weather_type": "ATIS",
     "weather_desc": "ATIS",
-    "approach_freq": 124.9,
-    "approach_desc": "SPOKANE APP/DEP",
-    "departure_freq": 124.9,
-    "departure_desc": "SPOKANE APP/DEP",
+    "approach_freq": 125.35,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 125.35,
+    "departure_desc": "APP/DEP",
     "ground_freq": 121.9,
     "ground_desc": "GND",
     "clearance_freq": null,
@@ -30,18 +30,18 @@
     "frequencies": [
       {
         "type": "A/D",
-        "description": "SPOKANE APP/DEP",
-        "frequency_mhz": 124.9
+        "description": "APP/DEP",
+        "frequency_mhz": 125.35
       },
       {
         "type": "ATIS",
         "description": "ATIS",
-        "frequency_mhz": 126.65
+        "frequency_mhz": 128.45
       },
       {
         "type": "CTAF",
         "description": "CTAF",
-        "frequency_mhz": 118.4
+        "frequency_mhz": 118.3
       },
       {
         "type": "GND",
@@ -50,13 +50,13 @@
       },
       {
         "type": "RDO",
-        "description": "GREAT FALLS RDO",
-        "frequency_mhz": 122.45
+        "description": "RDO",
+        "frequency_mhz": 122.25
       },
       {
         "type": "TWR",
         "description": "TWR",
-        "frequency_mhz": 118.4
+        "frequency_mhz": 118.3
       },
       {
         "type": "UNIC",
@@ -66,20 +66,61 @@
     ],
     "runways": [
       {
-        "id": "12/30",
-        "length": 9501,
+        "id": "18/36",
+        "length": 8054,
         "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "03/21",
+        "length": 5940,
+        "width": 150,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "09/27",
+        "length": 4406,
+        "width": 75,
         "surface": "Asphalt",
         "lighted": true
       }
     ],
     "fbos": [
       {
-        "name": "Minuteman Jet Center",
+        "name": "Ranger Aviation Enterprises Call for volume discounts",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.49,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.99,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "Skyline Aviation dba San Angelo Jet Center",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price \u2022 Airboss",
+        "quote_date": null,
         "fuels": {
           "100LL_FS": {
             "price": 7.55,
@@ -88,34 +129,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.35,
-            "type": "Jet-A",
-            "service": "Full-Serve",
-            "label": "Jet-A Turbine Fuel (Full-Serve)"
-          }
-        }
-      },
-      {
-        "name": "Northstar Jet FBO",
-        "brand": "Phillips 66",
-        "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 01-Oct",
-        "quote_date": "01-Oct",
-        "fuels": {
-          "100LL_SS": {
-            "price": 6.79,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
-          "100LL_FS": {
-            "price": 7.11,
-            "type": "100LL",
-            "service": "Full-Serve",
-            "label": "100LL Avgas (Full-Serve)"
-          },
-          "JET_A": {
-            "price": 8.35,
+            "price": 7.32,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -123,16 +137,15 @@
         }
       }
     ],
-    "best_price": 6.79,
+    "best_price": 6.99,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-27",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KMSO",
-    "airport_ref": "3708",
-    "fetched_at": "2026-08-27T21:05:37Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KSJT",
+    "airport_ref": "3884"
   }
 }

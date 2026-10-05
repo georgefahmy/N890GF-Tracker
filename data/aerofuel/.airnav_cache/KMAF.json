@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787705980.928627,
+  "_cached_at": 1791161978.1998549,
   "icao": "KMAF",
   "data": {
     "icao": "KMAF",
@@ -13,8 +13,20 @@
     "lon": -102.202,
     "elevation_ft": 2871,
     "tower": true,
+    "tower_freq": 118.7,
     "ctaf_freq": 118.7,
     "unicom_freq": 122.95,
+    "weather_freq": 126.8,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 121.1,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 121.1,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 118.05,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "A/D",
@@ -92,17 +104,17 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "independent \u2022 Quote: 02-Oct",
+        "quote_date": "02-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 8.45,
+            "price": 8.5,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.06,
+            "price": 8.94,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -110,7 +122,7 @@
         }
       }
     ],
-    "best_price": 8.45,
+    "best_price": 8.5,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -118,6 +130,8 @@
     ],
     "last_updated": "2026-08-25",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KMAF",
+    "airport_ref": "3663",
     "fetched_at": "2026-08-26T00:59:40Z"
   }
 }

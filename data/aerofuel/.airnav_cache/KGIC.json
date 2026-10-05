@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787864737.7998579,
+  "_cached_at": 1791161951.5805938,
   "icao": "KGIC",
   "data": {
     "icao": "KGIC",
@@ -53,8 +53,8 @@
         "name": "Idaho County Airport",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 19-Aug",
-        "quote_date": "19-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 28-Sep",
+        "quote_date": "28-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.95,

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788214945.071234,
+  "_cached_at": 1791161951.5772216,
   "icao": "S87",
   "data": {
     "icao": "S87",
@@ -48,11 +48,11 @@
         "name": "Weiser Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 13-Aug",
-        "quote_date": "13-Aug",
+        "notes": "Quote: 18-Sep",
+        "quote_date": "18-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.39,
+            "price": 6.99,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -60,7 +60,7 @@
         }
       }
     ],
-    "best_price": 6.39,
+    "best_price": 6.99,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"

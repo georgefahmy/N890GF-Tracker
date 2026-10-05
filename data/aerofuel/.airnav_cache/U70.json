@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788214945.0617971,
+  "_cached_at": 1791161951.5734777,
   "icao": "U70",
   "data": {
     "icao": "U70",
@@ -58,11 +58,11 @@
         "name": "Arnold Aviation",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 28-Aug",
-        "quote_date": "28-Aug",
+        "notes": "Quote: 02-Oct",
+        "quote_date": "02-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.75,
+            "price": 7.1,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -76,7 +76,7 @@
         }
       }
     ],
-    "best_price": 6.75,
+    "best_price": 7.1,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

@@ -1,24 +1,24 @@
 {
-  "_cached_at": 1791161978.1942537,
-  "icao": "E38",
+  "_cached_at": 1791161978.1917946,
+  "icao": "E01",
   "data": {
-    "icao": "E38",
-    "faa": "E38",
-    "iata": "ALE",
-    "name": "Alpine Casparis Municipal Airport",
-    "city": "Alpine",
+    "icao": "E01",
+    "faa": "E01",
+    "iata": "MIF",
+    "name": "Roy Hurd Memorial Airport",
+    "city": "Monahans",
     "state": "TX",
     "country": "US",
-    "lat": 30.3842,
-    "lon": -103.684,
-    "elevation_ft": 4515,
+    "lat": 31.5825,
+    "lon": -102.909,
+    "elevation_ft": 2615,
     "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
-    "weather_freq": 119.025,
-    "weather_type": "AWOS",
-    "weather_desc": "AWOS 3",
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
     "approach_freq": null,
     "approach_desc": null,
     "departure_freq": null,
@@ -29,14 +29,9 @@
     "clearance_desc": null,
     "frequencies": [
       {
-        "type": "AWOS",
-        "description": "AWOS 3",
-        "frequency_mhz": 119.025
-      },
-      {
-        "type": "FSS",
-        "description": "SAN ANGELO RDO",
-        "frequency_mhz": 115.9
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 133.1
       },
       {
         "type": "UNIC",
@@ -46,53 +41,52 @@
     ],
     "runways": [
       {
-        "id": "01/19",
-        "length": 6002,
+        "id": "12/30",
+        "length": 4268,
         "width": 75,
         "surface": "Asphalt",
         "lighted": true
       },
       {
-        "id": "05/23",
-        "length": 5018,
-        "width": 60,
+        "id": "01/19",
+        "length": 2922,
+        "width": 75,
         "surface": "Asphalt",
         "lighted": true
       }
     ],
     "fbos": [
       {
-        "name": "City of Alpine (FBO)",
+        "name": "Monahans Aviation",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 18-Sep",
-        "quote_date": "18-Sep",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.66,
+            "price": 7.05,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 6.81,
+            "price": 7.0,
             "type": "Jet-A",
-            "service": "Self-Serve",
-            "label": "Jet-A Turbine Fuel (Self-Serve)"
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
           }
         }
       }
     ],
-    "best_price": 6.66,
+    "best_price": 7.05,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KE38",
-    "airport_ref": "19696",
-    "fetched_at": "2026-08-26T22:17:19Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KE01",
+    "airport_ref": "19682"
   }
 }

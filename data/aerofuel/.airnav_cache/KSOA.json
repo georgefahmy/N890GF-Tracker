@@ -1,22 +1,22 @@
 {
-  "_cached_at": 1791161978.1942537,
-  "icao": "E38",
+  "_cached_at": 1791161984.3276823,
+  "icao": "KSOA",
   "data": {
-    "icao": "E38",
-    "faa": "E38",
-    "iata": "ALE",
-    "name": "Alpine Casparis Municipal Airport",
-    "city": "Alpine",
+    "icao": "KSOA",
+    "faa": "SOA",
+    "iata": "",
+    "name": "Sonora Municipal Airport",
+    "city": "Sonora",
     "state": "TX",
     "country": "US",
-    "lat": 30.3842,
-    "lon": -103.684,
-    "elevation_ft": 4515,
-    "tower": false,
+    "lat": 30.5857,
+    "lon": -100.649,
+    "elevation_ft": 2140,
+    "tower": true,
     "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
-    "weather_freq": 119.025,
+    "weather_freq": 118.075,
     "weather_type": "AWOS",
     "weather_desc": "AWOS 3",
     "approach_freq": null,
@@ -31,12 +31,12 @@
       {
         "type": "AWOS",
         "description": "AWOS 3",
-        "frequency_mhz": 119.025
+        "frequency_mhz": 118.075
       },
       {
-        "type": "FSS",
-        "description": "SAN ANGELO RDO",
-        "frequency_mhz": 115.9
+        "type": "CNTR",
+        "description": "HOUSTON CNTR",
+        "frequency_mhz": 125.75
       },
       {
         "type": "UNIC",
@@ -46,15 +46,8 @@
     ],
     "runways": [
       {
-        "id": "01/19",
-        "length": 6002,
-        "width": 75,
-        "surface": "Asphalt",
-        "lighted": true
-      },
-      {
-        "id": "05/23",
-        "length": 5018,
+        "id": "18/36",
+        "length": 4037,
         "width": 60,
         "surface": "Asphalt",
         "lighted": true
@@ -62,20 +55,20 @@
     ],
     "fbos": [
       {
-        "name": "City of Alpine (FBO)",
-        "brand": "",
+        "name": "Sonora Municipal Airport",
+        "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "Quote: 18-Sep",
-        "quote_date": "18-Sep",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
+        "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.66,
+            "price": 5.25,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 6.81,
+            "price": 5.74,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -83,16 +76,15 @@
         }
       }
     ],
-    "best_price": 6.66,
+    "best_price": 5.25,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KE38",
-    "airport_ref": "19696",
-    "fetched_at": "2026-08-26T22:17:19Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KSOA",
+    "airport_ref": "21095"
   }
 }

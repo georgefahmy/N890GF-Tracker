@@ -1,21 +1,21 @@
 {
-  "_cached_at": 1791161951.5794008,
-  "icao": "8S4",
+  "_cached_at": 1791161984.3292978,
+  "icao": "27R",
   "data": {
-    "icao": "8S4",
-    "faa": "8S4",
+    "icao": "27R",
+    "faa": "27R",
     "iata": "",
-    "name": "Enterprise Municipal Airport",
-    "city": "Enterprise",
-    "state": "OR",
+    "name": "Eldorado Airport",
+    "city": "Eldorado",
+    "state": "TX",
     "country": "US",
-    "lat": 45.4249,
-    "lon": -117.265,
-    "elevation_ft": 3957,
+    "lat": 30.8622,
+    "lon": -100.611,
+    "elevation_ft": 2448,
     "tower": false,
     "tower_freq": null,
-    "ctaf_freq": 122.8,
-    "unicom_freq": 122.8,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
     "weather_freq": null,
     "weather_type": null,
     "weather_desc": null,
@@ -27,26 +27,32 @@
     "ground_desc": null,
     "clearance_freq": null,
     "clearance_desc": null,
-    "frequencies": [],
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 123.0
+      }
+    ],
     "runways": [
       {
-        "id": "12/30",
-        "length": 2850,
-        "width": 50,
+        "id": "17/35",
+        "length": 4300,
+        "width": 60,
         "surface": "Asphalt",
         "lighted": true
       }
     ],
     "fbos": [
       {
-        "name": "Stangel Flight Service",
+        "name": "Schleicher County Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Quote: 02-Oct",
+        "quote_date": "02-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 7.15,
+            "price": 5.5,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -54,15 +60,14 @@
         }
       }
     ],
-    "best_price": 7.15,
+    "best_price": 5.5,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-26",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "8S4",
-    "airport_ref": "15168",
-    "fetched_at": "2026-08-27T01:18:12Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "K27R",
+    "airport_ref": "18559"
   }
 }
