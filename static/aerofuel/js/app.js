@@ -1320,6 +1320,129 @@
     return new AeroScaleControl(options);
   };
 
+  // --- Smooth Continuous Wheel Zoom Handler (OpenLayers / globe.adsbexchange.com Style) ---
+  if (typeof L !== 'undefined' && L.Map) {
+    L.Map.mergeOptions({
+      smoothWheelZoom: true,
+      smoothSensitivity: 1
+    });
+
+    L.Map.SmoothWheelZoom = L.Handler.extend({
+      addHooks: function () {
+        L.DomEvent.on(this._map._container, 'wheel', this._onWheelScroll, this);
+      },
+
+      removeHooks: function () {
+        L.DomEvent.off(this._map._container, 'wheel', this._onWheelScroll, this);
+        if (this._zoomAnimationId) {
+          cancelAnimationFrame(this._zoomAnimationId);
+        }
+        clearTimeout(this._timeoutId);
+        this._isWheeling = false;
+      },
+
+      _onWheelScroll: function (e) {
+        if (!this._isWheeling) {
+          this._onWheelStart(e);
+        }
+        this._onWheeling(e);
+      },
+
+      _onWheelStart: function (e) {
+        const map = this._map;
+        this._isWheeling = true;
+        this._wheelMousePosition = map.mouseEventToContainerPoint(e);
+        this._centerPoint = map.getSize()._divideBy(2);
+        this._startLatLng = map.containerPointToLatLng(this._centerPoint);
+        this._wheelMouseLatLng = map.containerPointToLatLng(this._wheelMousePosition);
+        this._startZoom = map.getZoom();
+        this._moved = false;
+        this._zooming = true;
+
+        map._stop();
+        if (map._panAnim) map._panAnim.stop();
+
+        this._goalZoom = map.getZoom();
+        this._prevCenter = map.getCenter();
+        this._prevZoom = map.getZoom();
+
+        this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
+      },
+
+      _onWheeling: function (e) {
+        const map = this._map;
+
+        let dy = e.deltaY;
+        if (dy === undefined && e.detail) dy = e.detail * 20;
+        if (dy === undefined && e.wheelDelta) dy = -e.wheelDelta / 2;
+        if (!dy) return;
+        if (e.deltaMode === 1) dy *= 20;
+        else if (e.deltaMode === 2) dy *= 60;
+
+        const delta = -dy;
+        this._goalZoom += delta * 0.002 * (map.options.smoothSensitivity || 1);
+        this._goalZoom = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), this._goalZoom));
+
+        this._wheelMousePosition = map.mouseEventToContainerPoint(e);
+        this._wheelMouseLatLng = map.containerPointToLatLng(this._wheelMousePosition);
+
+        clearTimeout(this._timeoutId);
+        this._timeoutId = setTimeout(this._onWheelEnd.bind(this), 200);
+
+        L.DomEvent.preventDefault(e);
+        L.DomEvent.stopPropagation(e);
+      },
+
+      _onWheelEnd: function () {
+        this._isWheeling = false;
+        cancelAnimationFrame(this._zoomAnimationId);
+        if (this._moved) {
+          this._map._moveEnd(true);
+          this._moved = false;
+        }
+      },
+
+      _updateWheelZoom: function () {
+        const map = this._map;
+
+        if (!map.getCenter().equals(this._prevCenter) || map.getZoom() !== this._prevZoom) {
+          return;
+        }
+
+        const currentZoom = map.getZoom();
+        const zoomDiff = this._goalZoom - currentZoom;
+
+        if (Math.abs(zoomDiff) < 0.001) {
+          this._zoom = this._goalZoom;
+        } else {
+          this._zoom = currentZoom + zoomDiff * 0.3;
+        }
+
+        const delta = this._wheelMousePosition.subtract(this._centerPoint);
+        if (map.options.smoothWheelZoom === 'center' || (delta.x === 0 && delta.y === 0)) {
+          this._center = this._startLatLng;
+        } else {
+          this._center = map.unproject(map.project(this._wheelMouseLatLng, this._zoom).subtract(delta), this._zoom);
+        }
+
+        if (!this._moved) {
+          map._moveStart(true, false);
+          this._moved = true;
+        }
+
+        map._move(this._center, this._zoom);
+        this._prevCenter = map.getCenter();
+        this._prevZoom = map.getZoom();
+
+        if (this._isWheeling || Math.abs(this._goalZoom - this._zoom) >= 0.001) {
+          this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
+        }
+      }
+    });
+
+    L.Map.addInitHook('addHandler', 'smoothWheelZoom', L.Map.SmoothWheelZoom);
+  }
+
   // --- Map Initialization ---
   function initMap() {
     const commonTileOptions = {
@@ -1360,11 +1483,11 @@
       layers: [cartoMidnight],
       zoomControl: false,
       preferCanvas: false,
-      scrollWheelZoom: true,
-      wheelPxPerZoomLevel: 60,
-      wheelDebounceTime: 40,
-      zoomSnap: 1,
-      zoomDelta: 1.0,
+      scrollWheelZoom: false,
+      smoothWheelZoom: true,
+      smoothSensitivity: 1,
+      zoomSnap: 0,
+      zoomDelta: 0.5,
       zoomAnimation: true,
       zoomAnimationThreshold: 8
     });
@@ -1875,7 +1998,6 @@
 
     // Track mouse move for 60 FPS circle repositioning or single airport tooltip hover
     mapContainer.addEventListener('mousemove', function (e) {
-      if (STATE.radarEnabled && STATE.isLocked) return;
       const latlng = map.mouseEventToLatLng(e);
       if (latlng) {
         mousePendingPos = latlng;
@@ -1888,6 +2010,15 @@
     mapContainer.addEventListener('mouseleave', function () {
       if (!STATE.radarEnabled) {
         clearRadarOffHoverMarker();
+      } else {
+        if (hoveredAirportIcao || STATE.hoveredAirport || STATE.hoveredCanvasApt) {
+          hoveredAirportIcao = null;
+          STATE.hoveredAirport = null;
+          STATE.hoveredCanvasApt = null;
+          if (STATE.lowestAirport) {
+            updateBestDealHUD(STATE.lowestAirport, STATE.airportsInRadius);
+          }
+        }
       }
     });
 
@@ -2268,10 +2399,27 @@
     if (!mousePendingPos) return;
 
     if (STATE.radarEnabled) {
-      if (STATE.isLocked) return;
-      STATE.circleCenter = { lat: mousePendingPos.lat, lng: mousePendingPos.lng };
-      updateCirclePosition(STATE.circleCenter.lat, STATE.circleCenter.lng);
-      recalculateRadiusAirports();
+      if (!STATE.isLocked) {
+        STATE.circleCenter = { lat: mousePendingPos.lat, lng: mousePendingPos.lng };
+        updateCirclePosition(STATE.circleCenter.lat, STATE.circleCenter.lng);
+        recalculateRadiusAirports();
+      } else {
+        // Radius is locked: hit test for canvas airport dots if not hovering a DOM marker
+        if (!hoveredAirportIcao) {
+          const hoveredApt = findAirportNearPoint(mousePendingPos, 18);
+          if (hoveredApt) {
+            STATE.hoveredCanvasApt = hoveredApt;
+            STATE.hoveredAirport = hoveredApt;
+            showSelectedAirportHUD(hoveredApt);
+          } else if (STATE.hoveredCanvasApt) {
+            STATE.hoveredCanvasApt = null;
+            STATE.hoveredAirport = null;
+            if (STATE.lowestAirport) {
+              updateBestDealHUD(STATE.lowestAirport, STATE.airportsInRadius);
+            }
+          }
+        }
+      }
     } else {
       handleRadarOffHover(mousePendingPos);
     }
@@ -2997,7 +3145,11 @@
     }
 
     // Update Bottom Best Deal HUD & Sidebar List
-    updateBestDealHUD(lowest, inRadiusList);
+    if (STATE.hoveredAirport) {
+      showSelectedAirportHUD(STATE.hoveredAirport);
+    } else {
+      updateBestDealHUD(lowest, inRadiusList);
+    }
     updateSidebarRadarList(inRadiusList, lowest);
   }
 
@@ -3137,9 +3289,24 @@
     el.addEventListener('pointerdown', handlePointerDown);
     el.addEventListener('touchstart', handlePointerDown, { passive: true });
     el.addEventListener('mouseenter', function () {
-      if (!STATE.radarEnabled) {
-        hoveredAirportIcao = apt.icao;
-        showSelectedAirportHUD(apt);
+      hoveredAirportIcao = apt.icao;
+      STATE.hoveredAirport = apt;
+      showSelectedAirportHUD(apt);
+    });
+
+    el.addEventListener('mouseleave', function () {
+      if (hoveredAirportIcao === apt.icao) {
+        hoveredAirportIcao = null;
+        STATE.hoveredAirport = null;
+        if (STATE.radarEnabled) {
+          if (STATE.lowestAirport) {
+            updateBestDealHUD(STATE.lowestAirport, STATE.airportsInRadius);
+          } else {
+            updateBestDealHUD(null, []);
+          }
+        } else if (!isSelectedAirportPinned && STATE.selectedAirport) {
+          scheduleRadarOffHoverFade();
+        }
       }
     });
 
@@ -3900,6 +4067,7 @@
     cancelRadarOffHoverFade();
     attachHudHoverListeners();
     STATE.selectedAirport = apt;
+    STATE.prevBestDealSignature = '';
     hud.style.display = 'flex';
     hud.classList.remove('fade-out');
     document.body.classList.add('has-active-airport-hud');
@@ -3958,6 +4126,33 @@
     const rwy = (canonical.runways && canonical.runways.length > 0) ? `${canonical.runways.length} Rwy${canonical.runways.length > 1 ? 's' : ''}` : '';
     const specsLine = [elev, freq, rwy].filter(Boolean).join(' • ') || 'Aviation Fuel & Facilities';
 
+    let savingsLine = specsLine;
+    if (STATE.radarEnabled && STATE.lowestAirport) {
+      const lowestCanonical = STATE.lowestAirport;
+      const lowestPrice = (lowestCanonical.effectiveFuel && typeof lowestCanonical.effectiveFuel.price === 'number')
+        ? lowestCanonical.effectiveFuel.price
+        : null;
+
+      if (lowestPrice !== null && fuelInfo && typeof fuelInfo.price === 'number') {
+        const isLowestApt = (cleanIcao === (lowestCanonical.icao || '').toUpperCase().trim()) || (cleanFaa && cleanFaa === (lowestCanonical.faa || '').toUpperCase().trim());
+        if (isLowestApt) {
+          badgeTitle = '🏆 Lowest In Radius';
+          const pricedInRadius = (STATE.airportsInRadius || []).filter(a => a.hasFuel && a.effectiveFuel);
+          const avgPrice = pricedInRadius.reduce((acc, a) => acc + a.effectiveFuel.price, 0) / (pricedInRadius.length || 1);
+          const savingsPerGal = Math.max(0, avgPrice - lowestPrice);
+          const savings50Gal = savingsPerGal * 50;
+          savingsLine = savingsPerGal > 0.05
+            ? `💰 Saves <strong>$${savingsPerGal.toFixed(2)}/gal</strong> ($${savings50Gal.toFixed(2)} on 50 gal) vs radius avg ($${avgPrice.toFixed(2)})`
+            : `⭐ Lowest rate among ${pricedInRadius.length} reporting fuel in area`;
+        } else {
+          const diff = fuelInfo.price - lowestPrice;
+          const lowestIdent = lowestCanonical.faa || lowestCanonical.icao;
+          const diffStr = diff > 0.005 ? `+$${diff.toFixed(2)}/gal vs lowest ($${lowestPrice.toFixed(2)} at ${lowestIdent})` : `Matches lowest ($${lowestPrice.toFixed(2)} at ${lowestIdent})`;
+          savingsLine = `<span>${diffStr}</span> • <span>${specsLine}</span>`;
+        }
+      }
+    }
+
     hud.innerHTML = `
       <div class="${badgeClass}">
         <span class="best-deal-badge-title">${badgeTitle}</span>
@@ -3977,7 +4172,7 @@
           <span>${fboName}</span>
         </div>
         <div class="best-deal-savings">
-          ${specsLine}
+          ${savingsLine}
         </div>
       </div>
       <div class="best-deal-actions">

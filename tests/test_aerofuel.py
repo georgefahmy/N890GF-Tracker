@@ -207,7 +207,8 @@ class TestAeroFuelIntegration:
             # Verify preferCanvas is false so vector shapes are rendered via Leaflet standard SVG
             assert "preferCanvas: false" in content
             assert "zoomAnimation: true" in content
-            assert "zoomSnap: 1" in content
+            assert "zoomSnap: 0" in content
+            assert "smoothWheelZoom: true" in content
 
     def test_radar_zoom_stability_and_no_corrupted_zoom_hooks_in_app_js(self, app, client):
         """Verify app.js does not hook intermediate zoom event listeners that corrupt coordinate projections."""
