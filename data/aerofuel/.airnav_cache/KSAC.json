@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574455.580403,
+  "_cached_at": 1791165595.084622,
   "icao": "KSAC",
   "data": {
     "icao": "KSAC",
@@ -92,23 +92,23 @@
         "name": "Modern Aviation Executive",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Titan \u2022 Quote: 29-Sep",
+        "quote_date": "29-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 7.13,
+            "price": 7.3,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 8.13,
+            "price": 8.3,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.26,
+            "price": 9.17,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -116,7 +116,7 @@
         }
       }
     ],
-    "best_price": 7.13,
+    "best_price": 7.3,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

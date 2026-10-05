@@ -1,0 +1,135 @@
+{
+  "_cached_at": 1791162010.5869765,
+  "icao": "KLBB",
+  "data": {
+    "icao": "KLBB",
+    "faa": "LBB",
+    "iata": "LBB",
+    "name": "Lubbock Preston Smith International Airport",
+    "city": "Lubbock",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.6636,
+    "lon": -101.823,
+    "elevation_ft": 3282,
+    "tower": true,
+    "tower_freq": 120.5,
+    "ctaf_freq": 122.95,
+    "unicom_freq": 122.95,
+    "weather_freq": 125.3,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.2,
+    "approach_desc": "APP",
+    "departure_freq": 119.2,
+    "departure_desc": "DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 125.8,
+    "clearance_desc": "CLNC DEL",
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "APP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 125.3
+      },
+      {
+        "type": "CLD",
+        "description": "CLNC DEL",
+        "frequency_mhz": 125.8
+      },
+      {
+        "type": "DEP",
+        "description": "DEP",
+        "frequency_mhz": 119.2
+      },
+      {
+        "type": "GND",
+        "description": "GND",
+        "frequency_mhz": 121.9
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.55
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 120.5
+      },
+      {
+        "type": "UNIC",
+        "description": "UNICOM",
+        "frequency_mhz": 122.95
+      }
+    ],
+    "runways": [
+      {
+        "id": "17R/35L",
+        "length": 11500,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "08/26",
+        "length": 8003,
+        "width": 150,
+        "surface": "Con",
+        "lighted": true
+      },
+      {
+        "id": "17L/35R",
+        "length": 2891,
+        "width": 74,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Million Air Lubbock",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 28-Sep",
+        "quote_date": "28-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 8.34,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 9.34,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 8.41,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 8.34,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KLBB",
+    "airport_ref": "3633"
+  }
+}

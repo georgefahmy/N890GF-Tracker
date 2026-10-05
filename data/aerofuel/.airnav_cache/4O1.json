@@ -1,17 +1,17 @@
 {
-  "_cached_at": 1791165276.4776297,
-  "icao": "O15",
+  "_cached_at": 1791162042.0007813,
+  "icao": "4O1",
   "data": {
-    "icao": "O15",
-    "faa": "O15",
+    "icao": "4O1",
+    "faa": "4O1",
     "iata": "",
-    "name": "Turlock Municipal Airport",
-    "city": "Turlock",
-    "state": "CA",
+    "name": "Snyder Airport",
+    "city": "Snyder",
+    "state": "OK",
     "country": "US",
-    "lat": 37.4874,
-    "lon": -120.697,
-    "elevation_ft": 159,
+    "lat": 34.6276,
+    "lon": -99.014,
+    "elevation_ft": 1325,
     "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.8,
@@ -27,32 +27,26 @@
     "ground_desc": null,
     "clearance_freq": null,
     "clearance_desc": null,
-    "frequencies": [
-      {
-        "type": "UNIC",
-        "description": "CTAF/UNICOM",
-        "frequency_mhz": 122.8
-      }
-    ],
+    "frequencies": [],
     "runways": [
       {
-        "id": "12/30",
-        "length": 2985,
-        "width": 50,
+        "id": "17/35",
+        "length": 2125,
+        "width": 30,
         "surface": "Asphalt",
-        "lighted": true
+        "lighted": false
       }
     ],
     "fbos": [
       {
-        "name": "Turlock Municipal Airport",
+        "name": "Snyder Spraying Service",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 28-Sep",
-        "quote_date": "28-Sep",
+        "notes": "Quote: 13-Aug-2019",
+        "quote_date": "13-Aug-2019",
         "fuels": {
           "100LL_SS": {
-            "price": 6.36,
+            "price": 4.0,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -60,15 +54,15 @@
         }
       }
     ],
-    "best_price": 6.36,
+    "best_price": 4.0,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
     "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
-    "raw_ident": "KO15",
-    "airport_ref": "20676",
-    "fetched_at": "2026-10-05T01:54:34Z"
+    "raw_ident": "4O1",
+    "airport_ref": "11634",
+    "fetched_at": "2026-10-05T01:00:39Z"
   }
 }

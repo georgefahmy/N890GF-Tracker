@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574455.574534,
+  "_cached_at": 1791165276.5021698,
   "icao": "KJAQ",
   "data": {
     "icao": "KJAQ",
@@ -58,11 +58,11 @@
         "name": "Amador County (FBO)",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 22-Sep",
-        "quote_date": "22-Sep",
+        "notes": "World Fuel Services \u2022 Quote: 02-Oct",
+        "quote_date": "02-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.75,
+            "price": 6.8,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -76,16 +76,16 @@
         }
       }
     ],
-    "best_price": 6.75,
+    "best_price": 6.8,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO70",
     "airport_ref": "20703",
-    "fetched_at": "2026-09-28T05:46:34Z"
+    "fetched_at": "2026-10-05T01:54:34Z"
   }
 }

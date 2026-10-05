@@ -1,0 +1,103 @@
+{
+  "_cached_at": 1791162032.671058,
+  "icao": "KCDS",
+  "data": {
+    "icao": "KCDS",
+    "faa": "CDS",
+    "iata": "CDS",
+    "name": "Childress Municipal Airport",
+    "city": "Childress",
+    "state": "TX",
+    "country": "US",
+    "lat": 34.4338,
+    "lon": -100.288,
+    "elevation_ft": 1954,
+    "tower": true,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 135.125,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "ASOS",
+        "description": "ASOS",
+        "frequency_mhz": 135.125
+      },
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 133.5
+      },
+      {
+        "type": "RDO",
+        "description": "FORT WORTH RDO",
+        "frequency_mhz": 122.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5949,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "04/22",
+        "length": 4425,
+        "width": 60,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "Boedeker Flying Service",
+        "brand": "Phillips 66",
+        "phone": "N/A",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
+        "quote_date": null,
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.47,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 6.6,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.47,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-10-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KCDS",
+    "airport_ref": "19475",
+    "fetched_at": "2026-10-05T01:00:30Z"
+  }
+}

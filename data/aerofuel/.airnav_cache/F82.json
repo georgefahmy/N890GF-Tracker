@@ -1,0 +1,98 @@
+{
+  "_cached_at": 1791162010.588128,
+  "icao": "F82",
+  "data": {
+    "icao": "F82",
+    "faa": "F82",
+    "iata": "",
+    "name": "Town & Country Airpark",
+    "city": "Lubbock",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.4856,
+    "lon": -101.813,
+    "elevation_ft": 3200,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "CNTR",
+        "description": "FORT WORTH CNTR",
+        "frequency_mhz": 127.45
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 5144,
+        "width": 70,
+        "surface": "Asphalt",
+        "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 1524,
+        "width": 110,
+        "surface": "Grs",
+        "lighted": false
+      }
+    ],
+    "fbos": [
+      {
+        "name": "ClearTech Aviation",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
+        "fuels": {
+          "100LL_SS": {
+            "price": 6.95,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
+          "100LL_FS": {
+            "price": 7.75,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 7.88,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.95,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KF82",
+    "airport_ref": "19832"
+  }
+}

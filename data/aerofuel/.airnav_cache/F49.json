@@ -1,21 +1,21 @@
 {
-  "_cached_at": 1791165276.4776297,
-  "icao": "O15",
+  "_cached_at": 1791162010.5845442,
+  "icao": "F49",
   "data": {
-    "icao": "O15",
-    "faa": "O15",
+    "icao": "F49",
+    "faa": "F49",
     "iata": "",
-    "name": "Turlock Municipal Airport",
-    "city": "Turlock",
-    "state": "CA",
+    "name": "Slaton Municipal Airport",
+    "city": "Slaton",
+    "state": "TX",
     "country": "US",
-    "lat": 37.4874,
-    "lon": -120.697,
-    "elevation_ft": 159,
+    "lat": 33.4848,
+    "lon": -101.661,
+    "elevation_ft": 3123,
     "tower": false,
     "tower_freq": null,
-    "ctaf_freq": 122.8,
-    "unicom_freq": 122.8,
+    "ctaf_freq": 123.0,
+    "unicom_freq": 123.0,
     "weather_freq": null,
     "weather_type": null,
     "weather_desc": null,
@@ -31,44 +31,50 @@
       {
         "type": "UNIC",
         "description": "CTAF/UNICOM",
-        "frequency_mhz": 122.8
+        "frequency_mhz": 123.0
       }
     ],
     "runways": [
       {
-        "id": "12/30",
-        "length": 2985,
-        "width": 50,
+        "id": "18/36",
+        "length": 4244,
+        "width": 75,
         "surface": "Asphalt",
         "lighted": true
       }
     ],
     "fbos": [
       {
-        "name": "Turlock Municipal Airport",
+        "name": "Neal Aircraft",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 28-Sep",
-        "quote_date": "28-Sep",
+        "notes": "Quote: 17-Sep",
+        "quote_date": "17-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.36,
+            "price": 5.75,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
+          },
+          "JET_A": {
+            "price": 5.5,
+            "type": "Jet-A",
+            "service": "Self-Serve",
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 6.36,
+    "best_price": 5.75,
     "primary_fuel": "100LL",
     "fuels_available": [
-      "100LL"
+      "100LL",
+      "Jet-A"
     ],
-    "last_updated": "2026-10-04",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KO15",
-    "airport_ref": "20676",
-    "fetched_at": "2026-10-05T01:54:34Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KF49",
+    "airport_ref": "19822"
   }
 }

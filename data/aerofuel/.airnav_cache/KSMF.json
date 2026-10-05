@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574455.576896,
+  "_cached_at": 1791165595.0904405,
   "icao": "KSMF",
   "data": {
     "icao": "KSMF",
@@ -85,17 +85,17 @@
         "name": "Modern Aviation International",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Titan \u2022 Quote: 29-Sep",
+        "quote_date": "29-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 8.47,
+            "price": 8.64,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.29,
+            "price": 9.2,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -103,7 +103,7 @@
         }
       }
     ],
-    "best_price": 8.47,
+    "best_price": 8.64,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

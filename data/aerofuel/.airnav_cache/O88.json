@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790629330.6467772,
+  "_cached_at": 1791165595.078639,
   "icao": "O88",
   "data": {
     "icao": "O88",
@@ -65,8 +65,8 @@
         "name": "Rio Vista Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 19-Sep",
-        "quote_date": "19-Sep",
+        "notes": "Quote: 03-Oct",
+        "quote_date": "03-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.78,
@@ -82,10 +82,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO88",
     "airport_ref": "20707",
-    "fetched_at": "2026-09-28T21:02:08Z"
+    "fetched_at": "2026-10-05T01:54:34Z"
   }
 }

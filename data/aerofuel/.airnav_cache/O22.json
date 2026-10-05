@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574397.2596378,
+  "_cached_at": 1791165276.4915802,
   "icao": "O22",
   "data": {
     "icao": "O22",
@@ -78,12 +78,18 @@
       {
         "name": "Bald Eagle Aviation",
         "brand": "Titan",
-        "phone": "209-533-4616",
-        "notes": "Titan \u2022 Quote: 22-Sep-2026 \u2022 UNICOM: 122.975",
-        "quote_date": "22-Sep-2026",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 28-Sep",
+        "quote_date": "28-Sep",
         "fuels": {
+          "100LL_SS": {
+            "price": 6.87,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
           "100LL_FS": {
-            "price": 6.95,
+            "price": 7.12,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -93,26 +99,20 @@
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "100LL_SS": {
-            "price": 6.7,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
           }
         }
       }
     ],
-    "best_price": 6.7,
+    "best_price": 6.87,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO22",
     "airport_ref": "20679",
-    "fetched_at": "2026-09-28T05:46:34Z"
+    "fetched_at": "2026-10-05T01:54:34Z"
   }
 }

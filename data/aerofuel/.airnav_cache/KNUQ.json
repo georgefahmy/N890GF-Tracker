@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791163375.8675148,
+  "_cached_at": 1791165565.466208,
   "icao": "KNUQ",
   "data": {
     "icao": "KNUQ",
@@ -117,10 +117,10 @@
     "fuels_available": [
       "Jet-A"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KNUQ",
     "airport_ref": "3741",
-    "fetched_at": "2026-09-28T21:08:36Z"
+    "fetched_at": "2026-10-05T01:59:04Z"
   }
 }

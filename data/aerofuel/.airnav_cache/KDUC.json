@@ -1,0 +1,96 @@
+{
+  "_cached_at": 1791162041.9998999,
+  "icao": "KDUC",
+  "data": {
+    "icao": "KDUC",
+    "faa": "DUC",
+    "iata": "DUC",
+    "name": "Halliburton Field",
+    "city": "Duncan",
+    "state": "OK",
+    "country": "US",
+    "lat": 34.4709,
+    "lon": -97.9599,
+    "elevation_ft": 1114,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": 119.075,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 118.6,
+    "approach_desc": "FORT SILL APP/DEP",
+    "departure_freq": 118.6,
+    "departure_desc": "FORT SILL APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 118.4,
+    "clearance_desc": "FORT SILL CLNC DEL",
+    "frequencies": [
+      {
+        "type": "A/D",
+        "description": "FORT SILL APP/DEP",
+        "frequency_mhz": 118.6
+      },
+      {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.075
+      },
+      {
+        "type": "CLD",
+        "description": "FORT SILL CLNC DEL",
+        "frequency_mhz": 118.4
+      },
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "17/35",
+        "length": 6650,
+        "width": 100,
+        "surface": "Con",
+        "lighted": true
+      }
+    ],
+    "fbos": [
+      {
+        "name": "5B Aviation",
+        "brand": "",
+        "phone": "N/A",
+        "notes": "Quote: 24-Sep",
+        "quote_date": "24-Sep",
+        "fuels": {
+          "100LL_FS": {
+            "price": 6.79,
+            "type": "100LL",
+            "service": "Full-Serve",
+            "label": "100LL Avgas (Full-Serve)"
+          },
+          "JET_A": {
+            "price": 6.3,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      }
+    ],
+    "best_price": 6.79,
+    "primary_fuel": "100LL",
+    "fuels_available": [
+      "100LL",
+      "Jet-A"
+    ],
+    "last_updated": "2026-10-04",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "KDUC",
+    "airport_ref": "19663",
+    "fetched_at": "2026-10-05T01:00:39Z"
+  }
+}

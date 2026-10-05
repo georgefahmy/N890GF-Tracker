@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790629330.649393,
+  "_cached_at": 1791165276.4793694,
   "icao": "KSCK",
   "data": {
     "icao": "KSCK",
@@ -95,11 +95,11 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 28-Sep",
-        "quote_date": "28-Sep",
+        "notes": "independent \u2022 Quote: 04-Oct",
+        "quote_date": "04-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 8.31,
+            "price": 8.32,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -113,16 +113,16 @@
         }
       }
     ],
-    "best_price": 8.31,
+    "best_price": 8.32,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSCK",
     "airport_ref": "3872",
-    "fetched_at": "2026-09-28T21:02:08Z"
+    "fetched_at": "2026-10-05T01:54:34Z"
   }
 }

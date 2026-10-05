@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791163375.867101,
+  "_cached_at": 1791165565.461425,
   "icao": "KSFO",
   "data": {
     "icao": "KSFO",
@@ -155,10 +155,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSFO",
     "airport_ref": "3878",
-    "fetched_at": "2026-09-28T21:08:36Z"
+    "fetched_at": "2026-10-05T01:59:04Z"
   }
 }

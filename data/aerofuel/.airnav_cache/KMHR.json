@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574455.5697408,
+  "_cached_at": 1791165595.096431,
   "icao": "KMHR",
   "data": {
     "icao": "KMHR",
@@ -85,17 +85,17 @@
         "name": "Modern Aviation Mather",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Titan \u2022 Quote: 29-Sep",
+        "quote_date": "29-Sep",
         "fuels": {
           "100LL_FS": {
-            "price": 7.76,
+            "price": 7.84,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.4,
+            "price": 7.41,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

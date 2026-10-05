@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791163375.868309,
+  "_cached_at": 1791165565.474364,
   "icao": "KLVK",
   "data": {
     "icao": "KLVK",
@@ -117,10 +117,10 @@
       "94UL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-04",
     "source": "AirNav Local Fuel",
     "raw_ident": "KLVK",
     "airport_ref": "20384",
-    "fetched_at": "2026-09-28T21:08:36Z"
+    "fetched_at": "2026-10-05T01:59:04Z"
   }
 }

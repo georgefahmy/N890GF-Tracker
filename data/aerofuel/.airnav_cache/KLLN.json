@@ -1,28 +1,28 @@
 {
-  "_cached_at": 1791165565.4778829,
-  "icao": "KTCY",
+  "_cached_at": 1791162010.5916536,
+  "icao": "KLLN",
   "data": {
-    "icao": "KTCY",
-    "faa": "TCY",
+    "icao": "KLLN",
+    "faa": "LLN",
     "iata": "",
-    "name": "Tracy Municipal Airport",
-    "city": "Tracy",
-    "state": "CA",
+    "name": "Levelland Municipal Airport",
+    "city": "Levelland",
+    "state": "TX",
     "country": "US",
-    "lat": 37.689,
-    "lon": -121.442,
-    "elevation_ft": 193,
+    "lat": 33.5525,
+    "lon": -102.372,
+    "elevation_ft": 3514,
     "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
-    "weather_freq": 118.375,
-    "weather_type": "AWOS",
-    "weather_desc": "AWOS 3",
-    "approach_freq": 123.85,
-    "approach_desc": "NORCAL APP/DEP",
-    "departure_freq": 123.85,
-    "departure_desc": "NORCAL APP/DEP",
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.9,
+    "approach_desc": "LUBBOCK APP/DEP",
+    "departure_freq": 119.9,
+    "departure_desc": "LUBBOCK APP/DEP",
     "ground_freq": null,
     "ground_desc": null,
     "clearance_freq": null,
@@ -30,13 +30,8 @@
     "frequencies": [
       {
         "type": "A/D",
-        "description": "NORCAL APP/DEP",
-        "frequency_mhz": 123.85
-      },
-      {
-        "type": "AWOS",
-        "description": "AWOS 3",
-        "frequency_mhz": 118.375
+        "description": "LUBBOCK APP/DEP",
+        "frequency_mhz": 119.9
       },
       {
         "type": "UNIC",
@@ -46,36 +41,36 @@
     ],
     "runways": [
       {
-        "id": "12/30",
-        "length": 4001,
+        "id": "17/35",
+        "length": 6110,
         "width": 75,
         "surface": "Asphalt",
         "lighted": true
       },
       {
         "id": "08/26",
-        "length": 3438,
-        "width": 75,
+        "length": 2072,
+        "width": 55,
         "surface": "Asphalt",
         "lighted": false
       }
     ],
     "fbos": [
       {
-        "name": "Tracy Municipal Airport",
-        "brand": "AVFUEL",
+        "name": "Levelland Aero Services, Inc.",
+        "brand": "",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 24-Sep",
-        "quote_date": "24-Sep",
+        "notes": "Quote: 11-Sep",
+        "quote_date": "11-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.23,
+            "price": 6.48,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 5.81,
+            "price": 5.65,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -83,16 +78,15 @@
         }
       }
     ],
-    "best_price": 6.23,
+    "best_price": 6.48,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-04",
-    "source": "AirNav Local Fuel",
-    "raw_ident": "KTCY",
-    "airport_ref": "21181",
-    "fetched_at": "2026-10-05T01:59:04Z"
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "raw_ident": "KLLN",
+    "airport_ref": "20353"
   }
 }
