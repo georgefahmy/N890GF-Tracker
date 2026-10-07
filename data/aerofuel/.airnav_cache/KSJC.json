@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165565.4720619,
+  "_cached_at": 1791349447.021946,
   "icao": "KSJC",
   "data": {
     "icao": "KSJC",
@@ -90,8 +90,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 04-Oct",
-        "quote_date": "04-Oct",
+        "notes": "independent \u2022 Quote: 06-Oct",
+        "quote_date": "06-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 12.17,
@@ -100,7 +100,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 12.33,
+            "price": 12.54,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -111,8 +111,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 03-Oct",
-        "quote_date": "03-Oct",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 13.75,
@@ -121,7 +121,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 11.97,
+            "price": 11.99,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -142,10 +142,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-04",
+    "last_updated": "2026-10-06",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSJC",
     "airport_ref": "3883",
-    "fetched_at": "2026-10-05T01:59:04Z"
+    "fetched_at": "2026-10-07T05:04:04Z"
   }
 }

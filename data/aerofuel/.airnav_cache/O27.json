@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165276.4745266,
+  "_cached_at": 1791349447.0231955,
   "icao": "O27",
   "data": {
     "icao": "O27",
@@ -70,10 +70,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-10-04",
+    "last_updated": "2026-10-06",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO27",
     "airport_ref": "20682",
-    "fetched_at": "2026-10-05T01:54:34Z"
+    "fetched_at": "2026-10-07T05:04:04Z"
   }
 }

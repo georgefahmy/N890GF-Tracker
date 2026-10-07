@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165276.4776297,
+  "_cached_at": 1791349447.033764,
   "icao": "O15",
   "data": {
     "icao": "O15",
@@ -48,11 +48,11 @@
         "name": "Turlock Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 28-Sep",
-        "quote_date": "28-Sep",
+        "notes": "Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.36,
+            "price": 6.65,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -60,15 +60,15 @@
         }
       }
     ],
-    "best_price": 6.36,
+    "best_price": 6.65,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-10-04",
+    "last_updated": "2026-10-06",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO15",
     "airport_ref": "20676",
-    "fetched_at": "2026-10-05T01:54:34Z"
+    "fetched_at": "2026-10-07T05:04:04Z"
   }
 }

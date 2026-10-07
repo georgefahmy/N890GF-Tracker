@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165276.4736485,
+  "_cached_at": 1791349447.016147,
   "icao": "KMOD",
   "data": {
     "icao": "KMOD",
@@ -93,11 +93,17 @@
     "fbos": [
       {
         "name": "Modesto Jet Center",
-        "brand": "Avfuel",
-        "phone": "209-577-4654",
-        "notes": "Avfuel \u2022 Guaranteed Price",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Guaranteed Price",
         "quote_date": null,
         "fuels": {
+          "100LL_SS": {
+            "price": 7.04,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
           "100LL_FS": {
             "price": 8.0,
             "type": "100LL",
@@ -105,16 +111,10 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.63,
+            "price": 8.78,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "100LL_SS": {
-            "price": 7.04,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
           }
         }
       }
@@ -125,10 +125,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-04",
+    "last_updated": "2026-10-06",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMOD",
     "airport_ref": "3701",
-    "fetched_at": "2026-10-05T01:54:34Z"
+    "fetched_at": "2026-10-07T05:04:04Z"
   }
 }
