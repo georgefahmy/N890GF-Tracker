@@ -158,6 +158,23 @@ class TestAeroFuelIntegration:
             assert 'id="btn-radar-power"' in html
             assert "Toggle Search Radius Radar (Shortcut: R)" in html
 
+    def test_hover_power_button_in_template_and_app_js(self, app, client):
+        """Verify fuel_map.html renders hover toggle button and app.js exports hover functions."""
+        with app.app_context():
+            res_html = client.get("/fuel_map")
+            assert res_html.status_code == 200
+            html = res_html.data.decode("utf-8")
+            assert 'id="btn-hover-power"' in html
+            assert "Toggle Dynamic Airport Hover in Info Panel (Shortcut: H)" in html
+
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "setHoverInfoEnabled" in js
+            assert "hoverInfoEnabled" in js
+            assert "KeyH" in js
+            assert "btn-hover-power" in js
+
     def test_radar_off_collapses_sidebar_in_app_js(self, app, client):
         """Verify app.js automatically collapses radar airports sidebar when radar is turned off."""
         with app.app_context():
@@ -368,5 +385,77 @@ class TestAeroFuelIntegration:
             assert "left: 50% !important;" in css
             assert "transform: translateX(-50%) !important;" in css
             assert "max-width: calc(100vw - 24px) !important;" in css
+
+    def test_fuel_checker_trip_burn_and_cost_logic(self, app, client):
+        """Verify fuel map contains starting airport flight parameters, cost sorting, and burn logic."""
+        with app.app_context():
+            res_html = client.get("/fuel_map")
+            assert res_html.status_code == 200
+            html = res_html.data.decode("utf-8")
+            assert "input-gallons" in html
+            assert "input-fuel-flow" in html
+            assert "input-speed" in html
+            assert "chk-sort-by-total-cost" in html
+            assert "Starting Airport" in html
+
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "calculateTripFuelCost" in js
+            assert "flightGallons" in js
+            assert "flightGph" in js
+            assert "flightSpeed" in js
+            assert "sortByTripCost" in js
+            assert "FLIGHT_PARAMS_STORAGE_KEY" in js
+            assert "usedToReturnGal" in js
+            assert "card-trip-cost" in js
+            assert "shouldSortByTripCost" in js
+            assert "inRadiusList.find(a => a.hasFuel)" in js
+            assert "Best Flight Deal" in js
+            assert "Lowest In Radius" in js
+            assert "badge-origin-extension" in js
+
+            res_css = client.get("/static/aerofuel/css/style.css")
+            assert res_css.status_code == 200
+            css = res_css.data.decode("utf-8")
+            assert ".origin-flight-params" in css
+            assert ".flight-params-grid" in css
+            assert ".card-trip-cost" in css
+            assert ".card-burn-detail" in css
+            assert ".badge-origin-extension" in css
+
+    def test_map_drag_stability_and_hud_glitch_prevention(self, app, client):
+        """Verify map drag handlers prevent radar crosshairs and detail HUD glitching during pan."""
+        with app.app_context():
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "isMapDragging" in js
+            assert "map.on('dragstart'" in js
+            assert "map.on('dragend'" in js
+            assert "window.addEventListener('mouseup'" in js
+            assert "if (isMapDragging || (e.buttons !== undefined && e.buttons > 0))" in js
+            assert "if (isMapDragging) return;" in js
+
+    def test_origin_extension_button_hitbox_and_stacking(self, app, client):
+        """Verify origin button is not blocked by sibling marker elements or container pseudo-elements."""
+        with app.app_context():
+            res_css = client.get("/static/aerofuel/css/style.css")
+            assert res_css.status_code == 200
+            css = res_css.data.decode("utf-8")
+            assert ".badge-origin-extension *" in css
+            assert "pointer-events: none !important;" in css
+            assert "z-index: 100 !important;" in css
+
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "bindOriginExtensionBtn" in js
+            assert "getBoundingClientRect" in js
+            assert "disableClickPropagation" in js
+            assert "_lastRenderedHtml" in js
+
+
+
 
 

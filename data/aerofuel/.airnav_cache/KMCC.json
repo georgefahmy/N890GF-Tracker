@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.0951211,
+  "_cached_at": 1791426203.2739809,
   "icao": "KMCC",
   "data": {
     "icao": "KMCC",
@@ -77,19 +77,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.31,
+            "price": 7.17,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 8.31,
+            "price": 8.17,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.32,
+            "price": 8.51,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -97,16 +97,16 @@
         }
       }
     ],
-    "best_price": 7.31,
+    "best_price": 7.17,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-10",
-    "source": "AirNav Live Feed",
+    "last_updated": "2026-10-07",
+    "source": "AirNav Local Fuel",
     "raw_ident": "KMCC",
     "airport_ref": "3666",
-    "fetched_at": "2026-09-10T20:44:40Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

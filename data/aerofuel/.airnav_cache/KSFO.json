@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165565.461425,
+  "_cached_at": 1791428157.8120341,
   "icao": "KSFO",
   "data": {
     "icao": "KSFO",
@@ -124,8 +124,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 03-Oct",
-        "quote_date": "03-Oct",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 10.35,

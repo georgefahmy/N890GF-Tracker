@@ -19,12 +19,24 @@
     activeRoute: null, // Active calculated fuel route object
     activePopupIcao: null, // Currently open popup airport identifier (pinned against radius cull/removal)
     radarEnabled: true, // true = radar search active, false = radar turned off entirely
+    hoverInfoEnabled: (function() {
+      try {
+        const saved = localStorage.getItem('aerofuel_hover_info_enabled');
+        return saved !== null ? saved === 'true' : true;
+      } catch (e) {
+        return true;
+      }
+    })(), // true = hover over airport shows it in bottom info panel, false = locked to lowest/selected
     radiusValue: 50, // default 50
     radiusUnit: 'mi', // 'mi' (statute miles), 'NM' (nautical miles), 'km'
     isLocked: false, // true = fixed circle, false = follows mouse
     selectedFuelType: 'all', // 'all', '100LL', '94UL', '100UL', '100R', 'Mogas'
     selectedService: 'any', // 'any', 'self', 'full'
     selectedPriceTier: 'all', // 'all', 'ultra-cheap', 'budget', 'avg', 'high', 'exp', 'priced-only', 'unpriced', 'no-fuel'
+    flightGallons: 30, // Number of gallons to purchase at destination
+    flightGph: 8.0, // Fuel flow in GPH (defaults from fleet summary telemetry)
+    flightSpeed: 135, // Average cruise speed in Knots
+    sortByTripCost: true, // Sort airports by total trip cost including return fuel burn
     activeAirportModal: null,
     selectedAirport: null, // User-selected airport for info card when radar is off or focused
     lowestAirport: null,
@@ -50,6 +62,7 @@
 
   const PERSISTED_AIRPORTS_STORAGE_KEY = 'AEROFUEL_PERSISTED_AIRPORTS_V2';
   const ORIGIN_AIRPORT_STORAGE_KEY = 'AEROFUEL_ORIGIN_AIRPORT';
+  const FLIGHT_PARAMS_STORAGE_KEY = 'AEROFUEL_FLIGHT_PARAMS_V1';
 
   function savePersistedAirportToStorage(apt) {
     if (!apt || !apt.icao) return;
@@ -294,6 +307,23 @@
         input.value = '';
         if (clearBtn) clearBtn.style.display = 'none';
       }
+    }
+
+    const inputGallons = document.getElementById('input-gallons');
+    if (inputGallons && document.activeElement !== inputGallons) {
+      inputGallons.value = STATE.flightGallons || 30;
+    }
+    const inputGph = document.getElementById('input-fuel-flow');
+    if (inputGph && document.activeElement !== inputGph) {
+      inputGph.value = STATE.flightGph || 8.0;
+    }
+    const inputSpeed = document.getElementById('input-speed');
+    if (inputSpeed && document.activeElement !== inputSpeed) {
+      inputSpeed.value = STATE.flightSpeed || 135;
+    }
+    const chkSortCost = document.getElementById('chk-sort-by-total-cost');
+    if (chkSortCost) {
+      chkSortCost.checked = STATE.sortByTripCost !== false;
     }
   }
 
@@ -604,13 +634,57 @@
             lat: apt.lat,
             lon: apt.lon
           };
-          updateOriginUI();
           updateOriginVectorLine();
         }
       }
     } catch (e) {
       console.warn('Failed to restore origin airport from localStorage:', e);
     }
+
+    // Restore saved flight parameters (Gallons, GPH, Cruise Speed, and Sort By Trip Cost)
+    try {
+      const savedParams = localStorage.getItem(FLIGHT_PARAMS_STORAGE_KEY);
+      if (savedParams) {
+        const parsed = JSON.parse(savedParams);
+        if (typeof parsed.gallons === 'number' && !isNaN(parsed.gallons)) STATE.flightGallons = parsed.gallons;
+        if (typeof parsed.gph === 'number' && !isNaN(parsed.gph)) STATE.flightGph = parsed.gph;
+        if (typeof parsed.speed === 'number' && !isNaN(parsed.speed)) STATE.flightSpeed = parsed.speed;
+        if (typeof parsed.sortByTripCost === 'boolean') STATE.sortByTripCost = parsed.sortByTripCost;
+      }
+    } catch (e) {
+      console.warn('Failed to restore flight params from localStorage:', e);
+    }
+
+    updateOriginUI();
+
+    // Dynamically query fleet summary telemetry defaults if GPH or speed haven't been customized
+    fetch('/static/fleet_summary.json')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (!data || !data.totals) return;
+        let changed = false;
+        const telemetryGph = parseFloat(data.totals.avg_fuel_flow);
+        const telemetryMph = parseFloat(data.totals.avg_speed_mph);
+        const telemetryKts = telemetryMph > 0 ? Math.round(telemetryMph / 1.15078) : 0;
+
+        // If user hasn't explicitly customized params in storage, update with actual fleet averages
+        const hasSaved = localStorage.getItem(FLIGHT_PARAMS_STORAGE_KEY);
+        if (!hasSaved) {
+          if (!isNaN(telemetryGph) && telemetryGph > 0) {
+            STATE.flightGph = Math.round(telemetryGph * 10) / 10;
+            changed = true;
+          }
+          if (!isNaN(telemetryKts) && telemetryKts > 40) {
+            STATE.flightSpeed = telemetryKts;
+            changed = true;
+          }
+          if (changed) {
+            updateOriginUI();
+            recalculateRadiusAirports();
+          }
+        }
+      })
+      .catch(() => {});
   }
 
   /**
@@ -641,6 +715,56 @@
       direction: getCompassDirection(bearing),
       originIdent: originIdent,
       originName: STATE.originAirport.name
+    };
+  }
+
+  /**
+   * Calculates round-trip fuel burn and total cost back to the starting airport
+   * matching the original fuel checker logic:
+   *   dist_nm = dist_miles / 1.15078
+   *   fuel_cost = gallons * price
+   *   if dist_nm > 0: used_to_return = taxi_takeoff (2 gal) + (dist_nm / speed_kts * gph)
+   *   total_cost = (used_to_return * price) + fuel_cost
+   * Returns { distNm, usedToReturnGal, fuelCost, totalCost, gallons, gph, speed } or null.
+   */
+  function calculateTripFuelCost(apt, fuelPrice) {
+    if (!STATE.originAirport || !apt || typeof fuelPrice !== 'number' || isNaN(fuelPrice)) {
+      return null;
+    }
+    const cleanIcao = (apt.icao || '').toUpperCase().trim();
+    const cleanFaa = (apt.faa || '').toUpperCase().trim();
+    const originIcao = (STATE.originAirport.icao || '').toUpperCase().trim();
+    const originFaa = (STATE.originAirport.faa || '').toUpperCase().trim();
+
+    const isOriginItself = (cleanIcao && cleanIcao === originIcao) || (cleanFaa && cleanFaa === originFaa);
+
+    const originLat = STATE.originAirport.lat;
+    const originLon = STATE.originAirport.lon;
+    const distMiles = isOriginItself ? 0 : haversineMiles(originLat, originLon, apt.lat, apt.lon);
+    const distNm = distMiles / 1.15078;
+
+    const gallons = Math.max(0, Number(STATE.flightGallons) || 30);
+    const gph = Math.max(1, Number(STATE.flightGph) || 8.0);
+    const speed = Math.max(30, Number(STATE.flightSpeed) || 135);
+    const taxiTakeoffGal = 2.0;
+
+    const fuelCost = gallons * fuelPrice;
+    let usedToReturnGal = 0;
+    if (distNm > 0.05) {
+      usedToReturnGal = taxiTakeoffGal + ((distNm / speed) * gph);
+    }
+    const totalCost = (usedToReturnGal * fuelPrice) + fuelCost;
+
+    return {
+      isOriginItself: isOriginItself,
+      distNm: distNm,
+      distMiles: distMiles,
+      usedToReturnGal: usedToReturnGal,
+      fuelCost: fuelCost,
+      totalCost: totalCost,
+      gallons: gallons,
+      gph: gph,
+      speed: speed
     };
   }
 
@@ -700,6 +824,7 @@
   let routeLayerGroup = null;
   let animFrameId = null;
   let mousePendingPos = null;
+  let isMapDragging = false;
   let airportCanvasEl = null;
   let airportCanvasCtx = null;
   let aeroScaleControl = null;
@@ -1996,8 +2121,45 @@
       }
     });
 
+    function settleAfterDrag(mouseEvt) {
+      if (!isMapDragging) return;
+      isMapDragging = false;
+      if (STATE.radarEnabled && !STATE.isLocked && map) {
+        if (mouseEvt) {
+          const latlng = map.mouseEventToLatLng(mouseEvt);
+          if (latlng) {
+            mousePendingPos = latlng;
+            if (!animFrameId) {
+              animFrameId = requestAnimationFrame(handleMouseMoveFrame);
+            }
+          }
+        }
+      }
+    }
+
+    map.on('dragstart', function () {
+      isMapDragging = true;
+      if (animFrameId) {
+        cancelAnimationFrame(animFrameId);
+        animFrameId = null;
+      }
+    });
+
+    map.on('dragend', function (e) {
+      settleAfterDrag(e && e.originalEvent ? e.originalEvent : null);
+    });
+
+    window.addEventListener('mouseup', function (e) {
+      if (isMapDragging) {
+        settleAfterDrag(mapContainer && mapContainer.contains(e.target) ? e : null);
+      }
+    });
+
     // Track mouse move for 60 FPS circle repositioning or single airport tooltip hover
     mapContainer.addEventListener('mousemove', function (e) {
+      if (isMapDragging || (e.buttons !== undefined && e.buttons > 0)) {
+        return;
+      }
       const latlng = map.mouseEventToLatLng(e);
       if (latlng) {
         mousePendingPos = latlng;
@@ -2029,7 +2191,7 @@
         STATE.circleCenter = { lat: center.lat, lng: center.lng };
         updateCirclePosition(center.lat, center.lng);
         updateOriginVectorLine();
-      } else if (!STATE.isLocked && mousePendingPos && map) {
+      } else if (!isMapDragging && !STATE.isLocked && mousePendingPos && map) {
         updateOriginVectorLine();
       }
     });
@@ -2105,6 +2267,11 @@
       if (!modalOpen && !e.ctrlKey && !e.metaKey && !e.altKey && (e.code === 'KeyR' || e.key === 'r' || e.key === 'R')) {
         e.preventDefault();
         setRadarEnabled(!STATE.radarEnabled);
+      }
+
+      if (!modalOpen && !e.ctrlKey && !e.metaKey && !e.altKey && (e.code === 'KeyH' || e.key === 'h' || e.key === 'H')) {
+        e.preventDefault();
+        setHoverInfoEnabled(!STATE.hoverInfoEnabled);
       }
     });
   }
@@ -2214,6 +2381,23 @@
 
       const marker = L.marker([apt.lat, apt.lon], { icon: markerIcon });
       marker.on('click', function (e) {
+        const domEvt = e && e.originalEvent;
+        let isOriginClick = Boolean(domEvt && domEvt.target && domEvt.target.closest && domEvt.target.closest('.badge-origin-extension'));
+        if (!isOriginClick && domEvt) {
+          const markerEl = document.getElementById(`marker-${apt.icao}`);
+          const extEl = markerEl ? markerEl.querySelector('.badge-origin-extension') : null;
+          if (extEl && extEl.getBoundingClientRect) {
+            const rect = extEl.getBoundingClientRect();
+            const cx = domEvt.clientX;
+            const cy = domEvt.clientY;
+            if (cx !== undefined && cy !== undefined && cx >= rect.left && cx <= rect.right && cy >= rect.top && cy <= rect.bottom) {
+              isOriginClick = true;
+            }
+          }
+        }
+        if (isOriginClick) {
+          return;
+        }
         if (e) {
           L.DomEvent.stopPropagation(e);
           if (e.originalEvent) {
@@ -2394,8 +2578,37 @@
     updateUIControls();
   }
 
+  function setHoverInfoEnabled(enabled, options = {}) {
+    const silent = Boolean(options.silent);
+    STATE.hoverInfoEnabled = Boolean(enabled);
+    try {
+      localStorage.setItem('aerofuel_hover_info_enabled', String(STATE.hoverInfoEnabled));
+    } catch (e) {}
+
+    if (!STATE.hoverInfoEnabled) {
+      hoveredAirportIcao = null;
+      STATE.hoveredAirport = null;
+      STATE.hoveredCanvasApt = null;
+      if (STATE.radarEnabled) {
+        if (STATE.lowestAirport) {
+          updateBestDealHUD(STATE.lowestAirport, STATE.airportsInRadius);
+        } else {
+          updateBestDealHUD(null, []);
+        }
+      }
+    }
+
+    updateUIControls();
+
+    if (!silent) {
+      showToast(STATE.hoverInfoEnabled ? '🔍 Dynamic Airport Hover Enabled' : '🔒 Dynamic Airport Hover Disabled');
+    }
+  }
+
   function handleMouseMoveFrame() {
     animFrameId = null;
+    if (isMapDragging) return;
+    if (map && map._animatingZoom) return;
     if (!mousePendingPos) return;
 
     if (STATE.radarEnabled) {
@@ -2404,8 +2617,8 @@
         updateCirclePosition(STATE.circleCenter.lat, STATE.circleCenter.lng);
         recalculateRadiusAirports();
       } else {
-        // Radius is locked: hit test for canvas airport dots if not hovering a DOM marker
-        if (!hoveredAirportIcao) {
+        // Radius is locked: hit test for canvas airport dots if hoverInfoEnabled
+        if (STATE.hoverInfoEnabled && !hoveredAirportIcao) {
           const hoveredApt = findAirportNearPoint(mousePendingPos, 18);
           if (hoveredApt) {
             STATE.hoveredCanvasApt = hoveredApt;
@@ -2685,6 +2898,7 @@
             continue;
           }
           const bearing = calculateBearing(centerLat, centerLon, apt.lat, apt.lon);
+          const tripCost = (fuelInfo && fuelInfo.price) ? calculateTripFuelCost(apt, fuelInfo.price) : null;
           const aptWithDist = {
             ...apt,
             distanceMiles: distMiles,
@@ -2692,24 +2906,30 @@
             direction: getCompassDirection(bearing),
             effectiveFuel: fuelInfo,
             hasFuel: fuelInfo !== null,
-            isFetched: isFetched
+            isFetched: isFetched,
+            tripCost: tripCost
           };
 
           inRadiusList.push(aptWithDist);
-
-          // ONLY evaluate fetched priced airports for lowest price candidate
-          if (fuelInfo) {
-            if (fuelInfo.price < minPrice || (fuelInfo.price === minPrice && distMiles < (lowest ? lowest.distanceMiles : Infinity))) {
-              minPrice = fuelInfo.price;
-              lowest = aptWithDist;
-            }
-          }
         }
       }
 
-      // Sort in-radius list: fetched priced airports first (by price, then distance), unfetched/unpriced airports last (by distance)
+      // Sort in-radius list:
+      // If Starting Airport is configured and sortByTripCost is active (checkbox checked),
+      // sort by total trip cost (including return fuel burn).
+      // If the checkbox is not checked (or no starting airport), sort by fuel price.
+      const shouldSortByTripCost = Boolean(STATE.originAirport && STATE.sortByTripCost);
+
       inRadiusList.sort((a, b) => {
         if (a.hasFuel && b.hasFuel) {
+          if (shouldSortByTripCost) {
+            const costA = (a.tripCost && typeof a.tripCost.totalCost === 'number') ? a.tripCost.totalCost : Infinity;
+            const costB = (b.tripCost && typeof b.tripCost.totalCost === 'number') ? b.tripCost.totalCost : Infinity;
+            const costDiff = costA - costB;
+            if (Math.abs(costDiff) > 0.01) {
+              return costDiff;
+            }
+          }
           if (a.effectiveFuel.price !== b.effectiveFuel.price) {
             return a.effectiveFuel.price - b.effectiveFuel.price;
           }
@@ -2719,6 +2939,11 @@
         if (!a.hasFuel && b.hasFuel) return 1;
         return a.distanceMiles - b.distanceMiles;
       });
+
+      // Select the "best" airport candidate:
+      // If an origin airport is set and total flight cost is being calculated, highlight the airport with the lowest total cost as best.
+      // If the checkbox is not checked (or no origin airport), highlight the airport with the lowest unit fuel price as best.
+      lowest = inRadiusList.find(a => a.hasFuel) || null;
 
       STATE.airportsInRadius = inRadiusList;
       STATE.lowestAirport = lowest;
@@ -2990,6 +3215,23 @@
 
         const marker = L.marker([apt.lat, apt.lon], { icon: markerIcon });
         marker.on('click', function (e) {
+          const domEvt = e && e.originalEvent;
+          let isOriginClick = Boolean(domEvt && domEvt.target && domEvt.target.closest && domEvt.target.closest('.badge-origin-extension'));
+          if (!isOriginClick && domEvt) {
+            const markerEl = document.getElementById(`marker-${apt.icao}`);
+            const extEl = markerEl ? markerEl.querySelector('.badge-origin-extension') : null;
+            if (extEl && extEl.getBoundingClientRect) {
+              const rect = extEl.getBoundingClientRect();
+              const cx = domEvt.clientX;
+              const cy = domEvt.clientY;
+              if (cx !== undefined && cy !== undefined && cx >= rect.left && cx <= rect.right && cy >= rect.top && cy <= rect.bottom) {
+                isOriginClick = true;
+              }
+            }
+          }
+          if (isOriginClick) {
+            return;
+          }
           if (e) {
             L.DomEvent.stopPropagation(e);
             if (e.originalEvent) {
@@ -3103,25 +3345,26 @@
         }
       }
 
-      if (currentLowestIcao && lowest) {
-        const lowestMarkerObj = STATE.markers.get(currentLowestIcao);
-        if (lowestMarkerObj && lowestMarkerObj.marker) {
-          lowestMarkerObj.marker.setZIndexOffset(10000);
-        }
-        const newEl = document.getElementById(`marker-${currentLowestIcao}`);
-        if (newEl) {
-          newEl.classList.add('is-lowest');
-          newEl.classList.add('in-radius');
-          const ribbon = newEl.querySelector('.lowest-ribbon');
-          const ring = newEl.querySelector('.pulse-ring');
-          if (ribbon) {
-            ribbon.innerHTML = `🏆 BEST: $${lowest.effectiveFuel.price.toFixed(2)}`;
-            ribbon.style.display = 'flex';
-          }
-          if (ring) ring.style.display = 'block';
-        }
-      }
       STATE.prevLowestIcao = currentLowestIcao;
+    }
+
+    if (currentLowestIcao && lowest) {
+      const lowestMarkerObj = STATE.markers.get(currentLowestIcao);
+      if (lowestMarkerObj && lowestMarkerObj.marker) {
+        lowestMarkerObj.marker.setZIndexOffset(10000);
+      }
+      const newEl = document.getElementById(`marker-${currentLowestIcao}`);
+      if (newEl) {
+        newEl.classList.add('is-lowest');
+        newEl.classList.add('in-radius');
+        const ribbon = newEl.querySelector('.lowest-ribbon');
+        const ring = newEl.querySelector('.pulse-ring');
+        if (ribbon) {
+          ribbon.innerHTML = `🏆 BEST: $${lowest.effectiveFuel.price.toFixed(2)}`;
+          ribbon.style.display = 'flex';
+        }
+        if (ring) ring.style.display = 'block';
+      }
     }
 
     STATE.prevInRadiusIcaos = currentInRadiusIcaos;
@@ -3145,7 +3388,7 @@
     }
 
     // Update Bottom Best Deal HUD & Sidebar List
-    if (STATE.hoveredAirport) {
+    if (STATE.hoverInfoEnabled && STATE.hoveredAirport) {
       showSelectedAirportHUD(STATE.hoveredAirport);
     } else {
       updateBestDealHUD(lowest, inRadiusList);
@@ -3177,9 +3420,24 @@
     const originInfo = getOriginDistanceInfo(apt);
     const routeInfo = getRouteStopInfo(apt);
 
+    const cleanIcao = (apt.icao || '').toUpperCase().trim();
+    const cleanFaa = (apt.faa || '').toUpperCase().trim();
+    const originIcao = STATE.originAirport ? (STATE.originAirport.icao || '').toUpperCase().trim() : null;
+    const originFaa = STATE.originAirport ? (STATE.originAirport.faa || '').toUpperCase().trim() : null;
+    const isOrigin = Boolean(originIcao && (cleanIcao === originIcao || (cleanFaa && cleanFaa === originFaa)));
+
+    const extHtml = isOrigin
+      ? `<div class="badge-origin-extension is-origin-active" data-icao="${apt.icao}" title="Currently set as Origin (Click to clear)">
+           <span class="origin-ext-icon">🛫</span><span class="origin-ext-text">Origin • Clear ✕</span>
+         </div>`
+      : `<div class="badge-origin-extension" data-icao="${apt.icao}" title="Set ${ident} as Origin Airport">
+           <span class="origin-ext-icon">🛫</span><span class="origin-ext-text">Set Origin</span>
+         </div>`;
+
+    let mainHtml = '';
     if (fuelInfo) {
       if (originInfo) {
-        return `
+        mainHtml = `
           <span class="badge-code">${ident}</span>
           <span class="badge-sep">•</span>
           <span class="badge-dist">${originInfo.distFormatted}</span>
@@ -3188,7 +3446,7 @@
           <span class="badge-fuel-type">${fuelInfo.type}</span>
         `;
       } else {
-        return `
+        mainHtml = `
           <span class="badge-code">${ident}</span>
           <span class="badge-sep">•</span>
           <span class="badge-price">$${fuelInfo.price.toFixed(2)}</span>
@@ -3197,14 +3455,14 @@
       }
     } else if (routeInfo && routeInfo.price && routeInfo.price !== '--') {
       const priceStr = String(routeInfo.price).trim().startsWith('$') ? routeInfo.price : `$${routeInfo.price}`;
-      return `
+      mainHtml = `
         <span class="badge-code">${ident}</span>
         <span class="badge-sep">•</span>
         <span class="badge-price">${priceStr}</span>
       `;
     } else if (isFetched && (!apt.fbos || apt.fbos.length === 0)) {
       if (originInfo) {
-        return `
+        mainHtml = `
           <span class="badge-code">${ident}</span>
           <span class="badge-sep">•</span>
           <span class="badge-dist">${originInfo.distFormatted}</span>
@@ -3212,7 +3470,7 @@
           <span class="badge-price-unreported">No Fuel</span>
         `;
       } else {
-        return `
+        mainHtml = `
           <span class="badge-code">${ident}</span>
           <span class="badge-sep">•</span>
           <span class="badge-price-unreported">No Fuel</span>
@@ -3220,17 +3478,19 @@
       }
     } else {
       if (originInfo) {
-        return `
+        mainHtml = `
           <span class="badge-code">${ident}</span>
           <span class="badge-sep">•</span>
           <span class="badge-dist">${originInfo.distFormatted}</span>
         `;
       } else {
-        return `
+        mainHtml = `
           <span class="badge-code">${ident}</span>
         `;
       }
     }
+
+    return `${mainHtml}${extHtml}`;
   }
 
   // --- Dynamic DOM Marker Update & On-Demand Fetch Handlers ---
@@ -3241,6 +3501,7 @@
       el.classList.add('is-loading');
       const badge = el.querySelector('.fuel-price-badge');
       if (badge) {
+        badge._lastRenderedHtml = null;
         const apt = STATE.airportsMap.get(icao);
         const ident = apt ? (apt.faa || apt.icao) : icao;
         badge.innerHTML = `
@@ -3257,14 +3518,76 @@
     }
   }
 
+  function bindOriginExtensionBtn(el, apt) {
+    if (!el) return;
+    const extBtn = el.querySelector('.badge-origin-extension');
+    if (extBtn && !extBtn._aerofuelBound) {
+      extBtn._aerofuelBound = true;
+      if (typeof L !== 'undefined' && L.DomEvent) {
+        L.DomEvent.disableClickPropagation(extBtn);
+      }
+      extBtn.addEventListener('click', function (e) {
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+        if (typeof L !== 'undefined' && L.DomEvent) {
+          if (L.DomEvent.stopPropagation) L.DomEvent.stopPropagation(e);
+          if (L.DomEvent.preventDefault) L.DomEvent.preventDefault(e);
+        }
+        const cleanIcao = (apt.icao || '').toUpperCase().trim();
+        const originIcao = STATE.originAirport ? (STATE.originAirport.icao || '').toUpperCase().trim() : null;
+        if (originIcao && cleanIcao === originIcao) {
+          clearOriginAirport();
+          showToast(`🛫 Cleared starting airport (${apt.faa || apt.icao})`);
+        } else {
+          setOriginAirport(apt);
+        }
+      });
+    }
+  }
+
   // --- Direct DOM Event Listener Attachment on Marker Badges ---
   function attachMarkerDomListeners(icao, apt, element = null) {
     const el = element || document.getElementById(`marker-${icao}`);
     if (!el) return;
+    const badge = el.querySelector('.fuel-price-badge');
+    if (badge && !badge._lastRenderedHtml) {
+      badge._lastRenderedHtml = badge.innerHTML;
+    }
+    bindOriginExtensionBtn(el, apt);
     if (el._aerofuelListenerAttached) return;
     el._aerofuelListenerAttached = true;
 
     const handleAirportClick = function (e) {
+      let originExt = e && e.target && e.target.closest && e.target.closest('.badge-origin-extension');
+      if (!originExt && el && e) {
+        const extEl = el.querySelector('.badge-origin-extension');
+        if (extEl && extEl.getBoundingClientRect) {
+          const rect = extEl.getBoundingClientRect();
+          const cx = e.clientX;
+          const cy = e.clientY;
+          if (cx !== undefined && cy !== undefined && cx >= rect.left && cx <= rect.right && cy >= rect.top && cy <= rect.bottom) {
+            originExt = extEl;
+          }
+        }
+      }
+      if (originExt) {
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+        if (typeof L !== 'undefined' && L.DomEvent) {
+          if (L.DomEvent.stopPropagation) L.DomEvent.stopPropagation(e);
+          if (L.DomEvent.preventDefault) L.DomEvent.preventDefault(e);
+        }
+        const cleanIcao = (apt.icao || '').toUpperCase().trim();
+        const originIcao = STATE.originAirport ? (STATE.originAirport.icao || '').toUpperCase().trim() : null;
+        if (originIcao && cleanIcao === originIcao) {
+          clearOriginAirport();
+          showToast(`🛫 Cleared starting airport (${apt.faa || apt.icao})`);
+        } else {
+          setOriginAirport(apt);
+        }
+        return;
+      }
+
       if (e) {
         if (e.stopPropagation) e.stopPropagation();
         if (e.preventDefault) e.preventDefault();
@@ -3289,12 +3612,22 @@
     el.addEventListener('pointerdown', handlePointerDown);
     el.addEventListener('touchstart', handlePointerDown, { passive: true });
     el.addEventListener('mouseenter', function () {
+      const markerObj = STATE.markers.get(apt.icao);
+      if (markerObj && markerObj.marker) {
+        markerObj._prevZIndex = markerObj.marker.options.zIndexOffset || 0;
+        markerObj.marker.setZIndexOffset(20000);
+      }
+      if (STATE.radarEnabled && !STATE.hoverInfoEnabled) return;
       hoveredAirportIcao = apt.icao;
       STATE.hoveredAirport = apt;
       showSelectedAirportHUD(apt);
     });
 
     el.addEventListener('mouseleave', function () {
+      const markerObj = STATE.markers.get(apt.icao);
+      if (markerObj && markerObj.marker) {
+        markerObj.marker.setZIndexOffset(markerObj._prevZIndex !== undefined ? markerObj._prevZIndex : 0);
+      }
       if (hoveredAirportIcao === apt.icao) {
         hoveredAirportIcao = null;
         STATE.hoveredAirport = null;
@@ -3310,7 +3643,6 @@
       }
     });
 
-    const badge = el.querySelector('.fuel-price-badge');
     if (badge) {
       badge.addEventListener('click', handleAirportClick);
       badge.addEventListener('pointerdown', handlePointerDown);
@@ -3392,8 +3724,16 @@
       if (rRibbon) rRibbon.style.display = 'none';
     }
 
-    badge.className = `fuel-price-badge ${tierClass} ${hasPriceClass}`;
-    badge.innerHTML = getBadgeHtml(apt, fuelInfo, isFetched);
+    const newClass = `fuel-price-badge ${tierClass} ${hasPriceClass}`;
+    if (badge.className !== newClass) {
+      badge.className = newClass;
+    }
+    const newHtml = getBadgeHtml(apt, fuelInfo, isFetched);
+    if (badge._lastRenderedHtml !== newHtml) {
+      badge._lastRenderedHtml = newHtml;
+      badge.innerHTML = newHtml;
+      bindOriginExtensionBtn(el, apt);
+    }
     attachMarkerDomListeners(apt.icao, apt, el);
   }
 
@@ -3994,15 +4334,46 @@
     const savingsPerGal = Math.max(0, avgPrice - lowest.effectiveFuel.price);
     const savings50Gal = savingsPerGal * 50;
 
-    const signature = `${STATE.radiusUnit}:${lowest.icao}:${lowest.effectiveFuel.price}:${lowest.distanceMiles.toFixed(1)}:${inRadiusList.length}:${avgPrice.toFixed(2)}`;
+    const isTripCostBest = Boolean(STATE.originAirport && STATE.sortByTripCost && lowest.tripCost);
+    const badgeTitle = isTripCostBest ? '🏆 Best Flight Deal' : '🏆 Lowest In Radius';
+
+    const signature = `${STATE.radiusUnit}:${lowest.icao}:${lowest.effectiveFuel.price}:${isTripCostBest ? 'cost' : 'price'}:${lowest.tripCost ? lowest.tripCost.totalCost.toFixed(2) : 'nocost'}:${lowest.distanceMiles.toFixed(1)}:${inRadiusList.length}:${avgPrice.toFixed(2)}`;
     if (STATE.prevBestDealSignature === signature) return;
     STATE.prevBestDealSignature = signature;
 
     const dateInfo = getAirportDateInfo(lowest, lowest.effectiveFuel);
 
+    const tripCost = (lowest.effectiveFuel && typeof lowest.effectiveFuel.price === 'number')
+      ? calculateTripFuelCost(lowest, lowest.effectiveFuel.price)
+      : null;
+
+    let tripCostHtml = '';
+    if (tripCost) {
+      const originIdent = (STATE.originAirport.faa || STATE.originAirport.icao);
+      if (tripCost.isOriginItself) {
+        tripCostHtml = `<div class="best-deal-trip-calc" style="color: #38bdf8; font-weight: 700; font-size: 0.78rem; margin-top: 2px;">🛫 Home Base (${originIdent}) • $${tripCost.fuelCost.toFixed(2)} for ${tripCost.gallons} gal (0 gal burn)</div>`;
+      } else {
+        tripCostHtml = `<div class="best-deal-trip-calc" style="color: #38bdf8; font-weight: 700; font-size: 0.78rem; margin-top: 2px;">💰 Trip Total: $${tripCost.totalCost.toFixed(2)} (${tripCost.gallons} gal + ${tripCost.usedToReturnGal.toFixed(1)} gal burn back to ${originIdent})</div>`;
+      }
+    }
+
+    let savingsLine = '';
+    if (isTripCostBest) {
+      const originIdent = (STATE.originAirport.faa || STATE.originAirport.icao);
+      if (lowest.tripCost.isOriginItself) {
+        savingsLine = `🛫 Home base airfield (${originIdent}) • No return ferry fuel burn`;
+      } else {
+        savingsLine = `💰 Lowest overall flight cost factoring <strong>${lowest.tripCost.usedToReturnGal.toFixed(1)} gal burn</strong> back to ${originIdent}`;
+      }
+    } else {
+      savingsLine = savingsPerGal > 0.05
+        ? `💰 Saves <strong>$${savingsPerGal.toFixed(2)}/gal</strong> ($${savings50Gal.toFixed(2)} on 50 gal) vs radius avg ($${avgPrice.toFixed(2)})`
+        : `⭐ Lowest rate among ${pricedInRadius.length} reporting fuel in area`;
+    }
+
     hud.innerHTML = `
       <div class="best-deal-badge">
-        <span class="best-deal-badge-title">🏆 Lowest In Radius</span>
+        <span class="best-deal-badge-title">${badgeTitle}</span>
         <span class="best-deal-price">$${lowest.effectiveFuel.price.toFixed(2)}</span>
         <span class="best-deal-fuel-type">${lowest.effectiveFuel.label || lowest.effectiveFuel.type}</span>
       </div>
@@ -4020,8 +4391,9 @@
           <span>${lowest.effectiveFuel.fboName || 'FBO'}</span>
         </div>
         <div class="best-deal-savings">
-          ${savingsPerGal > 0.05 ? `💰 Saves <strong>$${savingsPerGal.toFixed(2)}/gal</strong> ($${savings50Gal.toFixed(2)} on 50 gal) vs radius avg ($${avgPrice.toFixed(2)})` : `⭐ Lowest rate among ${pricedInRadius.length} reporting fuel in area`}
+          ${savingsLine}
         </div>
+        ${tripCostHtml}
       </div>
       <div class="best-deal-actions">
         <button class="btn-hud btn-hud-primary" id="btn-fly-lowest" title="Center map on airport">
@@ -4153,6 +4525,20 @@
       }
     }
 
+    const tripCost = (fuelInfo && typeof fuelInfo.price === 'number')
+      ? calculateTripFuelCost(canonical, fuelInfo.price)
+      : null;
+
+    let tripCostHtml = '';
+    if (tripCost) {
+      const originIdent = (STATE.originAirport.faa || STATE.originAirport.icao);
+      if (tripCost.isOriginItself) {
+        tripCostHtml = `<div class="best-deal-trip-calc" style="color: #38bdf8; font-weight: 700; font-size: 0.78rem; margin-top: 2px;">🛫 Home Base (${originIdent}) • $${tripCost.fuelCost.toFixed(2)} for ${tripCost.gallons} gal (0 gal burn)</div>`;
+      } else {
+        tripCostHtml = `<div class="best-deal-trip-calc" style="color: #38bdf8; font-weight: 700; font-size: 0.78rem; margin-top: 2px;">💰 Trip Total: $${tripCost.totalCost.toFixed(2)} (${tripCost.gallons} gal + ${tripCost.usedToReturnGal.toFixed(1)} gal burn back to ${originIdent})</div>`;
+      }
+    }
+
     hud.innerHTML = `
       <div class="${badgeClass}">
         <span class="best-deal-badge-title">${badgeTitle}</span>
@@ -4174,6 +4560,7 @@
         <div class="best-deal-savings">
           ${savingsLine}
         </div>
+        ${tripCostHtml}
       </div>
       <div class="best-deal-actions">
         <button class="btn-hud btn-hud-primary" id="btn-fly-selected" title="Center map on airport">
@@ -4316,7 +4703,9 @@
 
     // Create signature to avoid destroying DOM and losing scroll position
     const originKey = STATE.originAirport ? STATE.originAirport.icao : 'no-origin';
-    const signature = `${originKey}:${STATE.radiusUnit}:` + inRadiusList.map(a => `${a.icao}:${a.hasFuel ? a.effectiveFuel.price.toFixed(2) : (a.isFetched ? 'nofuel' : 'unfetched')}:${a.distanceMiles.toFixed(1)}`).join('|');
+    const sortModeKey = STATE.sortByTripCost ? 'cost' : 'price';
+    const paramsKey = `${STATE.flightGallons}:${STATE.flightGph}:${STATE.flightSpeed}`;
+    const signature = `${originKey}:${sortModeKey}:${paramsKey}:${STATE.radiusUnit}:` + inRadiusList.map(a => `${a.icao}:${a.hasFuel ? a.effectiveFuel.price.toFixed(2) : (a.isFetched ? 'nofuel' : 'unfetched')}:${a.distanceMiles.toFixed(1)}`).join('|');
     if (STATE.prevSidebarSignature === signature) {
       return;
     }
@@ -4340,31 +4729,66 @@
         const originInfo = getOriginDistanceInfo(apt);
         const originTag = originInfo ? `<span>•</span> <span style="color: #38bdf8; font-weight: 600;" title="Distance from Origin ${originInfo.originIdent}">🛫 ${originInfo.distFormatted}</span>` : '';
 
+        const tripCost = (apt.effectiveFuel && typeof apt.effectiveFuel.price === 'number')
+          ? calculateTripFuelCost(apt, apt.effectiveFuel.price)
+          : null;
+
+        let tripCostMarkup = '';
+        if (tripCost) {
+          const galLabel = (tripCost.gallons % 1 === 0) ? tripCost.gallons.toFixed(0) : tripCost.gallons.toFixed(1);
+          if (tripCost.isOriginItself) {
+            tripCostMarkup = `
+              <div class="card-trip-row origin-base" title="Total fuel cost for ${galLabel} gal at home base">
+                <div class="card-trip-pill">
+                  <span class="trip-pill-icon">🛫</span>
+                  <span class="trip-pill-label">Home Base:</span>
+                  <span class="card-trip-cost">$${tripCost.fuelCost.toFixed(2)}</span>
+                </div>
+                <div class="card-burn-detail">${galLabel} gal • 0 gal burn</div>
+              </div>
+            `;
+          } else {
+            tripCostMarkup = `
+              <div class="card-trip-row" title="Total trip cost (${galLabel} gal + ${tripCost.usedToReturnGal.toFixed(1)} gal burn back to starting airport)">
+                <div class="card-trip-pill">
+                  <span class="trip-pill-icon">💰</span>
+                  <span class="trip-pill-label">Total Cost:</span>
+                  <span class="card-trip-cost">$${tripCost.totalCost.toFixed(2)}</span>
+                </div>
+                <div class="card-burn-detail">${galLabel} gal + ${tripCost.usedToReturnGal.toFixed(1)} gal burn</div>
+              </div>
+            `;
+          }
+        }
+
         html += `
           <div class="${cardClass}" data-icao="${apt.icao}" title="Click to view specs and highlight ${apt.icao}">
-            <div class="card-rank">${rankBadge}</div>
-            <div class="card-main">
-              <div class="card-title-row">
-                <span class="card-icao">${apt.faa || apt.icao}</span>
-                <span class="card-name" title="${apt.name}">${apt.name}</span>
+            <div class="card-top-row">
+              <div class="card-rank">${rankBadge}</div>
+              <div class="card-main">
+                <div class="card-title-row">
+                  <span class="card-icao">${apt.faa || apt.icao}</span>
+                  <span class="card-name" title="${apt.name}">${apt.name}</span>
+                </div>
+                <div class="card-sub-row">
+                  <span>${apt.city}, ${apt.state}</span>
+                  <span>•</span>
+                  <span style="color: var(--accent-cyan);">📍 ${formatDistance(apt.distanceMiles)}</span>
+                  ${originTag}
+                  <span>•</span>
+                  <span>${apt.effectiveFuel.service}</span>
+                  ${(() => {
+                    const dateInfo = getAirportDateInfo(apt, apt.effectiveFuel);
+                    return dateInfo ? `<span>•</span> <span class="card-date-tag ${dateInfo.isStale ? 'is-stale' : 'is-fresh'}" title="${dateInfo.title}">📅 ${dateInfo.label}</span>` : '';
+                  })()}
+                </div>
               </div>
-              <div class="card-sub-row">
-                <span>${apt.city}, ${apt.state}</span>
-                <span>•</span>
-                <span style="color: var(--accent-cyan);">📍 ${formatDistance(apt.distanceMiles)}</span>
-                ${originTag}
-                <span>•</span>
-                <span>${apt.effectiveFuel.service}</span>
-                ${(() => {
-                  const dateInfo = getAirportDateInfo(apt, apt.effectiveFuel);
-                  return dateInfo ? `<span>•</span> <span class="card-date-tag ${dateInfo.isStale ? 'is-stale' : 'is-fresh'}" title="${dateInfo.title}">📅 ${dateInfo.label}</span>` : '';
-                })()}
+              <div class="card-price-section">
+                <div class="card-price">$${apt.effectiveFuel.price.toFixed(2)}</div>
+                <div class="card-fuel-label">${apt.effectiveFuel.type}</div>
               </div>
             </div>
-            <div class="card-price-section">
-              <div class="card-price">$${apt.effectiveFuel.price.toFixed(2)}</div>
-              <div class="card-fuel-label">${apt.effectiveFuel.type}</div>
-            </div>
+            ${tripCostMarkup}
           </div>
         `;
       });
@@ -4383,23 +4807,25 @@
 
         html += `
           <div class="radar-airport-card is-unfetched-card" data-icao="${apt.icao}" title="Click to fetch live AirNav pricing for ${apt.icao}">
-            <div class="card-rank" style="color: var(--accent-cyan); font-size: 0.85rem;">⚡</div>
-            <div class="card-main">
-              <div class="card-title-row">
-                <span class="card-icao" style="color: var(--accent-cyan);">${apt.faa || apt.icao}</span>
-                <span class="card-name" title="${apt.name}">${apt.name}</span>
+            <div class="card-top-row">
+              <div class="card-rank" style="color: var(--accent-cyan); font-size: 0.85rem;">⚡</div>
+              <div class="card-main">
+                <div class="card-title-row">
+                  <span class="card-icao" style="color: var(--accent-cyan);">${apt.faa || apt.icao}</span>
+                  <span class="card-name" title="${apt.name}">${apt.name}</span>
+                </div>
+                <div class="card-sub-row">
+                  <span>${apt.city}, ${apt.state}</span>
+                  <span>•</span>
+                  <span style="color: var(--accent-cyan);">📍 ${formatDistance(apt.distanceMiles)}</span>
+                  ${originTag}
+                  <span>•</span>
+                  <span style="color: var(--text-muted);">AirNav On-Demand</span>
+                </div>
               </div>
-              <div class="card-sub-row">
-                <span>${apt.city}, ${apt.state}</span>
-                <span>•</span>
-                <span style="color: var(--accent-cyan);">📍 ${formatDistance(apt.distanceMiles)}</span>
-                ${originTag}
-                <span>•</span>
-                <span style="color: var(--text-muted);">AirNav On-Demand</span>
+              <div class="card-price-section">
+                <div class="card-price-fetch">⚡ Fetch Rate</div>
               </div>
-            </div>
-            <div class="card-price-section">
-              <div class="card-price-fetch">⚡ Fetch Rate</div>
             </div>
           </div>
         `;
@@ -4419,24 +4845,26 @@
 
         html += `
           <div class="radar-airport-card is-unreported-card" data-icao="${apt.icao}" title="AirNav reported no retail fuel pricing for ${apt.icao}">
-            <div class="card-rank" style="color: var(--text-dim);">—</div>
-            <div class="card-main">
-              <div class="card-title-row">
-                <span class="card-icao" style="color: var(--text-muted);">${apt.faa || apt.icao}</span>
-                <span class="card-name" title="${apt.name}">${apt.name}</span>
+            <div class="card-top-row">
+              <div class="card-rank" style="color: var(--text-dim);">—</div>
+              <div class="card-main">
+                <div class="card-title-row">
+                  <span class="card-icao" style="color: var(--text-muted);">${apt.faa || apt.icao}</span>
+                  <span class="card-name" title="${apt.name}">${apt.name}</span>
+                </div>
+                <div class="card-sub-row">
+                  <span>${apt.city}, ${apt.state}</span>
+                  <span>•</span>
+                  <span style="color: var(--accent-cyan);">📍 ${formatDistance(apt.distanceMiles)}</span>
+                  ${originTag}
+                  <span>•</span>
+                  <span style="color: var(--text-dim);">No Fuel</span>
+                </div>
               </div>
-              <div class="card-sub-row">
-                <span>${apt.city}, ${apt.state}</span>
-                <span>•</span>
-                <span style="color: var(--accent-cyan);">📍 ${formatDistance(apt.distanceMiles)}</span>
-                ${originTag}
-                <span>•</span>
-                <span style="color: var(--text-dim);">No Fuel</span>
+              <div class="card-price-section">
+                <div class="card-price-unreported">No Fuel</div>
+                <div class="card-type-unreported">Unreported</div>
               </div>
-            </div>
-            <div class="card-price-section">
-              <div class="card-price-unreported">No Fuel</div>
-              <div class="card-type-unreported">Unreported</div>
             </div>
           </div>
         `;
@@ -4484,6 +4912,19 @@
         radarPowerBtn.className = 'btn-radar-power off';
         radarPowerBtn.innerHTML = '<span class="power-dot"></span><span class="power-label">Radar OFF</span>';
         radarPowerBtn.setAttribute('title', 'Turn Radar ON (Shortcut: R)');
+      }
+    }
+
+    const hoverPowerBtn = document.getElementById('btn-hover-power');
+    if (hoverPowerBtn) {
+      if (STATE.hoverInfoEnabled) {
+        hoverPowerBtn.className = 'btn-radar-power active';
+        hoverPowerBtn.innerHTML = '<span class="power-dot"></span><span class="power-label">Hover ON</span>';
+        hoverPowerBtn.setAttribute('title', 'Turn Dynamic Airport Hover OFF (Shortcut: H)');
+      } else {
+        hoverPowerBtn.className = 'btn-radar-power off';
+        hoverPowerBtn.innerHTML = '<span class="power-dot"></span><span class="power-label">Hover OFF</span>';
+        hoverPowerBtn.setAttribute('title', 'Turn Dynamic Airport Hover ON (Shortcut: H)');
       }
     }
 
@@ -5093,6 +5534,69 @@
         dropdown.style.display = 'none';
       }
     });
+
+    // --- Flight Burn Parameter Inputs (Gallons, GPH, Cruise Speed, and Sort Toggle) ---
+    function saveFlightParamsToStorage() {
+      try {
+        localStorage.setItem(FLIGHT_PARAMS_STORAGE_KEY, JSON.stringify({
+          gallons: STATE.flightGallons,
+          gph: STATE.flightGph,
+          speed: STATE.flightSpeed,
+          sortByTripCost: STATE.sortByTripCost
+        }));
+      } catch (err) {
+        console.warn('Failed to save flight params to localStorage:', err);
+      }
+    }
+
+    const inputGallons = document.getElementById('input-gallons');
+    if (inputGallons) {
+      inputGallons.addEventListener('input', function () {
+        const val = parseFloat(this.value);
+        if (!isNaN(val) && val >= 0) {
+          STATE.flightGallons = val;
+          saveFlightParamsToStorage();
+          recalculateRadiusAirports();
+          renderAllAirportMarkers();
+        }
+      });
+    }
+
+    const inputGph = document.getElementById('input-fuel-flow');
+    if (inputGph) {
+      inputGph.addEventListener('input', function () {
+        const val = parseFloat(this.value);
+        if (!isNaN(val) && val > 0) {
+          STATE.flightGph = val;
+          saveFlightParamsToStorage();
+          recalculateRadiusAirports();
+          renderAllAirportMarkers();
+        }
+      });
+    }
+
+    const inputSpeed = document.getElementById('input-speed');
+    if (inputSpeed) {
+      inputSpeed.addEventListener('input', function () {
+        const val = parseFloat(this.value);
+        if (!isNaN(val) && val > 0) {
+          STATE.flightSpeed = val;
+          saveFlightParamsToStorage();
+          recalculateRadiusAirports();
+          renderAllAirportMarkers();
+        }
+      });
+    }
+
+    const chkSortCost = document.getElementById('chk-sort-by-total-cost');
+    if (chkSortCost) {
+      chkSortCost.addEventListener('change', function () {
+        STATE.sortByTripCost = this.checked;
+        saveFlightParamsToStorage();
+        recalculateRadiusAirports();
+        renderAllAirportMarkers();
+      });
+    }
   }
 
   // --- Destination Airport Autocomplete & Input Setup ---
@@ -5800,6 +6304,14 @@
       });
     }
 
+    // Dynamic Airport Hover Power Toggle Button
+    const btnHoverPower = document.getElementById('btn-hover-power');
+    if (btnHoverPower) {
+      btnHoverPower.addEventListener('click', function () {
+        setHoverInfoEnabled(!STATE.hoverInfoEnabled);
+      });
+    }
+
     // Lock Position Button
     const btnLock = document.getElementById('btn-lock-toggle');
     if (btnLock) {
@@ -6239,6 +6751,7 @@
       clearFuelRoute: clearFuelRoute,
       getRouteStopInfo: getRouteStopInfo,
       getOriginDistanceInfo: getOriginDistanceInfo,
+      calculateTripFuelCost: calculateTripFuelCost,
       getOriginVectorLine: () => originVectorLine,
       getOriginVectorLabel: () => originVectorLabel,
       updateOriginVectorLine: updateOriginVectorLine,
@@ -6253,6 +6766,8 @@
       setRadarEnabled: setRadarEnabled,
       setRadarSidebarCollapsed: setRadarSidebarCollapsed,
       isRadarEnabled: () => STATE.radarEnabled,
+      setHoverInfoEnabled: setHoverInfoEnabled,
+      isHoverInfoEnabled: () => STATE.hoverInfoEnabled,
       getHoveredAirportIcao: () => hoveredAirportIcao,
       handleRadarOffHover: handleRadarOffHover,
       clearRadarOffHoverMarker: clearRadarOffHoverMarker,

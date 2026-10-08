@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790302594.600482,
+  "_cached_at": 1791426368.0856462,
   "icao": "O05",
   "data": {
     "icao": "O05",
@@ -55,8 +55,8 @@
         "name": "Mt. Lassen Aviation",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 24-Sep",
-        "quote_date": "24-Sep",
+        "notes": "Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.78,

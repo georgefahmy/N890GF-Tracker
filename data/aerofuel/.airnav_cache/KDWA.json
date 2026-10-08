@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.0774534,
+  "_cached_at": 1791426203.271963,
   "icao": "KDWA",
   "data": {
     "icao": "KDWA",
@@ -82,10 +82,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KDWA",
     "airport_ref": "18612",
-    "fetched_at": "2026-09-28T05:48:45Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

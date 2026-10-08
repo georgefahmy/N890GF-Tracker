@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.096431,
+  "_cached_at": 1791426203.2740731,
   "icao": "KMHR",
   "data": {
     "icao": "KMHR",
@@ -85,8 +85,8 @@
         "name": "Modern Aviation Mather",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 29-Sep",
-        "quote_date": "29-Sep",
+        "notes": "Titan \u2022 Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 7.84,
@@ -112,8 +112,8 @@
         "name": "Mather Jet Center",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "AVFUEL \u2022 Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 7.73,
@@ -137,10 +137,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMHR",
     "airport_ref": "20506",
-    "fetched_at": "2026-09-10T20:44:42Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

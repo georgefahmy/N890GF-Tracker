@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787604243.180486,
+  "_cached_at": 1791427355.0299368,
   "icao": "KLAS",
   "data": {
     "icao": "KLAS",
@@ -13,8 +13,20 @@
     "lon": -115.1518,
     "elevation_ft": 2181,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": 119.9,
+    "ctaf_freq": 122.95,
     "unicom_freq": 122.95,
+    "weather_freq": 132.4,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 125.025,
+    "approach_desc": "LAS VEGAS APP",
+    "departure_freq": 125.02,
+    "departure_desc": "LAS VEGAS DEP",
+    "ground_freq": 121.1,
+    "ground_desc": "Ground",
+    "clearance_freq": 118.0,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "APP",
@@ -87,8 +99,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 24-Aug",
-        "quote_date": "24-Aug",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 9.89,
@@ -97,7 +109,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.96,
+            "price": 10.53,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -108,8 +120,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 22-Aug",
-        "quote_date": "22-Aug",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 9.89,
@@ -118,7 +130,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.17,
+            "price": 10.73,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -141,6 +153,8 @@
     ],
     "last_updated": "2026-08-24",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KLAS",
+    "airport_ref": "3631",
     "fetched_at": "2026-08-24T20:44:03Z"
   }
 }

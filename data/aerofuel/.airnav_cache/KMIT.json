@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790618084.0767665,
+  "_cached_at": 1791427302.4425988,
   "icao": "KMIT",
   "data": {
     "icao": "KMIT",
@@ -60,8 +60,8 @@
         "name": "Minter Field Airport District",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 22-Sep",
-        "quote_date": "22-Sep",
+        "notes": "Titan \u2022 Quote: 06-Oct",
+        "quote_date": "06-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.79,
@@ -90,10 +90,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMIT",
     "airport_ref": "20510",
-    "fetched_at": "2026-09-28T17:54:41Z"
+    "fetched_at": "2026-10-08T02:41:41Z"
   }
 }

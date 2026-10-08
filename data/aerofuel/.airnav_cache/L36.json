@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.0915604,
+  "_cached_at": 1791426203.273739,
   "icao": "L36",
   "data": {
     "icao": "L36",
@@ -42,11 +42,11 @@
         "name": "Mauser Aviation",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.98,
+            "price": 7.2,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -54,15 +54,15 @@
         }
       }
     ],
-    "best_price": 6.98,
+    "best_price": 7.2,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-10",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "L36",
     "airport_ref": "21449",
-    "fetched_at": "2026-09-10T20:44:42Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

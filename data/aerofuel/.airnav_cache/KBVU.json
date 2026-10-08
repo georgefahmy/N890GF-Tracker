@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372977.9638271,
+  "_cached_at": 1791427355.0304809,
   "icao": "KBVU",
   "data": {
     "icao": "KBVU",
@@ -55,11 +55,11 @@
         "name": "Boulder City Aviation Services FBO",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Quote: 06-Oct",
+        "quote_date": "06-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 8.28,
+            "price": 8.39,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -80,7 +80,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.43,
+            "price": 7.59,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -94,7 +94,7 @@
         }
       }
     ],
-    "best_price": 7.43,
+    "best_price": 7.59,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790312335.541926,
+  "_cached_at": 1791426368.0854971,
   "icao": "O46",
   "data": {
     "icao": "O46",
@@ -53,8 +53,8 @@
         "name": "Vali Aviation",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 18-Sep",
-        "quote_date": "18-Sep",
+        "notes": "Phillips 66 \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.25,

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372977.9631422,
+  "_cached_at": 1791427355.0307462,
   "icao": "0L7",
   "data": {
     "icao": "0L7",
@@ -55,17 +55,17 @@
         "name": "Jean Airport",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 22-Sep",
-        "quote_date": "22-Sep",
+        "notes": "World Fuel Services \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 7.63,
+            "price": 7.54,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 8.56,
+            "price": 8.58,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -73,7 +73,7 @@
         }
       }
     ],
-    "best_price": 7.63,
+    "best_price": 7.54,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

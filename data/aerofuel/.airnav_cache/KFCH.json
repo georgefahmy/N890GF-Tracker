@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790618084.0732152,
+  "_cached_at": 1791427302.442806,
   "icao": "KFCH",
   "data": {
     "icao": "KFCH",
@@ -63,23 +63,23 @@
         "name": "Flight Level Aviation",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 21-Aug",
-        "quote_date": "21-Aug",
+        "notes": "Titan \u2022 Quote: 02-Oct",
+        "quote_date": "02-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 7.38,
+            "price": 7.95,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.88,
+            "price": 8.45,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 6.93,
+            "price": 8.3,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -87,16 +87,16 @@
         }
       }
     ],
-    "best_price": 7.38,
+    "best_price": 7.95,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KFCH",
     "airport_ref": "19848",
-    "fetched_at": "2026-09-28T17:54:41Z"
+    "fetched_at": "2026-10-08T02:41:41Z"
   }
 }

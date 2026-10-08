@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165565.4591858,
+  "_cached_at": 1791428157.8116422,
   "icao": "KSQL",
   "data": {
     "icao": "KSQL",
@@ -118,7 +118,6 @@
     "source": "AirNav Live Feed",
     "raw_ident": "KSQL",
     "airport_ref": "21105",
-    "fetched_at": "2026-08-29T14:58:44Z",
-    "from_cache": true
+    "fetched_at": "2026-08-29T14:58:44Z"
   }
 }

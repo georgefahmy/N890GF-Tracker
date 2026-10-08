@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787606759.477623,
+  "_cached_at": 1791424287.2214332,
   "icao": "KKIC",
   "data": {
     "icao": "KKIC",
@@ -13,8 +13,20 @@
     "lon": -121.122,
     "elevation_ft": 370,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.9,
-    "unicom_freq": 122.8,
+    "unicom_freq": 122.9,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "CTAF",
@@ -55,6 +67,8 @@
     ],
     "last_updated": "2026-08-24",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KKIC",
+    "airport_ref": "20275",
     "fetched_at": "2026-08-24T21:25:59Z"
   }
 }

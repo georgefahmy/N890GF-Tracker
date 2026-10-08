@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.0761259,
+  "_cached_at": 1791426203.271827,
   "icao": "KEDU",
   "data": {
     "icao": "KEDU",
@@ -59,10 +59,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KEDU",
     "airport_ref": "17175",
-    "fetched_at": "2026-09-28T05:48:45Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

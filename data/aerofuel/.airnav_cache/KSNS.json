@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372937.918417,
+  "_cached_at": 1791424450.2774138,
   "icao": "KSNS",
   "data": {
     "icao": "KSNS",
@@ -89,19 +89,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.16,
+            "price": 7.91,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.66,
+            "price": 8.41,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.29,
+            "price": 8.32,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -112,23 +112,23 @@
         "name": "gateOne Salinas",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 22-Sep",
-        "quote_date": "22-Sep",
+        "notes": "Quote: 06-Oct",
+        "quote_date": "06-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 7.16,
+            "price": 7.91,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.66,
+            "price": 8.41,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.29,
+            "price": 8.32,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -136,7 +136,7 @@
         }
       }
     ],
-    "best_price": 7.16,
+    "best_price": 7.91,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

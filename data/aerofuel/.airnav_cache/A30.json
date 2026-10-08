@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790312335.117206,
+  "_cached_at": 1791426368.085943,
   "icao": "A30",
   "data": {
     "icao": "A30",
@@ -48,8 +48,8 @@
         "name": "Scott Valley Pilots Association",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 24-Sep",
-        "quote_date": "24-Sep",
+        "notes": "Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.0,

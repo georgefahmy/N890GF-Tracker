@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790302594.595814,
+  "_cached_at": 1791426368.081533,
   "icao": "CL56",
   "data": {
     "icao": "CL56",
@@ -14,8 +14,8 @@
         "name": "Ranchaero Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 28-Aug",
-        "quote_date": "28-Aug",
+        "notes": "Quote: 28-Sep",
+        "quote_date": "28-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.49,
@@ -31,8 +31,8 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-24",
-    "fetched_at": "2026-09-25T02:16:34Z",
+    "last_updated": "2026-10-07",
+    "fetched_at": "2026-10-08T02:26:08Z",
     "source": "AirNav Local Fuel"
   }
 }

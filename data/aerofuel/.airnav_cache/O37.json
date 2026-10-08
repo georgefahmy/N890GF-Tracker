@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790302594.60017,
+  "_cached_at": 1791426368.085151,
   "icao": "O37",
   "data": {
     "icao": "O37",
@@ -58,8 +58,8 @@
         "name": "Haigh Field Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Quote: 06-Oct",
+        "quote_date": "06-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.1,

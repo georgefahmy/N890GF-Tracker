@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791349447.021946,
+  "_cached_at": 1791428157.812554,
   "icao": "KSJC",
   "data": {
     "icao": "KSJC",
@@ -90,8 +90,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 06-Oct",
-        "quote_date": "06-Oct",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 12.17,

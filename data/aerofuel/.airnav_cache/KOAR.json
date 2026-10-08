@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790629330.6532197,
+  "_cached_at": 1791424450.27717,
   "icao": "KOAR",
   "data": {
     "icao": "KOAR",
@@ -57,13 +57,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.8,
+            "price": 7.18,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 7.1,
+            "price": 7.2,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -71,7 +71,7 @@
         }
       }
     ],
-    "best_price": 6.8,
+    "best_price": 7.18,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.0926352,
+  "_cached_at": 1791426203.27381,
   "icao": "O69",
   "data": {
     "icao": "O69",
@@ -53,8 +53,8 @@
         "name": "Petaluma Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 25-Sep",
-        "quote_date": "25-Sep",
+        "notes": "Quote: 06-Oct",
+        "quote_date": "06-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.4,
@@ -77,10 +77,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO69",
     "airport_ref": "20702",
-    "fetched_at": "2026-09-28T05:48:45Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574455.5926106,
+  "_cached_at": 1791426217.970238,
   "icao": "KOVE",
   "data": {
     "icao": "KOVE",
@@ -65,17 +65,17 @@
         "name": "City of Oroville",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 08-Sep",
-        "quote_date": "08-Sep",
+        "notes": "World Fuel Services \u2022 Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.9,
+            "price": 7.2,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 7.1,
+            "price": 7.5,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -83,7 +83,7 @@
         }
       }
     ],
-    "best_price": 6.9,
+    "best_price": 7.2,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

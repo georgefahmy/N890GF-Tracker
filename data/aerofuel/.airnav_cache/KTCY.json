@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791349447.011821,
+  "_cached_at": 1791428157.813212,
   "icao": "KTCY",
   "data": {
     "icao": "KTCY",
@@ -63,10 +63,10 @@
     "fbos": [
       {
         "name": "Tracy Municipal Airport",
-        "brand": "Avfuel",
-        "phone": "209-831-6215",
-        "notes": "Avfuel \u2022 Quote: 05-Oct-2026",
-        "quote_date": "05-Oct-2026",
+        "brand": "AVFUEL",
+        "phone": "N/A",
+        "notes": "AVFUEL \u2022 Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.23,
@@ -81,14 +81,6 @@
             "label": "Jet-A Turbine Fuel (Self-Serve)"
           }
         }
-      },
-      {
-        "name": "Skyview Aviation",
-        "brand": "",
-        "phone": "209-830-7666",
-        "notes": "Retail FBO Fuel & Line Services",
-        "quote_date": null,
-        "fuels": {}
       }
     ],
     "best_price": 6.23,

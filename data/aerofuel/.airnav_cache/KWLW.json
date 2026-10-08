@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574497.9678469,
+  "_cached_at": 1791426368.0860631,
   "icao": "KWLW",
   "data": {
     "icao": "KWLW",
@@ -65,8 +65,8 @@
         "name": "Glenn County Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 23-Sep",
-        "quote_date": "23-Sep",
+        "notes": "Quote: 06-Oct",
+        "quote_date": "06-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.14,

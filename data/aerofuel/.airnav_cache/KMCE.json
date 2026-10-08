@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165276.4831169,
+  "_cached_at": 1791424287.221785,
   "icao": "KMCE",
   "data": {
     "icao": "KMCE",
@@ -58,8 +58,8 @@
         "name": "Gateway Air Center",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 24-Sep",
-        "quote_date": "24-Sep",
+        "notes": "Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.91,

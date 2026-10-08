@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   
   <!-- Application CSS -->
-  <link rel="stylesheet" href="/static/aerofuel/css/style.css?v=2.5.38">
+  <link rel="stylesheet" href="/static/aerofuel/css/style.css?v=2.5.45">
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
@@ -154,6 +154,11 @@
               <span class="power-dot"></span>
               <span class="power-label">Radar ON</span>
             </button>
+            <!-- Dynamic Airport Hover Toggle Button -->
+            <button id="btn-hover-power" class="btn-radar-power active" title="Toggle Dynamic Airport Hover in Info Panel (Shortcut: H)">
+              <span class="power-dot"></span>
+              <span class="power-label">Hover ON</span>
+            </button>
             <div class="unit-toggle-group">
               <button class="unit-btn active" data-unit="mi" title="Statute Miles">mi</button>
               <button class="unit-btn" data-unit="NM" title="Nautical Miles">NM</button>
@@ -162,18 +167,57 @@
           </div>
         </div>
 
-        <!-- Origin Airport Selector -->
+        <!-- Origin Airport Selector & Fuel Checker Parameters -->
         <div class="origin-airport-container">
           <label for="origin-airport-input" class="origin-label">
-            <span>🛫 Origin Airport</span>
+            <span>🛫 Starting Airport</span>
           </label>
           <div class="origin-input-wrapper">
             <span class="origin-icon">🛫</span>
-            <input type="text" id="origin-airport-input" placeholder="Set Origin (e.g. KSQL, PAO)..." autocomplete="off" spellcheck="false" />
-            <button id="btn-clear-origin" class="btn-clear-origin" title="Clear Origin Airport" style="display: none;">&times;</button>
+            <input type="text" id="origin-airport-input" placeholder="Set Starting Airport (e.g. E16, KSQL)..." autocomplete="off" spellcheck="false" />
+            <button id="btn-clear-origin" class="btn-clear-origin" title="Clear Starting Airport" style="display: none;">&times;</button>
           </div>
           <div id="origin-search-dropdown" class="search-results-dropdown origin-dropdown" style="display: none;"></div>
           <div id="origin-vector-readout" class="origin-vector-readout" style="display: none;"></div>
+
+          <!-- Trip Fuel Burn & Cost Calculator Parameters -->
+          <div class="origin-flight-params" id="origin-flight-params">
+            <div class="flight-params-grid">
+              <div class="flight-param-col">
+                <label for="input-gallons" class="flight-param-label" title="Gallons to purchase at destination airport">
+                  <span>⛽ Gallons</span>
+                </label>
+                <div class="param-input-group">
+                  <input type="number" id="input-gallons" class="hud-number-input" value="30" min="1" max="150" step="1" title="Gallons to purchase" />
+                  <span class="param-unit-tag">gal</span>
+                </div>
+              </div>
+              <div class="flight-param-col">
+                <label for="input-fuel-flow" class="flight-param-label" title="Average fuel flow rate in Gallons Per Hour (defaults from fleet telemetry)">
+                  <span>🔥 Fuel Flow</span>
+                </label>
+                <div class="param-input-group">
+                  <input type="number" id="input-fuel-flow" class="hud-number-input" value="8.0" min="2" max="30" step="0.1" title="Average fuel burn rate (GPH)" />
+                  <span class="param-unit-tag">gph</span>
+                </div>
+              </div>
+              <div class="flight-param-col">
+                <label for="input-speed" class="flight-param-label" title="Average cruise airspeed in Knots / Ground Speed">
+                  <span>💨 Avg Speed</span>
+                </label>
+                <div class="param-input-group">
+                  <input type="number" id="input-speed" class="hud-number-input" value="135" min="40" max="350" step="1" title="Average cruise speed (kts)" />
+                  <span class="param-unit-tag">kts</span>
+                </div>
+              </div>
+            </div>
+            <div class="cost-sort-toggle-row">
+              <label class="cost-sort-label" title="Sort ranked airport list by Total Trip Cost (including round-trip burn back to starting airport)">
+                <input type="checkbox" id="chk-sort-by-total-cost" class="hud-checkbox" checked />
+                <span>Sort by Total Cost (incl. round-trip burn)</span>
+              </label>
+            </div>
+          </div>
         </div>
 
         <!-- Destination Airport Selector -->
@@ -405,7 +449,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
   <!-- Application JS -->
-  <script src="/static/aerofuel/js/app.js?v=2.5.38"></script>
+  <script src="/static/aerofuel/js/app.js?v=2.5.45"></script>
 
 </body>
 </html>

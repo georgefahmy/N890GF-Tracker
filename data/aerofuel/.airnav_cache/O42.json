@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790618084.0586417,
+  "_cached_at": 1791427302.442334,
   "icao": "O42",
   "data": {
     "icao": "O42",
@@ -45,11 +45,11 @@
     ],
     "fbos": [
       {
-        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "name": "Woodlake Airport",
         "brand": "",
-        "phone": "559-564-8055",
-        "notes": "Quote: 25-Sep-2026",
-        "quote_date": "25-Sep-2026",
+        "phone": "N/A",
+        "notes": "Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.5,
@@ -65,10 +65,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO42",
     "airport_ref": "20688",
-    "fetched_at": "2026-09-28T17:54:41Z"
+    "fetched_at": "2026-10-08T02:41:41Z"
   }
 }

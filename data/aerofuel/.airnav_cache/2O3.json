@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.0892363,
+  "_cached_at": 1791426203.2735648,
   "icao": "2O3",
   "data": {
     "icao": "2O3",
@@ -48,8 +48,8 @@
         "name": "PUC (Pacific Union College) Flight Center",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 24-Sep",
-        "quote_date": "24-Sep",
+        "notes": "Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 8.5,
@@ -65,10 +65,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "K2O3",
     "airport_ref": "18608",
-    "fetched_at": "2026-09-28T05:48:45Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

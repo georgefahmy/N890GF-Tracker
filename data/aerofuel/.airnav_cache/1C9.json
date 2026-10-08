@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787606757.364992,
+  "_cached_at": 1791424285.616011,
   "icao": "1C9",
   "data": {
     "icao": "1C9",
@@ -10,8 +10,8 @@
     "best_price": null,
     "primary_fuel": "None",
     "fuels_available": [],
-    "last_updated": "2026-08-24",
-    "fetched_at": "2026-08-24T21:25:57Z",
+    "last_updated": "2026-10-07",
+    "fetched_at": "2026-10-08T01:51:25Z",
     "source": "AirNav Live Feed",
     "from_cache": false
   }

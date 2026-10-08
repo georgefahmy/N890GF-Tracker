@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165276.4854121,
+  "_cached_at": 1791424450.2782269,
   "icao": "KLSN",
   "data": {
     "icao": "KLSN",
@@ -63,8 +63,8 @@
         "name": "City of Los Banos (FBO)",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 25-Sep",
-        "quote_date": "25-Sep",
+        "notes": "World Fuel Services \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.32,

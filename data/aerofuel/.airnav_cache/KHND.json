@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787604243.180712,
+  "_cached_at": 1791427355.030237,
   "icao": "KHND",
   "data": {
     "icao": "KHND",
@@ -13,8 +13,20 @@
     "lon": -115.134,
     "elevation_ft": 2492,
     "tower": true,
+    "tower_freq": 125.1,
     "ctaf_freq": 125.1,
     "unicom_freq": 122.95,
+    "weather_freq": 120.775,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": 118.4,
+    "approach_desc": "LAS VEGAS APP/DEP",
+    "departure_freq": 118.4,
+    "departure_desc": "LAS VEGAS APP/DEP",
+    "ground_freq": 127.8,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "A/D",
@@ -73,23 +85,23 @@
         "name": "Henderson Executive Airport Air Elite",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 19-Aug",
-        "quote_date": "19-Aug",
+        "notes": "World Fuel Services \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.98,
+            "price": 7.54,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.28,
+            "price": 7.84,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.24,
+            "price": 8.88,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -97,7 +109,7 @@
         }
       }
     ],
-    "best_price": 6.98,
+    "best_price": 7.54,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -105,6 +117,8 @@
     ],
     "last_updated": "2026-08-24",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KHND",
+    "airport_ref": "20068",
     "fetched_at": "2026-08-24T20:44:03Z"
   }
 }

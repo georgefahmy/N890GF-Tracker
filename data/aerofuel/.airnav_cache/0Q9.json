@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791165595.0859032,
+  "_cached_at": 1791426203.273068,
   "icao": "0Q9",
   "data": {
     "icao": "0Q9",
@@ -42,11 +42,11 @@
         "name": "Sonoma Skypark",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 14-Sep",
-        "quote_date": "14-Sep",
+        "notes": "Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.5,
+            "price": 7.1,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -54,15 +54,15 @@
         }
       }
     ],
-    "best_price": 6.5,
+    "best_price": 7.1,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "0Q9",
     "airport_ref": "7509",
-    "fetched_at": "2026-09-28T05:48:45Z"
+    "fetched_at": "2026-10-08T02:23:22Z"
   }
 }

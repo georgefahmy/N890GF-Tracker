@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791349447.0278986,
+  "_cached_at": 1791428157.812271,
   "icao": "KNUQ",
   "data": {
     "icao": "KNUQ",
@@ -104,7 +104,7 @@
         "quote_date": null,
         "fuels": {
           "JET_A": {
-            "price": 10.62,
+            "price": 10.83,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
