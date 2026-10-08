@@ -455,6 +455,67 @@ class TestAeroFuelIntegration:
             assert "disableClickPropagation" in js
             assert "_lastRenderedHtml" in js
 
+    def test_quote_date_validation_rejects_runways_and_hours(self):
+        """Verify AirNavClient._is_valid_date_str correctly rejects runways, operating hours, and fuels."""
+        from src.aerofuel.airnav_client import AirNavClient
+
+        # Reject runways
+        assert AirNavClient._is_valid_date_str("18/36") is False
+        assert AirNavClient._is_valid_date_str("11/29") is False
+        assert AirNavClient._is_valid_date_str("09/27") is False
+        assert AirNavClient._is_valid_date_str("04/22") is False
+
+        # Reject hours
+        assert AirNavClient._is_valid_date_str("24/7") is False
+        assert AirNavClient._is_valid_date_str("24/7/365") is False
+
+        # Reject fuel codes
+        assert AirNavClient._is_valid_date_str("jet-a") is False
+        assert AirNavClient._is_valid_date_str("100-ll") is False
+        assert AirNavClient._is_valid_date_str("saf") is False
+
+        # Reject invalid/empty
+        assert AirNavClient._is_valid_date_str("") is False
+        assert AirNavClient._is_valid_date_str(None) is False
+        assert AirNavClient._is_valid_date_str("invalid") is False
+
+        # Accept legitimate dates
+        assert AirNavClient._is_valid_date_str("23-Aug") is True
+        assert AirNavClient._is_valid_date_str("07-Oct-2026") is True
+        assert AirNavClient._is_valid_date_str("01-Jul-2025") is True
+        assert AirNavClient._is_valid_date_str("10/07/2026") is True
+        assert AirNavClient._is_valid_date_str("8/23/26") is True
+        assert AirNavClient._is_valid_date_str("2026-08-23") is True
+
+    def test_fbo_parsing_does_not_extract_runway_as_quote_date(self):
+        """Verify _parse_single_fbo_block does not mistake runway numbers or 24/7 for quote dates."""
+        from src.aerofuel.airnav_client import AirNavClient
+        client = AirNavClient()
+
+        # Simulated FBO block mentioning runway 18/36
+        block_html = """
+        <a href="/airport/KLXT/summit">Summit Aero</a>
+        <div>Guaranteed Price</div>
+        <div>Runway 18/36 asphalt in excellent condition. 24/7 self-serve available.</div>
+        <table>
+            <tr><td>100LL (Full service)</td><td>$8.63</td></tr>
+        </table>
+        """
+        fbo = client._parse_single_fbo_block(block_html, "KLXT")
+        assert fbo["quote_date"] is None
+        assert "Quote: 18/36" not in fbo["notes"]
+        assert "Quote: 24/7" not in fbo["notes"]
+
+    def test_frontend_js_quote_date_validation(self, app, client):
+        """Verify app.js includes isValidQuoteDate and cleanFboNotes to prevent displaying runway quote dates."""
+        with app.app_context():
+            res_js = client.get("/static/aerofuel/js/app.js")
+            assert res_js.status_code == 200
+            js = res_js.data.decode("utf-8")
+            assert "function isValidQuoteDate(str)" in js
+            assert "function cleanFboNotes(notes)" in js
+            assert "isValidQuoteDate(quoteDate)" in js
+
 
 
 

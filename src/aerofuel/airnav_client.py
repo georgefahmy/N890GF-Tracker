@@ -585,6 +585,56 @@ class AirNavClient:
 
         return blocks
 
+    @staticmethod
+    def _is_valid_date_str(val: str) -> bool:
+        """Validate whether a string looks like a legitimate quote date rather than a runway or hours."""
+        if not val or not isinstance(val, str):
+            return False
+        val = val.strip()
+        if not val or val.lower() in ('jet-a', '100-ll', 'saf', 'avgas', '24/7', '24/7/365'):
+            return False
+
+        # Match DD-Mmm or DD-Mmm-YY(YY) (e.g. 23-Aug, 07-Oct-2026)
+        m_dash = re.match(r'^([0-9]{1,2})-([A-Za-z]{3})(?:-([0-9]{2,4}))?$', val)
+        if m_dash:
+            day_str, month_str, _ = m_dash.groups()
+            months = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec')
+            if month_str.lower() in months:
+                try:
+                    day = int(day_str)
+                    return 1 <= day <= 31
+                except ValueError:
+                    return False
+            return False
+
+        # Match MM/DD/YYYY or M/D/YY (must have 3 parts including year)
+        m_slash = re.match(r'^([0-9]{1,2})/([0-9]{1,2})/([0-9]{2,4})$', val)
+        if m_slash:
+            m_str, d_str, y_str = m_slash.groups()
+            try:
+                month = int(m_str)
+                day = int(d_str)
+                year = int(y_str)
+                if len(y_str) == 4 and not (1990 <= year <= 2100):
+                    return False
+                return 1 <= month <= 12 and 1 <= day <= 31
+            except ValueError:
+                return False
+
+        # Match YYYY-MM-DD
+        m_iso = re.match(r'^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$', val)
+        if m_iso:
+            y_str, m_str, d_str = m_iso.groups()
+            try:
+                year = int(y_str)
+                month = int(m_str)
+                day = int(d_str)
+                return (1990 <= year <= 2100) and (1 <= month <= 12) and (1 <= day <= 31)
+            except ValueError:
+                return False
+
+        return False
+
     def _parse_single_fbo_block(self, block_html, icao):
         """Parse FBO name, phone, radio freq, notes, and fuel table from an FBO block."""
         # 1. FBO Name
@@ -654,13 +704,13 @@ class AirNavClient:
                 notes_parts.append("Guaranteed Price")
 
         quote_date = None
-        m_quote = re.search(r'(?:Quote|Updated|As of)[:\s]+([0-9]{1,2}-[A-Za-z]{3}(?:-[0-9]{2,4})?|[0-9]{1,2}/[0-9]{1,2}(?:/[0-9]{2,4})?)', block_html, re.IGNORECASE)
-        if m_quote:
+        m_quote = re.search(r'(?:Quote|Updated|As of)[:\s]+([0-9]{1,2}-[A-Za-z]{3}(?:-[0-9]{2,4})?|[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4})', block_html, re.IGNORECASE)
+        if m_quote and self._is_valid_date_str(m_quote.group(1)):
             quote_date = m_quote.group(1)
             notes_parts.append(f"Quote: {quote_date}")
         else:
-            m_date = re.search(r'(?<!through\s)\b([0-9]{1,2}-[A-Za-z]{3}(?:-[0-9]{2,4})?|[0-9]{1,2}/[0-9]{1,2}(?:/[0-9]{2,4})?)\b', block_html, re.IGNORECASE)
-            if m_date and m_date.group(1).lower() not in ('jet-a', '100-ll'):
+            m_date = re.search(r'(?<!through\s)\b([0-9]{1,2}-[A-Za-z]{3}(?:-[0-9]{2,4})?|[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4})\b', block_html, re.IGNORECASE)
+            if m_date and self._is_valid_date_str(m_date.group(1)):
                 quote_date = m_date.group(1)
                 notes_parts.append(f"Quote: {quote_date}")
 
@@ -1575,8 +1625,8 @@ class AirNavClient:
 
                     # Extract quote timestamp or guarantee/airboss flags
                     quote_date = None
-                    m_date = re.search(r'\b([0-9]{1,2}-[A-Za-z]{3}(?:-[0-9]{2,4})?|[0-9]{1,2}/[0-9]{1,2}(?:/[0-9]{2,4})?)\b', full_row_str)
-                    if m_date and m_date.group(1).lower() not in ('jet-a', '100-ll'):
+                    m_date = re.search(r'\b([0-9]{1,2}-[A-Za-z]{3}(?:-[0-9]{2,4})?|[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4})\b', full_row_str)
+                    if m_date and self._is_valid_date_str(m_date.group(1)):
                         quote_date = m_date.group(1)
 
                     notes_parts = []

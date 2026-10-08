@@ -953,6 +953,59 @@
   }
 
   /**
+   * Validates if a string is a legitimate quote date rather than runway heading (e.g. 18/36, 11/29) or hours (24/7).
+   */
+  function isValidQuoteDate(str) {
+    if (!str || typeof str !== 'string') return false;
+    str = str.trim();
+    if (!str) return false;
+    const lower = str.toLowerCase();
+    if (['jet-a', '100-ll', 'saf', 'avgas', '24/7', '24/7/365'].includes(lower)) return false;
+
+    // DD-Mmm or DD-Mmm-YYYY (e.g. 23-Aug, 07-Oct-2026)
+    const mDash = str.match(/^(\d{1,2})-([A-Za-z]{3})(?:-(\d{2,4}))?$/);
+    if (mDash) {
+      const day = parseInt(mDash[1], 10);
+      const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+      return day >= 1 && day <= 31 && months.includes(mDash[2].toLowerCase());
+    }
+
+    // MM/DD/YYYY or M/D/YY (must have 3 parts including year; 2-part XX/YY rejected as it's almost always a runway)
+    const mSlash = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+    if (mSlash) {
+      const month = parseInt(mSlash[1], 10);
+      const day = parseInt(mSlash[2], 10);
+      const year = parseInt(mSlash[3], 10);
+      if (mSlash[3].length === 4 && (year < 1990 || year > 2100)) return false;
+      return month >= 1 && month <= 12 && day >= 1 && day <= 31;
+    }
+
+    // YYYY-MM-DD
+    const mIso = str.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (mIso) {
+      const year = parseInt(mIso[1], 10);
+      const month = parseInt(mIso[2], 10);
+      const day = parseInt(mIso[3], 10);
+      return year >= 1990 && year <= 2100 && month >= 1 && month <= 12 && day >= 1 && day <= 31;
+    }
+
+    return false;
+  }
+
+  /**
+   * Cleans FBO notes by stripping invalid Quote references (e.g. Quote: 18/36).
+   */
+  function cleanFboNotes(notes) {
+    if (!notes || typeof notes !== 'string') return '';
+    return notes
+      .replace(/(?:^|\s*•\s*)Quote:\s*([^\s•]+)/gi, (match, q) => isValidQuoteDate(q) ? match : '')
+      .replace(/^\s*•\s*/, '')
+      .replace(/\s*•\s*$/, '')
+      .replace(/\s*•\s*•\s*/g, ' • ')
+      .trim();
+  }
+
+  /**
    * Evaluates and formats the airport fuel quote/update date and staleness.
    * Returns { dateStr, quoteDate, fetchedAt, lastUpdated, relStr, label, isStale, title } or null.
    */
@@ -964,16 +1017,19 @@
 
     // 1. Check for FBO quote date
     let quoteDate = (fuelInfo && fuelInfo.quote_date) || null;
+    if (quoteDate && !isValidQuoteDate(quoteDate)) {
+      quoteDate = null;
+    }
     if (!quoteDate && canonical.fbos && canonical.fbos.length > 0) {
       for (let i = 0; i < canonical.fbos.length; i++) {
         const fbo = canonical.fbos[i];
-        if (fbo.quote_date) {
+        if (fbo.quote_date && isValidQuoteDate(fbo.quote_date)) {
           quoteDate = fbo.quote_date;
           break;
         }
         if (fbo.notes) {
-          const m = fbo.notes.match(/Quote:\s*([A-Za-z0-9\-]+)/i);
-          if (m) {
+          const m = fbo.notes.match(/Quote:\s*([^\s•]+)/i);
+          if (m && isValidQuoteDate(m[1])) {
             quoteDate = m[1];
             break;
           }
@@ -1023,8 +1079,19 @@
         }
       }
     } else if (lastUpdated) {
-      dateStr = lastUpdated;
-      title = `Last Updated: ${lastUpdated}${fetchedAt ? ` (Fetched ${fetchedAt})` : ''}`;
+      let formattedLastUpdated = lastUpdated;
+      const mIso = lastUpdated.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      if (mIso) {
+        const y = parseInt(mIso[1], 10);
+        const m = parseInt(mIso[2], 10);
+        const d = parseInt(mIso[3], 10);
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        if (m >= 1 && m <= 12) {
+          formattedLastUpdated = `${monthNames[m - 1]} ${d}, ${y}`;
+        }
+      }
+      dateStr = formattedLastUpdated;
+      title = `Last Updated: ${formattedLastUpdated}${fetchedAt ? ` (Fetched ${fetchedAt})` : ''}`;
       const updDate = new Date(lastUpdated);
       if (!isNaN(updDate.getTime())) {
         const ageDays = (Date.now() - updDate.getTime()) / (1000 * 60 * 60 * 24);
@@ -3853,7 +3920,7 @@
       const popupDateInfo = getAirportDateInfo(canonical);
       let freshnessBadge = '';
       if (popupDateInfo) {
-        freshnessBadge = `<span class="popup-timestamp-badge ${popupDateInfo.isStale ? 'is-stale' : ''}" title="${popupDateInfo.title}">⏱️ AirNav Quote: ${popupDateInfo.dateStr}${popupDateInfo.relStr ? ` (${popupDateInfo.relStr})` : ''}</span>`;
+        freshnessBadge = `<span class="popup-timestamp-badge ${popupDateInfo.isStale ? 'is-stale' : ''}" title="${popupDateInfo.title}">⏱️ ${popupDateInfo.quoteDate ? 'AirNav Quote: ' : 'Updated: '}${popupDateInfo.dateStr}${popupDateInfo.relStr ? ` (${popupDateInfo.relStr})` : ''}</span>`;
       } else if (canonical.last_updated) {
         freshnessBadge = `<span class="popup-timestamp-badge">AirNav: ${canonical.last_updated}</span>`;
       } else {
@@ -5101,7 +5168,7 @@
               <span class="fbo-name">🏢 ${fbo.name}</span>
               <span class="fbo-phone">📞 ${fbo.phone}</span>
             </div>
-            ${fbo.notes ? `<p style="font-size: 0.76rem; color: var(--text-muted); margin-bottom: 6px;">ℹ️ ${fbo.notes}</p>` : ''}
+            ${cleanFboNotes(fbo.notes) ? `<p style="font-size: 0.76rem; color: var(--text-muted); margin-bottom: 6px;">ℹ️ ${cleanFboNotes(fbo.notes)}</p>` : ''}
             <table class="fuels-table">
               <thead>
                 <tr>
@@ -5153,7 +5220,7 @@
     const modalDateInfo = getAirportDateInfo(apt);
     let freshnessBadgeModal = '';
     if (modalDateInfo) {
-      freshnessBadgeModal = `<span class="modal-freshness-badge ${modalDateInfo.isStale ? 'is-stale' : ''}" title="${modalDateInfo.title}">⏱️ AirNav Quote: ${modalDateInfo.dateStr}${modalDateInfo.relStr ? ` (${modalDateInfo.relStr})` : ''}</span>`;
+      freshnessBadgeModal = `<span class="modal-freshness-badge ${modalDateInfo.isStale ? 'is-stale' : ''}" title="${modalDateInfo.title}">⏱️ ${modalDateInfo.quoteDate ? 'AirNav Quote: ' : 'Updated: '}${modalDateInfo.dateStr}${modalDateInfo.relStr ? ` (${modalDateInfo.relStr})` : ''}</span>`;
     } else if (apt.fetched_at) {
       const rel = formatRelativeTime(apt.fetched_at);
       const isCached = (Date.now() - new Date(apt.fetched_at).getTime()) < 24 * 60 * 60 * 1000;

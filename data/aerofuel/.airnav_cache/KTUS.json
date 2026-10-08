@@ -69,8 +69,8 @@
         "name": "Tucson Jet Center",
         "brand": "World Fuel Services",
         "phone": "520-746-1411",
-        "notes": "World Fuel Services \u2022 24/7 self-serve access \u2022 Guaranteed Price \u2022 Quote: 24/7 \u2022 UNICOM: 122.95",
-        "quote_date": "24/7",
+        "notes": "World Fuel Services \u2022 24/7 self-serve access \u2022 Guaranteed Price \u2022 UNICOM: 122.95",
+        "quote_date": null,
         "fuels": {
           "100LL_FS": {
             "price": 8.4,

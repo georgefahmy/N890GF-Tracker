@@ -88,8 +88,8 @@
         "name": "Airport Fuel Facility",
         "brand": "",
         "phone": "618-566-5265",
-        "notes": "24/7 self-serve access \u2022 Quote: 24/7",
-        "quote_date": "24/7",
+        "notes": "24/7 self-serve access",
+        "quote_date": null,
         "fuels": {
           "SAF": {
             "price": 7.0,

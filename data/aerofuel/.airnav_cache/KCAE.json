@@ -85,8 +85,8 @@
         "name": "Eagle Aviation",
         "brand": "Titan",
         "phone": "803-822-5569",
-        "notes": "Titan \u2022 24/7 self-serve access \u2022 Guaranteed Price \u2022 Quote: 11/29",
-        "quote_date": "11/29",
+        "notes": "Titan \u2022 24/7 self-serve access \u2022 Guaranteed Price",
+        "quote_date": null,
         "fuels": {
           "100LL_FS": {
             "price": 7.74,
