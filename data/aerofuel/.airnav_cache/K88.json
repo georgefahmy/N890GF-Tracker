@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788167.8736699,
+  "_cached_at": 1791429549.02769,
   "icao": "K88",
   "data": {
     "icao": "K88",
@@ -13,8 +13,20 @@
     "lon": -95.3864,
     "elevation_ft": 1015,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": 128.325,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -45,40 +57,19 @@
       {
         "name": "Allen County (FBO)",
         "brand": "World Fuel Services",
-        "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 12-Aug",
-        "quote_date": "12-Aug",
-        "fuels": {
-          "100LL_SS": {
-            "price": 6.72,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
-          "JET_A": {
-            "price": 3.75,
-            "type": "Jet-A",
-            "service": "Full-Serve",
-            "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "MOGAS_SS": {
-            "price": 4.44,
-            "type": "Mogas",
-            "service": "Self-Serve",
-            "label": "Mogas (Ethanol-Free Self-Serve)"
-          }
-        }
+        "phone": "620-365-1465",
+        "notes": "World Fuel Services \u2022 Quote: 01-Oct-2026",
+        "quote_date": "01-Oct-2026",
+        "fuels": {}
       }
     ],
-    "best_price": 4.44,
-    "primary_fuel": "100LL",
-    "fuels_available": [
-      "100LL",
-      "Jet-A",
-      "Mogas"
-    ],
-    "last_updated": "2026-08-26",
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:49:27Z"
+    "raw_ident": "KK88",
+    "airport_ref": "20269",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

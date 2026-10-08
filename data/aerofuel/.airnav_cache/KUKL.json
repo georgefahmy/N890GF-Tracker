@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787528905.9184692,
+  "_cached_at": 1791429549.0353572,
   "icao": "KUKL",
   "data": {
     "icao": "KUKL",
@@ -13,8 +13,20 @@
     "lon": -95.725,
     "elevation_ft": 1174,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": 121.125,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -46,8 +58,8 @@
         "name": "Coffey County Airport",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 04-Aug",
-        "quote_date": "04-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 6.09,
@@ -56,7 +68,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 4.93,
+            "price": 5.62,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -70,8 +82,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-23T23:48:25Z"
+    "raw_ident": "KUKL",
+    "airport_ref": "21292",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

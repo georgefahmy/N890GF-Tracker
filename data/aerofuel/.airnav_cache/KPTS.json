@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788167.874193,
+  "_cached_at": 1791429549.0379665,
   "icao": "KPTS",
   "data": {
     "icao": "KPTS",
@@ -13,8 +13,20 @@
     "lon": -94.7311,
     "elevation_ft": 950,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": 118.775,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -58,8 +70,8 @@
         "name": "Atkinson Municipal Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "AVFUEL \u2022 Quote: 29-Sep",
+        "quote_date": "29-Sep",
         "fuels": {
           "100LL_FS": {
             "price": 7.01,
@@ -68,7 +80,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.02,
+            "price": 6.99,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -82,8 +94,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:49:27Z"
+    "raw_ident": "KPTS",
+    "airport_ref": "20878",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

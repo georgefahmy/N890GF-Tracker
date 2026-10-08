@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788706.5034292,
+  "_cached_at": 1791429522.6543539,
   "icao": "KGPH",
   "data": {
     "icao": "KGPH",
@@ -13,8 +13,20 @@
     "lon": -94.3096,
     "elevation_ft": 777,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
     "unicom_freq": 122.7,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.0,
+    "approach_desc": "KANSAS CITY APP/DEP",
+    "departure_freq": 119.0,
+    "departure_desc": "KANSAS CITY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 118.2,
+    "clearance_desc": "KANAS CITY",
     "frequencies": [
       {
         "type": "A/D",
@@ -46,23 +58,23 @@
         "name": "Apex Aero Center",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 24-Aug",
-        "quote_date": "24-Aug",
+        "notes": "AVFUEL \u2022 Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.96,
+            "price": 7.49,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.46,
+            "price": 7.99,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.6,
+            "price": 7.94,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -70,7 +82,7 @@
         }
       }
     ],
-    "best_price": 6.96,
+    "best_price": 7.49,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -78,6 +90,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KGPH",
+    "airport_ref": "19972",
     "fetched_at": "2026-08-26T23:58:26Z"
   }
 }

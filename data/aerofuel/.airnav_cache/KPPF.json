@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788167.872577,
+  "_cached_at": 1791429549.0365787,
   "icao": "KPPF",
   "data": {
     "icao": "KPPF",
@@ -13,8 +13,20 @@
     "lon": -95.5062,
     "elevation_ft": 900,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": 118.175,
+    "weather_type": "AWOS",
+    "weather_desc": "ASOS",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "ASOS",
@@ -51,8 +63,8 @@
         "name": "Tri-City Airport/City of Parsons",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 07-Aug",
-        "quote_date": "07-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 18-Sep",
+        "quote_date": "18-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.0,
@@ -61,7 +73,7 @@
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 4.8,
+            "price": 5.0,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -75,8 +87,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:49:27Z"
+    "raw_ident": "KPPF",
+    "airport_ref": "20859",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

@@ -1,21 +1,55 @@
 {
-  "_cached_at": 1787504141.374175,
+  "_cached_at": 1791429457.1585698,
   "icao": "1L9",
   "data": {
     "icao": "1L9",
     "faa": "1L9",
+    "iata": "",
     "name": "Parowan Airport",
     "city": "Parowan",
     "state": "UT",
-    "distance_nm": 59.0,
-    "bearing": "NNE",
+    "country": "US",
+    "lat": 37.8597,
+    "lon": -112.816,
+    "elevation_ft": 5930,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "04/22",
+        "length": 5000,
+        "width": 75,
+        "surface": "Asphalt",
+        "lighted": true
+      }
+    ],
     "fbos": [
       {
         "name": "Parowan Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 26-Jun",
-        "quote_date": "26-Jun",
+        "notes": "independent \u2022 Quote: 24-Aug",
+        "quote_date": "24-Aug",
         "fuels": {
           "100LL_SS": {
             "price": 6.39,
@@ -38,8 +72,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-23",
-    "fetched_at": "2026-08-23T16:55:41Z",
-    "source": "AirNav Local Fuel"
+    "last_updated": "2026-10-07",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1L9",
+    "airport_ref": "18488",
+    "fetched_at": "2026-10-08T03:17:34Z"
   }
 }

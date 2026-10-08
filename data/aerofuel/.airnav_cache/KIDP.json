@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788167.873155,
+  "_cached_at": 1791429549.0435889,
   "icao": "KIDP",
   "data": {
     "icao": "KIDP",
@@ -13,8 +13,20 @@
     "lon": -95.7784,
     "elevation_ft": 825,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 122.7,
     "unicom_freq": 122.7,
+    "weather_freq": 118.525,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": 132.9,
+    "approach_desc": "KANSAS CITY CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 121.65,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "A/D",
@@ -58,8 +70,8 @@
         "name": "City of Independence (FBO)",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 07-Aug",
-        "quote_date": "07-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 25-Sep",
+        "quote_date": "25-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.17,
@@ -74,7 +86,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 5.5,
+            "price": 8.47,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -88,8 +100,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:49:27Z"
+    "raw_ident": "KIDP",
+    "airport_ref": "20156",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788706.501323,
+  "_cached_at": 1791429522.6613615,
   "icao": "KFLV",
   "data": {
     "icao": "KFLV",
@@ -13,8 +13,20 @@
     "lon": -94.9147,
     "elevation_ft": 772,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 126.2,
-    "unicom_freq": 122.8,
+    "unicom_freq": 126.2,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 124.7,
+    "approach_desc": "KANSAS CITY APP/DEP",
+    "departure_freq": 124.7,
+    "departure_desc": "KANSAS CITY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "A/D",
@@ -72,6 +84,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KFLV",
+    "airport_ref": "3533",
     "fetched_at": "2026-08-26T23:58:26Z"
   }
 }

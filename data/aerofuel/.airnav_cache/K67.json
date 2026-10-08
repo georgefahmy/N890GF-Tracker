@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788167.873865,
+  "_cached_at": 1791429549.041286,
   "icao": "K67",
   "data": {
     "icao": "K67",
@@ -12,10 +12,43 @@
     "lat": 37.1598,
     "lon": -95.0425,
     "elevation_ft": 830,
-    "tower": false,
-    "ctaf_freq": 122.8,
-    "unicom_freq": 122.8,
-    "frequencies": [],
+    "tower": true,
+    "tower_freq": 118.1,
+    "ctaf_freq": 118.1,
+    "unicom_freq": 122.95,
+    "weather_freq": 117.0,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 125.8,
+    "approach_desc": "JACKSONS APP",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.7,
+    "ground_desc": "JACKSONS GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "APP",
+        "description": "JACKSONS APP",
+        "frequency_mhz": 125.8
+      },
+      {
+        "type": "ATIS",
+        "description": "ATIS",
+        "frequency_mhz": 117.0
+      },
+      {
+        "type": "GND",
+        "description": "JACKSONS GND",
+        "frequency_mhz": 121.7
+      },
+      {
+        "type": "TWR",
+        "description": "JACKSONS TWR",
+        "frequency_mhz": 118.1
+      }
+    ],
     "runways": [
       {
         "id": "17/35",
@@ -30,8 +63,8 @@
         "name": "Oswego Municipal Airport",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 30-Jul",
-        "quote_date": "30-Jul",
+        "notes": "independent \u2022 Quote: 24-Sep",
+        "quote_date": "24-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 5.84,
@@ -47,8 +80,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:49:27Z"
+    "raw_ident": "K67",
+    "airport_ref": "18964",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

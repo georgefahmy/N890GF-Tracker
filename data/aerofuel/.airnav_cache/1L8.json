@@ -1,21 +1,55 @@
 {
-  "_cached_at": 1787504141.372545,
+  "_cached_at": 1791429457.1535492,
   "icao": "1L8",
   "data": {
     "icao": "1L8",
     "faa": "1L8",
-    "name": "General Dick Stout Field Airport",
+    "iata": "",
+    "name": "General Dick Stout Field",
     "city": "Hurricane",
     "state": "UT",
-    "distance_nm": 12.0,
-    "bearing": "ENE",
+    "country": "US",
+    "lat": 37.1389,
+    "lon": -113.306,
+    "elevation_ft": 3347,
+    "tower": false,
+    "tower_freq": null,
+    "ctaf_freq": 122.8,
+    "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "UNIC",
+        "description": "CTAF/UNICOM",
+        "frequency_mhz": 122.8
+      }
+    ],
+    "runways": [
+      {
+        "id": "18/36",
+        "length": 3410,
+        "width": 40,
+        "surface": "Asphalt",
+        "lighted": false
+      }
+    ],
     "fbos": [
       {
         "name": "Airport Quick Stop",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 26-Jun",
-        "quote_date": "26-Jun",
+        "notes": "Phillips 66 \u2022 Quote: 16-Sep",
+        "quote_date": "16-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 7.15,
@@ -45,8 +79,10 @@
       "Jet-A",
       "Mogas"
     ],
-    "last_updated": "2026-08-23",
-    "fetched_at": "2026-08-23T16:55:41Z",
-    "source": "AirNav Local Fuel"
+    "last_updated": "2026-10-07",
+    "source": "AirNav Local Fuel",
+    "raw_ident": "K1L8",
+    "airport_ref": "18487",
+    "fetched_at": "2026-10-08T03:17:34Z"
   }
 }

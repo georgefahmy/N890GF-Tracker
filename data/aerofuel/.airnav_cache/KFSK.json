@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788167.874582,
+  "_cached_at": 1791429549.034277,
   "icao": "KFSK",
   "data": {
     "icao": "KFSK",
@@ -13,8 +13,20 @@
     "lon": -94.7694,
     "elevation_ft": 918,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": 124.425,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "AWOS",
@@ -46,11 +58,11 @@
         "name": "Fort Scott Municipal Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "AVFUEL \u2022 Quote: 17-Sep",
+        "quote_date": "17-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 7.69,
+            "price": 7.17,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -64,14 +76,16 @@
         }
       }
     ],
-    "best_price": 7.69,
+    "best_price": 7.17,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-26",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-26T23:49:27Z"
+    "raw_ident": "KFSK",
+    "airport_ref": "19898",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

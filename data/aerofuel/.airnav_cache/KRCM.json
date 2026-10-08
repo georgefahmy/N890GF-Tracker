@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787528899.318627,
+  "_cached_at": 1791429522.6579154,
   "icao": "KRCM",
   "data": {
     "icao": "KRCM",
@@ -13,8 +13,20 @@
     "lon": -93.8029,
     "elevation_ft": 798,
     "tower": false,
-    "ctaf_freq": 122.8,
+    "tower_freq": null,
+    "ctaf_freq": 123.0,
     "unicom_freq": 123.0,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 127.45,
+    "approach_desc": "WHITEMAN APP",
+    "departure_freq": 125.925,
+    "departure_desc": "WHITEMAN DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "APP",
@@ -53,11 +65,11 @@
         "name": "University of Central Missouri",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 19-Aug",
-        "quote_date": "19-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 05-Oct",
+        "quote_date": "05-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 6.33,
+            "price": 6.85,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -65,13 +77,15 @@
         }
       }
     ],
-    "best_price": 6.33,
+    "best_price": 6.85,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KRCM",
+    "airport_ref": "19192",
     "fetched_at": "2026-08-23T23:48:18Z"
   }
 }

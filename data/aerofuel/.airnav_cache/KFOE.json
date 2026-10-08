@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788706.503754,
+  "_cached_at": 1791429508.198569,
   "icao": "KFOE",
   "data": {
     "icao": "KFOE",
@@ -13,8 +13,20 @@
     "lon": -95.6636,
     "elevation_ft": 1078,
     "tower": true,
+    "tower_freq": 120.8,
     "ctaf_freq": 120.8,
     "unicom_freq": 122.95,
+    "weather_freq": 128.25,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 123.8,
+    "approach_desc": "KANSAS CITY CNTR",
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": 121.7,
+    "ground_desc": "GND",
+    "clearance_freq": null,
+    "clearance_desc": null,
     "frequencies": [
       {
         "type": "A/D",
@@ -81,19 +93,19 @@
     "fbos": [
       {
         "name": "Million Air Topeka",
-        "brand": "independent",
-        "phone": "N/A",
-        "notes": "independent \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "brand": "World Fuel",
+        "phone": "785-862-0950",
+        "notes": "World Fuel \u2022 Quote: 06-Oct-2026",
+        "quote_date": "06-Oct-2026",
         "fuels": {
           "100LL_FS": {
-            "price": 8.88,
+            "price": 9.48,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.33,
+            "price": 8.67,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -101,7 +113,7 @@
         }
       }
     ],
-    "best_price": 8.88,
+    "best_price": 9.48,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -109,6 +121,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KFOE",
+    "airport_ref": "3537",
     "fetched_at": "2026-08-26T23:58:26Z"
   }
 }

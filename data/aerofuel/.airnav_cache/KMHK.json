@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787863998.415544,
+  "_cached_at": 1791429508.21454,
   "icao": "KMHK",
   "data": {
     "icao": "KMHK",
@@ -80,17 +80,17 @@
         "name": "Kansas Jet Center",
         "brand": "AEG Fuels",
         "phone": "N/A",
-        "notes": "AEG Fuels \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "AEG Fuels \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 7.4,
+            "price": 7.9,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.48,
+            "price": 8.2,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -105,7 +105,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 6.23,
+            "price": 6.53,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -113,7 +113,7 @@
         }
       }
     ],
-    "best_price": 6.23,
+    "best_price": 6.53,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

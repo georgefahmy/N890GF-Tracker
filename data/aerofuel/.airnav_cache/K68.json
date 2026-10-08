@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787528905.9194272,
+  "_cached_at": 1791429549.0296307,
   "icao": "K68",
   "data": {
     "icao": "K68",
@@ -12,10 +12,38 @@
     "lat": 38.2772,
     "lon": -95.2153,
     "elevation_ft": 989,
-    "tower": false,
-    "ctaf_freq": 122.8,
-    "unicom_freq": 122.8,
-    "frequencies": [],
+    "tower": true,
+    "tower_freq": 118.2,
+    "ctaf_freq": 118.2,
+    "unicom_freq": 122.95,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": null,
+    "approach_desc": null,
+    "departure_freq": null,
+    "departure_desc": null,
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": null,
+    "clearance_desc": null,
+    "frequencies": [
+      {
+        "type": "FSS",
+        "description": "LAE RDO",
+        "frequency_mhz": 127.1
+      },
+      {
+        "type": "MISC",
+        "description": "MTAF",
+        "frequency_mhz": 120.9
+      },
+      {
+        "type": "TWR",
+        "description": "TWR",
+        "frequency_mhz": 118.2
+      }
+    ],
     "runways": [
       {
         "id": "01/19",
@@ -30,8 +58,8 @@
         "name": "City of Garnett",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 24-Jul",
-        "quote_date": "24-Jul",
+        "notes": "Quote: 08-Sep",
+        "quote_date": "08-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 6.5,
@@ -47,8 +75,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-23",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "fetched_at": "2026-08-23T23:48:25Z"
+    "raw_ident": "K68",
+    "airport_ref": "18968",
+    "fetched_at": "2026-10-08T03:19:06Z"
   }
 }

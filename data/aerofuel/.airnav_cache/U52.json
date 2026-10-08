@@ -1,24 +1,24 @@
 {
-  "_cached_at": 1791429508.2028444,
-  "icao": "69K",
+  "_cached_at": 1791429457.1621542,
+  "icao": "U52",
   "data": {
-    "icao": "69K",
-    "faa": "69K",
+    "icao": "U52",
+    "faa": "U52",
     "iata": "",
-    "name": "Wamego Municipal Airport",
-    "city": "Wamego",
-    "state": "KS",
+    "name": "Beaver Municipal Airport",
+    "city": "Beaver",
+    "state": "UT",
     "country": "US",
-    "lat": 39.1972,
-    "lon": -96.2589,
-    "elevation_ft": 966,
+    "lat": 38.2307,
+    "lon": -112.675,
+    "elevation_ft": 5863,
     "tower": false,
     "tower_freq": null,
     "ctaf_freq": 122.9,
     "unicom_freq": 122.9,
-    "weather_freq": null,
-    "weather_type": null,
-    "weather_desc": null,
+    "weather_freq": 119.925,
+    "weather_type": "AWOS",
+    "weather_desc": "AWOS 3",
     "approach_freq": null,
     "approach_desc": null,
     "departure_freq": null,
@@ -29,6 +29,11 @@
     "clearance_desc": null,
     "frequencies": [
       {
+        "type": "AWOS",
+        "description": "AWOS 3",
+        "frequency_mhz": 119.925
+      },
+      {
         "type": "CTAF",
         "description": "CTAF",
         "frequency_mhz": 122.9
@@ -36,23 +41,30 @@
     ],
     "runways": [
       {
-        "id": "17/35",
-        "length": 3184,
-        "width": 30,
+        "id": "13/31",
+        "length": 4985,
+        "width": 75,
         "surface": "Asphalt",
         "lighted": true
+      },
+      {
+        "id": "07/25",
+        "length": 2133,
+        "width": 50,
+        "surface": "Grs",
+        "lighted": false
       }
     ],
     "fbos": [
       {
-        "name": "Wamego Municipal Airport",
+        "name": "Beaver City",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 15-Sep",
-        "quote_date": "15-Sep",
+        "notes": "Quote: 30-Sep",
+        "quote_date": "30-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 6.5,
+            "price": 6.4,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -60,15 +72,15 @@
         }
       }
     ],
-    "best_price": 6.5,
+    "best_price": 6.4,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-27",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
-    "raw_ident": "K69K",
-    "airport_ref": "18972",
-    "fetched_at": "2026-08-27T20:53:18Z"
+    "raw_ident": "KU52",
+    "airport_ref": "21263",
+    "fetched_at": "2026-10-08T03:17:34Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788706.503236,
+  "_cached_at": 1791429522.6498039,
   "icao": "KMKC",
   "data": {
     "icao": "KMKC",
@@ -13,8 +13,20 @@
     "lon": -94.5928,
     "elevation_ft": 759,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": 133.3,
+    "ctaf_freq": 122.95,
     "unicom_freq": 122.95,
+    "weather_freq": 120.75,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 119.0,
+    "approach_desc": "APP/DEP",
+    "departure_freq": 119.0,
+    "departure_desc": "APP/DEP",
+    "ground_freq": 121.9,
+    "ground_desc": "GND",
+    "clearance_freq": 121.9,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "A/D",
@@ -73,11 +85,11 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "JET_A": {
-            "price": 10.38,
+            "price": 10.72,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -88,17 +100,17 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 9.41,
+            "price": 10.4,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.06,
+            "price": 10.44,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -113,7 +125,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 5.99,
+            "price": 6.79,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -121,7 +133,7 @@
         }
       }
     ],
-    "best_price": 5.99,
+    "best_price": 6.79,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
@@ -129,6 +141,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KMKC",
+    "airport_ref": "3689",
     "fetched_at": "2026-08-26T23:58:26Z"
   }
 }

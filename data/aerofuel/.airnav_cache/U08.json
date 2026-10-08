@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791427355.030932,
+  "_cached_at": 1791429457.1547937,
   "icao": "U08",
   "data": {
     "icao": "U08",
@@ -65,10 +65,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-10-07",
     "source": "AirNav Local Fuel",
     "raw_ident": "KU08",
     "airport_ref": "21251",
-    "fetched_at": "2026-08-24T20:44:03Z"
+    "fetched_at": "2026-10-08T03:17:34Z"
   }
 }

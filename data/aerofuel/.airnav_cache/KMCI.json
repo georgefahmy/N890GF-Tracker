@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787788706.501924,
+  "_cached_at": 1791429522.6568215,
   "icao": "KMCI",
   "data": {
     "icao": "KMCI",
@@ -13,8 +13,20 @@
     "lon": -94.7139,
     "elevation_ft": 1026,
     "tower": true,
-    "ctaf_freq": 122.8,
+    "tower_freq": 125.75,
+    "ctaf_freq": 122.95,
     "unicom_freq": 122.95,
+    "weather_freq": 126.625,
+    "weather_type": "ATIS",
+    "weather_desc": "ATIS",
+    "approach_freq": 120.95,
+    "approach_desc": "APP",
+    "departure_freq": 124.7,
+    "departure_desc": "DEP",
+    "ground_freq": 121.65,
+    "ground_desc": "GND",
+    "clearance_freq": 135.7,
+    "clearance_desc": "CLNC DEL",
     "frequencies": [
       {
         "type": "APP",
@@ -85,8 +97,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 26-Aug",
-        "quote_date": "26-Aug",
+        "notes": "independent \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 8.14,
@@ -95,7 +107,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.78,
+            "price": 11.16,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -111,6 +123,8 @@
     ],
     "last_updated": "2026-08-26",
     "source": "AirNav Local Fuel",
+    "raw_ident": "KMCI",
+    "airport_ref": "3668",
     "fetched_at": "2026-08-26T23:58:26Z"
   }
 }

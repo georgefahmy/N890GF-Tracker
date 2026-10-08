@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1787528899.320003,
+  "_cached_at": 1791429522.6484294,
   "icao": "3GV",
   "data": {
     "icao": "3GV",
@@ -13,8 +13,20 @@
     "lon": -94.2153,
     "elevation_ft": 835,
     "tower": false,
+    "tower_freq": null,
     "ctaf_freq": 122.8,
     "unicom_freq": 122.8,
+    "weather_freq": null,
+    "weather_type": null,
+    "weather_desc": null,
+    "approach_freq": 119.0,
+    "approach_desc": "KANSAS CITY APP/DEP",
+    "departure_freq": 119.0,
+    "departure_desc": "KANSAS CITY APP/DEP",
+    "ground_freq": null,
+    "ground_desc": null,
+    "clearance_freq": 121.3,
+    "clearance_desc": "KANSAS CITY CLNC DEL",
     "frequencies": [
       {
         "type": "A/D",
@@ -53,11 +65,11 @@
         "name": "Grain Valley Airport Corp.",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 20-Aug",
-        "quote_date": "20-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 23-Sep",
+        "quote_date": "23-Sep",
         "fuels": {
           "100LL_SS": {
-            "price": 5.84,
+            "price": 7.21,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -65,13 +77,15 @@
         }
       }
     ],
-    "best_price": 5.84,
+    "best_price": 7.21,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
     "last_updated": "2026-08-23",
     "source": "AirNav Local Fuel",
+    "raw_ident": "K3GV",
+    "airport_ref": "18700",
     "fetched_at": "2026-08-23T23:48:18Z"
   }
 }
