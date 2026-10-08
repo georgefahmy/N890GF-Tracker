@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791349447.0231955,
+  "_cached_at": 1791474091.6893675,
   "icao": "O27",
   "data": {
     "icao": "O27",
@@ -53,11 +53,11 @@
         "name": "City of Oakdale",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 28-Sep",
-        "quote_date": "28-Sep",
+        "notes": "World Fuel Services \u2022 Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.36,
+            "price": 6.52,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -65,15 +65,15 @@
         }
       }
     ],
-    "best_price": 6.36,
+    "best_price": 6.52,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-10-06",
+    "last_updated": "2026-10-08",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO27",
     "airport_ref": "20682",
-    "fetched_at": "2026-10-07T05:04:04Z"
+    "fetched_at": "2026-10-08T15:41:29Z"
   }
 }

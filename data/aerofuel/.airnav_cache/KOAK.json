@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791428157.812445,
+  "_cached_at": 1791474091.6974442,
   "icao": "KOAK",
   "data": {
     "icao": "KOAK",
@@ -130,8 +130,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 07-Oct",
-        "quote_date": "07-Oct",
+        "notes": "independent \u2022 Quote: 08-Oct",
+        "quote_date": "08-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 8.45,
@@ -161,10 +161,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-06",
+    "last_updated": "2026-10-08",
     "source": "AirNav Local Fuel",
     "raw_ident": "KOAK",
     "airport_ref": "3744",
-    "fetched_at": "2026-10-07T05:04:04Z"
+    "fetched_at": "2026-10-08T15:41:29Z"
   }
 }
