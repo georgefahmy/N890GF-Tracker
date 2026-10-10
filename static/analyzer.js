@@ -48,6 +48,7 @@ function resetApp() {
     AppState.ui.plotCounter = 0;
     AppState.map.data = { lat: null, lon: null, alt: null, length: 0 };
     AppState.playback = { timer: null, index: 0, speed: 1, isScrubbing: false, tick: 0 };
+    if (typeof clearActiveSelection === 'function') clearActiveSelection();
 
     const container = document.getElementById('plots-container');
     if (container) container.innerHTML = '';
@@ -242,6 +243,7 @@ function loadSignals(formData) {
     AppState.currentPlotData = null;
     AppState.lastAnalysisResponse = null;
     AppState.playback.index = 0;
+    if (typeof clearActiveSelection === 'function') clearActiveSelection();
 
     fetch('/api/get_signals', { method: 'POST', body: formData })
     .then(response => response.json())
@@ -361,6 +363,11 @@ function addPlot() {
                     <select class="form-select border-danger right-signal-select" data-plot-id="${plotId}"></select>
                 </div>
                 <div class="col-md-auto mt-2 mt-md-0 d-flex justify-content-end align-items-end flex-nowrap gap-2">
+                    <div class="form-check form-switch mb-1 me-2" title="Toggle selection mode to calculate math operations on selected region">
+                        <input class="form-check-input" type="checkbox" id="selectionMode-${plotId}" onchange="toggleSelectionMode(${plotId})">
+                        <label class="form-check-label small text-muted text-nowrap" for="selectionMode-${plotId}">Selection Mode</label>
+                        <span class="d-none" id="selectionBadge-${plotId}"></span>
+                    </div>
                     <div class="form-check form-switch mb-1 me-2">
                         <input class="form-check-input" type="checkbox" id="showBands-${plotId}" checked onchange="onBandsToggleChanged(${plotId})">
                         <label class="form-check-label small text-muted" for="showBands-${plotId}">Bands</label>
@@ -487,6 +494,10 @@ function removePlot(plotId) {
     // Clean up memory
     if (AppState.ui.filters[plotId]) {
         delete AppState.ui.filters[plotId];
+    }
+    if (AppState.ui.activeSelectionPlotId === plotId) {
+        if (typeof closeSelectionMathPopup === 'function') closeSelectionMathPopup();
+        AppState.ui.activeSelectionPlotId = null;
     }
 }
 
@@ -794,7 +805,8 @@ function renderPlotlyChart(plotId, data) {
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
             hovertemplate: '%{fullData.name}: %{y:,}<extra></extra>',
-            type: 'scattergl', mode: 'lines',
+            type: 'scattergl', mode: 'lines+markers',
+            marker: { size: 1, opacity: 0 },
             line: { color: colorsLeft[idx % colorsLeft.length] }
         });
     });
@@ -816,7 +828,8 @@ function renderPlotlyChart(plotId, data) {
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
             hovertemplate: '%{fullData.name}: %{y:,}<extra></extra>',
-            type: 'scattergl', mode: 'lines',
+            type: 'scattergl', mode: 'lines+markers',
+            marker: { size: 1, opacity: 0 },
             line: { color: colorsRight[idx % colorsRight.length] },
             yaxis: 'y2'
         });
@@ -866,7 +879,9 @@ function renderPlotlyChart(plotId, data) {
                 range: rightRange,     // Assign strict data boundaries
                 autorange: false
             },
-            hovermode: 'x unified',
+            hovermode: (document.getElementById(`selectionMode-${plotId}`)?.checked) ? false : 'x unified',
+            dragmode: (document.getElementById(`selectionMode-${plotId}`)?.checked) ? 'select' : 'zoom',
+            selectdirection: (document.getElementById(`selectionMode-${plotId}`)?.checked) ? 'h' : undefined,
             margin: { l: 60, r: 60, t: 30, b: 40 },
             legend: { orientation: "h", y: -0.15 },
             template: 'plotly_dark'
@@ -939,9 +954,19 @@ function renderPlotlyChart(plotId, data) {
 
     // 1. Remove all previous listeners to prevent stacking
     graphDiv.removeAllListeners('plotly_doubleclick');
+    graphDiv.removeAllListeners('plotly_selected');
+
+    graphDiv.on('plotly_selected', function(eventData) {
+        if (typeof handlePlotSelected === 'function') {
+            handlePlotSelected(plotId, eventData);
+        }
+    });
 
     graphDiv.on('plotly_doubleclick', function() {
         console.log("Resetting chart to:", graphDiv._homeLeftRange, graphDiv._homeRightRange);
+        if (document.getElementById(`selectionMode-${plotId}`)?.checked) {
+            if (typeof clearActiveSelection === 'function') clearActiveSelection();
+        }
 
         const resetUpdate = {
             'xaxis.autorange': true,
@@ -959,6 +984,10 @@ function renderPlotlyChart(plotId, data) {
 
         Plotly.relayout(graphDiv, resetUpdate);
     });
+
+    if (document.getElementById(`selectionMode-${plotId}`)?.checked) {
+        setupPlotSelectionHandlers(plotId);
+    }
 
     if (window._crosshairX !== null && window._crosshairX !== undefined) {
         updateCrosshairs(window._crosshairX);
@@ -2665,3 +2694,619 @@ window.highlightShockCoolingPeak = function() {
         Plotly.relayout(div, updateObj).catch(e => console.debug("Plotly relayout error:", e));
     });
 };
+
+// ============================================================================
+// 10. PLOT SELECTION & MATHEMATICAL OPERATIONS MODULE
+// ============================================================================
+
+/**
+ * Format numerical metric values cleanly with commas and appropriate precision.
+ */
+function formatMetricValue(val) {
+    if (val === null || val === undefined || isNaN(val) || !isFinite(val)) return '--';
+    const absVal = Math.abs(val);
+    if (absVal >= 1000) {
+        return val.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    } else if (absVal >= 100) {
+        return val.toFixed(1);
+    } else if (absVal >= 10) {
+        return val.toFixed(1);
+    } else if (absVal >= 1) {
+        return val.toFixed(2);
+    } else {
+        return val.toFixed(3);
+    }
+}
+
+/**
+ * Toggle selection mode on/off for a specific plot.
+ */
+function toggleSelectionMode(plotId) {
+    const checkbox = document.getElementById(`selectionMode-${plotId}`);
+    const isEnabled = checkbox ? checkbox.checked : false;
+    const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+    const badge = document.getElementById(`selectionBadge-${plotId}`);
+    if (!graphDiv) return;
+
+    if (isEnabled) {
+        // Disable hover completely so hover tooltip does not obstruct or trigger during selection
+        Plotly.relayout(graphDiv, {
+            dragmode: 'select',
+            selectdirection: 'h',
+            hovermode: false
+        }).catch(e => console.debug("Plotly relayout error:", e));
+
+        // Untoggle selection mode on all other plots
+        document.querySelectorAll('input[id^="selectionMode-"]').forEach(otherCb => {
+            if (otherCb !== checkbox && otherCb.checked) {
+                otherCb.checked = false;
+                const otherId = otherCb.id.replace('selectionMode-', '');
+                const otherDiv = document.getElementById(`flightGraph-${otherId}`);
+                if (otherDiv) {
+                    cleanupPlotSelectionHandlers(otherId);
+                    Plotly.relayout(otherDiv, { dragmode: 'zoom', hovermode: 'x unified' }).catch(() => {});
+                }
+            }
+        });
+
+        // Setup handlers on graphDiv
+        setupPlotSelectionHandlers(plotId);
+    } else {
+        cleanupPlotSelectionHandlers(plotId);
+
+        Plotly.relayout(graphDiv, {
+            dragmode: 'zoom',
+            hovermode: 'x unified'
+        }).catch(e => console.debug("Plotly relayout error:", e));
+
+        clearActiveSelection();
+    }
+}
+
+/**
+ * Setup handlers for a plot container.
+ * Driven natively by Plotly's box selection engine to allow native moving, resizing, and dragging.
+ */
+function setupPlotSelectionHandlers(plotId) {
+    cleanupPlotSelectionHandlers(plotId);
+}
+
+/**
+ * Remove any leftover overlay elements from a plot container.
+ */
+function cleanupPlotSelectionHandlers(plotId) {
+    const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+    if (graphDiv) {
+        if (graphDiv._customSelectionCleanup) {
+            graphDiv._customSelectionCleanup();
+            graphDiv._customSelectionCleanup = null;
+        }
+        const wrapper = graphDiv.closest('.card-body') || graphDiv.parentElement || graphDiv;
+        wrapper.querySelectorAll('.plot-selection-overlay-box').forEach(el => el.remove());
+    }
+}
+
+/**
+ * Handle Plotly's native plotly_selected event when a region is created, moved, or resized.
+ */
+function handlePlotSelected(plotId, eventData) {
+    const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+    if (!graphDiv) return;
+
+    if (!eventData || (!eventData.range && (!eventData.points || eventData.points.length === 0))) {
+        // Selection cleared by clicking outside in Plotly
+        clearActiveSelection();
+        return;
+    }
+
+    let xMin, xMax;
+    if (eventData.range && eventData.range.x) {
+        xMin = Math.min(eventData.range.x[0], eventData.range.x[1]);
+        xMax = Math.max(eventData.range.x[0], eventData.range.x[1]);
+    } else if (eventData.points && eventData.points.length > 0) {
+        const validXs = eventData.points.map(p => p.x).filter(x => typeof x === 'number');
+        if (!validXs.length) return;
+        xMin = Math.min(...validXs);
+        xMax = Math.max(...validXs);
+    } else {
+        return;
+    }
+
+    if (xMin >= xMax || isNaN(xMin) || isNaN(xMax)) return;
+
+    // Deduplicate identical triggers within 300ms
+    if (graphDiv._lastHandledSelection &&
+        Math.abs(graphDiv._lastHandledSelection.xMin - xMin) < 0.005 &&
+        Math.abs(graphDiv._lastHandledSelection.xMax - xMax) < 0.005 &&
+        (Date.now() - graphDiv._lastHandledSelection.time) < 300) {
+        return;
+    }
+    graphDiv._lastHandledSelection = { xMin: xMin, xMax: xMax, time: Date.now() };
+
+    // Compute all mathematical operations for active traces
+    const results = calculateSelectionMath(plotId, xMin, xMax);
+    if (!results || !results.signals || results.signals.length === 0) return;
+
+    AppState.ui.activeSelectionPlotId = plotId;
+    AppState.ui.activeSelectionResults = results;
+
+    // Display in floating popup
+    showSelectionMathPopup(plotId, xMin, xMax, results);
+}
+
+/**
+ * Kept for interface compatibility.
+ * Plotly's native box selection visual is used exclusively, with zero second highlighted visual.
+ */
+function highlightSelectionShape(graphDiv, xMin, xMax, isSingleMarker = false) {
+    // Intentionally no-op to avoid double-highlighting; relying purely on Plotly native box selection.
+}
+
+/**
+ * Remove any selection shapes and Plotly native selection boxes from the plot.
+ */
+function removeSelectionShape(graphDiv) {
+    if (!graphDiv) return;
+    // Remove lingering SVG selection outlines and handles
+    graphDiv.querySelectorAll('.select-outline, .select-outline-handle, .selection-box, .plot-selection-overlay-box').forEach(el => el.remove());
+    if (graphDiv.layout) {
+        const remainingShapes = (graphDiv.layout.shapes || []).filter(s => s._isSelectionShape !== true);
+        Plotly.relayout(graphDiv, {
+            selections: [],
+            shapes: remainingShapes
+        }).catch(() => {});
+        Plotly.restyle(graphDiv, { selectedpoints: null }).catch(() => {});
+    }
+    graphDiv._lastHandledSelection = null;
+}
+
+/**
+ * Calculate mathematical operations (Average, Min, Max, Delta, StdDev, Rate, etc.)
+ * across the selected range for all signals currently on the plot.
+ */
+function calculateSelectionMath(plotId, xMin, xMax) {
+    const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+    if (!graphDiv) return null;
+
+    const traces = graphDiv.data || [];
+    const plotData = AppState.currentPlotData;
+    const allRawTraces = [
+        ...(plotData?.left_traces || []),
+        ...(plotData?.right_traces || [])
+    ];
+
+    const results = {
+        plotId: plotId,
+        xMin: xMin,
+        xMax: xMax,
+        durationMin: xMax - xMin,
+        durationSec: Math.round((xMax - xMin) * 60),
+        signals: [],
+        cylinderSpreads: {}
+    };
+
+    traces.forEach(trace => {
+        if (!trace.name) return;
+
+        // Prefer full raw data arrays if available to avoid downsampling loss
+        const rawMatch = allRawTraces.find(rt => rt.name === trace.name);
+        const xArr = (rawMatch && plotData?.x) ? plotData.x : trace.x;
+        const yArr = (rawMatch && plotData?.x) ? rawMatch.y : trace.y;
+
+        if (!xArr || !yArr || !xArr.length) return;
+
+        const pts = [];
+        let firstVal = null, lastVal = null;
+        let firstX = null, lastX = null;
+
+        const minLen = Math.min(xArr.length, yArr.length);
+        for (let i = 0; i < minLen; i++) {
+            const x = xArr[i];
+            if (x >= xMin && x <= xMax) {
+                const y = parseFloat(yArr[i]);
+                if (y === y && !isNaN(y) && isFinite(y)) {
+                    pts.push(y);
+                    if (firstVal === null) {
+                        firstVal = y;
+                        firstX = x;
+                    }
+                    lastVal = y;
+                    lastX = x;
+                }
+            }
+        }
+
+        if (pts.length === 0) return;
+
+        const count = pts.length;
+        let sum = 0;
+        let min = Infinity;
+        let max = -Infinity;
+
+        for (let i = 0; i < count; i++) {
+            const v = pts[i];
+            sum += v;
+            if (v < min) min = v;
+            if (v > max) max = v;
+        }
+
+        const avg = sum / count;
+        const delta = max - min;
+
+        // Standard Deviation
+        let sumSq = 0;
+        for (let i = 0; i < count; i++) {
+            sumSq += (pts[i] - avg) * (pts[i] - avg);
+        }
+        const stdDev = Math.sqrt(sumSq / count);
+
+        // Median
+        const sorted = [...pts].sort((a, b) => a - b);
+        const midIdx = Math.floor(count / 2);
+        const median = (count % 2 !== 0) ? sorted[midIdx] : (sorted[midIdx - 1] + sorted[midIdx]) / 2;
+
+        // Rate of Change (per minute)
+        const timeSpan = (lastX !== null && firstX !== null && lastX > firstX) ? (lastX - firstX) : (xMax - xMin);
+        const netChange = (lastVal !== null && firstVal !== null) ? (lastVal - firstVal) : 0;
+        const ratePerMin = timeSpan > 0 ? (netChange / timeSpan) : 0;
+
+        results.signals.push({
+            name: trace.name,
+            axis: trace.yaxis === 'y2' ? 'Right' : 'Left',
+            color: trace.line?.color || (trace.yaxis === 'y2' ? '#dc3545' : '#0d6efd'),
+            count: count,
+            avg: avg,
+            min: min,
+            max: max,
+            delta: delta,
+            stdDev: stdDev,
+            median: median,
+            start: firstVal,
+            end: lastVal,
+            netChange: netChange,
+            ratePerMin: ratePerMin,
+            values: pts
+        });
+    });
+
+    // Compute CHT cylinder spread if 2 or more CHTs present
+    const chtSignals = results.signals.filter(s => /CHT\s*\d/i.test(s.name));
+    if (chtSignals.length >= 2) {
+        const minLen = Math.min(...chtSignals.map(s => s.values.length));
+        let maxSpread = 0, sumSpread = 0;
+        for (let i = 0; i < minLen; i++) {
+            const vals = chtSignals.map(s => s.values[i]);
+            const spread = Math.max(...vals) - Math.min(...vals);
+            if (spread > maxSpread) maxSpread = spread;
+            sumSpread += spread;
+        }
+        results.cylinderSpreads['CHT'] = {
+            count: chtSignals.length,
+            maxSpread: maxSpread,
+            avgSpread: sumSpread / minLen
+        };
+    }
+
+    // Compute EGT cylinder spread if 2 or more EGTs present
+    const egtSignals = results.signals.filter(s => /EGT\s*\d/i.test(s.name));
+    if (egtSignals.length >= 2) {
+        const minLen = Math.min(...egtSignals.map(s => s.values.length));
+        let maxSpread = 0, sumSpread = 0;
+        for (let i = 0; i < minLen; i++) {
+            const vals = egtSignals.map(s => s.values[i]);
+            const spread = Math.max(...vals) - Math.min(...vals);
+            if (spread > maxSpread) maxSpread = spread;
+            sumSpread += spread;
+        }
+        results.cylinderSpreads['EGT'] = {
+            count: egtSignals.length,
+            maxSpread: maxSpread,
+            avgSpread: sumSpread / minLen
+        };
+    }
+
+    return results;
+}
+
+/**
+ * Display the mathematical operations popup in the top right.
+ */
+function showSelectionMathPopup(plotId, xMin, xMax, results) {
+    const popup = document.getElementById('plotSelectionMathPopup');
+    if (!popup) return;
+
+    popup.classList.remove('d-none');
+    popup.style.display = 'flex';
+    popup.classList.remove('collapsed');
+    const collapseIcon = document.getElementById('selectionMathCollapseIcon');
+    if (collapseIcon) collapseIcon.className = 'bi bi-dash-lg';
+
+    // Header badges
+    const plotBadge = document.getElementById('selectionMathPlotBadge');
+    if (plotBadge) plotBadge.innerText = `Plot ${plotId + 1}`;
+
+    const timeRangeEl = document.getElementById('selectionMathTimeRange');
+    if (timeRangeEl) timeRangeEl.innerText = `${xMin.toFixed(2)} – ${xMax.toFixed(2)} min`;
+
+    const maxPts = results.signals.length ? Math.max(...results.signals.map(s => s.count)) : 0;
+    const durationEl = document.getElementById('selectionMathDuration');
+    if (durationEl) durationEl.innerText = `Δ ${results.durationMin.toFixed(2)}m (${results.durationSec}s) • ${maxPts} pts`;
+
+    // Render signals table
+    const tbody = document.getElementById('selectionMathTableBody');
+    if (tbody) {
+        tbody.innerHTML = results.signals.map(s => {
+            const rateSign = s.ratePerMin > 0 ? '+' : '';
+            return `
+                <tr>
+                    <td class="text-start text-nowrap">
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:${s.color}; margin-right:4px;"></span>
+                        <strong>${s.name}</strong>
+                        <span class="badge ${s.axis === 'Left' ? 'bg-primary-subtle text-primary' : 'bg-danger-subtle text-danger'} extra-small ms-1">${s.axis[0]}</span>
+                    </td>
+                    <td class="col-avg fw-bold">${formatMetricValue(s.avg)}</td>
+                    <td class="col-min text-success">${formatMetricValue(s.min)}</td>
+                    <td class="col-max text-danger">${formatMetricValue(s.max)}</td>
+                    <td class="col-delta text-info">${formatMetricValue(s.delta)}</td>
+                    <td class="col-stddev text-muted">${formatMetricValue(s.stdDev)}</td>
+                    <td class="col-rate ${s.ratePerMin >= 0 ? 'text-danger' : 'text-primary'}">${rateSign}${formatMetricValue(s.ratePerMin)}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    // Cylinder spread summary
+    const spreadSection = document.getElementById('selectionMathSpreadSection');
+    const spreadContent = document.getElementById('selectionMathSpreadContent');
+    if (spreadSection && spreadContent) {
+        const spreads = results.cylinderSpreads || {};
+        const spreadKeys = Object.keys(spreads);
+        if (spreadKeys.length > 0) {
+            spreadSection.classList.remove('d-none');
+            spreadContent.innerHTML = spreadKeys.map(k => {
+                const sp = spreads[k];
+                const badgeClass = k === 'CHT' ? 'bg-danger-subtle text-danger border-danger-subtle' : 'bg-warning-subtle text-warning border-warning-subtle';
+                return `
+                    <div class="badge ${badgeClass} border p-1 text-wrap text-start">
+                        <strong>${k} Spread (${sp.count} Cyl):</strong>
+                        Max ${sp.maxSpread.toFixed(1)}° &bull; Avg ${sp.avgSpread.toFixed(1)}°
+                    </div>
+                `;
+            }).join('');
+        } else {
+            spreadSection.classList.add('d-none');
+        }
+    }
+
+    // Populate pairwise dropdowns
+    const selectA = document.getElementById('pairwiseSignalA');
+    const selectB = document.getElementById('pairwiseSignalB');
+    if (selectA && selectB) {
+        const curA = selectA.value;
+        const curB = selectB.value;
+        const opts = results.signals.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
+        selectA.innerHTML = opts;
+        selectB.innerHTML = opts;
+
+        if (results.signals.length >= 2) {
+            selectA.value = (curA && results.signals.some(s => s.name === curA)) ? curA : results.signals[0].name;
+            selectB.value = (curB && results.signals.some(s => s.name === curB)) ? curB : results.signals[1].name;
+        } else if (results.signals.length === 1) {
+            selectA.value = results.signals[0].name;
+            selectB.value = results.signals[0].name;
+        }
+        computePairwiseMath();
+    }
+}
+
+/**
+ * Filter/highlight mathematical operations columns in the popup table.
+ */
+function setSelectionMathOpFilter(op) {
+    document.querySelectorAll('#selectionMathOpPills .selection-math-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-op') === op);
+    });
+
+    const cols = ['avg', 'min', 'max', 'delta', 'stddev', 'rate'];
+    const table = document.querySelector('.selection-math-table');
+    if (!table) return;
+
+    if (op === 'all') {
+        cols.forEach(c => {
+            table.querySelectorAll(`.col-${c}`).forEach(el => {
+                el.classList.remove('table-primary', 'table-warning', 'fw-bolder');
+            });
+        });
+    } else if (op === 'minmax') {
+        cols.forEach(c => {
+            const isMinMax = (c === 'min' || c === 'max');
+            table.querySelectorAll(`.col-${c}`).forEach(el => {
+                el.classList.toggle('table-warning', isMinMax);
+                el.classList.toggle('fw-bolder', isMinMax);
+                if (!isMinMax) el.classList.remove('table-primary');
+            });
+        });
+    } else {
+        cols.forEach(c => {
+            const isTarget = (c === op);
+            table.querySelectorAll(`.col-${c}`).forEach(el => {
+                el.classList.toggle('table-primary', isTarget);
+                el.classList.toggle('fw-bolder', isTarget);
+                if (!isTarget) el.classList.remove('table-warning');
+            });
+        });
+    }
+}
+
+/**
+ * Compute pairwise mathematical operation (difference, sum, ratio) between two selected signals.
+ */
+function computePairwiseMath() {
+    if (!AppState.ui.activeSelectionResults) return;
+    const signals = AppState.ui.activeSelectionResults.signals || [];
+    const selectA = document.getElementById('pairwiseSignalA');
+    const selectB = document.getElementById('pairwiseSignalB');
+    const opSelect = document.getElementById('pairwiseOp');
+    const resultBox = document.getElementById('pairwiseResultText');
+    if (!selectA || !selectB || !resultBox) return;
+
+    const sigA = signals.find(s => s.name === selectA.value);
+    const sigB = signals.find(s => s.name === selectB.value);
+    const op = opSelect ? opSelect.value : 'diff';
+
+    if (!sigA || !sigB) {
+        resultBox.innerText = 'Select 2 signals';
+        return;
+    }
+
+    const minLen = Math.min(sigA.values.length, sigB.values.length);
+    if (minLen === 0) {
+        resultBox.innerText = 'No points';
+        return;
+    }
+
+    const resVals = [];
+    for (let i = 0; i < minLen; i++) {
+        const a = sigA.values[i];
+        const b = sigB.values[i];
+        let val = null;
+        if (op === 'diff') val = a - b;
+        else if (op === 'sum') val = a + b;
+        else if (op === 'ratio') val = b !== 0 ? a / b : null;
+        if (val !== null && !isNaN(val) && isFinite(val)) resVals.push(val);
+    }
+
+    if (!resVals.length) {
+        resultBox.innerText = '--';
+        return;
+    }
+
+    const count = resVals.length;
+    const sum = resVals.reduce((acc, v) => acc + v, 0);
+    const avg = sum / count;
+    const min = Math.min(...resVals);
+    const max = Math.max(...resVals);
+
+    resultBox.innerHTML = `Avg: <strong>${formatMetricValue(avg)}</strong> &nbsp;|&nbsp; Min: <strong>${formatMetricValue(min)}</strong> &nbsp;|&nbsp; Max: <strong>${formatMetricValue(max)}</strong>`;
+}
+
+/**
+ * Collapse/expand the selection math popup body.
+ */
+function toggleSelectionMathCollapse() {
+    const popup = document.getElementById('plotSelectionMathPopup');
+    const icon = document.getElementById('selectionMathCollapseIcon');
+    if (!popup) return;
+    const isCollapsed = popup.classList.toggle('collapsed');
+    if (icon) {
+        icon.className = isCollapsed ? 'bi bi-plus-lg' : 'bi bi-dash-lg';
+    }
+}
+
+/**
+ * Close the selection math popup and clear all plot selections.
+ */
+function closeSelectionMathPopup() {
+    clearActiveSelection();
+}
+
+/**
+ * Clear the active selection on all plots, remove all selection outlines/shapes,
+ * reset toggles, and hide the popup.
+ */
+function clearActiveSelection() {
+    document.querySelectorAll('.plotly-graph').forEach(div => {
+        removeSelectionShape(div);
+    });
+
+    // Reset any active Selection Mode switches and styles
+    document.querySelectorAll('input[id^="selectionMode-"]').forEach(cb => {
+        if (cb.checked) {
+            cb.checked = false;
+            const plotId = cb.id.replace('selectionMode-', '');
+            cleanupPlotSelectionHandlers(plotId);
+            const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+            if (graphDiv) {
+                Plotly.relayout(graphDiv, { dragmode: 'zoom', hovermode: 'x unified' }).catch(() => {});
+            }
+        }
+    });
+
+    AppState.ui.activeSelectionPlotId = null;
+    AppState.ui.activeSelectionResults = null;
+
+    const popup = document.getElementById('plotSelectionMathPopup');
+    if (popup) {
+        popup.classList.add('d-none');
+        popup.style.display = 'none';
+    }
+}
+
+/**
+ * Enable dragging on a floating popup element.
+ */
+function makeElementDraggable(headerEl, containerEl) {
+    if (!headerEl || !containerEl) return;
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let initialLeft = 0, initialTop = 0;
+
+    headerEl.addEventListener('mousedown', function(e) {
+        if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+        isDragging = true;
+        const rect = containerEl.getBoundingClientRect();
+        startX = e.clientX;
+        startY = e.clientY;
+        initialLeft = rect.left;
+        initialTop = rect.top;
+
+        containerEl.style.left = initialLeft + 'px';
+        containerEl.style.top = initialTop + 'px';
+        containerEl.style.right = 'auto';
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+        e.preventDefault();
+    });
+
+    function onMouseMove(e) {
+        if (!isDragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const newLeft = Math.max(10, Math.min(window.innerWidth - containerEl.offsetWidth - 10, initialLeft + dx));
+        const newTop = Math.max(10, Math.min(window.innerHeight - containerEl.offsetHeight - 10, initialTop + dy));
+        containerEl.style.left = newLeft + 'px';
+        containerEl.style.top = newTop + 'px';
+    }
+
+    function onMouseUp() {
+        isDragging = false;
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    }
+}
+
+// Initialize popup dragging when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    const headerEl = document.getElementById('selectionMathHeader');
+    const popupEl = document.getElementById('plotSelectionMathPopup');
+    if (headerEl && popupEl) {
+        makeElementDraggable(headerEl, popupEl);
+    }
+});
+
+// Expose module functions globally
+window.formatMetricValue = formatMetricValue;
+window.toggleSelectionMode = toggleSelectionMode;
+window.handlePlotSelected = handlePlotSelected;
+window.highlightSelectionShape = highlightSelectionShape;
+window.removeSelectionShape = removeSelectionShape;
+window.calculateSelectionMath = calculateSelectionMath;
+window.showSelectionMathPopup = showSelectionMathPopup;
+window.setSelectionMathOpFilter = setSelectionMathOpFilter;
+window.computePairwiseMath = computePairwiseMath;
+window.toggleSelectionMathCollapse = toggleSelectionMathCollapse;
+window.closeSelectionMathPopup = closeSelectionMathPopup;
+window.clearActiveSelection = clearActiveSelection;
+window.setupPlotSelectionHandlers = setupPlotSelectionHandlers;
+window.cleanupPlotSelectionHandlers = cleanupPlotSelectionHandlers;

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610591.6146536,
+  "_cached_at": 1791667531.1233652,
   "icao": "KWVI",
   "data": {
     "icao": "KWVI",
@@ -69,7 +69,7 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.0,
+            "price": 6.75,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -81,13 +81,13 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "100UL_FS": {
-            "price": 6.5,
+            "price": 5.5,
             "type": "100UL",
             "service": "Full-Serve",
             "label": "100UL Unleaded (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.0,
+            "price": 6.5,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -95,7 +95,7 @@
         }
       }
     ],
-    "best_price": 6.5,
+    "best_price": 5.5,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

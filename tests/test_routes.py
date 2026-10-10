@@ -694,6 +694,28 @@ class TestPublicPages:
         with app.app_context():
             response = client.get("/analyzer")
             assert response.status_code == 200
+            html = response.data.decode("utf-8")
+            assert "plotSelectionMathPopup" in html
+            assert "selectionMathHeader" in html
+            assert "selectionMathTableBody" in html
+            assert "pairwiseSignalA" in html
+
+    def test_analyzer_plot_selection_math_js(self, app, client):
+        with app.app_context():
+            response = client.get("/static/analyzer.js")
+            assert response.status_code == 200
+            js = response.data.decode("utf-8")
+            assert "toggleSelectionMode" in js
+            assert "handlePlotSelected" in js
+            assert "calculateSelectionMath" in js
+            assert "showSelectionMathPopup" in js
+            assert "computePairwiseMath" in js
+            assert "setupPlotSelectionHandlers" in js
+            assert "cleanupPlotSelectionHandlers" in js
+            assert "selectionMode-" in js
+            assert "selectionBadge-" in js
+            assert "lines+markers" in js
+
 
     def test_flight_cache_helper(self, app, tmp_path, monkeypatch):
         from app import load_cached_flight_df, save_flight_df_cache, CACHE_DIR, SAVE_DIR

@@ -320,6 +320,160 @@
             background-color: #23272d !important;
             border-color: rgba(255, 255, 255, 0.1) !important;
         }
+
+        /* Selection Math Floating Popup */
+        .selection-math-popup {
+            position: fixed;
+            top: calc(var(--analyzer-header-height) + 12px);
+            right: 20px;
+            width: 580px;
+            max-width: calc(100vw - 32px);
+            max-height: calc(100vh - var(--analyzer-header-height) - 30px);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: var(--analyzer-card-radius);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+            z-index: 1060;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-size: 0.82rem;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        body.dark-mode .selection-math-popup {
+            background: rgba(26, 30, 35, 0.96);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.25);
+            color: #e9ecef;
+        }
+
+        .selection-math-popup.collapsed {
+            max-height: fit-content;
+        }
+
+        .selection-math-popup.collapsed .selection-math-body,
+        .selection-math-popup.collapsed .selection-math-footer {
+            display: none !important;
+        }
+
+        .selection-math-header {
+            padding: 8px 12px;
+            background: rgba(13, 110, 253, 0.08);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            cursor: move;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        body.dark-mode .selection-math-header {
+            background: rgba(13, 110, 253, 0.18);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .selection-math-body {
+            padding: 10px 12px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: calc(100vh - var(--analyzer-header-height) - 130px);
+        }
+
+        .selection-math-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.76rem;
+        }
+
+        .selection-math-table th {
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            z-index: 2;
+            padding: 5px 6px;
+            font-weight: 600;
+            color: #6c757d;
+            border-bottom: 1px solid #dee2e6;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        body.dark-mode .selection-math-table th {
+            background: #23272d;
+            color: #adb5bd;
+            border-bottom-color: #373b3e;
+        }
+
+        .selection-math-table th:first-child,
+        .selection-math-table td:first-child {
+            text-align: left;
+        }
+
+        .selection-math-table td {
+            padding: 5px 6px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: right;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+
+        body.dark-mode .selection-math-table td {
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .selection-math-table tr:hover td {
+            background: rgba(13, 110, 253, 0.05);
+        }
+
+        body.dark-mode .selection-math-table tr:hover td {
+            background: rgba(13, 110, 253, 0.12);
+        }
+
+        .selection-math-pill-btn {
+            border-radius: 50rem;
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            background: transparent;
+            color: inherit;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .selection-math-pill-btn:hover {
+            border-color: #0d6efd;
+            color: #0d6efd;
+        }
+
+        .selection-math-pill-btn.active {
+            background: #0d6efd !important;
+            color: #ffffff !important;
+            border-color: #0d6efd !important;
+        }
+
+        body.dark-mode .selection-math-pill-btn {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .selection-math-footer {
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.02);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.74rem;
+        }
+
+        body.dark-mode .selection-math-footer {
+            background: rgba(255, 255, 255, 0.02);
+            border-top-color: rgba(255, 255, 255, 0.08);
+        }
     </style>
 </head>
 <body>
@@ -870,6 +1024,108 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- FLOATING SELECTION MATH POPUP -->
+<div id="plotSelectionMathPopup" class="selection-math-popup d-none" aria-live="polite">
+    <div class="selection-math-header" id="selectionMathHeader">
+        <div class="d-flex align-items-center gap-1 overflow-hidden">
+            <span class="fw-bold text-nowrap"><i class="bi bi-calculator-fill text-primary me-1"></i>Selection Math</span>
+            <span id="selectionMathPlotBadge" class="badge bg-primary-subtle text-primary border border-primary-subtle extra-small text-nowrap">Plot 1</span>
+        </div>
+        <div class="d-flex align-items-center gap-1 ms-auto">
+            <button type="button" class="btn btn-sm py-0 px-1 btn-outline-secondary" id="selectionMathCollapseBtn" title="Collapse / Expand" onclick="toggleSelectionMathCollapse()">
+                <i class="bi bi-dash-lg" id="selectionMathCollapseIcon"></i>
+            </button>
+            <button type="button" class="btn btn-sm py-0 px-1 btn-outline-secondary" id="selectionMathCloseBtn" title="Close Popup" onclick="closeSelectionMathPopup()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+    </div>
+    <div class="selection-math-body" id="selectionMathBody">
+        <!-- Range & Duration Bar -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-1 p-2 mb-2 rounded bg-body-secondary border">
+            <div>
+                <span class="text-muted extra-small d-block fw-semibold">TIME WINDOW</span>
+                <span class="fw-bold" id="selectionMathTimeRange">--</span>
+            </div>
+            <div class="text-end">
+                <span class="text-muted extra-small d-block fw-semibold">DURATION & SAMPLES</span>
+                <span class="fw-bold" id="selectionMathDuration">--</span>
+            </div>
+        </div>
+
+        <!-- Math Operations Filter Pills -->
+        <div class="d-flex align-items-center gap-1 mb-2 overflow-x-auto pb-1" id="selectionMathOpPills">
+            <span class="text-muted extra-small text-nowrap me-1">Highlight:</span>
+            <button type="button" class="selection-math-pill-btn active" data-op="all" onclick="setSelectionMathOpFilter('all')">All</button>
+            <button type="button" class="selection-math-pill-btn" data-op="avg" onclick="setSelectionMathOpFilter('avg')">Average</button>
+            <button type="button" class="selection-math-pill-btn" data-op="minmax" onclick="setSelectionMathOpFilter('minmax')">Min / Max</button>
+            <button type="button" class="selection-math-pill-btn" data-op="delta" onclick="setSelectionMathOpFilter('delta')">Range (Δ)</button>
+            <button type="button" class="selection-math-pill-btn" data-op="stddev" onclick="setSelectionMathOpFilter('stddev')">Std Dev (σ)</button>
+            <button type="button" class="selection-math-pill-btn" data-op="rate" onclick="setSelectionMathOpFilter('rate')">Rate (Δ/min)</button>
+        </div>
+
+        <!-- Signals Math Table -->
+        <div class="table-responsive rounded border mb-2">
+            <table class="selection-math-table">
+                <thead>
+                    <tr id="selectionMathTableHead">
+                        <th>Signal</th>
+                        <th class="col-avg">Average</th>
+                        <th class="col-min">Min</th>
+                        <th class="col-max">Max</th>
+                        <th class="col-delta">Range (Δ)</th>
+                        <th class="col-stddev">StdDev</th>
+                        <th class="col-rate">Rate/min</th>
+                    </tr>
+                </thead>
+                <tbody id="selectionMathTableBody">
+                    <!-- Populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Multi-Cylinder Spread Alert (if CHT or EGT present) -->
+        <div id="selectionMathSpreadSection" class="p-2 mb-2 rounded border bg-body-tertiary d-none">
+            <div class="extra-small text-muted fw-bold mb-1"><i class="bi bi-thermometer-half text-danger"></i> CYLINDER SPREAD ON SELECTION</div>
+            <div class="d-flex justify-content-between flex-wrap gap-2" id="selectionMathSpreadContent">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Pairwise Signal Calculator (Math Operation on Selection) -->
+        <div class="p-2 rounded border bg-body-tertiary">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="extra-small text-muted fw-bold"><i class="bi bi-plus-slash-minus text-primary"></i> PAIRWISE SIGNAL OPERATION</span>
+            </div>
+            <div class="row g-1 align-items-center mb-1">
+                <div class="col-5">
+                    <select class="form-select form-select-sm extra-small py-1" id="pairwiseSignalA" onchange="computePairwiseMath()"></select>
+                </div>
+                <div class="col-2 text-center">
+                    <select class="form-select form-select-sm extra-small py-1 text-center px-1" id="pairwiseOp" onchange="computePairwiseMath()">
+                        <option value="diff">−</option>
+                        <option value="sum">+</option>
+                        <option value="ratio">÷</option>
+                    </select>
+                </div>
+                <div class="col-5">
+                    <select class="form-select form-select-sm extra-small py-1" id="pairwiseSignalB" onchange="computePairwiseMath()"></select>
+                </div>
+            </div>
+            <div id="pairwiseResultBox" class="extra-small py-1 px-2 rounded bg-body border d-flex justify-content-between align-items-center">
+                <span>Result:</span>
+                <span class="fw-bold" id="pairwiseResultText">Select 2 signals</span>
+            </div>
+        </div>
+    </div>
+    <div class="selection-math-footer">
+        <span class="text-muted extra-small">💡 Drag across plot to re-select</span>
+        <button type="button" class="btn btn-outline-danger btn-sm py-0 px-2 extra-small" onclick="clearActiveSelection()">
+            Clear Selection
+        </button>
+    </div>
 </div>
 
 <!-- SCRIPTS & APPLICATION LOGIC -->

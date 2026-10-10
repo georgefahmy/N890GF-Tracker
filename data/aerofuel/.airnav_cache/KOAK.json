@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791474091.6974442,
+  "_cached_at": 1791667531.122066,
   "icao": "KOAK",
   "data": {
     "icao": "KOAK",
@@ -130,8 +130,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 08-Oct",
-        "quote_date": "08-Oct",
+        "notes": "independent \u2022 Quote: 10-Oct",
+        "quote_date": "10-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 8.45,
