@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791426203.2740731,
+  "_cached_at": 1791610828.175554,
   "icao": "KMHR",
   "data": {
     "icao": "KMHR",
@@ -112,11 +112,11 @@
         "name": "Mather Jet Center",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 05-Oct",
-        "quote_date": "05-Oct",
+        "notes": "AVFUEL \u2022 Quote: 08-Oct",
+        "quote_date": "08-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 7.73,
+            "price": 7.8,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -130,17 +130,17 @@
         }
       }
     ],
-    "best_price": 7.73,
+    "best_price": 7.8,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-07",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMHR",
     "airport_ref": "20506",
-    "fetched_at": "2026-10-08T02:23:22Z"
+    "fetched_at": "2026-10-10T05:40:25Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574455.5671299,
+  "_cached_at": 1791610828.1679218,
   "icao": "KRIU",
   "data": {
     "icao": "KRIU",
@@ -53,11 +53,11 @@
         "name": "Rancho Murieta Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 24-Sep",
-        "quote_date": "24-Sep",
+        "notes": "Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 7.2,
+            "price": 7.75,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -71,16 +71,16 @@
         }
       }
     ],
-    "best_price": 7.2,
+    "best_price": 7.75,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KRIU",
     "airport_ref": "3848",
-    "fetched_at": "2026-09-28T05:46:34Z"
+    "fetched_at": "2026-10-10T05:40:25Z"
   }
 }

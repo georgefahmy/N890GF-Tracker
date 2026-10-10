@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790574455.5633247,
+  "_cached_at": 1791610828.1719782,
   "icao": "KPVF",
   "data": {
     "icao": "KPVF",
@@ -58,11 +58,11 @@
         "name": "El Dorado County (FBO)",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 16-Sep",
-        "quote_date": "16-Sep",
+        "notes": "Quote: 07-Oct",
+        "quote_date": "07-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.59,
+            "price": 6.74,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -76,16 +76,16 @@
         }
       }
     ],
-    "best_price": 6.59,
+    "best_price": 6.74,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-27",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KPVF",
     "airport_ref": "20887",
-    "fetched_at": "2026-09-28T05:46:34Z"
+    "fetched_at": "2026-10-10T05:40:25Z"
   }
 }

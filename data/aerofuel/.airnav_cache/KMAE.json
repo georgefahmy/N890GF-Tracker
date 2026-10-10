@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372937.9124188,
+  "_cached_at": 1791610813.5963676,
   "icao": "KMAE",
   "data": {
     "icao": "KMAE",
@@ -64,8 +64,8 @@
       {
         "name": "Madera Jet Center, Inc.",
         "brand": "Phillips 66",
-        "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Guaranteed Price \u2022 Airboss",
+        "phone": "559-675-1400",
+        "notes": "Phillips 66 \u2022 Guaranteed Price",
         "quote_date": null,
         "fuels": {
           "100LL_FS": {
@@ -75,7 +75,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.89,
+            "price": 8.38,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -83,23 +83,23 @@
         }
       },
       {
-        "name": "C&T Aviation AEG Connect Network",
-        "brand": "AEG Fuels",
-        "phone": "N/A",
-        "notes": "AEG Fuels \u2022 Quote: 18-Sep",
-        "quote_date": "18-Sep",
+        "name": "C&T Aviation",
+        "brand": "",
+        "phone": "559-675-0183",
+        "notes": "Quote: 07-Oct-2026",
+        "quote_date": "07-Oct-2026",
         "fuels": {
-          "100LL_SS": {
-            "price": 7.28,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
           "JET_A": {
             "price": 7.05,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
+          },
+          "100LL_SS": {
+            "price": 7.28,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
           }
         }
       }

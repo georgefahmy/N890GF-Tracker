@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791427302.442893,
+  "_cached_at": 1791610813.6116214,
   "icao": "3O8",
   "data": {
     "icao": "3O8",
@@ -42,11 +42,11 @@
         "name": "Harris Ranch Inn & Restaurant",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 11-Sep",
-        "quote_date": "11-Sep",
+        "notes": "Quote: 10-Oct",
+        "quote_date": "10-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.89,
+            "price": 7.19,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -54,7 +54,7 @@
         }
       }
     ],
-    "best_price": 6.89,
+    "best_price": 7.19,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"

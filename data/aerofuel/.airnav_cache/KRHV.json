@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791474091.6868424,
+  "_cached_at": 1791610591.6209486,
   "icao": "KRHV",
   "data": {
     "icao": "KRHV",
@@ -115,10 +115,10 @@
       "100UL",
       "94UL"
     ],
-    "last_updated": "2026-10-08",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KRHV",
     "airport_ref": "20928",
-    "fetched_at": "2026-10-08T15:41:29Z"
+    "fetched_at": "2026-10-10T05:36:29Z"
   }
 }

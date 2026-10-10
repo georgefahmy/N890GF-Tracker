@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791474091.6964366,
+  "_cached_at": 1791610591.6229935,
   "icao": "KPAO",
   "data": {
     "icao": "KPAO",
@@ -120,10 +120,10 @@
       "94UL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-08",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KPAO",
     "airport_ref": "20805",
-    "fetched_at": "2026-10-08T15:41:29Z"
+    "fetched_at": "2026-10-10T05:36:29Z"
   }
 }

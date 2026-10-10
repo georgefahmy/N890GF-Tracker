@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791474091.6905966,
+  "_cached_at": 1791610828.1672525,
   "icao": "1O3",
   "data": {
     "icao": "1O3",
@@ -84,10 +84,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-08",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "K1O3",
     "airport_ref": "18502",
-    "fetched_at": "2026-10-08T15:41:29Z"
+    "fetched_at": "2026-10-10T05:40:25Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791428157.8120341,
+  "_cached_at": 1791610591.6352034,
   "icao": "KSFO",
   "data": {
     "icao": "KSFO",
@@ -124,8 +124,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 07-Oct",
-        "quote_date": "07-Oct",
+        "notes": "independent \u2022 Quote: 10-Oct",
+        "quote_date": "10-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 10.35,
@@ -155,10 +155,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-04",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSFO",
     "airport_ref": "3878",
-    "fetched_at": "2026-10-05T01:59:04Z"
+    "fetched_at": "2026-10-10T05:36:29Z"
   }
 }

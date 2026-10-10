@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791474091.6917472,
+  "_cached_at": 1791610591.629317,
   "icao": "KHWD",
   "data": {
     "icao": "KHWD",
@@ -95,8 +95,8 @@
         "name": "APP Jet Center Hayward",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 29-Sep",
-        "quote_date": "29-Sep",
+        "notes": "Titan \u2022 Quote: 08-Oct",
+        "quote_date": "08-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 8.59,
@@ -147,10 +147,10 @@
       "94UL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-08",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KHWD",
     "airport_ref": "20101",
-    "fetched_at": "2026-10-08T15:41:29Z"
+    "fetched_at": "2026-10-10T05:36:29Z"
   }
 }

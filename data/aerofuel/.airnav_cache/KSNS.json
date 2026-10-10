@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791433093.371422,
+  "_cached_at": 1791610591.6195154,
   "icao": "KSNS",
   "data": {
     "icao": "KSNS",
@@ -142,10 +142,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-09-25",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSNS",
     "airport_ref": "3895",
-    "fetched_at": "2026-09-25T21:48:56Z"
+    "fetched_at": "2026-10-10T05:36:29Z"
   }
 }

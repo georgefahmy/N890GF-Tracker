@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791426203.273739,
+  "_cached_at": 1791610828.1859949,
   "icao": "L36",
   "data": {
     "icao": "L36",
@@ -59,10 +59,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-10-07",
+    "last_updated": "2026-10-09",
     "source": "AirNav Local Fuel",
     "raw_ident": "L36",
     "airport_ref": "21449",
-    "fetched_at": "2026-10-08T02:23:22Z"
+    "fetched_at": "2026-10-10T05:40:25Z"
   }
 }
