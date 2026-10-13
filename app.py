@@ -1492,11 +1492,34 @@ def add_flight():
 @app.route("/add_mx", methods=["POST"])
 @login_required
 def add_mx():
+    tach_time = validate_float(request.form.get("tach"), default=None)
+    airframe_time = validate_float(request.form.get("airframe"), default=None)
+
+    if tach_time is None or airframe_time is None:
+        latest_flight = (
+            FlightLog.query.filter(FlightLog.hobbs.isnot(None))
+            .order_by(FlightLog.hobbs.desc())
+            .first()
+        )
+        if not latest_flight:
+            latest_flight = FlightLog.query.order_by(
+                FlightLog.date.desc(), FlightLog.id.desc()
+            ).first()
+
+        if latest_flight:
+            if tach_time is None and latest_flight.tach is not None:
+                tach_time = validate_float(latest_flight.tach)
+            if airframe_time is None and latest_flight.hobbs is not None:
+                airframe_time = validate_float(latest_flight.hobbs)
+
+    tach_time = tach_time if tach_time is not None else 0.0
+    airframe_time = airframe_time if airframe_time is not None else 0.0
+
     # Create a new MaintenanceLog object using values from the form
     new_mx = MaintenanceLog(
         date=parse_date_obj(request.form.get("date")),
-        tach_time=validate_float(request.form.get("tach")),
-        airframe_time=validate_float(request.form.get("airframe")),
+        tach_time=tach_time,
+        airframe_time=airframe_time,
         recurrent_item=request.form.get("recurrent_item"),
         category=request.form.get("category"),
         notes=request.form.get("notes"),
@@ -1523,8 +1546,24 @@ def add_mx():
 @app.route("/add_fuel", methods=["POST"])
 @login_required
 def add_fuel():
-    hobbs, gallons, price = (
-        validate_float(request.form.get("hobbs")),
+    hobbs = validate_float(request.form.get("hobbs"), default=None)
+    if hobbs is None:
+        latest_flight = (
+            FlightLog.query.filter(FlightLog.hobbs.isnot(None))
+            .order_by(FlightLog.hobbs.desc())
+            .first()
+        )
+        if not latest_flight:
+            latest_flight = FlightLog.query.order_by(
+                FlightLog.date.desc(), FlightLog.id.desc()
+            ).first()
+
+        if latest_flight and latest_flight.hobbs is not None:
+            hobbs = validate_float(latest_flight.hobbs)
+        else:
+            hobbs = 0.0
+
+    gallons, price = (
         validate_float(request.form.get("gallons")),
         validate_float(request.form.get("price")),
     )

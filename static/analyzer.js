@@ -1144,38 +1144,54 @@ function updateGlobalUI(data) {
         <!-- General & Fuel Performance -->
         <div class="col-12"><div class="fw-bold text-primary border-bottom pb-1 mb-2 small"><i class="bi bi-speedometer2"></i> Flight & Fuel Performance</div></div>
         <div class="col-12 mb-2">
-            <div class="d-flex flex-nowrap align-items-start justify-content-between gap-2 overflow-x-auto pb-1">
-                <div style="flex: 1 1 0; min-width: 0;" title="Duration (Trip Cost)">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Duration (Cost)</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.duration_min || 0}m <span class="text-muted fw-normal" style="font-size: 0.75rem;">($${costVal})</span></div>
+            <div class="row g-2">
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Duration (Trip Cost)">
+                        <div class="analyzer-stat-label">Duration (Cost)</div>
+                        <div class="analyzer-stat-value">${s.duration_min || 0}m <span class="text-muted fw-normal" style="font-size: 0.75rem;">($${costVal})</span></div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Total Fuel">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Total Fuel</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.total_fuel || 0} gal <span class="text-muted fw-normal" style="font-size: 0.75rem;">($${fuelCostVal})</span></div>
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Total Fuel">
+                        <div class="analyzer-stat-label">Total Fuel</div>
+                        <div class="analyzer-stat-value">${s.total_fuel || 0} gal <span class="text-muted fw-normal" style="font-size: 0.75rem;">($${fuelCostVal})</span></div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Avg Fuel Flow">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg Fuel Flow</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.avg_fuel_flow || 0} GPH</div>
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Avg Fuel Flow">
+                        <div class="analyzer-stat-label">Avg Fuel Flow</div>
+                        <div class="analyzer-stat-value">${s.avg_fuel_flow || 0} GPH</div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Overall Average MPG = total distance (nm) / total fuel">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg MPG</div>
-                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_mpg || 'N/A'} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Overall Average MPG = total distance (nm) / total fuel">
+                        <div class="analyzer-stat-label">Avg MPG</div>
+                        <div class="analyzer-stat-value text-success">${s.avg_mpg || 'N/A'} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Average MPG during climb, cruise, and descent combined (excluding taxi)">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Climb/Crz/Dsc</div>
-                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_climb_cruise_descent_mpg !== undefined && s.avg_climb_cruise_descent_mpg !== 0 ? s.avg_climb_cruise_descent_mpg : (s.avg_flight_mpg || 'N/A')} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Average MPG during climb, cruise, and descent combined (excluding taxi)">
+                        <div class="analyzer-stat-label">Climb/Crz/Dsc</div>
+                        <div class="analyzer-stat-value text-success">${s.avg_climb_cruise_descent_mpg !== undefined && s.avg_climb_cruise_descent_mpg !== 0 ? s.avg_climb_cruise_descent_mpg : (s.avg_flight_mpg || 'N/A')} <span class="text-body-secondary fw-normal" style="font-size: 0.72rem;">nm/g</span></div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Distance Traveled">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Distance</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${distVal} mi <span class="text-muted fw-normal" style="font-size: 0.75rem;">(${distNmVal} nm)</span></div>
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Distance Traveled">
+                        <div class="analyzer-stat-label">Distance</div>
+                        <div class="analyzer-stat-value">${distVal} mi <span class="text-muted fw-normal" style="font-size: 0.75rem;">(${distNmVal} nm)</span></div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Avg Speed">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Avg Speed</div>
-                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_speed_mph || 0} mph</div>
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Avg Speed">
+                        <div class="analyzer-stat-label">Avg Speed</div>
+                        <div class="analyzer-stat-value text-success">${s.avg_speed_mph || 0} mph</div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Average ground speed during cruise (${s.avg_cruise_speed_mph || 0} mph) and descent (${s.avg_descent_speed_mph || 0} mph)">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Cruise &amp; Descent</div>
-                    <div class="fw-bold text-success text-truncate" style="font-size: 0.82rem;">${s.avg_cruise_descent_speed_mph !== undefined ? s.avg_cruise_descent_speed_mph : 0} mph</div>
+                <div class="col-6 col-sm-4 col-md-3 col-xl mb-1">
+                    <div class="analyzer-stat-box" title="Average ground speed during cruise (${s.avg_cruise_speed_mph || 0} mph) and descent (${s.avg_descent_speed_mph || 0} mph)">
+                        <div class="analyzer-stat-label">Cruise &amp; Descent</div>
+                        <div class="analyzer-stat-value text-success">${s.avg_cruise_descent_speed_mph !== undefined ? s.avg_cruise_descent_speed_mph : 0} mph</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1183,76 +1199,106 @@ function updateGlobalUI(data) {
         <!-- Engine Thermal & Health -->
         <div class="col-12 mt-1"><div class="fw-bold text-danger border-bottom pb-1 mb-2 small"><i class="bi bi-thermometer-high"></i> Engine Thermal Health</div></div>
         <div class="col-12 mb-2">
-            <div class="d-flex flex-nowrap align-items-start justify-content-between gap-2 overflow-x-auto pb-1">
-                <div style="flex: 1 1 0; min-width: 0;" title="Max Shock Cooling">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Shock Cooling</div>
-                    <div class="text-truncate" style="font-size: 0.82rem;">${shockBadge}</div>
-                </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Cruise CHT Spread">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Cruise CHT Spread</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
-                </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Max CHT / RPM">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Max CHT / RPM</div>
-                    <div class="fw-bold text-truncate" style="font-size: 0.82rem;">
-                        <span style="${s.max_cht > 430 ? 'color: red; font-weight: bold;' : s.max_cht >= 410 ? 'color: orange; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'}°F</span> / 
-                        <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : s.max_rpm >= 2600 ? 'color: orange;' : 'color: green;'}">${s.max_rpm || '--'}</span>
+            <div class="row g-2">
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box" title="Max Shock Cooling">
+                        <div class="analyzer-stat-label">Shock Cooling</div>
+                        <div class="analyzer-stat-value">${shockBadge}</div>
                     </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Time CHT > 410°F">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Time CHT > 410°F</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.above_410_min !== undefined ? s.above_410_min + ' min' : '0 min'}</div>
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box" title="Cruise CHT Spread">
+                        <div class="analyzer-stat-label">Cruise CHT Spread</div>
+                        <div class="analyzer-stat-value">${s.cht_spread !== undefined ? s.cht_spread + ' °F' : 'N/A'}</div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Max Oil Temp">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Max Oil Temp</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${(s.max_oil_temp !== undefined && s.max_oil_temp !== 'N/A') ? (s.max_oil_temp + ' °F' + (s.avg_oil_temp !== undefined && s.avg_oil_temp !== 'N/A' ? ' (' + s.avg_oil_temp + '°)' : '')) : 'N/A'}</div>
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box" title="Max CHT / RPM">
+                        <div class="analyzer-stat-label">Max CHT / RPM</div>
+                        <div class="analyzer-stat-value">
+                            <span style="${s.max_cht > 430 ? 'color: red; font-weight: bold;' : s.max_cht >= 410 ? 'color: orange; font-weight: bold;' : 'color: green;'}">${s.max_cht || '--'}°F</span> / 
+                            <span style="${s.max_rpm > 2700 ? 'color: red; font-weight: bold;' : s.max_rpm >= 2600 ? 'color: orange;' : 'color: green;'}">${s.max_rpm || '--'}</span>
+                        </div>
+                    </div>
                 </div>
-                <div style="flex: 1 1 0; min-width: 0;" title="Min Oil Pressure">
-                    <div class="text-body-secondary fw-semibold text-truncate" style="font-size: 0.72rem; line-height: 1.2;">Min Oil Press</div>
-                    <div class="fw-bold text-body-emphasis text-truncate" style="font-size: 0.82rem;">${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box" title="Time CHT > 410°F">
+                        <div class="analyzer-stat-label">Time CHT &gt; 410°F</div>
+                        <div class="analyzer-stat-value">${s.above_410_min !== undefined ? s.above_410_min + ' min' : '0 min'}</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box" title="Max Oil Temp">
+                        <div class="analyzer-stat-label">Max Oil Temp</div>
+                        <div class="analyzer-stat-value">${(s.max_oil_temp !== undefined && s.max_oil_temp !== 'N/A') ? (s.max_oil_temp + ' °F' + (s.avg_oil_temp !== undefined && s.avg_oil_temp !== 'N/A' ? ' (' + s.avg_oil_temp + '°)' : '')) : 'N/A'}</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box" title="Min Oil Pressure">
+                        <div class="analyzer-stat-label">Min Oil Press</div>
+                        <div class="analyzer-stat-value">${s.min_oil_press !== undefined && s.min_oil_press !== 'N/A' ? s.min_oil_press + ' PSI' : 'N/A'}</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Flight Phases & Dynamics -->
         <div class="col-12 mt-1"><div class="fw-bold text-info border-bottom pb-1 mb-2 small"><i class="bi bi-compass"></i> Flight Phases & Dynamics</div></div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis text-nowrap">Phase Breakdown</div>
-            <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
-                <div><span class="fw-bold text-body-emphasis">Taxi:</span> ${s.taxi_min || 0}m</div>
-                <div><span class="fw-bold text-body-emphasis">Climb:</span> ${s.climb_min || 0}m</div>
-                <div><span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m${s.avg_cruise_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_cruise_speed_mph} mph)</span>` : ''}</div>
-                <div><span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m${s.avg_descent_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_descent_speed_mph} mph)</span>` : ''}</div>
-                ${s.avg_climb_cruise_descent_mpg ? `<div><span class="fw-bold text-body-emphasis">Flight MPG:</span> ${s.avg_climb_cruise_descent_mpg} <span class="text-muted extra-small">nm/g</span></div>` : ''}
-            </div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis text-nowrap">Landings Detected</div>
-            <div class="mt-1"><span class="badge bg-info text-dark">${s.landing_count || 1} Landings</span></div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2 mb-2">
-            <div class="small fw-bold text-body-emphasis text-nowrap">Climb Gradient</div>
-            <div>${s.climb_gradient_ft_nm ? s.climb_gradient_ft_nm + ' ft/NM' : 'N/A'}</div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-3 mb-2">
-            <div class="small fw-bold text-body-emphasis text-nowrap">Wind Aloft (Cruise)</div>
-            <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
-                <div>${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}°` : 'N/A'}</div>
-                ${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `
-                <div><span class="fw-bold text-body-emphasis">${s.headwind_kts < 0 ? 'Tailwind:' : 'Headwind:'}</span> ${Math.abs(s.headwind_kts)} kts</div>
-                <div><span class="fw-bold text-body-emphasis">X-Wind:</span> ${s.crosswind_kts} kts</div>
-                ` : ''}
-            </div>
-        </div>
-        <div class="col-6 col-md-4 col-xl-3 mb-2">
-            <div class="small fw-bold text-body-emphasis text-nowrap">G-Load / Max Bank</div>
-            <div class="text-nowrap" style="font-size: 0.82rem; line-height: 1.3;">
-                <div><span class="fw-bold text-body-emphasis">G-Load:</span> ${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'}</div>
-                <div><span class="fw-bold text-body-emphasis">Max Bank:</span> ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '°' : 'N/A'}</div>
-                ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? `
-                <div><span class="fw-bold text-body-emphasis">Left Bank:</span> ${s.max_left_bank_deg || '--'}°</div>
-                <div><span class="fw-bold text-body-emphasis">Right Bank:</span> ${s.max_right_bank_deg || '--'}°</div>
-                ` : ''}
+        <div class="col-12 mb-2">
+            <div class="row g-2">
+                <div class="col-6 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box">
+                        <div class="analyzer-stat-label">Phase Breakdown</div>
+                        <div class="analyzer-stat-value" style="font-size: 0.8rem; line-height: 1.35; font-weight: normal;">
+                            <div><span class="fw-bold text-body-emphasis">Taxi:</span> ${s.taxi_min || 0}m</div>
+                            <div><span class="fw-bold text-body-emphasis">Climb:</span> ${s.climb_min || 0}m</div>
+                            <div><span class="fw-bold text-body-emphasis">Cruise:</span> ${s.cruise_min || 0}m${s.avg_cruise_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_cruise_speed_mph} mph)</span>` : ''}</div>
+                            <div><span class="fw-bold text-body-emphasis">Descent:</span> ${s.descent_min || 0}m${s.avg_descent_speed_mph ? ` <span class="text-muted extra-small">(${s.avg_descent_speed_mph} mph)</span>` : ''}</div>
+                            ${s.avg_climb_cruise_descent_mpg ? `<div><span class="fw-bold text-body-emphasis">Flight MPG:</span> ${s.avg_climb_cruise_descent_mpg} <span class="text-muted extra-small">nm/g</span></div>` : ''}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box">
+                        <div class="analyzer-stat-label">Landings Detected</div>
+                        <div class="analyzer-stat-value mt-1">
+                            <span class="badge bg-info text-dark">${s.landing_count || 1} Landings</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-xl-2 mb-1">
+                    <div class="analyzer-stat-box">
+                        <div class="analyzer-stat-label">Climb Gradient</div>
+                        <div class="analyzer-stat-value mt-1">
+                            ${s.climb_gradient_ft_nm ? s.climb_gradient_ft_nm + ' ft/NM' : 'N/A'}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-xl-3 mb-1">
+                    <div class="analyzer-stat-box">
+                        <div class="analyzer-stat-label">Wind Aloft (Cruise)</div>
+                        <div class="analyzer-stat-value" style="font-size: 0.8rem; line-height: 1.35; font-weight: normal;">
+                            <div>${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `${s.wind_speed_kts} kts @ ${s.wind_dir_deg}°` : 'N/A'}</div>
+                            ${s.wind_speed_kts !== "N/A" && s.wind_speed_kts !== undefined ? `
+                            <div><span class="fw-bold text-body-emphasis">${s.headwind_kts < 0 ? 'Tailwind:' : 'Headwind:'}</span> ${Math.abs(s.headwind_kts)} kts</div>
+                            <div><span class="fw-bold text-body-emphasis">X-Wind:</span> ${s.crosswind_kts} kts</div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-xl-3 mb-1">
+                    <div class="analyzer-stat-box">
+                        <div class="analyzer-stat-label">G-Load / Max Bank</div>
+                        <div class="analyzer-stat-value" style="font-size: 0.8rem; line-height: 1.35; font-weight: normal;">
+                            <div><span class="fw-bold text-body-emphasis">G-Load:</span> ${s.peak_pos_g !== 'N/A' && s.peak_pos_g !== undefined ? '+' + s.peak_pos_g + 'G / ' + s.peak_neg_g + 'G' : 'N/A'}</div>
+                            <div><span class="fw-bold text-body-emphasis">Max Bank:</span> ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? s.max_bank_deg + '°' : 'N/A'}</div>
+                            ${s.max_bank_deg !== 'N/A' && s.max_bank_deg !== undefined ? `
+                            <div><span class="fw-bold text-body-emphasis">Left Bank:</span> ${s.max_left_bank_deg || '--'}°</div>
+                            <div><span class="fw-bold text-body-emphasis">Right Bank:</span> ${s.max_right_bank_deg || '--'}°</div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     `;

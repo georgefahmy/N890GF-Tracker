@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791667531.1235058,
+  "_cached_at": 1791906020.239059,
   "icao": "KAPC",
   "data": {
     "icao": "KAPC",
@@ -87,8 +87,8 @@
         "name": "Skyservice Napa FBO",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 05-Oct",
-        "quote_date": "05-Oct",
+        "notes": "Titan \u2022 Quote: 12-Oct",
+        "quote_date": "12-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 8.99,
@@ -97,7 +97,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.99,
+            "price": 11.19,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

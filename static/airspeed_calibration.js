@@ -566,6 +566,12 @@ function renderSavedAirspeedCalibrations(calsList) {
     if (statsCard) statsCard.classList.remove('d-none');
     if (statsPlaceholder) statsPlaceholder.classList.add('d-none');
 
+    let wasCollapsed = window._airspeedCalCollapsed === true;
+    let existingCollapse = document.getElementById('airspeedCalCollapse');
+    if (existingCollapse) {
+        wasCollapsed = !existingCollapse.classList.contains('show');
+    }
+
     let existing = document.getElementById('airspeed-summary-block');
     if (existing) existing.remove();
 
@@ -575,10 +581,18 @@ function renderSavedAirspeedCalibrations(calsList) {
     block.id = 'airspeed-summary-block';
     block.className = 'col-12 mt-3 p-3 border rounded shadow-sm bg-light';
 
-    let cardsHtml = `<div class="d-flex justify-content-between align-items-center mb-2">
-        <h6 class="text-primary fw-bold mb-0">✈️ Saved Airspeed Calibrations (${calsList.length})</h6>
-    </div>`;
+    let headerHtml = `
+        <div class="d-flex justify-content-between align-items-center" role="button" data-bs-toggle="collapse" data-bs-target="#airspeedCalCollapse" aria-expanded="${!wasCollapsed}" aria-controls="airspeedCalCollapse" style="cursor: pointer; user-select: none;">
+            <h6 class="text-primary fw-bold mb-0 d-flex align-items-center gap-2">
+                <span>✈️ Saved Airspeed Calibrations (${calsList.length})</span>
+            </h6>
+            <button class="btn btn-sm btn-outline-secondary py-0 px-2 d-flex align-items-center gap-1" type="button" data-bs-toggle="collapse" data-bs-target="#airspeedCalCollapse" aria-expanded="${!wasCollapsed}" aria-controls="airspeedCalCollapse" title="Toggle saved calibrations">
+                <i class="bi ${wasCollapsed ? 'bi-chevron-down' : 'bi-chevron-up'}" id="airspeedCalCollapseIcon"></i>
+            </button>
+        </div>
+    `;
 
+    let cardsHtml = '';
     calsList.forEach((item, index) => {
         const resObj = item.results || {};
         const engObj = item.engine_settings || {};
@@ -611,7 +625,7 @@ function renderSavedAirspeedCalibrations(calsList) {
                 <div class="card-body p-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <span class="badge bg-secondary">Calibration #${index + 1} (${formatMMSS(start)} - ${formatMMSS(end)})</span>
-                        <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteAirspeedCalibration(${item.id})" title="Delete Calibration">
+                        <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="event.stopPropagation(); deleteAirspeedCalibration(${item.id})" title="Delete Calibration">
                             &times; Delete
                         </button>
                     </div>
@@ -638,8 +652,26 @@ function renderSavedAirspeedCalibrations(calsList) {
         `;
     });
 
-    block.innerHTML = cardsHtml;
+    block.innerHTML = `
+        ${headerHtml}
+        <div class="collapse ${wasCollapsed ? '' : 'show'} pt-2" id="airspeedCalCollapse">
+            ${cardsHtml}
+        </div>
+    `;
     statsList.appendChild(block);
+
+    const collapseEl = document.getElementById('airspeedCalCollapse');
+    const collapseIcon = document.getElementById('airspeedCalCollapseIcon');
+    if (collapseEl && collapseIcon) {
+        collapseEl.addEventListener('show.bs.collapse', () => {
+            collapseIcon.className = 'bi bi-chevron-up';
+            window._airspeedCalCollapsed = false;
+        });
+        collapseEl.addEventListener('hide.bs.collapse', () => {
+            collapseIcon.className = 'bi bi-chevron-down';
+            window._airspeedCalCollapsed = true;
+        });
+    }
 }
 
 function deleteAirspeedCalibration(calId) {

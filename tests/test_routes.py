@@ -289,6 +289,78 @@ class TestMaintenanceCRUD:
             assert mx.recurrent_item == "ELT Test"
 
     @patch("app.git_push_data")
+    def test_add_mx_blank_tach_and_hobbs_uses_latest_flight(
+        self, mock_push, app, auth_client
+    ):
+        from app import MaintenanceLog
+
+        with app.app_context():
+            response = auth_client.post(
+                "/add_mx",
+                data={
+                    "date": "2024-06-01",
+                    "tach": "",
+                    "airframe": "",
+                    "recurrent_item": "Condition Inspection",
+                    "category": "Airframe",
+                    "notes": "Blank tach and airframe test",
+                },
+                follow_redirects=True,
+            )
+            assert response.status_code == 200
+
+            mx = MaintenanceLog.query.filter_by(
+                notes="Blank tach and airframe test"
+            ).first()
+            assert mx is not None
+            # In seed_db, latest flight has hobbs=103.0 and tach=97.8
+            assert mx.tach_time == 97.8
+            assert mx.airframe_time == 103.0
+
+    @patch("app.git_push_data")
+    def test_add_mx_partial_blank_uses_latest_flight(
+        self, mock_push, app, auth_client
+    ):
+        from app import MaintenanceLog
+
+        with app.app_context():
+            # Test blank tach only
+            response = auth_client.post(
+                "/add_mx",
+                data={
+                    "date": "2024-06-02",
+                    "tach": "",
+                    "airframe": "105.0",
+                    "recurrent_item": "Oil Change",
+                    "category": "Engine",
+                    "notes": "Blank tach only test",
+                },
+                follow_redirects=True,
+            )
+            assert response.status_code == 200
+            mx1 = MaintenanceLog.query.filter_by(notes="Blank tach only test").first()
+            assert mx1.tach_time == 97.8
+            assert mx1.airframe_time == 105.0
+
+            # Test blank airframe (hobbs) only
+            response = auth_client.post(
+                "/add_mx",
+                data={
+                    "date": "2024-06-03",
+                    "tach": "99.5",
+                    "airframe": "",
+                    "recurrent_item": "None",
+                    "category": "Propeller",
+                    "notes": "Blank airframe only test",
+                },
+                follow_redirects=True,
+            )
+            assert response.status_code == 200
+            mx2 = MaintenanceLog.query.filter_by(notes="Blank airframe only test").first()
+            assert mx2.tach_time == 99.5
+            assert mx2.airframe_time == 103.0
+
+    @patch("app.git_push_data")
     def test_edit_mx(self, mock_push, app, auth_client):
         from app import MaintenanceLog
 
@@ -357,6 +429,32 @@ class TestFuelCRUD:
             fuel = FuelLog.query.filter_by(hobbs=105.0).first()
             assert fuel is not None
             assert fuel.total_cost == 117.00  # 18 * 6.50
+
+    @patch("app.git_push_data")
+    def test_add_fuel_blank_hobbs_uses_latest_flight(
+        self, mock_push, app, auth_client
+    ):
+        from app import FuelLog
+
+        with app.app_context():
+            response = auth_client.post(
+                "/add_fuel",
+                data={
+                    "date": "2024-06-05",
+                    "hobbs": "",
+                    "gallons": "20.0",
+                    "price": "6.00",
+                },
+                follow_redirects=True,
+            )
+            assert response.status_code == 200
+
+            # In seed_db, latest flight has hobbs=103.0
+            fuel = FuelLog.query.filter_by(gallons=20.0, price_per_gallon=6.00).first()
+            assert fuel is not None
+            assert fuel.hobbs == 103.0
+            assert fuel.total_cost == 120.00
+            assert fuel.gal_per_hour == round(20.0 / 103.0, 2)
 
     @patch("app.git_push_data")
     def test_edit_fuel(self, mock_push, app, auth_client):
@@ -699,6 +797,9 @@ class TestPublicPages:
             assert "selectionMathHeader" in html
             assert "selectionMathTableBody" in html
             assert "pairwiseSignalA" in html
+            assert "analyzer-stat-box" in html
+            assert "analyzer-stat-label" in html
+            assert "analyzer-stat-value" in html
 
     def test_analyzer_plot_selection_math_js(self, app, client):
         with app.app_context():
@@ -715,6 +816,18 @@ class TestPublicPages:
             assert "selectionMode-" in js
             assert "selectionBadge-" in js
             assert "lines+markers" in js
+            assert "analyzer-stat-box" in js
+            assert "analyzer-stat-label" in js
+            assert "analyzer-stat-value" in js
+
+    def test_airspeed_calibration_collapsible_js(self, app, client):
+        with app.app_context():
+            response = client.get("/static/airspeed_calibration.js")
+            assert response.status_code == 200
+            js = response.data.decode("utf-8")
+            assert "airspeedCalCollapse" in js
+            assert "airspeedCalCollapseIcon" in js
+            assert "data-bs-toggle=\"collapse\"" in js
 
 
     def test_flight_cache_helper(self, app, tmp_path, monkeypatch):

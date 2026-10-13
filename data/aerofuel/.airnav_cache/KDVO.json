@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791667531.1232378,
+  "_cached_at": 1791906020.2389,
   "icao": "KDVO",
   "data": {
     "icao": "KDVO",
@@ -58,23 +58,23 @@
         "name": "SkyShare FBO",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 07-Oct",
-        "quote_date": "07-Oct",
+        "notes": "Titan \u2022 Quote: 12-Oct",
+        "quote_date": "12-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 7.5,
+            "price": 7.6,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 8.2,
+            "price": 7.99,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.25,
+            "price": 8.5,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -82,7 +82,7 @@
         }
       }
     ],
-    "best_price": 7.5,
+    "best_price": 7.6,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

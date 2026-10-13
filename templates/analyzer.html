@@ -474,6 +474,72 @@
             background: rgba(255, 255, 255, 0.02);
             border-top-color: rgba(255, 255, 255, 0.08);
         }
+
+        /* Analyzer Stat Tiles */
+        .analyzer-stat-box {
+            background-color: rgba(0, 0, 0, 0.025);
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            border-radius: 8px;
+            padding: 8px 10px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-width: 0;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .analyzer-stat-box:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        body.dark-mode .analyzer-stat-box {
+            background-color: rgba(255, 255, 255, 0.04) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        body.dark-mode .analyzer-stat-box:hover {
+            background-color: rgba(255, 255, 255, 0.07) !important;
+            border-color: rgba(255, 255, 255, 0.14) !important;
+        }
+
+        .analyzer-stat-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #6c757d;
+            line-height: 1.25;
+            margin-bottom: 3px;
+            white-space: normal;
+        }
+
+        body.dark-mode .analyzer-stat-label {
+            color: #9ba3af !important;
+        }
+
+        .analyzer-stat-value {
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: #212529;
+            line-height: 1.25;
+            word-break: break-word;
+        }
+
+        body.dark-mode .analyzer-stat-value {
+            color: #f1f3f5 !important;
+        }
+
+        @media (max-width: 575.98px) {
+            .analyzer-stat-box {
+                padding: 6px 8px;
+            }
+            .analyzer-stat-label {
+                font-size: 0.70rem;
+            }
+            .analyzer-stat-value {
+                font-size: 0.82rem;
+            }
+        }
     </style>
 </head>
 <body>
