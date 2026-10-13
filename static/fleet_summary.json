@@ -1,21 +1,21 @@
 {
   "totals": {
-    "flight_count": 73,
-    "total_engine_hours": 51.11,
-    "total_airborne_hours": 40.1,
-    "total_duration": 183996.0,
-    "total_distance_mi": 6363.0,
-    "total_distance_traveled": 6363.0,
-    "total_fuel_gal": 410.0,
-    "total_gallons_used": 410.0,
-    "total_landings": 79,
+    "flight_count": 74,
+    "total_engine_hours": 51.75,
+    "total_airborne_hours": 40.62,
+    "total_duration": 186300.0,
+    "total_distance_mi": 6444.3,
+    "total_distance_traveled": 6444.3,
+    "total_fuel_gal": 415.2,
+    "total_gallons_used": 415.2,
+    "total_landings": 80,
     "avg_fuel_flow": 8.02,
     "avg_mpg": 13.5,
-    "avg_speed_mph": 158.7,
+    "avg_speed_mph": 158.6,
     "earliest_flight_date": "2025-11-06",
-    "latest_flight_date": "2026-10-10",
-    "days_span": 338,
-    "months_span": 11.1
+    "latest_flight_date": "2026-10-13",
+    "days_span": 341,
+    "months_span": 11.2
   },
   "flights": [
     {
@@ -7625,6 +7625,122 @@
       "avg_speed": 148.5,
       "cum_total_hours": 51.11,
       "cum_airborne_hours": 40.1
+    },
+    {
+      "filename": "2026-10-13 10-06-48.csv",
+      "flight_id": "2026-10-13 10:06:48-07:00",
+      "date": "2026-10-13",
+      "duration_min": 38.4,
+      "duration_hours": 0.64,
+      "total_fuel": 5.2,
+      "avg_fuel_flow": 8.0,
+      "avg_mpg": 13.7,
+      "distance_traveled_mi": 81.3,
+      "distance_traveled_nm": 70.6,
+      "avg_speed_mph": 126.6,
+      "max_rpm": 2736.0,
+      "max_cht": 372.2,
+      "max_shock_cooling": 34.2,
+      "shock_cooling_cyl": "CHT 4",
+      "shock_cooling_t_start": 1716.1,
+      "shock_cooling_t_end": 1776.1,
+      "shock_cooling_cht_drop": 28.8,
+      "cht_spread": 27.0,
+      "above_380_min": 0.0,
+      "above_410_min": 0.0,
+      "above_430_min": 0.0,
+      "max_oil_temp": 179.6,
+      "avg_oil_temp": 140.6,
+      "min_oil_press": 53.0,
+      "taxi_min": 6.9,
+      "climb_min": 5.3,
+      "cruise_min": 19.4,
+      "descent_min": 6.5,
+      "landing_phase_min": 0.2,
+      "airborne_min": 31.3,
+      "airborne_hours": 0.52,
+      "avg_cruise_descent_speed_mph": 154.7,
+      "avg_cruise_speed_mph": 161.6,
+      "avg_descent_speed_mph": 133.8,
+      "avg_climb_cruise_descent_mpg": 14.9,
+      "avg_flight_mpg": 14.9,
+      "phase_intervals": [
+        {
+          "phase": "Taxi",
+          "start": 2.77,
+          "end": 8.08
+        },
+        {
+          "phase": "Climb",
+          "start": 8.28,
+          "end": 11.75
+        },
+        {
+          "phase": "Cruise",
+          "start": 11.77,
+          "end": 22.18
+        },
+        {
+          "phase": "Climb",
+          "start": 22.2,
+          "end": 23.68
+        },
+        {
+          "phase": "Cruise",
+          "start": 23.7,
+          "end": 26.98
+        },
+        {
+          "phase": "Descent",
+          "start": 27.0,
+          "end": 30.58
+        },
+        {
+          "phase": "Cruise",
+          "start": 30.6,
+          "end": 36.13
+        },
+        {
+          "phase": "Descent",
+          "start": 36.15,
+          "end": 37.22
+        },
+        {
+          "phase": "Cruise",
+          "start": 37.23,
+          "end": 37.83
+        },
+        {
+          "phase": "Descent",
+          "start": 37.85,
+          "end": 39.3
+        },
+        {
+          "phase": "Taxi",
+          "start": 39.43,
+          "end": 41.0
+        }
+      ],
+      "landing_count": 1,
+      "wind_speed_kts": 13.8,
+      "wind_dir_deg": 335,
+      "headwind_kts": -12.8,
+      "crosswind_kts": 5.0,
+      "peak_pos_g": 1.6,
+      "peak_neg_g": 0.7,
+      "max_bank_deg": 49.3,
+      "max_left_bank_deg": 38.2,
+      "max_right_bank_deg": 49.3,
+      "climb_gradient_ft_nm": null,
+      "fid": "2026-10-13 10:06:48-07:00",
+      "total_duration": 2304.0,
+      "engine_duration_sec": 2304.0,
+      "air_time": 1872.0,
+      "distance_traveled": 81.3,
+      "gallons_used": 5.2,
+      "avg_speed": 126.6,
+      "cum_total_hours": 51.75,
+      "cum_airborne_hours": 40.62
     }
   ]
 }
