@@ -169,6 +169,31 @@
             gap: 0.3rem;
         }
 
+        .hud-pill-clickable {
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+        .hud-pill-clickable:hover {
+            transform: scale(1.05);
+            opacity: 0.85;
+        }
+
+        .hud-subtext-clickable {
+            cursor: pointer;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: color 0.15s ease;
+        }
+        .hud-subtext-clickable:hover {
+            color: #0d6efd !important;
+        }
+        body.dark-mode .hud-subtext-clickable:hover {
+            color: #6ea8fe !important;
+        }
+
         /* Dark mode overrides for HUD cards */
         body.dark-mode .status-hud-card {
             background: #1e293b;
@@ -725,16 +750,20 @@
             <div class="status-hud-card {{ oil_hud_class }}">
                 <div class="hud-header">
                     <span class="hud-title">🛢️ Oil Service</span>
-                    <span class="hud-pill {{ oil_pill_class }}">
-                        {{ 'Overdue' if oil_status_class == 'status-overdue' else ('Due Soon' if oil_status_class == 'status-warning' else '50-Hr') }}
+                    <span class="hud-pill {{ oil_pill_class }} hud-pill-clickable" role="button" data-bs-toggle="modal" data-bs-target="#oilIntervalModal" title="Click to edit oil service interval">
+                        {{ 'Overdue' if oil_status_class == 'status-overdue' else ('Due Soon' if oil_status_class == 'status-warning' else (oil_interval|int ~ '-Hr')) }}
+                        <i class="bi bi-pencil-fill ms-1" style="font-size: 0.52rem; opacity: 0.7;"></i>
                     </span>
                 </div>
                 <div class="hud-value-box">
                     <div class="hud-value {{ oil_status_class }}">{{ oil_due }}</div>
                 </div>
                 <div class="hud-subtext">
-                    <i class="bi bi-clock-history"></i>
-                    <span>50-Hour Service Interval</span>
+                    <span class="hud-subtext-clickable" role="button" data-bs-toggle="modal" data-bs-target="#oilIntervalModal" title="Click to edit service interval">
+                        <i class="bi bi-clock-history"></i>
+                        <span>{{ oil_interval|int }}-Hour Service Interval</span>
+                        <i class="bi bi-pencil ms-1" style="font-size: 0.62rem; opacity: 0.75;"></i>
+                    </span>
                 </div>
             </div>
         </div>
@@ -1564,6 +1593,51 @@
     </div>
 </div>
 
+<!-- Oil Service Interval Modal -->
+<div class="modal fade" id="oilIntervalModal" tabindex="-1" aria-labelledby="oilIntervalModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow border-0">
+            <form id="oilIntervalForm" action="/update_oil_interval" method="POST">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title d-flex align-items-center gap-2" id="oilIntervalModalLabel">
+                        <span>🛢️</span> Oil Service Interval
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-3 p-md-4">
+                    <p class="text-muted small mb-3">
+                        Set the recurrent engine oil change service interval in Tach hours. This automatically updates due times, remaining hours, and status badges.
+                    </p>
+
+                    <div class="mb-3">
+                        <label for="oilIntervalInput" class="form-label fw-semibold">Service Interval (Hours)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-clock-history"></i></span>
+                            <input type="number" step="1" min="1" max="500" class="form-control" id="oilIntervalInput" name="interval_hours" value="{{ oil_interval|int }}" required>
+                            <span class="input-group-text">Tach Hours</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label small text-muted mb-1">Quick Presets:</label>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setOilIntervalPreset(25)">25 Hrs</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setOilIntervalPreset(50)">50 Hrs</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setOilIntervalPreset(100)">100 Hrs</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary fw-semibold">Save Interval</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Database Updates Modal -->
 <div class="modal fade" id="dbUpdateModal" tabindex="-1" aria-labelledby="dbUpdateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -1807,6 +1881,14 @@
             });
         }
     });
+
+    function setOilIntervalPreset(hours) {
+        const input = document.getElementById('oilIntervalInput');
+        if (input) {
+            input.value = hours;
+            input.focus();
+        }
+    }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>

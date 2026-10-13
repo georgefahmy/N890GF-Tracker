@@ -1159,4 +1159,69 @@ class TestEngineHealthTrendsAPI:
             assert "density_alt" in f0
 
 
+class TestOilInterval:
+    """Tests for configurable oil service interval."""
+
+    def test_oil_interval_api_and_helpers(self, app, auth_client):
+        from app import get_oil_change_interval, set_oil_change_interval
+
+        with app.app_context():
+            # Initially default or existing
+            current = get_oil_change_interval()
+            assert current > 0
+
+            # Set to 25
+            set_oil_change_interval(25.0)
+            assert get_oil_change_interval() == 25.0
+
+            # API returns updated
+            res = auth_client.get("/api/oil_interval")
+            assert res.status_code == 200
+            assert res.get_json()["interval_hours"] == 25.0
+
+            # Restore to 50
+            set_oil_change_interval(50.0)
+            assert get_oil_change_interval() == 50.0
+
+    def test_update_oil_interval_unauth(self, app, client):
+        res = client.post("/update_oil_interval", data={"interval_hours": "30"})
+        assert res.status_code == 302
+        assert "/login" in res.headers["Location"]
+
+    def test_update_oil_interval_auth(self, app, auth_client):
+        from app import get_oil_change_interval, set_oil_change_interval
+
+        with app.app_context():
+            # Form POST
+            res = auth_client.post("/update_oil_interval", data={"interval_hours": "30"}, follow_redirects=True)
+            assert res.status_code == 200
+            assert get_oil_change_interval() == 30.0
+            html = res.data.decode("utf-8")
+            assert "30-Hr" in html or "30-HR" in html or "30-Hour" in html
+            assert "30-Hour Service Interval" in html
+
+            # JSON request
+            res_json = auth_client.post("/update_oil_interval", json={"interval_hours": 40})
+            assert res_json.status_code == 200
+            assert res_json.get_json()["success"] is True
+            assert get_oil_change_interval() == 40.0
+
+            # Reset back to 50
+            set_oil_change_interval(50.0)
+
+    def test_oil_interval_modal_present(self, app, auth_client):
+        with app.app_context():
+            res = auth_client.get("/")
+            assert res.status_code == 200
+            html = res.data.decode("utf-8")
+            assert "oilIntervalModal" in html
+            assert "oilIntervalInput" in html
+            assert "hud-pill-clickable" in html
+            assert "hud-subtext-clickable" in html
+            assert "setOilIntervalPreset(25)" in html
+            assert "setOilIntervalPreset(50)" in html
+            assert "setOilIntervalPreset(100)" in html
+
+
+
 

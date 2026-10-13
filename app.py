@@ -19,6 +19,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import (
     Flask,
+    flash,
     jsonify,
     make_response,
     redirect,
@@ -371,6 +372,14 @@ class AirspeedCalibration(db.Model):
         }
 
 
+class AppSettings(db.Model):
+    __tablename__ = "app_settings"
+
+    id = db.Column(db.Integer, primary_key=True)
+    key = db.Column(db.String(100), unique=True, index=True, nullable=False)
+    value = db.Column(db.String(255), nullable=False)
+
+
 # Create the tables in the DB if they don't exist and auto-migrate missing columns
 with app.app_context():
     db.create_all()
@@ -507,6 +516,53 @@ def recompute_flight_history():
     db.session.commit()
 
 
+def get_oil_change_interval():
+    """Retrieve the configurable oil change interval in hours, defaulting to 50."""
+    try:
+        setting = AppSettings.query.filter_by(key="oil_change_interval_hours").first()
+        if setting and setting.value:
+            val = float(setting.value)
+            if val > 0:
+                MAINTENANCE_RULES["Oil Change"]["hours"] = val
+                return val
+    except Exception:
+        pass
+    MAINTENANCE_RULES["Oil Change"]["hours"] = float(OIL_CHANGE_INTERVAL_HOURS)
+    return float(OIL_CHANGE_INTERVAL_HOURS)
+
+
+def set_oil_change_interval(hours):
+    """Save the configurable oil change interval in hours."""
+    hours = float(hours)
+    try:
+        setting = AppSettings.query.filter_by(key="oil_change_interval_hours").first()
+        if not setting:
+            setting = AppSettings(key="oil_change_interval_hours", value=str(hours))
+            db.session.add(setting)
+        else:
+            setting.value = str(hours)
+        db.session.commit()
+        MAINTENANCE_RULES["Oil Change"]["hours"] = hours
+        return True
+    except Exception as e:
+        db.session.rollback()
+        try:
+            db.create_all()
+            setting = AppSettings.query.filter_by(key="oil_change_interval_hours").first()
+            if not setting:
+                setting = AppSettings(key="oil_change_interval_hours", value=str(hours))
+                db.session.add(setting)
+            else:
+                setting.value = str(hours)
+            db.session.commit()
+            MAINTENANCE_RULES["Oil Change"]["hours"] = hours
+            return True
+        except Exception as e2:
+            db.session.rollback()
+            print(f"Error saving oil change interval: {e2}")
+            return False
+
+
 def check_auto_maintenance():
     last_oil = (
         db.session.query(func.max(MaintenanceLog.tach_time))
@@ -515,13 +571,14 @@ def check_auto_maintenance():
         or 0.0
     )
     current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
+    interval = get_oil_change_interval()
 
-    if current_tach - last_oil >= OIL_CHANGE_INTERVAL_HOURS:
+    if current_tach - last_oil >= interval:
         new_mx = MaintenanceLog(
             date=datetime.now(),
             tach_time=current_tach,
             airframe_time=current_tach,
-            notes=f"Auto oil change reminder (>{OIL_CHANGE_INTERVAL_HOURS} hrs)",
+            notes=f"Auto oil change reminder (>{interval:g} hrs)",
             recurrent_item="Oil Change",
             category="Engine",
         )
@@ -560,7 +617,10 @@ def calculate_overdue_items():
                 .scalar()
                 or 0.0
             )
-            if current_tach > (last_tach + rule["hours"]):
+            interval_hours = (
+                get_oil_change_interval() if item == "Oil Change" else rule["hours"]
+            )
+            if current_tach > (last_tach + interval_hours):
                 overdue_items.append(item)
     return overdue_items
 
@@ -733,6 +793,7 @@ def get_upcoming_maintenance():
 
     # --- Oil Change Logic ---
     oil_due_str, oil_class = "--", "status-default"
+    oil_interval = get_oil_change_interval()
 
     oil_entry = (
         MaintenanceLog.query.filter_by(recurrent_item="Oil Change")
@@ -742,7 +803,7 @@ def get_upcoming_maintenance():
 
     if oil_entry and oil_entry.tach_time is not None:
         last_oil_tach = validate_float(oil_entry.tach_time)
-        next_oil_due = last_oil_tach + MAINTENANCE_RULES["Oil Change"]["hours"]
+        next_oil_due = last_oil_tach + oil_interval
         hrs_left = round(next_oil_due - current_tach, 1)
 
         oil_due_str = f"{next_oil_due:.1f} hrs ({hrs_left:.1f} hrs left)"
@@ -757,6 +818,7 @@ def get_upcoming_maintenance():
         "cond_status_class": cond_class,
         "oil_due": oil_due_str,
         "oil_status_class": oil_class,
+        "oil_interval": oil_interval,
     }
 
 
@@ -960,7 +1022,7 @@ def calc_per_hour_cost(avg_fuel_flow=None):
         if (hours_per_year_est > 0 and 1800 > (hours_per_year_est * 6))
         else prop_overhaul / 1800
     )
-    oil_change_interval = 50
+    oil_change_interval = get_oil_change_interval()
     oil_change_qty = 7
     oil_change_price = 63.75 / 6 * oil_change_qty / oil_change_interval
     mx_costs_per_hour = (
@@ -1366,6 +1428,7 @@ def index():
         cond_status_class=upcoming_mx["cond_status_class"],
         oil_due=upcoming_mx["oil_due"],
         oil_status_class=upcoming_mx["oil_status_class"],
+        oil_interval=upcoming_mx.get("oil_interval", 50),
         total_fuel_cost=total_fuel_cost,
         cost_per_month=cost_per_month,
         cost_per_hour=cost_per_hour,
@@ -1706,6 +1769,34 @@ def edit_fuel(id):
     git_push_data()
 
     return redirect(url_for("index", _anchor="fuel"))
+
+
+@app.route("/update_oil_interval", methods=["POST"])
+@login_required
+def update_oil_interval():
+    raw_val = request.form.get("interval_hours")
+    if not raw_val and request.is_json:
+        raw_val = request.json.get("interval_hours")
+
+    interval = validate_float(raw_val, default=None)
+    if interval is None or interval <= 0:
+        if request.is_json:
+            return jsonify({"success": False, "error": "Invalid interval value"}), 400
+        flash("Invalid service interval value.", "danger")
+        return redirect(url_for("index"))
+
+    set_oil_change_interval(interval)
+
+    if request.is_json:
+        return jsonify({"success": True, "interval_hours": interval})
+
+    flash(f"Oil service interval updated to {interval:g} hours.", "success")
+    return redirect(url_for("index"))
+
+
+@app.route("/api/oil_interval", methods=["GET"])
+def api_get_oil_interval():
+    return jsonify({"interval_hours": get_oil_change_interval()})
 
 
 @app.route("/delete_flight/<int:id>")
