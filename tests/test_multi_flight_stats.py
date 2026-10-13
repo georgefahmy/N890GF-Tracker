@@ -40,3 +40,6 @@ def test_multi_flight_stats_page_route(client):
     assert response.status_code == 200
     assert b"Multi-Flight" in response.data
     assert b"Avg Speed" in response.data
+    # Verify calculated winds aloft column has been removed from table header
+    assert b"sortBy('wind_speed_kts')" not in response.data
+    assert b"Wind Aloft <i" not in response.data

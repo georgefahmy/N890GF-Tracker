@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791906388.887841,
+  "_cached_at": 1791921308.60321,
   "icao": "E16",
   "data": {
     "icao": "E16",
@@ -58,17 +58,17 @@
         "name": "San Martin Aviation Corp",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 06-Oct",
-        "quote_date": "06-Oct",
+        "notes": "Titan \u2022 Quote: 13-Oct",
+        "quote_date": "13-Oct",
         "fuels": {
           "94UL_SS": {
-            "price": 8.39,
+            "price": 8.99,
             "type": "94UL",
             "service": "Self-Serve",
             "label": "94UL Unleaded (Self-Serve)"
           },
           "94UL_FS": {
-            "price": 8.59,
+            "price": 8.99,
             "type": "94UL",
             "service": "Full-Serve",
             "label": "94UL Unleaded (Full-Serve)"
@@ -82,7 +82,7 @@
         }
       }
     ],
-    "best_price": 8.39,
+    "best_price": 8.99,
     "primary_fuel": "94UL",
     "fuels_available": [
       "94UL",

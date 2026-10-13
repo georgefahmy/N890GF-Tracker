@@ -321,7 +321,7 @@ function renderTableRows(flights) {
     if (!tbody) return;
 
     if (!flights || flights.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="14" class="text-center text-muted">No flight logs found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="13" class="text-center text-muted">No flight logs found.</td></tr>';
         return;
     }
 
@@ -374,7 +374,6 @@ function renderTableRows(flights) {
                 <td class="d-none d-md-table-cell">${shockBadge}</td>
                 <td class="d-none d-md-table-cell">${f.cht_spread !== undefined ? f.cht_spread + ' °F' : 'N/A'}</td>
                 <td class="d-none d-md-table-cell"><span class="badge bg-info text-dark">${f.landing_count || 1}</span></td>
-                <td class="d-none d-md-table-cell">${f.wind_speed_kts !== 'N/A' && f.wind_speed_kts !== undefined ? `${f.wind_speed_kts} kts @ ${f.wind_dir_deg}°` : 'N/A'}</td>
                 <td class="d-none d-md-table-cell">${calCell}</td>
                 <td class="text-end text-md-start">
                     <button class="btn btn-sm btn-outline-primary py-1 px-2" onclick="event.stopPropagation(); openFlightInAnalyzer('${f.filename}')" title="Analyze Flight">
