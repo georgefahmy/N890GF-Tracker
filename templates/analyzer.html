@@ -540,6 +540,56 @@
                 font-size: 0.82rem;
             }
         }
+
+        /* Plot Card Header Toggles: Text Label Above Switch */
+        .plot-toggle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            text-align: center;
+            margin-bottom: 0.15rem;
+        }
+
+        .plot-toggle-item .form-check-label {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: #6c757d;
+            white-space: nowrap;
+            margin-bottom: 3px;
+            cursor: pointer;
+            line-height: 1.1;
+            user-select: none;
+            transition: color 0.15s ease;
+        }
+
+        .plot-toggle-item:hover .form-check-label {
+            color: #0d6efd;
+        }
+
+        body.dark-mode .plot-toggle-item .form-check-label {
+            color: #adb5bd !important;
+        }
+
+        body.dark-mode .plot-toggle-item:hover .form-check-label {
+            color: #6ea8fe !important;
+        }
+
+        .plot-toggle-item .form-switch {
+            padding-left: 0;
+            margin-bottom: 0;
+            min-height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .plot-toggle-item .form-switch .form-check-input {
+            float: none;
+            margin-left: 0;
+            margin-top: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>

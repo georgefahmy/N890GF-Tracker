@@ -800,6 +800,7 @@ class TestPublicPages:
             assert "analyzer-stat-box" in html
             assert "analyzer-stat-label" in html
             assert "analyzer-stat-value" in html
+            assert "plot-toggle-item" in html
 
     def test_analyzer_plot_selection_math_js(self, app, client):
         with app.app_context():
@@ -819,6 +820,7 @@ class TestPublicPages:
             assert "analyzer-stat-box" in js
             assert "analyzer-stat-label" in js
             assert "analyzer-stat-value" in js
+            assert "plot-toggle-item" in js
 
     def test_airspeed_calibration_collapsible_js(self, app, client):
         with app.app_context():

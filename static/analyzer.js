@@ -363,22 +363,30 @@ function addPlot() {
                     <select class="form-select border-danger right-signal-select" data-plot-id="${plotId}"></select>
                 </div>
                 <div class="col-md-auto mt-2 mt-md-0 d-flex justify-content-end align-items-end flex-nowrap gap-2">
-                    <div class="form-check form-switch mb-1 me-2" title="Toggle selection mode to calculate math operations on selected region">
-                        <input class="form-check-input" type="checkbox" id="selectionMode-${plotId}" onchange="toggleSelectionMode(${plotId})">
-                        <label class="form-check-label small text-muted text-nowrap" for="selectionMode-${plotId}">Selection Mode</label>
+                    <div class="plot-toggle-item me-1" title="Toggle selection mode to calculate math operations on selected region">
+                        <label class="form-check-label text-nowrap" for="selectionMode-${plotId}">Selection Mode</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="selectionMode-${plotId}" onchange="toggleSelectionMode(${plotId})">
+                        </div>
                         <span class="d-none" id="selectionBadge-${plotId}"></span>
                     </div>
-                    <div class="form-check form-switch mb-1 me-2">
-                        <input class="form-check-input" type="checkbox" id="showBands-${plotId}" checked onchange="onBandsToggleChanged(${plotId})">
-                        <label class="form-check-label small text-muted" for="showBands-${plotId}">Bands</label>
+                    <div class="plot-toggle-item me-1" title="Show or hide parameter bands">
+                        <label class="form-check-label" for="showBands-${plotId}">Bands</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="showBands-${plotId}" checked onchange="onBandsToggleChanged(${plotId})">
+                        </div>
                     </div>
-                    <div class="form-check form-switch mb-1 me-2">
-                        <input class="form-check-input" type="checkbox" id="showPhases-${plotId}" onchange="onPhasesToggleChanged(${plotId})">
-                        <label class="form-check-label small text-muted" for="showPhases-${plotId}">Phases</label>
+                    <div class="plot-toggle-item me-1" title="Show or hide flight phase regions">
+                        <label class="form-check-label" for="showPhases-${plotId}">Phases</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="showPhases-${plotId}" onchange="onPhasesToggleChanged(${plotId})">
+                        </div>
                     </div>
-                    <div class="form-check form-switch mb-1 me-2">
-                        <input class="form-check-input" type="checkbox" id="splitAxis-${plotId}" onchange="triggerAnalysis(${plotId})">
-                        <label class="form-check-label small text-muted" for="splitAxis-${plotId}">Split</label>
+                    <div class="plot-toggle-item me-1" title="Split or combine Y axes">
+                        <label class="form-check-label" for="splitAxis-${plotId}">Split</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="splitAxis-${plotId}" onchange="triggerAnalysis(${plotId})">
+                        </div>
                     </div>
                     <button class="btn btn-outline-secondary btn-sm text-nowrap mb-1" id="filter-btn-${plotId}" onclick="togglePlotFilters(${plotId})">
                         Show Filters
