@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610828.1696362,
+  "_cached_at": 1791936943.2515526,
   "icao": "O20",
   "data": {
     "icao": "O20",
@@ -48,8 +48,8 @@
         "name": "Kingdon Airpark",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 09-Sep",
-        "quote_date": "09-Sep",
+        "notes": "Quote: 12-Oct",
+        "quote_date": "12-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.99,
@@ -65,10 +65,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KO20",
     "airport_ref": "20678",
-    "fetched_at": "2026-10-10T05:40:25Z"
+    "fetched_at": "2026-10-14T00:15:40Z"
   }
 }

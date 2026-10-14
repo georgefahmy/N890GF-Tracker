@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "_cached_at": 1791937397.739525,
+=======
+  "_cached_at": 1791936943.2596357,
+>>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
   "icao": "KLVK",
   "data": {
     "icao": "KLVK",
@@ -117,10 +121,10 @@
       "94UL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KLVK",
     "airport_ref": "20384",
-    "fetched_at": "2026-10-10T05:36:29Z"
+    "fetched_at": "2026-10-14T00:15:40Z"
   }
 }

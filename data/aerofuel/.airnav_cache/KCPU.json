@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610828.1618772,
+  "_cached_at": 1791936943.2461731,
   "icao": "KCPU",
   "data": {
     "icao": "KCPU",
@@ -67,9 +67,9 @@
       {
         "name": "Calaveras County (FBO)",
         "brand": "World Fuel Services",
-        "phone": "209-736-2501",
-        "notes": "World Fuel Services \u2022 Quote: 08-Oct-2026",
-        "quote_date": "08-Oct-2026",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 08-Oct",
+        "quote_date": "08-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.89,
@@ -85,10 +85,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KCPU",
     "airport_ref": "19542",
-    "fetched_at": "2026-10-10T05:40:25Z"
+    "fetched_at": "2026-10-14T00:15:40Z"
   }
 }

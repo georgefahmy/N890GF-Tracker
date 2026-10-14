@@ -1,0 +1,18 @@
+{
+  "_cached_at": 1791937078.4666336,
+  "icao": "L61",
+  "data": {
+    "icao": "L61",
+    "name": "",
+    "ctaf_freq": null,
+    "unicom_freq": null,
+    "fbos": [],
+    "best_price": null,
+    "primary_fuel": "None",
+    "fuels_available": [],
+    "last_updated": "2026-10-13",
+    "fetched_at": "2026-10-14T00:17:58Z",
+    "source": "AirNav Live Feed",
+    "from_cache": false
+  }
+}

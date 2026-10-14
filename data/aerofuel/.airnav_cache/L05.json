@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790618084.074293,
+  "_cached_at": 1791937010.4004247,
   "icao": "L05",
   "data": {
     "icao": "L05",
@@ -46,10 +46,10 @@
     "fbos": [
       {
         "name": "Kern Valley Airport",
-        "brand": "AEG Fuels",
-        "phone": "N/A",
-        "notes": "AEG Fuels \u2022 Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "brand": "",
+        "phone": "661-932-8113",
+        "notes": "Quote: 28-Sep-2026",
+        "quote_date": "28-Sep-2026",
         "fuels": {
           "100LL_SS": {
             "price": 6.24,

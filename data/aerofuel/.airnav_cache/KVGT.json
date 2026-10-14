@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791427355.0295382,
+  "_cached_at": 1791937081.1678321,
   "icao": "KVGT",
   "data": {
     "icao": "KVGT",
@@ -99,12 +99,18 @@
     ],
     "fbos": [
       {
-        "name": "North Las Vegas Airport",
+        "name": "North Las Vegas Airport Air Elite",
         "brand": "World Fuel Services",
-        "phone": "702-261-3803",
-        "notes": "World Fuel Services \u2022 Guaranteed Price \u2022 UNICOM: 122.95",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Guaranteed Price",
         "quote_date": null,
         "fuels": {
+          "100LL_SS": {
+            "price": 7.54,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
           "100LL_FS": {
             "price": 7.84,
             "type": "100LL",
@@ -116,52 +122,15 @@
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "100LL_SS": {
-            "price": 7.54,
-            "type": "100LL",
-            "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
-          },
-          "SAF": {
-            "price": 1.0,
-            "type": "SAF",
-            "service": "Self-Serve",
-            "label": "SAF Sustainable Aviation Fuel (Self-Serve)"
           }
         }
-      },
-      {
-        "name": "All In Aviation",
-        "brand": "",
-        "phone": "702-255-4622",
-        "notes": "Retail FBO Fuel & Line Services",
-        "quote_date": null,
-        "fuels": {}
-      },
-      {
-        "name": "West Air Flight Training",
-        "brand": "",
-        "phone": "702-631-0229",
-        "notes": "Retail FBO Fuel & Line Services",
-        "quote_date": null,
-        "fuels": {}
-      },
-      {
-        "name": "Silver State Jet Services, LLC",
-        "brand": "",
-        "phone": "844-407-8776",
-        "notes": "Retail FBO Fuel & Line Services",
-        "quote_date": null,
-        "fuels": {}
       }
     ],
     "best_price": 7.54,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
-      "Jet-A",
-      "SAF"
+      "Jet-A"
     ],
     "last_updated": "2026-08-24",
     "source": "AirNav Live Feed",

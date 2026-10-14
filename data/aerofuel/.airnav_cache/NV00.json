@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791427355.025476,
+  "_cached_at": 1791937081.150576,
   "icao": "NV00",
   "data": {
     "icao": "NV00",
@@ -7,8 +7,8 @@
     "name": "The Airport",
     "city": "Club Pahrump",
     "state": "NV",
-    "distance_nm": 39.0,
-    "bearing": "W",
+    "distance_nm": 45.0,
+    "bearing": "WNW",
     "fbos": [
       {
         "name": "The Airport Club",
@@ -38,8 +38,8 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-07",
-    "fetched_at": "2026-10-08T02:42:35Z",
+    "last_updated": "2026-10-13",
+    "fetched_at": "2026-10-14T00:18:01Z",
     "source": "AirNav Local Fuel"
   }
 }

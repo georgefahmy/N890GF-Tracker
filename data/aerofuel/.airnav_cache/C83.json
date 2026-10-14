@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "_cached_at": 1791937397.741317,
+=======
+  "_cached_at": 1791936943.2561786,
+>>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
   "icao": "C83",
   "data": {
     "icao": "C83",
@@ -82,10 +86,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-10-08",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KC83",
     "airport_ref": "19456",
-    "fetched_at": "2026-10-08T15:41:29Z"
+    "fetched_at": "2026-10-14T00:15:40Z"
   }
 }

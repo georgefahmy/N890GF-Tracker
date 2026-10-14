@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372977.9602823,
+  "_cached_at": 1791937098.0607643,
   "icao": "KIFP",
   "data": {
     "icao": "KIFP",
@@ -78,7 +78,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.9,
+            "price": 8.15,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372977.9587572,
+  "_cached_at": 1791937098.061835,
   "icao": "P20",
   "data": {
     "icao": "P20",
@@ -53,8 +53,8 @@
         "name": "CRIT Air",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 17-Sep",
-        "quote_date": "17-Sep",
+        "notes": "Quote: 13-Oct",
+        "quote_date": "13-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 7.95,

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610828.1703584,
+  "_cached_at": 1791936943.2420132,
   "icao": "KMOD",
   "data": {
     "icao": "KMOD",
@@ -99,19 +99,19 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.04,
+            "price": 7.76,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 8.0,
+            "price": 8.72,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.78,
+            "price": 8.95,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -119,16 +119,16 @@
         }
       }
     ],
-    "best_price": 7.04,
+    "best_price": 7.76,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMOD",
     "airport_ref": "3701",
-    "fetched_at": "2026-10-10T05:40:25Z"
+    "fetched_at": "2026-10-14T00:15:40Z"
   }
 }

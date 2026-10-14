@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372977.9579048,
+  "_cached_at": 1791937098.0573204,
   "icao": "KEED",
   "data": {
     "icao": "KEED",
@@ -67,11 +67,26 @@
     ],
     "fbos": [
       {
-        "name": "Paradise Aviation",
+        "name": "Airport Fuel Facility",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 18-May",
-        "quote_date": "18-May",
+        "notes": "Retail FBO Fuel & Line Services",
+        "quote_date": null,
+        "fuels": {
+          "JET_A": {
+            "price": 24.0,
+            "type": "Jet-A",
+            "service": "Full-Serve",
+            "label": "Jet-A Turbine Fuel (Full-Serve)"
+          }
+        }
+      },
+      {
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "brand": "",
+        "phone": "760-326-5263",
+        "notes": "Quote: 18-May-2026",
+        "quote_date": "18-May-2026",
         "fuels": {
           "100LL_SS": {
             "price": 7.25,

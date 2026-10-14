@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "_cached_at": 1791937397.7418208,
+=======
+  "_cached_at": 1791936943.2489107,
+>>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
   "icao": "KTCY",
   "data": {
     "icao": "KTCY",
@@ -89,10 +93,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTCY",
     "airport_ref": "21181",
-    "fetched_at": "2026-10-10T05:40:25Z"
+    "fetched_at": "2026-10-14T00:15:40Z"
   }
 }

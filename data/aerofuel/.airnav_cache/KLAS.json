@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791427355.0299368,
+  "_cached_at": 1791937081.1651986,
   "icao": "KLAS",
   "data": {
     "icao": "KLAS",
@@ -99,8 +99,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 07-Oct",
-        "quote_date": "07-Oct",
+        "notes": "independent \u2022 Quote: 13-Oct",
+        "quote_date": "13-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 9.89,
@@ -109,7 +109,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.53,
+            "price": 10.68,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -120,8 +120,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 07-Oct",
-        "quote_date": "07-Oct",
+        "notes": "independent \u2022 Quote: 13-Oct",
+        "quote_date": "13-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 9.89,

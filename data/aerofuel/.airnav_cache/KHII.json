@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790372977.9571657,
+  "_cached_at": 1791937098.0594277,
   "icao": "KHII",
   "data": {
     "icao": "KHII",
@@ -63,8 +63,8 @@
         "name": "Velocity FBO",
         "brand": "AEG Fuels",
         "phone": "N/A",
-        "notes": "AEG Fuels \u2022 Quote: 22-Sep",
-        "quote_date": "22-Sep",
+        "notes": "AEG Fuels \u2022 Quote: 13-Oct",
+        "quote_date": "13-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.99,
@@ -79,7 +79,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.5,
+            "price": 8.15,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

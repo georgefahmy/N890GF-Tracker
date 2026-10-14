@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610591.620238,
+  "_cached_at": 1791936902.8152328,
   "icao": "KMRY",
   "data": {
     "icao": "KMRY",
@@ -156,10 +156,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMRY",
     "airport_ref": "3705",
-    "fetched_at": "2026-10-10T05:36:29Z"
+    "fetched_at": "2026-10-14T00:15:00Z"
   }
 }

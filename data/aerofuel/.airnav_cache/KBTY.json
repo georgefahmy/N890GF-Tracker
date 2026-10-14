@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1790887573.7363937,
+  "_cached_at": 1791937079.845983,
   "icao": "KBTY",
   "data": {
     "icao": "KBTY",
@@ -53,8 +53,8 @@
         "name": "Beatty Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 30-Sep",
-        "quote_date": "30-Sep",
+        "notes": "AVFUEL \u2022 Quote: 12-Oct",
+        "quote_date": "12-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.45,

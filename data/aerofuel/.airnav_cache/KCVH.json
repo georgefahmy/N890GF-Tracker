@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610591.6187832,
+  "_cached_at": 1791936902.810298,
   "icao": "KCVH",
   "data": {
     "icao": "KCVH",
@@ -95,10 +95,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KCVH",
     "airport_ref": "17054",
-    "fetched_at": "2026-10-10T05:36:29Z"
+    "fetched_at": "2026-10-14T00:15:00Z"
   }
 }

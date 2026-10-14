@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "_cached_at": 1791937397.738883,
+=======
+  "_cached_at": 1791936902.8120158,
+>>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
   "icao": "KSJC",
   "data": {
     "icao": "KSJC",
@@ -142,10 +146,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-13",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSJC",
     "airport_ref": "3883",
-    "fetched_at": "2026-10-10T05:36:29Z"
+    "fetched_at": "2026-10-14T00:15:00Z"
   }
 }
