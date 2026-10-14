@@ -388,6 +388,12 @@ function addPlot() {
                             <input class="form-check-input" type="checkbox" id="splitAxis-${plotId}" onchange="triggerAnalysis(${plotId})">
                         </div>
                     </div>
+                    <div class="plot-toggle-item me-1" title="Switch X-axis time unit between minutes and seconds">
+                        <label class="form-check-label text-nowrap" for="timeUnitSec-${plotId}">Seconds</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="timeUnitSec-${plotId}" ${AppState.ui.isSeconds ? 'checked' : ''} onchange="onTimeUnitToggleChanged(${plotId})">
+                        </div>
+                    </div>
                     <button class="btn btn-outline-secondary btn-sm text-nowrap mb-1" id="filter-btn-${plotId}" onclick="togglePlotFilters(${plotId})">
                         Show Filters
                     </button>
@@ -759,10 +765,28 @@ function onBandsToggleChanged(plotId) {
         }
     }
     renderPlotlyChart(plotId, AppState.lastAnalysisResponse || {});
+function onTimeUnitToggleChanged(plotId) {
+    const isSeconds = !!document.getElementById(`timeUnitSec-${plotId}`)?.checked;
+    AppState.ui.isSeconds = isSeconds;
+    const graphDiv = document.getElementById(`flightGraph-${plotId}`);
+
+    // If currently zoomed, convert the range between minutes and seconds
+    if (graphDiv && graphDiv.layout && graphDiv.layout.xaxis && graphDiv.layout.xaxis.range) {
+        const curRange = graphDiv.layout.xaxis.range;
+        if (graphDiv.layout.xaxis.autorange !== true && Array.isArray(curRange) && curRange.length === 2) {
+            if (isSeconds) {
+                graphDiv._savedXRange = [curRange[0] * 60, curRange[1] * 60];
+            } else {
+                graphDiv._savedXRange = [curRange[0] / 60, curRange[1] / 60];
+            }
+        }
+    }
+    renderPlotlyChart(plotId, AppState.lastAnalysisResponse || {});
 }
 
 window.onPhasesToggleChanged = onPhasesToggleChanged;
 window.onBandsToggleChanged = onBandsToggleChanged;
+window.onTimeUnitToggleChanged = onTimeUnitToggleChanged;
 
 function renderPlotlyChart(plotId, data) {
     const graphDiv = document.getElementById(`flightGraph-${plotId}`);
@@ -771,6 +795,7 @@ function renderPlotlyChart(plotId, data) {
     const isSplit = document.getElementById(`splitAxis-${plotId}`)?.checked;
     const showBands = document.getElementById(`showBands-${plotId}`)?.checked;
     const showPhases = document.getElementById(`showPhases-${plotId}`)?.checked;
+    const isSeconds = !!document.getElementById(`timeUnitSec-${plotId}`)?.checked;
     const leftSignal = document.querySelector(`.left-signal-select[data-plot-id="${plotId}"]`)?.value || '';
     const rightSignal = document.querySelector(`.right-signal-select[data-plot-id="${plotId}"]`)?.value || '';
 
@@ -791,6 +816,23 @@ function renderPlotlyChart(plotId, data) {
         Object.assign(AppState.currentPlotData, data.plot_data);
     }
 
+    let effectiveX = plotData.x;
+    if (isSeconds) {
+        if (plotData.x_sec && plotData.x_sec.length === plotData.x.length) {
+            effectiveX = plotData.x_sec;
+        } else {
+            if (!plotData._x_sec || plotData._x_sec.length !== plotData.x.length) {
+                const raw = AppState.rawData;
+                if (raw && raw.length === plotData.x.length && raw[0]['Session Time'] !== undefined) {
+                    plotData._x_sec = raw.map(r => parseFloat(r['Session Time']) || 0);
+                } else {
+                    plotData._x_sec = plotData.x.map(m => Number((m * 60).toFixed(1)));
+                }
+            }
+            effectiveX = plotData._x_sec;
+        }
+    }
+
     const traces = [];
     // Colors: Blues/Greens for the Left Axis, Reds/Oranges/Pinks for the Right Axis
     const colorsLeft = ['#0d6efd', '#0dcaf0', '#198754', '#20c997'];
@@ -808,7 +850,7 @@ function renderPlotlyChart(plotId, data) {
                 if (val > leftMax) leftMax = val;
             }
         }
-        const sampled = downsampleLTTB(plotData.x, yData, 2000);
+        const sampled = downsampleLTTB(effectiveX, yData, 2000);
         traces.push({
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
@@ -831,7 +873,7 @@ function renderPlotlyChart(plotId, data) {
                 if (val > rightMax) rightMax = val;
             }
         }
-        const sampled = downsampleLTTB(plotData.x, yData, 2000);
+        const sampled = downsampleLTTB(effectiveX, yData, 2000);
         traces.push({
             x: sampled.x, y: sampled.y, name: traceData.name,
             customdata: sampled.indices,
@@ -852,8 +894,8 @@ function renderPlotlyChart(plotId, data) {
     let layout = {
             title: false,
             xaxis: {
-                title: 'Session Time (minutes)',
-                ticksuffix: ' min',
+                title: isSeconds ? 'Session Time (seconds)' : 'Session Time (minutes)',
+                ticksuffix: isSeconds ? ' s' : ' min',
                 gridcolor: '#f0f0f0',
                 // Add native spikelines to ensure the vertical line ALWAYS draws
                 showspikes: true,
@@ -914,12 +956,15 @@ function renderPlotlyChart(plotId, data) {
             const fillColor = PHASE_COLORS[interval.phase] || 'rgba(108, 117, 125, 0.18)';
             const borderColor = PHASE_BORDER_COLORS[interval.phase] || '#6c757d';
 
+            const startX = isSeconds ? interval.start * 60 : interval.start;
+            const endX = isSeconds ? interval.end * 60 : interval.end;
+
             plotShapes.push({
                 type: 'rect',
                 xref: 'x',
                 yref: 'paper',
-                x0: interval.start,
-                x1: interval.end,
+                x0: startX,
+                x1: endX,
                 y0: 0,
                 y1: 1,
                 fillcolor: fillColor,
@@ -927,9 +972,11 @@ function renderPlotlyChart(plotId, data) {
                 layer: 'below'
             });
 
-            if (interval.end - interval.start >= 0.5) {
+            const dur = endX - startX;
+            const minDur = isSeconds ? 30 : 0.5;
+            if (dur >= minDur) {
                 plotAnnotations.push({
-                    x: (interval.start + interval.end) / 2,
+                    x: (startX + endX) / 2,
                     y: 0.98,
                     yref: 'paper',
                     text: interval.phase,
@@ -952,6 +999,19 @@ function renderPlotlyChart(plotId, data) {
     if (plotAnnotations.length > 0) {
         layout.annotations = plotAnnotations;
     }
+
+    if (graphDiv._savedXRange) {
+        layout.xaxis.range = graphDiv._savedXRange;
+        layout.xaxis.autorange = false;
+        delete graphDiv._savedXRange;
+    } else if (graphDiv._isSecondsMode !== undefined && graphDiv._isSecondsMode !== isSeconds) {
+        if (graphDiv.layout?.xaxis?.range && graphDiv.layout.xaxis.autorange !== true) {
+            const curR = graphDiv.layout.xaxis.range;
+            layout.xaxis.range = isSeconds ? [curR[0] * 60, curR[1] * 60] : [curR[0] / 60, curR[1] / 60];
+            layout.xaxis.autorange = false;
+        }
+    }
+    graphDiv._isSecondsMode = isSeconds;
 
     // Use .react() for much faster updates than .newPlot()
     Plotly.react(graphDiv, traces, layout, {responsive: true, doubleClick: false});
@@ -2929,12 +2989,16 @@ function calculateSelectionMath(plotId, xMin, xMax) {
         ...(plotData?.right_traces || [])
     ];
 
+    const isSeconds = !!document.getElementById(`timeUnitSec-${plotId}`)?.checked;
+    const durationMin = isSeconds ? (xMax - xMin) / 60 : (xMax - xMin);
+    const durationSec = isSeconds ? Math.round(xMax - xMin) : Math.round((xMax - xMin) * 60);
+
     const results = {
         plotId: plotId,
         xMin: xMin,
         xMax: xMax,
-        durationMin: xMax - xMin,
-        durationSec: Math.round((xMax - xMin) * 60),
+        durationMin: durationMin,
+        durationSec: durationSec,
         signals: [],
         cylinderSpreads: {}
     };
@@ -2944,8 +3008,11 @@ function calculateSelectionMath(plotId, xMin, xMax) {
 
         // Prefer full raw data arrays if available to avoid downsampling loss
         const rawMatch = allRawTraces.find(rt => rt.name === trace.name);
-        const xArr = (rawMatch && plotData?.x) ? plotData.x : trace.x;
-        const yArr = (rawMatch && plotData?.x) ? rawMatch.y : trace.y;
+        const effectiveRawX = (isSeconds && (plotData?.x_sec || plotData?._x_sec))
+            ? (plotData.x_sec || plotData._x_sec)
+            : (isSeconds ? (plotData?.x?.map(m => m * 60)) : plotData?.x);
+        const xArr = (rawMatch && effectiveRawX) ? effectiveRawX : trace.x;
+        const yArr = (rawMatch && effectiveRawX) ? rawMatch.y : trace.y;
 
         if (!xArr || !yArr || !xArr.length) return;
 
@@ -3079,8 +3146,13 @@ function showSelectionMathPopup(plotId, xMin, xMax, results) {
     const plotBadge = document.getElementById('selectionMathPlotBadge');
     if (plotBadge) plotBadge.innerText = `Plot ${plotId + 1}`;
 
+    const isSeconds = !!document.getElementById(`timeUnitSec-${plotId}`)?.checked;
     const timeRangeEl = document.getElementById('selectionMathTimeRange');
-    if (timeRangeEl) timeRangeEl.innerText = `${xMin.toFixed(2)} – ${xMax.toFixed(2)} min`;
+    if (timeRangeEl) {
+        timeRangeEl.innerText = isSeconds
+            ? `${xMin.toFixed(1)} – ${xMax.toFixed(1)} s`
+            : `${xMin.toFixed(2)} – ${xMax.toFixed(2)} min`;
+    }
 
     const maxPts = results.signals.length ? Math.max(...results.signals.map(s => s.count)) : 0;
     const durationEl = document.getElementById('selectionMathDuration');

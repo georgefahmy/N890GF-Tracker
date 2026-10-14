@@ -3017,6 +3017,7 @@ def api_analyze_flight():
             flight_data["Session Time"], errors="coerce"
         ).fillna(0)
         x_data = [round(float(t) / 60.0, 2) for t in session_times]
+        x_sec = [round(float(t), 1) for t in session_times]
 
         def extract_traces(sig):
             traces = []
@@ -3045,6 +3046,7 @@ def api_analyze_flight():
         if only_traces:
             plot_data = {
                 "x": x_data,
+                "x_sec": x_sec,
                 "left_traces": extract_traces(left_signal),
                 "right_traces": extract_traces(right_signal),
                 "left_name": left_signal,
@@ -3179,6 +3181,7 @@ def api_analyze_flight():
 
         plot_data = {
             "x": x_data,
+            "x_sec": x_sec,
             "left_traces": extract_traces(left_signal),
             "right_traces": extract_traces(right_signal),
             "left_name": left_signal,
