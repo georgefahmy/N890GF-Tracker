@@ -1,9 +1,13 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "_cached_at": 1791937397.7379148,
 =======
   "_cached_at": 1791936902.814525,
 >>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
+=======
+  "_cached_at": 1791995387.372172,
+>>>>>>> 6b65693 (updates)
   "icao": "KNUQ",
   "data": {
     "icao": "KNUQ",
@@ -108,7 +112,7 @@
         "quote_date": null,
         "fuels": {
           "JET_A": {
-            "price": 10.83,
+            "price": 11.0,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

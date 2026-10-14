@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791937397.7373571,
+  "_cached_at": 1791995387.371844,
   "icao": "KSFO",
   "data": {
     "icao": "KSFO",
@@ -124,8 +124,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 13-Oct",
-        "quote_date": "13-Oct",
+        "notes": "independent \u2022 Quote: 14-Oct",
+        "quote_date": "14-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 10.35,
@@ -140,7 +140,7 @@
             "label": "Jet-A Turbine Fuel (Full-Serve)"
           },
           "SAF": {
-            "price": 14.33,
+            "price": 14.1,
             "type": "SAF",
             "service": "Full-Serve",
             "label": "SAF Sustainable Aviation Fuel (Full-Serve)"

@@ -765,6 +765,8 @@ function onBandsToggleChanged(plotId) {
         }
     }
     renderPlotlyChart(plotId, AppState.lastAnalysisResponse || {});
+}
+
 function onTimeUnitToggleChanged(plotId) {
     const isSeconds = !!document.getElementById(`timeUnitSec-${plotId}`)?.checked;
     AppState.ui.isSeconds = isSeconds;

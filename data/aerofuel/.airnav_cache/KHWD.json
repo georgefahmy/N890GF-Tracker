@@ -1,9 +1,13 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "_cached_at": 1791937397.737656,
 =======
   "_cached_at": 1791936902.8211863,
 >>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
+=======
+  "_cached_at": 1791995387.37201,
+>>>>>>> 6b65693 (updates)
   "icao": "KHWD",
   "data": {
     "icao": "KHWD",
@@ -136,7 +140,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.06,
+            "price": 8.24,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

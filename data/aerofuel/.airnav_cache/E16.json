@@ -1,9 +1,13 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "_cached_at": 1791937397.7422478,
 =======
   "_cached_at": 1791936902.8073382,
 >>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
+=======
+  "_cached_at": 1791995387.373586,
+>>>>>>> 6b65693 (updates)
   "icao": "E16",
   "data": {
     "icao": "E16",
@@ -78,7 +82,7 @@
             "label": "94UL Unleaded (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.68,
+            "price": 7.99,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
