@@ -152,11 +152,15 @@ function renderGami(data) {
         data.dataframe ||
         data.df;
 
-    // fallback time handling
+    // fallback time handling (minutes)
     const time =
-        (df && df.length && (df[0].time !== undefined))
-            ? df.map(r => r.time)
-            : data.plot_data.x;
+        (data.plot_data && Array.isArray(data.plot_data.x))
+            ? data.plot_data.x
+            : ((df && df.length && df[0].time !== undefined)
+                ? df.map(r => r.time)
+                : (df && df.length && df[0]['Session Time'] !== undefined)
+                    ? df.map(r => parseFloat(r['Session Time']) / 60.0)
+                    : []);
 
     // guard
     const metricsEl = getGamiElem('metrics');
@@ -301,20 +305,20 @@ function renderGami(data) {
         if (timeSelectionState.start !== null && timeSelectionState.end === null) {
             metricsEl.innerHTML = `
                 <b>Overall EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
-                <b>Start Time:</b> ${Number(timeSelectionState.start).toFixed(1)}s <span class="text-success ms-2 fw-bold">← Click a second point on the graph to set End Time</span>
+                <b>Start Time:</b> ${Number(timeSelectionState.start).toFixed(1)} min <span class="text-success ms-2 fw-bold">← Click a second point on the graph to set End Time</span>
             `;
         } else if (timeWindow && timeWindow.start != null && timeWindow.end != null) {
             metricsEl.innerHTML = `
                 <b>Overall EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
                 <b>GAMI Spread (ΔFF):</b> <span class="text-primary fw-bold fs-6">${gamiSpreadText} gal/hr</span><br>
-                <span class="text-muted small">Window: ${Number(timeSelectionState.start).toFixed(1)}s – ${Number(timeSelectionState.end).toFixed(1)}s (${(timeSelectionState.end - timeSelectionState.start).toFixed(1)}s)</span><br><br>
+                <span class="text-muted small">Window: ${Number(timeSelectionState.start).toFixed(1)} min – ${Number(timeSelectionState.end).toFixed(1)} min (${(timeSelectionState.end - timeSelectionState.start).toFixed(1)} min)</span><br><br>
                 <b>Peak EGTs:</b><br>
                 ${peakEgtSummary}
             `;
         } else {
             metricsEl.innerHTML = `
                 <b>Overall EGT Spread:</b> ${spread.toFixed(1)} °${tempUnit}<br>
-                <span class="text-muted small">Click any point on the EGT vs Time graph below to select a Lean Find window.</span>
+                <span class="text-muted small">Click 2 points (or box-select) on the EGT vs Time graph below to select a Lean Find window.</span>
             `;
         }
     }
@@ -403,11 +407,15 @@ function renderGami(data) {
             if (timeGraph && timeGraph.data) {
                 Plotly.relayout(timeGraph, { shapes: getSelectionShapes() });
             }
+            const scatterGraph = getGamiElem('scatterGraph');
+            if (scatterGraph && scatterGraph.data) {
+                Plotly.relayout(scatterGraph, { shapes: [] });
+            }
         }
 
         const timeLayout = {
             title: "EGT + Fuel Flow vs Time",
-            xaxis: { title: "Time" },
+            xaxis: { title: "Time (min)" },
             yaxis: { title: `EGT (°${tempUnit})` },
             yaxis2: {
                 title: "Fuel Flow",
@@ -437,6 +445,8 @@ function renderGami(data) {
 
         if (timeGraphDiv.removeAllListeners) {
             timeGraphDiv.removeAllListeners('plotly_click');
+            timeGraphDiv.removeAllListeners('plotly_selected');
+            timeGraphDiv.removeAllListeners('plotly_doubleclick');
             timeGraphDiv.removeAllListeners('plotly_hover');
             timeGraphDiv.removeAllListeners('plotly_unhover');
         }
@@ -445,7 +455,7 @@ function renderGami(data) {
         timeGraphDiv.on('plotly_click', function(eventdata) {
             if (!eventdata.points || eventdata.points.length === 0) return;
 
-            const x = Number(eventdata.points[0].x);
+            const x = Number(Number(eventdata.points[0].x).toFixed(2));
             if (isNaN(x)) return;
 
             // Check if start point is set and currently visible on the active plot zoom range
@@ -480,27 +490,48 @@ function renderGami(data) {
             renderGami(currentData);
         });
 
-        function drawCursor(plotId, x) {
-            const plotEl = getGamiElem(plotId);
-            if (!plotEl || !plotEl.data) return;
+        // Drag/Box-based time window selection
+        timeGraphDiv.on('plotly_selected', function(eventdata) {
+            if (!eventdata) return;
+            let start = null;
+            let end = null;
+            if (eventdata.range && eventdata.range.x && eventdata.range.x.length >= 2) {
+                start = Math.min(eventdata.range.x[0], eventdata.range.x[1]);
+                end = Math.max(eventdata.range.x[0], eventdata.range.x[1]);
+            } else if (eventdata.points && eventdata.points.length > 0) {
+                const xs = eventdata.points.map(p => Number(p.x)).filter(x => !isNaN(x));
+                if (xs.length > 0) {
+                    start = Math.min(...xs);
+                    end = Math.max(...xs);
+                }
+            }
+
+            if (start !== null && end !== null && Math.abs(end - start) > 0.001) {
+                timeSelectionState.start = Number(start.toFixed(2));
+                timeSelectionState.end = Number(end.toFixed(2));
+                timeWindow = {
+                    start: timeSelectionState.start,
+                    end: timeSelectionState.end
+                };
+                clickMarkers = [timeSelectionState.start, timeSelectionState.end];
+                renderGami(currentData);
+            }
+        });
+
+        // Double click resets window selection
+        timeGraphDiv.on('plotly_doubleclick', function() {
+            timeSelectionState.start = null;
+            timeSelectionState.end = null;
+            timeWindow = null;
+            clickMarkers = [];
+            renderGami(currentData);
+        });
+
+        function drawTimeCursor(x) {
+            const timeEl = getGamiElem('timeGraph');
+            if (!timeEl || !timeEl.data) return;
 
             const shapes = [...getSelectionShapes()];
-
-            // CLICK MARKERS (black persistent clicks)
-            clickMarkers.forEach(v => {
-                shapes.push({
-                    type: 'line',
-                    x0: v,
-                    x1: v,
-                    y0: 0,
-                    y1: 1,
-                    yref: 'paper',
-                    line: {
-                        color: 'black',
-                        width: 2
-                    }
-                });
-            });
 
             // CURSOR LINE (hover)
             if (x !== null && x !== undefined) {
@@ -519,13 +550,54 @@ function renderGami(data) {
                 });
             }
 
-            Plotly.relayout(plotEl, { shapes });
+            Plotly.relayout(timeEl, { shapes });
+        }
+
+        function drawScatterCursor(fuelVal) {
+            const scatterEl = getGamiElem('scatterGraph');
+            if (!scatterEl || !scatterEl.data) return;
+
+            const shapes = [];
+            if (fuelVal !== null && fuelVal !== undefined && !isNaN(fuelVal)) {
+                shapes.push({
+                    type: 'line',
+                    x0: fuelVal,
+                    x1: fuelVal,
+                    y0: 0,
+                    y1: 1,
+                    yref: 'paper',
+                    line: {
+                        color: 'rgba(0,0,0,0.35)',
+                        width: 1,
+                        dash: 'dot'
+                    }
+                });
+            }
+
+            Plotly.relayout(scatterEl, { shapes });
         }
 
         function syncCursor(x) {
             hoverX = x;
-            drawCursor('timeGraph', x);
-            drawCursor('scatterGraph', x);
+            drawTimeCursor(x);
+
+            // Find corresponding fuel flow at time x
+            let hoverFuel = null;
+            if (x !== null && x !== undefined && fuelTrace && time) {
+                let closestIdx = -1;
+                let minDiff = Infinity;
+                for (let i = 0; i < time.length; i++) {
+                    const diff = Math.abs(time[i] - x);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closestIdx = i;
+                    }
+                }
+                if (closestIdx !== -1 && fuelTrace.y[closestIdx] !== null && !isNaN(fuelTrace.y[closestIdx])) {
+                    hoverFuel = fuelTrace.y[closestIdx];
+                }
+            }
+            drawScatterCursor(hoverFuel);
         }
 
         // mouse hover cursor
@@ -548,7 +620,7 @@ function renderGami(data) {
         const colors = ['#0d6efd','#198754','#dc3545','#fd7e14'];
 
         const mask = time.map(t => {
-            if (!timeWindow) return true;
+            if (!timeWindow || timeWindow.start == null || timeWindow.end == null) return true;
             return t >= timeWindow.start && t <= timeWindow.end;
         });
 
@@ -558,10 +630,23 @@ function renderGami(data) {
         egtTraces.forEach((t, i) => {
             const color = colors[i % colors.length];
 
+            const xFiltered = [];
+            const yFiltered = [];
+            for (let j = 0; j < t.y.length; j++) {
+                if (mask[j]) {
+                    const ffVal = fuelTrace.y[j];
+                    const egtVal = t.y[j];
+                    if (ffVal !== null && !isNaN(ffVal) && ffVal > 0 && egtVal !== null && !isNaN(egtVal) && egtVal > 0) {
+                        xFiltered.push(ffVal);
+                        yFiltered.push(egtVal);
+                    }
+                }
+            }
+
             // main scatter trace
             scatter.push({
-                x: fuelTrace.y.filter((_, idx) => mask[idx]),
-                y: t.y.filter((_, idx) => mask[idx]),
+                x: xFiltered,
+                y: yFiltered,
                 mode: 'markers',
                 type: 'scatter',
                 name: t.name,
@@ -681,6 +766,7 @@ function renderGami(data) {
                     autorange: 'reversed'
                 },
                 yaxis: { title: `EGT (°${tempUnit})` },
+                shapes: [],
                 annotations: annotations,
                 hovermode: 'closest',
                 margin: { l: 60, r: 40, t: 40, b: 65 },
