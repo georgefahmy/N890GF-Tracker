@@ -1,13 +1,5 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "_cached_at": 1791937397.738883,
-=======
-  "_cached_at": 1791936902.8120158,
->>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
-=======
-  "_cached_at": 1791995387.372583,
->>>>>>> 6b65693 (updates)
+  "_cached_at": 1792096623.741492,
   "icao": "KSJC",
   "data": {
     "icao": "KSJC",
@@ -98,8 +90,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 14-Oct",
-        "quote_date": "14-Oct",
+        "notes": "independent \u2022 Quote: 15-Oct",
+        "quote_date": "15-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 12.17,
@@ -119,8 +111,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 14-Oct",
-        "quote_date": "14-Oct",
+        "notes": "independent \u2022 Quote: 15-Oct",
+        "quote_date": "15-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 13.75,
@@ -150,10 +142,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-13",
-    "source": "AirNav Local Fuel",
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
     "raw_ident": "KSJC",
     "airport_ref": "3883",
-    "fetched_at": "2026-10-14T00:15:00Z"
+    "fetched_at": null
   }
 }

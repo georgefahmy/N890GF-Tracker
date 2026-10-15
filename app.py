@@ -9,7 +9,7 @@ import subprocess
 import tempfile
 import threading
 import time
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from io import StringIO
 from logging.handlers import RotatingFileHandler
 
@@ -2741,6 +2741,240 @@ def gami():
 @app.route("/painting")
 def painting():
     return render_template("painting.html")
+
+
+# --- Sky Art & ForeFlight Exporter ---
+@app.route("/sky_art")
+@app.route("/flight_art")
+def sky_art():
+    return render_template("sky_art.html")
+
+
+_airports_summary_cache = None
+
+
+def get_airports_summary_list():
+    global _airports_summary_cache
+    if _airports_summary_cache is None:
+        try:
+            path = os.path.join(BASE_DIR, "data", "aerofuel", "airports_summary.json")
+            if os.path.exists(path):
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    if isinstance(data, dict):
+                        _airports_summary_cache = data.get("airports", [])
+                    elif isinstance(data, list):
+                        _airports_summary_cache = data
+                    else:
+                        _airports_summary_cache = []
+            else:
+                _airports_summary_cache = []
+        except Exception as e:
+            print("Error loading airports_summary:", e)
+            _airports_summary_cache = []
+    return _airports_summary_cache
+
+
+@app.route("/api/airports/search", methods=["GET"])
+def api_airports_search():
+    """Fast search for airports by ICAO/FAA code, name, or city."""
+    q = request.args.get("q", "").strip().upper()
+    if not q or len(q) < 2:
+        return jsonify([])
+    airports = get_airports_summary_list()
+    results = []
+    for ap in airports:
+        icao = (ap.get("icao") or "").upper()
+        faa = (ap.get("faa") or "").upper()
+        name = (ap.get("name") or "").upper()
+        city = (ap.get("city") or "").upper()
+        if (
+            q == icao
+            or q == faa
+            or icao.startswith(q)
+            or faa.startswith(q)
+            or q in name
+            or q in city
+        ):
+            results.append(
+                {
+                    "icao": ap.get("icao") or ap.get("faa"),
+                    "faa": ap.get("faa"),
+                    "name": ap.get("name"),
+                    "city": ap.get("city"),
+                    "state": ap.get("state"),
+                    "lat": ap.get("lat"),
+                    "lon": ap.get("lon"),
+                }
+            )
+            if len(results) >= 12:
+                break
+    return jsonify(results)
+
+
+@app.route("/api/sky_art/export_fpl", methods=["POST"])
+@app.route("/api/flight_art/export_fpl", methods=["POST"])
+def api_sky_art_export_fpl():
+    """Generates a downloadable ForeFlight/Garmin XML Flight Plan (.fpl)."""
+    try:
+        data = request.get_json(silent=True) or {}
+        waypoints = data.get("waypoints", [])
+        route_name = data.get("route_name", "N890GF_SKY_ART")
+
+        now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        xml_lines = [
+            '<?xml version="1.0" encoding="utf-8"?>',
+            '<flight-plan xmlns="http://www8.garmin.com/xmlschemas/FlightPlan/v1">',
+            f"  <created>{now_iso}</created>",
+            "  <waypoint-table>",
+        ]
+
+        for wp in waypoints:
+            w_id = wp.get("id", "WP")
+            w_type = wp.get("type", "USER WAYPOINT")
+            c_code = "US" if wp.get("isAirport") else ""
+            lat = f"{float(wp.get('lat', 0.0)):.6f}"
+            lon = f"{float(wp.get('lon', 0.0)):.6f}"
+            comment = wp.get("name", w_id)
+            xml_lines.extend(
+                [
+                    "    <waypoint>",
+                    f"      <identifier>{w_id}</identifier>",
+                    f"      <type>{w_type}</type>",
+                    f"      <country-code>{c_code}</country-code>",
+                    f"      <lat>{lat}</lat>",
+                    f"      <lon>{lon}</lon>",
+                    f"      <comment>{comment}</comment>",
+                    "    </waypoint>",
+                ]
+            )
+
+        xml_lines.extend(
+            [
+                "  </waypoint-table>",
+                "  <route>",
+                f"    <route-name>{route_name}</route-name>",
+                "    <flight-plan-index>1</flight-plan-index>",
+            ]
+        )
+
+        for wp in waypoints:
+            w_id = wp.get("id", "WP")
+            w_type = wp.get("type", "USER WAYPOINT")
+            xml_lines.extend(
+                [
+                    "    <route-point>",
+                    f"      <waypoint-identifier>{w_id}</waypoint-identifier>",
+                    f"      <waypoint-type>{w_type}</waypoint-type>",
+                ]
+            )
+            if wp.get("isAirport"):
+                xml_lines.append("      <country-code>US</country-code>")
+            xml_lines.append("    </route-point>")
+
+        xml_lines.extend(["  </route>", "</flight-plan>"])
+        xml_content = "\n".join(xml_lines)
+
+        resp = make_response(xml_content)
+        resp.headers["Content-Type"] = "application/xml"
+        resp.headers["Content-Disposition"] = (
+            f"attachment; filename={route_name}.fpl"
+        )
+        return resp
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+@app.route("/api/sky_art/export_gpx", methods=["POST"])
+@app.route("/api/flight_art/export_gpx", methods=["POST"])
+def api_sky_art_export_gpx():
+    """Generates a downloadable GPX flight plan."""
+    try:
+        data = request.get_json(silent=True) or {}
+        waypoints = data.get("waypoints", [])
+        route_name = data.get("route_name", "N890GF Sky Art")
+
+        xml_lines = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<gpx version="1.1" creator="N890GF Sky Art Planner" xmlns="http://www.topografix.com/GPX/1/1">',
+            f"  <metadata><name>{route_name}</name></metadata>",
+            "  <rte>",
+            f"    <name>{route_name}</name>",
+        ]
+
+        for wp in waypoints:
+            lat = f"{float(wp.get('lat', 0.0)):.6f}"
+            lon = f"{float(wp.get('lon', 0.0)):.6f}"
+            w_id = wp.get("id", "WP")
+            w_name = wp.get("name", w_id)
+            xml_lines.extend(
+                [
+                    f'    <rtept lat="{lat}" lon="{lon}">',
+                    f"      <name>{w_id}</name>",
+                    f"      <desc>{w_name}</desc>",
+                    "    </rtept>",
+                ]
+            )
+
+        xml_lines.extend(["  </rte>", "</gpx>"])
+        xml_content = "\n".join(xml_lines)
+
+        resp = make_response(xml_content)
+        resp.headers["Content-Type"] = "application/gpx+xml"
+        resp.headers["Content-Disposition"] = (
+            f"attachment; filename={route_name}.gpx"
+        )
+        return resp
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+@app.route("/api/sky_art/export_kml", methods=["POST"])
+@app.route("/api/flight_art/export_kml", methods=["POST"])
+def api_sky_art_export_kml():
+    """Generates a downloadable KML flight plan path."""
+    try:
+        data = request.get_json(silent=True) or {}
+        waypoints = data.get("waypoints", [])
+        route_name = data.get("route_name", "N890GF Sky Art")
+
+        xml_lines = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<kml xmlns="http://www.opengis.net/kml/2.2">',
+            "  <Document>",
+            f"    <name>{route_name}</name>",
+            "    <Placemark>",
+            f"      <name>{route_name} Path</name>",
+            "      <LineString>",
+            "        <tessellate>1</tessellate>",
+            "        <coordinates>",
+        ]
+
+        for wp in waypoints:
+            lat = f"{float(wp.get('lat', 0.0)):.6f}"
+            lon = f"{float(wp.get('lon', 0.0)):.6f}"
+            xml_lines.append(f"          {lon},{lat},0")
+
+        xml_lines.extend(
+            [
+                "        </coordinates>",
+                "      </LineString>",
+                "    </Placemark>",
+                "  </Document>",
+                "</kml>",
+            ]
+        )
+        xml_content = "\n".join(xml_lines)
+
+        resp = make_response(xml_content)
+        resp.headers["Content-Type"] = "application/vnd.google-earth.kml+xml"
+        resp.headers["Content-Disposition"] = (
+            f"attachment; filename={route_name}.kml"
+        )
+        return resp
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 
 @app.route("/api/saved_flights", methods=["GET"])

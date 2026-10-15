@@ -1,13 +1,5 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "_cached_at": 1791937397.7379148,
-=======
-  "_cached_at": 1791936902.814525,
->>>>>>> 7d902cb (Auto update: sync fuel prices and airport cache [skip ci])
-=======
-  "_cached_at": 1791995387.372172,
->>>>>>> 6b65693 (updates)
+  "_cached_at": 1792096623.741206,
   "icao": "KNUQ",
   "data": {
     "icao": "KNUQ",
@@ -125,10 +117,10 @@
     "fuels_available": [
       "Jet-A"
     ],
-    "last_updated": "2026-10-13",
-    "source": "AirNav Local Fuel",
+    "last_updated": null,
+    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
     "raw_ident": "KNUQ",
     "airport_ref": "3741",
-    "fetched_at": "2026-10-14T00:15:00Z"
+    "fetched_at": null
   }
 }
