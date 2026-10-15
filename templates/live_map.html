@@ -324,17 +324,26 @@
 <body>
 
     <!-- TOP ADSB CONTROL HEADER -->
-    <header class="adsb-header">
+    <header class="adsb-header" style="position: relative; z-index: 1060; overflow: visible;">
         <!-- Brand & Back Button -->
-        <div class="d-flex align-items-center gap-2">
-            <a class="navbar-brand text-white" href="/">✈️ N890GF</a>
-            <span class="fw-bold d-none d-md-inline-block text-nowrap" style="letter-spacing: -0.2px;">
-                ✈️ Live Traffic
+        <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <a class="btn btn-outline-light btn-sm py-1 px-2 d-flex align-items-center gap-1" href="/" title="Back to Flight Tracker">
+                <i class="bi bi-house-door-fill"></i> <span class="d-none d-sm-inline">Home</span>
+            </a>
+            <a class="navbar-brand text-white mb-0" href="/live_map">✈️ N890GF</a>
+            <span class="badge bg-info text-dark d-none d-sm-inline-block" style="font-size: 0.7rem; font-weight: 700;">
+                Live Traffic
             </span>
         </div>
 
+        <!-- Center Tools Navigation Bar -->
+        <div class="d-flex align-items-center gap-2 flex-nowrap tools-nav-wrapper py-1 mx-1" style="overflow: visible;">
+            {% set active_tool = 'live_map' %}
+            {% include 'tools_nav_bar.html' %}
+        </div>
+
         <!-- Center Unified Search Bar -->
-        <div class="unified-search-box flex-grow-1" style="max-width: 420px;">
+        <div class="unified-search-box flex-grow-1" style="max-width: 320px;">
             <i class="bi bi-search search-icon"></i>
             <input type="text" id="unifiedSearchInput" class="form-control" placeholder="Search flight, reg, hex, type, airport...">
             <button type="button" id="clearSearchBtn" class="clear-btn" title="Clear search">

@@ -26,15 +26,224 @@
             width: 100%;
             z-index: 1050;
         }
+        /* Modern Sticky Action Bar & Action Hub */
         .sticky-action-bar {
             position: sticky;
             top: 56px;
-            background-color: #f8f9fa;
+            background-color: rgba(248, 249, 250, 0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 1040;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+            padding-top: 0.65rem;
+            padding-bottom: 0.65rem;
             border-bottom: 1px solid #dee2e6;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        body.dark-mode .sticky-action-bar {
+            background-color: rgba(18, 18, 18, 0.96) !important;
+            border-bottom: 1px solid #2a2a2a !important;
+        }
+
+        .action-hub-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 0.6rem 0.85rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            transition: all 0.2s ease;
+        }
+
+        body.dark-mode .action-hub-card {
+            background: #1c1c1e;
+            border-color: #333336;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+        }
+
+        .action-hub-section {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+        }
+
+        .action-hub-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 7px;
+            border-radius: 6px;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .log-badge {
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        body.dark-mode .log-badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .tools-badge {
+            background: rgba(100, 116, 139, 0.1);
+            color: #64748b;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        body.dark-mode .tools-badge {
+            background: rgba(148, 163, 184, 0.15);
+            color: #94a3b8;
+            border-color: rgba(148, 163, 184, 0.25);
+        }
+
+        .action-hub-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        /* Primary Logging Action Buttons */
+        .btn-action-log {
+            font-weight: 600;
+            font-size: 0.84rem;
+            padding: 0.38rem 0.8rem;
+            border-radius: 8px;
+            border: none;
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .btn-log-flight {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
+        .btn-log-flight:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-log-mx {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        .btn-log-mx:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(245, 158, 11, 0.35);
+        }
+
+        .btn-log-fuel {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        .btn-log-fuel:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(16, 185, 129, 0.35);
+        }
+
+        /* Hub Vertical Divider */
+        .action-hub-divider {
+            width: 1px;
+            height: 28px;
+            background: #e2e8f0;
+            align-self: center;
+            margin: 0 0.15rem;
+        }
+
+        body.dark-mode .action-hub-divider {
+            background: #333336;
+        }
+
+        /* Modernized Tool Items */
+        .btn-tool-item {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #334155;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 0.34rem 0.65rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .btn-tool-item .tool-emoji {
+            font-size: 0.92rem;
+            line-height: 1;
+        }
+
+        .btn-tool-item:hover {
+            color: #0f172a;
+            background: #ffffff;
+            border-color: #94a3b8;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode .btn-tool-item {
+            color: #cbd5e1;
+            background: #262629;
+            border-color: #3f3f46;
+        }
+
+        body.dark-mode .btn-tool-item:hover {
+            color: #f8fafc;
+            background: #323236;
+            border-color: #71717a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Color Accent Markers for Desktop Tool Items */
+        .btn-tool-item.btn-tool-fuel-est { border-left: 3px solid #0dcaf0; }
+        .btn-tool-item.btn-tool-fuel-map { border-left: 3px solid #10b981; }
+        .btn-tool-item.btn-tool-live-map { border-left: 3px solid #38bdf8; }
+        .btn-tool-item.btn-tool-analyzer { border-left: 3px solid #ef4444; }
+        .btn-tool-item.btn-tool-multi-stats { border-left: 3px solid #a855f7; }
+        .btn-tool-item.btn-tool-sky-art { border-left: 3px solid #f59e0b; }
+        .btn-tool-item.btn-tool-db { border-left: 3px solid #3b82f6; }
+        .btn-tool-item.btn-tool-oil { border-left: 3px solid #14b8a6; }
+        .btn-tool-item.btn-tool-cloud { border-left: 3px solid #cbd5e1; }
+
+        @media (max-width: 1200px) {
+            .action-hub-card {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.65rem;
+            }
+            .action-hub-divider {
+                display: none;
+            }
+            .action-hub-section {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .tools-btn-group {
+                width: 100%;
+            }
         }
         .status-overdue { color: #dc3545; font-weight: bold; }
         .status-warning { color: #ffc107; font-weight: bold; }
@@ -595,6 +804,27 @@
                 margin-top: 2px;
                 line-height: 1.15;
             }
+
+            /* Tool Card Color Markers & Hover Glows */
+            .mobile-tool-card.tool-card-fuel-est { border-left: 3px solid #0dcaf0 !important; }
+            .mobile-tool-card.tool-card-fuel-map { border-left: 3px solid #10b981 !important; }
+            .mobile-tool-card.tool-card-live-traffic { border-left: 3px solid #38bdf8 !important; }
+            .mobile-tool-card.tool-card-analyzer { border-left: 3px solid #ef4444 !important; }
+            .mobile-tool-card.tool-card-multi-stats { border-left: 3px solid #a855f7 !important; }
+            .mobile-tool-card.tool-card-sky-art { border-left: 3px solid #f59e0b !important; }
+            .mobile-tool-card.tool-card-db { border-left: 3px solid #3b82f6 !important; }
+            .mobile-tool-card.tool-card-oil { border-left: 3px solid #14b8a6 !important; }
+            .mobile-tool-card.tool-card-cloud { border-left: 3px solid #cbd5e1 !important; }
+
+            .mobile-tool-card.tool-card-fuel-est:hover, .mobile-tool-card.tool-card-fuel-est:active { border-color: #0dcaf0; box-shadow: 0 0 12px rgba(13, 202, 240, 0.25); }
+            .mobile-tool-card.tool-card-fuel-map:hover, .mobile-tool-card.tool-card-fuel-map:active { border-color: #10b981; box-shadow: 0 0 12px rgba(16, 185, 129, 0.25); }
+            .mobile-tool-card.tool-card-live-traffic:hover, .mobile-tool-card.tool-card-live-traffic:active { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.25); }
+            .mobile-tool-card.tool-card-analyzer:hover, .mobile-tool-card.tool-card-analyzer:active { border-color: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.25); }
+            .mobile-tool-card.tool-card-multi-stats:hover, .mobile-tool-card.tool-card-multi-stats:active { border-color: #a855f7; box-shadow: 0 0 12px rgba(168, 85, 247, 0.25); }
+            .mobile-tool-card.tool-card-sky-art:hover, .mobile-tool-card.tool-card-sky-art:active { border-color: #f59e0b; box-shadow: 0 0 12px rgba(245, 158, 11, 0.25); }
+            .mobile-tool-card.tool-card-db:hover, .mobile-tool-card.tool-card-db:active { border-color: #3b82f6; box-shadow: 0 0 12px rgba(59, 130, 246, 0.25); }
+            .mobile-tool-card.tool-card-oil:hover, .mobile-tool-card.tool-card-oil:active { border-color: #14b8a6; box-shadow: 0 0 12px rgba(20, 184, 166, 0.25); }
+            .mobile-tool-card.tool-card-cloud:hover, .mobile-tool-card.tool-card-cloud:active { border-color: #cbd5e1; box-shadow: 0 0 12px rgba(203, 213, 225, 0.25); }
         }
     </style>
 </head>
@@ -666,27 +896,51 @@
 
 <div class="container">
     <div class="sticky-action-bar">
-        <div class="container">
-            <div class="row g-2 justify-content-center">
-                <div class="col-6 col-md-auto">
-                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#flightModal">Log Flight</button>
-                </div>
-                <div class="col-6 col-md-auto">
-                    <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#mxModal">Log Mx</button>
+        <div class="container px-2 px-md-3">
+            <div class="action-hub-card">
+                <!-- Group 1: Primary Logging Operations -->
+                <div class="action-hub-section log-section">
+                    <div class="action-hub-btn-group">
+                        <button class="btn btn-action-log btn-log-flight" data-bs-toggle="modal" data-bs-target="#flightModal">
+                            <i class="bi bi-airplane-fill me-1"></i> Log Flight
+                        </button>
+                        <button class="btn btn-action-log btn-log-mx" data-bs-toggle="modal" data-bs-target="#mxModal">
+                            <i class="bi bi-wrench-adjustable me-1"></i> Log Mx
+                        </button>
+                        <button class="btn btn-action-log btn-log-fuel" data-bs-toggle="modal" data-bs-target="#fuelModal">
+                            <i class="bi bi-fuel-pump-fill me-1"></i> Log Fuel
+                        </button>
+                    </div>
                 </div>
 
-                <div class="col-12 col-md-auto d-flex gap-2 flex-wrap justify-content-center">
-                    <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelModal">Log Fuel</button>
-                    <a href="/fuel_map" class="btn fuel-map-btn flex-grow-1 flex-md-grow-0">Fuel $$ Map</a>
-                    <button class="btn database-download-button flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#dbUpdateModal">Dynon DBs</button>
-                    <a href="/live_map" class="btn btn-info text-white flex-grow-1 flex-md-grow-0">Live Map</a>
-                    <a href="/analyzer" class="btn flight-analyzer-btn flex-grow-1 flex-md-grow-0">Analyzer</a>
-                    <a href="/sky_art" class="btn btn-outline-warning flex-grow-1 flex-md-grow-0">🎨 Sky Art</a>
-                    <a href="/multi_flight_stats" class="btn btn-outline-info flex-grow-1 flex-md-grow-0">Multi-Flight Stats</a>
+                <!-- Vertical Divider (Desktop) -->
+                <div class="action-hub-divider d-none d-md-block"></div>
 
-                    <button class="btn btn-outline-primary flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#oilAnalysisModal">Oil Analysis</button>
-                    <button class="btn btn-outline-info flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal">⛽ Fuel Estimator</button>
-                    <button class="btn btn-success flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#cloudModal">Cloud Base</button>
+                <!-- Group 2: Dedicated Tool Pages -->
+                <div class="action-hub-section tools-pages-section">
+                    {% set active_tool = '' %}
+                    {% include 'tools_nav_bar.html' %}
+                </div>
+
+                <!-- Vertical Divider (Desktop) -->
+                <div class="action-hub-divider d-none d-md-block"></div>
+
+                <!-- Group 3: Calculators & Utilities (Popups) -->
+                <div class="action-hub-section tools-popups-section">
+                    <div class="tools-nav-bar">
+                        <button type="button" class="btn-tool-item btn-tool-fuel-est" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal" title="Fuel Tank Dipstick &amp; Endurance Calculator">
+                            <span class="tool-emoji">⛽</span> Fuel Estimator
+                        </button>
+                        <button type="button" class="btn-tool-item btn-tool-oil" data-bs-toggle="modal" data-bs-target="#oilAnalysisModal" title="Spectrometric Oil Analysis &amp; Trends">
+                            <span class="tool-emoji">🧪</span> Oil Analysis
+                        </button>
+                        <button type="button" class="btn-tool-item btn-tool-cloud" data-bs-toggle="modal" data-bs-target="#cloudModal" title="Convective Cloud Base Ceiling Estimator">
+                            <span class="tool-emoji">☁️</span> Cloud Base
+                        </button>
+                        <button type="button" class="btn-tool-item btn-tool-db" data-bs-toggle="modal" data-bs-target="#dbUpdateModal" title="Dynon Aviation &amp; Obstacle Database Manager">
+                            <span class="tool-emoji">💾</span> Dynon DBs
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1748,61 +2002,77 @@
         <button type="button" class="btn-close btn-close-white" onclick="closeAllMobileSheets()" aria-label="Close"></button>
     </div>
     <div class="mobile-sheet-body">
-        <div class="row row-cols-2 g-2">
+        <div class="small fw-bold text-uppercase text-muted mb-2 px-1" style="font-size: 0.68rem; letter-spacing: 0.05em;">
+            Standalone Pages &amp; Radar
+        </div>
+        <div class="row row-cols-2 g-2 mb-3">
             <div class="col">
-                <button type="button" class="mobile-tool-card" style="border-left: 3px solid #0dcaf0;" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal" onclick="closeAllMobileSheets()">
-                    <span class="tool-icon">⛽</span>
-                    <span class="tool-name">Fuel Estimator</span>
-                    <span class="tool-desc">Dipstick & endurance calc</span>
-                </button>
-            </div>
-            <div class="col">
-                <a href="/fuel_map" class="mobile-tool-card fuel-map-card">
-                    <span class="tool-icon">🗺️</span>
-                    <span class="tool-name">Fuel $$ Map</span>
-                    <span class="tool-desc">Airport radar & prices</span>
-                </a>
-            </div>
-            <div class="col">
-                <a href="/live_map" class="mobile-tool-card live-map-card">
+                <a href="/live_map" class="mobile-tool-card live-map-card tool-card-live-traffic" style="border-left: 3px solid #38bdf8;">
                     <span class="tool-icon">📡</span>
                     <span class="tool-name">Live Traffic</span>
-                    <span class="tool-desc">ADS-B radar & N890GF</span>
+                    <span class="tool-desc">ADS-B radar &amp; N890GF</span>
                 </a>
             </div>
             <div class="col">
-                <a href="/analyzer" class="mobile-tool-card analyzer-card">
+                <a href="/fuel_map" class="mobile-tool-card fuel-map-card tool-card-fuel-map" style="border-left: 3px solid #10b981;">
+                    <span class="tool-icon">🗺️</span>
+                    <span class="tool-name">Fuel $$ Map</span>
+                    <span class="tool-desc">Airport radar &amp; prices</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/analyzer" class="mobile-tool-card analyzer-card tool-card-analyzer" style="border-left: 3px solid #ef4444;">
                     <span class="tool-icon">📈</span>
                     <span class="tool-name">Analyzer</span>
-                    <span class="tool-desc">Flight charts & telemetry</span>
+                    <span class="tool-desc">Flight charts &amp; telemetry</span>
                 </a>
             </div>
             <div class="col">
-                <a href="/multi_flight_stats" class="mobile-tool-card multi-stats-card">
+                <a href="/sky_art" class="mobile-tool-card tool-card-sky-art" style="border-left: 3px solid #f59e0b;">
+                    <span class="tool-icon">🎨</span>
+                    <span class="tool-name">Sky Art</span>
+                    <span class="tool-desc">FPL route &amp; GPS art</span>
+                </a>
+            </div>
+            <div class="col-12">
+                <a href="/multi_flight_stats" class="mobile-tool-card multi-stats-card tool-card-multi-stats" style="border-left: 3px solid #a855f7;">
                     <span class="tool-icon">📊</span>
-                    <span class="tool-name">Multi-Stats</span>
-                    <span class="tool-desc">Fleet trends & metrics</span>
+                    <span class="tool-name">Multi-Flight Stats</span>
+                    <span class="tool-desc">Fleet statistics, thermal trends &amp; fuel metrics</span>
                 </a>
             </div>
+        </div>
+
+        <div class="small fw-bold text-uppercase text-muted mb-2 px-1 border-top pt-2" style="font-size: 0.68rem; letter-spacing: 0.05em;">
+            Calculators &amp; Utilities
+        </div>
+        <div class="row row-cols-2 g-2">
             <div class="col">
-                <button type="button" class="mobile-tool-card db-card" data-bs-toggle="modal" data-bs-target="#dbUpdateModal" onclick="closeAllMobileSheets()">
-                    <span class="tool-icon">💾</span>
-                    <span class="tool-name">Dynon DBs</span>
-                    <span class="tool-desc">Aviation & obstacle data</span>
+                <button type="button" class="mobile-tool-card tool-card-fuel-est" style="border-left: 3px solid #0dcaf0;" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal" onclick="closeAllMobileSheets()">
+                    <span class="tool-icon">⛽</span>
+                    <span class="tool-name">Fuel Estimator</span>
+                    <span class="tool-desc">Dipstick &amp; endurance calc</span>
                 </button>
             </div>
             <div class="col">
-                <button type="button" class="mobile-tool-card oil-card" data-bs-toggle="modal" data-bs-target="#oilAnalysisModal" onclick="closeAllMobileSheets()">
+                <button type="button" class="mobile-tool-card oil-card tool-card-oil" style="border-left: 3px solid #14b8a6;" data-bs-toggle="modal" data-bs-target="#oilAnalysisModal" onclick="closeAllMobileSheets()">
                     <span class="tool-icon">🧪</span>
                     <span class="tool-name">Oil Analysis</span>
                     <span class="tool-desc">Spectrometric trends</span>
                 </button>
             </div>
             <div class="col">
-                <button type="button" class="mobile-tool-card cloud-card" data-bs-toggle="modal" data-bs-target="#cloudModal" onclick="closeAllMobileSheets()">
+                <button type="button" class="mobile-tool-card cloud-card tool-card-cloud" style="border-left: 3px solid #cbd5e1;" data-bs-toggle="modal" data-bs-target="#cloudModal" onclick="closeAllMobileSheets()">
                     <span class="tool-icon">☁️</span>
                     <span class="tool-name">Cloud Base</span>
                     <span class="tool-desc">Convective ceiling calc</span>
+                </button>
+            </div>
+            <div class="col">
+                <button type="button" class="mobile-tool-card db-card tool-card-db" style="border-left: 3px solid #3b82f6;" data-bs-toggle="modal" data-bs-target="#dbUpdateModal" onclick="closeAllMobileSheets()">
+                    <span class="tool-icon">💾</span>
+                    <span class="tool-name">Dynon DBs</span>
+                    <span class="tool-desc">Aviation &amp; obstacle data</span>
                 </button>
             </div>
         </div>

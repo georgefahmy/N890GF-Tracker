@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791936943.2454567,
+  "_cached_at": 1792103268.573619,
   "icao": "KSCK",
   "data": {
     "icao": "KSCK",
@@ -95,8 +95,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 13-Oct",
-        "quote_date": "13-Oct",
+        "notes": "independent \u2022 Quote: 15-Oct",
+        "quote_date": "15-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 8.22,
@@ -119,10 +119,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-13",
+    "last_updated": "2026-10-15",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSCK",
     "airport_ref": "3872",
-    "fetched_at": "2026-10-14T00:15:40Z"
+    "fetched_at": "2026-10-15T22:27:47Z"
   }
 }

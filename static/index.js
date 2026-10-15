@@ -604,7 +604,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1. Check if there is a hash in the URL (e.g., #fuel)
     const hash = window.location.hash;
 
-    if (hash) {
+    // Check if URL has ?modal= or hash targeting a modal to auto-open
+    const urlParams = new URLSearchParams(window.location.search);
+    const modalId = urlParams.get('modal') || (hash && hash.includes('Modal') ? hash.replace('#', '') : null);
+    if (modalId) {
+        const modalEl = document.getElementById(modalId);
+        if (modalEl) {
+            const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            bsModal.show();
+        }
+    }
+
+    if (hash && !modalId) {
         // Find the tab trigger button that corresponds to this ID
         // The ID of the pane is 'fuel', but the button ID is 'fuel-tab'
         const tabTriggerEl = document.querySelector(`.nav-link[data-bs-target="${hash}"]`);

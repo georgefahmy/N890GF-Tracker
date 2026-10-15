@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610813.6009753,
+  "_cached_at": 1792103283.4626749,
   "icao": "KFAT",
   "data": {
     "icao": "KFAT",
@@ -100,8 +100,8 @@
         "name": "Atlantic Aviation",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 09-Oct",
-        "quote_date": "09-Oct",
+        "notes": "World Fuel Services \u2022 Quote: 15-Oct",
+        "quote_date": "15-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 8.95,
@@ -110,7 +110,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.4,
+            "price": 9.57,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -121,8 +121,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 10-Oct",
-        "quote_date": "10-Oct",
+        "notes": "independent \u2022 Quote: 15-Oct",
+        "quote_date": "15-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 9.02,
@@ -131,7 +131,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 9.33,
+            "price": 9.5,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

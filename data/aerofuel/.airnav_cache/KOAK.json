@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792096623.741384,
+  "_cached_at": 1792105102.050973,
   "icao": "KOAK",
   "data": {
     "icao": "KOAK",
@@ -161,10 +161,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-08",
+    "last_updated": "2026-10-15",
     "source": "AirNav Local Fuel",
     "raw_ident": "KOAK",
     "airport_ref": "3744",
-    "fetched_at": "2026-10-08T15:41:29Z"
+    "fetched_at": "2026-10-15T22:27:47Z"
   }
 }

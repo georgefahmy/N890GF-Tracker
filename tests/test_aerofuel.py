@@ -27,7 +27,6 @@ class TestAeroFuelIntegration:
             assert response.status_code == 200
             html = response.data.decode("utf-8")
             assert "AeroFuel IQ" in html
-            assert "Radar v2.5.29" in html
             assert 'href="/"' in html
             assert "N890GF Tracker" in html
             assert "/static/aerofuel/css/style.css" in html

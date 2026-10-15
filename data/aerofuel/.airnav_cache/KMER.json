@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791936943.2475662,
+  "_cached_at": 1792103283.4620118,
   "icao": "KMER",
   "data": {
     "icao": "KMER",
@@ -58,8 +58,8 @@
         "name": "KT Aero",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 05-Oct",
-        "quote_date": "05-Oct",
+        "notes": "Phillips 66 \u2022 Quote: 14-Oct",
+        "quote_date": "14-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 7.8,

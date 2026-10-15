@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791936943.249992,
+  "_cached_at": 1792103283.46154,
   "icao": "KMCE",
   "data": {
     "icao": "KMCE",
@@ -58,8 +58,8 @@
         "name": "Gateway Air Center",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 05-Oct",
-        "quote_date": "05-Oct",
+        "notes": "Quote: 14-Oct",
+        "quote_date": "14-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.91,
@@ -74,7 +74,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.51,
+            "price": 8.71,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

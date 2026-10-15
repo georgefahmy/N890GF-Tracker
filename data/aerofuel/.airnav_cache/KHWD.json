@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792096623.741087,
+  "_cached_at": 1792105102.050668,
   "icao": "KHWD",
   "data": {
     "icao": "KHWD",
@@ -147,10 +147,10 @@
       "94UL",
       "Jet-A"
     ],
-    "last_updated": null,
-    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "last_updated": "2026-10-15",
+    "source": "AirNav Local Fuel",
     "raw_ident": "KHWD",
     "airport_ref": "20101",
-    "fetched_at": null
+    "fetched_at": "2026-10-15T22:27:47Z"
   }
 }

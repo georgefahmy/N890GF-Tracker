@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792096623.741301,
+  "_cached_at": 1792105102.050889,
   "icao": "KHAF",
   "data": {
     "icao": "KHAF",
@@ -53,8 +53,8 @@
         "name": "County of San Mateo (FBO)",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 06-Oct",
-        "quote_date": "06-Oct",
+        "notes": "Quote: 15-Oct",
+        "quote_date": "15-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.19,

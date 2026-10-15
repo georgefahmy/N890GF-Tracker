@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792096623.741907,
+  "_cached_at": 1792105102.051649,
   "icao": "C83",
   "data": {
     "icao": "C83",
@@ -82,10 +82,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": null,
-    "source": "FAA National Airspace System Resource (NASR) / OurAirports",
+    "last_updated": "2026-10-15",
+    "source": "AirNav Local Fuel",
     "raw_ident": "KC83",
     "airport_ref": "19456",
-    "fetched_at": null
+    "fetched_at": "2026-10-15T22:27:47Z"
   }
 }

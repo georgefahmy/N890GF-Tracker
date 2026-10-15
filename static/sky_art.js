@@ -496,6 +496,54 @@
         simplifyProjectedRoute();
     }
 
+    // Convert a projected Lat/Lon back to normalized base point [-0.5, 0.5]
+    function unprojectPoint(lat, lon) {
+        const theta = toRad(ArtState.rotationDeg);
+        const cosT = Math.cos(theta);
+        const sinT = Math.sin(theta);
+        const centerLat = ArtState.center.lat;
+        const centerLon = ArtState.center.lon;
+        const cosLat = Math.cos(toRad(centerLat)) || 1.0;
+        const nmToLatDeg = 1.0 / 60.0;
+        const nmToLonDeg = (1.0 / 60.0) / Math.max(cosLat, 0.05);
+        const widthNM = ArtState.sizeNM || 12;
+        const heightNM = ArtState.heightNM || (widthNM * (ArtState.aspectRatio || 1.0));
+
+        const ry = (lat - centerLat) / nmToLatDeg;
+        const rx = (lon - centerLon) / nmToLonDeg;
+
+        let sx = rx * cosT + ry * sinT;
+        let sy = -rx * sinT + ry * cosT;
+
+        let nx = sx / widthNM;
+        let ny = sy / heightNM;
+
+        if (ArtState.flipH) nx = -nx;
+        if (ArtState.flipV) ny = -ny;
+
+        return { x: nx, y: ny };
+    }
+
+    // Delete an individual waypoint from the sky art route
+    function deleteWaypoint(artIdx) {
+        if (!ArtState.projectedPoints || ArtState.projectedPoints.length <= 2) {
+            alert("A sky art flight path requires at least 2 waypoints.");
+            return;
+        }
+        if (artIdx < 0 || artIdx >= ArtState.projectedPoints.length) return;
+
+        HistoryManager.pushState();
+
+        ArtState.projectedPoints.splice(artIdx, 1);
+        ArtState.rawProjectedPoints = ArtState.projectedPoints.map(p => ({ lat: p.lat, lon: p.lon }));
+        ArtState.basePoints = ArtState.projectedPoints.map(p => unprojectPoint(p.lat, p.lon));
+
+        buildFullFlightPlan();
+        renderRouteOnMap();
+        updateStatsHUD();
+        renderWaypointTable();
+    }
+
     // --- Entry / Exit Waypoint Optimization ---
     // Optimizes entry/exit points for connected airports to prevent transit legs
     // from needlessly crossing/cutting through closed artwork loops or open shapes.
@@ -734,7 +782,14 @@
                 draggable: true
             }).addTo(ArtState.map);
 
-            marker.bindTooltip(`WP${idx + 1}: ${pt.lat.toFixed(4)}, ${pt.lon.toFixed(4)}`, { direction: 'top' });
+            marker.bindTooltip(`<strong>WP${idx + 1}</strong><br><span class="text-muted small">${pt.lat.toFixed(4)}°, ${pt.lon.toFixed(4)}°</span><br><span class="text-danger small" style="font-size:0.72rem;"><i class="bi bi-trash3 me-1"></i>Right-click to delete</span>`, { direction: 'top' });
+
+            // Right-click to delete waypoint
+            marker.on('contextmenu', function (e) {
+                L.DomEvent.stopPropagation(e);
+                L.DomEvent.preventDefault(e);
+                deleteWaypoint(idx);
+            });
 
             // Push history before dragging
             marker.on('dragstart', function () {
@@ -780,6 +835,14 @@
                         [ArtState.arrAirport.lat, ArtState.arrAirport.lon]
                     ]);
                 }
+            });
+
+            marker.on('dragend', function (e) {
+                const pos = e.target.getLatLng();
+                ArtState.projectedPoints[idx].lat = pos.lat;
+                ArtState.projectedPoints[idx].lon = pos.lng;
+                ArtState.basePoints[idx] = unprojectPoint(pos.lat, pos.lng);
+                ArtState.rawProjectedPoints[idx] = { lat: pos.lat, lon: pos.lng };
             });
 
             ArtState.mapMarkers.push(marker);
@@ -921,7 +984,7 @@
         if (!tbody) return;
 
         if (!ArtState.waypoints || ArtState.waypoints.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-3">No waypoints loaded</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-3">No waypoints loaded</td></tr>';
             return;
         }
 
@@ -949,10 +1012,27 @@
                 <td>${i === 0 ? '--' : legDist.toFixed(1) + ' NM'}</td>
                 <td>${i === 0 ? '--' : Math.round(legBearing) + '°'}</td>
                 <td class="fw-bold">${cumDist.toFixed(1)} NM</td>
+                <td class="text-center">
+                    ${wp.isAirport ? '<span class="text-muted small opacity-50" title="Airport endpoint">--</span>' : `
+                    <button class="btn btn-outline-danger btn-sm py-0 px-2 delete-waypoint-leg-btn" data-art-idx="${wp.artIndex}" title="Delete WP${wp.artIndex + 1}">
+                        <i class="bi bi-trash3"></i>
+                    </button>`}
+                </td>
             </tr>`;
         }
 
         tbody.innerHTML = html;
+
+        // Attach delete listeners
+        tbody.querySelectorAll('.delete-waypoint-leg-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const artIdx = parseInt(this.getAttribute('data-art-idx'), 10);
+                if (!isNaN(artIdx)) {
+                    deleteWaypoint(artIdx);
+                }
+            });
+        });
     }
 
     // --- Path Chaining Helper (Nearest Neighbor TSP) ---
@@ -1708,13 +1788,54 @@
     const SAVED_DRAWINGS_STORAGE_KEY = 'sky_art_saved_drawings';
     const LEGACY_SAVED_DRAWINGS_STORAGE_KEY = 'flight_art_saved_drawings';
 
+    let inMemorySavedDrawings = null;
+
     function getSavedDrawings() {
+        if (inMemorySavedDrawings !== null) return inMemorySavedDrawings;
         try {
             const raw = localStorage.getItem(SAVED_DRAWINGS_STORAGE_KEY) || localStorage.getItem(LEGACY_SAVED_DRAWINGS_STORAGE_KEY);
-            return raw ? JSON.parse(raw) : [];
+            inMemorySavedDrawings = raw ? JSON.parse(raw) : [];
         } catch (err) {
             console.error("Error loading saved drawings from localStorage:", err);
-            return [];
+            inMemorySavedDrawings = [];
+        }
+        return inMemorySavedDrawings;
+    }
+
+    async function syncSavedDrawingsWithServer() {
+        try {
+            const res = await fetch('/api/sky_art/drawings');
+            if (res.ok) {
+                const serverDrawings = await res.json();
+                const localDrawings = getSavedDrawings();
+
+                const mergedMap = new Map();
+                // Add server drawings first
+                serverDrawings.forEach(d => mergedMap.set(d.id, d));
+
+                // Check for local drawings that aren't on server yet, and upload them
+                for (const localD of localDrawings) {
+                    if (!mergedMap.has(localD.id)) {
+                        mergedMap.set(localD.id, localD);
+                        fetch('/api/sky_art/drawings', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(localD)
+                        }).catch(e => console.warn("Background upload error:", e));
+                    }
+                }
+
+                inMemorySavedDrawings = Array.from(mergedMap.values());
+                inMemorySavedDrawings.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+
+                try {
+                    localStorage.setItem(SAVED_DRAWINGS_STORAGE_KEY, JSON.stringify(inMemorySavedDrawings));
+                } catch (e) {}
+
+                renderSavedDrawingsDropdown();
+            }
+        } catch (err) {
+            console.warn("Could not sync saved drawings with server (using local cache):", err);
         }
     }
 
@@ -1740,6 +1861,7 @@
         };
 
         drawings.unshift(newDrawing); // Newest at top
+        inMemorySavedDrawings = drawings;
         try {
             localStorage.setItem(SAVED_DRAWINGS_STORAGE_KEY, JSON.stringify(drawings));
         } catch (err) {
@@ -1749,18 +1871,38 @@
         }
 
         renderSavedDrawingsDropdown();
+
+        // Also persist to server database
+        fetch('/api/sky_art/drawings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newDrawing)
+        }).then(res => {
+            if (!res.ok) console.warn("Server save returned non-OK status");
+        }).catch(err => {
+            console.error("Error persisting drawing to server:", err);
+        });
+
         return true;
     }
 
     function deleteSavedDrawing(id) {
         let drawings = getSavedDrawings();
         drawings = drawings.filter(d => d.id !== id);
+        inMemorySavedDrawings = drawings;
         try {
             localStorage.setItem(SAVED_DRAWINGS_STORAGE_KEY, JSON.stringify(drawings));
         } catch (err) {
             console.error("Error updating saved drawings:", err);
         }
         renderSavedDrawingsDropdown();
+
+        // Also delete from server database
+        fetch('/api/sky_art/drawings/' + encodeURIComponent(id), {
+            method: 'DELETE'
+        }).catch(err => {
+            console.error("Error deleting drawing from server:", err);
+        });
     }
 
     function loadSavedDrawing(id) {
@@ -2960,6 +3102,7 @@
         updateHomeAirportUI();
         syncDimensionInputs();
         renderSavedDrawingsDropdown();
+        syncSavedDrawingsWithServer();
         HistoryManager.updateButtons();
     });
 

@@ -152,3 +152,59 @@ class TestSkyArt:
                 xml_str = resp.data.decode("utf-8")
                 root = ET.fromstring(xml_str)
                 assert "kml" in root.tag
+
+    def test_sky_art_drawings_crud_api(self, app, client):
+        """Verify server-side CRUD persistence for Sky Art drawings across browsers."""
+        with app.app_context():
+            # 1. Initially list drawings
+            res = client.get("/api/sky_art/drawings")
+            assert res.status_code == 200
+            initial_list = res.get_json()
+            assert isinstance(initial_list, list)
+
+            # 2. Save a new drawing
+            test_id = "art_test_123456"
+            payload = {
+                "id": test_id,
+                "name": "Server Persisted Test Art",
+                "aspectRatio": 0.47,
+                "sizeNM": 11.5,
+                "heightNM": 5.4,
+                "lockAspect": True,
+                "routeReversed": False,
+                "basePoints": [
+                    {"x": -0.5, "y": 0.0},
+                    {"x": 0.0, "y": 0.5},
+                    {"x": 0.5, "y": -0.5}
+                ]
+            }
+            post_res = client.post("/api/sky_art/drawings", json=payload)
+            assert post_res.status_code == 200
+            data = post_res.get_json()
+            assert data["status"] == "success"
+            assert data["drawing"]["id"] == test_id
+            assert data["drawing"]["name"] == "Server Persisted Test Art"
+            assert data["drawing"]["aspectRatio"] == 0.47
+            assert len(data["drawing"]["basePoints"]) == 3
+
+            # 3. Verify it is returned in GET
+            get_res = client.get("/api/sky_art/drawings")
+            assert get_res.status_code == 200
+            drawings = get_res.get_json()
+            found = [d for d in drawings if d["id"] == test_id]
+            assert len(found) == 1
+            assert found[0]["name"] == "Server Persisted Test Art"
+
+            # 4. Verify legacy endpoint works as alias
+            alias_res = client.get("/api/flight_art/drawings")
+            assert alias_res.status_code == 200
+            assert any(d["id"] == test_id for d in alias_res.get_json())
+
+            # 5. Delete drawing
+            del_res = client.delete(f"/api/sky_art/drawings/{test_id}")
+            assert del_res.status_code == 200
+            assert del_res.get_json()["status"] == "success"
+
+            # 6. Verify deletion
+            get_after = client.get("/api/sky_art/drawings")
+            assert not any(d["id"] == test_id for d in get_after.get_json())

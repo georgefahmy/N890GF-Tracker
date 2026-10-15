@@ -117,16 +117,22 @@
 <body style="padding-top: 70px;">
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index: 1060; overflow: visible;">
+        <div class="container-fluid" style="overflow: visible;">
             <div class="d-flex align-items-center gap-2">
                 <a href="/" class="btn btn-outline-light btn-sm" title="Back to Flight Tracker"><i class="bi bi-house-door-fill"></i> Home</a>
-                <a class="navbar-brand fw-bold mb-0 py-0 ms-1" href="/analyzer"><i class="bi bi-arrow-left"></i> Analyzer</a>
+                <a class="navbar-brand fw-bold mb-0 py-0 ms-1 d-flex align-items-center gap-2" href="/multi_flight_stats">
+                    <span>✈️ N890GF</span>
+                    <span class="badge text-light" style="font-size: 0.7rem; font-weight: 600; background: #8b5cf6;">Multi-Stats</span>
+                </a>
             </div>
-            <span class="navbar-text text-white fw-semibold d-none d-md-inline">✈️ Fleet Multi-Flight Statistics Dashboard</span>
-            <div class="d-flex align-items-center gap-2">
-                <a href="/sky_art" class="btn btn-outline-warning btn-sm d-none d-sm-inline-flex align-items-center gap-1"><i class="bi bi-palette-fill"></i> Sky Art</a>
-                <a href="/analyzer" class="btn btn-outline-light btn-sm d-none d-sm-inline-flex align-items-center gap-1"><i class="bi bi-graph-up"></i> Analyzer Workspace</a>
+
+            <div class="d-flex align-items-center gap-2 mx-auto flex-nowrap tools-nav-wrapper py-1" style="overflow: visible;">
+                {% set active_tool = 'multi_stats' %}
+                {% include 'tools_nav_bar.html' %}
+            </div>
+
+            <div class="d-flex align-items-center gap-2 ms-auto flex-shrink-0">
                 <button id="themeToggle" class="btn btn-sm btn-outline-light" title="Toggle theme">🌙</button>
             </div>
         </div>

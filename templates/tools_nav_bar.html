@@ -1,0 +1,332 @@
+<!-- Standardized Tools Navigation Component (Desktop Strip + Mobile Dropdown Menu) -->
+<style>
+.tools-nav-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 0;
+    overflow: visible !important;
+    position: relative;
+    z-index: 2000;
+}
+
+/* Desktop Horizontal Strip */
+.tools-desktop-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 0;
+}
+.tools-desktop-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.tools-nav-wrapper .btn-tool-item {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #334155;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0.3rem 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    line-height: 1.25;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.tools-nav-wrapper .btn-tool-item .tool-emoji {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.tools-nav-wrapper .btn-tool-item:hover {
+    color: #0f172a;
+    background: #ffffff;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.tools-nav-wrapper .btn-tool-item.active {
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 700;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark mode support */
+body.dark-mode .tools-nav-wrapper .btn-tool-item,
+[data-bs-theme="dark"] .tools-nav-wrapper .btn-tool-item,
+#app-container .tools-nav-wrapper .btn-tool-item {
+    color: #cbd5e1;
+    background: #262629;
+    border-color: #3f3f46;
+}
+
+body.dark-mode .tools-nav-wrapper .btn-tool-item:hover,
+[data-bs-theme="dark"] .tools-nav-wrapper .btn-tool-item:hover,
+#app-container .tools-nav-wrapper .btn-tool-item:hover {
+    color: #f8fafc;
+    background: #323236;
+    border-color: #71717a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .tools-nav-wrapper .btn-tool-item.active,
+[data-bs-theme="dark"] .tools-nav-wrapper .btn-tool-item.active,
+#app-container .tools-nav-wrapper .btn-tool-item.active {
+    color: #ffffff;
+    background: #38383e;
+    border-color: #52525b;
+}
+
+/* Color Accent Markers for Standalone Page Tools */
+.tools-nav-wrapper .btn-tool-live-map    { border-left: 3px solid #38bdf8 !important; }
+.tools-nav-wrapper .btn-tool-fuel-map    { border-left: 3px solid #10b981 !important; }
+.tools-nav-wrapper .btn-tool-analyzer    { border-left: 3px solid #ef4444 !important; }
+.tools-nav-wrapper .btn-tool-sky-art     { border-left: 3px solid #f59e0b !important; }
+.tools-nav-wrapper .btn-tool-multi-stats { border-left: 3px solid #a855f7 !important; }
+.tools-nav-wrapper .btn-tool-fuel-est    { border-left: 3px solid #0dcaf0 !important; }
+.tools-nav-wrapper .btn-tool-oil         { border-left: 3px solid #14b8a6 !important; }
+.tools-nav-wrapper .btn-tool-cloud       { border-left: 3px solid #cbd5e1 !important; }
+.tools-nav-wrapper .btn-tool-db          { border-left: 3px solid #3b82f6 !important; }
+
+/* Mobile Collapsed Menu (< 992px) */
+.tools-mobile-menu {
+    display: none;
+    position: relative;
+    z-index: 2100;
+}
+
+.tools-mobile-btn {
+    border-left: 3px solid #38bdf8 !important;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.tools-dropdown-menu {
+    display: none; /* Defaults to CLOSED */
+    min-width: 210px;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    z-index: 99999 !important;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 4px);
+    margin: 0;
+    list-style: none;
+}
+
+.tools-dropdown-menu.show {
+    display: block !important; /* Open state */
+}
+
+.tools-dropdown-header {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #64748b;
+    padding: 6px 10px 4px 10px;
+    margin: 0;
+}
+
+.tools-dropdown-item {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #334155;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 2px;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.tools-dropdown-item:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.tools-dropdown-item.active {
+    background: rgba(56, 189, 248, 0.12);
+    color: #0284c7;
+    font-weight: 700;
+}
+
+/* Dark mode for dropdown */
+body.dark-mode .tools-dropdown-menu,
+[data-bs-theme="dark"] .tools-dropdown-menu,
+#app-container .tools-dropdown-menu {
+    background: #1e293b;
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .tools-dropdown-header,
+[data-bs-theme="dark"] .tools-dropdown-header,
+#app-container .tools-dropdown-header {
+    color: #94a3b8;
+}
+
+body.dark-mode .tools-dropdown-item,
+[data-bs-theme="dark"] .tools-dropdown-item,
+#app-container .tools-dropdown-item {
+    color: #cbd5e1;
+}
+
+body.dark-mode .tools-dropdown-item:hover,
+[data-bs-theme="dark"] .tools-dropdown-item:hover,
+#app-container .tools-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+body.dark-mode .tools-dropdown-item.active,
+[data-bs-theme="dark"] .tools-dropdown-item.active,
+#app-container .tools-dropdown-item.active {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+/* Responsive breakpoint: collapse on mobile & small screens (< 992px) */
+@media (max-width: 991px) {
+    .tools-desktop-bar {
+        display: none !important;
+    }
+    .tools-mobile-menu {
+        display: inline-block !important;
+    }
+}
+
+/* On Desktop Tracker Action Hub Card, always keep the full strip */
+.action-hub-card .tools-desktop-bar {
+    display: inline-flex !important;
+}
+.action-hub-card .tools-mobile-menu {
+    display: none !important;
+}
+</style>
+
+<div class="tools-nav-wrapper">
+    <!-- Desktop View: Horizontal Strip (>= 992px) -->
+    <div class="tools-desktop-bar">
+        <a href="/live_map" class="btn-tool-item btn-tool-live-map {{ 'active' if active_tool == 'live_map' else '' }}" title="Live ADS-B Radar &amp; N890GF Traffic">
+            <span class="tool-emoji">📡</span> Live Map
+        </a>
+        <a href="/fuel_map" class="btn-tool-item btn-tool-fuel-map {{ 'active' if active_tool == 'fuel_map' else '' }}" title="Airport Fuel Radar &amp; Lowest Prices">
+            <span class="tool-emoji">🗺️</span> Fuel $$ Map
+        </a>
+        <a href="/analyzer" class="btn-tool-item btn-tool-analyzer {{ 'active' if active_tool == 'analyzer' else '' }}" title="Flight Data Charts &amp; Telemetry Analyzer">
+            <span class="tool-emoji">📈</span> Analyzer
+        </a>
+        <a href="/sky_art" class="btn-tool-item btn-tool-sky-art {{ 'active' if active_tool == 'sky_art' else '' }}" title="GPS Sky Art &amp; ForeFlight FPL Generator">
+            <span class="tool-emoji">🎨</span> Sky Art
+        </a>
+        <a href="/multi_flight_stats" class="btn-tool-item btn-tool-multi-stats {{ 'active' if active_tool == 'multi_stats' else '' }}" title="Fleet Multi-Flight Statistics &amp; Trends">
+            <span class="tool-emoji">📊</span> Multi-Stats
+        </a>
+    </div>
+
+    <!-- Mobile View: Collapsed Menu Button (< 992px) -->
+    <div class="tools-mobile-menu">
+        <button class="btn btn-tool-item tools-mobile-btn dropdown-toggle" type="button" id="toolsNavDropdownBtn" aria-expanded="false" onclick="toggleToolsMobileMenu(event, this)">
+            <span class="tool-emoji">🧭</span>
+            <span>Tools</span>
+        </button>
+        <ul class="tools-dropdown-menu" id="toolsDropdownMenu" aria-labelledby="toolsNavDropdownBtn">
+            <li class="tools-dropdown-header">Navigation &amp; Workspaces</li>
+            <li>
+                <a class="tools-dropdown-item {{ 'active' if active_tool == 'live_map' else '' }}" href="/live_map" style="border-left: 3px solid #38bdf8;">
+                    <span>📡</span> <span>Live Map</span>
+                </a>
+            </li>
+            <li>
+                <a class="tools-dropdown-item {{ 'active' if active_tool == 'fuel_map' else '' }}" href="/fuel_map" style="border-left: 3px solid #10b981;">
+                    <span>🗺️</span> <span>Fuel $$ Map</span>
+                </a>
+            </li>
+            <li>
+                <a class="tools-dropdown-item {{ 'active' if active_tool == 'analyzer' else '' }}" href="/analyzer" style="border-left: 3px solid #ef4444;">
+                    <span>📈</span> <span>Analyzer</span>
+                </a>
+            </li>
+            <li>
+                <a class="tools-dropdown-item {{ 'active' if active_tool == 'sky_art' else '' }}" href="/sky_art" style="border-left: 3px solid #f59e0b;">
+                    <span>🎨</span> <span>Sky Art</span>
+                </a>
+            </li>
+            <li>
+                <a class="tools-dropdown-item {{ 'active' if active_tool == 'multi_stats' else '' }}" href="/multi_flight_stats" style="border-left: 3px solid #a855f7;">
+                    <span>📊</span> <span>Multi-Stats</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+function toggleToolsMobileMenu(e, btn) {
+    if (e) {
+        if (typeof e.preventDefault === 'function') e.preventDefault();
+        if (typeof e.stopPropagation === 'function') e.stopPropagation();
+    }
+    var targetBtn = btn || (e ? (e.currentTarget || (e.target && e.target.closest ? e.target.closest('.tools-mobile-btn') : null)) : null) || document.getElementById('toolsNavDropdownBtn');
+    if (!targetBtn) return;
+    var wrapper = targetBtn.closest ? targetBtn.closest('.tools-mobile-menu') : targetBtn.parentElement;
+    if (!wrapper) return;
+    var menu = wrapper.querySelector('.tools-dropdown-menu');
+    if (!menu) return;
+
+    var isOpen = menu.classList.contains('show');
+
+    // Close any other open tool menus
+    var allOpen = document.querySelectorAll('.tools-dropdown-menu.show');
+    for (var i = 0; i < allOpen.length; i++) {
+        allOpen[i].classList.remove('show');
+    }
+    var allBtns = document.querySelectorAll('.tools-mobile-btn');
+    for (var j = 0; j < allBtns.length; j++) {
+        allBtns[j].setAttribute('aria-expanded', 'false');
+    }
+
+    if (!isOpen) {
+        menu.classList.add('show');
+        targetBtn.setAttribute('aria-expanded', 'true');
+    }
+}
+
+document.addEventListener('click', function(e) {
+    if (e && e.target && e.target.closest && e.target.closest('.tools-mobile-menu')) {
+        return; // Click inside menu or toggle button, do not close here
+    }
+    var allOpen = document.querySelectorAll('.tools-dropdown-menu.show');
+    for (var i = 0; i < allOpen.length; i++) {
+        allOpen[i].classList.remove('show');
+    }
+    var allBtns = document.querySelectorAll('.tools-mobile-btn');
+    for (var j = 0; j < allBtns.length; j++) {
+        allBtns[j].setAttribute('aria-expanded', 'false');
+    }
+});
+</script>

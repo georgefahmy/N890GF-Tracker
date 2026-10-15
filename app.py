@@ -380,6 +380,39 @@ class AppSettings(db.Model):
     value = db.Column(db.String(255), nullable=False)
 
 
+class SkyArtDrawing(db.Model):
+    __tablename__ = "sky_art_drawings"
+
+    id = db.Column(db.String(100), primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    aspect_ratio = db.Column(db.Float, default=1.0)
+    size_nm = db.Column(db.Float, default=12.0)
+    height_nm = db.Column(db.Float, default=12.0)
+    lock_aspect = db.Column(db.Boolean, default=True)
+    route_reversed = db.Column(db.Boolean, default=False)
+    point_count = db.Column(db.Integer, default=0)
+    base_points_json = db.Column(db.Text, nullable=False)
+
+    def to_dict(self):
+        try:
+            pts = json.loads(self.base_points_json) if self.base_points_json else []
+        except Exception:
+            pts = []
+        return {
+            "id": self.id,
+            "name": self.name,
+            "createdAt": self.created_at.isoformat() if self.created_at else None,
+            "aspectRatio": self.aspect_ratio if self.aspect_ratio is not None else 1.0,
+            "sizeNM": self.size_nm if self.size_nm is not None else 12.0,
+            "heightNM": self.height_nm if self.height_nm is not None else 12.0,
+            "lockAspect": self.lock_aspect if self.lock_aspect is not None else True,
+            "routeReversed": bool(self.route_reversed),
+            "pointCount": self.point_count or len(pts),
+            "basePoints": pts,
+        }
+
+
 # Create the tables in the DB if they don't exist and auto-migrate missing columns
 with app.app_context():
     db.create_all()
@@ -2975,6 +3008,75 @@ def api_sky_art_export_kml():
         return resp
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
+
+@app.route("/api/sky_art/drawings", methods=["GET"])
+@app.route("/api/flight_art/drawings", methods=["GET"])
+def api_get_sky_art_drawings():
+    """Retrieve all saved Sky Art drawings from the server database."""
+    try:
+        drawings = SkyArtDrawing.query.order_by(SkyArtDrawing.created_at.desc()).all()
+        return jsonify([d.to_dict() for d in drawings])
+    except Exception as e:
+        logger.error(f"Error fetching sky art drawings: {e}")
+        return jsonify([]), 500
+
+
+@app.route("/api/sky_art/drawings", methods=["POST"])
+@app.route("/api/flight_art/drawings", methods=["POST"])
+def api_save_sky_art_drawing():
+    """Save or update a Sky Art drawing in the server database."""
+    try:
+        data = request.get_json(silent=True) or {}
+        name = (data.get("name") or "").strip()
+        if not name:
+            name = f"Drawing {datetime.now().strftime('%b %d, %H:%M')}"
+
+        drawing_id = data.get("id")
+        if not drawing_id:
+            drawing_id = f"art_{int(time.time() * 1000)}"
+
+        base_points = data.get("basePoints") or []
+        if not base_points or len(base_points) < 2:
+            return jsonify({"status": "error", "message": "At least 2 points required"}), 400
+
+        drawing = db.session.get(SkyArtDrawing, drawing_id)
+        if not drawing:
+            drawing = SkyArtDrawing(id=drawing_id)
+            db.session.add(drawing)
+
+        drawing.name = name
+        drawing.aspect_ratio = float(data.get("aspectRatio") or 1.0)
+        drawing.size_nm = float(data.get("sizeNM") or 12.0)
+        drawing.height_nm = float(data.get("heightNM") or 12.0)
+        drawing.lock_aspect = bool(data.get("lockAspect", True))
+        drawing.route_reversed = bool(data.get("routeReversed", False))
+        drawing.point_count = len(base_points)
+        drawing.base_points_json = json.dumps(base_points)
+
+        db.session.commit()
+        return jsonify({"status": "success", "drawing": drawing.to_dict()})
+    except Exception as e:
+        db.session.rollback()
+        logger.error(f"Error saving sky art drawing: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route("/api/sky_art/drawings/<drawing_id>", methods=["DELETE", "POST"])
+@app.route("/api/flight_art/drawings/<drawing_id>", methods=["DELETE", "POST"])
+def api_delete_sky_art_drawing(drawing_id):
+    """Delete a saved Sky Art drawing from the server database."""
+    try:
+        drawing = db.session.get(SkyArtDrawing, drawing_id)
+        if drawing:
+            db.session.delete(drawing)
+            db.session.commit()
+            return jsonify({"status": "success"})
+        return jsonify({"status": "not_found"}), 404
+    except Exception as e:
+        db.session.rollback()
+        logger.error(f"Error deleting sky art drawing {drawing_id}: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
 @app.route("/api/saved_flights", methods=["GET"])
