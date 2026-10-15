@@ -29,6 +29,16 @@
             width: 100%;
             z-index: 1050;
         }
+        .card-header[data-bs-toggle="collapse"] {
+            cursor: pointer;
+            user-select: none;
+        }
+        .card-header[data-bs-toggle="collapse"] .collapse-icon {
+            transition: transform 0.2s ease-in-out;
+        }
+        .card-header[data-bs-toggle="collapse"].collapsed .collapse-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -221,148 +231,156 @@
 
             <!-- Transformation & Sizing Controls -->
             <div class="card border shadow-sm">
-                <div class="card-header bg-light py-2 px-3 fw-bold small text-uppercase text-muted">
-                    <i class="bi bi-arrows-fullscreen me-1"></i> Scale, Rotation &amp; Position
+                <div class="card-header bg-light py-2 px-3 fw-bold small text-uppercase text-muted d-flex justify-content-between align-items-center" role="button" data-bs-toggle="collapse" data-bs-target="#scaleControlsCollapse" aria-expanded="true" aria-controls="scaleControlsCollapse">
+                    <span><i class="bi bi-arrows-fullscreen me-1"></i> Scale, Rotation &amp; Position</span>
+                    <i class="bi bi-chevron-up collapse-icon"></i>
                 </div>
-                <div class="card-body p-3 d-flex flex-column gap-3">
+                <div class="collapse show" id="scaleControlsCollapse">
+                    <div class="card-body p-3 d-flex flex-column gap-3">
 
-                    <!-- Scale: Width & Height in NM with Proportional Lock -->
-                    <div>
-                        <!-- Width Control -->
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label class="form-label small fw-bold mb-0">Width:</label>
-                            <div class="input-group input-group-sm" style="width: 105px;">
-                                <input type="number" id="sizeInput" class="form-control form-control-sm text-end" value="12" min="1" max="100" step="0.5">
-                                <span class="input-group-text">NM</span>
+                        <!-- Scale: Width & Height in NM with Proportional Lock -->
+                        <div>
+                            <!-- Width Control -->
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label class="form-label small fw-bold mb-0">Width:</label>
+                                <div class="input-group input-group-sm" style="width: 105px;">
+                                    <input type="number" id="sizeInput" class="form-control form-control-sm text-end" value="12" min="1" max="100" step="0.5">
+                                    <span class="input-group-text">NM</span>
+                                </div>
                             </div>
-                        </div>
-                        <input type="range" class="form-range mb-2" id="sizeSlider" min="2" max="60" step="0.5" value="12" title="Adjust width in Nautical Miles">
+                            <input type="range" class="form-range mb-2" id="sizeSlider" min="2" max="60" step="0.5" value="12" title="Adjust width in Nautical Miles">
 
-                        <!-- Aspect Ratio Lock / Unlock Toggle -->
-                        <div class="d-flex justify-content-between align-items-center mb-2 px-1">
-                            <span class="text-muted small" style="font-size: 0.72rem;">Proportional Scaling:</span>
-                            <button class="btn btn-outline-secondary btn-sm py-0 px-2" type="button" id="aspectLockBtn" title="Toggle proportional height scaling">
-                                <i class="bi bi-link-45deg text-primary me-1" id="aspectLockIcon"></i>
-                                <span id="aspectLockLabel" class="small" style="font-size: 0.72rem;">Locked</span>
+                            <!-- Aspect Ratio Lock / Unlock Toggle -->
+                            <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                                <span class="text-muted small" style="font-size: 0.72rem;">Proportional Scaling:</span>
+                                <button class="btn btn-outline-secondary btn-sm py-0 px-2" type="button" id="aspectLockBtn" title="Toggle proportional height scaling">
+                                    <i class="bi bi-link-45deg text-primary me-1" id="aspectLockIcon"></i>
+                                    <span id="aspectLockLabel" class="small" style="font-size: 0.72rem;">Locked</span>
+                                </button>
+                            </div>
+
+                            <!-- Height Control -->
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label class="form-label small fw-bold mb-0">Height:</label>
+                                <div class="input-group input-group-sm" style="width: 105px;">
+                                    <input type="number" id="heightInput" class="form-control form-control-sm text-end" value="12" min="1" max="100" step="0.5">
+                                    <span class="input-group-text">NM</span>
+                                </div>
+                            </div>
+                            <input type="range" class="form-range" id="heightSlider" min="2" max="60" step="0.5" value="12" title="Adjust height in Nautical Miles">
+                        </div>
+
+                        <!-- Rotation Heading -->
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label class="form-label small fw-bold mb-0">Rotation (Heading):</label>
+                                <span class="badge bg-secondary range-val-badge" id="rotBadge">0°</span>
+                            </div>
+                            <input type="range" class="form-range" id="rotSlider" min="0" max="359" step="1" value="0">
+                        </div>
+
+                        <!-- Flip Buttons & Center -->
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-secondary btn-sm flex-fill" id="flipHBtn" title="Mirror East / West">
+                                <i class="bi bi-symmetry-vertical me-1"></i> Flip H
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm flex-fill" id="flipVBtn" title="Mirror North / South">
+                                <i class="bi bi-symmetry-horizontal me-1"></i> Flip V
                             </button>
                         </div>
 
-                        <!-- Height Control -->
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label class="form-label small fw-bold mb-0">Height:</label>
-                            <div class="input-group input-group-sm" style="width: 105px;">
-                                <input type="number" id="heightInput" class="form-control form-control-sm text-end" value="12" min="1" max="100" step="0.5">
-                                <span class="input-group-text">NM</span>
+                        <!-- Waypoint Density / Smoothing -->
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label class="form-label small fw-bold mb-0">Path Smoothing / Resolution:</label>
+                            </div>
+                            <input type="range" class="form-range" id="smoothSlider" min="0.005" max="0.08" step="0.002" value="0.015" title="Lower = more detailed waypoints, Higher = simplified straight legs">
+                            <div class="d-flex justify-content-between text-muted" style="font-size: 0.7rem;">
+                                <span>High Detail</span>
+                                <span>Smoothed / Simplified</span>
                             </div>
                         </div>
-                        <input type="range" class="form-range" id="heightSlider" min="2" max="60" step="0.5" value="12" title="Adjust height in Nautical Miles">
-                    </div>
 
-                    <!-- Rotation Heading -->
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label class="form-label small fw-bold mb-0">Rotation (Heading):</label>
-                            <span class="badge bg-secondary range-val-badge" id="rotBadge">0°</span>
+                        <!-- Center Coordinates -->
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label small text-muted mb-0">Center Lat:</label>
+                                <input type="number" id="centerLatInput" class="form-control form-control-sm font-monospace" step="0.0001">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small text-muted mb-0">Center Lon:</label>
+                                <input type="number" id="centerLonInput" class="form-control form-control-sm font-monospace" step="0.0001">
+                            </div>
                         </div>
-                        <input type="range" class="form-range" id="rotSlider" min="0" max="359" step="1" value="0">
-                    </div>
 
-                    <!-- Flip Buttons & Center -->
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" id="flipHBtn" title="Mirror East / West">
-                            <i class="bi bi-symmetry-vertical me-1"></i> Flip H
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" id="flipVBtn" title="Mirror North / South">
-                            <i class="bi bi-symmetry-horizontal me-1"></i> Flip V
-                        </button>
                     </div>
-
-                    <!-- Waypoint Density / Smoothing -->
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label class="form-label small fw-bold mb-0">Path Smoothing / Resolution:</label>
-                        </div>
-                        <input type="range" class="form-range" id="smoothSlider" min="0.005" max="0.08" step="0.002" value="0.015" title="Lower = more detailed waypoints, Higher = simplified straight legs">
-                        <div class="d-flex justify-content-between text-muted" style="font-size: 0.7rem;">
-                            <span>High Detail</span>
-                            <span>Smoothed / Simplified</span>
-                        </div>
-                    </div>
-
-                    <!-- Center Coordinates -->
-                    <div class="row g-2">
-                        <div class="col-6">
-                            <label class="form-label small text-muted mb-0">Center Lat:</label>
-                            <input type="number" id="centerLatInput" class="form-control form-control-sm font-monospace" step="0.0001">
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label small text-muted mb-0">Center Lon:</label>
-                            <input type="number" id="centerLonInput" class="form-control form-control-sm font-monospace" step="0.0001">
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
             <!-- Routing & Airport Options -->
             <div class="card border shadow-sm">
-                <div class="card-header bg-light py-2 px-3 fw-bold small text-uppercase text-muted d-flex justify-content-between align-items-center">
+                <div class="card-header bg-light py-2 px-3 fw-bold small text-uppercase text-muted d-flex justify-content-between align-items-center" role="button" data-bs-toggle="collapse" data-bs-target="#airportControlsCollapse" aria-expanded="true" aria-controls="airportControlsCollapse">
                     <span><i class="bi bi-airplane-engines me-1"></i> Airport Departure &amp; Arrival</span>
-                    <button class="btn btn-link btn-sm p-0 text-decoration-none small" type="button" data-bs-toggle="modal" data-bs-target="#configHomeAirportModal" title="Configure Default Home Airport">
-                        <i class="bi bi-house-gear-fill me-1"></i><span id="homeAirportHeaderBadge">Home: E16</span>
-                    </button>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-link btn-sm p-0 text-decoration-none small" type="button" data-bs-toggle="modal" data-bs-target="#configHomeAirportModal" onclick="event.stopPropagation()" title="Configure Default Home Airport">
+                            <i class="bi bi-house-gear-fill me-1"></i><span id="homeAirportHeaderBadge">Home: E16</span>
+                        </button>
+                        <i class="bi bi-chevron-up collapse-icon"></i>
+                    </div>
                 </div>
-                <div class="card-body p-3">
-                    <div class="d-flex flex-column gap-2 mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="includeAirportCheck" checked>
-                            <label class="form-check-label small fw-bold" for="includeAirportCheck" id="connectHomeAirportLabel">
-                                Connect to Home Airport ( E16 )
-                            </label>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="form-check form-switch mb-0">
-                                <input class="form-check-input" type="checkbox" id="optimizeEntryExitCheck" checked>
-                                <label class="form-check-label small text-muted" for="optimizeEntryExitCheck" title="Connects departure and arrival to the nearest waypoint on the artwork to eliminate unnecessary transit legs cutting through the shape">
-                                    <i class="bi bi-magic text-primary me-1"></i>Optimize Start/End Waypoint
+                <div class="collapse show" id="airportControlsCollapse">
+                    <div class="card-body p-3">
+                        <div class="d-flex flex-column gap-2 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="includeAirportCheck" checked>
+                                <label class="form-check-label small fw-bold" for="includeAirportCheck" id="connectHomeAirportLabel">
+                                    Connect to Home Airport ( E16 )
                                 </label>
                             </div>
-                            <button class="btn btn-outline-secondary btn-sm py-0 px-2" type="button" id="reverseRouteBtn" title="Reverse flight path direction (e.g. Clockwise / Counter-Clockwise)" style="font-size: 0.75rem;">
-                                <i class="bi bi-arrow-left-right me-1"></i>Reverse Path
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="row g-2 mb-2">
-                        <!-- Departure Airport Input -->
-                        <div class="col-6 position-relative">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <label class="form-label small text-muted mb-0 fw-bold">Departure:</label>
-                                <button class="btn btn-link btn-sm p-0 text-decoration-none" type="button" id="setDepAsHomeBtn" title="Set this departure airport as default Home Airport" style="font-size: 0.72rem;">
-                                    <i class="bi bi-star"></i> Set Home
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="form-check form-switch mb-0">
+                                    <input class="form-check-input" type="checkbox" id="optimizeEntryExitCheck" checked>
+                                    <label class="form-check-label small text-muted" for="optimizeEntryExitCheck" title="Connects departure and arrival to the nearest waypoint on the artwork to eliminate unnecessary transit legs cutting through the shape">
+                                        <i class="bi bi-magic text-primary me-1"></i>Optimize Start/End Waypoint
+                                    </label>
+                                </div>
+                                <button class="btn btn-outline-secondary btn-sm py-0 px-2" type="button" id="reverseRouteBtn" title="Reverse flight path direction (e.g. Clockwise / Counter-Clockwise)" style="font-size: 0.75rem;">
+                                    <i class="bi bi-arrow-left-right me-1"></i>Reverse Path
                                 </button>
                             </div>
-                            <input type="text" id="depAirportInput" class="form-control form-control-sm text-uppercase fw-bold text-success" value="E16" placeholder="ICAO (e.g. E16)" autocomplete="off">
-                            <div id="depAirportSearchResults" class="airport-autocomplete-list d-none"></div>
-                            <div id="depAirportName" class="text-muted text-truncate mt-1" style="font-size: 0.7rem;">San Martin Airport</div>
                         </div>
 
-                        <!-- Arrival Airport Input -->
-                        <div class="col-6 position-relative">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <label class="form-label small text-muted mb-0 fw-bold">Arrival:</label>
-                                <button class="btn btn-link btn-sm p-0 text-decoration-none" type="button" id="syncArrToDepBtn" title="Set arrival airport same as departure (Round Trip)" style="font-size: 0.72rem;">
-                                    <i class="bi bi-arrow-repeat"></i> Round Trip
-                                </button>
+                        <div class="row g-2 mb-2">
+                            <!-- Departure Airport Input -->
+                            <div class="col-6 position-relative">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label class="form-label small text-muted mb-0 fw-bold">Departure:</label>
+                                    <button class="btn btn-link btn-sm p-0 text-decoration-none" type="button" id="setDepAsHomeBtn" title="Set this departure airport as default Home Airport" style="font-size: 0.72rem;">
+                                        <i class="bi bi-star"></i> Set Home
+                                    </button>
+                                </div>
+                                <input type="text" id="depAirportInput" class="form-control form-control-sm text-uppercase fw-bold text-success" value="E16" placeholder="ICAO (e.g. E16)" autocomplete="off">
+                                <div id="depAirportSearchResults" class="airport-autocomplete-list d-none"></div>
+                                <div id="depAirportName" class="text-muted text-truncate mt-1" style="font-size: 0.7rem;">San Martin Airport</div>
                             </div>
-                            <input type="text" id="arrAirportInput" class="form-control form-control-sm text-uppercase fw-bold text-danger" value="E16" placeholder="ICAO (e.g. E16)" autocomplete="off">
-                            <div id="arrAirportSearchResults" class="airport-autocomplete-list d-none"></div>
-                            <div id="arrAirportName" class="text-muted text-truncate mt-1" style="font-size: 0.7rem;">San Martin Airport</div>
-                        </div>
-                    </div>
 
-                    <div class="form-text" style="font-size: 0.72rem;">
-                        <i class="bi bi-cursor-text me-1"></i> Edit departure and arrival anytime. Type any airport code (e.g. E16, KCCR, KPAO, KSQL).
+                            <!-- Arrival Airport Input -->
+                            <div class="col-6 position-relative">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label class="form-label small text-muted mb-0 fw-bold">Arrival:</label>
+                                    <button class="btn btn-link btn-sm p-0 text-decoration-none" type="button" id="syncArrToDepBtn" title="Set arrival airport same as departure (Round Trip)" style="font-size: 0.72rem;">
+                                        <i class="bi bi-arrow-repeat"></i> Round Trip
+                                    </button>
+                                </div>
+                                <input type="text" id="arrAirportInput" class="form-control form-control-sm text-uppercase fw-bold text-danger" value="E16" placeholder="ICAO (e.g. E16)" autocomplete="off">
+                                <div id="arrAirportSearchResults" class="airport-autocomplete-list d-none"></div>
+                                <div id="arrAirportName" class="text-muted text-truncate mt-1" style="font-size: 0.7rem;">San Martin Airport</div>
+                            </div>
+                        </div>
+
+                        <div class="form-text" style="font-size: 0.72rem;">
+                            <i class="bi bi-cursor-text me-1"></i> Edit departure and arrival anytime. Type any airport code (e.g. E16, KCCR, KPAO, KSQL).
+                        </div>
                     </div>
                 </div>
             </div>
