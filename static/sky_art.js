@@ -2540,16 +2540,62 @@
             }
 
             if (ArtState.currentFreehandPoints.length >= 3) {
-                const originLat = ArtState.center.lat;
-                const originLon = ArtState.center.lon;
-                const cosLat = Math.cos(toRad(originLat)) || 1.0;
+                HistoryManager.pushState();
 
-                const localPoints = ArtState.currentFreehandPoints.map(ll => ({
-                    x: (ll.lng - originLon) * cosLat * 60.0,
-                    y: (ll.lat - originLat) * 60.0
-                }));
+                // Compute geographic bounding box of drawn points
+                let minLat = Infinity, maxLat = -Infinity;
+                let minLon = Infinity, maxLon = -Infinity;
 
-                normalizeAndSetBasePoints(localPoints);
+                ArtState.currentFreehandPoints.forEach(ll => {
+                    const lat = ll.lat;
+                    const lon = (ll.lng !== undefined) ? ll.lng : ll.lon;
+                    if (lat < minLat) minLat = lat;
+                    if (lat > maxLat) maxLat = lat;
+                    if (lon < minLon) minLon = lon;
+                    if (lon > maxLon) maxLon = lon;
+                });
+
+                const centerLat = (minLat + maxLat) / 2;
+                const centerLon = (minLon + maxLon) / 2;
+                const cosLat = Math.cos(toRad(centerLat)) || 1.0;
+
+                // Actual size in Nautical Miles
+                const drawnWidthNM = Math.max(0.5, (maxLon - minLon) * cosLat * 60.0);
+                const drawnHeightNM = Math.max(0.5, (maxLat - minLat) * 60.0);
+
+                // Update ArtState center to where the shape was drawn
+                ArtState.center.lat = centerLat;
+                ArtState.center.lon = centerLon;
+                if (ArtState.centerMarker) {
+                    ArtState.centerMarker.setLatLng([centerLat, centerLon]);
+                }
+
+                // Update size and height in NM
+                ArtState.sizeNM = Math.max(1, Math.min(100, Math.round(drawnWidthNM * 10) / 10));
+                ArtState.heightNM = Math.max(1, Math.min(100, Math.round(drawnHeightNM * 10) / 10));
+                ArtState.aspectRatio = drawnHeightNM / drawnWidthNM;
+                ArtState.rotationDeg = 0;
+                ArtState.flipH = false;
+                ArtState.flipV = false;
+                ArtState.routeReversed = false;
+
+                // Normalize base points to [-0.5, 0.5]:
+                // In geographic/Cartesian space, North is positive Y.
+                // Do NOT negate Y so the drawn shape is NOT flipped vertically.
+                const spanX = (maxLon - minLon) || 0.0001;
+                const spanY = (maxLat - minLat) || 0.0001;
+
+                ArtState.basePoints = ArtState.currentFreehandPoints.map(ll => {
+                    const lat = ll.lat;
+                    const lon = (ll.lng !== undefined) ? ll.lng : ll.lon;
+                    return {
+                        x: (lon - centerLon) / spanX,
+                        y: (lat - centerLat) / spanY
+                    };
+                });
+
+                syncAllControls();
+                applyTransformations();
                 toggleDrawMode(false);
             }
         });
@@ -2562,6 +2608,8 @@
             };
 
             ArtState.projectedPoints.push(newPt);
+            ArtState.rawProjectedPoints = ArtState.projectedPoints.map(p => ({ lat: p.lat, lon: p.lon }));
+            ArtState.basePoints = ArtState.projectedPoints.map(p => unprojectPoint(p.lat, p.lon));
             buildFullFlightPlan();
             renderRouteOnMap();
             updateStatsHUD();

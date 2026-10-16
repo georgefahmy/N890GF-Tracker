@@ -231,3 +231,12 @@ class TestSkyArt:
         snapshot_section = js.split("restoreSnapshot(s) {")[1].split("updateButtons() {")[0]
         assert "fitBounds" not in snapshot_section
 
+    def test_freehand_drawing_preserves_vertical_orientation(self, app):
+        """Verify freehand drawing does not invert the Y axis (North remains positive)."""
+        with open("static/sky_art.js", "r", encoding="utf-8") as f:
+            js = f.read()
+
+        assert "y: (lat - centerLat) / spanY" in js
+        # Verify it doesn't do negative inversion for freehand points
+        assert "y: -((lat - centerLat) / spanY)" not in js
+
