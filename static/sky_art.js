@@ -3032,6 +3032,40 @@
         let modalSelectedHome = { ...ArtState.homeAirport };
         const modalInput = document.getElementById('configHomeAirportInput');
         const modalList = document.getElementById('configHomeSearchResults');
+        const homeBtn = document.getElementById('configHomeAirportBtn');
+        const airportCollapseEl = document.getElementById('airportControlsCollapse');
+        let suppressCollapse = false;
+
+        if (airportCollapseEl) {
+            airportCollapseEl.addEventListener('show.bs.collapse', function (e) {
+                if (suppressCollapse) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+            airportCollapseEl.addEventListener('hide.bs.collapse', function (e) {
+                if (suppressCollapse) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+        }
+
+        if (homeBtn) {
+            homeBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                suppressCollapse = true;
+                setTimeout(() => { suppressCollapse = false; }, 400);
+
+                const modalEl = document.getElementById('configHomeAirportModal');
+                if (modalEl && typeof bootstrap !== 'undefined') {
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                    modal.show();
+                }
+            });
+        }
         let modalTimeout = null;
 
         if (modalInput && modalList) {

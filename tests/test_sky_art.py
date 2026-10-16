@@ -240,3 +240,22 @@ class TestSkyArt:
         # Verify it doesn't do negative inversion for freehand points
         assert "y: -((lat - centerLat) / spanY)" not in js
 
+    def test_home_airport_button_does_not_toggle_collapse(self, client):
+        """Verify the Home button has dedicated ID and collapse suppression in JS."""
+        resp = client.get("/sky_art")
+        assert resp.status_code == 200
+        html = resp.data.decode("utf-8")
+
+        # Home button must have ID and not toggle collapse
+        assert 'id="configHomeAirportBtn"' in html
+        assert 'data-bs-target="#configHomeAirportModal"' not in html.split('id="configHomeAirportBtn"')[0].split('<button')[-1]
+
+        with open("static/sky_art.js", "r", encoding="utf-8") as f:
+            js = f.read()
+
+        assert "configHomeAirportBtn" in js
+        assert "suppressCollapse" in js
+        assert "show.bs.collapse" in js
+        assert "hide.bs.collapse" in js
+
+
