@@ -79,6 +79,14 @@ body.dark-mode .card {
     background: #191a1a;
 }
 
+/* Seamless tile compositing and transitions for fractional zoom */
+#artMap .leaflet-tile {
+    will-change: transform, opacity;
+}
+#artMap .leaflet-tile-container {
+    will-change: transform;
+}
+
 /* Crosshair cursor when drawing mode is active */
 #artMap.drawing-active {
     cursor: crosshair !important;
@@ -213,16 +221,6 @@ body.dark-mode .waypoint-midpoint-marker:hover,
     cursor: pointer !important;
 }
 
-/* Map overlay toolbar */
-.map-floating-overlay {
-    position: absolute;
-    top: 12px;
-    left: 54px;
-    z-index: 1000;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
 
 /* ForeFlight button styling */
 .btn-foreflight {
@@ -286,11 +284,11 @@ body.dark-mode .airport-autocomplete-item:hover {
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* Floating Map Toolbar (Undo/Redo) */
+/* Floating Map Toolbar (Undo/Redo/Reverse) */
 .map-floating-toolbar {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 10px;
+    left: 50px;
     z-index: 1000;
     display: flex;
     gap: 6px;

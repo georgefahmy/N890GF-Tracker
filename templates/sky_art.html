@@ -29,13 +29,15 @@
             width: 100%;
             z-index: 1050;
         }
-        .card-header[data-bs-toggle="collapse"] {
+        .card-header[data-bs-toggle="collapse"],
+        .card-header[role="button"] {
             cursor: pointer;
             user-select: none;
         }
-        .card-header[data-bs-toggle="collapse"] .collapse-icon {
+        .card-header .collapse-icon {
             transition: transform 0.2s ease-in-out;
         }
+        .card-header.collapsed .collapse-icon,
         .card-header[data-bs-toggle="collapse"].collapsed .collapse-icon {
             transform: rotate(180deg);
         }
@@ -335,10 +337,10 @@
 
             <!-- Routing & Airport Options -->
             <div class="card border shadow-sm">
-                <div class="card-header bg-light py-2 px-3 fw-bold small text-uppercase text-muted d-flex justify-content-between align-items-center" role="button" data-bs-toggle="collapse" data-bs-target="#airportControlsCollapse" aria-expanded="true" aria-controls="airportControlsCollapse">
+                <div class="card-header bg-light py-2 px-3 fw-bold small text-uppercase text-muted d-flex justify-content-between align-items-center" id="airportCardHeader" role="button" aria-expanded="true" aria-controls="airportControlsCollapse">
                     <span><i class="bi bi-airplane-engines me-1"></i> Airport</span>
                     <div class="d-flex align-items-center gap-2">
-                        <button class="btn btn-link btn-sm p-0 text-decoration-none small" type="button" id="configHomeAirportBtn" title="Configure Default Home Airport">
+                        <button class="btn btn-link btn-sm p-0 text-decoration-none small" type="button" id="configHomeAirportBtn" data-bs-toggle="modal" data-bs-target="#configHomeAirportModal" title="Configure Default Home Airport">
                             <i class="bi bi-house-gear-fill me-1"></i><span id="homeAirportHeaderBadge">Home: E16</span>
                         </button>
                         <i class="bi bi-chevron-up collapse-icon"></i>
@@ -512,10 +514,10 @@
             <!-- Floating Map Controls: Undo / Redo / Reverse -->
             <div class="map-floating-toolbar">
                 <button class="btn btn-sm btn-light border shadow-sm" id="mapUndoBtn" title="Undo (Cmd+Z / Ctrl+Z)" disabled>
-                    <i class="bi bi-arrow-counterclockwise me-1"></i>
+                    <i class="bi bi-arrow-counterclockwise"></i>
                 </button>
                 <button class="btn btn-sm btn-light border shadow-sm" id="mapRedoBtn" title="Redo (Cmd+Shift+Z / Ctrl+Y)" disabled>
-                    <i class="bi bi-arrow-clockwise me-1"></i>
+                    <i class="bi bi-arrow-clockwise"></i>
                 </button>
                 <button class="btn btn-sm btn-light border shadow-sm" id="mapReverseBtn" title="Reverse Route Direction (e.g. Clockwise / Counter-Clockwise)">
                     <i class="bi bi-arrow-left-right me-1"></i>Reverse

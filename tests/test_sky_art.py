@@ -241,21 +241,27 @@ class TestSkyArt:
         assert "y: -((lat - centerLat) / spanY)" not in js
 
     def test_home_airport_button_does_not_toggle_collapse(self, client):
-        """Verify the Home button has dedicated ID and collapse suppression in JS."""
+        """Verify the Home button has dedicated ID and the header does not have data-bs-toggle collapse."""
         resp = client.get("/sky_art")
         assert resp.status_code == 200
         html = resp.data.decode("utf-8")
 
-        # Home button must have ID and not toggle collapse
-        assert 'id="configHomeAirportBtn"' in html
-        assert 'data-bs-target="#configHomeAirportModal"' not in html.split('id="configHomeAirportBtn"')[0].split('<button')[-1]
+        # 1. Header has dedicated ID and no data-bs-toggle="collapse"
+        assert 'id="airportCardHeader"' in html
+        header_section = html.split('id="airportCardHeader"')[1].split('<div class="collapse')[0]
+        assert 'data-bs-toggle="collapse"' not in header_section.split('>')[0]
 
+        # 2. Home button has modal trigger
+        assert 'id="configHomeAirportBtn"' in header_section
+        assert 'data-bs-toggle="modal"' in header_section
+
+        # 3. JS ignores home button clicks
         with open("static/sky_art.js", "r", encoding="utf-8") as f:
             js = f.read()
 
+        assert "airportCardHeader" in js
         assert "configHomeAirportBtn" in js
-        assert "suppressCollapse" in js
-        assert "show.bs.collapse" in js
-        assert "hide.bs.collapse" in js
+        assert "e.target.closest('#configHomeAirportBtn')" in js
+
 
 

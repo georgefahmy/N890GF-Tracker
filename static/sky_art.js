@@ -338,28 +338,177 @@
         return (brng + 360) % 360;
     }
 
+    // --- Smooth Wheel Zoom with Speed Ramping & Inertial Easing ---
+    if (typeof L !== 'undefined' && L.Handler && !L.Map.SmoothWheelZoom) {
+        L.Map.mergeOptions({
+            smoothWheelZoom: true,
+            smoothSensitivity: 1.0
+        });
+
+        L.Map.SmoothWheelZoom = L.Handler.extend({
+            addHooks: function () {
+                L.DomEvent.on(this._map._container, 'wheel', this._onWheelScroll, this);
+            },
+
+            removeHooks: function () {
+                L.DomEvent.off(this._map._container, 'wheel', this._onWheelScroll, this);
+            },
+
+            _onWheelScroll: function (e) {
+                if (window.ArtState && ArtState.isDrawing) return;
+
+                if (!this._isWheeling) {
+                    this._onWheelStart(e);
+                }
+                this._onWheeling(e);
+            },
+
+            _onWheelStart: function (e) {
+                var map = this._map;
+                this._isWheeling = true;
+                this._wheelMousePosition = map.mouseEventToContainerPoint(e);
+                this._centerPoint = map.getSize()._divideBy(2);
+                this._startLatLng = map.containerPointToLatLng(this._centerPoint);
+                this._wheelMouseLatLng = map.containerPointToLatLng(this._wheelMousePosition);
+                this._startZoom = map.getZoom();
+                this._moved = false;
+                this._zooming = true;
+                this._lastWheelTime = performance.now();
+
+                map._stop();
+                if (map._panAnim) map._panAnim.stop();
+
+                this._goalZoom = map.getZoom();
+                this._prevCenter = map.getCenter();
+                this._prevZoom = map.getZoom();
+
+                cancelAnimationFrame(this._zoomAnimationId);
+                this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
+            },
+
+            _onWheeling: function (e) {
+                var map = this._map;
+                var now = performance.now();
+                var timeDelta = Math.max(8, now - (this._lastWheelTime || now));
+                this._lastWheelTime = now;
+
+                var deltaPx = e.deltaY;
+                if (e.deltaMode === 1) deltaPx *= 28;
+                else if (e.deltaMode === 2) deltaPx *= 200;
+
+                // Speed ramping: faster scrolling scales zoom rate exponentially
+                var velocity = Math.abs(deltaPx) / timeDelta;
+                var speedMultiplier = 1.0;
+                if (velocity > 0.3) {
+                    speedMultiplier = 1.0 + Math.min(3.0, Math.pow((velocity - 0.3) * 1.5, 1.15));
+                }
+
+                var baseScale = 0.0016 * (map.options.smoothSensitivity || 1.0);
+                var zoomChange = (deltaPx > 0 ? -1 : 1) * Math.min(Math.abs(deltaPx) * baseScale, 1.2) * speedMultiplier;
+
+                this._goalZoom = this._goalZoom + zoomChange;
+                this._goalZoom = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), this._goalZoom));
+
+                this._wheelMousePosition = map.mouseEventToContainerPoint(e);
+                this._wheelMouseLatLng = map.containerPointToLatLng(this._wheelMousePosition);
+
+                clearTimeout(this._timeoutId);
+                this._timeoutId = setTimeout(this._onWheelEnd.bind(this), 220);
+
+                L.DomEvent.preventDefault(e);
+                L.DomEvent.stopPropagation(e);
+            },
+
+            _onWheelEnd: function () {
+                this._isWheeling = false;
+            },
+
+            _updateWheelZoom: function () {
+                var map = this._map;
+
+                if (!this._prevCenter) {
+                    this._prevCenter = map.getCenter();
+                    this._prevZoom = map.getZoom();
+                }
+
+                if (!map.getCenter().equals(this._prevCenter, 1e-5) || Math.abs(map.getZoom() - this._prevZoom) > 1e-4) {
+                    this._isWheeling = false;
+                    return;
+                }
+
+                var currentZoom = map.getZoom();
+                var diff = this._goalZoom - currentZoom;
+
+                if (!this._isWheeling && Math.abs(diff) < 0.002) {
+                    if (this._moved) {
+                        map._move(this._center || map.getCenter(), this._goalZoom);
+                        map._moveEnd(true);
+                        this._moved = false;
+                    }
+                    return;
+                }
+
+                this._zoom = currentZoom + diff * 0.22;
+                this._zoom = Math.round(this._zoom * 1000) / 1000;
+
+                var delta = this._wheelMousePosition.subtract(this._centerPoint);
+                if (delta.x !== 0 || delta.y !== 0) {
+                    if (map.options.smoothWheelZoom === 'center') {
+                        this._center = this._startLatLng;
+                    } else {
+                        this._center = map.unproject(map.project(this._wheelMouseLatLng, this._zoom).subtract(delta), this._zoom);
+                    }
+
+                    if (!this._moved) {
+                        map._moveStart(true, false);
+                        this._moved = true;
+                    }
+
+                    map._move(this._center, this._zoom);
+                    this._prevCenter = map.getCenter();
+                    this._prevZoom = map.getZoom();
+                }
+
+                this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
+            }
+        });
+
+        L.Map.addInitHook('addHandler', 'smoothWheelZoom', L.Map.SmoothWheelZoom);
+    }
+
     // --- Map Initialization ---
     function initMap() {
         const cartoKey = 'cb1_272f_1_6642cd2a2abfdf826cc7fc9c';
 
+        const tileDefaults = {
+            keepBuffer: 10,
+            updateWhenZooming: true,
+            updateWhenIdle: false,
+            updateInterval: 35
+        };
+
         ArtState.layers.osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '&copy; OpenStreetMap'
+            attribution: '&copy; OpenStreetMap',
+            ...tileDefaults
         });
 
         ArtState.layers.cartoDark = L.tileLayer(`https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${cartoKey}`, {
             maxZoom: 19,
-            attribution: '&copy; CARTO'
+            attribution: '&copy; CARTO',
+            ...tileDefaults
         });
 
         ArtState.layers.cartoVoyager = L.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${cartoKey}`, {
             maxZoom: 19,
-            attribution: '&copy; CARTO'
+            attribution: '&copy; CARTO',
+            ...tileDefaults
         });
 
         ArtState.layers.satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 18,
-            attribution: '&copy; Esri World Imagery'
+            attribution: '&copy; Esri World Imagery',
+            ...tileDefaults
         });
 
         const isDarkMode = document.body.classList.contains('dark-mode');
@@ -368,6 +517,11 @@
         ArtState.map = L.map('artMap', {
             center: [ArtState.center.lat, ArtState.center.lon],
             zoom: 11,
+            zoomSnap: 0,
+            zoomDelta: 0.5,
+            scrollWheelZoom: false,
+            smoothWheelZoom: true,
+            smoothSensitivity: 1.0,
             layers: [defaultBase]
         });
 
@@ -3032,38 +3186,28 @@
         let modalSelectedHome = { ...ArtState.homeAirport };
         const modalInput = document.getElementById('configHomeAirportInput');
         const modalList = document.getElementById('configHomeSearchResults');
-        const homeBtn = document.getElementById('configHomeAirportBtn');
+        const airportCardHeader = document.getElementById('airportCardHeader');
         const airportCollapseEl = document.getElementById('airportControlsCollapse');
-        let suppressCollapse = false;
 
-        if (airportCollapseEl) {
-            airportCollapseEl.addEventListener('show.bs.collapse', function (e) {
-                if (suppressCollapse) {
-                    e.preventDefault();
-                    e.stopPropagation();
+        if (airportCardHeader && airportCollapseEl) {
+            airportCardHeader.addEventListener('click', function (e) {
+                // If user clicked the Home edit button, its icon, or badge, NEVER toggle collapse
+                if (e.target.closest('#configHomeAirportBtn') || e.target.closest('.btn')) {
+                    return;
+                }
+                if (typeof bootstrap !== 'undefined') {
+                    const bsCollapse = bootstrap.Collapse.getOrCreateInstance(airportCollapseEl);
+                    bsCollapse.toggle();
                 }
             });
-            airportCollapseEl.addEventListener('hide.bs.collapse', function (e) {
-                if (suppressCollapse) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
+
+            airportCollapseEl.addEventListener('show.bs.collapse', function () {
+                airportCardHeader.classList.remove('collapsed');
+                airportCardHeader.setAttribute('aria-expanded', 'true');
             });
-        }
-
-        if (homeBtn) {
-            homeBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                suppressCollapse = true;
-                setTimeout(() => { suppressCollapse = false; }, 400);
-
-                const modalEl = document.getElementById('configHomeAirportModal');
-                if (modalEl && typeof bootstrap !== 'undefined') {
-                    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-                    modal.show();
-                }
+            airportCollapseEl.addEventListener('hide.bs.collapse', function () {
+                airportCardHeader.classList.add('collapsed');
+                airportCardHeader.setAttribute('aria-expanded', 'false');
             });
         }
         let modalTimeout = null;
