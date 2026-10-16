@@ -21,8 +21,10 @@ class TestSkyArt:
             assert "foreflightQrModal" in html
             assert "waypointTableModal" in html
             assert "sizeSlider" in html
+            assert "sizeLabel" in html
             assert "heightInput" in html
             assert "heightSlider" in html
+            assert "heightControlContainer" in html
             assert "aspectLockBtn" in html
             assert "undoBtn" in html
             assert "redoBtn" in html
@@ -41,9 +43,15 @@ class TestSkyArt:
             assert "mapReverseBtn" in html
             assert "Sky Art" in html
             assert "tabPresetsDropdownBtn" in html
-            assert "tabPresetsUnifiedContainer" in html
             assert "importModeOutline" in html
             assert "importModeAllStrokes" in html
+            assert "importThresholdSlider" in html
+            assert "importThresholdBadge" in html
+            assert "artFileInput" in html
+            assert "image/jpeg" in html
+            assert "image/heic" in html
+            assert "heic2any" in html
+            assert "JPEG, or HEIF" in html
 
     def test_flight_art_legacy_alias_renders(self, app, client):
         """Verify legacy /flight_art alias route still loads successfully."""
@@ -208,3 +216,18 @@ class TestSkyArt:
             # 6. Verify deletion
             get_after = client.get("/api/sky_art/drawings")
             assert not any(d["id"] == test_id for d in get_after.get_json())
+
+    def test_map_zoom_preservation_on_slider_changes(self, app):
+        """Verify static/sky_art.js preserves map zoom and does not call fitBounds on detail slider or undo/redo."""
+        with open("static/sky_art.js", "r", encoding="utf-8") as f:
+            js = f.read()
+
+        # 1. Detail slider must pass shouldFitBounds = false
+        assert "traceRasterImage(ArtState.lastDecodedImage, false)" in js
+        # 2. Mode radio change must pass shouldFitBounds = false
+        assert "handleUploadedFile(ArtState.lastUploadedFile, false)" in js
+        # 3. HistoryManager.restoreSnapshot must not force fitBounds
+        assert "restoreSnapshot(s) {" in js
+        snapshot_section = js.split("restoreSnapshot(s) {")[1].split("updateButtons() {")[0]
+        assert "fitBounds" not in snapshot_section
+

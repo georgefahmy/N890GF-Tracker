@@ -3018,7 +3018,7 @@ def api_get_sky_art_drawings():
         drawings = SkyArtDrawing.query.order_by(SkyArtDrawing.created_at.desc()).all()
         return jsonify([d.to_dict() for d in drawings])
     except Exception as e:
-        logger.error(f"Error fetching sky art drawings: {e}")
+        app.logger.error(f"Error fetching sky art drawings: {e}")
         return jsonify([]), 500
 
 
@@ -3058,7 +3058,7 @@ def api_save_sky_art_drawing():
         return jsonify({"status": "success", "drawing": drawing.to_dict()})
     except Exception as e:
         db.session.rollback()
-        logger.error(f"Error saving sky art drawing: {e}")
+        app.logger.error(f"Error saving sky art drawing: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
@@ -3075,7 +3075,7 @@ def api_delete_sky_art_drawing(drawing_id):
         return jsonify({"status": "not_found"}), 404
     except Exception as e:
         db.session.rollback()
-        logger.error(f"Error deleting sky art drawing {drawing_id}: {e}")
+        app.logger.error(f"Error deleting sky art drawing {drawing_id}: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
 

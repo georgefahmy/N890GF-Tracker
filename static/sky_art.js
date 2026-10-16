@@ -87,7 +87,9 @@
         routePolyline: null,
         transitPolylineDep: null,
         transitPolylineArr: null,
-        tempFreehandPolyline: null
+        tempFreehandPolyline: null,
+        lastUploadedFile: null,
+        lastDecodedImage: null
     };
 
     // --- History Manager (Undo / Redo) ---
@@ -172,11 +174,6 @@
 
             syncAllControls();
             applyTransformations();
-
-            if (ArtState.projectedPoints && ArtState.projectedPoints.length > 0) {
-                const bounds = L.latLngBounds(ArtState.projectedPoints.map(p => [p.lat, p.lon]));
-                ArtState.map.fitBounds(bounds, { padding: [40, 40] });
-            }
         },
 
         updateButtons() {
@@ -204,8 +201,10 @@
     function syncDimensionInputs() {
         const sizeInput = document.getElementById('sizeInput');
         const sizeSlider = document.getElementById('sizeSlider');
+        const sizeLabel = document.getElementById('sizeLabel');
         const heightInput = document.getElementById('heightInput');
         const heightSlider = document.getElementById('heightSlider');
+        const heightContainer = document.getElementById('heightControlContainer');
         const lockBtn = document.getElementById('aspectLockBtn');
         const lockIcon = document.getElementById('aspectLockIcon');
         const lockLabel = document.getElementById('aspectLockLabel');
@@ -215,17 +214,30 @@
         if (heightInput) heightInput.value = ArtState.heightNM;
         if (heightSlider) heightSlider.value = ArtState.heightNM;
 
+        if (sizeLabel) {
+            sizeLabel.innerText = ArtState.lockAspect ? 'Size:' : 'Width:';
+        }
+        if (sizeSlider) {
+            sizeSlider.title = ArtState.lockAspect ? 'Adjust size in Nautical Miles' : 'Adjust width in Nautical Miles';
+        }
+
+        if (heightContainer) {
+            heightContainer.classList.toggle('d-none', !!ArtState.lockAspect);
+        }
+
         if (lockBtn && lockIcon && lockLabel) {
             if (ArtState.lockAspect) {
                 lockBtn.classList.remove('btn-outline-warning');
                 lockBtn.classList.add('btn-outline-secondary');
                 lockIcon.className = 'bi bi-link-45deg text-primary me-1';
                 lockLabel.innerText = 'Locked';
+                lockBtn.title = 'Scaling is locked proportionally. Click to unlock separate Width & Height sliders.';
             } else {
                 lockBtn.classList.remove('btn-outline-secondary');
                 lockBtn.classList.add('btn-outline-warning');
                 lockIcon.className = 'bi bi-slash-circle text-warning me-1';
                 lockLabel.innerText = 'Unlocked';
+                lockBtn.title = 'Scaling is unlocked. Click to lock proportional scaling.';
             }
         }
     }
@@ -1279,49 +1291,53 @@
 
     // --- Silhouette Outline Extraction (Exterior Boundary Flood-Fill) ---
     function extractOutlineFromCanvas(canvas, options = {}) {
-        const w = canvas.width;
-        const h = canvas.height;
-        const ctx = canvas.getContext('2d');
-        const imgData = ctx.getImageData(0, 0, w, h);
-        const data = imgData.data;
+        const w = (options && options.width) || canvas.width;
+        const h = (options && options.height) || canvas.height;
+        let grid = options && options.grid;
 
-        // Detect if background is transparent vs white/light
-        const cornerAlphas = [
-            data[3],
-            data[(w - 1) * 4 + 3],
-            data[((h - 1) * w) * 4 + 3],
-            data[((h - 1) * w + (w - 1)) * 4 + 3]
-        ];
-        const isTransparentBg = cornerAlphas.some(a => a < 30);
+        if (!grid) {
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.getImageData(0, 0, w, h);
+            const data = imgData.data;
 
-        const grid = Array.from({ length: h }, () => new Uint8Array(w));
-        let fgCount = 0;
+            // Detect if background is transparent vs white/light
+            const cornerAlphas = [
+                data[3],
+                data[(w - 1) * 4 + 3],
+                data[((h - 1) * w) * 4 + 3],
+                data[((h - 1) * w + (w - 1)) * 4 + 3]
+            ];
+            const isTransparentBg = cornerAlphas.some(a => a < 30);
 
-        for (let y = 0; y < h; y++) {
-            for (let x = 0; x < w; x++) {
-                const idx = (y * w + x) * 4;
-                const r = data[idx];
-                const g = data[idx + 1];
-                const b = data[idx + 2];
-                const a = data[idx + 3];
+            grid = Array.from({ length: h }, () => new Uint8Array(w));
+            let fgCount = 0;
 
-                let isForeground = false;
-                if (isTransparentBg) {
-                    isForeground = (a > 30);
-                } else {
-                    const lum = (r * 299 + g * 587 + b * 114) / 1000;
-                    isForeground = (a > 30 && lum < 220);
-                }
+            for (let y = 0; y < h; y++) {
+                for (let x = 0; x < w; x++) {
+                    const idx = (y * w + x) * 4;
+                    const r = data[idx];
+                    const g = data[idx + 1];
+                    const b = data[idx + 2];
+                    const a = data[idx + 3];
 
-                if (isForeground) {
-                    grid[y][x] = 1;
-                    fgCount++;
+                    let isForeground = false;
+                    if (isTransparentBg) {
+                        isForeground = (a > 30);
+                    } else {
+                        const lum = (r * 299 + g * 587 + b * 114) / 1000;
+                        isForeground = (a > 30 && lum < 220);
+                    }
+
+                    if (isForeground) {
+                        grid[y][x] = 1;
+                        fgCount++;
+                    }
                 }
             }
-        }
 
-        if (fgCount < 10) {
-            throw new Error("No artwork detected in image/SVG.");
+            if (fgCount < 10) {
+                throw new Error("No artwork detected in image/SVG.");
+            }
         }
 
         // Morphological dilation (radius 2) to seal sub-pixel CAD joints & panel lines
@@ -1478,6 +1494,8 @@
             });
         }
 
+        const offsetX = (options && options.offsetX) || 0;
+        const offsetY = (options && options.offsetY) || 0;
         const mergedPoints = [];
         let prevPt = null;
         significantContours.forEach(c => {
@@ -1497,6 +1515,12 @@
             }
             c.push({ x: c[0].x, y: c[0].y });
             const simplified = ramerDouglasPeucker(c, 2.0);
+            if (offsetX || offsetY) {
+                simplified.forEach(p => {
+                    p.x -= offsetX;
+                    p.y -= offsetY;
+                });
+            }
             mergedPoints.push(...simplified);
             prevPt = simplified[simplified.length - 1];
         });
@@ -1505,7 +1529,7 @@
     }
 
     // --- Direct Vector SVG Path Parser (with nearest-neighbor chaining) ---
-    function parseSvgDirect(svgEl) {
+    function parseSvgDirect(svgEl, shouldFitBounds = true) {
         const container = document.createElement("div");
         container.style.position = "absolute";
         container.style.visibility = "hidden";
@@ -1575,11 +1599,11 @@
         }
 
         const chained = chainPathsNearestNeighbor(segments);
-        normalizeAndSetBasePoints(chained);
+        normalizeAndSetBasePoints(chained, shouldFitBounds);
     }
 
     // --- Vector SVG Parser ---
-    function parseSvg(svgText) {
+    function parseSvg(svgText, shouldFitBounds = true) {
         HistoryManager.pushState();
         const mode = document.querySelector('input[name="importModeRadio"]:checked')?.value || 'outline';
 
@@ -1637,24 +1661,24 @@
                     try {
                         const outlinePts = extractOutlineFromCanvas(canvas);
                         if (outlinePts && outlinePts.length >= 4) {
-                            normalizeAndSetBasePoints(outlinePts);
+                            normalizeAndSetBasePoints(outlinePts, shouldFitBounds);
                         } else {
                             throw new Error("Extracted outline had too few points");
                         }
                     } catch (e) {
                         console.warn("Canvas silhouette extraction fallback to vector chain:", e);
-                        parseSvgDirect(svgEl);
+                        parseSvgDirect(svgEl, shouldFitBounds);
                     }
                 };
 
                 img.onerror = function () {
                     URL.revokeObjectURL(url);
-                    parseSvgDirect(svgEl);
+                    parseSvgDirect(svgEl, shouldFitBounds);
                 };
 
                 img.src = url;
             } else {
-                parseSvgDirect(svgEl);
+                parseSvgDirect(svgEl, shouldFitBounds);
             }
         } catch (err) {
             console.error("SVG parsing error:", err);
@@ -1727,12 +1751,65 @@
         return pts;
     }
 
-    // --- PNG Raster Tracer: Moore-Neighbor Boundary Contour Tracing ---
-    // Traces the clean perimeter outlines of artwork with zero interior hatching or zigzags
-    function tracePngImage(imgElement) {
+    // Fast separable 1D box blur for Difference-of-Gaussians (DoG) sketch vectorization
+    function boxBlur1D(src, w, h, r) {
+        const temp = new Float32Array(w * h);
+        for (let y = 0; y < h; y++) {
+            const rowOffset = y * w;
+            let winSum = 0;
+            let winCount = 0;
+            for (let x = -r; x <= r; x++) {
+                if (x >= 0 && x < w) {
+                    winSum += src[rowOffset + x];
+                    winCount++;
+                }
+            }
+            temp[rowOffset] = winSum / winCount;
+            for (let x = 1; x < w; x++) {
+                if (x - r - 1 >= 0) {
+                    winSum -= src[rowOffset + x - r - 1];
+                    winCount--;
+                }
+                if (x + r < w) {
+                    winSum += src[rowOffset + x + r];
+                    winCount++;
+                }
+                temp[rowOffset + x] = winSum / winCount;
+            }
+        }
+
+        const dst = new Float32Array(w * h);
+        for (let x = 0; x < w; x++) {
+            let winSum = 0;
+            let winCount = 0;
+            for (let y = -r; y <= r; y++) {
+                if (y >= 0 && y < h) {
+                    winSum += temp[y * w + x];
+                    winCount++;
+                }
+            }
+            dst[x] = winSum / winCount;
+            for (let y = 1; y < h; y++) {
+                if (y - r - 1 >= 0) {
+                    winSum -= temp[(y - r - 1) * w + x];
+                    winCount--;
+                }
+                if (y + r < h) {
+                    winSum += temp[(y + r) * w + x];
+                    winCount++;
+                }
+                dst[y * w + x] = winSum / winCount;
+            }
+        }
+        return dst;
+    }
+
+    // --- Raster Image Tracer (PNG, JPEG, HEIF): Difference-of-Gaussians & Vector Sketching ---
+    // Converts transparent PNGs or photos/sketches (JPEG, HEIF) into clean vector flight paths
+    function traceRasterImage(imgElement, shouldFitBounds = true) {
+        HistoryManager.pushState();
         try {
-            const canvas = document.createElement('canvas');
-            const maxDim = 400; // Constrain for rapid responsive tracing
+            const maxDim = 450; // Constrain for rapid responsive tracing
             let w = imgElement.naturalWidth || imgElement.width || 300;
             let h = imgElement.naturalHeight || imgElement.height || 300;
 
@@ -1746,62 +1823,122 @@
                 }
             }
 
-            canvas.width = w + 40;
-            canvas.height = h + 40;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(imgElement, 20, 20, w, h);
+            // Draw to source canvas
+            const srcCanvas = document.createElement('canvas');
+            srcCanvas.width = w;
+            srcCanvas.height = h;
+            const srcCtx = srcCanvas.getContext('2d');
+            srcCtx.drawImage(imgElement, 0, 0, w, h);
+            const srcData = srcCtx.getImageData(0, 0, w, h).data;
 
-            const mode = document.querySelector('input[name="importModeRadio"]:checked')?.value || 'outline';
-            if (mode === 'outline') {
-                try {
-                    const outlinePts = extractOutlineFromCanvas(canvas, { singleObjectOnly: false });
-                    if (outlinePts && outlinePts.length >= 4) {
-                        normalizeAndSetBasePoints(outlinePts);
-                        return;
-                    }
-                } catch (err) {
-                    console.warn("PNG outline extraction fallback to multi-contour:", err);
-                }
+            // Check if image has real transparency
+            let transparentPixelCount = 0;
+            const totalPixels = w * h;
+            const sampleStep = Math.max(1, Math.floor(totalPixels / 10000));
+            for (let i = 3; i < srcData.length; i += 4 * sampleStep) {
+                if (srcData[i] < 128) transparentPixelCount++;
             }
+            const hasTransparency = (transparentPixelCount > 10);
 
-            const imgData = ctx.getImageData(0, 0, w, h);
-            const data = imgData.data;
-
-            // Extract foreground coordinates (alpha > 40 and luminance < 170)
+            // Binarization: Build 2D binary grid [y][x] where 1 = foreground linework, 0 = background
             const grid = Array.from({ length: h }, () => new Uint8Array(w));
             let fgCount = 0;
 
-            for (let y = 0; y < h; y++) {
-                for (let x = 0; x < w; x++) {
-                    const idx = (y * w + x) * 4;
-                    const r = data[idx];
-                    const g = data[idx + 1];
-                    const b = data[idx + 2];
-                    const a = data[idx + 3];
+            if (hasTransparency) {
+                // Transparent PNG: alpha defines artwork
+                for (let y = 0; y < h; y++) {
+                    for (let x = 0; x < w; x++) {
+                        const idx = (y * w + x) * 4;
+                        const a = srcData[idx + 3];
+                        const lum = (srcData[idx] * 299 + srcData[idx + 1] * 587 + srcData[idx + 2] * 114) / 1000;
+                        if (a > 40 && lum < 220) {
+                            grid[y][x] = 1;
+                            fgCount++;
+                        }
+                    }
+                }
+            } else {
+                // Opaque JPEG / HEIF (sketches, portraits, photos, line art)
+                // Difference of Gaussians (DoG) bandpass edge detection
+                const lumArr = new Float32Array(totalPixels);
+                for (let i = 0; i < totalPixels; i++) {
+                    const idx = i * 4;
+                    lumArr[i] = (srcData[idx] * 299 + srcData[idx + 1] * 587 + srcData[idx + 2] * 114) / 1000;
+                }
 
-                    const luminance = (r * 299 + g * 587 + b * 114) / 1000;
-                    if (a > 40 && luminance < 170) {
-                        grid[y][x] = 1;
-                        fgCount++;
+                // Blur 1 (r=1) and Blur 2 (r=4)
+                const b1 = boxBlur1D(lumArr, w, h, 1);
+                const b2 = boxBlur1D(lumArr, w, h, 4);
+
+                // Threshold from sensitivity slider (default 8)
+                const thresholdSlider = document.getElementById('importThresholdSlider');
+                const threshold = thresholdSlider ? (parseFloat(thresholdSlider.value) || 8) : 8;
+
+                // Border margin suppression: zero out 8px boundary so camera/photo borders are never captured
+                const pad = 8;
+                for (let y = 0; y < h; y++) {
+                    for (let x = 0; x < w; x++) {
+                        if (x < pad || x >= w - pad || y < pad || y >= h - pad) {
+                            grid[y][x] = 0;
+                            continue;
+                        }
+                        const idx = y * w + x;
+                        const diff = b2[idx] - b1[idx];
+                        if (diff > threshold) {
+                            grid[y][x] = 1;
+                            fgCount++;
+                        }
                     }
                 }
             }
 
             if (fgCount < 10) {
-                alert("No dark line artwork detected on transparent background. Please ensure your image has dark lines and transparency.");
+                alert("No clear line artwork or high-contrast shape detected. Try moving the Line Detail slider to More Detail.");
                 return;
             }
 
-            // 8-neighborhood ordered clockwise starting from North
+            const mode = document.querySelector('input[name="importModeRadio"]:checked')?.value || 'outline';
+
+            if (hasTransparency && mode === 'outline') {
+                try {
+                    const pad = 20;
+                    const pw = w + pad * 2;
+                    const ph = h + pad * 2;
+                    const paddedGrid = Array.from({ length: ph }, () => new Uint8Array(pw));
+                    for (let y = 0; y < h; y++) {
+                        for (let x = 0; x < w; x++) {
+                            paddedGrid[y + pad][x + pad] = grid[y][x];
+                        }
+                    }
+
+                    const outlinePts = extractOutlineFromCanvas(srcCanvas, {
+                        grid: paddedGrid,
+                        width: pw,
+                        height: ph,
+                        offsetX: pad,
+                        offsetY: pad,
+                        singleObjectOnly: false
+                    });
+
+                    if (outlinePts && outlinePts.length >= 4) {
+                        normalizeAndSetBasePoints(outlinePts, shouldFitBounds);
+                        return;
+                    }
+                } catch (err) {
+                    console.warn("Outline extraction fallback to multi-contour:", err);
+                }
+            }
+
+            // Moore-neighbor boundary contour tracing
             const CLOCKWISE_8 = [
-                { dx: 0, dy: -1 },  // 0: N
-                { dx: 1, dy: -1 },  // 1: NE
-                { dx: 1, dy: 0 },   // 2: E
-                { dx: 1, dy: 1 },   // 3: SE
-                { dx: 0, dy: 1 },   // 4: S
-                { dx: -1, dy: 1 },  // 5: SW
-                { dx: -1, dy: 0 },  // 6: W
-                { dx: -1, dy: -1 }  // 7: NW
+                { dx: 0, dy: -1 },  // N
+                { dx: 1, dy: -1 },  // NE
+                { dx: 1, dy: 0 },   // E
+                { dx: 1, dy: 1 },   // SE
+                { dx: 0, dy: 1 },   // S
+                { dx: -1, dy: 1 },  // SW
+                { dx: -1, dy: 0 },  // W
+                { dx: -1, dy: -1 }  // NW
             ];
 
             const visited = Array.from({ length: h }, () => new Uint8Array(w));
@@ -1813,12 +1950,11 @@
 
             for (let y = 0; y < h; y++) {
                 for (let x = 0; x < w; x++) {
-                    // Find start of an untraced outer boundary: foreground pixel whose top neighbor is background
                     if (grid[y][x] === 1 && !visited[y][x] && (y === 0 || grid[y - 1][x] === 0)) {
                         const contour = [];
                         let cx = x;
                         let cy = y;
-                        let backtrackDir = 0; // Came from North
+                        let backtrackDir = 0;
 
                         contour.push({ x: cx, y: cy });
                         const maxSteps = w * h * 2;
@@ -1844,10 +1980,7 @@
                             }
 
                             if (foundDir === -1) break;
-
-                            if (nextX === x && nextY === y && contour.length > 2) {
-                                break;
-                            }
+                            if (nextX === x && nextY === y && contour.length > 2) break;
 
                             contour.push({ x: nextX, y: nextY });
                             cx = nextX;
@@ -1855,65 +1988,54 @@
                             backtrackDir = (foundDir + 5) % 8;
                         }
 
-                        if (contour.length >= 4) {
-                            // Mark bounding row spans in visited to avoid interior hatching or duplicate scans
-                            let minY = h, maxY = 0;
-                            contour.forEach(pt => {
-                                visited[pt.y][pt.x] = 1;
-                                if (pt.y < minY) minY = pt.y;
-                                if (pt.y > maxY) maxY = pt.y;
-                            });
-
-                            for (let rowY = minY; rowY <= maxY; rowY++) {
-                                let xs = [];
-                                contour.forEach(pt => {
-                                    if (pt.y === rowY) xs.push(pt.x);
-                                });
-                                if (xs.length >= 2) {
-                                    const minX = Math.min(...xs);
-                                    const maxX = Math.max(...xs);
-                                    for (let colX = minX; colX <= maxX; colX++) {
-                                        if (grid[rowY][colX] === 1) visited[rowY][colX] = 1;
-                                    }
-                                }
+                        if (contour.length >= 15) {
+                            for (let p = 0; p < contour.length; p++) {
+                                visited[contour[p].y][contour[p].x] = 1;
                             }
-
-                            // Close loop and simplify using RDP
                             contour.push({ x: contour[0].x, y: contour[0].y });
-                            const simplified = ramerDouglasPeucker(contour, 1.2);
-                            contours.push(simplified);
+                            const simplified = ramerDouglasPeucker(contour, 1.8);
+                            if (simplified.length >= 3) {
+                                contours.push(simplified);
+                            }
                         }
                     }
                 }
             }
 
             if (contours.length === 0) {
-                alert("Could not extract clean outlines from image. Please ensure the image has dark lines on transparent background.");
+                alert("Could not extract clean vector outlines from image. Try lowering the Line Detail threshold.");
                 return;
             }
 
-            // Sort contours left-to-right (by bounding box minX)
-            contours.sort((a, b) => {
-                const minAx = Math.min(...a.map(p => p.x));
-                const minBx = Math.min(...b.map(p => p.x));
-                return minAx - minBx;
-            });
+            // Sort contours by length descending
+            contours.sort((a, b) => b.length - a.length);
 
-            // Merge into a continuous flyable path with clean transition legs
-            const pathPoints = [];
-            contours.forEach(c => {
-                pathPoints.push(...c);
-            });
+            if (mode === 'outline') {
+                // Outline mode: take the single largest contour (subject outer silhouette)
+                normalizeAndSetBasePoints(contours[0], shouldFitBounds);
+                return;
+            }
 
-            normalizeAndSetBasePoints(pathPoints);
+            // All Vector Strokes mode: keep significant contours and chain with nearest neighbor
+            const maxLen = contours[0].length;
+            const minKeep = Math.max(16, maxLen * 0.02);
+            const significantContours = contours.filter(c => c.length >= minKeep).slice(0, 60);
+
+            const chained = chainPathsNearestNeighbor(significantContours);
+            normalizeAndSetBasePoints(chained, shouldFitBounds);
         } catch (err) {
-            console.error("PNG tracing error:", err);
+            console.error("Raster tracing error:", err);
             alert("Error processing image: " + err.message);
         }
     }
 
+    // Backwards-compatible alias for text art fallback or external calls
+    function tracePngImage(imgElement) {
+        return traceRasterImage(imgElement);
+    }
+
     // --- Normalize Base Points to [-0.5, 0.5] ---
-    function normalizeAndSetBasePoints(points) {
+    function normalizeAndSetBasePoints(points, shouldFitBounds = true) {
         if (!points || points.length < 2) return;
 
         let minX = Infinity, maxX = -Infinity;
@@ -1946,7 +2068,7 @@
         syncDimensionInputs();
         applyTransformations();
 
-        if (ArtState.projectedPoints.length > 0) {
+        if (shouldFitBounds && ArtState.projectedPoints.length > 0) {
             const bounds = L.latLngBounds(ArtState.projectedPoints.map(p => [p.lat, p.lon]));
             ArtState.map.fitBounds(bounds, { padding: [50, 50] });
         }
@@ -3040,6 +3162,10 @@
             if (ArtState.lockAspect) {
                 ArtState.heightNM = Math.max(1, Math.min(100, Math.round(ArtState.sizeNM * (ArtState.aspectRatio || 1.0) * 10) / 10));
                 applyTransformations();
+            } else {
+                if (ArtState.sizeNM > 0) {
+                    ArtState.aspectRatio = ArtState.heightNM / ArtState.sizeNM;
+                }
             }
             syncDimensionInputs();
         });
@@ -3249,11 +3375,32 @@
         // Import Mode Radio change listener (instantly reprocesses current uploaded file)
         document.querySelectorAll('input[name="importModeRadio"]').forEach(radio => {
             radio.addEventListener('change', () => {
-                if (ArtState.lastUploadedFile) {
-                    handleUploadedFile(ArtState.lastUploadedFile);
+                if (ArtState.lastDecodedImage) {
+                    traceRasterImage(ArtState.lastDecodedImage, false);
+                } else if (ArtState.lastUploadedFile) {
+                    handleUploadedFile(ArtState.lastUploadedFile, false);
                 }
             });
         });
+
+        // Import Threshold Slider listener (live detail tuning for photos and sketches)
+        const thresholdSlider = document.getElementById('importThresholdSlider');
+        const thresholdBadge = document.getElementById('importThresholdBadge');
+        if (thresholdSlider) {
+            const updateThreshold = () => {
+                const val = parseInt(thresholdSlider.value, 10) || 8;
+                if (thresholdBadge) {
+                    let label = `Medium (${val})`;
+                    if (val <= 5) label = `Fine (${val})`;
+                    else if (val >= 12) label = `Bold (${val})`;
+                    thresholdBadge.innerText = label;
+                }
+                if (ArtState.lastDecodedImage) {
+                    traceRasterImage(ArtState.lastDecodedImage, false);
+                }
+            };
+            thresholdSlider.addEventListener('input', updateThreshold);
+        }
 
         // Export Buttons
         document.getElementById('downloadFplBtn')?.addEventListener('click', () => {
@@ -3297,25 +3444,119 @@
         });
     }
 
-    function handleUploadedFile(file) {
-        if (!file) return;
-        ArtState.lastUploadedFile = file;
-        const name = file.name.toLowerCase();
-        if (name.endsWith('.svg')) {
-            const reader = new FileReader();
-            reader.onload = (e) => parseSvg(e.target.result);
-            reader.readAsText(file);
-        } else if (name.endsWith('.png') || file.type === 'image/png') {
+    async function loadHeic2AnyLibrary() {
+        if (typeof heic2any !== 'undefined') return;
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js';
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error("Failed to load HEIF decoder library (heic2any)."));
+            document.head.appendChild(script);
+        });
+    }
+
+    async function processHeicFile(file, shouldFitBounds = true) {
+        const titleEl = document.getElementById('artDropzoneTitle');
+        const origTitle = titleEl ? titleEl.innerText : '';
+        if (titleEl) titleEl.innerHTML = '<span class="spinner-border spinner-border-sm me-2 text-primary" role="status"></span>Decoding HEIF/HEIC image...';
+
+        // Photos default to All Vector Strokes so subject facial/linework features are rendered
+        const strokesRadio = document.getElementById('importModeAllStrokes');
+        if (strokesRadio) strokesRadio.checked = true;
+
+        try {
+            await loadHeic2AnyLibrary();
+            const conversion = await heic2any({
+                blob: file,
+                toType: 'image/jpeg',
+                quality: 0.92
+            });
+
+            const blob = Array.isArray(conversion) ? conversion[0] : conversion;
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
-                img.onload = () => tracePngImage(img);
+                img.onload = () => {
+                    ArtState.lastDecodedImage = img;
+                    traceRasterImage(img, shouldFitBounds);
+                };
+                img.onerror = () => alert("Could not decode converted HEIF image.");
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(blob);
+        } catch (err) {
+            console.warn("heic2any decoding failed, attempting native browser decode:", err);
+            // Native fallback (e.g. Safari on macOS/iOS directly decodes HEIC in Image)
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    ArtState.lastDecodedImage = img;
+                    traceRasterImage(img, shouldFitBounds);
+                };
+                img.onerror = () => {
+                    alert("Could not decode HEIF/HEIC image: " + (err.message || "Unsupported format."));
+                };
                 img.src = e.target.result;
             };
             reader.readAsDataURL(file);
-        } else {
-            alert("Please upload an SVG vector file (.svg) or a transparent PNG (.png).");
+        } finally {
+            if (titleEl) titleEl.innerText = origTitle;
         }
+    }
+
+    function handleUploadedFile(file, shouldFitBounds = true) {
+        if (!file) return;
+        ArtState.lastUploadedFile = file;
+        const name = (file.name || '').toLowerCase();
+
+        // 1. Vector SVG
+        if (name.endsWith('.svg') || file.type === 'image/svg+xml') {
+            ArtState.lastDecodedImage = null;
+            const reader = new FileReader();
+            reader.onload = (e) => parseSvg(e.target.result, shouldFitBounds);
+            reader.readAsText(file);
+            return;
+        }
+
+        // 2. HEIF / HEIC photo
+        const isHeif = name.endsWith('.heic') || name.endsWith('.heif') || name.endsWith('.hif') ||
+                       (file.type && (file.type.includes('heic') || file.type.includes('heif')));
+
+        if (isHeif) {
+            processHeicFile(file, shouldFitBounds);
+            return;
+        }
+
+        // 3. Raster image (PNG, JPEG, etc.)
+        const isRaster = name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.jpeg') ||
+                         name.endsWith('.jpe') || name.endsWith('.jfif') ||
+                         (file.type && file.type.startsWith('image/'));
+
+        if (isRaster) {
+            const isOpaquePhoto = !name.endsWith('.png') && file.type !== 'image/png';
+            if (isOpaquePhoto) {
+                const strokesRadio = document.getElementById('importModeAllStrokes');
+                if (strokesRadio) strokesRadio.checked = true;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    ArtState.lastDecodedImage = img;
+                    traceRasterImage(img, shouldFitBounds);
+                };
+                img.onerror = () => {
+                    alert("Failed to load image file. Please try another image.");
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            return;
+        }
+
+        alert("Please upload an SVG vector file (.svg), PNG (.png), JPEG (.jpg, .jpeg), or HEIF/HEIC (.heic, .heif).");
     }
 
     // --- DOM Ready ---
@@ -3346,5 +3587,8 @@
     window.deleteSavedDrawing = deleteSavedDrawing;
     window.HistoryManager = HistoryManager;
     window.syncDimensionInputs = syncDimensionInputs;
+    window.traceRasterImage = traceRasterImage;
+    window.tracePngImage = tracePngImage;
+    window.handleUploadedFile = handleUploadedFile;
 
 })();

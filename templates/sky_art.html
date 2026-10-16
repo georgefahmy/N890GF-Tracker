@@ -153,7 +153,7 @@
 
                             <label class="form-label small fw-bold text-muted mb-1">Text-to-Sky Art</label>
                             <div class="input-group input-group-sm mb-1">
-                                <input type="text" id="textArtInput" class="form-control" placeholder="e.g. N890GF, HI, LOVE" maxlength="12">
+                                <input type="text" id="textArtInput" class="form-control" placeholder="e.g. N890GF, HI, LOVE" maxlength="36">
                                 <button class="btn btn-outline-primary" type="button" id="textArtBtn">Generate</button>
                             </div>
                             <div class="d-flex align-items-center gap-3 mb-1" style="font-size: 0.75rem;">
@@ -169,14 +169,14 @@
                             </div>
                         </div>
 
-                        <!-- Tab 2: Import Vector (SVG) or Transparent PNG -->
+                        <!-- Tab 2: Import Vector (SVG) or Image (PNG, JPEG, HEIF) -->
                         <div class="tab-pane fade" id="tabUpload" role="tabpanel">
                             <div class="art-dropzone" id="artDropzone">
                                 <i class="bi bi-file-earmark-arrow-up fs-2 text-primary d-block mb-1"></i>
-                                <span class="fw-bold d-block small">Drop Vector SVG or PNG image here</span>
-                                <span class="text-muted" style="font-size: 0.75rem;">Supports black line artwork on transparent or white backgrounds</span>
+                                <span class="fw-bold d-block small" id="artDropzoneTitle">Drop Vector SVG, PNG, JPEG, or HEIF image here</span>
+                                <span class="text-muted" id="artDropzoneSubtitle" style="font-size: 0.75rem;">Supports line artwork, sketches, and photos on light or transparent backgrounds</span>
                             </div>
-                            <input type="file" id="artFileInput" accept=".svg,image/svg+xml,.png,image/png" class="d-none">
+                            <input type="file" id="artFileInput" accept=".svg,image/svg+xml,.png,image/png,.jpg,.jpeg,image/jpeg,.heic,.heif,.hif,image/heic,image/heif,image/heic-sequence,image/heif-sequence" class="d-none">
 
                             <!-- Import Mode Selector -->
                             <div class="d-flex align-items-center gap-3 mt-2 mb-1" style="font-size: 0.75rem;">
@@ -195,7 +195,22 @@
                                 </div>
                             </div>
                             <div class="form-text mt-1" style="font-size: 0.72rem;">
-                                <i class="bi bi-shield-check text-success me-1"></i><strong>Outline Only:</strong> Automatically detects the solid outer boundary of aircraft, logos, or 3-views, removing internal panel lines, hinges, and criss-cross jumps.
+                                <i class="bi bi-shield-check text-success me-1"></i><strong>Outline Only:</strong> Outer boundary silhouette. <strong>All Vector Strokes:</strong> Traces internal linework &amp; features.
+                            </div>
+
+                            <!-- Adaptive Line Detail / Threshold Slider for Photos & Sketches -->
+                            <div class="mt-2 p-2 border rounded bg-light" id="importSettingsPanel">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label class="form-label small fw-bold mb-0 text-muted" for="importThresholdSlider" style="font-size: 0.73rem;">
+                                        <i class="bi bi-sliders me-1 text-primary"></i> Line Detail / Threshold:
+                                    </label>
+                                    <span class="badge bg-secondary" id="importThresholdBadge">Medium (8)</span>
+                                </div>
+                                <input type="range" class="form-range mb-1" id="importThresholdSlider" min="3" max="22" step="1" value="8" title="Adjust line sensitivity: Lower captures finer details, Higher yields cleaner, bolder outlines">
+                                <div class="d-flex justify-content-between text-muted" style="font-size: 0.65rem;">
+                                    <span><i class="bi bi-reception-4 me-1"></i>More Detail</span>
+                                    <span>Cleaner / Bolder<i class="bi bi-shield-check ms-1"></i></span>
+                                </div>
                             </div>
                         </div>
 
@@ -239,15 +254,15 @@
 
                         <!-- Scale: Width & Height in NM with Proportional Lock -->
                         <div>
-                            <!-- Width Control -->
+                            <!-- Size / Width Control -->
                             <div class="d-flex justify-content-between align-items-center mb-1">
-                                <label class="form-label small fw-bold mb-0">Width:</label>
+                                <label class="form-label small fw-bold mb-0" id="sizeLabel">Size:</label>
                                 <div class="input-group input-group-sm" style="width: 105px;">
                                     <input type="number" id="sizeInput" class="form-control form-control-sm text-end" value="12" min="1" max="100" step="0.5">
                                     <span class="input-group-text">NM</span>
                                 </div>
                             </div>
-                            <input type="range" class="form-range mb-2" id="sizeSlider" min="2" max="60" step="0.5" value="12" title="Adjust width in Nautical Miles">
+                            <input type="range" class="form-range mb-2" id="sizeSlider" min="2" max="60" step="0.5" value="12" title="Adjust size in Nautical Miles">
 
                             <!-- Aspect Ratio Lock / Unlock Toggle -->
                             <div class="d-flex justify-content-between align-items-center mb-2 px-1">
@@ -258,15 +273,17 @@
                                 </button>
                             </div>
 
-                            <!-- Height Control -->
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <label class="form-label small fw-bold mb-0">Height:</label>
-                                <div class="input-group input-group-sm" style="width: 105px;">
-                                    <input type="number" id="heightInput" class="form-control form-control-sm text-end" value="12" min="1" max="100" step="0.5">
-                                    <span class="input-group-text">NM</span>
+                            <!-- Height Control (shown only when proportional scaling is unlocked) -->
+                            <div id="heightControlContainer" class="d-none">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label class="form-label small fw-bold mb-0">Height:</label>
+                                    <div class="input-group input-group-sm" style="width: 105px;">
+                                        <input type="number" id="heightInput" class="form-control form-control-sm text-end" value="12" min="1" max="100" step="0.5">
+                                        <span class="input-group-text">NM</span>
+                                    </div>
                                 </div>
+                                <input type="range" class="form-range" id="heightSlider" min="2" max="60" step="0.5" value="12" title="Adjust height in Nautical Miles">
                             </div>
-                            <input type="range" class="form-range" id="heightSlider" min="2" max="60" step="0.5" value="12" title="Adjust height in Nautical Miles">
                         </div>
 
                         <!-- Rotation Heading -->
@@ -644,6 +661,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 <script src="/static/sky_art.js"></script>
 
 </body>
