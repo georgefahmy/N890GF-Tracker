@@ -1550,6 +1550,7 @@
         this._startZoom = map.getZoom();
         this._moved = false;
         this._zooming = true;
+        this._lastWheelTime = performance.now();
 
         map._stop();
         if (map._panAnim) map._panAnim.stop();
@@ -1558,28 +1559,41 @@
         this._prevCenter = map.getCenter();
         this._prevZoom = map.getZoom();
 
+        cancelAnimationFrame(this._zoomAnimationId);
         this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
       },
 
       _onWheeling: function (e) {
         const map = this._map;
+        const now = performance.now();
+        const timeDelta = Math.max(8, now - (this._lastWheelTime || now));
+        this._lastWheelTime = now;
 
-        let dy = e.deltaY;
-        if (dy === undefined && e.detail) dy = e.detail * 20;
-        if (dy === undefined && e.wheelDelta) dy = -e.wheelDelta / 2;
-        if (!dy) return;
-        if (e.deltaMode === 1) dy *= 20;
-        else if (e.deltaMode === 2) dy *= 60;
+        let deltaPx = e.deltaY;
+        if (deltaPx === undefined && e.detail) deltaPx = e.detail * 20;
+        if (deltaPx === undefined && e.wheelDelta) deltaPx = -e.wheelDelta / 2;
+        if (!deltaPx) return;
+        if (e.deltaMode === 1) deltaPx *= 28;
+        else if (e.deltaMode === 2) deltaPx *= 200;
 
-        const delta = -dy;
-        this._goalZoom += delta * 0.002 * (map.options.smoothSensitivity || 1);
+        // Speed ramping: faster scrolling scales zoom rate exponentially
+        const velocity = Math.abs(deltaPx) / timeDelta;
+        let speedMultiplier = 1.0;
+        if (velocity > 0.3) {
+          speedMultiplier = 1.0 + Math.min(3.0, Math.pow((velocity - 0.3) * 1.5, 1.15));
+        }
+
+        const baseScale = 0.0016 * (map.options.smoothSensitivity || 1.0);
+        const zoomChange = (deltaPx > 0 ? -1 : 1) * Math.min(Math.abs(deltaPx) * baseScale, 1.2) * speedMultiplier;
+
+        this._goalZoom = this._goalZoom + zoomChange;
         this._goalZoom = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), this._goalZoom));
 
         this._wheelMousePosition = map.mouseEventToContainerPoint(e);
         this._wheelMouseLatLng = map.containerPointToLatLng(this._wheelMousePosition);
 
         clearTimeout(this._timeoutId);
-        this._timeoutId = setTimeout(this._onWheelEnd.bind(this), 200);
+        this._timeoutId = setTimeout(this._onWheelEnd.bind(this), 220);
 
         L.DomEvent.preventDefault(e);
         L.DomEvent.stopPropagation(e);
@@ -1587,48 +1601,55 @@
 
       _onWheelEnd: function () {
         this._isWheeling = false;
-        cancelAnimationFrame(this._zoomAnimationId);
-        if (this._moved) {
-          this._map._moveEnd(true);
-          this._moved = false;
-        }
       },
 
       _updateWheelZoom: function () {
         const map = this._map;
 
-        if (!map.getCenter().equals(this._prevCenter) || map.getZoom() !== this._prevZoom) {
+        if (!this._prevCenter) {
+          this._prevCenter = map.getCenter();
+          this._prevZoom = map.getZoom();
+        }
+
+        if (!map.getCenter().equals(this._prevCenter, 1e-5) || Math.abs(map.getZoom() - this._prevZoom) > 1e-4) {
+          this._isWheeling = false;
           return;
         }
 
         const currentZoom = map.getZoom();
-        const zoomDiff = this._goalZoom - currentZoom;
+        const diff = this._goalZoom - currentZoom;
 
-        if (Math.abs(zoomDiff) < 0.001) {
-          this._zoom = this._goalZoom;
-        } else {
-          this._zoom = currentZoom + zoomDiff * 0.3;
+        if (!this._isWheeling && Math.abs(diff) < 0.002) {
+          if (this._moved) {
+            map._move(this._center || map.getCenter(), this._goalZoom);
+            map._moveEnd(true);
+            this._moved = false;
+          }
+          return;
         }
+
+        this._zoom = currentZoom + diff * 0.22;
+        this._zoom = Math.round(this._zoom * 1000) / 1000;
 
         const delta = this._wheelMousePosition.subtract(this._centerPoint);
-        if (map.options.smoothWheelZoom === 'center' || (delta.x === 0 && delta.y === 0)) {
-          this._center = this._startLatLng;
-        } else {
-          this._center = map.unproject(map.project(this._wheelMouseLatLng, this._zoom).subtract(delta), this._zoom);
+        if (delta.x !== 0 || delta.y !== 0) {
+          if (map.options.smoothWheelZoom === 'center') {
+            this._center = this._startLatLng;
+          } else {
+            this._center = map.unproject(map.project(this._wheelMouseLatLng, this._zoom).subtract(delta), this._zoom);
+          }
+
+          if (!this._moved) {
+            map._moveStart(true, false);
+            this._moved = true;
+          }
+
+          map._move(this._center, this._zoom);
+          this._prevCenter = map.getCenter();
+          this._prevZoom = map.getZoom();
         }
 
-        if (!this._moved) {
-          map._moveStart(true, false);
-          this._moved = true;
-        }
-
-        map._move(this._center, this._zoom);
-        this._prevCenter = map.getCenter();
-        this._prevZoom = map.getZoom();
-
-        if (this._isWheeling || Math.abs(this._goalZoom - this._zoom) >= 0.001) {
-          this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
-        }
+        this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
       }
     });
 
@@ -1641,9 +1662,10 @@
       minZoom: 2,
       maxZoom: 20,
       maxNativeZoom: 19,
-      keepBuffer: 8,
+      keepBuffer: 10,
       updateWhenZooming: true,
-      updateWhenIdle: false
+      updateWhenIdle: false,
+      updateInterval: 35
     };
 
     const cartoMidnight = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=cb1_272f_1_6642cd2a2abfdf826cc7fc9c', {
@@ -1730,8 +1752,8 @@
 
     const baseMaps = {
       "Aero Midnight (Dark)": cartoMidnight,
-      "Aviation VFR (Light)": cartoDark,
       "OpenStreetMap": osm,
+      "Aviation VFR (Light)": cartoDark,
       "Satellite Imagery": satellite
     };
 

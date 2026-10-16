@@ -469,6 +469,7 @@ html, body {
 .leaflet-tile {
   filter: inherit;
   opacity: 1 !important;
+  will-change: transform, opacity;
 }
 
 /* Fast Canvas Overlay for Airport Background Dots */

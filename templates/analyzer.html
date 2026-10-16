@@ -910,6 +910,12 @@
                                     <i class="bi bi-geo-alt-fill text-danger"></i> Flight Track
                                 </span>
                                 <div class="d-flex align-items-center gap-2">
+                                    <select id="mapLayerSelect" class="form-select form-select-sm py-0 px-2 extra-small" style="width: auto;" onchange="changeMapLayer(this.value)" title="Base Map Layer">
+                                        <option value="open-street-map" selected>OpenStreetMap</option>
+                                        <option value="carto-darkmatter">Aero Midnight (Dark)</option>
+                                        <option value="carto-positron">Aviation VFR (Light)</option>
+                                        <option value="satellite">Satellite Imagery</option>
+                                    </select>
                                     <select id="mapColorModeSelect" class="form-select form-select-sm py-0 px-2 extra-small" style="width: auto;">
                                         <option value="altitude">Altitude</option>
                                         <option value="airspeed">Airspeed</option>

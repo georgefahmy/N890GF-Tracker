@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791426203.271487,
+  "_cached_at": 1792194216.837732,
   "icao": "KVCB",
   "data": {
     "icao": "KVCB",
@@ -57,10 +57,16 @@
       {
         "name": "Solano County - Nut Tree Airport",
         "brand": "World Fuel Services",
-        "phone": "707-469-4600",
-        "notes": "World Fuel Services \u2022 Quote: 23-Sep-2026",
-        "quote_date": "23-Sep-2026",
+        "phone": "N/A",
+        "notes": "World Fuel Services \u2022 Quote: 14-Oct",
+        "quote_date": "14-Oct",
         "fuels": {
+          "100LL_SS": {
+            "price": 6.99,
+            "type": "100LL",
+            "service": "Self-Serve",
+            "label": "100LL Avgas (Self-Serve)"
+          },
           "100LL_FS": {
             "price": 7.25,
             "type": "100LL",
@@ -70,14 +76,8 @@
           "JET_A": {
             "price": 7.5,
             "type": "Jet-A",
-            "service": "Full-Serve",
-            "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "100LL_SS": {
-            "price": 6.99,
-            "type": "100LL",
             "service": "Self-Serve",
-            "label": "100LL Avgas (Self-Serve)"
+            "label": "Jet-A Turbine Fuel (Self-Serve)"
           }
         }
       }

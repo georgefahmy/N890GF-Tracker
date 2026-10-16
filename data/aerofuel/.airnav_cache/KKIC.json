@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792103283.4643142,
+  "_cached_at": 1792194198.019268,
   "icao": "KKIC",
   "data": {
     "icao": "KKIC",
@@ -65,10 +65,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-10-16",
     "source": "AirNav Local Fuel",
     "raw_ident": "KKIC",
     "airport_ref": "20275",
-    "fetched_at": "2026-08-24T21:25:59Z"
+    "fetched_at": "2026-10-16T23:43:17Z"
   }
 }

@@ -511,9 +511,6 @@
             ...tileDefaults
         });
 
-        const isDarkMode = document.body.classList.contains('dark-mode');
-        const defaultBase = isDarkMode ? ArtState.layers.cartoDark : ArtState.layers.cartoVoyager;
-
         ArtState.map = L.map('artMap', {
             center: [ArtState.center.lat, ArtState.center.lon],
             zoom: 11,
@@ -522,14 +519,14 @@
             scrollWheelZoom: false,
             smoothWheelZoom: true,
             smoothSensitivity: 1.0,
-            layers: [defaultBase]
+            layers: [ArtState.layers.osm]
         });
 
         const baseMaps = {
-            "Dark Theme": ArtState.layers.cartoDark,
-            "Light / Voyager": ArtState.layers.cartoVoyager,
             "OpenStreetMap": ArtState.layers.osm,
-            "Satellite": ArtState.layers.satellite
+            "Aero Midnight (Dark)": ArtState.layers.cartoDark,
+            "Aviation VFR (Light)": ArtState.layers.cartoVoyager,
+            "Satellite Imagery": ArtState.layers.satellite
         };
         L.control.layers(baseMaps, null, { position: 'topright' }).addTo(ArtState.map);
 

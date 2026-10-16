@@ -13,6 +13,7 @@ const AppState = {
     map: {
         followAircraft: true,
         colorMode: 'altitude',
+        currentLayer: 'open-street-map',
         isMapPanning: false,
         lastRenderData: null,
         markerTraceIndex: 0,
@@ -90,6 +91,36 @@ function toggleFollowAircraft(state) {
         }
     }
 }
+
+function getMapboxStyleConfig(layerKey) {
+    if (layerKey === 'satellite') {
+        return {
+            style: 'white-bg',
+            layers: [{
+                sourcetype: 'raster',
+                source: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+                below: 'traces'
+            }]
+        };
+    }
+    return {
+        style: layerKey || 'open-street-map',
+        layers: []
+    };
+}
+
+function changeMapLayer(layerKey) {
+    AppState.map.currentLayer = layerKey || 'open-street-map';
+    const cfg = getMapboxStyleConfig(AppState.map.currentLayer);
+    const mapDiv = document.getElementById('mapGraph');
+    if (mapDiv && mapDiv.data) {
+        Plotly.relayout('mapGraph', {
+            'mapbox.style': cfg.style,
+            'mapbox.layers': cfg.layers
+        }).catch(e => console.debug("Map layer change error:", e));
+    }
+}
+window.changeMapLayer = changeMapLayer;
 
 function toggleXYTab() {
     const tab = document.getElementById('xyTab');
@@ -2262,9 +2293,13 @@ function renderMap(data) {
         calculatedZoom = Math.max(2, Math.min(14, calculatedZoom));
     }
 
+    const activeLayer = document.getElementById('mapLayerSelect')?.value || AppState.map.currentLayer || 'open-street-map';
+    const styleCfg = getMapboxStyleConfig(activeLayer);
+
     const layout = {
         mapbox: {
-            style: "open-street-map",
+            style: styleCfg.style,
+            layers: styleCfg.layers,
             center: { lat: centerLat, lon: centerLon },
             zoom: calculatedZoom
         },
@@ -2305,7 +2340,7 @@ function renderMap(data) {
     if (window._mapMarkerTraceIndex < 0) window._mapMarkerTraceIndex = 0;
 
 
-    Plotly.newPlot('mapGraph', traces, layout, { responsive: true });
+    Plotly.newPlot('mapGraph', traces, layout, { responsive: true, scrollZoom: true });
 
     // --- MAP HOVER SYNC (cursor -> aircraft position) ---
     const mapDiv = document.getElementById('mapGraph');
