@@ -409,7 +409,7 @@
             applyTransformations();
         });
 
-        ArtState.centerMarker.bindTooltip("Artwork Anchor / Center (Drag to move)", { direction: 'top', offset: [0, -12] });
+        ArtState.centerMarker.bindTooltip("Anchor (Drag to move)", { direction: 'top', offset: [0, -12] });
     }
 
     function updateCenterInputs() {
