@@ -570,86 +570,155 @@
 
     // --- Entry / Exit Waypoint Optimization ---
     // Optimizes entry/exit points for connected airports to prevent transit legs
-    // from needlessly crossing/cutting through closed artwork loops or open shapes.
+    // from needlessly crossing/cutting through closed artwork loops, multi-letter text, or open shapes.
     function optimizeRouteWaypoints(points) {
         if (!points || points.length < 3) return points;
 
-        const p0 = points[0];
-        const pEnd = points[points.length - 1];
-        const gapNM = calculateDistanceNM(p0.lat, p0.lon, pEnd.lat, pEnd.lon);
-        const maxThresholdNM = Math.max(0.15, (ArtState.sizeNM || 12) * 0.05);
-        const isClosed = gapNM <= maxThresholdNM || (Math.abs(p0.lat - pEnd.lat) < 0.0001 && Math.abs(p0.lon - pEnd.lon) < 0.0001);
-
         const shouldOptimize = ArtState.includeAirport && ArtState.optimizeEntryExit && ArtState.depAirport;
+        const dep = ArtState.depAirport;
+        const arr = ArtState.arrAirport || dep;
 
-        if (isClosed) {
-            // Unique vertices of the closed loop
-            const uniquePts = points.slice(0, points.length - 1);
+        // Step 1: Detect all closed sub-loops (letters, rings, shapes)
+        const subContours = [];
+        let startIdx = 0;
+        const N = points.length;
+
+        while (startIdx < N) {
+            const pStart = points[startIdx];
+            let endIdx = -1;
+            for (let j = startIdx + 2; j < N; j++) {
+                const p = points[j];
+                if (Math.abs(p.lat - pStart.lat) < 0.0001 && Math.abs(p.lon - pStart.lon) < 0.0001) {
+                    endIdx = j;
+                    break;
+                }
+            }
+            if (endIdx !== -1) {
+                subContours.push({
+                    isClosed: true,
+                    pts: points.slice(startIdx, endIdx) // unique vertices
+                });
+                startIdx = endIdx + 1;
+            } else {
+                subContours.push({
+                    isClosed: false,
+                    pts: points.slice(startIdx)
+                });
+                break;
+            }
+        }
+
+        if (!shouldOptimize) {
+            let res = points.map(p => ({ lat: p.lat, lon: p.lon }));
+            if (ArtState.routeReversed) res.reverse();
+            return res;
+        }
+
+        // Case 1: Single closed loop (e.g. RV-7, heart, circle, diamond)
+        if (subContours.length === 1 && subContours[0].isClosed) {
+            const uniquePts = subContours[0].pts;
             const M = uniquePts.length;
             if (M < 3) return points;
 
             let bestIdx = 0;
-            if (shouldOptimize) {
-                const dep = ArtState.depAirport;
-                const arr = ArtState.arrAirport || dep;
-                let minTransit = Infinity;
-
-                for (let i = 0; i < M; i++) {
-                    const pt = uniquePts[i];
-                    const dDep = calculateDistanceNM(dep.lat, dep.lon, pt.lat, pt.lon);
-                    const dArr = calculateDistanceNM(pt.lat, pt.lon, arr.lat, arr.lon);
-                    const totalTransit = dDep + dArr;
-                    if (totalTransit < minTransit) {
-                        minTransit = totalTransit;
-                        bestIdx = i;
-                    }
+            let minTransit = Infinity;
+            for (let i = 0; i < M; i++) {
+                const pt = uniquePts[i];
+                const dDep = calculateDistanceNM(dep.lat, dep.lon, pt.lat, pt.lon);
+                const dArr = calculateDistanceNM(pt.lat, pt.lon, arr.lat, arr.lon);
+                const totalTransit = dDep + dArr;
+                if (totalTransit < minTransit) {
+                    minTransit = totalTransit;
+                    bestIdx = i;
                 }
             }
 
-            // Build cycled loop starting at bestIdx
             const result = [];
             if (ArtState.routeReversed) {
-                // Traverse loop in reverse direction
                 for (let j = 0; j < M; j++) {
                     const idx = (bestIdx - j + M) % M;
                     result.push({ lat: uniquePts[idx].lat, lon: uniquePts[idx].lon });
                 }
             } else {
-                // Traverse loop in forward direction
                 for (let j = 0; j < M; j++) {
                     const idx = (bestIdx + j) % M;
                     result.push({ lat: uniquePts[idx].lat, lon: uniquePts[idx].lon });
                 }
             }
-            // Close loop cleanly
             result.push({ lat: result[0].lat, lon: result[0].lon });
             return result;
-        } else {
-            // Open path (unclosed)
-            let result = points.map(p => ({ lat: p.lat, lon: p.lon }));
+        }
 
-            if (shouldOptimize) {
-                const dep = ArtState.depAirport;
-                const arr = ArtState.arrAirport || dep;
-                const pFirst = result[0];
-                const pLast = result[result.length - 1];
+        // Case 2: Multi-contour (text with multiple letters / holes)
+        if (subContours.length > 1 && subContours.every(sc => sc.isClosed)) {
+            const firstSc = subContours[0];
+            const lastSc = subContours[subContours.length - 1];
 
-                const costFwd = calculateDistanceNM(dep.lat, dep.lon, pFirst.lat, pFirst.lon) +
-                                calculateDistanceNM(pLast.lat, pLast.lon, arr.lat, arr.lon);
-                const costRev = calculateDistanceNM(dep.lat, dep.lon, pLast.lat, pLast.lon) +
-                                calculateDistanceNM(pFirst.lat, pFirst.lon, arr.lat, arr.lon);
+            const dDepFirst = Math.min(...firstSc.pts.map(p => calculateDistanceNM(dep.lat, dep.lon, p.lat, p.lon)));
+            const dLastArr = Math.min(...lastSc.pts.map(p => calculateDistanceNM(p.lat, p.lon, arr.lat, arr.lon)));
+            const dDepLast = Math.min(...lastSc.pts.map(p => calculateDistanceNM(dep.lat, dep.lon, p.lat, p.lon)));
+            const dFirstArr = Math.min(...firstSc.pts.map(p => calculateDistanceNM(p.lat, p.lon, arr.lat, arr.lon)));
 
-                if (costRev < costFwd) {
-                    result.reverse();
+            const costFwd = dDepFirst + dLastArr;
+            const costRev = dDepLast + dFirstArr;
+
+            // When round-trip (dep == arr), costFwd == costRev identically.
+            // Choose the direction whose departure transit is shorter!
+            const shouldReverse = (costRev < costFwd - 0.01) ||
+                                  (Math.abs(costRev - costFwd) <= 0.01 && dDepLast < dDepFirst);
+
+            let ordered = shouldReverse ? [...subContours].reverse() : [...subContours];
+            if (ArtState.routeReversed) ordered.reverse();
+
+            const result = [];
+            let prevPoint = dep;
+
+            ordered.forEach(sc => {
+                let pts = [...sc.pts];
+                if (pts.length >= 3) {
+                    let minDist = Infinity;
+                    let bestIdx = 0;
+                    for (let i = 0; i < pts.length; i++) {
+                        const d = calculateDistanceNM(prevPoint.lat, prevPoint.lon, pts[i].lat, pts[i].lon);
+                        if (d < minDist) {
+                            minDist = d;
+                            bestIdx = i;
+                        }
+                    }
+                    pts = pts.slice(bestIdx).concat(pts.slice(0, bestIdx));
+                    pts.push({ lat: pts[0].lat, lon: pts[0].lon });
                 }
-            }
-
-            if (ArtState.routeReversed) {
-                result.reverse();
-            }
+                result.push(...pts);
+                prevPoint = pts[pts.length - 1];
+            });
 
             return result;
         }
+
+        // Case 3: General open path (e.g. stick font or freehand line)
+        let result = points.map(p => ({ lat: p.lat, lon: p.lon }));
+        const pFirst = result[0];
+        const pLast = result[result.length - 1];
+
+        const dDepFirst = calculateDistanceNM(dep.lat, dep.lon, pFirst.lat, pFirst.lon);
+        const dLastArr = calculateDistanceNM(pLast.lat, pLast.lon, arr.lat, arr.lon);
+        const dDepLast = calculateDistanceNM(dep.lat, dep.lon, pLast.lat, pLast.lon);
+        const dFirstArr = calculateDistanceNM(pFirst.lat, pFirst.lon, arr.lat, arr.lon);
+
+        const costFwd = dDepFirst + dLastArr;
+        const costRev = dDepLast + dFirstArr;
+
+        const shouldReverse = (costRev < costFwd - 0.01) ||
+                              (Math.abs(costRev - costFwd) <= 0.01 && dDepLast < dDepFirst);
+
+        if (shouldReverse) {
+            result.reverse();
+        }
+        if (ArtState.routeReversed) {
+            result.reverse();
+        }
+
+        return result;
     }
 
     function simplifyProjectedRoute() {
