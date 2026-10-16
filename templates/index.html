@@ -161,18 +161,6 @@
             box-shadow: 0 3px 8px rgba(16, 185, 129, 0.35);
         }
 
-        /* Hub Vertical Divider */
-        .action-hub-divider {
-            width: 1px;
-            height: 28px;
-            background: #e2e8f0;
-            align-self: center;
-            margin: 0 0.15rem;
-        }
-
-        body.dark-mode .action-hub-divider {
-            background: #333336;
-        }
 
         /* Modernized Tool Items */
         .btn-tool-item {
@@ -233,9 +221,6 @@
                 flex-direction: column;
                 align-items: stretch;
                 gap: 0.65rem;
-            }
-            .action-hub-divider {
-                display: none;
             }
             .action-hub-section {
                 width: 100%;
@@ -913,21 +898,15 @@
                     </div>
                 </div>
 
-                <!-- Vertical Divider (Desktop) -->
-                <div class="action-hub-divider d-none d-md-block"></div>
-
                 <!-- Group 2: Dedicated Tool Pages -->
                 <div class="action-hub-section tools-pages-section">
                     {% set active_tool = '' %}
                     {% include 'tools_nav_bar.html' %}
                 </div>
 
-                <!-- Vertical Divider (Desktop) -->
-                <div class="action-hub-divider d-none d-md-block"></div>
-
                 <!-- Group 3: Calculators & Utilities (Popups) -->
                 <div class="action-hub-section tools-popups-section">
-                    <div class="tools-nav-bar">
+                    <div class="action-hub-btn-group">
                         <button type="button" class="btn-tool-item btn-tool-fuel-est" data-bs-toggle="modal" data-bs-target="#fuelEstimatorModal" title="Fuel Tank Dipstick &amp; Endurance Calculator">
                             <span class="tool-emoji">⛽</span> Fuel Estimator
                         </button>

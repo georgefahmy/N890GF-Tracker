@@ -166,6 +166,53 @@ body.dark-mode .art-dropzone:hover, body.dark-mode .art-dropzone.dragover {
     background-color: #dc3545;
 }
 
+/* Waypoint Midpoint Insert Markers */
+.waypoint-midpoint-marker {
+    background-color: #ffffff;
+    color: #0d6efd;
+    font-size: 12px;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0d6efd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    opacity: 0.8;
+    user-select: none;
+    line-height: 1;
+}
+
+.waypoint-midpoint-marker:hover {
+    background-color: #0d6efd;
+    color: #ffffff;
+    transform: scale(1.4);
+    opacity: 1;
+    box-shadow: 0 2px 6px rgba(13, 110, 253, 0.5);
+    z-index: 1000;
+}
+
+body.dark-mode .waypoint-midpoint-marker,
+[data-bs-theme="dark"] .waypoint-midpoint-marker {
+    background-color: #1e293b;
+    color: #38bdf8;
+    border-color: #38bdf8;
+}
+
+body.dark-mode .waypoint-midpoint-marker:hover,
+[data-bs-theme="dark"] .waypoint-midpoint-marker:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+.sky-art-route-line {
+    cursor: pointer !important;
+}
+
 /* Map overlay toolbar */
 .map-floating-overlay {
     position: absolute;

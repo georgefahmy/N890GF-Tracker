@@ -82,6 +82,7 @@
         isDrawing: false,
         currentFreehandPoints: [],
         mapMarkers: [],
+        midpointMarkers: [],
         centerMarker: null,
         routePolyline: null,
         transitPolylineDep: null,
@@ -544,6 +545,29 @@
         renderWaypointTable();
     }
 
+    // Insert a new waypoint in the middle of afterArtIdx and afterArtIdx + 1 (or at specified coords)
+    function insertWaypoint(afterArtIdx, lat = null, lon = null) {
+        if (!ArtState.projectedPoints || ArtState.projectedPoints.length < 2) return;
+        if (afterArtIdx < 0 || afterArtIdx >= ArtState.projectedPoints.length - 1) return;
+
+        const p1 = ArtState.projectedPoints[afterArtIdx];
+        const p2 = ArtState.projectedPoints[afterArtIdx + 1];
+
+        const insertLat = (lat !== null && !isNaN(lat)) ? lat : (p1.lat + p2.lat) / 2;
+        const insertLon = (lon !== null && !isNaN(lon)) ? lon : (p1.lon + p2.lon) / 2;
+
+        HistoryManager.pushState();
+
+        ArtState.projectedPoints.splice(afterArtIdx + 1, 0, { lat: insertLat, lon: insertLon });
+        ArtState.rawProjectedPoints = ArtState.projectedPoints.map(p => ({ lat: p.lat, lon: p.lon }));
+        ArtState.basePoints = ArtState.projectedPoints.map(p => unprojectPoint(p.lat, p.lon));
+
+        buildFullFlightPlan();
+        renderRouteOnMap();
+        updateStatsHUD();
+        renderWaypointTable();
+    }
+
     // --- Entry / Exit Waypoint Optimization ---
     // Optimizes entry/exit points for connected airports to prevent transit legs
     // from needlessly crossing/cutting through closed artwork loops or open shapes.
@@ -717,6 +741,18 @@
         if (ArtState.transitPolylineArr) ArtState.map.removeLayer(ArtState.transitPolylineArr);
         ArtState.mapMarkers.forEach(m => ArtState.map.removeLayer(m));
         ArtState.mapMarkers = [];
+        ArtState.midpointMarkers = [];
+    }
+
+    function updateMidpointMarkers() {
+        if (!ArtState.midpointMarkers || ArtState.midpointMarkers.length === 0) return;
+        for (let i = 0; i < ArtState.midpointMarkers.length; i++) {
+            const midM = ArtState.midpointMarkers[i];
+            if (!midM || !ArtState.projectedPoints[i] || !ArtState.projectedPoints[i + 1]) continue;
+            const p1 = ArtState.projectedPoints[i];
+            const p2 = ArtState.projectedPoints[i + 1];
+            midM.setLatLng([(p1.lat + p2.lat) / 2, (p1.lon + p2.lon) / 2]);
+        }
     }
 
     function renderRouteOnMap() {
@@ -729,12 +765,56 @@
         // Main Sky Art Polyline
         ArtState.routePolyline = L.polyline(artLatLngs, {
             color: '#0d6efd',
-            weight: 4,
+            weight: 5,
             opacity: 0.9,
             lineJoin: 'round',
             lineCap: 'round',
+            className: 'sky-art-route-line',
             dashArray: null
         }).addTo(ArtState.map);
+
+        ArtState.routePolyline.bindTooltip("Click on route to insert waypoint", {
+            sticky: true,
+            direction: 'top',
+            offset: [0, -5]
+        });
+
+        ArtState.routePolyline.on('click', function (e) {
+            if (ArtState.drawMode) return;
+            L.DomEvent.stopPropagation(e);
+            if (!ArtState.projectedPoints || ArtState.projectedPoints.length < 2) return;
+
+            const clickPt = ArtState.map.latLngToLayerPoint(e.latlng);
+            let minDistSq = Infinity;
+            let bestIdx = -1;
+            let snapLat = e.latlng.lat;
+            let snapLon = e.latlng.lng;
+
+            for (let i = 0; i < ArtState.projectedPoints.length - 1; i++) {
+                const ptA = ArtState.map.latLngToLayerPoint([ArtState.projectedPoints[i].lat, ArtState.projectedPoints[i].lon]);
+                const ptB = ArtState.map.latLngToLayerPoint([ArtState.projectedPoints[i + 1].lat, ArtState.projectedPoints[i + 1].lon]);
+                const l2 = (ptB.x - ptA.x) ** 2 + (ptB.y - ptA.y) ** 2;
+                let t = 0.5;
+                if (l2 > 0) {
+                    t = ((clickPt.x - ptA.x) * (ptB.x - ptA.x) + (clickPt.y - ptA.y) * (ptB.y - ptA.y)) / l2;
+                    t = Math.max(0, Math.min(1, t));
+                }
+                const projX = ptA.x + t * (ptB.x - ptA.x);
+                const projY = ptA.y + t * (ptB.y - ptA.y);
+                const distSq = (clickPt.x - projX) ** 2 + (clickPt.y - projY) ** 2;
+                if (distSq < minDistSq) {
+                    minDistSq = distSq;
+                    bestIdx = i;
+                    const snapped = ArtState.map.layerPointToLatLng([projX, projY]);
+                    snapLat = snapped.lat;
+                    snapLon = snapped.lng;
+                }
+            }
+
+            if (bestIdx >= 0) {
+                insertWaypoint(bestIdx, snapLat, snapLon);
+            }
+        });
 
         // Departure Transit Line (dotted green)
         if (ArtState.includeAirport && ArtState.depAirport && ArtState.projectedPoints.length > 0) {
@@ -782,7 +862,7 @@
                 draggable: true
             }).addTo(ArtState.map);
 
-            marker.bindTooltip(`<strong>WP${idx + 1}</strong><br><span class="text-muted small">${pt.lat.toFixed(4)}°, ${pt.lon.toFixed(4)}°</span><br><span class="text-danger small" style="font-size:0.72rem;"><i class="bi bi-trash3 me-1"></i>Right-click to delete</span>`, { direction: 'top' });
+            marker.bindTooltip(`<strong>WP${idx + 1}</strong><br><span class="text-muted small">${pt.lat.toFixed(4)}°, ${pt.lon.toFixed(4)}°</span><br><span class="text-primary small" style="font-size:0.72rem;"><i class="bi bi-arrows-move me-1"></i>Drag to adjust</span><br><span class="text-danger small" style="font-size:0.72rem;"><i class="bi bi-trash3 me-1"></i>Right-click to delete</span>`, { direction: 'top' });
 
             // Right-click to delete waypoint
             marker.on('contextmenu', function (e) {
@@ -835,6 +915,9 @@
                         [ArtState.arrAirport.lat, ArtState.arrAirport.lon]
                     ]);
                 }
+
+                // Keep midpoint "+" handles stuck to the lines in real-time as waypoints are dragged
+                updateMidpointMarkers();
             });
 
             marker.on('dragend', function (e) {
@@ -843,10 +926,45 @@
                 ArtState.projectedPoints[idx].lon = pos.lng;
                 ArtState.basePoints[idx] = unprojectPoint(pos.lat, pos.lng);
                 ArtState.rawProjectedPoints[idx] = { lat: pos.lat, lon: pos.lng };
+                updateMidpointMarkers();
             });
 
             ArtState.mapMarkers.push(marker);
         });
+
+        // Midpoint "+" handles between consecutive waypoints for quick insertion
+        ArtState.midpointMarkers = [];
+        if (ArtState.projectedPoints.length <= 150) {
+            for (let i = 0; i < ArtState.projectedPoints.length - 1; i++) {
+                const p1 = ArtState.projectedPoints[i];
+                const p2 = ArtState.projectedPoints[i + 1];
+                const midLat = (p1.lat + p2.lat) / 2;
+                const midLon = (p1.lon + p2.lon) / 2;
+
+                const midIcon = L.divIcon({
+                    className: 'custom-wp-midpoint-icon',
+                    html: `<div class="waypoint-midpoint-marker" title="Add waypoint between WP${i + 1} & WP${i + 2}">+</div>`,
+                    iconSize: [16, 16],
+                    iconAnchor: [8, 8]
+                });
+
+                const midMarker = L.marker([midLat, midLon], {
+                    icon: midIcon,
+                    interactive: true
+                }).addTo(ArtState.map);
+
+                const currentIdx = i;
+                midMarker.on('click', function (e) {
+                    if (ArtState.drawMode) return;
+                    L.DomEvent.stopPropagation(e);
+                    const curPos = midMarker.getLatLng();
+                    insertWaypoint(currentIdx, curPos.lat, curPos.lng);
+                });
+
+                ArtState.mapMarkers.push(midMarker);
+                ArtState.midpointMarkers.push(midMarker);
+            }
+        }
 
         // Airport Markers
         if (ArtState.includeAirport) {
@@ -1012,8 +1130,12 @@
                 <td>${i === 0 ? '--' : legDist.toFixed(1) + ' NM'}</td>
                 <td>${i === 0 ? '--' : Math.round(legBearing) + '°'}</td>
                 <td class="fw-bold">${cumDist.toFixed(1)} NM</td>
-                <td class="text-center">
+                <td class="text-center text-nowrap">
                     ${wp.isAirport ? '<span class="text-muted small opacity-50" title="Airport endpoint">--</span>' : `
+                    ${wp.artIndex < ArtState.projectedPoints.length - 1 ? `
+                    <button class="btn btn-outline-primary btn-sm py-0 px-2 me-1 insert-waypoint-leg-btn" data-art-idx="${wp.artIndex}" title="Insert waypoint between WP${wp.artIndex + 1} and WP${wp.artIndex + 2}">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>` : ''}
                     <button class="btn btn-outline-danger btn-sm py-0 px-2 delete-waypoint-leg-btn" data-art-idx="${wp.artIndex}" title="Delete WP${wp.artIndex + 1}">
                         <i class="bi bi-trash3"></i>
                     </button>`}
@@ -1022,6 +1144,17 @@
         }
 
         tbody.innerHTML = html;
+
+        // Attach insert listeners
+        tbody.querySelectorAll('.insert-waypoint-leg-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const artIdx = parseInt(this.getAttribute('data-art-idx'), 10);
+                if (!isNaN(artIdx)) {
+                    insertWaypoint(artIdx);
+                }
+            });
+        });
 
         // Attach delete listeners
         tbody.querySelectorAll('.delete-waypoint-leg-btn').forEach(btn => {
@@ -1179,6 +1312,8 @@
             }
         }
 
+        const targetGrid = (options && options.includeHoles) ? grid : solid;
+
         const CLOCKWISE_8 = [
             { dx: 0, dy: -1 },  // N
             { dx: 1, dy: -1 },  // NE
@@ -1190,13 +1325,13 @@
             { dx: -1, dy: -1 }  // NW
         ];
 
-        // Find all outer boundary contours of solid regions and pick the dominant one
+        // Find all outer/hole boundary contours of target regions
         const visitedContour = Array.from({ length: h }, () => new Uint8Array(w));
         const allContours = [];
 
         for (let y = 0; y < h; y++) {
             for (let x = 0; x < w; x++) {
-                if (solid[y][x] && !visitedContour[y][x] && (y === 0 || !solid[y - 1][x])) {
+                if (targetGrid[y][x] && !visitedContour[y][x] && (y === 0 || !targetGrid[y - 1][x])) {
                     const singleContour = [];
                     let cx = x;
                     let cy = y;
@@ -1217,7 +1352,7 @@
                             const checkIdx = (backtrackDir + i) % 8;
                             const nx = cx + CLOCKWISE_8[checkIdx].dx;
                             const ny = cy + CLOCKWISE_8[checkIdx].dy;
-                            if (nx >= 0 && nx < w && ny >= 0 && ny < h && solid[ny][nx]) {
+                            if (nx >= 0 && nx < w && ny >= 0 && ny < h && targetGrid[ny][nx]) {
                                 nextX = nx;
                                 nextY = ny;
                                 foundDir = checkIdx;
@@ -1246,9 +1381,9 @@
             throw new Error("Could not find outer boundary of shape.");
         }
 
-        // Filter out tiny noise specks (< 10px or < 12% of largest contour)
+        // Filter out tiny noise specks (< 10px or < 12% / 4% of largest contour)
         const maxLen = Math.max(...allContours.map(c => c.length));
-        const minSignificance = Math.max(10, maxLen * 0.12);
+        const minSignificance = Math.max(10, maxLen * (options && options.includeHoles ? 0.04 : 0.12));
         let significantContours = allContours.filter(c => c.length >= minSignificance);
 
         if (significantContours.length === 0) {
@@ -1261,19 +1396,40 @@
             significantContours.sort((a, b) => b.length - a.length);
             significantContours = [significantContours[0]];
         } else {
-            // Sort contours left-to-right (minX) for natural reading and flying order
+            // Sort contours left-to-right (minX) for natural reading and flying order, top-to-bottom for ties
             significantContours.sort((a, b) => {
                 const minAx = Math.min(...a.map(p => p.x));
                 const minBx = Math.min(...b.map(p => p.x));
-                return minAx - minBx;
+                if (Math.abs(minAx - minBx) > 2) {
+                    return minAx - minBx;
+                }
+                const minAy = Math.min(...a.map(p => p.y));
+                const minBy = Math.min(...b.map(p => p.y));
+                return minAy - minBy;
             });
         }
 
         const mergedPoints = [];
+        let prevPt = null;
         significantContours.forEach(c => {
+            if (prevPt && c.length > 2) {
+                let minDist = Infinity;
+                let bestIdx = 0;
+                for (let i = 0; i < c.length; i++) {
+                    const d = (c[i].x - prevPt.x) ** 2 + (c[i].y - prevPt.y) ** 2;
+                    if (d < minDist) {
+                        minDist = d;
+                        bestIdx = i;
+                    }
+                }
+                if (bestIdx > 0) {
+                    c = c.slice(bestIdx).concat(c.slice(0, bestIdx));
+                }
+            }
             c.push({ x: c[0].x, y: c[0].y });
             const simplified = ramerDouglasPeucker(c, 2.0);
             mergedPoints.push(...simplified);
+            prevPt = simplified[simplified.length - 1];
         });
 
         return mergedPoints;
@@ -2144,7 +2300,7 @@
         });
 
         try {
-            const outlinePts = extractOutlineFromCanvas(canvas, { singleObjectOnly: false });
+            const outlinePts = extractOutlineFromCanvas(canvas, { singleObjectOnly: false, includeHoles: true });
             if (outlinePts && outlinePts.length >= 4) {
                 normalizeAndSetBasePoints(outlinePts);
                 return;
