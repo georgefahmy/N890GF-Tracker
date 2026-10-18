@@ -95,6 +95,7 @@ body.dark-mode .tools-nav-wrapper .btn-tool-item.active,
 .tools-nav-wrapper .btn-tool-live-map    { border-left: 3px solid #38bdf8 !important; }
 .tools-nav-wrapper .btn-tool-fuel-map    { border-left: 3px solid #10b981 !important; }
 .tools-nav-wrapper .btn-tool-analyzer    { border-left: 3px solid #ef4444 !important; }
+.tools-nav-wrapper .btn-tool-sky-art     { border-left: 3px solid #fac849 !important; }
 .tools-nav-wrapper .btn-tool-multi-stats { border-left: 3px solid #a855f7 !important; }
 .tools-nav-wrapper .btn-tool-fuel-est    { border-left: 3px solid #0dcaf0 !important; }
 .tools-nav-wrapper .btn-tool-oil         { border-left: 3px solid #14b8a6 !important; }
@@ -238,6 +239,9 @@ body.dark-mode .tools-dropdown-item.active,
         </a>
         <a href="/analyzer" class="btn-tool-item btn-tool-analyzer {{ 'active' if active_tool == 'analyzer' else '' }}" title="Flight Data Charts &amp; Telemetry Analyzer">
             <span class="tool-emoji">📈</span> Analyzer
+        </a>
+        <a href="https://skyart.n890gf.com" class="btn-tool-item btn-tool-sky-art {{ 'active' if active_tool == 'sky_art' else '' }}" title="Sky Art tool">
+            <span class="tool-emoji">📊</span> Sky Art
         </a>
         <a href="/multi_flight_stats" class="btn-tool-item btn-tool-multi-stats {{ 'active' if active_tool == 'multi_stats' else '' }}" title="Fleet Multi-Flight Statistics &amp; Trends">
             <span class="tool-emoji">📊</span> Multi-Stats
