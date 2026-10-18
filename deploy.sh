@@ -125,8 +125,8 @@ if [ -f "instance/maintenance.db" ]; then
     cp instance/maintenance.db src/maintenance.db 2>/dev/null || true
 fi
 
-# 2. Stage server data changes (Aerofuel IQ, airport cache, fuel prices, flight cache, DB)
-git add data/aerofuel/ fuel_prices/ clean_flights/ src/maintenance.db 2>/dev/null || true
+# 2. Stage server data changes (all data/, fuel prices, flight cache, DB)
+git add data/ fuel_prices/ clean_flights/ src/maintenance.db 2>/dev/null || true
 
 # 3. Commit if any data files were updated on the server
 if ! git diff --cached --quiet; then
@@ -136,9 +136,9 @@ else
     echo "ℹ️  No uncommitted server data changes."
 fi
 
-# 4. Fetch latest from GitHub and rebase any server data commits on top
+# 4. Fetch latest from GitHub and rebase any server data commits on top with autostash
 git fetch origin "$CURRENT_BRANCH" -q
-git rebase "origin/$CURRENT_BRANCH"
+git rebase --autostash "origin/$CURRENT_BRANCH"
 
 # 5. Check if server has commits ahead of GitHub to push
 COMMITS_AHEAD=\$(git rev-list --count "origin/$CURRENT_BRANCH..HEAD")
@@ -247,7 +247,7 @@ set -euo pipefail
 cd "$REMOTE_DIR"
 
 echo "📥 Fast-forwarding server to latest commits from origin/$CURRENT_BRANCH..."
-git pull --rebase origin "$CURRENT_BRANCH"
+git pull --rebase --autostash origin "$CURRENT_BRANCH"
 
 # Update Python dependencies if requirements.txt changed in latest commit
 REMOTE_VENV="../tracker/bin"
