@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014640.39615,
+  "_cached_at": 1792338439.1037006,
   "icao": "KHCO",
   "data": {
     "icao": "KHCO",
@@ -55,20 +55,20 @@
     ],
     "fbos": [
       {
-        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
+        "name": "Two River Air Services LLC",
         "brand": "",
-        "phone": "218-843-2076",
-        "notes": "Quote: 12-Aug-2026",
-        "quote_date": "12-Aug-2026",
+        "phone": "N/A",
+        "notes": "Quote: 10-Oct",
+        "quote_date": "10-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 5.6,
+            "price": 5.98,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 5.6,
+            "price": 5.98,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -76,16 +76,16 @@
         }
       }
     ],
-    "best_price": 5.6,
+    "best_price": 5.98,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
-    "source": "AirNav Live Feed",
+    "last_updated": "2026-10-18",
+    "source": "AirNav Local Fuel",
     "raw_ident": "KHCO",
     "airport_ref": "20034",
-    "fetched_at": "2026-08-29T14:43:58Z"
+    "fetched_at": "2026-10-18T15:47:16Z"
   }
 }

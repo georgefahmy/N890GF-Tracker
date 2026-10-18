@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014646.949259,
+  "_cached_at": 1792338439.094679,
   "icao": "2C8",
   "data": {
     "icao": "2C8",
@@ -53,8 +53,8 @@
         "name": "Cavalier Municipal Airport Authority",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 25-Aug",
-        "quote_date": "25-Aug",
+        "notes": "independent \u2022 Quote: 08-Oct",
+        "quote_date": "08-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.1,
@@ -77,10 +77,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-10-18",
     "source": "AirNav Local Fuel",
     "raw_ident": "K2C8",
     "airport_ref": "18572",
-    "fetched_at": "2026-08-29T14:44:06Z"
+    "fetched_at": "2026-10-18T15:47:16Z"
   }
 }

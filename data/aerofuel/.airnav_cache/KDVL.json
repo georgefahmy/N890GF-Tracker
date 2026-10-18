@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014646.9490619,
+  "_cached_at": 1792338439.1059086,
   "icao": "KDVL",
   "data": {
     "icao": "KDVL",
@@ -65,8 +65,8 @@
         "name": "Devils Lake Aero Service",
         "brand": "Phillips 66",
         "phone": "N/A",
-        "notes": "Phillips 66 \u2022 Quote: 21-Aug",
-        "quote_date": "21-Aug",
+        "notes": "Phillips 66 \u2022 Quote: 16-Oct",
+        "quote_date": "16-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.0,
@@ -86,8 +86,8 @@
         "name": "Foss & Meier Flight Service",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "notes": "AVFUEL \u2022 Quote: 09-Oct",
+        "quote_date": "09-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 7.0,
@@ -110,10 +110,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-10-18",
     "source": "AirNav Local Fuel",
     "raw_ident": "KDVL",
     "airport_ref": "19668",
-    "fetched_at": "2026-08-29T14:44:06Z"
+    "fetched_at": "2026-10-18T15:47:16Z"
   }
 }

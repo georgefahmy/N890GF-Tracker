@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788014646.948361,
+  "_cached_at": 1792338439.1047366,
   "icao": "5L0",
   "data": {
     "icao": "5L0",
@@ -48,8 +48,8 @@
         "name": "Lakota Airport Authority",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 24-Jul",
-        "quote_date": "24-Jul",
+        "notes": "Quote: 15-Sep",
+        "quote_date": "15-Sep",
         "fuels": {
           "100LL_SS": {
             "price": 5.5,
@@ -65,10 +65,10 @@
     "fuels_available": [
       "100LL"
     ],
-    "last_updated": "2026-08-29",
+    "last_updated": "2026-10-18",
     "source": "AirNav Local Fuel",
     "raw_ident": "K5L0",
     "airport_ref": "18910",
-    "fetched_at": "2026-08-29T14:44:06Z"
+    "fetched_at": "2026-10-18T15:47:16Z"
   }
 }
