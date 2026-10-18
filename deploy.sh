@@ -225,6 +225,8 @@ else
       exit 1
     fi
     success "All tests passed successfully!"
+    # Revert test-generated cache file timestamp touches
+    git checkout -- clean_flights/.cache/test_cache_flight.csv.pkl.gz data/aerofuel/.airnav_cache/ 2>/dev/null || true
   fi
 fi
 
