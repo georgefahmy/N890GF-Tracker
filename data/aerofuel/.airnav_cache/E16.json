@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792300079.636256,
+  "_cached_at": 1792433818.5328128,
   "icao": "E16",
   "data": {
     "icao": "E16",
@@ -88,10 +88,10 @@
       "94UL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-16",
+    "last_updated": "2026-10-19",
     "source": "AirNav Local Fuel",
     "raw_ident": "KE16",
     "airport_ref": "19688",
-    "fetched_at": "2026-10-16T23:43:17Z"
+    "fetched_at": "2026-10-19T18:16:56Z"
   }
 }

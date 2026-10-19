@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792300079.636508,
+  "_cached_at": 1792433818.5335398,
   "icao": "KWVI",
   "data": {
     "icao": "KWVI",
@@ -102,10 +102,10 @@
       "100UL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-16",
+    "last_updated": "2026-10-19",
     "source": "AirNav Local Fuel",
     "raw_ident": "KWVI",
     "airport_ref": "21384",
-    "fetched_at": "2026-10-16T23:43:17Z"
+    "fetched_at": "2026-10-19T18:16:56Z"
   }
 }

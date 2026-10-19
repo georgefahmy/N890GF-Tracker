@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792300079.635325,
+  "_cached_at": 1792433818.5379963,
   "icao": "KSJC",
   "data": {
     "icao": "KSJC",
@@ -90,8 +90,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 17-Oct",
-        "quote_date": "17-Oct",
+        "notes": "independent \u2022 Quote: 19-Oct",
+        "quote_date": "19-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 12.17,
@@ -111,8 +111,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 16-Oct",
-        "quote_date": "16-Oct",
+        "notes": "independent \u2022 Quote: 17-Oct",
+        "quote_date": "17-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 13.75,
@@ -142,10 +142,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-16",
+    "last_updated": "2026-10-19",
     "source": "AirNav Local Fuel",
     "raw_ident": "KSJC",
     "airport_ref": "3883",
-    "fetched_at": "2026-10-16T23:43:17Z"
+    "fetched_at": "2026-10-19T18:16:56Z"
   }
 }

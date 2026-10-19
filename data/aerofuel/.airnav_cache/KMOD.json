@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792194216.8354502,
+  "_cached_at": 1792433818.5478406,
   "icao": "KMOD",
   "data": {
     "icao": "KMOD",
@@ -125,10 +125,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-15",
+    "last_updated": "2026-10-19",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMOD",
     "airport_ref": "3701",
-    "fetched_at": "2026-10-15T22:27:47Z"
+    "fetched_at": "2026-10-19T18:16:56Z"
   }
 }

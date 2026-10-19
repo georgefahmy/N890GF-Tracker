@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792194198.018719,
+  "_cached_at": 1792433818.5394192,
   "icao": "KOAR",
   "data": {
     "icao": "KOAR",
@@ -77,10 +77,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-16",
+    "last_updated": "2026-10-19",
     "source": "AirNav Local Fuel",
     "raw_ident": "KOAR",
     "airport_ref": "20710",
-    "fetched_at": "2026-10-16T23:43:17Z"
+    "fetched_at": "2026-10-19T18:16:56Z"
   }
 }
