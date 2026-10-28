@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792433818.5372636,
+  "_cached_at": 1793145319.181136,
   "icao": "KRHV",
   "data": {
     "icao": "KRHV",
@@ -85,8 +85,8 @@
         "name": "Santa Clara County",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 05-Oct",
-        "quote_date": "05-Oct",
+        "notes": "Quote: 19-Oct",
+        "quote_date": "19-Oct",
         "fuels": {
           "100UL_FS": {
             "price": 6.99,
@@ -95,13 +95,13 @@
             "label": "100UL Unleaded (Full-Serve)"
           },
           "94UL_SS": {
-            "price": 8.45,
+            "price": 8.96,
             "type": "94UL",
             "service": "Self-Serve",
             "label": "94UL Unleaded (Self-Serve)"
           },
           "94UL_FS": {
-            "price": 8.75,
+            "price": 8.66,
             "type": "94UL",
             "service": "Full-Serve",
             "label": "94UL Unleaded (Full-Serve)"
@@ -115,10 +115,10 @@
       "100UL",
       "94UL"
     ],
-    "last_updated": "2026-10-19",
+    "last_updated": "2026-10-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KRHV",
     "airport_ref": "20928",
-    "fetched_at": "2026-10-19T18:16:56Z"
+    "fetched_at": "2026-10-27T23:55:16Z"
   }
 }

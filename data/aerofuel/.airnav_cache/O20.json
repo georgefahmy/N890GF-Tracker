@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792194216.834878,
+  "_cached_at": 1793145355.4607794,
   "icao": "O20",
   "data": {
     "icao": "O20",
@@ -48,8 +48,8 @@
         "name": "Kingdon Airpark",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 12-Oct",
-        "quote_date": "12-Oct",
+        "notes": "Quote: 26-Oct",
+        "quote_date": "26-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.99,

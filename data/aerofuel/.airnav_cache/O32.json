@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1791610813.6089678,
+  "_cached_at": 1793145373.1084483,
   "icao": "O32",
   "data": {
     "icao": "O32",
@@ -48,8 +48,8 @@
         "name": "Reedley Municipal Airport",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 02-Oct",
-        "quote_date": "02-Oct",
+        "notes": "Quote: 21-Oct",
+        "quote_date": "21-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.1,

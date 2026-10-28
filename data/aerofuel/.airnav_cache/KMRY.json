@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792433818.5407917,
+  "_cached_at": 1793145319.1918566,
   "icao": "KMRY",
   "data": {
     "icao": "KMRY",
@@ -85,8 +85,8 @@
         "name": "Del Monte Aviation",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 10-Oct",
-        "quote_date": "10-Oct",
+        "notes": "AVFUEL \u2022 Quote: 19-Oct",
+        "quote_date": "19-Oct",
         "fuels": {
           "100LL_FS": {
             "price": 7.5,
@@ -112,8 +112,8 @@
         "name": "Monterey Jet Center, LLC",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 10-Oct",
-        "quote_date": "10-Oct",
+        "notes": "AVFUEL \u2022 Quote: 19-Oct",
+        "quote_date": "19-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.99,
@@ -156,10 +156,10 @@
       "Jet-A",
       "SAF"
     ],
-    "last_updated": "2026-10-19",
+    "last_updated": "2026-10-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KMRY",
     "airport_ref": "3705",
-    "fetched_at": "2026-10-19T18:16:56Z"
+    "fetched_at": "2026-10-27T23:55:16Z"
   }
 }

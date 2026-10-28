@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792103283.463455,
+  "_cached_at": 1793145373.0958855,
   "icao": "C80",
   "data": {
     "icao": "C80",
@@ -57,14 +57,14 @@
     ],
     "fbos": [
       {
-        "name": "New Coalinga Municipal Airport",
+        "name": "FBO, Fuel Providers, and Aircraft Ground Support",
         "brand": "",
-        "phone": "N/A",
-        "notes": "Quote: 28-Sep",
-        "quote_date": "28-Sep",
+        "phone": "559-974-1257",
+        "notes": "Quote: 19-Oct-2026",
+        "quote_date": "19-Oct-2026",
         "fuels": {
           "100LL_SS": {
-            "price": 6.45,
+            "price": 7.72,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -72,7 +72,7 @@
         }
       }
     ],
-    "best_price": 6.45,
+    "best_price": 7.72,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"

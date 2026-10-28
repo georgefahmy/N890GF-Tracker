@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792103283.460563,
+  "_cached_at": 1793145373.1072495,
   "icao": "KMAE",
   "data": {
     "icao": "KMAE",
@@ -75,7 +75,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.38,
+            "price": 8.79,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -86,8 +86,8 @@
         "name": "C&T Aviation AEG Connect Network",
         "brand": "AEG Fuels",
         "phone": "N/A",
-        "notes": "AEG Fuels \u2022 Quote: 07-Oct",
-        "quote_date": "07-Oct",
+        "notes": "AEG Fuels \u2022 Quote: 26-Oct",
+        "quote_date": "26-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.28,

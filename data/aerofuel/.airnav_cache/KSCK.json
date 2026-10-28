@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792194216.8344681,
+  "_cached_at": 1793145355.4538722,
   "icao": "KSCK",
   "data": {
     "icao": "KSCK",
@@ -95,17 +95,17 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 15-Oct",
-        "quote_date": "15-Oct",
+        "notes": "independent \u2022 Quote: 27-Oct",
+        "quote_date": "27-Oct",
         "fuels": {
           "100LL_FS": {
-            "price": 8.22,
+            "price": 8.11,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 10.12,
+            "price": 10.43,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -113,7 +113,7 @@
         }
       }
     ],
-    "best_price": 8.22,
+    "best_price": 8.11,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

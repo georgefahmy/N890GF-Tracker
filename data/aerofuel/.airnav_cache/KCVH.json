@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792433818.5357873,
+  "_cached_at": 1793145355.463259,
   "icao": "KCVH",
   "data": {
     "icao": "KCVH",
@@ -69,13 +69,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.4,
+            "price": 7.51,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.8,
+            "price": 7.91,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
@@ -89,16 +89,16 @@
         }
       }
     ],
-    "best_price": 7.4,
+    "best_price": 7.51,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-19",
+    "last_updated": "2026-10-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KCVH",
     "airport_ref": "17054",
-    "fetched_at": "2026-10-19T18:16:56Z"
+    "fetched_at": "2026-10-27T23:55:16Z"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792194216.8355699,
+  "_cached_at": 1793145355.4450033,
   "icao": "O27",
   "data": {
     "icao": "O27",
@@ -53,8 +53,8 @@
         "name": "City of Oakdale",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 14-Oct",
-        "quote_date": "14-Oct",
+        "notes": "World Fuel Services \u2022 Quote: 23-Oct",
+        "quote_date": "23-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.64,

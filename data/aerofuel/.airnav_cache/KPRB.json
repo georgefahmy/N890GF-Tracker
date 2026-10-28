@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1788202697.0690181,
+  "_cached_at": 1793145373.1011994,
   "icao": "KPRB",
   "data": {
     "icao": "KPRB",
@@ -70,23 +70,23 @@
         "name": "Loyd's Aviation",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 27-Aug",
-        "quote_date": "27-Aug",
+        "notes": "AVFUEL \u2022 Quote: 23-Oct",
+        "quote_date": "23-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.8,
+            "price": 7.4,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "100LL_FS": {
-            "price": 7.85,
+            "price": 8.5,
             "type": "100LL",
             "service": "Full-Serve",
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 7.65,
+            "price": 8.4,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -94,7 +94,7 @@
         }
       }
     ],
-    "best_price": 6.8,
+    "best_price": 7.4,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",

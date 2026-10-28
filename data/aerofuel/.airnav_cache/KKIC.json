@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792194198.019268,
+  "_cached_at": 1793145373.1024451,
   "icao": "KKIC",
   "data": {
     "icao": "KKIC",
@@ -48,11 +48,11 @@
         "name": "Aviation Specialties Unlimited",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 12-Oct",
-        "quote_date": "12-Oct",
+        "notes": "AVFUEL \u2022 Quote: 26-Oct",
+        "quote_date": "26-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 7.89,
+            "price": 8.39,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -60,7 +60,7 @@
         }
       }
     ],
-    "best_price": 7.89,
+    "best_price": 8.39,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"

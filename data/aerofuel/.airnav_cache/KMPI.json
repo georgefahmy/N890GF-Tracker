@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792103283.463691,
+  "_cached_at": 1793145355.447864,
   "icao": "KMPI",
   "data": {
     "icao": "KMPI",
@@ -58,8 +58,8 @@
         "name": "Mariposa County",
         "brand": "",
         "phone": "N/A",
-        "notes": "Quote: 13-Oct",
-        "quote_date": "13-Oct",
+        "notes": "Quote: 27-Oct",
+        "quote_date": "27-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 7.48,
@@ -68,7 +68,7 @@
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 7.4,
+            "price": 7.53,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

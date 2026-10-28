@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792433818.544278,
+  "_cached_at": 1793145355.4550436,
   "icao": "KTCY",
   "data": {
     "icao": "KTCY",
@@ -65,8 +65,8 @@
         "name": "Tracy Municipal Airport",
         "brand": "AVFUEL",
         "phone": "N/A",
-        "notes": "AVFUEL \u2022 Quote: 14-Oct",
-        "quote_date": "14-Oct",
+        "notes": "AVFUEL \u2022 Quote: 23-Oct",
+        "quote_date": "23-Oct",
         "fuels": {
           "100LL_SS": {
             "price": 6.23,
@@ -89,10 +89,10 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-19",
+    "last_updated": "2026-10-27",
     "source": "AirNav Local Fuel",
     "raw_ident": "KTCY",
     "airport_ref": "21181",
-    "fetched_at": "2026-10-19T18:16:56Z"
+    "fetched_at": "2026-10-27T23:55:16Z"
   }
 }

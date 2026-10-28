@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792194216.8358731,
+  "_cached_at": 1793145355.456236,
   "icao": "KCPU",
   "data": {
     "icao": "KCPU",
@@ -68,11 +68,11 @@
         "name": "Calaveras County (FBO)",
         "brand": "World Fuel Services",
         "phone": "N/A",
-        "notes": "World Fuel Services \u2022 Quote: 08-Oct",
-        "quote_date": "08-Oct",
+        "notes": "World Fuel Services \u2022 Quote: 23-Oct",
+        "quote_date": "23-Oct",
         "fuels": {
           "100LL_SS": {
-            "price": 6.89,
+            "price": 6.6,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
@@ -80,7 +80,7 @@
         }
       }
     ],
-    "best_price": 6.89,
+    "best_price": 6.6,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL"
