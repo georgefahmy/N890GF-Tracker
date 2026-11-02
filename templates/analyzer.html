@@ -781,7 +781,11 @@
                     </div>
                 </div>
 
-                <div class="graph-wrapper" style="height: 400px;">
+                <div class="graph-wrapper position-relative" style="height: 400px;">
+                    <div id="xyLoader" class="plot-loader position-absolute top-50 start-50 translate-middle d-none text-center p-3 shadow-sm border">
+                        <div class="spinner-border text-primary spinner-border-sm me-2" role="status"></div>
+                        <span class="text-muted small">Rendering XY Plot...</span>
+                    </div>
                     <div id="xyGraph" class="w-100 h-100"></div>
                 </div>
             </div>

@@ -92,6 +92,8 @@ function toggleFollowAircraft(state) {
     }
 }
 
+const CARTO_API_KEY = window.CARTO_API_KEY || 'cb1_272f_1_6642cd2a2abfdf826cc7fc9c';
+
 function getMapboxStyleConfig(layerKey) {
     if (layerKey === 'satellite') {
         return {
@@ -99,6 +101,36 @@ function getMapboxStyleConfig(layerKey) {
             layers: [{
                 sourcetype: 'raster',
                 source: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+                below: 'traces'
+            }]
+        };
+    }
+    if (layerKey === 'carto-darkmatter' || layerKey === 'dark' || layerKey === 'aero-midnight') {
+        return {
+            style: 'white-bg',
+            layers: [{
+                sourcetype: 'raster',
+                source: [
+                    `https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`,
+                    `https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`,
+                    `https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`,
+                    `https://d.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`
+                ],
+                below: 'traces'
+            }]
+        };
+    }
+    if (layerKey === 'carto-positron' || layerKey === 'voyager' || layerKey === 'light') {
+        return {
+            style: 'white-bg',
+            layers: [{
+                sourcetype: 'raster',
+                source: [
+                    `https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`,
+                    `https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`,
+                    `https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`,
+                    `https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${CARTO_API_KEY}`
+                ],
                 below: 'traces'
             }]
         };
@@ -111,6 +143,9 @@ function getMapboxStyleConfig(layerKey) {
 
 function changeMapLayer(layerKey) {
     AppState.map.currentLayer = layerKey || 'open-street-map';
+    try {
+        localStorage.setItem('analyzer_map_layer', AppState.map.currentLayer);
+    } catch (e) {}
     const cfg = getMapboxStyleConfig(AppState.map.currentLayer);
     const mapDiv = document.getElementById('mapGraph');
     if (mapDiv && mapDiv.data) {
@@ -223,6 +258,16 @@ function populateXYDropdowns() {
 
 // 1. Initialize: Fetch saved flights on page load
 document.addEventListener('DOMContentLoaded', function() {
+    // Restore saved map layer preference if present
+    try {
+        const savedMapLayer = localStorage.getItem('analyzer_map_layer');
+        if (savedMapLayer) {
+            AppState.map.currentLayer = savedMapLayer;
+            const mapSelect = document.getElementById('mapLayerSelect');
+            if (mapSelect) mapSelect.value = savedMapLayer;
+        }
+    } catch (e) {}
+
     // --- ADD THIS BLOCK ---
     const scrubber = document.getElementById('mapScrubber');
     if (scrubber) {
@@ -1464,8 +1509,13 @@ function removePlotFilter(plotId, index) {
 
 function plotXY() {
     const graphDiv = document.getElementById('xyGraph');
+    const loader = document.getElementById('xyLoader');
+    const hideLoader = () => {
+        if (loader) loader.classList.add('d-none');
+    };
 
     if (!AppState.file.currentName) {
+        hideLoader();
         if (graphDiv) {
             graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-muted small">Please select or load a flight to view XY plot.</div>';
         }
@@ -1474,17 +1524,23 @@ function plotXY() {
 
     const xSelect = document.getElementById('xyXSelect');
     const ySelect = document.getElementById('xyYSelect');
-    if (!xSelect || !ySelect) return;
+    if (!xSelect || !ySelect) {
+        hideLoader();
+        return;
+    }
 
     const xSignal = xSelect.value;
     const ySignal = ySelect.value;
-    if (!xSignal || !ySignal) return;
+    if (!xSignal || !ySignal) {
+        hideLoader();
+        return;
+    }
 
     const tempUnit = 'F';
     const overlay = document.getElementById('xyOverlayToggle')?.checked;
 
-    if (graphDiv && !graphDiv.data) {
-        graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100"><div class="spinner-border text-primary spinner-border-sm me-2" role="status"></div><span class="text-muted small">Rendering XY Plot...</span></div>';
+    if (loader) {
+        loader.classList.remove('d-none');
     }
 
     const requestData = (filters) => {
@@ -1512,6 +1568,7 @@ function plotXY() {
         const rightFiltered = filteredData?.plot_data?.right_traces || [];
 
         if (leftFiltered.length === 0 || rightFiltered.length === 0) {
+            hideLoader();
             if (graphDiv) {
                 graphDiv.innerHTML = `<div class="d-flex align-items-center justify-content-center h-100 text-muted small">No data available for "${xSignal}" vs "${ySignal}".</div>`;
             }
@@ -1566,6 +1623,7 @@ function plotXY() {
         }
 
         if (traces.length === 0) {
+            hideLoader();
             if (graphDiv) {
                 graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-muted small">No data points match the active filters.</div>';
             }
@@ -1592,19 +1650,25 @@ function plotXY() {
             plot_bgcolor: 'transparent',
         };
 
+        if (graphDiv && !graphDiv.data) {
+            graphDiv.innerHTML = '';
+        }
         Plotly.newPlot('xyGraph', traces, layout, { responsive: true, displayModeBar: true });
+        hideLoader();
     };
 
     if (!overlay) {
         requestData(AppState.ui.xyFilters)
             .then(data => {
                 if (data.error) {
+                    hideLoader();
                     alert("Analysis Error: " + data.error);
                     return;
                 }
                 renderPlot(null, data);
             })
             .catch(err => {
+                hideLoader();
                 console.error("XY Plot Error:", err);
                 if (graphDiv) graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-danger small">Error plotting data.</div>';
             });
@@ -1614,11 +1678,13 @@ function plotXY() {
             requestData(AppState.ui.xyFilters)
         ]).then(([rawData, filteredData]) => {
             if (rawData.error || filteredData.error) {
+                hideLoader();
                 alert("Error: " + (rawData.error || filteredData.error || "Error generating overlay plot."));
                 return;
             }
             renderPlot(rawData, filteredData);
         }).catch(err => {
+            hideLoader();
             console.error("XY Plot Error:", err);
             if (graphDiv) graphDiv.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100 text-danger small">Error plotting data.</div>';
         });
