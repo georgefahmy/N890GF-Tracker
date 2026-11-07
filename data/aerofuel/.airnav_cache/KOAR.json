@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1793145319.1872044,
+  "_cached_at": 1794011575.2161517,
   "icao": "KOAR",
   "data": {
     "icao": "KOAR",
@@ -57,13 +57,13 @@
         "quote_date": null,
         "fuels": {
           "100LL_SS": {
-            "price": 7.18,
+            "price": 7.4,
             "type": "100LL",
             "service": "Self-Serve",
             "label": "100LL Avgas (Self-Serve)"
           },
           "JET_A": {
-            "price": 7.2,
+            "price": 7.83,
             "type": "Jet-A",
             "service": "Self-Serve",
             "label": "Jet-A Turbine Fuel (Self-Serve)"
@@ -71,16 +71,16 @@
         }
       }
     ],
-    "best_price": 7.18,
+    "best_price": 7.4,
     "primary_fuel": "100LL",
     "fuels_available": [
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-27",
+    "last_updated": "2026-11-06",
     "source": "AirNav Local Fuel",
     "raw_ident": "KOAR",
     "airport_ref": "20710",
-    "fetched_at": "2026-10-27T23:55:16Z"
+    "fetched_at": "2026-11-07T00:32:52Z"
   }
 }
