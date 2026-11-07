@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1794011575.209581,
+  "_cached_at": 1794079768.966917,
   "icao": "E16",
   "data": {
     "icao": "E16",
@@ -57,10 +57,16 @@
       {
         "name": "San Martin Aviation Corp",
         "brand": "Titan",
-        "phone": "408-430-3124",
-        "notes": "Titan \u2022 Quote: 06-Nov-2026",
-        "quote_date": "06-Nov-2026",
+        "phone": "N/A",
+        "notes": "Titan \u2022 Quote: 06-Nov",
+        "quote_date": "06-Nov",
         "fuels": {
+          "94UL_SS": {
+            "price": 8.99,
+            "type": "94UL",
+            "service": "Self-Serve",
+            "label": "94UL Unleaded (Self-Serve)"
+          },
           "94UL_FS": {
             "price": 8.99,
             "type": "94UL",
@@ -72,12 +78,6 @@
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
-          },
-          "94UL_SS": {
-            "price": 8.99,
-            "type": "94UL",
-            "service": "Self-Serve",
-            "label": "94UL Unleaded (Self-Serve)"
           }
         }
       }

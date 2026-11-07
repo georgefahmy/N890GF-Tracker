@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792300079.635833,
+  "_cached_at": 1794079768.966462,
   "icao": "KCCR",
   "data": {
     "icao": "KCCR",
@@ -115,7 +115,7 @@
             "label": "94UL Unleaded (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.2,
+            "price": 8.35,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -130,7 +130,7 @@
         "quote_date": null,
         "fuels": {
           "JET_A": {
-            "price": 6.87,
+            "price": 7.19,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"

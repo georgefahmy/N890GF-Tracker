@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1792300079.627969,
+  "_cached_at": 1794079768.959125,
   "icao": "CA35",
   "data": {
     "icao": "CA35",
@@ -14,8 +14,8 @@
         "name": "San Rafael Airport Management Office",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 13-Oct",
-        "quote_date": "13-Oct",
+        "notes": "independent \u2022 Quote: 05-Nov",
+        "quote_date": "05-Nov",
         "fuels": {
           "100LL_SS": {
             "price": 7.85,
@@ -38,8 +38,8 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-10-17",
-    "fetched_at": "2026-10-18T05:07:59Z",
+    "last_updated": "2026-11-07",
+    "fetched_at": "2026-11-07T19:29:28Z",
     "source": "AirNav Local Fuel"
   }
 }

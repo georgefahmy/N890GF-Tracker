@@ -75,15 +75,31 @@ app.register_blueprint(aerofuel_bp)
 
 db_path = os.path.join(app.instance_path, "maintenance.db")
 
-# Fallback auto-migration: If instance/maintenance.db is missing or empty, copy from legacy paths if present
+# Fallback auto-migration: If instance/maintenance.db is missing, empty, or missing core tables, copy from legacy paths if present
 old_parent_db = os.path.abspath(os.path.join(BASE_DIR, "..", "maintenance.db"))
 old_src_db = os.path.abspath(os.path.join(BASE_DIR, "src", "maintenance.db"))
 
-if not os.path.exists(db_path) or os.path.getsize(db_path) == 0:
-    if os.path.exists(old_parent_db) and os.path.getsize(old_parent_db) > 0:
-        shutil.copy2(old_parent_db, db_path)
-    elif os.path.exists(old_src_db) and os.path.getsize(old_src_db) > 0:
+
+def _is_db_missing_core_tables(path):
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return True
+    try:
+        import sqlite3
+        conn = sqlite3.connect(path)
+        c = conn.cursor()
+        c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='flight_log'")
+        missing = c.fetchone() is None
+        conn.close()
+        return missing
+    except Exception:
+        return True
+
+
+if _is_db_missing_core_tables(db_path):
+    if os.path.exists(old_src_db) and not _is_db_missing_core_tables(old_src_db):
         shutil.copy2(old_src_db, db_path)
+    elif os.path.exists(old_parent_db) and not _is_db_missing_core_tables(old_parent_db):
+        shutil.copy2(old_parent_db, db_path)
 
 env_db_uri = os.getenv("DATABASE_URL") or os.getenv("DB_PATH")
 if env_db_uri:

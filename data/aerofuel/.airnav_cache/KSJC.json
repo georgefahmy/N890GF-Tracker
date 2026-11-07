@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1794011575.2137759,
+  "_cached_at": 1794079768.965942,
   "icao": "KSJC",
   "data": {
     "icao": "KSJC",
@@ -90,8 +90,8 @@
         "name": "Atlantic Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 06-Nov",
-        "quote_date": "06-Nov",
+        "notes": "independent \u2022 Quote: 07-Nov",
+        "quote_date": "07-Nov",
         "fuels": {
           "100LL_FS": {
             "price": 12.17,
@@ -111,8 +111,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 06-Nov",
-        "quote_date": "06-Nov",
+        "notes": "independent \u2022 Quote: 07-Nov",
+        "quote_date": "07-Nov",
         "fuels": {
           "100LL_FS": {
             "price": 13.75,

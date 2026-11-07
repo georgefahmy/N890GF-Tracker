@@ -2632,10 +2632,23 @@ function setPlaybackSpeed(val) {
         );
 
         const lerpAngle = (a, b, t) => {
-            let d = b - a;
+            if (a === undefined || b === undefined || isNaN(a) || isNaN(b)) return a || 0;
+            let d = (b - a) % 360;
             if (d > 180) d -= 360;
             if (d < -180) d += 360;
             return a + d * t;
+        };
+
+        const normalizeHeading = (angle) => {
+            if (angle === undefined || isNaN(angle)) return 0;
+            return (angle % 360 + 360) % 360;
+        };
+
+        const normalizeRoll = (angle) => {
+            if (angle === undefined || isNaN(angle)) return 0;
+            let r = (angle % 360 + 360) % 360;
+            if (r > 180) r -= 360;
+            return r;
         };
 
         const magVar = AppState.currentPlotData?.mag_variance?.[AppState.playback.index] || -13;
@@ -2646,7 +2659,7 @@ function setPlaybackSpeed(val) {
                 t
             )
         );
-        const trueHeading = currentHeading - magVar;
+        const trueHeading = normalizeHeading(currentHeading - magVar);
         const currentPitch = (
             lerp(
                 AppState.currentPlotData?.pitch[AppState.playback.index],
@@ -2654,13 +2667,14 @@ function setPlaybackSpeed(val) {
                 t
             )
         );
-        const currentRoll = (
-            lerp(
+        const rawRoll = (
+            lerpAngle(
                 AppState.currentPlotData?.roll[AppState.playback.index],
                 AppState.currentPlotData?.roll[nextIdx],
                 t
             )
         );
+        const currentRoll = normalizeRoll(rawRoll);
         const currentAirspeed = (
             lerp(
                 AppState.currentPlotData?.airspeed[AppState.playback.index],
@@ -2725,7 +2739,7 @@ function setPlaybackSpeed(val) {
 
         document.getElementById('attPitch').innerText = currentPitch.toFixed(1) + ' °';
         document.getElementById('attRoll').innerText = currentRoll.toFixed(1) + ' °';
-        document.getElementById('attHeading').innerText = currentHeading.toFixed(1) + ' °';
+        document.getElementById('attHeading').innerText = normalizeHeading(currentHeading).toFixed(1) + ' °';
         document.getElementById('attAirspeed').innerText = currentAirspeed.toFixed(1) + ' kts';
         document.getElementById('attAltitude').innerText = currentAltitude.toFixed(0) + ' ft';
         document.getElementById('attVerticalSpeed').innerText = currentVerticalSpeed.toFixed(0) + ' fpm';

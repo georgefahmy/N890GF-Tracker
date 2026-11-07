@@ -1,21 +1,21 @@
 {
   "totals": {
-    "flight_count": 76,
-    "total_engine_hours": 53.44,
-    "total_airborne_hours": 42.06,
-    "total_duration": 192384.0,
-    "total_distance_mi": 6675.8,
-    "total_distance_traveled": 6675.8,
-    "total_fuel_gal": 429.1,
-    "total_gallons_used": 429.1,
-    "total_landings": 82,
+    "flight_count": 78,
+    "total_engine_hours": 54.41,
+    "total_airborne_hours": 42.8,
+    "total_duration": 195876.0,
+    "total_distance_mi": 6795.4,
+    "total_distance_traveled": 6795.4,
+    "total_fuel_gal": 437.1,
+    "total_gallons_used": 437.1,
+    "total_landings": 84,
     "avg_fuel_flow": 8.03,
     "avg_mpg": 13.5,
-    "avg_speed_mph": 158.7,
+    "avg_speed_mph": 158.8,
     "earliest_flight_date": "2025-11-06",
-    "latest_flight_date": "2026-10-31",
-    "days_span": 359,
-    "months_span": 11.79
+    "latest_flight_date": "2026-11-07",
+    "days_span": 366,
+    "months_span": 12.02
   },
   "flights": [
     {
@@ -7948,6 +7948,198 @@
       "avg_speed": 130.6,
       "cum_total_hours": 53.44,
       "cum_airborne_hours": 42.06
+    },
+    {
+      "filename": "2026-11-07 09-03-43.csv",
+      "flight_id": "2026-11-07 09:03:43-08:00",
+      "date": "2026-11-07",
+      "duration_min": 27.0,
+      "duration_hours": 0.45,
+      "total_fuel": 3.5,
+      "avg_fuel_flow": 7.9,
+      "avg_mpg": 12.5,
+      "distance_traveled_mi": 50.8,
+      "distance_traveled_nm": 44.1,
+      "avg_speed_mph": 113.2,
+      "max_rpm": 2720.0,
+      "max_cht": 392.0,
+      "max_shock_cooling": 36.0,
+      "shock_cooling_cyl": "CHT 3",
+      "shock_cooling_t_start": 1463.1,
+      "shock_cooling_t_end": 1523.1,
+      "shock_cooling_cht_drop": 36.0,
+      "cht_spread": 25.2,
+      "above_380_min": 8.7,
+      "above_410_min": 0.0,
+      "above_430_min": 0.0,
+      "max_oil_temp": 185.0,
+      "avg_oil_temp": 137.6,
+      "min_oil_press": 13.0,
+      "taxi_min": 8.1,
+      "climb_min": 5.2,
+      "cruise_min": 6.7,
+      "descent_min": 6.8,
+      "landing_phase_min": 0.2,
+      "airborne_min": 18.8,
+      "airborne_hours": 0.31,
+      "avg_cruise_descent_speed_mph": 167.3,
+      "avg_cruise_speed_mph": 172.2,
+      "avg_descent_speed_mph": 162.6,
+      "avg_climb_cruise_descent_mpg": 15.0,
+      "avg_flight_mpg": 15.0,
+      "phase_intervals": [
+        {
+          "phase": "Taxi",
+          "start": 2.22,
+          "end": 7.68
+        },
+        {
+          "phase": "Climb",
+          "start": 7.92,
+          "end": 13.13
+        },
+        {
+          "phase": "Cruise",
+          "start": 13.15,
+          "end": 19.6
+        },
+        {
+          "phase": "Descent",
+          "start": 19.62,
+          "end": 26.37
+        },
+        {
+          "phase": "Taxi",
+          "start": 26.5,
+          "end": 29.1
+        }
+      ],
+      "landing_count": 1,
+      "wind_speed_kts": 8.6,
+      "wind_dir_deg": 320,
+      "headwind_kts": 8.0,
+      "crosswind_kts": 3.1,
+      "peak_pos_g": 1.4,
+      "peak_neg_g": 0.8,
+      "max_bank_deg": 36.7,
+      "max_left_bank_deg": 36.7,
+      "max_right_bank_deg": 29.5,
+      "climb_gradient_ft_nm": null,
+      "fid": "2026-11-07 09:03:43-08:00",
+      "total_duration": 1620.0,
+      "engine_duration_sec": 1620.0,
+      "air_time": 1116.0,
+      "distance_traveled": 50.8,
+      "gallons_used": 3.5,
+      "avg_speed": 113.2,
+      "cum_total_hours": 53.89,
+      "cum_airborne_hours": 42.37
+    },
+    {
+      "filename": "2026-11-07 09-48-18.csv",
+      "flight_id": "2026-11-07 09:48:18-08:00",
+      "date": "2026-11-07",
+      "duration_min": 31.2,
+      "duration_hours": 0.52,
+      "total_fuel": 4.5,
+      "avg_fuel_flow": 8.6,
+      "avg_mpg": 13.4,
+      "distance_traveled_mi": 68.8,
+      "distance_traveled_nm": 59.8,
+      "avg_speed_mph": 131.5,
+      "max_rpm": 2699.0,
+      "max_cht": 395.6,
+      "max_shock_cooling": 41.4,
+      "shock_cooling_cyl": "CHT 3",
+      "shock_cooling_t_start": 1554.1,
+      "shock_cooling_t_end": 1614.1,
+      "shock_cooling_cht_drop": 41.4,
+      "cht_spread": 19.8,
+      "above_380_min": 11.2,
+      "above_410_min": 0.0,
+      "above_430_min": 0.0,
+      "max_oil_temp": 192.2,
+      "avg_oil_temp": 182.9,
+      "min_oil_press": 53.0,
+      "taxi_min": 4.8,
+      "climb_min": 8.9,
+      "cruise_min": 10.4,
+      "descent_min": 6.6,
+      "landing_phase_min": 0.2,
+      "airborne_min": 26.1,
+      "airborne_hours": 0.43,
+      "avg_cruise_descent_speed_mph": 160.6,
+      "avg_cruise_speed_mph": 176.9,
+      "avg_descent_speed_mph": 135.2,
+      "avg_climb_cruise_descent_mpg": 16.0,
+      "avg_flight_mpg": 16.0,
+      "phase_intervals": [
+        {
+          "phase": "Taxi",
+          "start": 1.87,
+          "end": 5.55
+        },
+        {
+          "phase": "Climb",
+          "start": 5.73,
+          "end": 13.27
+        },
+        {
+          "phase": "Cruise",
+          "start": 13.28,
+          "end": 21.17
+        },
+        {
+          "phase": "Descent",
+          "start": 21.38,
+          "end": 22.07
+        },
+        {
+          "phase": "Climb",
+          "start": 22.37,
+          "end": 22.93
+        },
+        {
+          "phase": "Descent",
+          "start": 23.32,
+          "end": 29.05
+        },
+        {
+          "phase": "Cruise",
+          "start": 29.07,
+          "end": 29.57
+        },
+        {
+          "phase": "Descent",
+          "start": 30.3,
+          "end": 31.5
+        },
+        {
+          "phase": "Taxi",
+          "start": 31.65,
+          "end": 32.77
+        }
+      ],
+      "landing_count": 1,
+      "wind_speed_kts": 7.0,
+      "wind_dir_deg": 344,
+      "headwind_kts": -6.0,
+      "crosswind_kts": 3.7,
+      "peak_pos_g": 2.0,
+      "peak_neg_g": 0.1,
+      "max_bank_deg": 174.4,
+      "max_left_bank_deg": 146.3,
+      "max_right_bank_deg": 174.4,
+      "climb_gradient_ft_nm": null,
+      "fid": "2026-11-07 09:48:18-08:00",
+      "total_duration": 1872.0,
+      "engine_duration_sec": 1872.0,
+      "air_time": 1548.0,
+      "distance_traveled": 68.8,
+      "gallons_used": 4.5,
+      "avg_speed": 131.5,
+      "cum_total_hours": 54.41,
+      "cum_airborne_hours": 42.8
     }
   ]
 }
