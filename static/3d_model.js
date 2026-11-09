@@ -41,9 +41,19 @@ document.addEventListener('DOMContentLoaded', function() {
             fullscreenElement: container
         });
 
+        // Ensure bright, consistent lighting on the aircraft from camera view
+        viewer.scene.light = new Cesium.DirectionalLight({
+            direction: new Cesium.Cartesian3(0.0, 0.0, -1.0)
+        });
+        viewer.scene.preRender.addEventListener(function(scene) {
+            if (scene.light && scene.camera && scene.camera.directionWC) {
+                Cesium.Cartesian3.clone(scene.camera.directionWC, scene.light.direction);
+            }
+        });
+
         aircraftEntity = viewer.entities.add({
             name: 'Aircraft',
-            model: { uri: '/static/models/N890GF.glb?v=20261108', minimumPixelSize: 1 },
+            model: { uri: '/static/models/N890GF.glb?v=20261108_bright', minimumPixelSize: 1 },
             // THE CAMERA FIX: Offset the camera 40m back and 10m up
             viewFrom: new Cesium.Cartesian3(-40.0, 0.0, 10.0),
             // The position is now a MATH FUNCTION, not a static point
