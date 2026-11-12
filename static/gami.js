@@ -99,10 +99,17 @@ function openGamiModal() {
         }
     }
 
-    const modal = new bootstrap.Modal(modalEl);
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
     modal.show();
 
-    loadFlight();
+    const waitForLayoutAndLoad = () => {
+        if (timeGraph && timeGraph.clientWidth === 0 && modalEl.style.display !== 'block') {
+            requestAnimationFrame(waitForLayoutAndLoad);
+            return;
+        }
+        loadFlight();
+    };
+    requestAnimationFrame(waitForLayoutAndLoad);
 }
 
 function loadFlight() {
@@ -146,11 +153,36 @@ function renderGami(data) {
     // =====================================================
     // USE RAW DATAFRAME (NOT PLOTTED TRACES)
     // =====================================================
-    const df =
+    let df =
         data.rawData ||
         data.raw_data ||
         data.dataframe ||
         data.df;
+
+    if ((!df || !df.length) && data.plot_data) {
+        if (typeof window.reconstructRawDataFromPlotData === 'function') {
+            df = window.reconstructRawDataFromPlotData(data.plot_data);
+        } else {
+            const pd = data.plot_data;
+            const n = (pd.x && pd.x.length) || 0;
+            const egtTr = pd.egt_traces || [];
+            df = new Array(n);
+            for (let i = 0; i < n; i++) {
+                const r = {
+                    time: pd.x[i],
+                    "Session Time": pd.x_sec ? pd.x_sec[i] : pd.x[i] * 60,
+                    "Fuel Flow 1 (gal/hr)": pd.fuel_flow ? pd.fuel_flow[i] : null,
+                    "Total Fuel Flow (gal/hr)": pd.fuel_flow ? pd.fuel_flow[i] : null
+                };
+                for (let t = 0; t < egtTr.length; t++) {
+                    if (egtTr[t] && egtTr[t].name && egtTr[t].y) {
+                        r[egtTr[t].name] = egtTr[t].y[i];
+                    }
+                }
+                df[i] = r;
+            }
+        }
+    }
 
     // fallback time handling (minutes)
     const time =
@@ -414,6 +446,7 @@ function renderGami(data) {
         }
 
         const timeLayout = {
+            autosize: true,
             title: "EGT + Fuel Flow vs Time",
             xaxis: { title: "Time (min)" },
             yaxis: { title: `EGT (°${tempUnit})` },
@@ -441,7 +474,7 @@ function renderGami(data) {
             timeLayout.yaxis2.autorange = false;
         }
 
-        Plotly.react(timeGraphDiv, timeTraces, timeLayout);
+        Plotly.react(timeGraphDiv, timeTraces, timeLayout, { responsive: true });
 
         if (timeGraphDiv.removeAllListeners) {
             timeGraphDiv.removeAllListeners('plotly_click');
@@ -760,6 +793,7 @@ function renderGami(data) {
         const scatterDiv = getGamiElem('scatterGraph');
         if (scatterDiv) {
             const scatterLayout = {
+                autosize: true,
                 title: "EGT vs Fuel Flow",
                 xaxis: {
                     title: { text: "Fuel Flow (GPH)", standoff: 15 },
@@ -811,7 +845,7 @@ function renderGami(data) {
                 }
             }
 
-            Plotly.react(scatterDiv, scatter, scatterLayout);
+            Plotly.react(scatterDiv, scatter, scatterLayout, { responsive: true });
         }
     }
 

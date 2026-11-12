@@ -543,6 +543,7 @@ def calculate_climb_gradient(df: pd.DataFrame) -> float:
 
         grad_series = vs_fpm[climb_mask] / (gs[climb_mask] / 60.0)
         grad_series = grad_series.replace([np.inf, -np.inf], np.nan).dropna()
+        return round(float(grad_series.mean()), 1) if not grad_series.empty else 0.0
     except Exception:
         return 0.0
 

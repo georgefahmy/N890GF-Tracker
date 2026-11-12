@@ -115,10 +115,10 @@ class TestAeroFuelIntegration:
             response = client.get("/api/airnav/route?origin=KSQL")
             assert response.status_code == 400
 
-    def test_api_airnav_sync_invalid_payload(self, app, client):
+    def test_api_airnav_sync_invalid_payload(self, app, auth_client):
         """Verify /api/airnav/sync with invalid payload returns 400."""
         with app.app_context():
-            response = client.post("/api/airnav/sync", json={})
+            response = auth_client.post("/api/airnav/sync", json={})
             assert response.status_code == 400
 
     def test_route_airports_remain_when_radar_disabled_in_app_js(self, app, client):

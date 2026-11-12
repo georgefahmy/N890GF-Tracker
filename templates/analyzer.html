@@ -27,9 +27,31 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1050;
+            z-index: 1040;
             backdrop-filter: blur(8px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ensure modals always layer cleanly above fixed navbar and toolbars */
+        .modal-backdrop {
+            z-index: 2050 !important;
+        }
+        .modal {
+            z-index: 2060 !important;
+        }
+
+        /* Wide analysis modals */
+        .modal-dialog-wide {
+            max-width: 95vw;
+            width: 95vw;
+            margin: 1rem auto;
+        }
+        @media (max-width: 991.98px) {
+            .modal-dialog-wide {
+                max-width: 98vw;
+                width: 98vw;
+                margin: 0.5rem auto;
+            }
         }
 
         /* Modern card styles */
@@ -184,6 +206,32 @@
         .sidebar-collapsed [name="leftColumn"] {
             flex: 0 0 100% !important;
             max-width: 100% !important;
+        }
+
+        /* Stack 3D/Map sidebar cleanly below charts on medium desktop viewports (992px - 1399px) */
+        @media (min-width: 992px) and (max-width: 1399.98px) {
+            body:not(.sidebar-collapsed) [name="leftColumn"],
+            body:not(.sidebar-collapsed) [name="rightColumn"] {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+            body:not(.sidebar-collapsed) .right-sticky-col {
+                position: static !important;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+        }
+
+        /* Prevent Cesium credits/logo from overlapping the bottom 3D HUD & playback scrubber */
+        #attitude3DContainer .cesium-viewer-bottom {
+            bottom: 92px !important;
+            left: 6px !important;
+            opacity: 0.55;
+            transform: scale(0.8);
+            transform-origin: bottom left;
+            pointer-events: none;
         }
 
         /* Mobile View Switching Rules (< 992px) */
@@ -595,7 +643,7 @@
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index: 1060; overflow: visible;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index: 1040; overflow: visible;">
     <div class="container-fluid px-3" style="overflow: visible;">
         <div class="d-flex align-items-center gap-2">
             <a href="/" class="btn btn-outline-light btn-sm d-flex align-items-center gap-1" title="Back to Flight Tracker">
@@ -980,16 +1028,16 @@
 
 <!-- AIRSPEED CALIBRATION MODAL -->
 <div class="modal fade" id="airspeedCalModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
+  <div class="modal-dialog modal-xl modal-dialog-wide modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content shadow">
-      <div class="modal-header bg-dark text-white">
+      <div class="modal-header bg-dark text-white py-2">
         <h5 class="modal-title d-flex align-items-center gap-2">
             <i class="bi bi-compass"></i> Airspeed Calibration Analysis
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body">
-        <div class="card p-3 mb-3 bg-body-tertiary border-0">
+      <div class="modal-body p-3">
+        <div class="card p-2 px-3 mb-2 bg-body-tertiary border-0">
           <div class="row g-2 align-items-center">
             <div class="col-md-5">
               <label class="form-label text-muted small mb-1 fw-bold">Select Flight</label>
@@ -1004,37 +1052,37 @@
               <input type="number" class="form-control form-control-sm" id="calEndTime" placeholder="End time">
             </div>
             <div class="col-md-1 d-flex align-items-end">
-              <button class="btn btn-primary btn-sm w-100" onclick="submitAirspeedCalibration()">Run</button>
+              <button class="btn btn-primary btn-sm w-100 mt-md-4" onclick="submitAirspeedCalibration()">Run</button>
             </div>
           </div>
         </div>
 
-        <div class="card p-3 mb-3 bg-light border-0 shadow-sm">
+        <div class="card py-2 px-3 mb-2 bg-light border-0 shadow-sm">
           <div id="asCalInstruction" class="text-muted small">
-            Click 2 points on the graph below to select your 360° airspeed calibration maneuver segment (Green line = Start, Red line = End).
+            Click 2 points on the graph or map below to select your 360° airspeed calibration maneuver segment (Green = Start, Red = End).
           </div>
         </div>
 
-        <div class="row g-3 mb-3 align-items-center">
-          <div class="col-lg-8">
-            <div class="card p-2 shadow-sm h-100">
+        <div class="row g-3 mb-3 align-items-stretch">
+          <div class="col-lg-7">
+            <div class="card p-2 shadow-sm h-100 overflow-hidden">
               <div class="card-header bg-dark text-white py-1 px-2 d-flex justify-content-between align-items-center">
                 <span class="small fw-bold">📈 Telemetry Graph</span>
                 <span class="extra-small text-white-50">Click 2 points to set range</span>
               </div>
-              <div class="card-body p-1">
-                <div id="asCalTimeGraph" style="height:400px;"></div>
+              <div class="card-body p-1 overflow-hidden">
+                <div id="asCalTimeGraph" style="height:420px; width:100%; overflow:hidden;"></div>
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="card p-2 shadow-sm h-100">
+          <div class="col-lg-5">
+            <div class="card p-2 shadow-sm h-100 overflow-hidden">
               <div class="card-header bg-dark text-white py-1 px-2 d-flex justify-content-between align-items-center">
                 <span class="small fw-bold">🗺️ Flight Track &amp; Position</span>
-                <span class="badge bg-info text-dark extra-small" id="asCalMapBadge">Track</span>
+                <span class="badge bg-info text-dark extra-small" id="asCalMapBadge">Click 2 points to set range</span>
               </div>
-              <div class="card-body p-1 d-flex flex-column justify-content-center">
-                <div id="asCalMapDiv" style="height:280px; width:100%;"></div>
+              <div class="card-body p-1 d-flex flex-column justify-content-center overflow-hidden">
+                <div id="asCalMapDiv" style="height:420px; width:100%; overflow:hidden;"></div>
               </div>
             </div>
           </div>
@@ -1112,16 +1160,16 @@
 
 <!-- GAMI SPREAD MODAL -->
 <div class="modal fade" id="gamiModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
+  <div class="modal-dialog modal-xl modal-dialog-wide modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content shadow">
-      <div class="modal-header bg-dark text-white">
+      <div class="modal-header bg-dark text-white py-2">
         <h5 class="modal-title d-flex align-items-center gap-2">
             <i class="bi bi-fire"></i> GAMI Spread Analysis
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body">
-        <div class="card p-3 mb-3 bg-body-tertiary border-0">
+      <div class="modal-body p-3">
+        <div class="card p-2 px-3 mb-2 bg-body-tertiary border-0">
           <div class="row g-2 align-items-center">
             <div class="col-12">
               <label class="form-label text-muted small mb-1 fw-bold">Select Flight</label>
@@ -1130,19 +1178,19 @@
           </div>
         </div>
 
-        <div class="card p-3 mb-3 bg-light border-0 shadow-sm">
+        <div class="card py-2 px-3 mb-2 bg-light border-0 shadow-sm">
           <div id="gamiMetrics" class="text-muted small">Select a flight and click 2 points (or box-select) on the EGT vs Time graph to select a Lean Find window.</div>
         </div>
 
         <div class="row g-3">
           <div class="col-md-6">
-            <div class="card p-2 shadow-sm">
-              <div id="gamiTimeGraph" style="height:380px;"></div>
+            <div class="card p-2 shadow-sm overflow-hidden">
+              <div id="gamiTimeGraph" style="height:440px; width:100%; overflow:hidden;"></div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="card p-2 shadow-sm">
-              <div id="gamiScatterGraph" style="height:380px;"></div>
+            <div class="card p-2 shadow-sm overflow-hidden">
+              <div id="gamiScatterGraph" style="height:440px; width:100%; overflow:hidden;"></div>
             </div>
           </div>
         </div>
@@ -1325,12 +1373,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script src="{{ url_for('static', filename='signal_bands.js') }}"></script>
-<script src="{{ url_for('static', filename='gami.js') }}"></script>
-<script src="{{ url_for('static', filename='airspeed_calibration.js') }}"></script>
-<script src="{{ url_for('static', filename='analyzer.js') }}"></script>
+<script src="{{ url_for('static', filename='signal_bands.js', v='20261112_4') }}"></script>
+<script src="{{ url_for('static', filename='gami.js', v='20261112_4') }}"></script>
+<script src="{{ url_for('static', filename='airspeed_calibration.js', v='20261112_4') }}"></script>
+<script src="{{ url_for('static', filename='analyzer.js', v='20261112_4') }}"></script>
 <link href="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Cesium.js"></script>
-<script src="{{ url_for('static', filename='3d_model.js') }}"></script>
+<script src="{{ url_for('static', filename='3d_model.js', v='20261112_4') }}"></script>
 </body>
 </html>

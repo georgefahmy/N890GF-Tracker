@@ -655,36 +655,142 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all tooltips on the page
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    const costToggle = document.getElementById('costToggle');
-    const monthDisplay = document.getElementById('costPerMonthDisplay');
-    // const hourDisplay = document.getElementById('costPerHourDisplay');
+// Shared Edit Modals (Flight, Maintenance, Fuel) & Batch CSV Association
+window.openEditFlightModal = function (btn) {
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
+    const form = document.getElementById('sharedEditFlightForm');
+    if (form) form.action = `/edit_flight/${id}`;
 
-    if (costToggle && monthDisplay && hourDisplay) {
-        // Parse raw numeric values from Jinja data attributes
-        const monthFull = parseFloat(monthDisplay.getAttribute('data-full'));
-        const monthReduced = parseFloat(monthDisplay.getAttribute('data-reduced'));
+    const setVal = (elId, val) => {
+        const el = document.getElementById(elId);
+        if (el) el.value = val !== null && val !== undefined ? val : '';
+    };
+    setVal('editFlightDate', btn.getAttribute('data-date'));
+    setVal('editFlightTakeoff', btn.getAttribute('data-takeoff'));
+    setVal('editFlightLanding', btn.getAttribute('data-landing'));
+    setVal('editFlightHobbs', btn.getAttribute('data-hobbs'));
+    setVal('editFlightTach', btn.getAttribute('data-tach'));
+    setVal('editFlightLandings', btn.getAttribute('data-landings'));
+    setVal('editFlightNotes', btn.getAttribute('data-notes'));
 
-        // const hourFull = parseFloat(hourDisplay.getAttribute('data-full'));
-        // const hourReduced = parseFloat(hourDisplay.getAttribute('data-reduced'));
+    const matchingCsv = btn.getAttribute('data-matching-csv') || '';
+    const associatedCsv = btn.getAttribute('data-associated-csv') || '';
+    const currBox = document.getElementById('editFlightCurrentCsvBox');
+    const noBox = document.getElementById('editFlightNoCsvBox');
+    const currName = document.getElementById('editFlightCurrentCsvName');
+    const currLink = document.getElementById('editFlightCurrentCsvLink');
+    const csvSelect = document.getElementById('editFlightAssociatedCsv');
 
-        costToggle.addEventListener('change', function () {
-            // Select the appropriate values based on toggle state
-            const targetMonth = this.checked ? monthFull : monthReduced;
-            // const targetHour = this.checked ? hourFull : hourReduced;
-
-            // Format to 2 decimal places and push to DOM
-            monthDisplay.textContent = `$${targetMonth.toFixed(2)}`;
-            // hourDisplay.textContent = `$${targetHour.toFixed(2)}`;
-        });
+    if (matchingCsv && associatedCsv !== 'none') {
+        if (currBox) currBox.classList.remove('d-none');
+        if (noBox) noBox.classList.add('d-none');
+        if (currName) currName.textContent = matchingCsv;
+        if (currLink) currLink.href = `/analyzer?flight=${encodeURIComponent(matchingCsv)}`;
+        if (csvSelect) csvSelect.value = matchingCsv;
+    } else {
+        if (currBox) currBox.classList.add('d-none');
+        if (noBox) noBox.classList.remove('d-none');
+        if (csvSelect) csvSelect.value = '__none__';
     }
-});
+
+    const modalEl = document.getElementById('sharedEditFlightModal');
+    if (modalEl) bootstrap.Modal.getOrCreateInstance(modalEl).show();
+};
+
+window.openEditMxModal = function (btn) {
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
+    const form = document.getElementById('sharedEditMxForm');
+    if (form) form.action = `/edit_mx/${id}`;
+
+    const setVal = (elId, val) => {
+        const el = document.getElementById(elId);
+        if (el) el.value = val !== null && val !== undefined ? val : '';
+    };
+    setVal('editMxDate', btn.getAttribute('data-date'));
+    setVal('editMxAirframe', btn.getAttribute('data-airframe'));
+    setVal('editMxTach', btn.getAttribute('data-tach'));
+    setVal('editMxRecurrentItem', btn.getAttribute('data-recurrent-item') || 'None');
+    setVal('editMxCategory', btn.getAttribute('data-category') || 'Airframe');
+    setVal('editMxNotes', btn.getAttribute('data-notes'));
+
+    const modalEl = document.getElementById('sharedEditMxModal');
+    if (modalEl) bootstrap.Modal.getOrCreateInstance(modalEl).show();
+};
+
+window.openEditFuelModal = function (btn) {
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
+    const form = document.getElementById('sharedEditFuelForm');
+    if (form) form.action = `/edit_fuel/${id}`;
+
+    const setVal = (elId, val) => {
+        const el = document.getElementById(elId);
+        if (el) el.value = val !== null && val !== undefined ? val : '';
+    };
+    setVal('editFuelDate', btn.getAttribute('data-date'));
+    setVal('editFuelHobbs', btn.getAttribute('data-hobbs'));
+    setVal('editFuelGallons', btn.getAttribute('data-gallons'));
+    setVal('editFuelPrice', btn.getAttribute('data-price'));
+
+    const modalEl = document.getElementById('sharedEditFuelModal');
+    if (modalEl) bootstrap.Modal.getOrCreateInstance(modalEl).show();
+};
+
+window.toggleAllCsvSuggestions = function (masterCheck) {
+    document.querySelectorAll('.csv-suggestion-check').forEach(cb => {
+        cb.checked = !!masterCheck.checked;
+    });
+};
+
+window.submitBatchAssociateFlights = async function () {
+    const checks = document.querySelectorAll('.csv-suggestion-check:checked');
+    const associations = [];
+    checks.forEach(cb => {
+        const fid = cb.getAttribute('data-flight-id');
+        const fname = cb.getAttribute('data-csv-filename');
+        if (fid && fname) {
+            associations.push({ flight_id: parseInt(fid, 10), csv_filename: fname });
+        }
+    });
+
+    const statusEl = document.getElementById('batchAssociateStatus');
+    const saveBtn = document.getElementById('saveBatchAssociateBtn');
+    if (associations.length === 0) {
+        if (statusEl) {
+            statusEl.className = 'alert alert-warning mt-3 mb-0 small';
+            statusEl.textContent = 'Please select at least one association to save.';
+        }
+        return;
+    }
+
+    if (saveBtn) saveBtn.disabled = true;
+    try {
+        const resp = await fetch('/api/batch_associate_flights', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ associations })
+        });
+        const data = await resp.json();
+        if (resp.ok && data.success) {
+            if (statusEl) {
+                statusEl.className = 'alert alert-success mt-3 mb-0 small';
+                statusEl.textContent = `Associated ${data.updated_count} flight(s) with telemetry CSVs. Reloading...`;
+            }
+            setTimeout(() => window.location.reload(), 600);
+        } else {
+            throw new Error(data.error || 'Failed to save associations.');
+        }
+    } catch (err) {
+        if (statusEl) {
+            statusEl.className = 'alert alert-danger mt-3 mb-0 small';
+            statusEl.textContent = err.message;
+        }
+        if (saveBtn) saveBtn.disabled = false;
+    }
+};
 
 document.addEventListener('DOMContentLoaded', function () {
     const cloudForm = document.getElementById('cloudCalcForm');
@@ -700,7 +806,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Standard Aviation Calculation (Yields Feet AGL directly)
             const aglFeet = ((temp - dew) / 2.5) * 1000;
-            const aglMeters = aglFeet / 3.28084;
 
             // Mean Sea Level (MSL) Calculation
             const mslFeet = aglFeet + elevation;

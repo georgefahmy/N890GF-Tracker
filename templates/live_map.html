@@ -533,6 +533,9 @@
 
     <!-- MAIN IFRAME CONTAINER -->
     <div class="iframe-container" id="iframeContainer">
+        <!-- Transparent click-catcher overlay active only when a header dropdown is open so clicking the cross-origin iframe closes the dropdown -->
+        <div id="iframeDropdownClickCatcher" class="d-none" style="position: absolute; inset: 0; z-index: 1030; background: transparent; cursor: default;"></div>
+
         <!-- ACTIVE FILTER CHIPS FLOATING OVERLAY (Visible when any filter is active) -->
         <div class="active-filter-bar d-none" id="activeFilterBar">
             <span class="text-muted small me-1"><i class="bi bi-funnel-fill text-primary"></i> Active:</span>
@@ -547,6 +550,26 @@
 
     <!-- Bootstrap 5.3 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const catcher = document.getElementById('iframeDropdownClickCatcher');
+            const dropdownToggle = document.getElementById('filtersDropdownBtn');
+            function closeOpenDropdowns() {
+                if (dropdownToggle) {
+                    const inst = bootstrap.Dropdown.getInstance(dropdownToggle);
+                    if (inst) inst.hide();
+                }
+                document.querySelectorAll('.tools-dropdown-menu.show').forEach(m => m.classList.remove('show'));
+                if (catcher) catcher.classList.add('d-none');
+            }
+            if (dropdownToggle && catcher) {
+                dropdownToggle.parentElement.addEventListener('shown.bs.dropdown', () => catcher.classList.remove('d-none'));
+                dropdownToggle.parentElement.addEventListener('hidden.bs.dropdown', () => catcher.classList.add('d-none'));
+                catcher.addEventListener('click', closeOpenDropdowns);
+            }
+            window.addEventListener('blur', closeOpenDropdowns);
+        });
+    </script>
 
     <!-- ADSB Interactive Map Controller Script -->
     <script>

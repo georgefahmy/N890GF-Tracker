@@ -5128,6 +5128,9 @@
   // --- Airport Detail Modal ---
   function openAirportModal(apt, isLoading = false) {
     if (!apt) return;
+    // Save any currently open mobile drawer so closing the modal restores it seamlessly
+    STATE._savedMobileDrawerEl = document.querySelector('.mobile-open');
+    STATE._savedMobileTabBtn = document.querySelector('.mobile-bar-btn.active-tab');
     if (typeof window.closeAllMobileDrawers === 'function') {
       window.closeAllMobileDrawers();
     }
@@ -5446,6 +5449,16 @@
     const modalBackdrop = document.getElementById('airport-modal-backdrop');
     if (modalBackdrop) modalBackdrop.classList.remove('open');
     STATE.activeAirportModal = null;
+    if (STATE._savedMobileDrawerEl && window.innerWidth <= 860) {
+      STATE._savedMobileDrawerEl.classList.add('mobile-open');
+      if (STATE._savedMobileTabBtn) STATE._savedMobileTabBtn.classList.add('active-tab');
+      const backdrop = document.getElementById('mobile-drawer-backdrop');
+      if (backdrop && STATE._savedMobileDrawerEl.id !== 'map-legend') {
+        backdrop.classList.add('active');
+      }
+    }
+    STATE._savedMobileDrawerEl = null;
+    STATE._savedMobileTabBtn = null;
     recalculateRadiusAirports();
   }
 

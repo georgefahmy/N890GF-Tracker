@@ -13,7 +13,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
     <link rel="manifest" href="/static/icons/site.webmanifest">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     {% include 'dark_mode.html' %}
     <style>
         body {
@@ -1036,11 +1035,13 @@
             <button class="nav-link" id="fuel-tab" data-bs-toggle="tab" data-bs-target="#fuel" type="button">Fuel Logs</button>
         </li>
 
-        <li class="ms-auto pe-2 d-flex align-items-center gap-1">
+        <li class="ms-auto pe-2 d-flex align-items-center gap-2">
             {% if unassociated_csv_count and unassociated_csv_count > 0 %}
-            <span id="unassociatedCsvAlert" class="text-warning d-inline-flex align-items-center me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="{{ unassociated_csv_count }} flight log file{{ 's' if unassociated_csv_count != 1 else '' }} not associated with any flight log entry" style="cursor: help;">
-                <i class="bi bi-exclamation-triangle-fill fs-6"></i>
-            </span>
+            <button type="button" id="unassociatedCsvAlert" class="btn btn-sm btn-outline-warning d-inline-flex align-items-center gap-1 py-1 px-2" data-bs-toggle="modal" data-bs-target="#batchAssociateModal" title="{{ unassociated_csv_count }} flight log file{{ 's' if unassociated_csv_count != 1 else '' }} not associated with any flight log entry — click to review &amp; auto-associate">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span class="d-none d-sm-inline">Unlinked CSVs ({{ unassociated_csv_count }})</span>
+                <span class="d-inline d-sm-none">{{ unassociated_csv_count }}</span>
+            </button>
             {% endif %}
             <a id="dynamicExportBtn" href="/export/flights" class="btn btn-sm btn-outline-secondary">
                 ⬇️ Export to CSV
@@ -1085,8 +1086,21 @@
                                 {% if row.matching_csv %}
                                 <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" class="btn btn-sm btn-outline-info">📊</a>
                                 {% endif %}
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editFlightModal{{ row.id }}">Edit</button>
-                                <a href="/delete_flight/{{ row.id }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this flight entry?');">Del</a>
+                                <button type="button" class="btn btn-sm btn-outline-primary"
+                                    data-id="{{ row.id }}"
+                                    data-date="{{ row.date }}"
+                                    data-takeoff="{{ row.takeoff_airport }}"
+                                    data-landing="{{ row.landing_airport }}"
+                                    data-hobbs="{{ row.hobbs }}"
+                                    data-tach="{{ row.tach }}"
+                                    data-landings="{{ row.landings }}"
+                                    data-notes="{{ row.notes or '' }}"
+                                    data-matching-csv="{{ row.matching_csv or '' }}"
+                                    data-associated-csv="{{ row.associated_csv or '' }}"
+                                    onclick="openEditFlightModal(this)">Edit</button>
+                                <form action="/delete_flight/{{ row.id }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this flight entry?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Del</button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}
@@ -1098,11 +1112,11 @@
                 <ul class="pagination justify-content-center" id="flightPagination"></ul>
             </nav>
 
-            {% for row in flight_logs %}
-            <div class="modal fade" id="editFlightModal{{ row.id }}" tabindex="-1">
+            <!-- Shared Edit Flight Modal -->
+            <div class="modal fade" id="sharedEditFlightModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="/edit_flight/{{ row.id }}" method="POST" enctype="multipart/form-data">
+                        <form id="sharedEditFlightForm" action="/edit_flight/0" method="POST" enctype="multipart/form-data">
                             <div class="modal-header bg-primary text-white">
                                 <h5 class="modal-title">Edit Flight</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -1110,66 +1124,57 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label class="form-label">Date</label>
-                                    <input type="date" name="date" class="form-control" value="{{ row.date }}" required>
+                                    <input type="date" name="date" id="editFlightDate" class="form-control" required>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Takeoff</label>
-                                        <input type="text" name="takeoff" class="form-control text-uppercase" value="{{ row.takeoff_airport }}" required>
+                                        <input type="text" name="takeoff" id="editFlightTakeoff" class="form-control text-uppercase" required>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Landing</label>
-                                        <input type="text" name="landing" class="form-control text-uppercase" value="{{ row.landing_airport }}" required>
+                                        <input type="text" name="landing" id="editFlightLanding" class="form-control text-uppercase" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Hobbs</label>
-                                        <input type="number" step="0.1" name="hobbs" class="form-control" value="{{ row.hobbs }}" required>
+                                        <input type="number" step="0.1" name="hobbs" id="editFlightHobbs" class="form-control" required>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Tach</label>
-                                        <input type="number" step="0.1" name="tach" class="form-control" value="{{ row.tach }}" required>
+                                        <input type="number" step="0.1" name="tach" id="editFlightTach" class="form-control" required>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Landings</label>
-                                        <input type="number" name="landings" class="form-control" value="{{ row.landings }}" required>
+                                        <input type="number" name="landings" id="editFlightLandings" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Notes</label>
-                                    <textarea name="notes" class="form-control" rows="2">{{ row.notes }}</textarea>
+                                    <textarea name="notes" id="editFlightNotes" class="form-control" rows="2"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Associated Telemetry File</label>
-                                    {% if row.matching_csv %}
-                                    <div class="p-2 border rounded bg-light d-flex align-items-center justify-content-between mb-2">
+                                    <div id="editFlightCurrentCsvBox" class="p-2 border rounded bg-light d-flex align-items-center justify-content-between mb-2 d-none">
                                         <div class="text-truncate me-2">
                                             <span class="badge bg-info text-dark me-1">📊 Current File</span>
-                                            <small class="fw-semibold text-break">{{ row.matching_csv }}</small>
+                                            <small id="editFlightCurrentCsvName" class="fw-semibold text-break"></small>
                                         </div>
-                                        <a href="/analyzer?flight={{ row.matching_csv|urlencode }}" target="_blank" class="btn btn-sm btn-outline-info text-nowrap">
+                                        <a id="editFlightCurrentCsvLink" href="/analyzer" target="_blank" class="btn btn-sm btn-outline-info text-nowrap">
                                             📊 View Analyzer
                                         </a>
                                     </div>
-                                    {% else %}
-                                    <div class="p-2 border rounded bg-light text-muted small mb-2">
+                                    <div id="editFlightNoCsvBox" class="p-2 border rounded bg-light text-muted small mb-2">
                                         <em>No flight telemetry file currently associated.</em>
                                     </div>
-                                    {% endif %}
 
                                     <label class="form-label small text-muted mb-1">Associate with File:</label>
-                                    <select name="associated_csv" class="form-select form-select-sm mb-2">
-                                        <option value="__none__" {% if row.associated_csv == 'none' or not row.matching_csv %}selected{% endif %}>
-                                            -- None (No associated file) --
-                                        </option>
-                                        <option value="__auto__">
-                                            🔄 Reset to Auto-detect by Date/Time
-                                        </option>
+                                    <select name="associated_csv" id="editFlightAssociatedCsv" class="form-select form-select-sm mb-2">
+                                        <option value="__none__">-- None (No associated file) --</option>
+                                        <option value="__auto__">🔄 Reset to Auto-detect by Date/Time</option>
                                         {% for csv_f in available_csv_files %}
-                                        <option value="{{ csv_f }}" {% if row.matching_csv == csv_f and row.associated_csv != 'none' %}selected{% endif %}>
-                                            {{ csv_f }}{% if csv_f in unassociated_csv_files and csv_f != row.matching_csv %} (Unassociated){% endif %}
-                                        </option>
+                                        <option value="{{ csv_f }}">{{ csv_f }}{% if csv_f in unassociated_csv_files %} (Unassociated){% endif %}</option>
                                         {% endfor %}
                                     </select>
 
@@ -1185,7 +1190,6 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
 
         <!-- ==============================================
@@ -1215,8 +1219,18 @@
                             <td>{{ mx.tach_time }}</td>
                             <td>{{ mx.notes }}</td>
                             <td class="text-center action-btns">
-                                <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editMxModal{{ mx.id }}">Edit</button>
-                                <a href="/delete_maintenance/{{ mx.id }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this maintenance entry?');">Del</a>
+                                <button type="button" class="btn btn-sm btn-outline-warning"
+                                    data-id="{{ mx.id }}"
+                                    data-date="{{ mx.date }}"
+                                    data-airframe="{{ mx.airframe_time }}"
+                                    data-tach="{{ mx.tach_time }}"
+                                    data-recurrent-item="{{ mx.recurrent_item or 'None' }}"
+                                    data-category="{{ mx.category or 'Airframe' }}"
+                                    data-notes="{{ mx.notes or '' }}"
+                                    onclick="openEditMxModal(this)">Edit</button>
+                                <form action="/delete_maintenance/{{ mx.id }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this maintenance entry?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Del</button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}
@@ -1228,11 +1242,11 @@
                 <ul class="pagination justify-content-center" id="mxPagination"></ul>
             </nav>
 
-            {% for mx in mx_logs %}
-            <div class="modal fade" id="editMxModal{{ mx.id }}" tabindex="-1">
+            <!-- Shared Edit Maintenance Modal -->
+            <div class="modal fade" id="sharedEditMxModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="/edit_mx/{{ mx.id }}" method="POST">
+                        <form id="sharedEditMxForm" action="/edit_mx/0" method="POST">
                             <div class="modal-header bg-warning text-dark">
                                 <h5 class="modal-title">Edit Maintenance</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -1240,45 +1254,45 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label class="form-label">Date</label>
-                                    <input type="date" name="date" class="form-control" value="{{ mx.date }}" required>
+                                    <input type="date" name="date" id="editMxDate" class="form-control" required>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Hobbs</label>
-                                        <input type="number" step="0.1" name="airframe" class="form-control" value="{{ mx.airframe_time }}">
+                                        <input type="number" step="0.1" name="airframe" id="editMxAirframe" class="form-control">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Tach</label>
-                                        <input type="number" step="0.1" name="tach" class="form-control" value="{{ mx.tach_time }}">
+                                        <input type="number" step="0.1" name="tach" id="editMxTach" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Recurrent Item</label>
-                                        <select name="recurrent_item" class="form-select">
-                                            <option value="None" {% if mx.recurrent_item == 'None' %}selected{% endif %}>None</option>
-                                            <option value="Condition Inspection" {% if mx.recurrent_item == 'Condition Inspection' %}selected{% endif %}>Condition Inspection</option>
-                                            <option value="Oil Change" {% if mx.recurrent_item == 'Oil Change' %}selected{% endif %}>Oil Change</option>
-                                            <option value="Nav Data Update" {% if mx.recurrent_item == 'Nav Data Update' %}selected{% endif %}>Nav Data Update</option>
-                                            <option value="Transponder Check" {% if mx.recurrent_item == 'Transponder Check' %}selected{% endif %}>Transponder Check</option>
-                                            <option value="ELT Test" {% if mx.recurrent_item == 'ELT Test' %}selected{% endif %}>ELT Test</option>
-                                            <option value="ELT Batteries" {% if mx.recurrent_item == 'ELT Batteries' %}selected{% endif %}>ELT Batteries</option>
-                                            <option value="ELT Registration" {% if mx.recurrent_item == 'ELT Registration' %}selected{% endif %}>ELT Registration</option>
+                                        <select name="recurrent_item" id="editMxRecurrentItem" class="form-select">
+                                            <option value="None">None</option>
+                                            <option value="Condition Inspection">Condition Inspection</option>
+                                            <option value="Oil Change">Oil Change</option>
+                                            <option value="Nav Data Update">Nav Data Update</option>
+                                            <option value="Transponder Check">Transponder Check</option>
+                                            <option value="ELT Test">ELT Test</option>
+                                            <option value="ELT Batteries">ELT Batteries</option>
+                                            <option value="ELT Registration">ELT Registration</option>
                                         </select>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Category</label>
-                                        <select name="category" class="form-select">
-                                            <option value="Airframe" {% if mx.category == 'Airframe' %}selected{% endif %}>Airframe</option>
-                                            <option value="Engine" {% if mx.category == 'Engine' %}selected{% endif %}>Engine</option>
-                                            <option value="Propeller" {% if mx.category == 'Propeller' %}selected{% endif %}>Propeller</option>
-                                            <option value="Avionics" {% if mx.category == 'Avionics' %}selected{% endif %}>Avionics</option>
+                                        <select name="category" id="editMxCategory" class="form-select">
+                                            <option value="Airframe">Airframe</option>
+                                            <option value="Engine">Engine</option>
+                                            <option value="Propeller">Propeller</option>
+                                            <option value="Avionics">Avionics</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Notes</label>
-                                    <textarea name="notes" class="form-control" rows="3">{{ mx.notes }}</textarea>
+                                    <textarea name="notes" id="editMxNotes" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -1289,13 +1303,91 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
 
         <!-- ==============================================
              FUEL TRACKER TAB
         =============================================== -->
         <div class="tab-pane fade" id="fuel">
+            {% if fuel_reconciliation and fuel_reconciliation.summary and fuel_reconciliation.summary.pump_gallons %}
+            {% set frec = fuel_reconciliation.summary %}
+            <div class="card mb-3 border-0 shadow-sm bg-light">
+                <div class="card-body py-2 px-3">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fs-5">🎯</span>
+                            <div>
+                                <div class="fw-bold small">Fuel Totalizer Reconciliation (K-Factor Audit)</div>
+                                <div class="text-muted" style="font-size: 0.75rem;">
+                                    Compares pump fill-up gallons against Dynon EMS totalizer fuel burn across {{ frec.matched_intervals }} matched fill-up intervals
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap align-items-center gap-3 small">
+                            <div>
+                                <span class="text-muted">Pump Total:</span>
+                                <strong class="ms-1">{{ "%.1f"|format(frec.pump_gallons) }} gal</strong>
+                            </div>
+                            <div>
+                                <span class="text-muted">EMS Totalizer:</span>
+                                <strong class="ms-1">{{ "%.1f"|format(frec.telemetry_gallons) }} gal</strong>
+                            </div>
+                            <div>
+                                <span class="text-muted">Net Drift:</span>
+                                <strong class="ms-1 {{ 'text-success' if frec.status == 'OK' else ('text-warning' if frec.status == 'Check K-Factor' else 'text-danger') }}">
+                                    {{ "%+.2f"|format(frec.difference_gal) }} gal ({{ "%+.1f"|format(frec.percent_error) }}%)
+                                </strong>
+                            </div>
+                            <div>
+                                <span class="badge {{ 'bg-success' if frec.status == 'OK' else ('bg-warning text-dark' if frec.status == 'Check K-Factor' else 'bg-danger') }}">
+                                    {{ frec.status }} (K-Factor ×{{ "%.3f"|format(frec.suggested_k_factor_ratio) }})
+                                </strong>
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary py-0 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#kFactorIntervalsCollapse" aria-expanded="false">
+                                Details ▾
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collapse mt-2" id="kFactorIntervalsCollapse">
+                        <div class="table-responsive border rounded mt-1" style="max-height: 240px; overflow-y: auto;">
+                            <table class="table table-sm table-striped mb-0 small">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Fill-Up Date</th>
+                                        <th>Hobbs (Δ)</th>
+                                        <th>Flights (CSVs)</th>
+                                        <th>Pump Gal</th>
+                                        <th>Telemetry Gal</th>
+                                        <th>Drift (Gal / %)</th>
+                                        <th>Suggested K-Ratio</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for iv in fuel_reconciliation.intervals %}
+                                    <tr>
+                                        <td>{{ iv.date }}</td>
+                                        <td>{{ "%.1f"|format(iv.hobbs) }} ({{ "%.1f"|format(iv.hobbs_delta) }})</td>
+                                        <td>{{ iv.csv_count }}/{{ iv.flight_count }}</td>
+                                        <td>{{ "%.2f"|format(iv.pump_gallons) }}</td>
+                                        <td>{{ "%.2f"|format(iv.telemetry_gallons) }}</td>
+                                        <td>{{ "%+.2f"|format(iv.difference_gal) }} ({{ "%+.1f"|format(iv.percent_error) }}%)</td>
+                                        <td>×{{ "%.3f"|format(iv.suggested_k_factor_ratio) }}</td>
+                                        <td>
+                                            <span class="badge {{ 'bg-success' if iv.status == 'OK' else ('bg-warning text-dark' if iv.status == 'Check K-Factor' else 'bg-danger') }}">
+                                                {{ iv.status }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
             <div class="table-responsive">
                 <table class="table table-striped table-hover m-0" id="fuelTable">
                     <thead class="table-dark">
@@ -1321,23 +1413,26 @@
                             <td>{{ "%.2f"|format(fuel.gallons) }}</td>
                             <td>${{ "%.2f"|format(fuel.price_per_gallon) }}</td>
                             <td>${{ "%.2f"|format(fuel.gallons * fuel.price_per_gallon) }}</td>
-                            <td>{{ "%.2f"|format(fuel.gallons / fuel.delta) if (fuel.delta is not none and fuel.delta > 0) else ("%.2f"|format(fuel.gallons / fuel.hobbs) if fuel.hobbs > 0 else "%.2f"|format(0)) }}</td>
+                            <td>{{ "%.2f"|format(fuel.gallons / fuel.delta) if (fuel.delta is not none and fuel.delta > 0) else "0.00" }}</td>
                             <td>
-                                {% if loop.last %}
-                                    {{ "0.00" }}
+                                {% if fuel.delta is not none and fuel.delta > 0 %}
+                                    ${{ "%.2f"|format((fuel.gallons / fuel.delta) * fuel.price_per_gallon) }}
                                 {% else %}
-                                    {% set prev = loop.nextitem %}
-                                    {% if fuel.gallons is defined and prev.gallons is defined %}
-                                        ${{ "%.2f"|format(fuel.gallons / fuel.delta * prev.price_per_gallon) if (fuel.delta is not none and fuel.delta > 0) else ("%.2f"|format(fuel.gallons / fuel.hobbs * prev.price_per_gallon) if fuel.hobbs > 0 else "%.2f"|format(0)) }}
-                                    {% else %}
-                                        ${{"0.00"}}
-                                    {% endif %}
+                                    $0.00
                                 {% endif %}
                             </td>
 
                             <td class="text-center action-btns">
-                                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#editFuelModal{{ fuel.id }}">Edit</button>
-                                <a href="/delete_fuel/{{ fuel.id }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this fuel entry?');">Del</a>
+                                <button type="button" class="btn btn-sm btn-outline-success"
+                                    data-id="{{ fuel.id }}"
+                                    data-date="{{ fuel.date }}"
+                                    data-hobbs="{{ fuel.hobbs }}"
+                                    data-gallons="{{ fuel.gallons }}"
+                                    data-price="{{ fuel.price_per_gallon }}"
+                                    onclick="openEditFuelModal(this)">Edit</button>
+                                <form action="/delete_fuel/{{ fuel.id }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this fuel entry?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Del</button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}
@@ -1349,11 +1444,11 @@
                 <ul class="pagination justify-content-center" id="fuelPagination"></ul>
             </nav>
 
-            {% for fuel in fuel_logs %}
-            <div class="modal fade" id="editFuelModal{{ fuel.id }}" tabindex="-1">
+            <!-- Shared Edit Fuel Modal -->
+            <div class="modal fade" id="sharedEditFuelModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="/edit_fuel/{{ fuel.id }}" method="POST">
+                        <form id="sharedEditFuelForm" action="/edit_fuel/0" method="POST">
                             <div class="modal-header bg-success text-white">
                                 <h5 class="modal-title">Edit Fuel Entry</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -1361,20 +1456,20 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label class="form-label">Date</label>
-                                    <input type="date" name="date" class="form-control" value="{{ fuel.date }}" required>
+                                    <input type="date" name="date" id="editFuelDate" class="form-control" required>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Hobbs</label>
-                                        <input type="number" step="0.1" name="hobbs" class="form-control" value="{{ fuel.hobbs }}" required>
+                                        <input type="number" step="0.1" name="hobbs" id="editFuelHobbs" class="form-control" required>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Gallons Added</label>
-                                        <input type="number" step="0.01" name="gallons" class="form-control" value="{{ fuel.gallons }}" required>
+                                        <input type="number" step="0.01" name="gallons" id="editFuelGallons" class="form-control" required>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Price per Gallon ($)</label>
-                                        <input type="number" step="0.01" name="price" class="form-control" value="{{ fuel.price_per_gallon }}" required>
+                                        <input type="number" step="0.01" name="price" id="editFuelPrice" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -1386,7 +1481,88 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Batch Flight-to-CSV Association Modal -->
+<div class="modal fade" id="batchAssociateModal" tabindex="-1" aria-labelledby="batchAssociateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title fw-bold" id="batchAssociateModalLabel">
+                    <i class="bi bi-link-45deg me-1"></i> Unassociated Telemetry CSVs &amp; Auto-Match
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% if unassociated_csv_files %}
+                <div class="mb-3">
+                    <div class="fw-semibold small text-muted mb-1">Currently Unlinked Telemetry Files ({{ unassociated_csv_count }}):</div>
+                    <div class="d-flex flex-wrap gap-1">
+                        {% for uf in unassociated_csv_files %}
+                        <a href="/analyzer?flight={{ uf|urlencode }}" target="_blank" class="badge bg-secondary text-decoration-none">
+                            📊 {{ uf }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if csv_suggestions %}
+                <p class="small text-muted mb-2">
+                    Select the candidate Flight Log ↔ Telemetry CSV pairs below to permanently save their association:
+                </p>
+                <div class="table-responsive border rounded">
+                    <table class="table table-sm table-hover align-middle mb-0 small">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 36px;"><input type="checkbox" id="selectAllCsvSuggestions" class="form-check-input" checked onchange="toggleAllCsvSuggestions(this)"></th>
+                                <th>Flight Date</th>
+                                <th>Route</th>
+                                <th>Hobbs</th>
+                                <th>Telemetry CSV File</th>
+                                <th>Match Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in csv_suggestions %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input csv-suggestion-check"
+                                        data-flight-id="{{ s.flight_id }}"
+                                        data-csv-filename="{{ s.csv_filename }}"
+                                        checked>
+                                </td>
+                                <td class="text-nowrap">{{ s.flight_date }}</td>
+                                <td class="text-nowrap fw-semibold">{{ s.route }}</td>
+                                <td>{{ s.hobbs }}</td>
+                                <td class="text-break"><code>{{ s.csv_filename }}</code></td>
+                                <td>
+                                    <span class="badge {{ 'bg-success' if s.confidence == 'Exact Date Match' else 'bg-info text-dark' }}">
+                                        {{ s.confidence }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-secondary mb-0 small">
+                    No automatic date/time matches found for the remaining unlinked CSV files. You can manually link any CSV to a flight by clicking <strong>Edit</strong> on that flight row.
+                </div>
+                {% endif %}
+                <div id="batchAssociateStatus" class="alert d-none mt-3 mb-0 small"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                {% if csv_suggestions %}
+                <button type="button" class="btn btn-warning fw-semibold" id="saveBatchAssociateBtn" onclick="submitBatchAssociateFlights()">
+                    <i class="bi bi-check2-all me-1"></i> Save Selected Associations
+                </button>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
@@ -2010,6 +2186,13 @@
                     <span class="tool-desc">Fleet statistics, thermal trends &amp; fuel metrics</span>
                 </a>
             </div>
+            <div class="col">
+                <a href="https://skyart.n890gf.com" class="mobile-tool-card sky-art-card" style="border-left: 3px solid #fac849;">
+                    <span class="tool-icon">🎨</span>
+                    <span class="tool-name">Sky Art</span>
+                    <span class="tool-desc">GPS flight track artwork</span>
+                </a>
+            </div>
         </div>
 
         <div class="small fw-bold text-uppercase text-muted mb-2 px-1 border-top pt-2" style="font-size: 0.68rem; letter-spacing: 0.05em;">
@@ -2136,9 +2319,7 @@
         [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
     });
 </script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="{{ url_for('static', filename='index.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </body>
 </html>

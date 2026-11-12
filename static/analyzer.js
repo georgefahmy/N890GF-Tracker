@@ -34,10 +34,13 @@ const AppState = {
     },
     calibration: {
         start: null,
-        end: null
+        end: null,
+        filename: null
     },
-    currentPlotData: null
+    currentPlotData: null,
+    currentFlightStats: null
 };
+window.AppState = AppState;
 
 function resetApp() {
     if (AppState.playback.timer && AppState.playback.timer !== true) {
@@ -49,6 +52,9 @@ function resetApp() {
     AppState.ui.plotCounter = 0;
     AppState.map.data = { lat: null, lon: null, alt: null, length: 0 };
     AppState.playback = { timer: null, index: 0, speed: 1, isScrubbing: false, tick: 0 };
+    AppState.calibration = { start: null, end: null, filename: null };
+    AppState.rawData = null;
+    AppState.currentFlightStats = null;
     if (typeof clearActiveSelection === 'function') clearActiveSelection();
 
     const container = document.getElementById('plots-container');
@@ -318,6 +324,9 @@ function loadSignals(formData) {
     AppState.map.lastRenderData = null;
     AppState.currentPlotData = null;
     AppState.lastAnalysisResponse = null;
+    AppState.rawData = null;
+    AppState.currentFlightStats = null;
+    AppState.calibration = { start: null, end: null, filename: null };
     AppState.playback.index = 0;
     if (typeof clearActiveSelection === 'function') clearActiveSelection();
 
@@ -721,7 +730,10 @@ async function triggerAnalysis(plotId, isInitialLoad = false) {
 
         // 3. UI/Map Update (Only when full payload with latitude/map data is returned)
         if (data.plot_data && data.plot_data.latitude) {
-            if (data.rawData) AppState.rawData = data.rawData;
+            if (!data.rawData) {
+                data.rawData = window.reconstructRawDataFromPlotData(data.plot_data);
+            }
+            AppState.rawData = data.rawData;
             updateGlobalUI(data);
         }
 
@@ -731,6 +743,54 @@ async function triggerAnalysis(plotId, isInitialLoad = false) {
     }
     window._isChartUpdating = false;
 }
+
+window.reconstructRawDataFromPlotData = function(pd) {
+    if (!pd) return [];
+    const n = (pd.x_sec && pd.x_sec.length) || (pd.x && pd.x.length) || (pd.latitude && pd.latitude.length) || 0;
+    if (!n) return [];
+    const egtTraces = pd.egt_traces || [];
+    const leftTraces = pd.left_traces || [];
+    const rightTraces = pd.right_traces || [];
+    const rows = new Array(n);
+    for (let i = 0; i < n; i++) {
+        const row = {
+            "Session Time": pd.x_sec ? pd.x_sec[i] : (pd.x ? pd.x[i] * 60 : i),
+            "time": pd.x ? pd.x[i] : i / 60,
+            "Latitude (deg)": pd.latitude ? pd.latitude[i] : 0,
+            "Longitude (deg)": pd.longitude ? pd.longitude[i] : 0,
+            "GPS Altitude (feet)": pd.altitude ? pd.altitude[i] : 0,
+            "Pressure Altitude (ft)": pd.press_alt ? pd.press_alt[i] : (pd.altitude ? pd.altitude[i] : 0),
+            "True Airspeed (knots)": pd.airspeed ? pd.airspeed[i] : 0,
+            "Indicated Airspeed (knots)": pd.ias ? pd.ias[i] : (pd.airspeed ? pd.airspeed[i] : 0),
+            "Ground Speed (knots)": pd.groundspeed ? pd.groundspeed[i] : 0,
+            "Vertical Speed (ft/min)": pd.vertical_speed ? pd.vertical_speed[i] : 0,
+            "Pitch (deg)": pd.pitch ? pd.pitch[i] : 0,
+            "Roll (deg)": pd.roll ? pd.roll[i] : 0,
+            "Magnetic Heading (deg)": pd.heading ? pd.heading[i] : 0,
+            "Mag Var (deg)": pd.mag_variance ? pd.mag_variance[i] : 0,
+            "RPM": pd.rpm ? pd.rpm[i] : 0,
+            "Manifold Pressure (inHg)": pd.map_data ? pd.map_data[i] : 0,
+            "Percent Power": pd.percent_power ? pd.percent_power[i] : 0,
+            "Total Fuel Flow (gal/hr)": pd.fuel_flow ? pd.fuel_flow[i] : 0,
+            "Fuel Flow 1 (gal/hr)": pd.fuel_flow ? pd.fuel_flow[i] : 0,
+            "MPG": pd.mpg ? pd.mpg[i] : 0,
+        };
+        for (let t = 0; t < egtTraces.length; t++) {
+            const tr = egtTraces[t];
+            if (tr && tr.name && tr.y) row[tr.name] = tr.y[i];
+        }
+        for (let t = 0; t < leftTraces.length; t++) {
+            const tr = leftTraces[t];
+            if (tr && tr.name && tr.y && !(tr.name in row)) row[tr.name] = tr.y[i];
+        }
+        for (let t = 0; t < rightTraces.length; t++) {
+            const tr = rightTraces[t];
+            if (tr && tr.name && tr.y && !(tr.name in row)) row[tr.name] = tr.y[i];
+        }
+        rows[i] = row;
+    }
+    return rows;
+};
 
 // --- LTTB (Largest-Triangle-Three-Buckets) Downsampling Algorithm ---
 function downsampleLTTB(xData, yData, maxPoints = 2000) {
@@ -1270,6 +1330,7 @@ function updateGlobalUI(data) {
     document.getElementById('statFlightId').innerText = `Flight: ${data.stats.flight_id}`;
     
     const s = data.stats || {};
+    AppState.currentFlightStats = s;
     const shockCooling = s.max_shock_cooling !== undefined ? s.max_shock_cooling : 0;
     const peakCyl = s.shock_cooling_cyl && s.shock_cooling_cyl !== 'N/A' ? s.shock_cooling_cyl : '';
     const shockText = `${shockCooling} °F/min${peakCyl ? ' (' + peakCyl + ')' : ''}`;
@@ -2237,7 +2298,12 @@ function renderMap(data) {
     var startTrace = null;
     var endTrace = null;
 
-    if (AppState.calibration.start !== null && AppState.calibration.end !== null && window._mapTime) {
+    if (
+        AppState.calibration.start !== null &&
+        AppState.calibration.end !== null &&
+        (!AppState.calibration.filename || AppState.calibration.filename === AppState.file.currentName) &&
+        window._mapTime
+    ) {
         const highlightLat = [];
         const highlightLon = [];
 

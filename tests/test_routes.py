@@ -449,12 +449,47 @@ class TestFuelCRUD:
             )
             assert response.status_code == 200
 
-            # In seed_db, latest flight has hobbs=103.0
+            # In seed_db, latest flight has hobbs=103.0; previous fuel entries are at 101.2 and 103.0
             fuel = FuelLog.query.filter_by(gallons=20.0, price_per_gallon=6.00).first()
             assert fuel is not None
             assert fuel.hobbs == 103.0
             assert fuel.total_cost == 120.00
-            assert fuel.gal_per_hour == round(20.0 / 103.0, 2)
+            # Adding another fuel entry at 105.0 (delta = 2.0 hrs) computes gal_per_hour = 18.0 / 2.0 = 9.0
+            auth_client.post(
+                "/add_fuel",
+                data={
+                    "date": "2024-06-06",
+                    "hobbs": "105.0",
+                    "gallons": "18.0",
+                    "price": "6.00",
+                },
+                follow_redirects=True,
+            )
+            fuel_next = FuelLog.query.filter_by(hobbs=105.0).first()
+            assert fuel_next is not None
+            assert fuel_next.gal_per_hour == 9.0
+
+    @patch("app.git_push_data")
+    def test_batch_associate_flights(self, mock_push, app, auth_client):
+        from app import FlightLog
+
+        with app.app_context():
+            flight = FlightLog.query.first()
+            fid = flight.id
+            resp = auth_client.post(
+                "/api/batch_associate_flights",
+                json={
+                    "associations": [
+                        {"flight_id": fid, "csv_filename": "2024-01-15 10-00-00.csv"}
+                    ]
+                },
+            )
+            assert resp.status_code == 200
+            data = resp.get_json()
+            assert data["success"] is True
+            assert data["updated_count"] == 1
+            updated = FlightLog.query.get(fid)
+            assert updated.associated_csv == "2024-01-15 10-00-00.csv"
 
     @patch("app.git_push_data")
     def test_edit_fuel(self, mock_push, app, auth_client):
@@ -879,11 +914,6 @@ class TestPublicPages:
     def test_gami_page(self, app, client):
         with app.app_context():
             response = client.get("/gami")
-            assert response.status_code == 200
-
-    def test_painting_page(self, app, client):
-        with app.app_context():
-            response = client.get("/painting")
             assert response.status_code == 200
 
 

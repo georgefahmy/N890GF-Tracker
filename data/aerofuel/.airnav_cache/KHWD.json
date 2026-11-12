@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1794200151.744422,
+  "_cached_at": 1794456974.031774,
   "icao": "KHWD",
   "data": {
     "icao": "KHWD",
@@ -95,8 +95,8 @@
         "name": "APP Jet Center Hayward",
         "brand": "Titan",
         "phone": "N/A",
-        "notes": "Titan \u2022 Quote: 02-Nov",
-        "quote_date": "02-Nov",
+        "notes": "Titan \u2022 Quote: 11-Nov",
+        "quote_date": "11-Nov",
         "fuels": {
           "100LL_FS": {
             "price": 8.59,

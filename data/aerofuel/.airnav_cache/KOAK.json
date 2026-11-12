@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1794200151.744877,
+  "_cached_at": 1794456974.032141,
   "icao": "KOAK",
   "data": {
     "icao": "KOAK",
@@ -119,7 +119,7 @@
             "label": "100LL Avgas (Full-Serve)"
           },
           "JET_A": {
-            "price": 8.76,
+            "price": 8.24,
             "type": "Jet-A",
             "service": "Full-Serve",
             "label": "Jet-A Turbine Fuel (Full-Serve)"
@@ -130,8 +130,8 @@
         "name": "Signature Aviation",
         "brand": "independent",
         "phone": "N/A",
-        "notes": "independent \u2022 Quote: 07-Nov",
-        "quote_date": "07-Nov",
+        "notes": "independent \u2022 Quote: 11-Nov",
+        "quote_date": "11-Nov",
         "fuels": {
           "100LL_FS": {
             "price": 8.45,

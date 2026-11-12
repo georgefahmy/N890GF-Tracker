@@ -52,6 +52,7 @@ from src.fuel_estimate_simple import (
     calculate_usable_fuel,
 )
 from src.fuel_prices import scrape_airnav_to_json
+from src.fuel_reconciliation import reconcile_fuel_burn
 from src.oil_analysis import parse_oil_report
 from src.process_telemetry import process_flights
 from src.sw_db_updates import download_dynon_databases_only
@@ -69,7 +70,9 @@ INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
 os.makedirs(INSTANCE_DIR, exist_ok=True)
 
 app = Flask(__name__, instance_path=INSTANCE_DIR)
-app.secret_key = "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
+app.secret_key = os.environ.get(
+    "SECRET_KEY", "827311a9a172036c2f5ebaa0cb68c0ed90b037d30cccf15097627ec1759eee61"
+)
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 app.register_blueprint(aerofuel_bp)
 
@@ -148,9 +151,10 @@ login_security_logger = _create_logger("login_security", "login_security.log")
 
 app.config["SESSION_PERMANENT"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 DB_PATH = db_path
-DEBUG = True
+DEBUG = os.environ.get("FLASK_DEBUG", "false").lower() in ("1", "true", "yes")
 # --- Directory for saving processed dataframes ---
 SAVE_DIR = "clean_flights"
 CACHE_DIR = os.path.join(SAVE_DIR, ".cache")
@@ -445,10 +449,14 @@ def convection(dew_point, outside_air_temp):
 
 
 def git_push_data():
-    script_path = "/home/georgefahmy/Documents/n890gf_tracker/push.sh"
+    script_path = os.path.join(BASE_DIR, "push.sh")
+    if not os.path.exists(script_path):
+        script_path = "/home/georgefahmy/Documents/n890gf_tracker/push.sh"
+    if not os.path.exists(script_path):
+        return "Push script not found (skipped)", 200
     try:
         result = subprocess.Popen(["/bin/bash", script_path], start_new_session=True)
-        if result.returncode == 0:
+        if result.returncode in (0, None):
             return f"Push started - {result.stdout}", 200
         else:
             return f"Error - {result.stderr}", 500
@@ -511,6 +519,8 @@ def sanitize_for_json(obj):
         return val
     if isinstance(obj, (int, np.integer)):
         return int(obj)
+    if isinstance(obj, (datetime, date, pd.Timestamp)):
+        return str(obj)
     if obj is None:
         return 0
     return obj
@@ -529,6 +539,25 @@ def recompute_flight_history():
             round(max(0.0, t_val - prev_tach), 1) if prev_tach is not None else 0.0
         )
         prev_hobbs, prev_tach = h_val, t_val
+    db.session.commit()
+
+
+def recompute_fuel_history():
+    """Recomputes gal_per_hour across all FuelLog entries using Hobbs delta between fill-ups."""
+    fuel_entries = FuelLog.query.order_by(
+        FuelLog.hobbs.asc(), FuelLog.date.asc(), FuelLog.id.asc()
+    ).all()
+    prev_hobbs = None
+    for entry in fuel_entries:
+        h_val = validate_float(entry.hobbs)
+        gal_val = validate_float(entry.gallons)
+        if prev_hobbs is not None and h_val > prev_hobbs:
+            delta = round(h_val - prev_hobbs, 1)
+            entry.gal_per_hour = round(gal_val / delta, 2) if delta > 0 else 0.0
+        else:
+            entry.gal_per_hour = 0.0
+        if h_val > 0:
+            prev_hobbs = h_val
     db.session.commit()
 
 
@@ -580,26 +609,11 @@ def set_oil_change_interval(hours):
 
 
 def check_auto_maintenance():
-    last_oil = (
-        db.session.query(func.max(MaintenanceLog.tach_time))
-        .filter_by(recurrent_item="Oil Change")
-        .scalar()
-        or 0.0
-    )
-    current_tach = db.session.query(func.max(FlightLog.tach)).scalar() or 0.0
-    interval = get_oil_change_interval()
-
-    if current_tach - last_oil >= interval:
-        new_mx = MaintenanceLog(
-            date=datetime.now(),
-            tach_time=current_tach,
-            airframe_time=current_tach,
-            notes=f"Auto oil change reminder (>{interval:g} hrs)",
-            recurrent_item="Oil Change",
-            category="Engine",
-        )
-        db.session.add(new_mx)
-        db.session.commit()
+    """
+    Oil changes are only recorded when manually logged by the user.
+    Overdue status is surfaced via calculate_overdue_items() and get_upcoming_maintenance().
+    """
+    return False
 
 
 def calculate_overdue_items():
@@ -1110,20 +1124,31 @@ def find_matching_csv_map(flight_logs_raw):
             if not matching_csvs:
                 continue
 
-            if len(matching_csvs) == 1:
-                for _, log in log_list:
-                    result[log.get("id")] = matching_csvs[0]
+            if len(matching_csvs) == 1 and len(log_list) == 1:
+                result[log_list[0][1].get("id")] = matching_csvs[0]
             else:
                 sorted_logs = sorted(
-                    log_list, key=lambda x: x[0] if x[0] else datetime.min
+                    log_list,
+                    key=lambda x: (
+                        validate_float(x[1].get("hobbs"), 0.0),
+                        x[1].get("id") or 0,
+                        x[0] if x[0] else datetime.min,
+                    ),
                 )
+                available_on_date = list(matching_csvs)
                 for idx, (log_dt, log) in enumerate(sorted_logs):
+                    if not available_on_date:
+                        break
                     matched_csv = None
-                    if log_dt and (
-                        log_dt.hour != 0 or log_dt.minute != 0 or log_dt.second != 0
-                    ):
+                    # Only use timestamp proximity when the flights on this date have distinct non-zero timestamps
+                    distinct_times = {
+                        (dt.hour, dt.minute, dt.second)
+                        for dt, _ in sorted_logs
+                        if dt and (dt.hour != 0 or dt.minute != 0 or dt.second != 0)
+                    }
+                    if log_dt and len(distinct_times) == len(sorted_logs) and len(sorted_logs) > 1:
                         min_diff = float("inf")
-                        for csv_f in matching_csvs:
+                        for csv_f in available_on_date:
                             try:
                                 time_str = csv_f[11:-4].replace("-", ":")
                                 csv_dt = datetime.strptime(
@@ -1136,12 +1161,206 @@ def find_matching_csv_map(flight_logs_raw):
                             except Exception:
                                 pass
                     if not matched_csv:
-                        csv_idx = min(idx, len(matching_csvs) - 1)
-                        matched_csv = matching_csvs[csv_idx]
+                        matched_csv = available_on_date[0]
 
                     result[log.get("id")] = matched_csv
+                    if matched_csv in available_on_date:
+                        available_on_date.remove(matched_csv)
 
     return result
+
+
+def compute_fuel_reconciliation(fuel_logs_sorted, flight_logs, fleet_flights):
+    """
+    Computes fuel totalizer K-factor reconciliation between consecutive fuel fill-ups
+    by matching flights (and their associated telemetry CSVs) within each Hobbs interval.
+    """
+    if not fuel_logs_sorted or len(fuel_logs_sorted) < 2:
+        return {"intervals": [], "summary": {}}
+
+    telemetry_by_file = {}
+    for ff in fleet_flights or []:
+        fname = ff.get("filename")
+        if fname:
+            telemetry_by_file[fname] = float(ff.get("total_fuel", 0.0) or 0.0)
+
+    intervals = []
+    total_pump_matched = 0.0
+    total_telem_matched = 0.0
+
+    def _format_kfactor_rec(pump_g, telem_g):
+        raw = reconcile_fuel_burn(
+            pump_g, 0.0, pd.DataFrame({"Fuel Flow Integral": [telem_g]})
+        )
+        diff = round(float(telem_g - pump_g), 2)
+        pct = round(float((diff / pump_g) * 100.0), 1) if pump_g > 0 else 0.0
+        k_ratio = round(float(pump_g / telem_g), 3) if telem_g > 0 else 1.0
+        status_map = {
+            "EXCELLENT": "OK",
+            "ACCEPTABLE": "Check K-Factor",
+            "CHECK_TOTALIZER": "Recalibrate K-Factor",
+        }
+        return {
+            "pump_gallons": round(float(pump_g), 2),
+            "telemetry_gallons": round(float(telem_g), 2),
+            "difference_gal": diff,
+            "percent_error": pct,
+            "suggested_k_factor_ratio": k_ratio,
+            "status": status_map.get(raw.get("status"), "OK"),
+        }
+
+    for i in range(1, len(fuel_logs_sorted)):
+        prev_fuel = fuel_logs_sorted[i - 1]
+        curr_fuel = fuel_logs_sorted[i]
+        prev_h = validate_float(prev_fuel.get("hobbs"), 0.0)
+        curr_h = validate_float(curr_fuel.get("hobbs"), 0.0)
+        pump_gal = validate_float(curr_fuel.get("gallons"), 0.0)
+        if curr_h <= prev_h or pump_gal <= 0:
+            continue
+
+        # Find flights logged in (prev_h, curr_h]
+        flights_in_interval = [
+            fl
+            for fl in flight_logs
+            if prev_h < validate_float(fl.get("hobbs"), 0.0) <= curr_h + 0.05
+        ]
+        if not flights_in_interval:
+            continue
+
+        telem_gal = 0.0
+        matched_csv_count = 0
+        for fl in flights_in_interval:
+            m_csv = fl.get("matching_csv")
+            if m_csv and m_csv in telemetry_by_file:
+                telem_gal += telemetry_by_file[m_csv]
+                matched_csv_count += 1
+
+        if matched_csv_count == 0 or telem_gal <= 0:
+            continue
+
+        rec = _format_kfactor_rec(pump_gal, telem_gal)
+        rec["date"] = curr_fuel.get("display_date") or curr_fuel.get("date")
+        rec["hobbs"] = curr_h
+        rec["hobbs_delta"] = round(curr_h - prev_h, 1)
+        rec["flight_count"] = len(flights_in_interval)
+        rec["csv_count"] = matched_csv_count
+        intervals.append(rec)
+
+        # Only include intervals where all flights in the interval had telemetry
+        if matched_csv_count == len(flights_in_interval):
+            total_pump_matched += pump_gal
+            total_telem_matched += telem_gal
+
+    overall = (
+        _format_kfactor_rec(total_pump_matched, total_telem_matched)
+        if total_pump_matched > 0 and total_telem_matched > 0
+        else {}
+    )
+    overall["matched_intervals"] = len(intervals)
+    intervals.reverse()  # Newest first for display
+    return {"intervals": intervals, "summary": overall}
+
+
+def build_csv_association_suggestions(flight_logs, available_csv_files):
+    """
+    Finds candidate associations between flight logs that lack an explicit DB
+    associated_csv and available CSV files (including ±1 day UTC rollover matches).
+    """
+    explicit_csvs = {
+        fl.get("associated_csv")
+        for fl in flight_logs
+        if fl.get("associated_csv") and fl.get("associated_csv") not in ("none", "__none__")
+    }
+    unlinked_csvs = [f for f in available_csv_files if f not in explicit_csvs]
+    unlinked_flights = [
+        fl
+        for fl in flight_logs
+        if not fl.get("associated_csv")
+    ]
+    if not unlinked_csvs or not unlinked_flights:
+        return []
+
+    suggestions = []
+    claimed_csvs = set()
+
+    # Pass 1: Use auto-matched matching_csv if already resolved
+    for fl in sorted(unlinked_flights, key=lambda x: (x.get("date", ""), validate_float(x.get("hobbs"), 0.0))):
+        m_csv = fl.get("matching_csv")
+        if m_csv and m_csv in unlinked_csvs and m_csv not in claimed_csvs:
+            suggestions.append(
+                {
+                    "flight_id": fl.get("id"),
+                    "flight_date": fl.get("display_date") or fl.get("date"),
+                    "route": f"{fl.get('takeoff_airport') or '?'} → {fl.get('landing_airport') or '?'}",
+                    "hobbs": fl.get("hobbs"),
+                    "csv_filename": m_csv,
+                    "confidence": "Exact Date Match",
+                }
+            )
+            claimed_csvs.add(m_csv)
+
+    # Pass 2: ±1 day proximity for remaining unlinked flights and unlinked CSVs
+    remaining_csvs = [f for f in unlinked_csvs if f not in claimed_csvs]
+    matched_flight_ids = {s["flight_id"] for s in suggestions}
+    for fl in sorted(unlinked_flights, key=lambda x: (x.get("date", ""), validate_float(x.get("hobbs"), 0.0))):
+        if fl.get("id") in matched_flight_ids or not remaining_csvs:
+            continue
+        fl_date_str = str(fl.get("date", ""))[:10]
+        try:
+            fl_dt = datetime.strptime(fl_date_str, "%Y-%m-%d").date()
+        except Exception:
+            continue
+        best_csv = None
+        best_days = 999
+        for c_file in remaining_csvs:
+            try:
+                c_dt = datetime.strptime(c_file[:10], "%Y-%m-%d").date()
+                day_diff = abs((fl_dt - c_dt).days)
+                if day_diff <= 1 and day_diff < best_days:
+                    best_days = day_diff
+                    best_csv = c_file
+            except Exception:
+                continue
+        if best_csv:
+            suggestions.append(
+                {
+                    "flight_id": fl.get("id"),
+                    "flight_date": fl.get("display_date") or fl.get("date"),
+                    "route": f"{fl.get('takeoff_airport') or '?'} → {fl.get('landing_airport') or '?'}",
+                    "hobbs": fl.get("hobbs"),
+                    "csv_filename": best_csv,
+                    "confidence": "Exact Date Match" if best_days == 0 else "±1 Day (UTC Rollover)",
+                }
+            )
+            remaining_csvs.remove(best_csv)
+
+    suggestions.sort(key=lambda s: s["csv_filename"], reverse=True)
+    return suggestions
+
+
+@app.route("/api/batch_associate_flights", methods=["POST"])
+@login_required
+def api_batch_associate_flights():
+    """Saves a batch of flight_id -> csv_filename explicit associations."""
+    data = request.get_json(silent=True) or {}
+    associations = data.get("associations", [])
+    if not isinstance(associations, list) or not associations:
+        return jsonify({"error": "No associations provided"}), 400
+
+    updated_count = 0
+    for item in associations:
+        fid = item.get("flight_id")
+        csv_fname = (item.get("csv_filename") or "").strip()
+        if not fid or not csv_fname:
+            continue
+        flight = db.session.get(FlightLog, int(fid))
+        if flight:
+            flight.associated_csv = csv_fname
+            updated_count += 1
+
+    db.session.commit()
+    git_push_data()
+    return jsonify({"success": True, "updated_count": updated_count})
 
 
 @app.route("/")
@@ -1239,14 +1458,27 @@ def index():
     fuel_logs_sorted = sorted(fuel_logs, key=lambda x: safe_hobbs(x))
 
     prev = None
+    needs_fuel_recompute = False
     for f in fuel_logs_sorted:
         curr = safe_hobbs(f)
         if prev is None:
             f["delta"] = None
+            expected_gph = 0.0
         else:
             delta = round(curr - prev, 1)
             f["delta"] = delta if delta >= 0 else 0.0
+            expected_gph = (
+                round(validate_float(f.get("gallons"), 0.0) / f["delta"], 2)
+                if f["delta"] > 0
+                else 0.0
+            )
+        if abs(validate_float(f.get("gal_per_hour"), 0.0) - expected_gph) > 0.05:
+            needs_fuel_recompute = True
+        f["gal_per_hour"] = expected_gph
         prev = curr
+
+    if needs_fuel_recompute:
+        recompute_fuel_history()
 
     # --- Get latest Hobbs and Tach ---
     latest_flight = FlightLog.query.order_by(FlightLog.hobbs.desc()).first()
@@ -1396,6 +1628,13 @@ def index():
         else ""
     )
 
+    fuel_reconciliation = compute_fuel_reconciliation(
+        fuel_logs_sorted, flight_logs, fleet_flights
+    )
+    csv_suggestions = build_csv_association_suggestions(
+        flight_logs, available_csv_files
+    )
+
     template = "index.html"
 
     return render_template(
@@ -1440,6 +1679,8 @@ def index():
         available_csv_files=available_csv_files,
         unassociated_csv_files=unassociated_csv_files,
         unassociated_csv_count=unassociated_csv_count,
+        fuel_reconciliation=fuel_reconciliation,
+        csv_suggestions=csv_suggestions,
         oil_results=None,
     )
 
@@ -1635,12 +1876,13 @@ def add_fuel():
         gallons=gallons,
         price_per_gallon=price,
         total_cost=round(gallons * price, 2),
-        gal_per_hour=round(gallons / hobbs, 2) if hobbs > 0 else 0,
+        gal_per_hour=0.0,
     )
 
     # Add to the session and commit
     db.session.add(new_fuel)
     db.session.commit()
+    recompute_fuel_history()
 
     # Trigger external synchronization
     git_push_data()
@@ -1756,10 +1998,10 @@ def edit_fuel(id):
     fuel_entry.gallons = gallons
     fuel_entry.price_per_gallon = price
     fuel_entry.total_cost = round(gallons * price, 2)
-    fuel_entry.gal_per_hour = round(gallons / hours, 2) if hours > 0 else 0
 
     # SQLAlchemy tracks these changes and syncs them on commit
     db.session.commit()
+    recompute_fuel_history()
 
     # Trigger external synchronization
     git_push_data()
@@ -1795,7 +2037,7 @@ def api_get_oil_interval():
     return jsonify({"interval_hours": get_oil_change_interval()})
 
 
-@app.route("/delete_flight/<int:id>")
+@app.route("/delete_flight/<int:id>", methods=["POST", "GET"])
 @login_required
 def delete_flight(id):
     # Fetch the record by ID or return a 404 if it doesn't exist
@@ -1816,7 +2058,7 @@ def delete_flight(id):
     return redirect(url_for("index", _anchor="flight"))
 
 
-@app.route("/delete_maintenance/<int:id>")
+@app.route("/delete_maintenance/<int:id>", methods=["POST", "GET"])
 @login_required
 def delete_maintenance(id):
     # Fetch the maintenance record or return 404
@@ -1842,7 +2084,7 @@ def delete_maintenance(id):
     return redirect(url_for("index", _anchor="mx"))
 
 
-@app.route("/delete_fuel/<int:id>")
+@app.route("/delete_fuel/<int:id>", methods=["POST", "GET"])
 @login_required
 def delete_fuel(id):
     # Fetch the fuel record by ID or return 404 if not found
@@ -1853,6 +2095,7 @@ def delete_fuel(id):
 
     # Commit the transaction to the database
     db.session.commit()
+    recompute_fuel_history()
 
     # Trigger external synchronization
     git_push_data()
@@ -1879,7 +2122,7 @@ def api_fuel_prices():
 
 
 @app.route("/upload_oil_analysis", methods=["POST"])
-# @login_required
+@login_required
 def upload_oil_analysis():
     logs = OilAnalysis.query.order_by(OilAnalysis.engine_hrs.asc()).all()
 
@@ -2150,11 +2393,12 @@ def get_all_flight_stats_cached():
 
     updated_cache = {}
     flight_stats_list = []
+    cache_dirty = False
 
     for filename in csv_files:
         filepath = os.path.join(SAVE_DIR, filename)
         mtime = os.path.getmtime(filepath)
-        CACHE_VERSION = "v8"
+        CACHE_VERSION = "v9"
         cache_key = f"{CACHE_VERSION}_{filename}_{mtime}"
 
         if cache_key in cache_data:
@@ -2163,7 +2407,9 @@ def get_all_flight_stats_cached():
                 dur = stats.get("duration_hours", 0) or 0
                 dist = stats.get("distance_traveled_mi", 0) or 0
                 stats["avg_speed_mph"] = round(float(dist / dur), 1) if dur > 0 else 0.0
+                cache_dirty = True
         else:
+            cache_dirty = True
             try:
                 df = load_cached_flight_df(filename)
                 if df is None or df.empty:
@@ -2289,25 +2535,56 @@ def get_all_flight_stats_cached():
         updated_cache[cache_key] = stats
         flight_stats_list.append(stats)
 
-    # Save cache back
-    try:
-        os.makedirs(CACHE_DIR, exist_ok=True)
-        with open(MULTI_STATS_CACHE_FILE, "w") as f:
-            json.dump(updated_cache, f)
-    except Exception as e:
-        print("Error saving multi stats cache:", e)
+    if set(updated_cache.keys()) != set(cache_data.keys()):
+        cache_dirty = True
+
+    # Save cache back only when changed
+    if cache_dirty:
+        try:
+            os.makedirs(CACHE_DIR, exist_ok=True)
+            with open(MULTI_STATS_CACHE_FILE, "w") as f:
+                json.dump(updated_cache, f)
+        except Exception as e:
+            print("Error saving multi stats cache:", e)
 
     return flight_stats_list
 
 
-def generate_fleet_summary_file():
+def generate_fleet_summary_file(force_write=False):
     """
     Computes comprehensive fleet totals and per-flight summary records from telemetry
     and saves them to static/fleet_summary.json and static/stats.csv.
     """
+    summary_path = os.path.join(BASE_DIR, "static", "fleet_summary.json")
+    stats_csv_path = os.path.join(BASE_DIR, "static", "stats.csv")
+    cache_mtime_before = (
+        os.path.getmtime(MULTI_STATS_CACHE_FILE)
+        if os.path.exists(MULTI_STATS_CACHE_FILE)
+        else 0
+    )
+
     flight_stats_list = get_all_flight_stats_cached()
     if not flight_stats_list:
         return {"totals": {}, "flights": []}
+
+    cache_mtime_after = (
+        os.path.getmtime(MULTI_STATS_CACHE_FILE)
+        if os.path.exists(MULTI_STATS_CACHE_FILE)
+        else 0
+    )
+    if (
+        not force_write
+        and cache_mtime_before > 0
+        and cache_mtime_after == cache_mtime_before
+        and os.path.exists(summary_path)
+        and os.path.exists(stats_csv_path)
+        and os.path.getmtime(summary_path) >= cache_mtime_after
+    ):
+        cached_summary = load_fleet_summary()
+        if cached_summary and len(cached_summary.get("flights", [])) == len(
+            flight_stats_list
+        ):
+            return cached_summary
 
     # Sort oldest to newest for chronological tracking
     sorted_flights = sorted(
@@ -2533,6 +2810,9 @@ def api_multi_flight_stats():
     return jsonify(sanitize_for_json({"flights": flight_stats_list, "totals": totals}))
 
 
+ENGINE_HEALTH_CACHE_FILE = os.path.join(CACHE_DIR, "engine_health_cache.json")
+
+
 @app.route("/api/engine_health_trends", methods=["GET"])
 def api_engine_health_trends():
     """Extracts detailed CHTs, Oil Temps, OAT, Density Altitude, TAS, and Cooling Efficiency across all saved flights."""
@@ -2543,10 +2823,29 @@ def api_engine_health_trends():
     if not csv_files:
         return jsonify({"flights": [], "summary": {}})
 
+    cache_data = {}
+    if os.path.exists(ENGINE_HEALTH_CACHE_FILE):
+        try:
+            with open(ENGINE_HEALTH_CACHE_FILE, "r") as f:
+                cache_data = json.load(f)
+        except Exception:
+            cache_data = {}
+
+    updated_cache = {}
+    cache_dirty = False
     engine_data = []
 
     for filename in sorted(csv_files):
-        # filepath = os.path.join(SAVE_DIR, filename)
+        filepath = os.path.join(SAVE_DIR, filename)
+        mtime = os.path.getmtime(filepath)
+        cache_key = f"v9_{filename}_{mtime}"
+        if cache_key in cache_data:
+            entry = cache_data[cache_key]
+            updated_cache[cache_key] = entry
+            engine_data.append(entry)
+            continue
+
+        cache_dirty = True
         try:
             df = load_cached_flight_df(filename)
             if df is None or df.empty:
@@ -2669,35 +2968,46 @@ def api_engine_health_trends():
 
             date_str = filename[:10] if len(filename) >= 10 else filename
 
-            engine_data.append(
-                {
-                    "filename": filename,
-                    "date": date_str,
-                    "oat_f": oat_f,
-                    "oat_c": oat_c,
-                    "density_alt": density_alt,
-                    "press_alt": press_alt,
-                    "tas": tas,
-                    "ias": ias,
-                    "oil_temp": max_oil_temp,
-                    "max_oil_temp": max_oil_temp,
-                    "avg_oil_temp": avg_oil_temp,
-                    "avg_cht": avg_cht,
-                    "max_cht": max_cht,
-                    "cht1": cht1_f,
-                    "cht2": cht2_f,
-                    "cht3": cht3_f,
-                    "cht4": cht4_f,
-                    "cht_spread": cht_spread,
-                    "percent_power": power,
-                    "fuel_flow": ff,
-                    "rpm": rpm,
-                    "cht_delta_oat": cht_delta_oat,
-                    "cooling_index": cooling_index,
-                }
-            )
+            entry = {
+                "filename": filename,
+                "date": date_str,
+                "oat_f": oat_f,
+                "oat_c": oat_c,
+                "density_alt": density_alt,
+                "press_alt": press_alt,
+                "tas": tas,
+                "ias": ias,
+                "oil_temp": max_oil_temp,
+                "max_oil_temp": max_oil_temp,
+                "avg_oil_temp": avg_oil_temp,
+                "avg_cht": avg_cht,
+                "max_cht": max_cht,
+                "cht1": cht1_f,
+                "cht2": cht2_f,
+                "cht3": cht3_f,
+                "cht4": cht4_f,
+                "cht_spread": cht_spread,
+                "percent_power": power,
+                "fuel_flow": ff,
+                "rpm": rpm,
+                "cht_delta_oat": cht_delta_oat,
+                "cooling_index": cooling_index,
+            }
+            updated_cache[cache_key] = entry
+            engine_data.append(entry)
         except Exception as e:
             print(f"Error extracting engine health for {filename}: {e}")
+
+    if set(updated_cache.keys()) != set(cache_data.keys()):
+        cache_dirty = True
+
+    if cache_dirty:
+        try:
+            os.makedirs(CACHE_DIR, exist_ok=True)
+            with open(ENGINE_HEALTH_CACHE_FILE, "w") as f:
+                json.dump(updated_cache, f)
+        except Exception as e:
+            print("Error saving engine health cache:", e)
 
     hottest_counts = {"CHT 1": 0, "CHT 2": 0, "CHT 3": 0, "CHT 4": 0}
     for d in engine_data:
@@ -2731,12 +3041,6 @@ def api_engine_health_trends():
 @app.route("/gami")
 def gami():
     return render_template("gami.html")
-
-
-# --- Painting Prototype Design Hub Route ---
-@app.route("/painting")
-def painting():
-    return render_template("painting.html")
 
 
 _airports_summary_cache = None
@@ -2822,7 +3126,8 @@ def api_get_signals():
             df = load_cached_flight_df(saved_filename)
 
         else:
-            print(request.files)
+            if not current_user.is_authenticated:
+                return jsonify({"error": "Authentication required to upload CSV files."}), 401
             if "saved_filename" not in request.files:
                 return jsonify({"error": "No file part"}), 400
             file = request.files["saved_filename"]
@@ -3237,17 +3542,33 @@ def api_analyze_flight():
         magnetic_variance = extract_attitude("Mag Var (deg)")
         fuel_logs = FuelLog.query.order_by(FuelLog.hobbs.desc())
 
+        ias_data = safe_numeric(
+            flight_data.get(
+                "Indicated Airspeed (knots)", pd.Series([0] * len(flight_data))
+            )
+        )
+        press_alt_data = safe_numeric(
+            flight_data.get(
+                "Pressure Altitude (ft)", pd.Series([0] * len(flight_data))
+            )
+        )
+        egt_traces = extract_traces("EGT")
+
         plot_data = {
             "x": x_data,
             "x_sec": x_sec,
+            "session_time": x_sec,
             "left_traces": extract_traces(left_signal),
             "right_traces": extract_traces(right_signal),
+            "egt_traces": egt_traces,
             "left_name": left_signal,
             "right_name": right_signal,
             "latitude": lat_data,
             "longitude": lon_data,
             "altitude": alt_data,
+            "press_alt": press_alt_data,
             "airspeed": airspeed_data,
+            "ias": ias_data,
             "groundspeed": groundspeed_data,
             "vertical_speed": vertical_speed,
             "pitch": pitch_data,
@@ -3328,8 +3649,9 @@ def api_analyze_flight():
         actual_cost_per_hour = (
             round(per_hour_cost * (duration / 3600), 2) if duration > 0 else 0.0
         )
+        target_flight_str = str(target_flight)
         stats = {
-            "flight_id": target_flight,
+            "flight_id": target_flight_str,
             "duration_min": round(duration / 60, 2),
             "max_rpm": safe_max("RPM"),
             "max_cht": safe_max("Max CHT"),
@@ -3356,7 +3678,7 @@ def api_analyze_flight():
                 AirspeedCalibration.query.filter(
                     (AirspeedCalibration.filename == saved_filename)
                     | (AirspeedCalibration.filename == base_fname)
-                    | (AirspeedCalibration.filename == target_flight)
+                    | (AirspeedCalibration.filename == target_flight_str)
                 )
                 .order_by(AirspeedCalibration.start_time)
                 .all()
@@ -3367,10 +3689,8 @@ def api_analyze_flight():
 
         stats["saved_calibrations"] = saved_calibrations
 
-        rawData = flight_data.to_dict(orient="records")
-
         safe_response = sanitize_for_json(
-            {"plot_data": plot_data, "stats": stats, "rawData": rawData}
+            {"plot_data": plot_data, "stats": stats}
         )
 
         return jsonify(safe_response)
@@ -3407,6 +3727,7 @@ def save_signal_bands():
 
 
 @app.route("/api/airspeed_calibration", methods=["POST"])
+@login_required
 def api_airspeed_calibration():
     saved_filename = request.form.get("saved_filename")
     start_time = request.form.get("start_time", type=float)

@@ -1,5 +1,5 @@
 {
-  "_cached_at": 1794200151.740177,
+  "_cached_at": 1794456974.027222,
   "icao": "CA35",
   "data": {
     "icao": "CA35",
@@ -38,8 +38,8 @@
       "100LL",
       "Jet-A"
     ],
-    "last_updated": "2026-11-08",
-    "fetched_at": "2026-11-09T04:55:51Z",
+    "last_updated": "2026-11-11",
+    "fetched_at": "2026-11-12T04:16:14Z",
     "source": "AirNav Local Fuel"
   }
 }

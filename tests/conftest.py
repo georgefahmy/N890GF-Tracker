@@ -16,8 +16,9 @@ from unittest.mock import patch
 # pyrefly: ignore [missing-import]
 from werkzeug.security import generate_password_hash
 
-# Ensure project root is importable
+# Ensure project root is importable and force in-memory SQLite BEFORE importing app
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+os.environ["DATABASE_URL"] = "sqlite:///:memory:"
 
 
 @pytest.fixture(scope="function")

@@ -2629,21 +2629,21 @@ function renderEngineHealthTab(tabKey) {
             <div class="col-md-4">
                 <div class="card p-3 border-danger shadow-sm h-100">
                     <h6 class="text-danger fw-bold"><i class="bi bi-thermometer-high"></i> Ambient Thermal Sensitivity</h6>
-                    <div class="display-6 fw-bold my-2 text-danger">${slopeStr}</div>
+                    <div class="fs-4 fw-bold my-2 text-danger text-break">${slopeStr}</div>
                     <div class="small text-muted">Linear regression rate of cylinder head temperature rise per degree of ambient temperature increase.</div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card p-3 border-warning shadow-sm h-100">
                     <h6 class="text-warning text-dark fw-bold"><i class="bi bi-fire"></i> Hottest Running Cylinder</h6>
-                    <div class="display-6 fw-bold my-2 text-warning text-dark">${summary.hottest_cylinder || 'N/A'}</div>
+                    <div class="fs-4 fw-bold my-2 text-warning text-dark text-break">${summary.hottest_cylinder || 'N/A'}</div>
                     <div class="small text-muted">Identified as peak operating CHT across ${summary.total_flights || 0} fleet flights.</div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card p-3 border-info shadow-sm h-100">
                     <h6 class="text-info fw-bold"><i class="bi bi-arrows-expand"></i> Average Cylinder Spread</h6>
-                    <div class="display-6 fw-bold my-2 text-info">${avgSpread}°F</div>
+                    <div class="fs-4 fw-bold my-2 text-info text-break">${avgSpread}°F</div>
                     <div class="small text-muted">Mean temperature delta across all 4 cylinders during cruise flight.</div>
                 </div>
             </div>

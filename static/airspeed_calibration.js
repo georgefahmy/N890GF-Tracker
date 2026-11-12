@@ -49,10 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modalEl) {
         modalEl.addEventListener('shown.bs.modal', () => {
             const timeGraph = getAsCalElem('timeGraph');
+            const mapDiv = getAsCalElem('mapDiv');
             if (timeGraph && timeGraph.data) Plotly.Plots.resize(timeGraph);
+            if (mapDiv && mapDiv.data) Plotly.Plots.resize(mapDiv);
         });
     }
 });
+
+function getAppStateRef() {
+    if (typeof AppState !== 'undefined') return AppState;
+    if (typeof window !== 'undefined' && window.AppState) return window.AppState;
+    return null;
+}
 
 function openAirspeedCalModal() {
     const modalEl = document.getElementById('airspeedCalModal');
@@ -76,41 +84,66 @@ function openAirspeedCalModal() {
         resultBox.innerText = 'Results will appear here...';
     }
 
-    const modal = new bootstrap.Modal(modalEl);
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
     modal.show();
 
     // Sync modal dropdown with main select choices safely
     const mainSelect = document.getElementById('savedFlights');
     const calSelect = document.getElementById('asCalSavedFlights');
+    const appState = getAppStateRef();
 
     let activeFile = null;
-    if (window.AppState && AppState.file && AppState.file.currentName) {
-        activeFile = AppState.file.currentName;
+    if (appState && appState.file && appState.file.currentName) {
+        activeFile = appState.file.currentName;
     } else if (mainSelect && mainSelect.value) {
         activeFile = mainSelect.value;
     }
 
-    if (mainSelect && calSelect && mainSelect !== calSelect) {
+    if (mainSelect && calSelect && mainSelect !== calSelect && mainSelect.options.length > 0) {
         calSelect.innerHTML = mainSelect.innerHTML;
         if (activeFile) {
             calSelect.value = activeFile;
         }
     }
 
-    loadAirspeedCalFlight();
+    const timeGraph = getAsCalElem('timeGraph');
+    const waitForLayoutAndLoad = () => {
+        if (timeGraph && timeGraph.clientWidth === 0 && modalEl.style.display !== 'block') {
+            requestAnimationFrame(waitForLayoutAndLoad);
+            return;
+        }
+        loadAirspeedCalFlight();
+    };
+    requestAnimationFrame(waitForLayoutAndLoad);
 }
 
 function loadAirspeedCalFlight() {
+    // Reset maneuver selection & previous flight results when loading a flight
+    asCalSelectionState = { start: null, end: null };
+    window._lastAsCalCursorIdx = null;
+    const startInput = getAsCalElem('calStartTime') || getAsCalElem('startTime');
+    const endInput = getAsCalElem('calEndTime') || getAsCalElem('endTime');
+    if (startInput) startInput.value = '';
+    if (endInput) endInput.value = '';
+    const resultsContainer = document.getElementById('asCalResultsContainer');
+    if (resultsContainer) resultsContainer.classList.add('d-none');
+    const resultBox = document.getElementById('calibrationResult');
+    if (resultBox) {
+        resultBox.classList.add('d-none');
+        resultBox.innerText = 'Results will appear here...';
+    }
+
     let selectedFile = null;
     const calSel = document.getElementById('asCalSavedFlights');
     const mainSel = document.getElementById('savedFlights');
+    const appState = getAppStateRef();
 
     if (calSel && calSel.value && calSel.value !== "") {
         selectedFile = calSel.value;
     } else if (mainSel && mainSel.value && mainSel.value !== "") {
         selectedFile = mainSel.value;
-    } else if (window.AppState && AppState.file && AppState.file.currentName) {
-        selectedFile = AppState.file.currentName;
+    } else if (appState && appState.file && appState.file.currentName) {
+        selectedFile = appState.file.currentName;
     }
 
     if (!selectedFile) {
@@ -120,10 +153,19 @@ function loadAirspeedCalFlight() {
     }
 
     // Check if we already have this flight loaded in AppState
-    if (window.AppState && AppState.file && AppState.file.currentName === selectedFile && (AppState.rawData || (AppState.lastAnalysisResponse && AppState.lastAnalysisResponse.rawData))) {
-        asCalCurrentData = AppState.rawData || (AppState.lastAnalysisResponse && AppState.lastAnalysisResponse.rawData);
-        renderAirspeedCalPlot(asCalCurrentData);
-        return;
+    if (appState && appState.file && appState.file.currentName === selectedFile) {
+        const existingData = appState.rawData ||
+            (appState.lastAnalysisResponse && (appState.lastAnalysisResponse.rawData || appState.lastAnalysisResponse.plot_data)) ||
+            appState.currentPlotData;
+        if (existingData) {
+            asCalCurrentData = existingData;
+            renderAirspeedCalPlot(asCalCurrentData);
+            const savedCals = (appState.currentFlightStats && appState.currentFlightStats.saved_calibrations) ||
+                (appState.lastAnalysisResponse && appState.lastAnalysisResponse.stats && appState.lastAnalysisResponse.stats.saved_calibrations) ||
+                window.lastSavedCalibrations || [];
+            renderModalSavedAirspeedCalibrations(savedCals);
+            return;
+        }
     }
 
     const instruction = getAsCalElem('instruction');
@@ -143,8 +185,13 @@ function loadAirspeedCalFlight() {
             if (instruction) instruction.innerText = 'Error: ' + data.error;
             return;
         }
-        asCalCurrentData = data.rawData || data.data || data;
+        if (!data.rawData && data.plot_data && typeof window.reconstructRawDataFromPlotData === 'function') {
+            data.rawData = window.reconstructRawDataFromPlotData(data.plot_data);
+        }
+        asCalCurrentData = data.rawData || data.plot_data || data.data || data;
         renderAirspeedCalPlot(asCalCurrentData);
+        const savedCals = (data.stats && data.stats.saved_calibrations) || [];
+        renderModalSavedAirspeedCalibrations(savedCals);
     })
     .catch(err => {
         console.error("Airspeed Cal data load error:", err);
@@ -160,7 +207,9 @@ function renderAirspeedCalPlot(data) {
     // Helper to safely fetch numeric arrays from row array or column dict
     function getSeries(colNames) {
         if (!data) return [];
-        const records = (typeof data === 'object' && data !== null && (data.rawData || data.data || data.dataframe)) ? (data.rawData || data.data || data.dataframe) : data;
+        const records = (typeof data === 'object' && data !== null && !Array.isArray(data) && (data.rawData || data.plot_data || data.data || data.dataframe))
+            ? (data.rawData || data.plot_data || data.data || data.dataframe)
+            : data;
 
         // Case 1: Array of record objects [{ col1: v1, col2: v2 }, ...]
         if (Array.isArray(records)) {
@@ -183,11 +232,11 @@ function renderAirspeedCalPlot(data) {
         return [];
     }
 
-    const sessionTimes = getSeries(['Session Time', 'session_time']);
-    const ias = getSeries(['Indicated Airspeed (knots)', 'ias', 'IAS']);
-    const gs = getSeries(['Ground Speed (knots)', 'gps_gs', 'GS']);
-    const hdg = getSeries(['Magnetic Heading (deg)', 'hdg', 'HDG']);
-    const alt = getSeries(['Pressure Altitude (ft)', 'press_alt', 'ALT']);
+    const sessionTimes = getSeries(['Session Time', 'session_time', 'x_sec']);
+    const ias = getSeries(['Indicated Airspeed (knots)', 'ias', 'IAS', 'airspeed']);
+    const gs = getSeries(['Ground Speed (knots)', 'groundspeed', 'gps_gs', 'GS']);
+    const hdg = getSeries(['Magnetic Heading (deg)', 'heading', 'hdg', 'HDG']);
+    const alt = getSeries(['Pressure Altitude (ft)', 'press_alt', 'altitude', 'ALT']);
 
     if (!sessionTimes.length || !ias.length) {
         if (instruction) instruction.innerText = "Airspeed or time data missing in this log file.";
@@ -195,7 +244,7 @@ function renderAirspeedCalPlot(data) {
     }
 
     if (instruction) {
-        instruction.innerText = "Click 2 points on the graph to select your 360° maneuver window (Green line = Start, Red line = End).";
+        instruction.innerText = "Click 2 points on the graph or map to select your 360° maneuver window (Green = Start, Red = End).";
     }
 
     const traceIAS = {
@@ -238,13 +287,13 @@ function renderAirspeedCalPlot(data) {
     };
 
     const layout = {
-        title: { text: 'Airspeed Calibration Maneuver Selection', font: { size: 14 } },
+        autosize: true,
         xaxis: { title: 'Session Time (seconds)' },
         yaxis: { title: 'Airspeed / Groundspeed (kts)', side: 'left' },
         yaxis2: { title: 'Magnetic Heading (°)', overlaying: 'y', side: 'right', range: [0, 360] },
         yaxis3: { title: 'Altitude (ft)', overlaying: 'y', visible: false },
-        margin: { l: 50, r: 50, t: 40, b: 40 },
-        legend: { orientation: 'h', x: 0, y: 1.12 },
+        margin: { l: 55, r: 55, t: 36, b: 42 },
+        legend: { orientation: 'h', x: 0, y: 1.1 },
         hovermode: 'x'
     };
 
@@ -265,41 +314,58 @@ function renderAirspeedCalPlot(data) {
     graphDiv.on('plotly_click', (eventData) => {
         if (!eventData || !eventData.points || !eventData.points.length) return;
         const x = eventData.points[0].x;
-
-        if (asCalSelectionState.start === null || asCalSelectionState.end !== null) {
-            // First click
-            asCalSelectionState.start = x;
-            asCalSelectionState.end = null;
-        } else {
-            // Second click
-            asCalSelectionState.end = x;
-            if (asCalSelectionState.end < asCalSelectionState.start) {
-                const tmp = asCalSelectionState.start;
-                asCalSelectionState.start = asCalSelectionState.end;
-                asCalSelectionState.end = tmp;
-            }
-        }
-
-        // Sync input boxes
-        const startInput = getAsCalElem('calStartTime') || getAsCalElem('startTime');
-        const endInput = getAsCalElem('calEndTime') || getAsCalElem('endTime');
-        if (startInput && asCalSelectionState.start !== null) {
-            startInput.value = Math.round(asCalSelectionState.start * 10) / 10;
-        }
-        if (endInput && asCalSelectionState.end !== null) {
-            endInput.value = Math.round(asCalSelectionState.end * 10) / 10;
-        }
-
-        drawAsCalShapes();
-
-        // Update map maneuver segment highlight
-        renderAsCalMap(data, asCalSelectionState.start, asCalSelectionState.end);
-
-        // If both start & end are set, run calibration automatically
-        if (asCalSelectionState.start !== null && asCalSelectionState.end !== null) {
-            submitAirspeedCalibration(asCalSelectionState.start, asCalSelectionState.end);
-        }
+        handleAsCalPointSelection(x, data);
     });
+}
+
+function handleAsCalPointSelection(x, dataOverride) {
+    const selectedTime = parseFloat(x);
+    if (isNaN(selectedTime)) return;
+    const activeData = dataOverride || asCalCurrentData;
+
+    if (asCalSelectionState.start === null || asCalSelectionState.end !== null) {
+        // First click
+        asCalSelectionState.start = selectedTime;
+        asCalSelectionState.end = null;
+    } else {
+        // Second click
+        asCalSelectionState.end = selectedTime;
+        if (asCalSelectionState.end < asCalSelectionState.start) {
+            const tmp = asCalSelectionState.start;
+            asCalSelectionState.start = asCalSelectionState.end;
+            asCalSelectionState.end = tmp;
+        }
+    }
+
+    // Sync input boxes
+    const startInput = getAsCalElem('calStartTime') || getAsCalElem('startTime');
+    const endInput = getAsCalElem('calEndTime') || getAsCalElem('endTime');
+    if (startInput) {
+        startInput.value = asCalSelectionState.start !== null
+            ? Math.round(asCalSelectionState.start * 10) / 10
+            : '';
+    }
+    if (endInput) {
+        endInput.value = asCalSelectionState.end !== null
+            ? Math.round(asCalSelectionState.end * 10) / 10
+            : '';
+    }
+
+    drawAsCalShapes();
+
+    // Update map maneuver segment highlight & start/end markers
+    if (activeData) {
+        renderAsCalMap(activeData, asCalSelectionState.start, asCalSelectionState.end);
+    }
+
+    const instruction = getAsCalElem('instruction');
+    if (asCalSelectionState.start !== null && asCalSelectionState.end === null) {
+        if (instruction) {
+            instruction.innerText = `Start set at ${Math.round(asCalSelectionState.start * 10) / 10}s. Click a 2nd point on the graph or map to set End and run calibration.`;
+        }
+    } else if (asCalSelectionState.start !== null && asCalSelectionState.end !== null) {
+        submitAirspeedCalibration(asCalSelectionState.start, asCalSelectionState.end);
+    }
 }
 
 function drawAsCalShapes() {
@@ -374,13 +440,14 @@ function submitAirspeedCalibration(optStart, optEnd) {
     let selectedFile = null;
     const calSel = document.getElementById('asCalSavedFlights');
     const mainSel = document.getElementById('savedFlights');
+    const appState = getAppStateRef();
 
     if (calSel && calSel.value && calSel.value !== "") {
         selectedFile = calSel.value;
     } else if (mainSel && mainSel.value && mainSel.value !== "") {
         selectedFile = mainSel.value;
-    } else if (window.AppState && AppState.file && AppState.file.currentName) {
-        selectedFile = AppState.file.currentName;
+    } else if (appState && appState.file && appState.file.currentName) {
+        selectedFile = appState.file.currentName;
     }
 
     if (!selectedFile) {
@@ -388,10 +455,11 @@ function submitAirspeedCalibration(optStart, optEnd) {
         return;
     }
 
-    // Store globally for flight map highlight
-    if (window.AppState && window.AppState.calibration) {
-        AppState.calibration.start = start;
-        AppState.calibration.end = end;
+    // Store globally for flight map highlight if calibrating the currently active Analyzer flight
+    if (appState && appState.calibration && (!appState.file || !appState.file.currentName || appState.file.currentName === selectedFile)) {
+        appState.calibration.start = start;
+        appState.calibration.end = end;
+        appState.calibration.filename = selectedFile;
     }
 
     asCalSelectionState.start = start;
@@ -411,7 +479,12 @@ function submitAirspeedCalibration(optStart, optEnd) {
         method: 'POST',
         body: formData
     })
-    .then(res => res.json())
+    .then(res => {
+        if (res.redirected && res.url && res.url.includes('/login')) {
+            throw new Error('SESSION_EXPIRED');
+        }
+        return res.json();
+    })
     .then(data => {
         if (data.error) {
             if (instruction) instruction.innerText = "Error: " + data.error;
@@ -540,21 +613,103 @@ function submitAirspeedCalibration(optStart, optEnd) {
         if (resultsContainer) resultsContainer.classList.remove('d-none');
 
         if (data.saved_calibrations) {
-            window.lastSavedCalibrations = data.saved_calibrations;
-            if (window.AppState && AppState.currentFlightStats) {
-                AppState.currentFlightStats.saved_calibrations = data.saved_calibrations;
+            const appState = getAppStateRef();
+            const isActiveAnalyzerFlight = !appState || !appState.file || !appState.file.currentName || appState.file.currentName === selectedFile;
+            if (isActiveAnalyzerFlight) {
+                window.lastSavedCalibrations = data.saved_calibrations;
+                if (appState && appState.currentFlightStats) {
+                    appState.currentFlightStats.saved_calibrations = data.saved_calibrations;
+                }
+                renderSavedAirspeedCalibrations(data.saved_calibrations);
             }
-            renderSavedAirspeedCalibrations(data.saved_calibrations);
+            renderModalSavedAirspeedCalibrations(data.saved_calibrations);
         }
 
-        if (window.renderMap && window.AppState && AppState.map && AppState.map.lastRenderData) {
-            renderMap(AppState.map.lastRenderData);
+        const appState = getAppStateRef();
+        if (window.renderMap && appState && appState.map && appState.map.lastRenderData && (!appState.file || !appState.file.currentName || appState.file.currentName === selectedFile)) {
+            renderMap(appState.map.lastRenderData);
         }
     })
     .catch(err => {
         console.error(err);
-        if (instruction) instruction.innerText = "Network error during calibration.";
+        if (instruction) {
+            if (err && err.message === 'SESSION_EXPIRED') {
+                instruction.innerHTML = '⚠️ Your login session expired. Please <a href="/login?next=/analyzer" class="fw-bold">log in again</a> to run and save calibrations.';
+            } else {
+                instruction.innerText = "Network error during calibration.";
+            }
+        }
     });
+}
+
+function selectSavedCalibrationInModal(start, end) {
+    const s = parseFloat(start);
+    const e = parseFloat(end);
+    if (isNaN(s) || isNaN(e)) return;
+    asCalSelectionState.start = s;
+    asCalSelectionState.end = e;
+    const startInput = getAsCalElem('calStartTime') || getAsCalElem('startTime');
+    const endInput = getAsCalElem('calEndTime') || getAsCalElem('endTime');
+    if (startInput) startInput.value = Math.round(s * 10) / 10;
+    if (endInput) endInput.value = Math.round(e * 10) / 10;
+    drawAsCalShapes();
+    if (asCalCurrentData) {
+        renderAsCalMap(asCalCurrentData, s, e, true);
+    }
+    submitAirspeedCalibration(s, e);
+}
+
+function renderModalSavedAirspeedCalibrations(calsList) {
+    let container = document.getElementById('asCalModalSavedList');
+    if (!container) {
+        const resultsContainer = document.getElementById('asCalResultsContainer');
+        if (!resultsContainer || !resultsContainer.parentNode) return;
+        container = document.createElement('div');
+        container.id = 'asCalModalSavedList';
+        resultsContainer.parentNode.insertBefore(container, resultsContainer);
+    }
+    if (!calsList || calsList.length === 0) {
+        container.innerHTML = '';
+        return;
+    }
+    const itemsHtml = calsList.map((item, idx) => {
+        const resObj = item.results || {};
+        const engObj = item.engine_settings || {};
+        const start = item.start_time;
+        const end = item.end_time;
+        const asErrorVal = resObj.airspeed_error_kts;
+        const asErrorStr = asErrorVal !== undefined ? (asErrorVal >= 0 ? '+' : '') + asErrorVal + ' kts' : 'N/A';
+        const errorColorClass = (asErrorVal !== undefined && asErrorVal >= 0) ? 'text-success' : 'text-danger';
+        const corrTasStr = resObj.corrected_average_true_airspeed_kts !== undefined ? resObj.corrected_average_true_airspeed_kts + ' kts' : 'N/A';
+        const uncorrTasStr = resObj.uncorrected_average_true_airspeed_kts !== undefined ? resObj.uncorrected_average_true_airspeed_kts + ' kts' : 'N/A';
+        const daStr = resObj.density_altitude_ft !== undefined ? Number(resObj.density_altitude_ft).toLocaleString() + ' ft' : 'N/A';
+        const powerStr = engObj.percent_power !== null && engObj.percent_power !== undefined ? engObj.percent_power + '%' : 'N/A';
+        return `
+            <div class="d-flex flex-wrap justify-content-between align-items-center p-2 mb-1 rounded border bg-white shadow-sm small">
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                    <span class="badge bg-primary">#${idx + 1}: ${formatMMSS(start)} - ${formatMMSS(end)}</span>
+                    <span><strong>Corr TAS:</strong> ${corrTasStr} <span class="text-muted">(Uncorr: ${uncorrTasStr})</span></span>
+                    <span><strong>Error:</strong> <span class="${errorColorClass} fw-bold">${asErrorStr}</span></span>
+                    <span><strong>DA:</strong> ${daStr}</span>
+                    <span><strong>Power:</strong> ${powerStr}</span>
+                </div>
+                <div class="d-flex align-items-center gap-1 mt-1 mt-sm-0">
+                    <button type="button" class="btn btn-sm btn-outline-primary py-0 px-2" onclick="selectSavedCalibrationInModal(${start}, ${end})">
+                        View Segment
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteAirspeedCalibration(${item.id})">
+                        &times; Delete
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    container.innerHTML = `
+        <div class="card p-2 mb-3 bg-body-tertiary border shadow-sm">
+            <div class="fw-bold small text-primary mb-2">✈️ Saved Airspeed Calibrations for Selected Flight (${calsList.length})</div>
+            ${itemsHtml}
+        </div>
+    `;
 }
 
 function renderSavedAirspeedCalibrations(calsList) {
@@ -682,10 +837,12 @@ function deleteAirspeedCalibration(calId) {
             if (data.success) {
                 const rem = data.remaining_calibrations || [];
                 window.lastSavedCalibrations = rem;
-                if (window.AppState && AppState.currentFlightStats) {
-                    AppState.currentFlightStats.saved_calibrations = rem;
+                const appState = getAppStateRef();
+                if (appState && appState.currentFlightStats) {
+                    appState.currentFlightStats.saved_calibrations = rem;
                 }
                 renderSavedAirspeedCalibrations(rem);
+                renderModalSavedAirspeedCalibrations(rem);
 
                 // If on multi-flight stats page, update local globalFlights state & re-render table
                 const flights = window.globalFlights || window.allFlightStats;
@@ -717,7 +874,9 @@ function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
 
     function getSeries(colNames) {
         if (!data) return [];
-        const records = (typeof data === 'object' && data !== null && (data.rawData || data.data || data.dataframe)) ? (data.rawData || data.data || data.dataframe) : data;
+        const records = (typeof data === 'object' && data !== null && !Array.isArray(data) && (data.rawData || data.plot_data || data.data || data.dataframe))
+            ? (data.rawData || data.plot_data || data.data || data.dataframe)
+            : data;
 
         if (Array.isArray(records)) {
             for (const col of colNames) {
@@ -736,22 +895,39 @@ function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
         return [];
     }
 
-    const sessionTimes = getSeries(['Session Time', 'session_time']);
+    const sessionTimes = getSeries(['Session Time', 'session_time', 'x_sec']);
     const lats = getSeries(['Latitude (deg)', 'latitude', 'LAT', 'Lat']);
     const lons = getSeries(['Longitude (deg)', 'longitude', 'LON', 'Lon']);
-    const alts = getSeries(['GPS Altitude (feet)', 'Pressure Altitude (ft)', 'press_alt', 'ALT']);
+    const alts = getSeries(['GPS Altitude (feet)', 'Pressure Altitude (ft)', 'altitude', 'press_alt', 'ALT']);
     const iass = getSeries(['Indicated Airspeed (knots)', 'ias', 'IAS']);
-    const tass = getSeries(['Corrected TAS (knots)', 'True Airspeed (knots)', 'tas', 'TAS']);
-    const hdgs = getSeries(['Magnetic Heading (deg)', 'hdg', 'HDG']);
+    const tass = getSeries(['Corrected TAS (knots)', 'True Airspeed (knots)', 'airspeed', 'tas', 'TAS']);
+    const hdgs = getSeries(['Magnetic Heading (deg)', 'heading', 'hdg', 'HDG']);
 
     if (!lats.length || !lons.length) {
         mapDiv.innerHTML = '<div class="text-center text-muted p-4">No GPS coordinate track logged for this flight.</div>';
         return;
     }
 
-    // Identify indices for selected maneuver segment
-    const sTime = (startTime !== null && startTime !== undefined) ? parseFloat(startTime) : null;
-    const eTime = (endTime !== null && endTime !== undefined) ? parseFloat(endTime) : null;
+    // Identify indices for selected maneuver segment & start/end markers
+    const sTime = (startTime !== null && startTime !== undefined && startTime !== '') ? parseFloat(startTime) : null;
+    const eTime = (endTime !== null && endTime !== undefined && endTime !== '') ? parseFloat(endTime) : null;
+
+    function findClosestTimeIdx(targetTime) {
+        if (targetTime === null || targetTime === undefined || isNaN(targetTime) || !sessionTimes.length) return null;
+        let bestIdx = 0;
+        let minDiff = Infinity;
+        for (let i = 0; i < sessionTimes.length; i++) {
+            const diff = Math.abs(parseFloat(sessionTimes[i]) - targetTime);
+            if (diff < minDiff) {
+                minDiff = diff;
+                bestIdx = i;
+            }
+        }
+        return bestIdx;
+    }
+
+    const startIdx = findClosestTimeIdx(sTime);
+    const endIdx = findClosestTimeIdx(eTime);
 
     let segIndices = [];
     if (sTime !== null && eTime !== null && !isNaN(sTime) && !isNaN(eTime)) {
@@ -762,30 +938,56 @@ function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
             }
         }
     }
-    if (segIndices.length === 0) segIndices = [0];
 
     const segLats = segIndices.map(i => lats[i]);
     const segLons = segIndices.map(i => lons[i]);
     const segTimes = segIndices.map(i => sessionTimes[i]);
 
+    // Build Start / End boundary markers (Green = Start, Red = End)
+    const boundaryIndices = [];
+    const boundaryColors = [];
+    const boundaryTexts = [];
+    if (startIdx !== null) {
+        boundaryIndices.push(startIdx);
+        boundaryColors.push('#198754');
+        boundaryTexts.push(
+            `<b>Start Maneuver</b><br>` +
+            `Time: ${Math.round(sessionTimes[startIdx] || 0)}s<br>` +
+            `Alt: ${Math.round(alts[startIdx] || 0).toLocaleString()} ft<br>` +
+            `IAS: ${Math.round(iass[startIdx] || 0)} kt`
+        );
+    }
+    if (endIdx !== null) {
+        boundaryIndices.push(endIdx);
+        boundaryColors.push('#dc3545');
+        boundaryTexts.push(
+            `<b>End Maneuver</b><br>` +
+            `Time: ${Math.round(sessionTimes[endIdx] || 0)}s<br>` +
+            `Alt: ${Math.round(alts[endIdx] || 0).toLocaleString()} ft<br>` +
+            `IAS: ${Math.round(iass[endIdx] || 0)} kt`
+        );
+    }
+
     // Traces:
-    // 1. Full Flight Path
+    // 0. Full Flight Path
     const fullPathTrace = {
         type: 'scattermapbox',
         mode: 'lines',
         lat: lats,
         lon: lons,
+        customdata: sessionTimes.map((_, i) => i),
         line: { width: 3, color: '#6c757d' },
         name: 'Full Flight Track',
         hoverinfo: 'none'
     };
 
-    // 2. Highlighted Maneuver Segment (Cyan line with Gold markers)
+    // 1. Highlighted Maneuver Segment (Cyan line with Gold markers)
     const segmentTrace = {
         type: 'scattermapbox',
         mode: 'lines+markers',
         lat: segLats,
         lon: segLons,
+        customdata: segIndices,
         line: { width: 6, color: '#00f0ff' },
         marker: { size: 7, color: '#ffc107' },
         name: 'Calibration Segment',
@@ -798,17 +1000,47 @@ function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
         hoverinfo: 'text'
     };
 
+    // 2. Start / End Selection Markers (Green = Start, Red = End)
+    const boundaryTrace = {
+        type: 'scattermapbox',
+        mode: 'markers',
+        lat: boundaryIndices.map(i => lats[i]),
+        lon: boundaryIndices.map(i => lons[i]),
+        customdata: boundaryIndices,
+        marker: {
+            size: 13,
+            color: boundaryColors.length ? boundaryColors : '#198754'
+        },
+        name: 'Start / End Markers',
+        text: boundaryTexts,
+        hoverinfo: 'text'
+    };
+
     // 3. Cursor Follow Marker (Pulsing Red Circle)
-    const initIdx = segIndices[0] || 0;
+    let initIdx = 0;
+    if (window._lastAsCalCursorIdx !== null && window._lastAsCalCursorIdx !== undefined && window._lastAsCalCursorIdx >= 0 && window._lastAsCalCursorIdx < lats.length) {
+        initIdx = window._lastAsCalCursorIdx;
+    } else if (startIdx !== null) {
+        initIdx = startIdx;
+    } else if (segIndices.length > 0) {
+        initIdx = segIndices[0];
+    }
+
     const cursorTrace = {
         type: 'scattermapbox',
         mode: 'markers',
         lat: [lats[initIdx]],
         lon: [lons[initIdx]],
+        customdata: [initIdx],
         marker: { size: 16, color: '#ff0055', symbol: 'circle', opacity: 0.9 },
         name: 'Position Cursor',
         hoverinfo: 'text',
-        text: [`<b>Position Cursor</b><br>Time: ${Math.round(sessionTimes[initIdx] || 0)}s`]
+        text: [
+            `<b>Position Cursor</b><br>` +
+            `Time: ${Math.round(sessionTimes[initIdx] || 0)}s<br>` +
+            `Alt: ${Math.round(alts[initIdx] || 0).toLocaleString()} ft<br>` +
+            `IAS: ${Math.round(iass[initIdx] || 0)} kt | TAS: ${Math.round(tass[initIdx] || 0)} kt<br>`
+        ]
     };
 
     const isMapInitialized = mapDiv.data && mapDiv.data.length > 0;
@@ -823,10 +1055,20 @@ function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
         const calcLats = segLats.length > 1 ? segLats : lats;
         const calcLons = segLons.length > 1 ? segLons : lons;
 
-        const minLat = Math.min(...calcLats);
-        const maxLat = Math.max(...calcLats);
-        const minLon = Math.min(...calcLons);
-        const maxLon = Math.max(...calcLons);
+        let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity;
+        for (let i = 0; i < calcLats.length; i++) {
+            const la = Number(calcLats[i]);
+            const lo = Number(calcLons[i]);
+            if (isFinite(la) && isFinite(lo) && (la !== 0 || lo !== 0)) {
+                if (la < minLat) minLat = la;
+                if (la > maxLat) maxLat = la;
+                if (lo < minLon) minLon = lo;
+                if (lo > maxLon) maxLon = lo;
+            }
+        }
+        if (!isFinite(minLat)) {
+            minLat = 0; maxLat = 0; minLon = 0; maxLon = 0;
+        }
 
         centerLat = (minLat + maxLat) / 2;
         centerLon = (minLon + maxLon) / 2;
@@ -844,26 +1086,103 @@ function renderAsCalMap(data, startTime, endTime, forceRecenter = false) {
             center: { lat: centerLat, lon: centerLon },
             zoom: fitZoom
         },
+        hovermode: 'closest',
+        hoverdistance: 30,
         margin: { l: 0, r: 0, t: 0, b: 0 },
         showlegend: false,
         paper_bgcolor: 'transparent',
         plot_bgcolor: 'transparent'
     };
 
-    Plotly.react(mapDiv, [fullPathTrace, segmentTrace, cursorTrace], layout, { responsive: true })
+    const mapBadge = document.getElementById('asCalMapBadge');
+    if (mapBadge) {
+        if (sTime !== null && eTime !== null && !isNaN(sTime) && !isNaN(eTime)) {
+            mapBadge.textContent = `${Math.round(sTime)}s – ${Math.round(eTime)}s`;
+            mapBadge.className = 'badge bg-info text-dark extra-small';
+        } else if (sTime !== null && !isNaN(sTime)) {
+            mapBadge.textContent = `Start: ${Math.round(sTime)}s — Click End`;
+            mapBadge.className = 'badge bg-success text-white extra-small';
+        } else {
+            mapBadge.textContent = 'Click 2 points to set range';
+            mapBadge.className = 'badge bg-info text-dark extra-small';
+        }
+    }
+
+    Plotly.react(mapDiv, [fullPathTrace, segmentTrace, boundaryTrace, cursorTrace], layout, { responsive: true })
         .then(() => {
-            if (!isMapInitialized) {
-                // Enable hover sync from map to time graph
-                mapDiv.on('plotly_hover', (eventData) => {
-                    if (!eventData || !eventData.points || !eventData.points.length) return;
-                    const pt = eventData.points[0];
-                    // Ignore hover events on the cursor marker itself to prevent hover loops/glitches
-                    if (pt.curveNumber === 2) return;
-                    const ptIdx = pt.pointIndex;
-                    updateAsCalMapCursor(data, ptIdx);
+            if (typeof mapDiv.removeAllListeners === 'function') {
+                mapDiv.removeAllListeners('plotly_hover');
+                mapDiv.removeAllListeners('plotly_unhover');
+                mapDiv.removeAllListeners('plotly_click');
+            }
+
+            // Enable hover sync on map
+            mapDiv.on('plotly_hover', (eventData) => {
+                if (!eventData || !eventData.points || !eventData.points.length) return;
+                window._lastAsCalMapHoverTime = Date.now();
+                const pt = eventData.points[0];
+                // Ignore hover events on the cursor marker itself to prevent hover loops/glitches
+                if (pt.curveNumber === 3 || (pt.data && pt.data.name === 'Position Cursor')) return;
+                const ptIdx = (pt.customdata !== undefined && pt.customdata !== null) ? pt.customdata : pt.pointIndex;
+                updateAsCalMapCursor(data, ptIdx);
+            });
+
+            mapDiv.on('plotly_unhover', () => {
+                window._lastAsCalMapHoverTime = 0;
+            });
+
+            // Enable 2-click start/end selection directly on the map
+            mapDiv.on('plotly_click', (eventData) => {
+                if (!eventData || !eventData.points || !eventData.points.length) return;
+                const pt = eventData.points[0];
+                let ptIdx = (pt.customdata !== undefined && pt.customdata !== null) ? pt.customdata : null;
+                if (ptIdx === null) {
+                    if ((pt.curveNumber === 3 || (pt.data && pt.data.name === 'Position Cursor')) && window._lastAsCalCursorIdx !== null && window._lastAsCalCursorIdx !== undefined) {
+                        ptIdx = window._lastAsCalCursorIdx;
+                    } else if (pt.curveNumber === 0) {
+                        ptIdx = pt.pointIndex;
+                    }
+                }
+                if (ptIdx !== null && ptIdx >= 0 && ptIdx < sessionTimes.length) {
+                    window._lastAsCalMapClickTime = Date.now();
+                    window._lastAsCalCursorIdx = ptIdx;
+                    handleAsCalPointSelection(sessionTimes[ptIdx], data);
+                }
+            });
+
+            // Fallback click handler in case Plotly.restyle on hover interrupts Mapbox's internal plotly_click event
+            mapDiv._asCalSessionTimes = sessionTimes;
+            mapDiv._asCalData = data;
+            if (!mapDiv._hasAsCalPointerFallback) {
+                mapDiv._hasAsCalPointerFallback = true;
+                let downPos = null;
+                mapDiv.addEventListener('pointerdown', (e) => {
+                    if (e.button !== 0 || (e.target && e.target.closest && e.target.closest('.modebar'))) {
+                        downPos = null;
+                        return;
+                    }
+                    downPos = { x: e.clientX, y: e.clientY, t: Date.now() };
+                });
+                mapDiv.addEventListener('pointerup', (e) => {
+                    if (!downPos) return;
+                    const dx = e.clientX - downPos.x;
+                    const dy = e.clientY - downPos.y;
+                    const dt = Date.now() - downPos.t;
+                    downPos = null;
+                    if (Math.hypot(dx, dy) < 6 && dt < 450) {
+                        setTimeout(() => {
+                            const sincePlotlyClick = Date.now() - (window._lastAsCalMapClickTime || 0);
+                            const sinceHover = Date.now() - (window._lastAsCalMapHoverTime || 0);
+                            const cursorIdx = window._lastAsCalCursorIdx;
+                            const times = mapDiv._asCalSessionTimes || [];
+                            if (sincePlotlyClick > 150 && sinceHover < 1500 && cursorIdx !== null && cursorIdx !== undefined && cursorIdx >= 0 && cursorIdx < times.length) {
+                                window._lastAsCalMapClickTime = Date.now();
+                                handleAsCalPointSelection(times[cursorIdx], mapDiv._asCalData);
+                            }
+                        }, 60);
+                    }
                 });
             }
-            updateAsCalMapCursor(data, initIdx);
         })
         .catch(e => console.debug("Map style loading notice:", e));
 }
@@ -875,7 +1194,9 @@ function updateAsCalMapCursor(data, pointIdx) {
 
     function getSeries(colNames) {
         if (!data) return [];
-        const records = (typeof data === 'object' && data !== null && (data.rawData || data.data || data.dataframe)) ? (data.rawData || data.data || data.dataframe) : data;
+        const records = (typeof data === 'object' && data !== null && !Array.isArray(data) && (data.rawData || data.plot_data || data.data || data.dataframe))
+            ? (data.rawData || data.plot_data || data.data || data.dataframe)
+            : data;
 
         if (Array.isArray(records)) {
             for (const col of colNames) {
@@ -890,13 +1211,13 @@ function updateAsCalMapCursor(data, pointIdx) {
         return [];
     }
 
-    const sessionTimes = getSeries(['Session Time', 'session_time']);
+    const sessionTimes = getSeries(['Session Time', 'session_time', 'x_sec']);
     const lats = getSeries(['Latitude (deg)', 'latitude', 'LAT', 'Lat']);
     const lons = getSeries(['Longitude (deg)', 'longitude', 'LON', 'Lon']);
-    const alts = getSeries(['GPS Altitude (feet)', 'Pressure Altitude (ft)', 'press_alt', 'ALT']);
+    const alts = getSeries(['GPS Altitude (feet)', 'Pressure Altitude (ft)', 'altitude', 'press_alt', 'ALT']);
     const iass = getSeries(['Indicated Airspeed (knots)', 'ias', 'IAS']);
-    const tass = getSeries(['Corrected TAS (knots)', 'True Airspeed (knots)', 'tas', 'TAS']);
-    const hdgs = getSeries(['Magnetic Heading (deg)', 'hdg', 'HDG']);
+    const tass = getSeries(['Corrected TAS (knots)', 'True Airspeed (knots)', 'airspeed', 'tas', 'TAS']);
+    const hdgs = getSeries(['Magnetic Heading (deg)', 'heading', 'hdg', 'HDG']);
 
     if (!lats.length || pointIdx < 0 || pointIdx >= lats.length) return;
 
@@ -908,19 +1229,20 @@ function updateAsCalMapCursor(data, pointIdx) {
     const tas = tass[pointIdx];
     const hdg = hdgs[pointIdx];
 
-    // Restyle cursor marker on Plotly map
+    // Restyle cursor marker on Plotly map (trace index 3)
     const mapDiv = getAsCalElem('mapDiv');
-    if (mapDiv && mapDiv.data && mapDiv.data.length >= 3) {
+    if (mapDiv && mapDiv.data && mapDiv.data.length >= 4) {
         Plotly.restyle(mapDiv, {
             lat: [[lat]],
             lon: [[lon]],
+            customdata: [[pointIdx]],
             text: [[
                 `<b>Position Cursor</b><br>` +
                 `Time: ${Math.round(t || 0)}s<br>` +
                 `Alt: ${Math.round(alt || 0).toLocaleString()} ft<br>` +
                 `IAS: ${Math.round(ias || 0)} kt | TAS: ${Math.round(tas || 0)} kt<br>`
             ]]
-        }, [2]).catch(e => console.debug("Map cursor update notice:", e));
+        }, [3]).catch(e => console.debug("Map cursor update notice:", e));
     }
 }
 

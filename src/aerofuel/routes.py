@@ -12,6 +12,7 @@ import urllib.request
 from datetime import datetime, timezone
 
 from flask import Blueprint, Response, jsonify, render_template, request
+from flask_login import login_required
 
 from .core import (
     CACHE_DIR,
@@ -138,6 +139,7 @@ def api_ourairports_status():
 
 
 @aerofuel_bp.route("/api/ourairports/sync", methods=["GET", "POST"])
+@login_required
 def api_ourairports_sync():
     """Downloads authoritative OurAirports CSV datasets and rebuilds local database."""
     try:
@@ -325,6 +327,7 @@ def api_airnav(icao_param=None):
 
 
 @aerofuel_bp.route("/api/airnav/sync", methods=["POST"])
+@login_required
 def api_airnav_sync():
     """Batch fetch and persist latest AirNav fuel prices for a list of ICAOs."""
     req_data = request.get_json(silent=True) or {}

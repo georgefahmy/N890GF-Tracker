@@ -173,14 +173,20 @@ class TestCheckAutoMaintenance:
             ).count()
             assert new_count == initial_count
 
-    def test_auto_oil_change_triggers_when_overdue(self, app, seed_db):
-        from app import db, check_auto_maintenance, MaintenanceLog, FlightLog
+    def test_oil_change_never_auto_inserted_when_overdue(self, app, seed_db):
+        from app import (
+            db,
+            check_auto_maintenance,
+            MaintenanceLog,
+            FlightLog,
+            get_upcoming_maintenance,
+            calculate_overdue_items,
+            get_oil_change_interval,
+        )
 
         with app.app_context():
-            from app import MAINTENANCE_RULES
-
             # Add a flight that pushes tach past the oil change interval
-            oil_interval = MAINTENANCE_RULES["Oil Change"]["hours"]
+            oil_interval = get_oil_change_interval()
             high_tach_flight = FlightLog(
                 date=datetime(2024, 6, 1),
                 takeoff_airport="KSJC",
@@ -199,7 +205,11 @@ class TestCheckAutoMaintenance:
             new_count = MaintenanceLog.query.filter_by(
                 recurrent_item="Oil Change"
             ).count()
-            assert new_count == initial_count + 1
+            # Oil Change must never be auto-inserted; instead it should show Overdue
+            assert new_count == initial_count
+            assert "Oil Change" in calculate_overdue_items()
+            upcoming = get_upcoming_maintenance()
+            assert upcoming["oil_status_class"] == "status-overdue"
 
 
 class TestCalculateOverdueItems:
