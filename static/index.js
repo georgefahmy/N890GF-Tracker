@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    function paginateTable(tableId, paginationId, rowsPerPage) {
+    function paginateTable(tableId, paginationId, rowsPerPageSetting) {
         const table = document.getElementById(tableId);
         if (!table) return;
         const tbody = table.querySelector('tbody');
@@ -7,15 +7,30 @@ document.addEventListener("DOMContentLoaded", function() {
         const paginationEl = document.getElementById(paginationId);
         if (!paginationEl || rows.length === 0) return;
 
+        const showAll = rowsPerPageSetting === 'all';
+        const rowsPerPage = showAll ? rows.length : Math.max(1, parseInt(rowsPerPageSetting, 10) || 10);
         let currentPage = 1;
         const totalPages = Math.ceil(rows.length / rowsPerPage);
 
         function displayPage(page) {
-            currentPage = page;
+            currentPage = Math.min(Math.max(1, page), totalPages);
             rows.forEach((row, index) => {
-                row.style.display = (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) ? '' : 'none';
+                row.style.display = (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) ? '' : 'none';
             });
             updatePaginationUI();
+        }
+
+        function appendPageItem(label, targetPage, isDisabled, isActive) {
+            const li = document.createElement('li');
+            li.className = `page-item${isDisabled ? ' disabled' : ''}${isActive ? ' active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#">${label}</a>`;
+            if (!isDisabled && targetPage !== null) {
+                li.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    displayPage(targetPage);
+                });
+            }
+            paginationEl.appendChild(li);
         }
 
         function updatePaginationUI() {
@@ -25,30 +40,59 @@ document.addEventListener("DOMContentLoaded", function() {
             const prevLi = document.createElement('li');
             prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
             prevLi.innerHTML = `<a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-            prevLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage > 1) displayPage(currentPage - 1); });
+            prevLi.addEventListener('click', (e) => { e.preventDefault(); if (currentPage > 1) displayPage(currentPage - 1); });
             paginationEl.appendChild(prevLi);
 
-            for (let i = 1; i <= totalPages; i++) {
-                const li = document.createElement('li');
-                li.className = `page-item ${currentPage === i ? 'active' : ''}`;
-                li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-                li.addEventListener('click', (e) => { e.preventDefault(); displayPage(i); });
-                paginationEl.appendChild(li);
+            if (totalPages <= 7) {
+                for (let i = 1; i <= totalPages; i++) {
+                    appendPageItem(i, i, false, currentPage === i);
+                }
+            } else {
+                appendPageItem(1, 1, false, currentPage === 1);
+                let start = Math.max(2, currentPage - 1);
+                let end = Math.min(totalPages - 1, currentPage + 1);
+                if (currentPage <= 3) { start = 2; end = 4; }
+                if (currentPage >= totalPages - 2) { start = totalPages - 3; end = totalPages - 1; }
+
+                if (start > 2) appendPageItem('...', null, true, false);
+                for (let i = start; i <= end; i++) {
+                    appendPageItem(i, i, false, currentPage === i);
+                }
+                if (end < totalPages - 1) appendPageItem('...', null, true, false);
+                appendPageItem(totalPages, totalPages, false, currentPage === totalPages);
             }
 
             const nextLi = document.createElement('li');
             nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
             nextLi.innerHTML = `<a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-            nextLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage < totalPages) displayPage(currentPage + 1); });
+            nextLi.addEventListener('click', (e) => { e.preventDefault(); if (currentPage < totalPages) displayPage(currentPage + 1); });
             paginationEl.appendChild(nextLi);
         }
 
         displayPage(1);
     }
 
-    paginateTable("flightTable", "flightPagination", 7);
-    paginateTable("mxTable", "mxPagination", 7);
-    paginateTable("fuelTable", "fuelPagination", 7);
+    const rowsSelect = document.getElementById('logsRowsPerPage');
+    const validOptions = ['5', '10', '25', '50', 'all'];
+    let savedRows = localStorage.getItem('logsRowsPerPage') || '10';
+    if (!validOptions.includes(savedRows)) savedRows = '10';
+
+    if (rowsSelect) {
+        rowsSelect.value = savedRows;
+        rowsSelect.addEventListener('change', function() {
+            const val = validOptions.includes(this.value) ? this.value : '10';
+            localStorage.setItem('logsRowsPerPage', val);
+            applyPagination(val);
+        });
+    }
+
+    function applyPagination(rowsSetting) {
+        paginateTable("flightTable", "flightPagination", rowsSetting);
+        paginateTable("mxTable", "mxPagination", rowsSetting);
+        paginateTable("fuelTable", "fuelPagination", rowsSetting);
+    }
+
+    applyPagination(savedRows);
 
     // Fuel Estimator Logic
     const leftSlider = document.getElementById('leftFuelSlider');
